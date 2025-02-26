@@ -1,0 +1,10 @@
+compare	all	up	down	threshold
+DvsA	2758	1382	1376	DESeq2 pvalue<=0.05 |log2FoldChange|>=0.0
+EvsA	3492	1909	1583	DESeq2 pvalue<=0.05 |log2FoldChange|>=0.0
+FvsA	1695	762	933	DESeq2 pvalue<=0.05 |log2FoldChange|>=0.0
+DvsB	3096	1364	1732	DESeq2 pvalue<=0.05 |log2FoldChange|>=0.0
+EvsB	2488	1180	1308	DESeq2 pvalue<=0.05 |log2FoldChange|>=0.0
+FvsB	2209	908	1301	DESeq2 pvalue<=0.05 |log2FoldChange|>=0.0
+DvsC	1757	845	912	DESeq2 pvalue<=0.05 |log2FoldChange|>=0.0
+EvsC	2317	1217	1100	DESeq2 pvalue<=0.05 |log2FoldChange|>=0.0
+FvsC	1644	818	826	DESeq2 pvalue<=0.05 |log2FoldChange|>=0.0

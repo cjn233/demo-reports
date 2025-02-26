@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>data tables</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="../css/datatables.css" />
+    <link rel="stylesheet" type="text/css" href="../css/buttons.dataTables.min.css" />
+</head>
+<body>
+        <table id="nopaging_table" class="display" style="width: 100%; height: 50px; text-align: center; margin: auto;font-size: 14px;font-family: 黑体-简">
+        <thead>
+            <tr style='background-color: #036EB8;color: #FFFFFF'><th>Hugo_Symbol</th><th>Chromosome</th><th>Position</th><th>Ref_allele</th><th>Alt_allele</th><th>Variant_Classification</th><th>AAChange</th><th>CGC</th><th>Comprehensive435</th><th>BertVogelstein125</th><th>SMG127</th></tr>
+        </thead>
+        <tbody>
+			<tr style'background-color: #f1f5fb'><td>PTPRD</td><td>chr9</td><td>8,486,335</td><td>G</td><td>A</td><td>Missense_Mutation</td><td>PTPRD:NM_001377958:exon18:c.C2482T:p.R828W|PTPRD:NM_001378058:exon18:c.C2482T:p.R828W|PTPRD:NM_00283 ...</td><td>lung cancer, kidney cancer, HNSCC, glioblastoma</td><td>-</td><td>-</td><td>-</td></tr>
+			<tr style'background-color: #e3eff8'><td>PDGFRB</td><td>chr5</td><td>150,123,046</td><td>G</td><td>C</td><td>Missense_Mutation</td><td>PDGFRB:NM_001355016:exon14:c.C1987G:p.P663A|PDGFRB:NM_001355017:exon15:c.C1696G:p.P566A|PDGFRB:NM_00 ...</td><td>MPN, AML, CMML, CML</td><td>-</td><td>-</td><td>-</td></tr>
+			<tr style'background-color: #f1f5fb'><td>PRDM16</td><td>chr1</td><td>3,405,549</td><td>G</td><td>C</td><td>Missense_Mutation</td><td>PRDM16:NM_022114:exon8:c.G1087C:p.A363P|PRDM16:NM_199454:exon8:c.G1087C:p.A363P</td><td>MDS, AML</td><td>-</td><td>-</td><td>-</td></tr>
+			<tr style'background-color: #e3eff8'><td>TP53</td><td>chr17</td><td>7,674,262</td><td>T</td><td>C</td><td>Missense_Mutation</td><td>TP53:NM_001126115:exon3:c.A305G:p.Y102C|TP53:NM_001126116:exon3:c.A305G:p.Y102C|TP53:NM_001126117:ex ...</td><td>breast, colorectal, lung, sarcoma, adrenocortical, glioma, Spitzoid tumour, multiple other tumour ty ...</td><td>High Confidence Driver</td><td>TSG</td><td>42.00%</td></tr>
+			<tr style'background-color: #f1f5fb'><td>NAV3</td><td>chr12</td><td>78,190,026</td><td>T</td><td>C</td><td>Missense_Mutation</td><td>NAV3:NM_014903:exon33:c.T6032C:p.L2011P|NAV3:NM_001024383:exon34:c.T6098C:p.L2033P</td><td>-</td><td>High Confidence Driver</td><td>-</td><td>4.60%</td></tr>
+			<tr style'background-color: #e3eff8'><td>ETV1</td><td>chr7</td><td>13,896,080</td><td>C</td><td>T</td><td>Missense_Mutation</td><td>ETV1:NM_001163151:exon9:c.G1046A:p.G349E|ETV1:NM_001163152:exon9:c.G911A:p.G304E|ETV1:NM_001163150:e ...</td><td>Ewing sarcoma, prostate</td><td>-</td><td>-</td><td>-</td></tr>
+			<tr style'background-color: #f1f5fb'><td>SMAD4</td><td>chr18</td><td>51,048,835</td><td>C</td><td>A</td><td>Nonsense_Mutation</td><td>SMAD4:NM_005359:exon3:c.C399A:p.Y133X</td><td>colorectal, pancreatic, small intestine</td><td>High Confidence Driver</td><td>TSG</td><td>1.40%</td></tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <script type="text/javascript" src="../js/datatables.js"></script>
+    <script type="text/javascript" src="../js/vfs_fonts.js"></script>
+    <script type="text/javascript" src="../js/buttons.colVis.min.js"></script>
+    <script type="text/javascript" src="../js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var table = $('#nopaging_table').DataTable( {
+                scrollX: true,
+                paging: false,
+                scrollY: 418,
+                sorting: true,
+                'order': [],
+                searching: false,
+                fixedHeader: {
+                    header: false,
+                    //footer: true
+                },
+                fixedColumns: {'leftColumns':1},
+                colReorder: true,
+                dom: 'Bfrtip',
+                buttons: [
+                    'colvis','excel'
+                ],
+                language:{
+                    'info': '',
+                    'sZeroRecords' : '没有找到数据',
+                    "oPaginate" : {
+                        "sFirst" : "第一页",
+                        "sPrevious" : "上一页",
+                        "sNext" : "下一页",
+                        "sLast" : "最后一页"
+                    }
+                }
+            } );
+        } );
+    </script>
+</body>
+</html>

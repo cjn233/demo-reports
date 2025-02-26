@@ -1,0 +1,4678 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" >
+
+<html>
+
+<head>
+
+
+<TITLE>Shotgun Metagenome Sequencing Analysis Report (Mapping-Kraken)</TITLE>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+
+<link rel="stylesheet" href="src/css/jquery-ui.css" />
+
+<link rel="stylesheet" href="src/css/bootstrap-4.3.1.min.css" />
+
+<link rel="stylesheet" href="src/css/jquery.tocify.css" />
+
+<link rel="stylesheet" href="src/css/style.css"/>
+
+<link rel="stylesheet" href="src/css/styles.css"/>
+
+<link rel="stylesheet" href="src/css/base.css"/>
+
+<link rel="stylesheet" href="src/css/base_new.css"/>
+
+<link rel="stylesheet" href="src/css/gallery.css"/>
+
+<script src="src/js/jquery-3.3.1.min.js" type="text/javascript"></script>
+
+<script src="src/js/jquery-ui.min.js" type="text/javascript"></script>
+
+<script src="src/js/jquery.tocify.min.js" type="text/javascript"></script>
+
+<script src="src/js/bootstrap-4.3.1.min.js" type="text/javascript"></script>
+
+<script src="src/js/scrollTop.js" type="text/javascript"></script>
+<script src="src/js/bootstrap-table.js" type="text/javascript"></script>
+
+
+
+<script type="text/javascript">
+
+	$(function () {
+
+		var options = {
+
+			selectors: "h2,h3,h4,h5",
+
+			theme: "bootstrap",
+
+			scrollTo: "60"
+
+		};
+
+		var toc = $("#toc").tocify(options).data("toc-tocify");
+
+	});
+
+</script>
+
+
+<style>
+
+table {
+border-collapse:collapse; /* 关键属性：合并表格内外边框(其实表格边框有2px，外面1px，里面还有1px哦) */
+border:solid #D1D0CE; /* 设置边框属性；样式(solid=实线)、颜色(#999=灰) */
+border-width:0px 0 0px 0px; /* 设置边框状粗细：上 右 下 左 = 对应：1px 0 0 1px */
+}
+
+.left{
+    border:solid #D1D0CE;border-width:0px 0px 0px 0px;padding:2px;
+}
+
+.mid{
+    border:solid #D1D0CE;border-width:2px 0px 2px 0px;padding:2px;
+}
+</style>
+
+
+
+
+<script type="text/javascript">
+
+function trans(img_div_id) {
+
+img_div = $("#" + img_div_id)
+
+img = $("#" + img_div_id + " img").first();
+
+if (img_div.hasClass("fullscreen-div")) {
+
+img_div.removeClass("fullscreen-div");
+
+img.removeClass("fullscreen-img");
+
+}
+
+else {
+
+img_div.addClass("fullscreen-div");
+
+img.addClass("fullscreen-img");
+
+}
+
+}
+
+
+
+function filter_display() {
+
+return $(this).css("display") != "none";
+
+}
+
+
+
+function show_default() {
+
+var list_group_id = "#" + $(this).attr("id");
+
+if ($(list_group_id + " a.active").css("display") == "none") {
+
+var list_tab = $(list_group_id + " a.active");
+
+var pan_id = list_tab.attr("href");
+
+$(pan_id).removeClass("active show");
+
+list_tab.removeClass("active");
+
+}
+
+if ($(list_group_id + " a.active").filter(filter_display).length == 0) {
+
+$(list_group_id + " a").filter(filter_display).first().tab("show");
+
+}
+
+}
+
+$.fn.show_default = show_default
+
+
+
+function next(botton_id) {
+
+var present_tab = $("#" + botton_id.replace("_button_next", "_list-tab") + " .active").first();
+
+while (present_tab.next().length == 1) {
+
+if (present_tab.next().css("display") != "none") {
+
+present_tab.next().tab("show");
+
+break;
+
+}
+
+else {
+
+present_tab = present_tab.next();
+
+}
+
+}
+
+
+
+}
+
+function prev(botton_id) {
+
+var present_tab = $("#" + botton_id.replace("_button_prev", "_list-tab") + " .active").first();
+
+while (present_tab.prev().length == 1) {
+
+if (present_tab.prev().css("display") != "none") {
+
+present_tab.prev().tab("show");
+
+break;
+
+}
+
+else {
+
+present_tab = present_tab.prev();
+
+}
+
+}
+
+
+
+
+
+}
+
+
+
+$(document).ready(function () {
+
+$(".form-control").on("keyup", function () {
+
+var value = $(this).val().toLowerCase();
+
+var input_box_id = "#" + $(this).attr("id");
+
+var list_group_id = input_box_id.replace("_InputList", "_list-tab");
+
+$(list_group_id + " a").filter(function () {
+
+$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+
+});
+
+$(list_group_id).show_default();
+
+});
+
+$(".list-group").each(show_default);
+
+});
+
+
+
+</script>
+
+
+
+
+
+
+
+</head>
+
+
+
+<body>
+
+
+
+<div id="toc" class="tocify">
+
+</div>
+
+
+
+
+
+	<div style="position:fixed; top:0; left:0; width:100%; z-index:1000;">
+
+		<table width="100%" height="50px" border="0" cellpadding="5" cellspacing="0"
+
+			style="background:#F3F3F3; border-bottom:1px solid #eee;border-top: none;background-image:-moz-linear-gradient(top,#EEEEEE,#FFFFFF); background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0,#EEEEEE), color-stop(1,#FFFFFF));filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#EEEEEE', endColorstr='#FFFFFF', GradientType='0')">
+
+			<tr height="86%">
+
+				<td width='1%'></td>
+
+                                <td><img src="src/pdf_images/logo.png" align="left" height=400 width=400></td>
+
+
+				<td width="20%"></td>
+
+				<td width="15%"></td>
+
+				<td width="25%"
+
+					style="text-align:right;padding:0px;margin:0px;color:black;font-size:14px;font-weight:50;">
+
+
+					<br><a href="mailto:op-rna@novogene.com" target="black"
+
+						style="text-decoration:none;color:black;font-size:14px;font-weight:50;">
+
+						<a></td>
+
+				<td width="1%"></td>
+
+			</tr>
+
+		</table>
+
+	</div>
+
+
+</div>
+
+
+
+<!--------------------------标题---------------------------------->
+
+<div id="main">
+
+</br><h1>Shotgun Metagenome Sequencing Analysis Report (Mapping-Kraken)</h1></br>
+
+<table class="gy" style="text-align:left">
+
+<tbody>
+
+
+
+<tr>
+
+
+
+<td style="text-align:left">Contract ID</td>
+
+
+
+<td style="text-align:left">HXXXSCXXXXXX</td>
+
+
+
+</tr>
+
+
+
+<tr>
+
+
+
+<td style="text-align:left">Contract Name</td>
+
+
+
+<td style="text-align:left">Metagenomic Readsmapping Analysis</td>
+
+
+
+</tr>
+
+
+
+<tr>
+
+
+
+<td style="text-align:left">Batch ID</td>
+
+
+
+<td style="text-align:left">X101SCXXXXXXXX-XXX-XXXX</td>
+
+
+
+</tr>
+
+
+
+<tr>
+
+
+
+<td style="text-align:left">Report Time</td>
+
+
+
+<td style="text-align:left">2024-10-24</td>
+
+
+
+</tr>
+
+
+
+</tbody></table>
+
+<br /><br />
+<script type="text/javascript">
+    /* show or hide element*/
+    function hiddenShow(btnObj){
+      ctObj = btnObj.nextElementSibling;
+      if (ctObj.style.display == 'inline'){
+        ctObj.style.display = 'none';
+        btnObj.innerHTML = "Show Annotation";
+      }else{
+        ctObj.style.display = 'inline';
+        btnObj.innerHTML = "Hidden Annotation";
+      };
+      return 0;
+    }
+    function hiddenShow1(btnObj){
+      ctObj = btnObj.nextElementSibling;
+      if (ctObj.style.display == 'inline'){
+        ctObj.style.display = 'none';
+        btnObj.innerHTML = "Show Q&A";
+      }else{
+        ctObj.style.display = 'inline';
+        btnObj.innerHTML = "Hidden Q&A";
+      };
+      return 0;
+    }
+</script>
+
+<!----------------------------------------WOBI----------------------------------------->
+<br />
+<h2>1 Introduction </h2>
+
+<p class="paragraph">Diverse communities of microbes thrive in environments ranging from the human gut (Walter et al., 2011), to the mud in deep sea, to conventionally inhospitable habitats such as acid mine runoff and geothermal hot springs. Environmental DNA sequencing has revealed the expansive biodiversity of microorganisms and clarified the relationship between host-associated microbial communities and host phenotype. Studies of cultured microbes reveal that they are critical components of these environments and provide essential ecosystem services (van der Heijden et al., 2008). Unfortunately, most microbes are notoriously difficult to culture in the laboratory. Therefore, vast amounts of organismal and functional novelty remain to be explored.</p>
+
+<p class="paragraph">Metagenomics, or the study of microbial communities, takes advantage of advances in sequencing technology and analysis methods to comprehensively examine microbial communities directly from their natural habitats, which potentially may reveal novel content (Handelsman et al., 1998). Metagenomic sequencing provides insights into species biodiversity, functions, and pathways present in various microbiomes.</p>
+
+<p class="paragraph">Compared with traditional assembly-based metagenomic processes, the read-based metagenomic workflow directly aligns quality-controlled reads to species (Kraken), independent of assembled sequences. This method rapidly provides abundance information for species and functions, enabling large-scale microbial community studies.</p>
+
+<p class="paragraph">The workflow is shown as follows:</p>
+
+<p class = "center"><img class="center" src="src/pdf_images/project_process_en.png" height=550 width=700/>
+
+<p class="name_fig">Figure 1 Project Workflow</p>
+
+<br />
+<br/>
+
+<h2> 2 Library Construction and Sequencing </h2>
+
+<p class="paragraph">The genomic DNA was randomly sheared into shorter fragments. The obtained fragments were then end-repaired, A-tailed, and further ligated with Illumina adapters. The resulting fragments with adapters were size selected, PCR amplified unless otherwise specified as PCR-free, before proceeding for purification. </p>
+
+<p class="paragraph">The experimental procedures of DNA library preparation are shown as follows :</p>
+
+<p class = "center"><img class="center" src="src/pdf_images/experiment_pipeline_en.png" height=550 width=700/>
+
+<p class="name_fig">Figure 2 Workflow of Library Construction</p>
+
+</p>
+
+<p class="paragraph">The library was quantified through Qubit and qPCR, and size distribution detected with fragment analyzer. Quantified libraries were pooled and sequenced on Illumina platforms according to the effective library concentration and required data amount.</p>
+
+<p class="paragraph">The methods involved in the research are as follows:<a href="src/pdf_images/Sequencing_Methods_en.pdf" title="Click to open" >methods</a>.</p>
+
+
+<h2> 3 Bioinformatics Analysis Pipeline </h2>
+
+<p class="paragraph">The raw data obtained through sequencing contains a certain proportion of low-quality data. Quality control and host filtration were performed on the raw data to obtain clean data, which ensures that the results from subsequent analysis will be accurate and reliable.</p>
+
+<p class="paragraph">Species annotation was performed using the Kraken2 software, where quality-controlled sequences from each metagenomic sample were aligned to the Kraken2 database to determine the species composition of the microbiota. The Bracken (Bayesian Reestimation of Abundance with KrakEN) software was then used to calculate the relative abundance of each sample.</p>
+
+<p class="paragraph">Functional annotation was performed by aligning the sequences against the Uniprot database using Diamond software. The functional annotations for KEGG, GO, eggNOG, and Pfam were obtained based on the correspondence between the UniRef IDs and these functional databases. The relative abundance of each function for each sample was then calculated.</p>
+
+<p class="paragraph">Through the species abundance and functional  annotations, analyses including species and function bar plots and  clustering heatmaps were performed. If there are more than two samples,  PCA, PCoA, and NMDS were conducted. For grouped data, Anosim,  MetaGenomeSeq, and LEfSe were used to explore differences in species  composition and functional composition among samples.</p>
+
+<p class="paragraph">Information analysis workflow is as shown in the figure:</p>
+
+<p class = "center"><img class="center" src="src/pdf_images/information_analysis_en.png" height=550 width=700/>
+
+<p class="name_fig">Figure 3 Information Analysis Workflow Diagram </p>
+
+
+<p class="paragraph">Notes: When the number of samples is less than 3, PCA, PCoA, NMDS, clustering analysis and abundance heatmap analysis cannot be carried out. When the number of biological repeats in the group is less than 3, statistical analysis such as Anosim, MetaGenomeSeq, and LEfSe are statistically meaningless and the analysis cannot be conducted. </p>
+
+<h2> 4 Analysis Results </h2>
+<h3> 4.1 Sequencing Data Processing </h3>
+
+<p class="paragraph">The protocols of data pre-processing are as follows: </p>
+
+<p class="paragraph">1. when either one read contains adapter contamination,the paired read will be discarded.</p>
+<p class="paragraph">2. when either one read contains more than 10 percent uncertain nucleotides,the paired read will be discarded.</p>
+<p class="paragraph">3. when either one read contains more than 50 percent low quality nucleotides (base quality less than 5),the paired read will be discarded.</p>
+
+<p class="paragraph">                 </p>
+
+<p style="text-align: center;font-size:14px">Table 4.1 QC statistics</p>
+
+<table class="gy" data-pagination="true" data-toggle="table" data-page-size="10">
+    
+    <thead>
+        
+        <tr>
+            
+            <th>SampleID</th><th>Raw_Base(G)</th><th>Clean_Base(G)</th><th>Clean_Q20(%)</th><th>Clean_Q30(%)</th><th>Clean_GC(%)</th><th>Effective(%)</th>
+            
+        </tr>
+            
+    </thead>
+        
+    <tbody>
+            
+        
+            
+        <tr><td>A1</td><td>5.91</td><td>5.87</td><td>97.66</td><td>93.36</td><td>47.96</td><td>99.36</td></tr>
+            
+        
+            
+        <tr><td>A2</td><td>8.79</td><td>8.71</td><td>97.84</td><td>93.88</td><td>50.14</td><td>99.17</td></tr>
+            
+        
+            
+        <tr><td>A3</td><td>6.66</td><td>6.61</td><td>97.82</td><td>93.76</td><td>45.10</td><td>99.27</td></tr>
+            
+        
+            
+        <tr><td>A4</td><td>6.04</td><td>5.91</td><td>97.71</td><td>93.59</td><td>48.36</td><td>97.85</td></tr>
+            
+        
+            
+        <tr><td>A5</td><td>6.83</td><td>6.78</td><td>97.91</td><td>93.99</td><td>47.22</td><td>99.31</td></tr>
+            
+        
+            
+        <tr><td>A6</td><td>6.57</td><td>6.50</td><td>97.95</td><td>94.08</td><td>47.05</td><td>98.90</td></tr>
+            
+        
+            
+        <tr><td>A7</td><td>6.59</td><td>6.52</td><td>97.93</td><td>94.11</td><td>46.04</td><td>98.87</td></tr>
+            
+        
+            
+        <tr><td>A8</td><td>7.14</td><td>7.01</td><td>98.73</td><td>96.25</td><td>49.12</td><td>98.16</td></tr>
+            
+        
+            
+        <tr><td>A9</td><td>6.98</td><td>6.81</td><td>98.83</td><td>96.55</td><td>42.86</td><td>97.46</td></tr>
+            
+        
+            
+        <tr><td>A10</td><td>6.10</td><td>5.98</td><td>98.53</td><td>95.79</td><td>53.42</td><td>98.02</td></tr>
+            
+        
+            
+        <tr><td>A11</td><td>5.93</td><td>5.87</td><td>97.24</td><td>92.22</td><td>56.70</td><td>98.91</td></tr>
+            
+        
+            
+        <tr><td>A12</td><td>7.03</td><td>6.97</td><td>97.29</td><td>92.39</td><td>57.48</td><td>99.19</td></tr>
+            
+        
+            
+        <tr><td>A13</td><td>6.39</td><td>6.29</td><td>97.56</td><td>93.20</td><td>55.04</td><td>98.47</td></tr>
+            
+        
+            
+        <tr><td>A14</td><td>6.62</td><td>6.58</td><td>97.82</td><td>93.73</td><td>43.66</td><td>99.34</td></tr>
+            
+        
+            
+        <tr><td>A15</td><td>6.47</td><td>6.26</td><td>97.39</td><td>93.20</td><td>59.08</td><td>96.70</td></tr>
+            
+        
+            
+        <tr><td>A16</td><td>6.37</td><td>6.24</td><td>98.31</td><td>95.24</td><td>57.10</td><td>97.96</td></tr>
+            
+        
+            
+        <tr><td>B1</td><td>7.98</td><td>7.75</td><td>98.64</td><td>96.04</td><td>54.91</td><td>97.16</td></tr>
+            
+        
+            
+        <tr><td>B4</td><td>6.35</td><td>6.00</td><td>98.81</td><td>96.51</td><td>46.78</td><td>94.62</td></tr>
+            
+        
+            
+        <tr><td>B3</td><td>6.73</td><td>6.54</td><td>97.74</td><td>93.64</td><td>47.73</td><td>97.17</td></tr>
+            
+        
+            
+        <tr><td>B2</td><td>6.34</td><td>6.24</td><td>97.64</td><td>93.24</td><td>47.09</td><td>98.41</td></tr>
+            
+        
+        
+    </tbody>
+        
+</table>
+
+<br />
+
+<button onclick="hiddenShow(this)">Show Annotation</button>
+
+<div class="comment">
+<ul style="font-size:14px">
+<li><strong>Raw_Base(G)：</strong>Raw sequenced data.</li>
+<li><strong>Clean_Base(G)：</strong>Clean data obtained after data filtering.</li>
+<li><strong>Clean_Q20(%)：</strong>Percentage of bases with a quality score over 20, indicating an error rate less than 1%.</li>
+<li><strong>Clean_Q30(%)：</strong>Percentage of bases with a quality score over 30, corresponding to an error rate less than 0.1%.</li>
+<li><strong>Clean_GC(%)：</strong>Calculated an the total count of guanine (G) and cytosine (C) bases devided by the total count of clean bases, expressed as a percentage.</li>
+<li><strong>Effective(%)：</strong>Represents the ratio of Clean Data (post-quality control data) to Raw Data, expressed as a percentage.</li>
+<li><strong>NonHost_Base(G)：</strong>The total count of clean bases remaining after the removal of host-specific sequences, measured in gigabases (G).</li>
+</ul>
+</div>
+
+<br />
+
+<p class="paragraph">Results directory: QC_result: result/01.QC/QC_summary.xls</p>
+<!------------------------------------- Taxonomic and function Annotation ---------------------------------->
+
+<br/>
+
+    <h3> 4.2 Taxonomy and Function Annotation </h3>
+
+<br/>
+
+<!--MetaPhlAn注释字段识别开始-->
+<!--MetaPhlAn注释字段识别开始-->
+
+
+
+    <h4> 4.2.1 Kraken Taxonomic Annotation </h4>
+
+    <p class="paragraph">Kraken (Wood DE et al., 2019)(https://benlangmead.github.io/aws-indexes/k2) is a high-performance tool that assigns taxonomic labels to short DNA sequences using a compact and efficient k-mer indexing strategy, achieving high speed and categorizing sequences at the most specific taxonomic level possible through a Lowest Common Ancestor (LCA) algorithm. Kraken utilizes a built-in database (https://ccb.jhu.edu/software/kraken2/) for taxonomy assignment.</p>
+
+    <p class="paragraph">Bracken (Bayesian Reestimation of Abundance with KrakEN) is a complementary tool designed to provide more accurate species abundance estimates from Kraken's classification results.Bracken re-estimates the abundance of each taxonomic unit using Bayesian methods, based on the k-mer distributions identified by Kraken.By considering the varying k-mer coverage and the number of detected sequences, Bracken improves the accuracy of species abundance estimates.</p>
+
+
+
+
+<!--MetaPhlAn注释字段识别结束-->
+<br />
+
+<h5> 4.2.1.1 Relative Abundance of Taxonomic Annotation</h5>
+
+<p class="paragraph"> Based on the abundance table of taxonomic level, the top 10 taxa were picked out. Bar charts show the relative taxonomic abundance of each sample (or group). </p>
+
+<br />
+
+
+
+    <p class="center">
+
+    <div class="row gallery-row">
+
+        <div class="col-1">
+
+            <div id="gallery_figure4_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+
+        </div>
+
+        <div class="col-6">
+
+            <div class="tab-content" id="gallery_figure4_nav-tabContent">
+
+                
+
+                    
+
+                        <div class="tab-pane fade active show" id="gallery_figure4_pane_phylum" role="tabpanel" aria-labelledby="gallery_figure4_list_phylum" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/Taxonomy_Top/p10.group.dis.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure4_pane_class" role="tabpanel" aria-labelledby="gallery_figure4_list_class" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/Taxonomy_Top/c10.group.dis.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure4_pane_order" role="tabpanel" aria-labelledby="gallery_figure4_list_order" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/Taxonomy_Top/o10.group.dis.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure4_pane_family" role="tabpanel" aria-labelledby="gallery_figure4_list_family" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/Taxonomy_Top/f10.group.dis.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure4_pane_genus" role="tabpanel" aria-labelledby="gallery_figure4_list_genus" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/Taxonomy_Top/g10.group.dis.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure4_pane_species" role="tabpanel" aria-labelledby="gallery_figure4_list_species" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/Taxonomy_Top/s10.group.dis.png" /></div>
+
+                    
+
+                
+
+            </div>
+
+        </div>
+
+        <div class="col-1">
+
+            <div id="gallery_figure4_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+
+        </div>
+
+        <div class="col-4">
+
+            <input class="form-control" id="gallery_figure4_InputList" type="text" placeholder="Search..">
+
+            <div class="list-group" id="gallery_figure4_list-tab" role="tablist">
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure4_list_phylum" data-toggle="list" href="#gallery_figure4_pane_phylum" role="tab" aria-controls="phylum">phylum</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure4_list_class" data-toggle="list" href="#gallery_figure4_pane_class" role="tab" aria-controls="class">class</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure4_list_order" data-toggle="list" href="#gallery_figure4_pane_order" role="tab" aria-controls="order">order</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure4_list_family" data-toggle="list" href="#gallery_figure4_pane_family" role="tab" aria-controls="family">family</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure4_list_genus" data-toggle="list" href="#gallery_figure4_pane_genus" role="tab" aria-controls="genus">genus</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure4_list_species" data-toggle="list" href="#gallery_figure4_pane_species" role="tab" aria-controls="species">species</a>
+
+                
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+<p class="name_fig"> Figure 4.1 The Barplot of Relative Abundance </p>
+
+<br/>
+
+<p class="paragraph"> Notes: The bar chart of relative abundance represents sample (or group) names on the horizontal axis and the proportional relative abundance on the vertical axis. Each color block corresponds to a taxonomic level as shown in the legend.</p>
+
+<p class="paragraph"> Results directory:</p>
+<p class="paragraph"> Taxonomic annotation visualization: result/02.Annotation/Taxonomic/Top_{sample, group1}/</p>
+
+<br/>
+<br />
+
+<h5> 4.2.1.2 Kraken Taxonomic Abundance Heatmap </h5>
+
+<p class="paragraph"> The abundance distribution of the top 35 dominant taxonomic level of all samples was displayed in the abundance heatmap. </p>
+
+<br />
+
+
+
+    <p class="center">
+
+    <div class="row gallery-row">
+
+        <div class="col-1">
+
+            <div id="gallery_figure5_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+
+        </div>
+
+        <div class="col-6">
+
+            <div class="tab-content" id="gallery_figure5_nav-tabContent">
+
+                
+
+                    
+
+                        <div class="tab-pane fade active show" id="gallery_figure5_pane_phylum" role="tabpanel" aria-labelledby="gallery_figure5_list_phylum" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/Taxonomy_heatmap/heatmap.sample.p.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure5_pane_class" role="tabpanel" aria-labelledby="gallery_figure5_list_class" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/Taxonomy_heatmap/heatmap.sample.c.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure5_pane_order" role="tabpanel" aria-labelledby="gallery_figure5_list_order" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/Taxonomy_heatmap/heatmap.sample.o.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure5_pane_family" role="tabpanel" aria-labelledby="gallery_figure5_list_family" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/Taxonomy_heatmap/heatmap.sample.f.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure5_pane_genus" role="tabpanel" aria-labelledby="gallery_figure5_list_genus" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/Taxonomy_heatmap/heatmap.sample.g.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure5_pane_species" role="tabpanel" aria-labelledby="gallery_figure5_list_species" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/Taxonomy_heatmap/heatmap.sample.s.png" /></div>
+
+                    
+
+                
+
+            </div>
+
+        </div>
+
+        <div class="col-1">
+
+            <div id="gallery_figure5_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+
+        </div>
+
+        <div class="col-4">
+
+            <input class="form-control" id="gallery_figure5_InputList" type="text" placeholder="Search..">
+
+            <div class="list-group" id="gallery_figure5_list-tab" role="tablist">
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure5_list_phylum" data-toggle="list" href="#gallery_figure5_pane_phylum" role="tab" aria-controls="phylum">phylum</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure5_list_class" data-toggle="list" href="#gallery_figure5_pane_class" role="tab" aria-controls="class">class</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure5_list_order" data-toggle="list" href="#gallery_figure5_pane_order" role="tab" aria-controls="order">order</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure5_list_family" data-toggle="list" href="#gallery_figure5_pane_family" role="tab" aria-controls="family">family</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure5_list_genus" data-toggle="list" href="#gallery_figure5_pane_genus" role="tab" aria-controls="genus">genus</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure5_list_species" data-toggle="list" href="#gallery_figure5_pane_species" role="tab" aria-controls="species">species</a>
+
+                
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+<p class="name_fig"> Figure 4.2 Abundance Clustering Heatmap </p>
+
+<br/>
+
+<p class="paragraph"> Notes: The X-axis denotes the sample (or group) names. The Y-axis illustrates taxonomic level information. The clustering tree is situated on the left-hand side of the chart.  The values depicted on the heatmap represent the Z-score, which is derived after normalizing the relative abundance of annotation results for each line.  The color legend positioned on the right-hand side of the figure delineates the correspondence between heat map colors and Z-values.  Notably, when the raw score falls below the mean value, "Z" assumes a negative value, whereas it is positive when surpassing the mean.</p>
+
+<p class="paragraph"> Results directory：Heatmap of Relative abundance：result/02.Annotation/*/Heatmap*</p>
+
+<br/>
+<!--KEGG注释字段识别开始-->
+
+
+
+    <h4> 4.2.3 KEGG Function Annotation </h4>
+
+    <p class="paragraph"> KEGG (Kanehisa M et al., 2000) is a database resource for understanding high-level functions and utilities of the biological system, from the cell to the organism and the ecosystem. Functional studies are accomplished through molecular-level information, especialy through large-scale molecular datasets generated by genome sequencing and other high-throughput experimental technologies.</p>
+
+    <p class="paragraph"> The KO (KEGG Orthology) database is a database of molecular functions represented in terms of functional orthologs. </p>
+
+    <p class="paragraph"> The EC (KEGG ENZYME) is an implementation of the Enzyme Nomenclature (EC number system) produced by the IUBMB/IUPAC Biochemical Nomenclature  Committee. KEGG ENZYME is based on the ExplorEnz database  at Trinity College Dublin and is maintained in the KEGG  relational database with additional annotation of reaction hierarchy and  sequence data links. </p>
+
+    <p class="paragraph"> The Pathway (KEGG PATHWAY) is a collection of manually drawn pathway maps representing our knowledge of molecular interaction, reaction, and relation networks. </p>
+
+    <p class="paragraph"> The KEGG MODULE database consists of both KEGG modules identified by M numbers and KEGG reaction modules identified by RM numbers, which are manually defined functional units of gene sets and reaction sets, respectively. KEGG modules can be further divided into pathway modules and signature modules. For example, pathway modules are functional units of gene sets within metabolic pathways and include molecular complexes. Whereas, signature modules are functional units of gene sets that characterize phenotypic features. Last but not least, reaction modules are functional units of successive reaction steps within metabolic pathways. </p>
+
+    <p class="paragraph">The UniRef90 gene family IDs were obtained by aligning the sequences against the Uniprot database using the Diamond software.The correspondence between UniRef90 IDs and KO in the KEGG database was used to derive KEGG functional annotation results.</p>
+
+
+
+
+<!--KEGG注释字段识别结束-->
+<br />
+
+<h5> 4.2.2.1 Relative Abundance of KEGG Annotation</h5>
+
+<p class="paragraph"> Based on the abundance table of KEGG orthology (KEGG enzyme/KEGG pathway/KEGG module), the top 10 KEGG orthologys were picked out. Bar charts show the relative KEGG orthology abundance of each sample (or group). </p>
+
+<br />
+
+
+
+    <p class="center">
+
+    <div class="row gallery-row">
+
+        <div class="col-1">
+
+            <div id="gallery_figure4_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+
+        </div>
+
+        <div class="col-6">
+
+            <div class="tab-content" id="gallery_figure4_nav-tabContent">
+
+                
+
+                    
+
+                        <div class="tab-pane fade active show" id="gallery_figure4_pane_KeggModule" role="tabpanel" aria-labelledby="gallery_figure4_list_KeggModule" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/KeggModule_Top//top10.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure4_pane_KeggPath" role="tabpanel" aria-labelledby="gallery_figure4_list_KeggPath" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/KeggPath_Top//top10.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure4_pane_EC" role="tabpanel" aria-labelledby="gallery_figure4_list_EC" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/EC_Top//top10.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure4_pane_KO" role="tabpanel" aria-labelledby="gallery_figure4_list_KO" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/KO_Top//top10.png" /></div>
+
+                    
+
+                
+
+            </div>
+
+        </div>
+
+        <div class="col-1">
+
+            <div id="gallery_figure4_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+
+        </div>
+
+        <div class="col-4">
+
+            <input class="form-control" id="gallery_figure4_InputList" type="text" placeholder="Search..">
+
+            <div class="list-group" id="gallery_figure4_list-tab" role="tablist">
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure4_list_KeggModule" data-toggle="list" href="#gallery_figure4_pane_KeggModule" role="tab" aria-controls="KeggModule">KeggModule</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure4_list_KeggPath" data-toggle="list" href="#gallery_figure4_pane_KeggPath" role="tab" aria-controls="KeggPath">KeggPath</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure4_list_EC" data-toggle="list" href="#gallery_figure4_pane_EC" role="tab" aria-controls="EC">EC</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure4_list_KO" data-toggle="list" href="#gallery_figure4_pane_KO" role="tab" aria-controls="KO">KO</a>
+
+                
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+<p class="name_fig"> Figure 4.3 The Barplot of Relative Abundance </p>
+
+<br/>
+
+<p class="paragraph"> Notes: The bar chart of relative abundance represents sample (or group) names on the horizontal axis and the proportional relative abundance on the vertical axis. Each color block corresponds to a KEGG orthology (KEGG enzyme/KEGG pathway/KEGG module) as shown in the legend.</p>
+
+<p class="paragraph"> Results directory:</p>
+<p class="paragraph"> KEGG annotation visualization: result/02.Annotation/KEGG/Top_{sample, group1}/</p>
+
+<br/>
+<br />
+
+<h5> 4.2.2.2 KEGG Abundance Heatmap </h5>
+
+<p class="paragraph"> The abundance distribution of the top 35 dominant KEGG orthology (KEGG enzyme/KEGG pathway/KEGG module) of all samples was displayed in the abundance heatmap. </p>
+
+<br />
+
+
+
+    <p class="center">
+
+    <div class="row gallery-row">
+
+        <div class="col-1">
+
+            <div id="gallery_figure5_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+
+        </div>
+
+        <div class="col-6">
+
+            <div class="tab-content" id="gallery_figure5_nav-tabContent">
+
+                
+
+                    
+
+                        <div class="tab-pane fade active show" id="gallery_figure5_pane_KeggModule" role="tabpanel" aria-labelledby="gallery_figure5_list_KeggModule" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/KeggModule_heatmap//heatmap.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure5_pane_KeggPath" role="tabpanel" aria-labelledby="gallery_figure5_list_KeggPath" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/KeggPath_heatmap//heatmap.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure5_pane_EC" role="tabpanel" aria-labelledby="gallery_figure5_list_EC" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/EC_heatmap//heatmap.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure5_pane_KO" role="tabpanel" aria-labelledby="gallery_figure5_list_KO" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/KO_heatmap//heatmap.png" /></div>
+
+                    
+
+                
+
+            </div>
+
+        </div>
+
+        <div class="col-1">
+
+            <div id="gallery_figure5_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+
+        </div>
+
+        <div class="col-4">
+
+            <input class="form-control" id="gallery_figure5_InputList" type="text" placeholder="Search..">
+
+            <div class="list-group" id="gallery_figure5_list-tab" role="tablist">
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure5_list_KeggModule" data-toggle="list" href="#gallery_figure5_pane_KeggModule" role="tab" aria-controls="KeggModule">KeggModule</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure5_list_KeggPath" data-toggle="list" href="#gallery_figure5_pane_KeggPath" role="tab" aria-controls="KeggPath">KeggPath</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure5_list_EC" data-toggle="list" href="#gallery_figure5_pane_EC" role="tab" aria-controls="EC">EC</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure5_list_KO" data-toggle="list" href="#gallery_figure5_pane_KO" role="tab" aria-controls="KO">KO</a>
+
+                
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+<p class="name_fig"> Figure 4.4 Abundance Clustering Heatmap </p>
+
+<br/>
+
+<p class="paragraph"> Notes: The X-axis denotes the sample (or group) names. The Y-axis illustrates KEGG orthology (KEGG enzyme/KEGG pathway/KEGG module) information. The clustering tree is situated on the left-hand side of the chart.  The values depicted on the heatmap represent the Z-score, which is derived after normalizing the relative abundance of annotation results for each line.  The color legend positioned on the right-hand side of the figure delineates the correspondence between heat map colors and Z-values.  Notably, when the raw score falls below the mean value, "Z" assumes a negative value, whereas it is positive when surpassing the mean.</p>
+
+<p class="paragraph"> Results directory：Heatmap of Relative abundance：result/02.Annotation/*/Heatmap*</p>
+
+<br/>
+<!--GO注释字段识别开始-->
+
+
+
+    <h4> 4.2.4 GO Functional Annotation </h4>
+
+    <p class="paragraph"> GO (Gene Ontology) (Harris MA et al.,2004) is a database (https://geneontology.org/docs/ontology-documentation/) established by the Gene Ontology Consortium, aiming to provide a comprehensive resource for the functional annotation of genes and proteins across various species. It serves to define and describe gene and protein functions and is continuously updated as research progresses. </p>
+
+    <p class="paragraph"> The fundamental concept in GO is the "GO IDs," which are used to describe characteristics of genes and gene products. In other words, the GO database assigns labels or tags to each gene to enable researchers to quickly locate their target genes based on these labels. Additionally, these terms are categorized into three different types, referred to as the three main branches of GO: Cellular Component (CC), Biological Process (BP), and Molecular Function (MF). </p>
+
+    <p class="paragraph">The UniRef90 gene family IDs were obtained by aligning the sequences against the Uniprot database using the Diamond software.The correspondence between UniRef90 IDs and GO IDs in the GO database  was utilized to generate GO functional annotation results. </p>
+
+
+
+<!--GO注释字段识别结束-->
+<br />
+
+<h5> 4.2.3.1 Relative Abundance of GO Annotation</h5>
+
+<p class="paragraph"> Based on the abundance table of gene ontology, the top 10 gene ontologys were picked out. Bar charts show the relative gene ontology abundance of each sample (or group). </p>
+
+<br />
+
+
+
+    <p class = "center"><img class="center" src="src/files/GO_Top/top10.png" height=520 width=680/>
+
+
+
+<p class="name_fig"> Figure 4.5 The Barplot of Relative Abundance </p>
+
+<br/>
+
+<p class="paragraph"> Notes: The bar chart of relative abundance represents sample (or group) names on the horizontal axis and the proportional relative abundance on the vertical axis. Each color block corresponds to a gene ontology as shown in the legend.</p>
+
+<p class="paragraph"> Results directory:</p>
+<p class="paragraph"> GO annotation visualization: result/02.Annotation/GO/Top_{sample, group1}/</p>
+
+<br/>
+<br />
+
+<h5> 4.2.3.2 GO Abundance Heatmap </h5>
+
+<p class="paragraph"> The abundance distribution of the top 35 dominant gene ontologys of all samples was displayed in the abundance heatmap. </p>
+
+<br />
+
+
+
+    <p class = "center"><img class="center" src="src/files/GO_heatmap/heatmap.png" height=200 width=300/>
+
+
+
+<p class="name_fig"> Figure 4.6 Abundance Clustering Heatmap </p>
+
+<br/>
+
+<p class="paragraph"> Notes: The X-axis denotes the sample (or group) names. The Y-axis illustrates gene ontologys information. The clustering tree is situated on the left-hand side of the chart.  The values depicted on the heatmap represent the Z-score, which is derived after normalizing the relative abundance of annotation results for each line.  The color legend positioned on the right-hand side of the figure delineates the correspondence between heat map colors and Z-values.  Notably, when the raw score falls below the mean value, "Z" assumes a negative value, whereas it is positive when surpassing the mean.</p>
+
+<p class="paragraph"> Results directory：Heatmap of Relative abundance：result/02.Annotation/*/Heatmap*</p>
+
+<br/>
+<!--eggNOG注释字段识别开始-->
+
+
+
+    <h4> 4.2.5 eggNOG Functional Annotation </h4>
+
+    <p class="paragraph"> The eggNOG (Huerta-Cepas J et al., 2019) is a public database (http://eggnog5.embl.de/#/app/home) of orthology relationships, gene evolutionary histories and functional annotations. </p>
+
+    <p class="paragraph"> An Orthologous Group (OG) is defined as a cluster of three or more homologous sequences that diverge from the same speciation event. </p>
+
+    <p class="paragraph">The UniRef90 gene family IDs were obtained by aligning the sequences against the Uniprot database using the Diamond software.The correspondence between UniRef90 IDs and eggNOG database Orthologous  Groups (OG) was utilized to derive eggNOG functional annotation results. </p>
+
+
+
+<!--eggNOG注释字段识别结束-->
+<br />
+
+<h5> 4.2.4.1 Relative Abundance of eggNOG Annotation</h5>
+
+<p class="paragraph"> Based on the abundance table of orthologous group, the top 10 orthologous groups were picked out. Bar charts show the relative orthologous group abundance of each sample (or group). </p>
+
+<br />
+
+
+
+    <p class = "center"><img class="center" src="src/files/eggNOG_Top/top10.png" height=520 width=680/>
+
+
+
+<p class="name_fig"> Figure 4.7 The Barplot of Relative Abundance </p>
+
+<br/>
+
+<p class="paragraph"> Notes: The bar chart of relative abundance represents sample (or group) names on the horizontal axis and the proportional relative abundance on the vertical axis. Each color block corresponds to a orthologous group as shown in the legend.</p>
+
+<p class="paragraph"> Results directory:</p>
+<p class="paragraph"> eggNOG annotation visualization: result/02.Annotation/eggNOG/Top_{sample, group1}/</p>
+
+<br/>
+<br />
+
+<h5> 4.2.4.2 eggNOG Abundance Heatmap </h5>
+
+<p class="paragraph"> The abundance distribution of the top 35 dominant orthologous groups of all samples was displayed in the abundance heatmap. </p>
+
+<br />
+
+
+
+    <p class = "center"><img class="center" src="src/files/eggNOG_heatmap/heatmap.png" height=200 width=300/>
+
+
+
+<p class="name_fig"> Figure 4.8 Abundance Clustering Heatmap </p>
+
+<br/>
+
+<p class="paragraph"> Notes: The X-axis denotes the sample (or group) names. The Y-axis illustrates orthologous groups information. The clustering tree is situated on the left-hand side of the chart.  The values depicted on the heatmap represent the Z-score, which is derived after normalizing the relative abundance of annotation results for each line.  The color legend positioned on the right-hand side of the figure delineates the correspondence between heat map colors and Z-values.  Notably, when the raw score falls below the mean value, "Z" assumes a negative value, whereas it is positive when surpassing the mean.</p>
+
+<p class="paragraph"> Results directory：Heatmap of Relative abundance：result/02.Annotation/*/Heatmap*</p>
+
+<br/>
+<!--Pfam注释字段识别开始-->
+
+
+
+    <h4> 4.2.6 Pfam Functional Annotation </h4>
+
+    <p class="paragraph">Pfam (Mistry J et al.,2021) is a protein family database (http://pfam.xfam.org) where each protein family is represented by multiple sequence alignments and hidden Markov models. Proteins are generally composed of one or more functional regions, often referred to as domains. Different protein domains determine different protein functions, making the identification of protein domains crucial for protein function analysis. </p>
+
+    <p class="paragraph"> Pfam (protein families) ID are categorized into six types: Family (a collection of related protein regions), Domain (a structural unit), Repeat (short, unstable units that form stable structures when present in multiple copies), Motifs (short units outside the globular domain), Coiled-Coil (regions with 2-7 α-helices forming a coiled-coil structure), and Disordered (conserved regions with compositional bias and/or intrinsic disorder). All protein families are further classified into different clan categories. </p>
+
+    <p class="paragraph">The UniRef90 gene family IDs were obtained by aligning the sequences against the Uniprot database using the Diamond software. The correspondence between UniRef90 gene IDs and Pfam database Pfam IDs was utilized to derive Pfam functional annotation results. </p>
+
+
+
+<!--Pfam注释字段识别结束-->
+<br />
+
+<h5> 4.2.5.1 Relative Abundance of Pfam Annotation</h5>
+
+<p class="paragraph"> Based on the abundance table of protein families, the top 10 protein families were picked out. Bar charts show the relative protein families abundance of each sample (or group). </p>
+
+<br />
+
+
+
+    <p class = "center"><img class="center" src="src/files/Pfam_Top/top10.png" height=520 width=680/>
+
+
+
+<p class="name_fig"> Figure 4.9 The Barplot of Relative Abundance </p>
+
+<br/>
+
+<p class="paragraph"> Notes: The bar chart of relative abundance represents sample (or group) names on the horizontal axis and the proportional relative abundance on the vertical axis. Each color block corresponds to a protein families as shown in the legend.</p>
+
+<p class="paragraph"> Results directory:</p>
+<p class="paragraph"> Pfam annotation visualization: result/02.Annotation/Pfam/Top_{sample, group1}/</p>
+
+<br/>
+<br />
+
+<h5> 4.2.5.2 Pfam Abundance Heatmap </h5>
+
+<p class="paragraph"> The abundance distribution of the top 35 dominant protein families level of all samples was displayed in the abundance heatmap. </p>
+
+<br />
+
+
+
+    <p class = "center"><img class="center" src="src/files/Pfam_heatmap/heatmap.png" height=200 width=300/>
+
+
+
+<p class="name_fig"> Figure 4.10 Abundance Clustering Heatmap </p>
+
+<br/>
+
+<p class="paragraph"> Notes: The X-axis denotes the sample (or group) names. The Y-axis illustrates protein families level information. The clustering tree is situated on the left-hand side of the chart.  The values depicted on the heatmap represent the Z-score, which is derived after normalizing the relative abundance of annotation results for each line.  The color legend positioned on the right-hand side of the figure delineates the correspondence between heat map colors and Z-values.  Notably, when the raw score falls below the mean value, "Z" assumes a negative value, whereas it is positive when surpassing the mean.</p>
+
+<p class="paragraph"> Results directory：Heatmap of Relative abundance：result/02.Annotation/*/Heatmap*</p>
+
+<br/>
+<!------------------------------------- Alpha ---------------------------------->
+
+<br/>
+
+    <h3> 4.3 Alpha Diversity Analysis </h3>
+
+<br/>
+
+<p class="paragraph">Alpha diversity is mainly used to study the diversity of communities within a specific habitat (or sample), which can be assessed by evaluating a series of Alpha diversity indices to obtain information on the richness, diversity, and other characteristics of species and functions in the environmental community.</p>
+
+<p class="paragraph">Through the analysis of Alpha diversity indices, information on species richness, diversity, and coverage in the community can be obtained. By using inter-group difference testing methods, one can detect whether there are significant differences in Alpha diversity index values between every two or more groups.</p>
+
+<br />
+<br />
+
+<h4> 4.3.1 Kraken Alpha Diversity Analysis </h4>
+
+<br />
+
+<h5> 4.3.1.1 Alpha diversity Indices </h5>
+
+<p class="paragraph"> Starting from the annotated Reads Number table of taxonomic level, calculate the richness and diversity of each sample (or group).The table illustrates an example with only species level.</p>
+
+<br />
+
+<p class="paragraph">                 </p>
+
+<p style="text-align: center;font-size:14px"> Table 4.2 Statistical Results of Alpha Diversity Analysis </p>
+
+<table class="gy" data-pagination="true" data-toggle="table" data-page-size="10">
+    
+    <thead>
+        
+        <tr>
+            
+            <th>Sample</th><th>ACE</th><th>chao1</th><th>shannon</th><th>simpson</th><th>observed_species</th><th>goods_coverage</th>
+            
+        </tr>
+            
+    </thead>
+        
+    <tbody>
+            
+        
+            
+        <tr><td>A1</td><td>9797</td><td>9797</td><td>6.9554016196069</td><td>0.99118757820437</td><td>9797</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A2</td><td>9874</td><td>9874</td><td>5.918976153022</td><td>0.953362672944808</td><td>9874</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A3</td><td>9685</td><td>9685</td><td>6.2271007992128</td><td>0.977970478804187</td><td>9685</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A4</td><td>9244</td><td>9244</td><td>5.06608902156411</td><td>0.926605551345513</td><td>9244</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A5</td><td>9528</td><td>9528</td><td>5.90939646030354</td><td>0.961113425091314</td><td>9528</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A6</td><td>9330</td><td>9330</td><td>4.79630092002037</td><td>0.932799089945939</td><td>9330</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A7</td><td>9738</td><td>9738</td><td>7.21855082834937</td><td>0.99423938862972</td><td>9738</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A8</td><td>9172</td><td>9172</td><td>4.672549093348</td><td>0.932261333804363</td><td>9172</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A9</td><td>9500</td><td>9500</td><td>6.64986570231088</td><td>0.987722139783447</td><td>9500</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A10</td><td>9552</td><td>9552</td><td>5.92608178495569</td><td>0.97243764090941</td><td>9552</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A11</td><td>9415</td><td>9415</td><td>7.1701169772302</td><td>0.99046098004694</td><td>9415</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A12</td><td>9377</td><td>9377</td><td>7.8851757826653</td><td>0.99775649457728</td><td>9377</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A13</td><td>9425</td><td>9425</td><td>7.57126976535634</td><td>0.997304195627398</td><td>9425</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A14</td><td>9587</td><td>9587</td><td>6.55378290752582</td><td>0.983878298714022</td><td>9587</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A15</td><td>8258</td><td>8258</td><td>6.34399935113835</td><td>0.987426933482737</td><td>8258</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A16</td><td>9011</td><td>9011</td><td>6.17583919776803</td><td>0.979413952415999</td><td>9011</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>B1</td><td>10005</td><td>10005</td><td>7.87640429605385</td><td>0.998685366236998</td><td>10005</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>B4</td><td>9698</td><td>9698</td><td>6.61997696075571</td><td>0.990778292448831</td><td>9698</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>B3</td><td>9752</td><td>9752</td><td>6.59034306954981</td><td>0.988571605308789</td><td>9752</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>B2</td><td>9649</td><td>9649</td><td>6.33831877208814</td><td>0.982355751302111</td><td>9649</td><td>1</td></tr>
+            
+        
+        
+    </tbody>
+        
+</table>
+
+<br />
+
+<button onclick="hiddenShow(this)">Show Annotation</button>
+
+<div class="comment">
+<ul style="font-size:14px">
+<li><strong>ACE: </strong> Estimating number of species in the community. </li>
+<li><strong>chao1: </strong> The total number of species contained in the community samples was estimated. </li>
+<li><strong>shannon: </strong> The total number of taxa in the samples and their percentage. The higher the community diversity and the more evenly distributed the species, the greater the shannon index. </li>
+<li><strong>simpson: </strong> Characterizes the diversity and evenness of species distribution within a community. </li>
+<li><strong>observed: </strong> Number of directly observed species. </li>
+<li><strong>goods_coverage: </strong> Sequencing depth index coverage, the higher the sequencing coverage, the larger the index. </li>
+</ul>
+</div>
+
+<br />
+
+<p class="paragraph"> Results directory: Alpha Diversity indices statistics: result/03.Alphadiversity/*/Alpha_index_table/*_Alphaindex.*.xls </p>
+
+<br />
+    <br />
+
+<h5> 4.3.1.2 Alpha Diversity Indices Boxplot </h5>
+
+<p class="paragraph"> Based on the Alpha Diversity  table of taxonomic level, the box of the alpha diversity was displayed.The figure illustrates an example with only one index.</p>
+
+<br />
+
+
+
+    <p class="center">
+
+    <div class="row gallery-row">
+
+        <div class="col-1">
+
+            <div id="gallery_figure6_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+
+        </div>
+
+        <div class="col-6">
+
+            <div class="tab-content" id="gallery_figure6_nav-tabContent">
+
+                
+
+                    
+
+                        <div class="tab-pane fade active show" id="gallery_figure6_pane_phylum" role="tabpanel" aria-labelledby="gallery_figure6_list_phylum" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/Taxonomy_Alpha_box/phylum_simpson.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure6_pane_class" role="tabpanel" aria-labelledby="gallery_figure6_list_class" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/Taxonomy_Alpha_box/class_simpson.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure6_pane_order" role="tabpanel" aria-labelledby="gallery_figure6_list_order" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/Taxonomy_Alpha_box/order_simpson.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure6_pane_family" role="tabpanel" aria-labelledby="gallery_figure6_list_family" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/Taxonomy_Alpha_box/family_simpson.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure6_pane_genus" role="tabpanel" aria-labelledby="gallery_figure6_list_genus" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/Taxonomy_Alpha_box/genus_simpson.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure6_pane_species" role="tabpanel" aria-labelledby="gallery_figure6_list_species" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/Taxonomy_Alpha_box/species_simpson.png" /></div>
+
+                    
+
+                
+
+            </div>
+
+        </div>
+
+        <div class="col-1">
+
+            <div id="gallery_figure6_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+
+        </div>
+
+        <div class="col-4">
+
+            <input class="form-control" id="gallery_figure6_InputList" type="text" placeholder="Search..">
+
+            <div class="list-group" id="gallery_figure6_list-tab" role="tablist">
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure6_list_phylum" data-toggle="list" href="#gallery_figure6_pane_phylum" role="tab" aria-controls="phylum">phylum</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure6_list_class" data-toggle="list" href="#gallery_figure6_pane_class" role="tab" aria-controls="class">class</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure6_list_order" data-toggle="list" href="#gallery_figure6_pane_order" role="tab" aria-controls="order">order</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure6_list_family" data-toggle="list" href="#gallery_figure6_pane_family" role="tab" aria-controls="family">family</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure6_list_genus" data-toggle="list" href="#gallery_figure6_pane_genus" role="tab" aria-controls="genus">genus</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure6_list_species" data-toggle="list" href="#gallery_figure6_pane_species" role="tab" aria-controls="species">species</a>
+
+                
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+<p class="name_fig">Figure 4.11 Boxplot of Alpha Diversity Indices</p>
+
+<br />
+
+<p class="paragraph">Notes: The box plot is a graphical representation of data distribution that displays the median, quartiles, and outliers, providing a visual understanding of the data spread and extreme values. The X-axis indicates the group of samples, while the Y-axis represents the alpha diversity.</p>
+
+<p class="paragraph"> Results directory: Boxplot of Alpha Diversity Indices: result/03.Alphadiversity/*/Alpha_box_group1/*/*png </p>
+
+<br />
+</br>
+
+<h5>4.3.1.3 Biodiversity curves </h5>
+
+<br />
+
+<p class="paragraph">Rarefaction Curves is widely used for indicating the biodiversity of the samples. A rarefaction curve is created by selecting randomly certain amount of sequencing data from the samples, then counting the number of the species they represent. The Rarefaction curves can directly reflect the rationality of the sequencing data volume and indirectly reflect the richness of microbial community in the samples. If the curve is steep, it means that a lot of the species remain to be discovered. If the curve becomes flatter, a credible number of samples have been taken, which means only the scarce species remain to be sampled. </p>
+
+<p class = "center"><img class="center" src="src/files/Alpha_index_rare/richness_species.png" height=550 width=700/>
+
+<p class="name_fig">Figure 4.12 Rarefaction Curves</p>
+
+<br />
+
+<p class="paragraph">Notes: in the Rarefaction curves, each curve represents a sample, and can be colored and shaped by each sample name supplied in the mapping file. The sequence number is on the X-axis and the richness is on the Y-axis.</p>
+
+<p class="paragraph">Results directory : result/03.Alphadiversity/Taxonomy/Alpha_index_rare/richness_species.{png,pdf}</p>
+
+<br />
+<br />
+
+<h4> 4.3.2 KEGG Alpha Diversity Analysis </h4>
+
+<br />
+
+<h5> 4.3.2.1 Alpha diversity Indices </h5>
+
+<p class="paragraph"> Starting from the annotated Reads Number table of KEGG orthology (KEGG enzyme/KEGG pathway/KEGG module), calculate the richness and diversity of each sample (or group).The table illustrates an example with only KEGG orthology.</p>
+
+<br />
+
+<p class="paragraph">                 </p>
+
+<p style="text-align: center;font-size:14px"> Table 4.3 Statistical Results of Alpha Diversity Analysis </p>
+
+<table class="gy" data-pagination="true" data-toggle="table" data-page-size="10">
+    
+    <thead>
+        
+        <tr>
+            
+            <th>Sample</th><th>ACE</th><th>chao1</th><th>shannon</th><th>simpson</th><th>observed_species</th><th>goods_coverage</th>
+            
+        </tr>
+            
+    </thead>
+        
+    <tbody>
+            
+        
+            
+        <tr><td>A1</td><td>4430.3525942383</td><td>4429.61165048544</td><td>7.14441862959079</td><td>0.996955085872744</td><td>4413</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A2</td><td>4382.7213176498</td><td>4384.71929824561</td><td>7.17668488234729</td><td>0.998664329854093</td><td>4357</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A3</td><td>4132.69948108767</td><td>4131.61325966851</td><td>7.13587262343374</td><td>0.998562899818096</td><td>4086</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A4</td><td>5910.08756300958</td><td>5894.8901734104</td><td>7.30911051886687</td><td>0.997839725664904</td><td>5812</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A5</td><td>3181.98796815174</td><td>3185.28037383178</td><td>6.98823263421771</td><td>0.998483536213804</td><td>3155</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A6</td><td>5057.24347144151</td><td>5057.69461077844</td><td>7.03419307603358</td><td>0.996994541455884</td><td>5025</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A7</td><td>4151.01396945636</td><td>4148.30827067669</td><td>7.06410191279746</td><td>0.996827030345728</td><td>4128</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A8</td><td>5214.30233380787</td><td>5211.26086956522</td><td>7.16137262999174</td><td>0.997880779276694</td><td>5186</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A9</td><td>3316.14761773514</td><td>3317.9406779661</td><td>7.18603855287318</td><td>0.998626378227257</td><td>3284</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A10</td><td>5549.92035163664</td><td>5555.90243902439</td><td>7.39478331725361</td><td>0.998571191685973</td><td>5485</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A11</td><td>4958.32563513051</td><td>4959.97093023256</td><td>6.8374682224941</td><td>0.993656119169964</td><td>4927</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A12</td><td>3878.24969907535</td><td>3875.15178571429</td><td>6.63937952292909</td><td>0.99288783320888</td><td>3871</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A13</td><td>3785.24161304246</td><td>3781.08547008547</td><td>6.48312209244583</td><td>0.990319105195743</td><td>3773</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A14</td><td>3601.28742202496</td><td>3605</td><td>6.74226462962886</td><td>0.996951712509206</td><td>3559</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A15</td><td>5581.43821970374</td><td>5578.768</td><td>7.33419525122089</td><td>0.996588704649932</td><td>5566</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A16</td><td>5330.29956680877</td><td>5332.86896551724</td><td>7.24301956991219</td><td>0.997280625631385</td><td>5290</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>B1</td><td>4709.2796384985</td><td>4706.62068965517</td><td>6.81055727222293</td><td>0.991758773547436</td><td>4682</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>B4</td><td>3989.03798148155</td><td>3986.02830188679</td><td>6.9911071593596</td><td>0.997314557667224</td><td>3974</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>B3</td><td>5296.80072276099</td><td>5301.03448275862</td><td>7.06943048989624</td><td>0.997250757453319</td><td>5243</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>B2</td><td>4166.03980773043</td><td>4163.39423076923</td><td>7.01873807872625</td><td>0.997346306057605</td><td>4153</td><td>1</td></tr>
+            
+        
+        
+    </tbody>
+        
+</table>
+
+<br />
+
+<button onclick="hiddenShow(this)">Show Annotation</button>
+
+<div class="comment">
+<ul style="font-size:14px">
+<li><strong>ACE: </strong> Estimating number of function in the community. </li>
+<li><strong>chao1: </strong> The total number of function contained in the community samples was estimated. </li>
+<li><strong>shannon: </strong> The total number of taxa in the samples and their percentage. The higher the community diversity and the more evenly distributed the function, the greater the shannon index. </li>
+<li><strong>simpson: </strong> Characterizes the diversity and evenness of function distribution within a community. </li>
+<li><strong>observed: </strong> Number of directly observed function. </li>
+<li><strong>goods_coverage: </strong> Sequencing depth index coverage, the higher the sequencing coverage, the larger the index. </li>
+</ul>
+</div>
+
+<br />
+
+<p class="paragraph"> Results directory: Alpha Diversity indices statistics: result/03.Alphadiversity/*/Alpha_index_table/*_Alphaindex.*.xls </p>
+
+<br />
+    <br />
+
+<h5> 4.3.2.2 Alpha Diversity Indices Boxplot </h5>
+
+<p class="paragraph"> Based on the Alpha Diversity  table of KEGG orthology (KEGG enzyme/KEGG pathway/KEGG module), the box of the alpha diversity was displayed.The figure illustrates an example with only one index.</p>
+
+<br />
+
+
+
+    <p class="center">
+
+    <div class="row gallery-row">
+
+        <div class="col-1">
+
+            <div id="gallery_figure6_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+
+        </div>
+
+        <div class="col-6">
+
+            <div class="tab-content" id="gallery_figure6_nav-tabContent">
+
+                
+
+                    
+
+                        <div class="tab-pane fade active show" id="gallery_figure6_pane_KeggModule" role="tabpanel" aria-labelledby="gallery_figure6_list_KeggModule" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/KeggModule_Alpha_box//simpson.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure6_pane_KeggPath" role="tabpanel" aria-labelledby="gallery_figure6_list_KeggPath" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/KeggPath_Alpha_box//simpson.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure6_pane_EC" role="tabpanel" aria-labelledby="gallery_figure6_list_EC" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/EC_Alpha_box//simpson.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure6_pane_KO" role="tabpanel" aria-labelledby="gallery_figure6_list_KO" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/KO_Alpha_box//simpson.png" /></div>
+
+                    
+
+                
+
+            </div>
+
+        </div>
+
+        <div class="col-1">
+
+            <div id="gallery_figure6_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+
+        </div>
+
+        <div class="col-4">
+
+            <input class="form-control" id="gallery_figure6_InputList" type="text" placeholder="Search..">
+
+            <div class="list-group" id="gallery_figure6_list-tab" role="tablist">
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure6_list_KeggModule" data-toggle="list" href="#gallery_figure6_pane_KeggModule" role="tab" aria-controls="KeggModule">KeggModule</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure6_list_KeggPath" data-toggle="list" href="#gallery_figure6_pane_KeggPath" role="tab" aria-controls="KeggPath">KeggPath</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure6_list_EC" data-toggle="list" href="#gallery_figure6_pane_EC" role="tab" aria-controls="EC">EC</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure6_list_KO" data-toggle="list" href="#gallery_figure6_pane_KO" role="tab" aria-controls="KO">KO</a>
+
+                
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+<p class="name_fig">Figure 4.13 Boxplot of Alpha Diversity Indices</p>
+
+<br />
+
+<p class="paragraph">Notes: The box plot is a graphical representation of data distribution that displays the median, quartiles, and outliers, providing a visual understanding of the data spread and extreme values. The X-axis indicates the group of samples, while the Y-axis represents the alpha diversity.</p>
+
+<p class="paragraph"> Results directory: Boxplot of Alpha Diversity Indices: result/03.Alphadiversity/*/Alpha_box_group1/*/*png </p>
+
+<br />
+<br />
+
+<h4> 4.3.3 GO Alpha Diversity Analysis </h4>
+
+<br />
+
+<h5> 4.3.3.1 Alpha diversity Indices </h5>
+
+<p class="paragraph"> Starting from the annotated Reads Number table of taxonomic level, calculate the richness and diversity of each sample (or group).</p>
+
+<br />
+
+<p class="paragraph">                 </p>
+
+<p style="text-align: center;font-size:14px"> Table 4.4 Statistical Results of Alpha Diversity Analysis </p>
+
+<table class="gy" data-pagination="true" data-toggle="table" data-page-size="10">
+    
+    <thead>
+        
+        <tr>
+            
+            <th>Sample</th><th>ACE</th><th>chao1</th><th>shannon</th><th>simpson</th><th>observed_species</th><th>goods_coverage</th>
+            
+        </tr>
+            
+    </thead>
+        
+    <tbody>
+            
+        
+            
+        <tr><td>A1</td><td>3896.02085239122</td><td>3898.02247191011</td><td>5.52459264462524</td><td>0.98275208999393</td><td>3866</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A2</td><td>4105.43245836708</td><td>4098.64179104478</td><td>5.67573195835913</td><td>0.983603007536284</td><td>4048</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A3</td><td>4851.45915413979</td><td>4843.53597122302</td><td>5.56987703858141</td><td>0.982846568987622</td><td>4700</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A4</td><td>9190.12126306113</td><td>9216.03343465046</td><td>5.80674835489852</td><td>0.984947236070047</td><td>8860</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A5</td><td>3290.96373910348</td><td>3283.73636363636</td><td>5.56875280511433</td><td>0.983295461383381</td><td>3277</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A6</td><td>5184.61724986379</td><td>5181.10162601626</td><td>5.5940584645931</td><td>0.982264547258763</td><td>5105</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A7</td><td>4277.76822196119</td><td>4289.53947368421</td><td>5.51316404777732</td><td>0.983277919376503</td><td>4217</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A8</td><td>5107.87802463168</td><td>5099.44897959184</td><td>5.63141320330404</td><td>0.982251842738513</td><td>5037</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A9</td><td>3892.55848921701</td><td>3888.55813953488</td><td>5.56193527122998</td><td>0.983153185124653</td><td>3807</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A10</td><td>6267.05809530005</td><td>6282.30523255814</td><td>5.67477573002059</td><td>0.982930711069689</td><td>6048</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A11</td><td>5908.13871739918</td><td>5889.31978319783</td><td>5.49577000013671</td><td>0.9825967846842</td><td>5751</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A12</td><td>4089.71327545397</td><td>4083.77611940298</td><td>5.4059616068075</td><td>0.98243916679523</td><td>4075</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A13</td><td>3952.22441255938</td><td>3945.14179104478</td><td>5.45206704346438</td><td>0.982552073958241</td><td>3936</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A14</td><td>3644.30087184434</td><td>3648.4128440367</td><td>5.46923953629256</td><td>0.982584860915853</td><td>3603</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A15</td><td>5845.20108851744</td><td>5841.95454545455</td><td>5.71867499717718</td><td>0.98462302719708</td><td>5806</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A16</td><td>4974.20645358132</td><td>4998.94630872483</td><td>5.65346196914791</td><td>0.982743707006662</td><td>4872</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>B1</td><td>5131.0808435027</td><td>5146.18461538462</td><td>5.51452837477766</td><td>0.982831268703373</td><td>5057</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>B4</td><td>4328.61256631018</td><td>4324.66911764706</td><td>5.64442574326348</td><td>0.984279706218875</td><td>4289</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>B3</td><td>8492.71042669366</td><td>8549.47463768116</td><td>5.65723565900937</td><td>0.984298508632252</td><td>8105</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>B2</td><td>4288.9502983277</td><td>4293.05172413793</td><td>5.6025248823251</td><td>0.984017731422286</td><td>4263</td><td>1</td></tr>
+            
+        
+        
+    </tbody>
+        
+</table>
+
+<br />
+
+<button onclick="hiddenShow(this)">Show Annotation</button>
+
+<div class="comment">
+<ul style="font-size:14px">
+<li><strong>ACE: </strong> Estimating number of function in the community. </li>
+<li><strong>chao1: </strong> The total number of function contained in the community samples was estimated. </li>
+<li><strong>shannon: </strong> The total number of taxa in the samples and their percentage. The higher the community diversity and the more evenly distributed the function, the greater the shannon index. </li>
+<li><strong>simpson: </strong> Characterizes the diversity and evenness of function distribution within a community. </li>
+<li><strong>observed: </strong> Number of directly observed function. </li>
+<li><strong>goods_coverage: </strong> Sequencing depth index coverage, the higher the sequencing coverage, the larger the index. </li>
+</ul>
+</div>
+
+<br />
+
+<p class="paragraph"> Results directory: Alpha Diversity indices statistics: result/03.Alphadiversity/*/Alpha_index_table/*_Alphaindex.*.xls </p>
+
+<br />
+    <br />
+
+<h5> 4.3.3.2 Alpha Diversity Indices Boxplot </h5>
+
+<p class="paragraph"> Based on the Alpha Diversity  table of gene ontology, the box of the alpha diversity was displayed.The figure illustrates an example with only one index.</p>
+
+<br />
+
+
+
+    <p class = "center"><img class="center" src="src/files/GO_Alpha_box/simpson.png" height=300 width=450/>
+
+
+
+<p class="name_fig">Figure 4.14 Boxplot of Alpha Diversity Indices</p>
+
+<br />
+
+<p class="paragraph">Notes: The box plot is a graphical representation of data distribution that displays the median, quartiles, and outliers, providing a visual understanding of the data spread and extreme values. The X-axis indicates the group of samples, while the Y-axis represents the alpha diversity.</p>
+
+<p class="paragraph"> Results directory: Boxplot of Alpha Diversity Indices: result/03.Alphadiversity/*/Alpha_box_group1/*/*png </p>
+
+<br />
+<br />
+
+<h4> 4.3.4 eggNOG Alpha Diversity Analysis </h4>
+
+<br />
+
+<h5> 4.3.4.1 Alpha diversity Indices </h5>
+
+<p class="paragraph"> Starting from the annotated Reads Number table of taxonomic level, calculate the richness and diversity of each sample (or group).</p>
+
+<br />
+
+<p class="paragraph">                 </p>
+
+<p style="text-align: center;font-size:14px"> Table 4.5 Statistical Results of Alpha Diversity Analysis </p>
+
+<table class="gy" data-pagination="true" data-toggle="table" data-page-size="10">
+    
+    <thead>
+        
+        <tr>
+            
+            <th>Sample</th><th>ACE</th><th>chao1</th><th>shannon</th><th>simpson</th><th>observed_species</th><th>goods_coverage</th>
+            
+        </tr>
+            
+    </thead>
+        
+    <tbody>
+            
+        
+            
+        <tr><td>A1</td><td>18725.5474570461</td><td>18703.1372756072</td><td>8.20302843487908</td><td>0.999031711854715</td><td>18603</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A2</td><td>14914.0573810836</td><td>14898.77680798</td><td>8.04009959046835</td><td>0.999341788737507</td><td>14759</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A3</td><td>15214.7361636287</td><td>15237.9510664994</td><td>8.08826599853764</td><td>0.999298395351958</td><td>15028</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A4</td><td>19875.9066517787</td><td>19904.6266094421</td><td>8.22892040254684</td><td>0.999235298016684</td><td>19662</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A5</td><td>12209.7451441973</td><td>12200.2586490939</td><td>8.02895266514526</td><td>0.999333057062228</td><td>12081</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A6</td><td>20851.9073681335</td><td>20831.347826087</td><td>8.20468069065558</td><td>0.999182178385681</td><td>20681</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A7</td><td>16288.7422552139</td><td>16281.1951530612</td><td>8.13932458481603</td><td>0.998788335015077</td><td>16143</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A8</td><td>24638.226387385</td><td>24649.0517241379</td><td>8.3892722625121</td><td>0.999284648343984</td><td>24460</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A9</td><td>15196.3157264253</td><td>15189.1800262812</td><td>8.36797019109935</td><td>0.999473536452021</td><td>15040</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A10</td><td>22495.6477973711</td><td>22493.8622754491</td><td>8.30201848601688</td><td>0.999443547698278</td><td>22301</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A11</td><td>18066.4477445333</td><td>18066.8915662651</td><td>7.86112994175078</td><td>0.997557364822941</td><td>17971</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A12</td><td>13165.0440332984</td><td>13156.7210300429</td><td>7.61402163950297</td><td>0.997014342535306</td><td>13119</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A13</td><td>12907.6665602688</td><td>12897.1981132075</td><td>7.55934992335768</td><td>0.997409718520557</td><td>12838</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A14</td><td>13227.5558619961</td><td>13214.75</td><td>7.2683783760689</td><td>0.997044540199203</td><td>13076</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A15</td><td>10169.9970539175</td><td>10160.4060913706</td><td>7.49668303153527</td><td>0.997503989381306</td><td>10060</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A16</td><td>24309.4505599341</td><td>24309.8762019231</td><td>8.25313892424356</td><td>0.999073813119498</td><td>24213</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>B1</td><td>17941.9194536211</td><td>17932.4514106583</td><td>7.68717847240703</td><td>0.996630220027019</td><td>17800</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>B4</td><td>12525.4685618327</td><td>12517.2898305085</td><td>7.50514897055936</td><td>0.99818030741313</td><td>12434</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>B3</td><td>18474.9690728855</td><td>18501.0916030534</td><td>7.74857660931194</td><td>0.998320657992912</td><td>18243</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>B2</td><td>13812.682764422</td><td>13814.9340101523</td><td>7.56600556967839</td><td>0.998146000550406</td><td>13711</td><td>1</td></tr>
+            
+        
+        
+    </tbody>
+        
+</table>
+
+<br />
+
+<button onclick="hiddenShow(this)">Show Annotation</button>
+
+<div class="comment">
+<ul style="font-size:14px">
+<li><strong>ACE: </strong> Estimating number of function in the community. </li>
+<li><strong>chao1: </strong> The total number of function contained in the community samples was estimated. </li>
+<li><strong>shannon: </strong> The total number of taxa in the samples and their percentage. The higher the community diversity and the more evenly distributed the function, the greater the shannon index. </li>
+<li><strong>simpson: </strong> Characterizes the diversity and evenness of function distribution within a community. </li>
+<li><strong>observed: </strong> Number of directly observed function. </li>
+<li><strong>goods_coverage: </strong> Sequencing depth index coverage, the higher the sequencing coverage, the larger the index. </li>
+</ul>
+</div>
+
+<br />
+
+<p class="paragraph"> Results directory: Alpha Diversity indices statistics: result/03.Alphadiversity/*/Alpha_index_table/*_Alphaindex.*.xls </p>
+
+<br />
+    <br />
+
+<h5> 4.3.4.2 Alpha Diversity Indices Boxplot </h5>
+
+<p class="paragraph"> Based on the Alpha Diversity  table of orthologous groups, the box of the alpha diversity was displayed.The figure illustrates an example with only one index.</p>
+
+<br />
+
+
+
+    <p class = "center"><img class="center" src="src/files/eggNOG_Alpha_box/simpson.png" height=300 width=450/>
+
+
+
+<p class="name_fig">Figure 4.15 Boxplot of Alpha Diversity Indices</p>
+
+<br />
+
+<p class="paragraph">Notes: The box plot is a graphical representation of data distribution that displays the median, quartiles, and outliers, providing a visual understanding of the data spread and extreme values. The X-axis indicates the group of samples, while the Y-axis represents the alpha diversity.</p>
+
+<p class="paragraph"> Results directory: Boxplot of Alpha Diversity Indices: result/03.Alphadiversity/*/Alpha_box_group1/*/*png </p>
+
+<br />
+<br />
+
+<h4> 4.3.5 Pfam Alpha Diversity Analysis </h4>
+
+<br />
+
+<h5> 4.3.5.1 Alpha diversity Indices </h5>
+
+<p class="paragraph"> Starting from the annotated Reads Number table of taxonomic level, calculate the richness and diversity of each sample (or group).</p>
+
+<br />
+
+<p class="paragraph">                 </p>
+
+<p style="text-align: center;font-size:14px"> Table 4.6 Statistical Results of Alpha Diversity Analysis </p>
+
+<table class="gy" data-pagination="true" data-toggle="table" data-page-size="10">
+    
+    <thead>
+        
+        <tr>
+            
+            <th>Sample</th><th>ACE</th><th>chao1</th><th>shannon</th><th>simpson</th><th>observed_species</th><th>goods_coverage</th>
+            
+        </tr>
+            
+    </thead>
+        
+    <tbody>
+            
+        
+            
+        <tr><td>A1</td><td>6283.14737718087</td><td>6287.47887323944</td><td>6.98331653124452</td><td>0.996086189888452</td><td>6265</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A2</td><td>6402.22757239264</td><td>6410.57142857143</td><td>7.31686271532296</td><td>0.998237743305547</td><td>6372</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A3</td><td>6136.02454276603</td><td>6147.22289156627</td><td>7.20942160771589</td><td>0.998107111452798</td><td>6079</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A4</td><td>8055.59314317817</td><td>8074.11428571429</td><td>6.84616179578225</td><td>0.994570549296399</td><td>7944</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A5</td><td>5123.1748949898</td><td>5126.91919191919</td><td>7.21015394598023</td><td>0.998244642027543</td><td>5090</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A6</td><td>6999.04634396011</td><td>7046.8671875</td><td>7.02906456398595</td><td>0.996359198157951</td><td>6911</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A7</td><td>6214.76586941616</td><td>6237.16</td><td>6.85891539106009</td><td>0.995841415240262</td><td>6175</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A8</td><td>6756.35455200477</td><td>6776.5</td><td>7.17081806717366</td><td>0.997712472718271</td><td>6675</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A9</td><td>6337.914784807</td><td>6390.5</td><td>7.20749204158461</td><td>0.998114944673003</td><td>6140</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A10</td><td>7752.4090012454</td><td>7759.625</td><td>7.1748377795654</td><td>0.997037267472829</td><td>7592</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A11</td><td>6820.90164831546</td><td>6842.35675675676</td><td>6.52026201457632</td><td>0.991914430775125</td><td>6738</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A12</td><td>5405.24086379723</td><td>5408.11392405063</td><td>6.34922490636399</td><td>0.990994774236772</td><td>5390</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A13</td><td>5905.86288237606</td><td>5908.11538461538</td><td>6.49136559735073</td><td>0.993353466103792</td><td>5880</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A14</td><td>5445.77285586659</td><td>5461</td><td>7.03823805488547</td><td>0.997643561113882</td><td>5418</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A15</td><td>7430.7769977792</td><td>7436.01136363636</td><td>6.86229599072339</td><td>0.993824040801429</td><td>7401</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>A16</td><td>7195.19282292441</td><td>7232.31914893617</td><td>6.92115969841786</td><td>0.995388908169315</td><td>7094</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>B1</td><td>6866.96159495319</td><td>6913.09395973154</td><td>6.4794958085174</td><td>0.991099532634931</td><td>6770</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>B4</td><td>6010.40577239216</td><td>6034.75862068965</td><td>6.85119276937721</td><td>0.996016047728123</td><td>5972</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>B3</td><td>7808.51132252711</td><td>7852.47596153846</td><td>6.80372344248675</td><td>0.99540768930711</td><td>7698</td><td>1</td></tr>
+            
+        
+            
+        <tr><td>B2</td><td>6341.58834824758</td><td>6350.28448275862</td><td>6.70932406008269</td><td>0.994968478020663</td><td>6305</td><td>1</td></tr>
+            
+        
+        
+    </tbody>
+        
+</table>
+
+<br />
+
+<button onclick="hiddenShow(this)">Show Annotation</button>
+
+<div class="comment">
+<ul style="font-size:14px">
+<li><strong>ACE: </strong> Estimating number of function in the community. </li>
+<li><strong>chao1: </strong> The total number of function contained in the community samples was estimated. </li>
+<li><strong>shannon: </strong> The total number of function in the samples and their percentage. The higher the community diversity and the more evenly distributed the function, the greater the shannon index. </li>
+<li><strong>simpson: </strong> Characterizes the diversity and evenness of function distribution within a community. </li>
+<li><strong>observed: </strong> Number of directly observed function. </li>
+<li><strong>goods_coverage: </strong> Sequencing depth index coverage, the higher the sequencing coverage, the larger the index. </li>
+</ul>
+</div>
+
+<br />
+
+<p class="paragraph"> Results directory: Alpha Diversity indices statistics: result/03.Alphadiversity/*/Alpha_index_table/*_Alphaindex.*.xls </p>
+
+<br />
+    <br />
+
+<h5> 4.3.5.2 Alpha Diversity Indices Boxplot </h5>
+
+<p class="paragraph"> Based on the Alpha Diversity  table of protein families, the box of the alpha diversity was displayed.The figure illustrates an example with only one index.</p>
+
+<br />
+
+
+
+    <p class = "center"><img class="center" src="src/files/Pfam_Alpha_box/simpson.png" height=300 width=450/>
+
+
+
+<p class="name_fig">Figure 4.16 Boxplot of Alpha Diversity Indices</p>
+
+<br />
+
+<p class="paragraph">Notes: The box plot is a graphical representation of data distribution that displays the median, quartiles, and outliers, providing a visual understanding of the data spread and extreme values. The X-axis indicates the group of samples, while the Y-axis represents the alpha diversity.</p>
+
+<p class="paragraph"> Results directory: Boxplot of Alpha Diversity Indices: result/03.Alphadiversity/*/Alpha_box_group1/*/*png </p>
+
+<br />
+
+<br/>
+
+    <h3> 4.4 Beta Diversity Analysis </h3>
+
+<br/>
+
+<p class="paragraph">Beta diversity is a measure of biodiversity used to describe the extent of variation between biological communities in different groups. It quantifies the differences in species composition between different groups.Beta diversity analysis includes clustering tree, PCoA, PCA and NMDS. </p>
+
+<h4> 4.4.1 Sample Clustering with Taxonomic and Function Abundance </h4>
+
+<p class="paragraph">Sample clustering analysis based on the Bray-Curtis distance can evaluate the similarity of samples. The distance was calculated according to relative taxonomic abundance. The final results were exhibited by combining the clustering result and the relative abundance of different samples at the taxonomic level or function level. </p>
+
+<br/>
+<br/>
+
+<h5> 4.4.1.1 Kraken cluster analysis  </h5>
+
+<p class="paragraph">Based on the abundance table of taxonomic level, The result of clustering was shown below.</p>
+
+<br />
+
+
+
+    <p class="center">
+
+    <div class="row gallery-row">
+
+        <div class="col-1">
+
+            <div id="gallery_figure7_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+
+        </div>
+
+        <div class="col-6">
+
+            <div class="tab-content" id="gallery_figure7_nav-tabContent">
+
+                
+
+                    
+
+                        <div class="tab-pane fade active show" id="gallery_figure7_pane_phylum" role="tabpanel" aria-labelledby="gallery_figure7_list_phylum" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/Taxonomy_ClusterTree/Bar.tree.p10.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure7_pane_class" role="tabpanel" aria-labelledby="gallery_figure7_list_class" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/Taxonomy_ClusterTree/Bar.tree.c10.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure7_pane_order" role="tabpanel" aria-labelledby="gallery_figure7_list_order" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/Taxonomy_ClusterTree/Bar.tree.o10.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure7_pane_family" role="tabpanel" aria-labelledby="gallery_figure7_list_family" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/Taxonomy_ClusterTree/Bar.tree.f10.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure7_pane_genus" role="tabpanel" aria-labelledby="gallery_figure7_list_genus" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/Taxonomy_ClusterTree/Bar.tree.g10.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure7_pane_species" role="tabpanel" aria-labelledby="gallery_figure7_list_species" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/Taxonomy_ClusterTree/Bar.tree.s10.png" /></div>
+
+                    
+
+                
+
+            </div>
+
+        </div>
+
+        <div class="col-1">
+
+            <div id="gallery_figure7_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+
+        </div>
+
+        <div class="col-4">
+
+            <input class="form-control" id="gallery_figure7_InputList" type="text" placeholder="Search..">
+
+            <div class="list-group" id="gallery_figure7_list-tab" role="tablist">
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure7_list_phylum" data-toggle="list" href="#gallery_figure7_pane_phylum" role="tab" aria-controls="phylum">phylum</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure7_list_class" data-toggle="list" href="#gallery_figure7_pane_class" role="tab" aria-controls="class">class</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure7_list_order" data-toggle="list" href="#gallery_figure7_pane_order" role="tab" aria-controls="order">order</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure7_list_family" data-toggle="list" href="#gallery_figure7_pane_family" role="tab" aria-controls="family">family</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure7_list_genus" data-toggle="list" href="#gallery_figure7_pane_genus" role="tab" aria-controls="genus">genus</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure7_list_species" data-toggle="list" href="#gallery_figure7_pane_species" role="tab" aria-controls="species">species</a>
+
+                
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+<p class="name_fig"> Figure 4.17 The Clustering Analysis Plot of Relative Abundance </p>
+
+<br />
+
+<p class="paragraph"> Notes: In the figure, the left side is the structure of the Bray-Curtis distance clustering tree; the right side is the relative abundance distribution of each sample at the taxonomic level. </p>
+
+<p class="paragraph"> Result directory: Clustering tree based on Bray-Curtis distance: result/04.Betadiversity/*/ClusterTree_group1/*/Bar.tree.*10.{svg,png} </p>
+
+<br />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br/>
+
+<h5> 4.4.1.2 KEGG cluster analysis  </h5>
+
+<p class="paragraph">Based on the abundance table of KEGG orthology (KEGG enzyme/KEGG pathway/KEGG module), The result of clustering was shown below.</p>
+
+<br />
+
+
+
+    <p class="center">
+
+    <div class="row gallery-row">
+
+        <div class="col-1">
+
+            <div id="gallery_figure7_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+
+        </div>
+
+        <div class="col-6">
+
+            <div class="tab-content" id="gallery_figure7_nav-tabContent">
+
+                
+
+                    
+
+                        <div class="tab-pane fade active show" id="gallery_figure7_pane_KeggModule" role="tabpanel" aria-labelledby="gallery_figure7_list_KeggModule" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/KeggModule_ClusterTree/KeggModule_ClusterTree_group1.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure7_pane_KeggPath" role="tabpanel" aria-labelledby="gallery_figure7_list_KeggPath" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/KeggPath_ClusterTree/KeggPath_ClusterTree_group1.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure7_pane_EC" role="tabpanel" aria-labelledby="gallery_figure7_list_EC" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/EC_ClusterTree/EC_ClusterTree_group1.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure7_pane_KO" role="tabpanel" aria-labelledby="gallery_figure7_list_KO" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/KO_ClusterTree/KO_ClusterTree_group1.png" /></div>
+
+                    
+
+                
+
+            </div>
+
+        </div>
+
+        <div class="col-1">
+
+            <div id="gallery_figure7_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+
+        </div>
+
+        <div class="col-4">
+
+            <input class="form-control" id="gallery_figure7_InputList" type="text" placeholder="Search..">
+
+            <div class="list-group" id="gallery_figure7_list-tab" role="tablist">
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure7_list_KeggModule" data-toggle="list" href="#gallery_figure7_pane_KeggModule" role="tab" aria-controls="KeggModule">KeggModule</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure7_list_KeggPath" data-toggle="list" href="#gallery_figure7_pane_KeggPath" role="tab" aria-controls="KeggPath">KeggPath</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure7_list_EC" data-toggle="list" href="#gallery_figure7_pane_EC" role="tab" aria-controls="EC">EC</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure7_list_KO" data-toggle="list" href="#gallery_figure7_pane_KO" role="tab" aria-controls="KO">KO</a>
+
+                
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+<p class="name_fig"> Figure 4.18 The Clustering Analysis Plot of Relative Abundance </p>
+
+<br />
+
+<p class="paragraph"> Notes: In the figure, the left side is the structure of the Bray-Curtis distance clustering tree; the right side is the relative abundance distribution of each sample at the KEGG orthology (KEGG enzyme/KEGG pathway/KEGG module). </p>
+
+<p class="paragraph"> Result directory: Clustering tree based on Bray-Curtis distance: result/04.Betadiversity/*/ClusterTree_group1/*/Bar.tree.*10.{svg,png} </p>
+
+<br />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br/>
+
+<h5> 4.4.1.3 GO cluster analysis  </h5>
+
+<p class="paragraph">Based on the abundance table of gene ontology, The result of clustering was shown below.</p>
+
+<br />
+
+
+
+    <p class = "center"><img class="center" src="src/files/GO_ClusterTree/GO_ClusterTree_group1.png" height=440 width=590/>
+
+
+
+<p class="name_fig"> Figure 4.19 The Clustering Analysis Plot of Relative Abundance </p>
+
+<br />
+
+<p class="paragraph"> Notes: In the figure, the left side is the structure of the Bray-Curtis distance clustering tree; the right side is the relative abundance distribution of each sample at the gene ontology. </p>
+
+<p class="paragraph"> Result directory: Clustering tree based on Bray-Curtis distance: result/04.Betadiversity/*/ClusterTree_group1/*/Bar.tree.*10.{svg,png} </p>
+
+<br />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br/>
+
+<h5> 4.4.1.4 eggNOG cluster analysis  </h5>
+
+<p class="paragraph">Based on the abundance table of orthologous group, The result of clustering was shown below.</p>
+
+<br />
+
+
+
+    <p class = "center"><img class="center" src="src/files/eggNOG_ClusterTree/eggNOG_ClusterTree_group1.png" height=440 width=590/>
+
+
+
+<p class="name_fig"> Figure 4.20 The Clustering Analysis Plot of Relative Abundance </p>
+
+<br />
+
+<p class="paragraph"> Notes: In the figure, the left side is the structure of the Bray-Curtis distance clustering tree; the right side is the relative abundance distribution of each sample at the orthologous group. </p>
+
+<p class="paragraph"> Result directory: Clustering tree based on Bray-Curtis distance: result/04.Betadiversity/*/ClusterTree_group1/*/Bar.tree.*10.{svg,png} </p>
+
+<br />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br/>
+
+<h5> 4.4.1.5 Pfam cluster analysis  </h5>
+
+<p class="paragraph">Based on the abundance table of protein families, The result of clustering was shown below.</p>
+
+<br />
+
+
+
+    <p class = "center"><img class="center" src="src/files/Pfam_ClusterTree/Pfam_ClusterTree_group1.png" height=440 width=590/>
+
+
+
+<p class="name_fig"> Figure 4.21 The Clustering Analysis Plot of Relative Abundance </p>
+
+<br />
+
+<p class="paragraph"> Notes: In the figure, the left side is the structure of the Bray-Curtis distance clustering tree; the right side is the relative abundance distribution of each sample at the protein families. </p>
+
+<p class="paragraph"> Result directory: Clustering tree based on Bray-Curtis distance: result/04.Betadiversity/*/ClusterTree_group1/*/Bar.tree.*10.{svg,png} </p>
+
+<br />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</br>
+
+<h4> 4.4.2 PCA Analysis </h4>
+
+</br>
+
+<p class="paragraph"> Principal Component Analysis (PCA) Analysis is a method used for dimension reduction analysis. PCA uses an orthogonal transformation to convert a set of observations of possibly correlated variables into a set of values of linearly uncorrelated variables called principal components. The PCA transformation ensures that the horizontal axis PC1 accounts for the most variation while the vertical axis PC2 accounts for the second most (Avershina et al., 2013). For the samples' community composition, the closer the sample points within the PCA figure indicates more similarity among the samples. </p>
+</br>
+
+<h5>4.4.2.1 Kraken PCA Analysis </h5>
+
+<p class="paragraph">Based on the abundance table of taxonomic level, the result of PCA was shown below.</p>
+
+<br />
+
+
+
+    <p class="center">
+
+    <div class="row gallery-row">
+
+        <div class="col-1">
+
+            <div id="gallery_figure8_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+
+        </div>
+
+        <div class="col-6">
+
+            <div class="tab-content" id="gallery_figure8_nav-tabContent">
+
+                
+
+                    
+
+                        <div class="tab-pane fade active show" id="gallery_figure8_pane_phylum" role="tabpanel" aria-labelledby="gallery_figure8_list_phylum" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/Taxonomy_PCA/phylum_PCA.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure8_pane_class" role="tabpanel" aria-labelledby="gallery_figure8_list_class" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/Taxonomy_PCA/class_PCA.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure8_pane_order" role="tabpanel" aria-labelledby="gallery_figure8_list_order" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/Taxonomy_PCA/order_PCA.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure8_pane_family" role="tabpanel" aria-labelledby="gallery_figure8_list_family" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/Taxonomy_PCA/family_PCA.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure8_pane_genus" role="tabpanel" aria-labelledby="gallery_figure8_list_genus" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/Taxonomy_PCA/genus_PCA.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure8_pane_species" role="tabpanel" aria-labelledby="gallery_figure8_list_species" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/Taxonomy_PCA/species_PCA.png" /></div>
+
+                    
+
+                
+
+            </div>
+
+        </div>
+
+        <div class="col-1">
+
+            <div id="gallery_figure8_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+
+        </div>
+
+        <div class="col-4">
+
+            <input class="form-control" id="gallery_figure8_InputList" type="text" placeholder="Search..">
+
+            <div class="list-group" id="gallery_figure8_list-tab" role="tablist">
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure8_list_phylum" data-toggle="list" href="#gallery_figure8_pane_phylum" role="tab" aria-controls="phylum">phylum</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure8_list_class" data-toggle="list" href="#gallery_figure8_pane_class" role="tab" aria-controls="class">class</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure8_list_order" data-toggle="list" href="#gallery_figure8_pane_order" role="tab" aria-controls="order">order</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure8_list_family" data-toggle="list" href="#gallery_figure8_pane_family" role="tab" aria-controls="family">family</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure8_list_genus" data-toggle="list" href="#gallery_figure8_pane_genus" role="tab" aria-controls="genus">genus</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure8_list_species" data-toggle="list" href="#gallery_figure8_pane_species" role="tab" aria-controls="species">species</a>
+
+                
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+<p class="name_fig">Figure 4.22 PCA Analysis</p>
+
+<br />
+
+<p class="paragraph">Notes: PCA: The X-axis is the first principal component; the Y-axis is the second principal component. The percentage is the contribution of the principal components to the sample's variation. Each point in the graph stands for a sample. Samples belonging to the same group are in the same color. </p>
+
+<p class="paragraph">Result directory: PCA figure : result/04.Betadiversity/*/PCA_*/*/PCA_*.{png,pdf}</p>
+
+<br /></br>
+
+<h5>4.4.2.2 KEGG PCA Analysis </h5>
+
+<p class="paragraph">Based on the abundance table of KEGG orthology (KEGG enzyme/KEGG pathway/KEGG module), the result of PCA was shown below.</p>
+
+<br />
+
+
+
+    <p class="center">
+
+    <div class="row gallery-row">
+
+        <div class="col-1">
+
+            <div id="gallery_figure8_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+
+        </div>
+
+        <div class="col-6">
+
+            <div class="tab-content" id="gallery_figure8_nav-tabContent">
+
+                
+
+                    
+
+                        <div class="tab-pane fade active show" id="gallery_figure8_pane_KeggModule" role="tabpanel" aria-labelledby="gallery_figure8_list_KeggModule" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/KeggModule_PCA//PCA.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure8_pane_KeggPath" role="tabpanel" aria-labelledby="gallery_figure8_list_KeggPath" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/KeggPath_PCA//PCA.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure8_pane_EC" role="tabpanel" aria-labelledby="gallery_figure8_list_EC" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/EC_PCA//PCA.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure8_pane_KO" role="tabpanel" aria-labelledby="gallery_figure8_list_KO" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/KO_PCA//PCA.png" /></div>
+
+                    
+
+                
+
+            </div>
+
+        </div>
+
+        <div class="col-1">
+
+            <div id="gallery_figure8_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+
+        </div>
+
+        <div class="col-4">
+
+            <input class="form-control" id="gallery_figure8_InputList" type="text" placeholder="Search..">
+
+            <div class="list-group" id="gallery_figure8_list-tab" role="tablist">
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure8_list_KeggModule" data-toggle="list" href="#gallery_figure8_pane_KeggModule" role="tab" aria-controls="KeggModule">KeggModule</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure8_list_KeggPath" data-toggle="list" href="#gallery_figure8_pane_KeggPath" role="tab" aria-controls="KeggPath">KeggPath</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure8_list_EC" data-toggle="list" href="#gallery_figure8_pane_EC" role="tab" aria-controls="EC">EC</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure8_list_KO" data-toggle="list" href="#gallery_figure8_pane_KO" role="tab" aria-controls="KO">KO</a>
+
+                
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+<p class="name_fig">Figure 4.23 PCA Analysis</p>
+
+<br />
+
+<p class="paragraph">Notes: PCA: The X-axis is the first principal component; the Y-axis is the second principal component. The percentage is the contribution of the principal components to the sample's variation. Each point in the graph stands for a sample. Samples belonging to the same group are in the same color. </p>
+
+<p class="paragraph">Result directory: PCA figure : result/04.Betadiversity/*/PCA_*/*/PCA_*.{png,pdf}</p>
+
+<br /></br>
+
+<h5>4.4.2.3 GO PCA Analysis </h5>
+
+<p class="paragraph">Based on the abundance table of gene ontology, the result of PCA was shown below.</p>
+
+<br />
+
+
+
+    <p class = "center"><img class="center" src="src/files/GO_PCA/PCA.png" height=440 width=590/>
+
+
+
+<p class="name_fig">Figure 4.24 PCA Analysis</p>
+
+<br />
+
+<p class="paragraph">Notes: PCA: The X-axis is the first principal component; the Y-axis is the second principal component. The percentage is the contribution of the principal components to the sample's variation. Each point in the graph stands for a sample. Samples belonging to the same group are in the same color. </p>
+
+<p class="paragraph">Result directory: PCA figure : result/04.Betadiversity/*/PCA_*/*/PCA_*.{png,pdf}</p>
+
+<br /></br>
+
+<h5>4.4.2.4 eggNOG PCA Analysis </h5>
+
+<p class="paragraph">Based on the abundance table of orthologous groups, the result of PCA was shown below.</p>
+
+<br />
+
+
+
+    <p class = "center"><img class="center" src="src/files/eggNOG_PCA/PCA.png" height=440 width=590/>
+
+
+
+<p class="name_fig">Figure 4.25 PCA Analysis</p>
+
+<br />
+
+<p class="paragraph">Notes: PCA: The X-axis is the first principal component; the Y-axis is the second principal component. The percentage is the contribution of the principal components to the sample's variation. Each point in the graph stands for a sample. Samples belonging to the same group are in the same color. </p>
+
+<p class="paragraph">Result directory: PCA figure : result/04.Betadiversity/*/PCA_*/*/PCA_*.{png,pdf}</p>
+
+<br /></br>
+
+<h5>4.4.2.5 Pfam PCA Analysis </h5>
+
+<p class="paragraph">Based on the abundance table of protein families, the result of PCA was shown below.</p>
+
+<br />
+
+
+
+    <p class = "center"><img class="center" src="src/files/Pfam_PCA/PCA.png" height=440 width=590/>
+
+
+
+<p class="name_fig">Figure 4.26 PCA Analysis</p>
+
+<br />
+
+<p class="paragraph">Notes: PCA: The X-axis is the first principal component; the Y-axis is the second principal component. The percentage is the contribution of the principal components to the sample's variation. Each point in the graph stands for a sample. Samples belonging to the same group are in the same color. </p>
+
+<p class="paragraph">Result directory: PCA figure : result/04.Betadiversity/*/PCA_*/*/PCA_*.{png,pdf}</p>
+
+<br /></br>
+
+<h4> 4.4.3 PCoA Analysis </h4>
+
+</br>
+
+<p class="paragraph">Principal Coordinate Analysis (PCoA) is an ordination technique that picks up the primary elements and structure from reduced multi-dimensional data series of eigenvalues and eigenvectors. This technique has the advantage over PCA in that each ecological distance can be investigated. Aggregated samples represent higher species composition similarity than those that are further apart. PCoA result based on Bray-Curtis distance are shown below. </p>
+</br>
+
+<h5>4.4.3.1 Kraken PCoA Analysis </h5>
+
+<p class="paragraph">Based on the abundance table of taxonomic level, the result of PCoA was shown below.</p>
+
+<br />
+
+
+
+    <p class="center">
+
+    <div class="row gallery-row">
+
+        <div class="col-1">
+
+            <div id="gallery_figure9_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+
+        </div>
+
+        <div class="col-6">
+
+            <div class="tab-content" id="gallery_figure9_nav-tabContent">
+
+                
+
+                    
+
+                        <div class="tab-pane fade active show" id="gallery_figure9_pane_phylum" role="tabpanel" aria-labelledby="gallery_figure9_list_phylum" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/Taxonomy_PCoA/phylum_PCoA.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure9_pane_class" role="tabpanel" aria-labelledby="gallery_figure9_list_class" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/Taxonomy_PCoA/class_PCoA.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure9_pane_order" role="tabpanel" aria-labelledby="gallery_figure9_list_order" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/Taxonomy_PCoA/order_PCoA.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure9_pane_family" role="tabpanel" aria-labelledby="gallery_figure9_list_family" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/Taxonomy_PCoA/family_PCoA.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure9_pane_genus" role="tabpanel" aria-labelledby="gallery_figure9_list_genus" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/Taxonomy_PCoA/genus_PCoA.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure9_pane_species" role="tabpanel" aria-labelledby="gallery_figure9_list_species" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/Taxonomy_PCoA/species_PCoA.png" /></div>
+
+                    
+
+                
+
+            </div>
+
+        </div>
+
+        <div class="col-1">
+
+            <div id="gallery_figure9_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+
+        </div>
+
+        <div class="col-4">
+
+            <input class="form-control" id="gallery_figure9_InputList" type="text" placeholder="Search..">
+
+            <div class="list-group" id="gallery_figure9_list-tab" role="tablist">
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure9_list_phylum" data-toggle="list" href="#gallery_figure9_pane_phylum" role="tab" aria-controls="phylum">phylum</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure9_list_class" data-toggle="list" href="#gallery_figure9_pane_class" role="tab" aria-controls="class">class</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure9_list_order" data-toggle="list" href="#gallery_figure9_pane_order" role="tab" aria-controls="order">order</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure9_list_family" data-toggle="list" href="#gallery_figure9_pane_family" role="tab" aria-controls="family">family</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure9_list_genus" data-toggle="list" href="#gallery_figure9_pane_genus" role="tab" aria-controls="genus">genus</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure9_list_species" data-toggle="list" href="#gallery_figure9_pane_species" role="tab" aria-controls="species">species</a>
+
+                
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+<p class="name_fig">Figure 4.27 PCoA Analysis</p>
+
+<p class="paragraph">Note: PCoA: The X-axis is the first principal coordinate; the Y-axis is the second principal coordinate. The percentage stands for the contribution of the principal coordinate to the variation in samples. Each point in the graph stands for a sample. Samples belonging to the same group are in the same color. </p>
+<p class="paragraph">Results directory: PCoA figure: result/04.Betadiversity/*/PCoA_group1/*/PCoA_*.{png,pdf} </p>
+
+</br>
+
+<h5>4.4.3.2 KEGG PCoA Analysis </h5>
+
+<p class="paragraph">Based on the abundance table of KEGG orthology (KEGG enzyme/KEGG pathway/KEGG module), the result of PCoA was shown below.</p>
+
+<br />
+
+
+
+    <p class="center">
+
+    <div class="row gallery-row">
+
+        <div class="col-1">
+
+            <div id="gallery_figure9_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+
+        </div>
+
+        <div class="col-6">
+
+            <div class="tab-content" id="gallery_figure9_nav-tabContent">
+
+                
+
+                    
+
+                        <div class="tab-pane fade active show" id="gallery_figure9_pane_KeggModule" role="tabpanel" aria-labelledby="gallery_figure9_list_KeggModule" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/KeggModule_PCoA//PCoA.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure9_pane_KeggPath" role="tabpanel" aria-labelledby="gallery_figure9_list_KeggPath" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/KeggPath_PCoA//PCoA.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure9_pane_EC" role="tabpanel" aria-labelledby="gallery_figure9_list_EC" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/EC_PCoA//PCoA.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure9_pane_KO" role="tabpanel" aria-labelledby="gallery_figure9_list_KO" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/KO_PCoA//PCoA.png" /></div>
+
+                    
+
+                
+
+            </div>
+
+        </div>
+
+        <div class="col-1">
+
+            <div id="gallery_figure9_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+
+        </div>
+
+        <div class="col-4">
+
+            <input class="form-control" id="gallery_figure9_InputList" type="text" placeholder="Search..">
+
+            <div class="list-group" id="gallery_figure9_list-tab" role="tablist">
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure9_list_KeggModule" data-toggle="list" href="#gallery_figure9_pane_KeggModule" role="tab" aria-controls="KeggModule">KeggModule</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure9_list_KeggPath" data-toggle="list" href="#gallery_figure9_pane_KeggPath" role="tab" aria-controls="KeggPath">KeggPath</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure9_list_EC" data-toggle="list" href="#gallery_figure9_pane_EC" role="tab" aria-controls="EC">EC</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure9_list_KO" data-toggle="list" href="#gallery_figure9_pane_KO" role="tab" aria-controls="KO">KO</a>
+
+                
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+<p class="name_fig">Figure 4.28 PCoA Analysis</p>
+
+<p class="paragraph">Note: PCoA: The X-axis is the first principal coordinate; the Y-axis is the second principal coordinate. The percentage stands for the contribution of the principal coordinate to the variation in samples. Each point in the graph stands for a sample. Samples belonging to the same group are in the same color. </p>
+<p class="paragraph">Results directory: PCoA figure: result/04.Betadiversity/*/PCoA_group1/*/PCoA_*.{png,pdf} </p>
+
+</br>
+
+<h5>4.4.3.3 GO PCoA Analysis </h5>
+
+<p class="paragraph">Based on the abundance table of gene ontology, the result of PCoA was shown below.</p>
+
+<br />
+
+
+
+    <p class = "center"><img class="center" src="src/files/GO_PCoA/PCoA.png" height=440 width=590/>
+
+
+
+<p class="name_fig">Figure 4.29 PCoA Analysis</p>
+
+<p class="paragraph">Note: PCoA: The X-axis is the first principal coordinate; the Y-axis is the second principal coordinate. The percentage stands for the contribution of the principal coordinate to the variation in samples. Each point in the graph stands for a sample. Samples belonging to the same group are in the same color. </p>
+<p class="paragraph">Results directory: PCoA figure: result/04.Betadiversity/*/PCoA_group1/*/PCoA_*.{png,pdf} </p>
+
+</br>
+
+<h5>4.4.3.4 eggNOG PCoA Analysis </h5>
+
+<p class="paragraph">Based on the abundance table of orthologous groups, the result of PCoA was shown below.</p>
+
+<br />
+
+
+
+    <p class = "center"><img class="center" src="src/files/eggNOG_PCoA/PCoA.png" height=440 width=590/>
+
+
+
+<p class="name_fig">Figure 4.30 PCoA Analysis</p>
+
+<p class="paragraph">Note: PCoA: The X-axis is the first principal coordinate; the Y-axis is the second principal coordinate. The percentage stands for the contribution of the principal coordinate to the variation in samples. Each point in the graph stands for a sample. Samples belonging to the same group are in the same color. </p>
+<p class="paragraph">Results directory: PCoA figure: result/04.Betadiversity/*/PCoA_group1/*/PCoA_*.{png,pdf} </p>
+
+</br>
+
+<h5>4.4.3.5 Pfam PCoA Analysis </h5>
+
+<p class="paragraph">Based on the abundance table of protein families, the result of PCoA was shown below.</p>
+
+<br />
+
+
+
+    <p class = "center"><img class="center" src="src/files/Pfam_PCoA/PCoA.png" height=440 width=590/>
+
+
+
+<p class="name_fig">Figure 4.31 PCoA Analysis</p>
+
+<p class="paragraph">Note: PCoA: The X-axis is the first principal coordinate; the Y-axis is the second principal coordinate. The percentage stands for the contribution of the principal coordinate to the variation in samples. Each point in the graph stands for a sample. Samples belonging to the same group are in the same color. </p>
+<p class="paragraph">Results directory: PCoA figure: result/04.Betadiversity/*/PCoA_group1/*/PCoA_*.{png,pdf} </p>
+
+</br>
+
+<h4> 4.4.4 NMDS Analysis </h4>
+
+</br>
+
+<p class="paragraph">Non-metric Multidimensional Scaling (NMDS) is a ranking method applicable to ecological research. It is a non-linear model designed for a better representation of non-linear biological data structure. NMDS can retain the original relationship among samples while reducing the research targets from a multidimensional space to a low-dimensional space for analysis, positioning, and categorization. This allows NMDS analysis to address the similarity or dissimilarity between targets as a monotonic function of the distance between the points.</p>
+</br>
+
+<h5>4.4.4.1 Kraken NMDS Analysis </h5>
+
+<p class="paragraph">Based on the abundance table of taxonomic level, the result of NMDS was shown below.</p>
+
+<br />
+
+
+
+    <p class="center">
+
+    <div class="row gallery-row">
+
+        <div class="col-1">
+
+            <div id="gallery_figure10_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+
+        </div>
+
+        <div class="col-6">
+
+            <div class="tab-content" id="gallery_figure10_nav-tabContent">
+
+                
+
+                    
+
+                        <div class="tab-pane fade active show" id="gallery_figure10_pane_phylum" role="tabpanel" aria-labelledby="gallery_figure10_list_phylum" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/Taxonomy_NMDS/phylum_NMDS.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure10_pane_class" role="tabpanel" aria-labelledby="gallery_figure10_list_class" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/Taxonomy_NMDS/class_NMDS.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure10_pane_order" role="tabpanel" aria-labelledby="gallery_figure10_list_order" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/Taxonomy_NMDS/order_NMDS.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure10_pane_family" role="tabpanel" aria-labelledby="gallery_figure10_list_family" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/Taxonomy_NMDS/family_NMDS.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure10_pane_genus" role="tabpanel" aria-labelledby="gallery_figure10_list_genus" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/Taxonomy_NMDS/genus_NMDS.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure10_pane_species" role="tabpanel" aria-labelledby="gallery_figure10_list_species" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/Taxonomy_NMDS/species_NMDS.png" /></div>
+
+                    
+
+                
+
+            </div>
+
+        </div>
+
+        <div class="col-1">
+
+            <div id="gallery_figure10_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+
+        </div>
+
+        <div class="col-4">
+
+            <input class="form-control" id="gallery_figure10_InputList" type="text" placeholder="Search..">
+
+            <div class="list-group" id="gallery_figure10_list-tab" role="tablist">
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure10_list_phylum" data-toggle="list" href="#gallery_figure10_pane_phylum" role="tab" aria-controls="phylum">phylum</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure10_list_class" data-toggle="list" href="#gallery_figure10_pane_class" role="tab" aria-controls="class">class</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure10_list_order" data-toggle="list" href="#gallery_figure10_pane_order" role="tab" aria-controls="order">order</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure10_list_family" data-toggle="list" href="#gallery_figure10_pane_family" role="tab" aria-controls="family">family</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure10_list_genus" data-toggle="list" href="#gallery_figure10_pane_genus" role="tab" aria-controls="genus">genus</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure10_list_species" data-toggle="list" href="#gallery_figure10_pane_species" role="tab" aria-controls="species">species</a>
+
+                
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+<p class="name_fig">Figure 4.32 NMDS Analysis</p>
+
+<br />
+
+<p class="paragraph">Notes: NMDS reflects the pairwise dissimilarity between objects in a low-dimensional space. Samples belonging to the same group are in the same color. When the value of Stress factor is less than 0.2, it is considered that NMDS is reliable to some extent. </p>
+
+<p class="paragraph">Result directory: NMDS figure : result/04.Betadiversity/*/NMDS_*/*/NMDS_*.{png,pdf}</p>
+
+<br />
+</br>
+
+<h5>4.4.4.2 KEGG NMDS Analysis </h5>
+
+<p class="paragraph">Based on the abundance table of KEGG orthology (KEGG enzyme/KEGG pathway/KEGG module), the result of NMDS was shown below.</p>
+
+<br />
+
+
+
+    <p class="center">
+
+    <div class="row gallery-row">
+
+        <div class="col-1">
+
+            <div id="gallery_figure10_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+
+        </div>
+
+        <div class="col-6">
+
+            <div class="tab-content" id="gallery_figure10_nav-tabContent">
+
+                
+
+                    
+
+                        <div class="tab-pane fade active show" id="gallery_figure10_pane_KeggModule" role="tabpanel" aria-labelledby="gallery_figure10_list_KeggModule" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/KeggModule_NMDS//NMDS.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure10_pane_KeggPath" role="tabpanel" aria-labelledby="gallery_figure10_list_KeggPath" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/KeggPath_NMDS//NMDS.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure10_pane_EC" role="tabpanel" aria-labelledby="gallery_figure10_list_EC" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/EC_NMDS//NMDS.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure10_pane_KO" role="tabpanel" aria-labelledby="gallery_figure10_list_KO" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/KO_NMDS//NMDS.png" /></div>
+
+                    
+
+                
+
+            </div>
+
+        </div>
+
+        <div class="col-1">
+
+            <div id="gallery_figure10_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+
+        </div>
+
+        <div class="col-4">
+
+            <input class="form-control" id="gallery_figure10_InputList" type="text" placeholder="Search..">
+
+            <div class="list-group" id="gallery_figure10_list-tab" role="tablist">
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure10_list_KeggModule" data-toggle="list" href="#gallery_figure10_pane_KeggModule" role="tab" aria-controls="KeggModule">KeggModule</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure10_list_KeggPath" data-toggle="list" href="#gallery_figure10_pane_KeggPath" role="tab" aria-controls="KeggPath">KeggPath</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure10_list_EC" data-toggle="list" href="#gallery_figure10_pane_EC" role="tab" aria-controls="EC">EC</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure10_list_KO" data-toggle="list" href="#gallery_figure10_pane_KO" role="tab" aria-controls="KO">KO</a>
+
+                
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+<p class="name_fig">Figure 4.33 NMDS Analysis</p>
+
+<br />
+
+<p class="paragraph">Notes: NMDS reflects the pairwise dissimilarity between objects in a low-dimensional space. Samples belonging to the same group are in the same color. When the value of Stress factor is less than 0.2, it is considered that NMDS is reliable to some extent. </p>
+
+<p class="paragraph">Result directory: NMDS figure : result/04.Betadiversity/*/NMDS_*/*/NMDS_*.{png,pdf}</p>
+
+<br />
+</br>
+
+<h5>4.4.4.3 GO NMDS Analysis </h5>
+
+<p class="paragraph">Based on the abundance table of gene ontology, the result of NMDS was shown below.</p>
+
+<br />
+
+
+
+    <p class = "center"><img class="center" src="src/files/GO_NMDS/NMDS.png" height=440 width=590/>
+
+
+
+<p class="name_fig">Figure 4.34 NMDS Analysis</p>
+
+<br />
+
+<p class="paragraph">Notes: NMDS reflects the pairwise dissimilarity between objects in a low-dimensional space. Samples belonging to the same group are in the same color. When the value of Stress factor is less than 0.2, it is considered that NMDS is reliable to some extent. </p>
+
+<p class="paragraph">Result directory: NMDS figure : result/04.Betadiversity/*/NMDS_*/*/NMDS_*.{png,pdf}</p>
+
+<br />
+</br>
+
+<h5>4.4.4.4 eggNOG NMDS Analysis </h5>
+
+<p class="paragraph">Based on the abundance table of orthologous groups, the result of NMDS was shown below.</p>
+
+<br />
+
+
+
+    <p class = "center"><img class="center" src="src/files/eggNOG_NMDS/NMDS.png" height=440 width=590/>
+
+
+
+<p class="name_fig">Figure 4.35 NMDS Analysis</p>
+
+<br />
+
+<p class="paragraph">Notes: NMDS reflects the pairwise dissimilarity between objects in a low-dimensional space. Samples belonging to the same group are in the same color. When the value of Stress factor is less than 0.2, it is considered that NMDS is reliable to some extent. </p>
+
+<p class="paragraph">Result directory: NMDS figure : result/04.Betadiversity/*/NMDS_*/*/NMDS_*.{png,pdf}</p>
+
+<br />
+</br>
+
+<h5>4.4.4.5 Pfam NMDS Analysis </h5>
+
+<p class="paragraph">Based on the abundance table of protein families, the result of NMDS was shown below.</p>
+
+<br />
+
+
+
+    <p class = "center"><img class="center" src="src/files/Pfam_NMDS/NMDS.png" height=440 width=590/>
+
+
+
+<p class="name_fig">Figure 4.36 NMDS Analysis</p>
+
+<br />
+
+<p class="paragraph">Notes: NMDS reflects the pairwise dissimilarity between objects in a low-dimensional space. Samples belonging to the same group are in the same color. When the value of Stress factor is less than 0.2, it is considered that NMDS is reliable to some extent. </p>
+
+<p class="paragraph">Result directory: NMDS figure : result/04.Betadiversity/*/NMDS_*/*/NMDS_*.{png,pdf}</p>
+
+<br />
+</br>
+
+<h3>4.5 Analysis of Statistical Tests for Taxonomy and Function Differences Between Groups </h3>
+
+</br>
+
+    <h4>4.5.1 Anosim </h4>
+
+    <p class="paragraph"> Anosim (Chapman M G et al.,1999) (https://www.rdocumentation.org/packages/vegan/versions/2.3-5/topics/anosim) is a nonparametric test helps evaluate the reasonability of the division of groups by evaluating whether variation among groups is significantly greater than variation within group. </p>
+    
+</br>
+
+<h5> 4.5.1.1 Kraken Anosim </h5>
+
+<p class="paragraph"> Based on the abundance table of taxonomic level, the Anosim analysis was displayed.The table illustrates an example with only species level.</p>
+
+</br>
+
+<p style="text-align: center;font-size:14px"> Table 4.7 Anosim analysis </p>
+
+<p class="paragraph">                 </p>
+
+<table class="gy" data-pagination="true" data-toggle="table" data-page-size="10">
+    
+    <thead>
+        
+        <tr>
+            
+            <th>Group</th><th>R-value</th><th>P-value</th>
+            
+        </tr>
+            
+    </thead>
+        
+    <tbody>
+            
+        
+            
+        <tr><td>A-B</td><td>0.36409</td><td>0.019</td></tr>
+            
+        
+        
+    </tbody>
+        
+</table>
+
+<br />
+
+<p class="paragraph"> Notes: Plotted by the rank value on the Y-axis. R-value is a number between -1 and 1. A positive R value means that inter-group variation is considered significant, while a negative R-value suggests that inner-group variation is greater than inter-group. The confidence degree is represented by P-value, whose value less than 0.05 suggests statistical significance. </p>
+
+<p class="paragraph"> Results directory: Anosim result：result/05.StatisticalTest/*/Anosim_group1 </p>
+
+<br /></br>
+
+<h5> 4.5.1.2 KEGG Anosim </h5>
+
+<p class="paragraph"> Based on the abundance table of KEGG orthology (KEGG enzyme/KEGG pathway/KEGG module), the Anosim analysis was displayed.The table illustrates an example with only KEGG orthology.</p>
+
+</br>
+
+<p style="text-align: center;font-size:14px"> Table 4.8 Anosim analysis </p>
+
+<p class="paragraph">                 </p>
+
+<table class="gy" data-pagination="true" data-toggle="table" data-page-size="10">
+    
+    <thead>
+        
+        <tr>
+            
+            <th>Group</th><th>R-value</th><th>P-value</th>
+            
+        </tr>
+            
+    </thead>
+        
+    <tbody>
+            
+        
+            
+        <tr><td>A-B</td><td>-0.00446</td><td>0.497</td></tr>
+            
+        
+        
+    </tbody>
+        
+</table>
+
+<br />
+
+<p class="paragraph"> Notes: Plotted by the rank value on the Y-axis. R-value is a number between -1 and 1. A positive R value means that inter-group variation is considered significant, while a negative R-value suggests that inner-group variation is greater than inter-group. The confidence degree is represented by P-value, whose value less than 0.05 suggests statistical significance. </p>
+
+<p class="paragraph"> Results directory: Anosim result：result/05.StatisticalTest/*/Anosim_group1 </p>
+
+<br /></br>
+
+<h5> 4.5.1.3 GO Anosim </h5>
+
+<p class="paragraph"> Based on the abundance table of gene ontolog, the Anosim analysis was displayed.</p>
+
+</br>
+
+<p style="text-align: center;font-size:14px"> Table 4.9 Anosim analysis </p>
+
+<p class="paragraph">                 </p>
+
+<table class="gy" data-pagination="true" data-toggle="table" data-page-size="10">
+    
+    <thead>
+        
+        <tr>
+            
+            <th>Group</th><th>R-value</th><th>P-value</th>
+            
+        </tr>
+            
+    </thead>
+        
+    <tbody>
+            
+        
+            
+        <tr><td>A-B</td><td>0.21825</td><td>0.078</td></tr>
+            
+        
+        
+    </tbody>
+        
+</table>
+
+<br />
+
+<p class="paragraph"> Notes: Plotted by the rank value on the Y-axis. R-value is a number between -1 and 1. A positive R value means that inter-group variation is considered significant, while a negative R-value suggests that inner-group variation is greater than inter-group. The confidence degree is represented by P-value, whose value less than 0.05 suggests statistical significance. </p>
+
+<p class="paragraph"> Results directory: Anosim result：result/05.StatisticalTest/*/Anosim_group1 </p>
+
+<br /></br>
+
+<h5> 4.5.1.4 eggNOG Anosim </h5>
+
+<p class="paragraph"> Based on the abundance table of orthologous groups, the Anosim analysis was displayed.</p>
+
+</br>
+
+<p style="text-align: center;font-size:14px"> Table 4.10 Anosim analysis </p>
+
+<p class="paragraph">                 </p>
+
+<table class="gy" data-pagination="true" data-toggle="table" data-page-size="10">
+    
+    <thead>
+        
+        <tr>
+            
+            <th>Group</th><th>R-value</th><th>P-value</th>
+            
+        </tr>
+            
+    </thead>
+        
+    <tbody>
+            
+        
+            
+        <tr><td>A-B</td><td>0.16691</td><td>0.052</td></tr>
+            
+        
+        
+    </tbody>
+        
+</table>
+
+<br />
+
+<p class="paragraph"> Notes: Plotted by the rank value on the Y-axis. R-value is a number between -1 and 1. A positive R value means that inter-group variation is considered significant, while a negative R-value suggests that inner-group variation is greater than inter-group. The confidence degree is represented by P-value, whose value less than 0.05 suggests statistical significance. </p>
+
+<p class="paragraph"> Results directory: Anosim result：result/05.StatisticalTest/*/Anosim_group1 </p>
+
+<br /></br>
+
+<h5> 4.5.1.5 Pfam Anosim </h5>
+
+<p class="paragraph"> Based on the abundance table of protein families, the Anosim analysis was displayed.</p>
+
+</br>
+
+<p style="text-align: center;font-size:14px"> Table 4.11 Anosim analysis </p>
+
+<p class="paragraph">                 </p>
+
+<table class="gy" data-pagination="true" data-toggle="table" data-page-size="10">
+    
+    <thead>
+        
+        <tr>
+            
+            <th>Group</th><th>R-value</th><th>P-value</th>
+            
+        </tr>
+            
+    </thead>
+        
+    <tbody>
+            
+        
+            
+        <tr><td>A-B</td><td>0.17113</td><td>0.072</td></tr>
+            
+        
+        
+    </tbody>
+        
+</table>
+
+<br />
+
+<p class="paragraph"> Notes: Plotted by the rank value on the Y-axis. R-value is a number between -1 and 1. A positive R value means that inter-group variation is considered significant, while a negative R-value suggests that inner-group variation is greater than inter-group. The confidence degree is represented by P-value, whose value less than 0.05 suggests statistical significance. </p>
+
+<p class="paragraph"> Results directory: Anosim result：result/05.StatisticalTest/*/Anosim_group1 </p>
+
+<br /></br>
+
+    <h4>4.5.2 MetaGenomeSeq </h4>
+
+</br>
+
+    <p class="paragraph"> MetaGenomeSeq (Paulson JN et al., 2013) is developed in the context of metagenomic data comprising multiple sample, and relies on a non-parametric t-test for detecting differentially abundant features in metagenomic studies. The p-value is further corrected as a q-value to discover taxa with significant variation. </p>
+    
+</br>
+
+<h5>4.5.2.1 Kraken MetaGenomeSeq </h5>
+
+<p class="paragraph">Based on the abundance table of taxonomic level, the result of MetaGenomeSeq was shown below.</p>
+
+<br />
+
+
+
+    <p class="center">
+
+    <div class="row gallery-row">
+
+        <div class="col-1">
+
+            <div id="gallery_figure11_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+
+        </div>
+
+        <div class="col-6">
+
+            <div class="tab-content" id="gallery_figure11_nav-tabContent">
+
+                
+
+                    
+
+                        <div class="tab-pane fade active show" id="gallery_figure11_pane_phylum" role="tabpanel" aria-labelledby="gallery_figure11_list_phylum" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/Taxonomy_MetaGenomeSeq/phylum_top.12.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure11_pane_class" role="tabpanel" aria-labelledby="gallery_figure11_list_class" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/Taxonomy_MetaGenomeSeq/class_top.12.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure11_pane_order" role="tabpanel" aria-labelledby="gallery_figure11_list_order" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/Taxonomy_MetaGenomeSeq/order_top.12.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure11_pane_family" role="tabpanel" aria-labelledby="gallery_figure11_list_family" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/Taxonomy_MetaGenomeSeq/family_top.12.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure11_pane_genus" role="tabpanel" aria-labelledby="gallery_figure11_list_genus" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/Taxonomy_MetaGenomeSeq/genus_top.12.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure11_pane_species" role="tabpanel" aria-labelledby="gallery_figure11_list_species" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/Taxonomy_MetaGenomeSeq/species_top.12.png" /></div>
+
+                    
+
+                
+
+            </div>
+
+        </div>
+
+        <div class="col-1">
+
+            <div id="gallery_figure11_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+
+        </div>
+
+        <div class="col-4">
+
+            <input class="form-control" id="gallery_figure11_InputList" type="text" placeholder="Search..">
+
+            <div class="list-group" id="gallery_figure11_list-tab" role="tablist">
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure11_list_phylum" data-toggle="list" href="#gallery_figure11_pane_phylum" role="tab" aria-controls="phylum">phylum</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure11_list_class" data-toggle="list" href="#gallery_figure11_pane_class" role="tab" aria-controls="class">class</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure11_list_order" data-toggle="list" href="#gallery_figure11_pane_order" role="tab" aria-controls="order">order</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure11_list_family" data-toggle="list" href="#gallery_figure11_pane_family" role="tab" aria-controls="family">family</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure11_list_genus" data-toggle="list" href="#gallery_figure11_pane_genus" role="tab" aria-controls="genus">genus</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure11_list_species" data-toggle="list" href="#gallery_figure11_pane_species" role="tab" aria-controls="species">species</a>
+
+                
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+<p class="name_fig">Figure 4.37 Boxplot of Significant Changes in Relative Abundance between Groups</p>
+
+<br />
+
+<p class="paragraph">Notes: The X-axis indicates the group of samples; the Y-axis indicates the abundance of corresponding species. "*" means the variation between the two groups is significant (q <0.05); "**" means the variation between the two groups is extremely significant (q <0.01).</p>
+
+<p class="paragraph">Result Directory: MetaGenomeSeq analysis result: result/05.StatisticalTest/*/MetaGenomeSeq_group1</p>
+</br>
+
+<h5>4.5.2.2 KEGG MetaGenomeSeq </h5>
+
+<p class="paragraph">Based on the abundance table of KEGG orthology (KEGG enzyme/KEGG pathway/KEGG module), the result of MetaGenomeSeq was shown below.</p>
+
+<br />
+
+
+
+    <p class="center">
+
+    <div class="row gallery-row">
+
+        <div class="col-1">
+
+            <div id="gallery_figure11_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+
+        </div>
+
+        <div class="col-6">
+
+            <div class="tab-content" id="gallery_figure11_nav-tabContent">
+
+                
+
+                    
+
+                        <div class="tab-pane fade active show" id="gallery_figure11_pane_KeggModule" role="tabpanel" aria-labelledby="gallery_figure11_list_KeggModule" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/KeggModule_MetaGenomeSeq//MetaGenomeSeq.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure11_pane_KeggPath" role="tabpanel" aria-labelledby="gallery_figure11_list_KeggPath" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/KeggPath_MetaGenomeSeq//MetaGenomeSeq.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure11_pane_EC" role="tabpanel" aria-labelledby="gallery_figure11_list_EC" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/EC_MetaGenomeSeq//MetaGenomeSeq.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure11_pane_KO" role="tabpanel" aria-labelledby="gallery_figure11_list_KO" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/KO_MetaGenomeSeq//MetaGenomeSeq.png" /></div>
+
+                    
+
+                
+
+            </div>
+
+        </div>
+
+        <div class="col-1">
+
+            <div id="gallery_figure11_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+
+        </div>
+
+        <div class="col-4">
+
+            <input class="form-control" id="gallery_figure11_InputList" type="text" placeholder="Search..">
+
+            <div class="list-group" id="gallery_figure11_list-tab" role="tablist">
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure11_list_KeggModule" data-toggle="list" href="#gallery_figure11_pane_KeggModule" role="tab" aria-controls="KeggModule">KeggModule</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure11_list_KeggPath" data-toggle="list" href="#gallery_figure11_pane_KeggPath" role="tab" aria-controls="KeggPath">KeggPath</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure11_list_EC" data-toggle="list" href="#gallery_figure11_pane_EC" role="tab" aria-controls="EC">EC</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure11_list_KO" data-toggle="list" href="#gallery_figure11_pane_KO" role="tab" aria-controls="KO">KO</a>
+
+                
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+<p class="name_fig">Figure 4.38 Boxplot of Significant Changes in Relative Abundance between Groups</p>
+
+<br />
+
+<p class="paragraph">Notes: The X-axis indicates the group of samples; the Y-axis indicates the abundance of corresponding species. "*" means the variation between the two groups is significant (q <0.05); "**" means the variation between the two groups is extremely significant (q <0.01).</p>
+
+<p class="paragraph">Result Directory: MetaGenomeSeq analysis result: result/05.StatisticalTest/*/MetaGenomeSeq_group1</p>
+</br>
+
+<h5>4.5.2.3 GO MetaGenomeSeq </h5>
+
+<p class="paragraph">Based on the abundance table of gene ontology, the result of MetaGenomeSeq was shown below.</p>
+
+<br />
+
+
+
+    <p class = "center"><img class="center" src="src/files/GO_MetaGenomeSeq/MetaGenomeSeq.png" height=440 width=590/>
+
+
+
+<p class="name_fig">Figure 4.39 Boxplot of Significant Changes in Relative Abundance between Groups</p>
+
+<br />
+
+<p class="paragraph">Notes: The X-axis indicates the group of samples; the Y-axis indicates the abundance of corresponding species. "*" means the variation between the two groups is significant (q <0.05); "**" means the variation between the two groups is extremely significant (q <0.01).</p>
+
+<p class="paragraph">Result Directory: MetaGenomeSeq analysis result: result/05.StatisticalTest/*/MetaGenomeSeq_group1</p>
+</br>
+
+<h5>4.5.2.4 eggNOG MetaGenomeSeq </h5>
+
+<p class="paragraph">Based on the abundance table of orthologous groups, the result of MetaGenomeSeq was shown below.</p>
+
+<br />
+
+
+
+    <p class = "center"><img class="center" src="src/files/eggNOG_MetaGenomeSeq/MetaGenomeSeq.png" height=440 width=590/>
+
+
+
+<p class="name_fig">Figure 4.40 Boxplot of Significant Changes in Relative Abundance between Groups</p>
+
+<br />
+
+<p class="paragraph">Notes: The X-axis indicates the group of samples; the Y-axis indicates the abundance of corresponding species. "*" means the variation between the two groups is significant (q <0.05); "**" means the variation between the two groups is extremely significant (q <0.01).</p>
+
+<p class="paragraph">Result Directory: MetaGenomeSeq analysis result: result/05.StatisticalTest/*/MetaGenomeSeq_group1</p>
+</br>
+
+<h5>4.5.2.5 Pfam MetaGenomeSeq </h5>
+
+<p class="paragraph">Based on the abundance table of protein families, the result of MetaGenomeSeq was shown below.</p>
+
+<br />
+
+
+
+    <p class = "center"><img class="center" src="src/files/Pfam_MetaGenomeSeq/MetaGenomeSeq.png" height=440 width=590/>
+
+
+
+<p class="name_fig">Figure 4.41 Boxplot of Significant Changes in Relative Abundance between Groups</p>
+
+<br />
+
+<p class="paragraph">Notes: The X-axis indicates the group of samples; the Y-axis indicates the abundance of corresponding species. "*" means the variation between the two groups is significant (q <0.05); "**" means the variation between the two groups is extremely significant (q <0.01).</p>
+
+<p class="paragraph">Result Directory: MetaGenomeSeq analysis result: result/05.StatisticalTest/*/MetaGenomeSeq_group1</p>
+</br>
+
+    <h4>4.5.3 LEfSe </h4>
+
+</br>
+
+    <p class="paragraph"> To screen for significant Biomarkers with inter-group differences, different species or functions between groups are first detected using the rank-sum test method, and dimensional reduction is achieved through Linear Discriminant Analysis (LDA) to assess the magnitude of the impact of different species or functions (Segata N et al., 2011), resulting in LDA scores. The LEfSe analysis results for inter-group differences include three parts: the distribution bar plot of LDA values, the cladogram (showing the unique phylogenetic distribution of species), and abundance comparison plots of Biomarkers with statistically significant differences between groups. </p>
+    
+
+
+
+
+
+
+
+
+
+<br/>
+
+<h5> 4.5.3.1 Kraken LEfSe </h5>
+
+<p class="paragraph">Based on the abundance table of taxonomic level, the result of LEfSe was shown below.</p>
+
+<br />
+
+
+
+    <p class = "center"><img class="center" src="src/files/Taxonomy_LEfSe/LDA_bar.png" height=440 width=590/>
+
+
+
+<p class="name_fig">Figure 4.42 Histogram of LDA Scores</p>
+
+<br />
+
+<p class="paragraph"> Notes: The histogram of the LDA scores presents biomarker whose LDA scores are greater than the set threshold (4 set by default). The LDA score represents the effect size (the extent to which a biomarker can explain the differentiating phenotypes among groups). </p>
+
+<br />
+
+
+
+    <p class = "center"><img class="center" src="src/files/Taxonomy_LEfSe/LDA_tree.png" height=600 width=600/>
+
+    <p class="name_fig">Figure 4.43 Tree of LDA Scores</p>
+
+    <br />
+
+    <p class="paragraph">Notes : In the Cladogram, circles radiating from the inner side to the outer side represent taxonomic rank from phylum to genus (species). Each circle stands for a distinct taxon at a corresponding taxonomic rank. The diameter of each circle represents proportionally the relative abundance of each taxon. Yellow stands for taxons with non-significant differences. Taxon (biomarkers) with significant differences are colored according to the corresponding group's color. Red nodes mean this microbiota contributes a lot in the group covered by red color, and so do the green nodes. Letters above the circles and corresponding species are annotated on the right side.</p>
+
+
+
+    <p class="paragraph"> Result Directory: LEfSe analysis result: result/05.StatisticalTest/*/Lefse_group1 </p><br/>
+
+<h5> 4.5.3.2 KEGG LEfSe </h5>
+
+<p class="paragraph">Based on the abundance table of KEGG orthology (KEGG enzyme/KEGG pathway/KEGG module), the result of LEfSe was shown below.</p>
+
+<br />
+
+
+
+    <p class="center">
+
+    <div class="row gallery-row">
+
+        <div class="col-1">
+
+            <div id="gallery_figure12_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+
+        </div>
+
+        <div class="col-6">
+
+            <div class="tab-content" id="gallery_figure12_nav-tabContent">
+
+                
+
+                    
+
+                        <div class="tab-pane fade active show" id="gallery_figure12_pane_KeggModule" role="tabpanel" aria-labelledby="gallery_figure12_list_KeggModule" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/KeggModule_LEfSe//LDA_bar.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure12_pane_KeggPath" role="tabpanel" aria-labelledby="gallery_figure12_list_KeggPath" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/KeggPath_LEfSe//LDA_bar.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure12_pane_EC" role="tabpanel" aria-labelledby="gallery_figure12_list_EC" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/EC_LEfSe//LDA_bar.png" /></div>
+
+                    
+
+                
+
+                    
+
+                        <div class="tab-pane show" id="gallery_figure12_pane_KO" role="tabpanel" aria-labelledby="gallery_figure12_list_KO" onclick="trans(this.id)"><img class="img-gallery" src="./src/files/KO_LEfSe//LDA_bar.png" /></div>
+
+                    
+
+                
+
+            </div>
+
+        </div>
+
+        <div class="col-1">
+
+            <div id="gallery_figure12_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+
+        </div>
+
+        <div class="col-4">
+
+            <input class="form-control" id="gallery_figure12_InputList" type="text" placeholder="Search..">
+
+            <div class="list-group" id="gallery_figure12_list-tab" role="tablist">
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure12_list_KeggModule" data-toggle="list" href="#gallery_figure12_pane_KeggModule" role="tab" aria-controls="KeggModule">KeggModule</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure12_list_KeggPath" data-toggle="list" href="#gallery_figure12_pane_KeggPath" role="tab" aria-controls="KeggPath">KeggPath</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure12_list_EC" data-toggle="list" href="#gallery_figure12_pane_EC" role="tab" aria-controls="EC">EC</a>
+
+                
+
+                <a class="list-group-item list-group-item-action" id="gallery_figure12_list_KO" data-toggle="list" href="#gallery_figure12_pane_KO" role="tab" aria-controls="KO">KO</a>
+
+                
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+<p class="name_fig">Figure 4.44 Histogram of LDA Scores</p>
+
+<br />
+
+<p class="paragraph"> Notes: The histogram of the LDA scores presents biomarker whose LDA scores are greater than the set threshold (2 set by default). The LDA score represents the effect size (the extent to which a biomarker can explain the differentiating phenotypes among groups). </p>
+
+<br />
+
+
+
+    <p class="paragraph"> Result Directory: LEfSe analysis result: result/05.StatisticalTest/*/Lefse_group1 </p><br/>
+
+<h5> 4.5.3.3 GO LEfSe </h5>
+
+<p class="paragraph">Based on the abundance table of gene ontology, the result of LEfSe was shown below.</p>
+
+<br />
+
+
+
+    <p class = "center"><img class="center" src="src/files/GO_LEfSe/LDA_bar.png" height=440 width=590/>
+
+
+
+<p class="name_fig">Figure 4.45 Histogram of LDA Scores</p>
+
+<br />
+
+<p class="paragraph"> Notes: The histogram of the LDA scores presents biomarker whose LDA scores are greater than the set threshold (2 set by default). The LDA score represents the effect size (the extent to which a biomarker can explain the differentiating phenotypes among groups). </p>
+
+<br />
+
+
+
+    <p class="paragraph"> Result Directory: LEfSe analysis result: result/05.StatisticalTest/*/Lefse_group1 </p><br/>
+
+<h5> 4.5.3.4 eggNOG LEfSe </h5>
+
+<p class="paragraph">Based on the abundance table of orthologous groups, the result of LEfSe was shown below.</p>
+
+<br />
+
+
+
+    <p class = "center"><img class="center" src="src/files/eggNOG_LEfSe/LDA_bar.png" height=440 width=590/>
+
+
+
+<p class="name_fig">Figure 4.46 Histogram of LDA Scores</p>
+
+<br />
+
+<p class="paragraph"> Notes: The histogram of the LDA scores presents biomarker whose LDA scores are greater than the set threshold (2 set by default). The LDA score represents the effect size (the extent to which a biomarker can explain the differentiating phenotypes among groups). </p>
+
+<br />
+
+
+
+    <p class="paragraph"> Result Directory: LEfSe analysis result: result/05.StatisticalTest/*/Lefse_group1 </p><br/>
+
+<h5> 4.5.3.5 Pfam LEfSe </h5>
+
+<p class="paragraph">Based on the abundance table of protein families, the result of LEfSe was shown below.</p>
+
+<br />
+
+
+
+    <p class = "center"><img class="center" src="src/files/Pfam_LEfSe/LDA_bar.png" height=440 width=590/>
+
+
+
+<p class="name_fig">Figure 4.47 Histogram of LDA Scores</p>
+
+<br />
+
+<p class="paragraph"> Notes: The histogram of the LDA scores presents biomarker whose LDA scores are greater than the set threshold (2 set by default). The LDA score represents the effect size (the extent to which a biomarker can explain the differentiating phenotypes among groups). </p>
+
+<br />
+
+
+
+    <p class="paragraph"> Result Directory: LEfSe analysis result: result/05.StatisticalTest/*/Lefse_group1 </p><h2>5.Appendix</h2>
+
+    <h3>5.1 List of Analysis Software </h3>
+    
+    <p class="paragraph">                 </p>
+
+    <div class="table-container">
+        <table class="gy" data-pagination="true" data-toggle="table" data-page-size="30">
+        
+            <thead>
+            
+                <tr>
+                
+                    <th>Analysis</th><th>Software</th><th>Version</th><th>Parameter</th><th>Remarks</th>
+                
+                </tr>
+                
+            </thead>
+            
+            <tbody>
+                
+                
+                
+                <tr><td>Data quality</td><td>fastp</td><td>0.23.1</td><td>-g -q 5 -u 50 -n 10 -l 150 --min_trim_length 10 --overlap_diff_limit 1</td><td>-</td></tr>
+                
+                
+                
+                <tr><td>Host trimming</td><td>bowtie2</td><td>2.5.4</td><td>--end-to-end --sensitive --no-hd --no-sq -I 200 -X 400 --threads 8</td><td>-</td></tr>
+                
+                
+                
+                <tr><td>Taxonomy annotation</td><td>Kraken2 &amp;&amp; Braken</td><td>2.1.3 &amp;&amp; v2.9</td><td>--threads 5 --quick  --classified-out classified#.fq --gzip-compressed</td><td>The database by default uses an integrated microbial database comprising four sections—bacteria, archaea, fungi, and viruses—extracted from the PlusPFP database on the official website.</td></tr>
+                
+                
+                
+                <tr><td>KEGG PATHWAY annotation</td><td>diamond</td><td>2.1.9</td><td>--minpath off --gap-fill on --threads 5 --protein-database</td><td>KEGG(Version: 2023)</td></tr>
+                
+                
+                
+                <tr><td>KEGG MODULE annotation</td><td>diamond</td><td>2.1.9</td><td>--minpath off --gap-fill on --threads 5 --protein-database</td><td>KEGG(Version: 2023)</td></tr>
+                
+                
+                
+                <tr><td>KEGG Orthology annotation</td><td>diamond</td><td>2.1.9</td><td>--minpath off --gap-fill on --threads 5 --protein-database</td><td>KEGG(Version: 2023)</td></tr>
+                
+                
+                
+                <tr><td>KEGG ENZYME annotation</td><td>diamond</td><td>2.1.9</td><td>--minpath off --gap-fill on --threads 5 --protein-database</td><td>KEGG(Version: 2023)</td></tr>
+                
+                
+                
+                <tr><td>GO annotation</td><td>diamond</td><td>2.1.9</td><td>--minpath off --gap-fill on --threads 5 --protein-database</td><td>GO(Version: 2023.03)</td></tr>
+                
+                
+                
+                <tr><td>eggNOG annotation</td><td>diamond</td><td>2.1.9</td><td>--minpath off --gap-fill on --threads 5 --protein-database</td><td>eggNOG(Version: 2023.03)</td></tr>
+                
+                
+                
+                <tr><td>Pfam annotation</td><td>diamond</td><td>2.1.9</td><td>--minpath off --gap-fill on --threads 5 --protein-database</td><td>Pfam(Version: 2023.03)</td></tr>
+                
+                
+                
+                <tr><td>Barplot</td><td>perl</td><td>5.18.2</td><td>use SVG</td><td>-</td></tr>
+                
+                
+                
+                <tr><td>Cluster heatmap</td><td>R</td><td>3.1.0</td><td>R package = pheatmap</td><td>-</td></tr>
+                
+                
+                
+                <tr><td>Alpha diversity</td><td>R</td><td>2.15.3</td><td>R package = vegan</td><td>-</td></tr>
+                
+                
+                
+                <tr><td>Cluster tree</td><td>perl</td><td>5.18.2</td><td>use SVG</td><td>-</td></tr>
+                
+                
+                
+                <tr><td>PCA</td><td>R</td><td>3.0.3</td><td>R package = FactoMineR， ggplot2，grid</td><td>-</td></tr>
+                
+                
+                
+                <tr><td>NMDS</td><td>R</td><td>2.15.3</td><td>R package = vegan,permute,lattice</td><td>-</td></tr>
+                
+                
+                
+                <tr><td>PCoA</td><td>R</td><td>2.15.3</td><td>R package = extrafont,ggplot2,grid</td><td>-</td></tr>
+                
+                
+                
+                <tr><td>Anosim</td><td>R</td><td>2.15.3</td><td>R package = vegan,permute,lattice</td><td>-</td></tr>
+                
+                
+                
+                <tr><td>MetaGenomeSeq</td><td>R</td><td>2.15.3</td><td>q value (Benjamini and Hochberg FDR) &lt; 0.05</td><td>-</td></tr>
+                
+                
+                
+                <tr><td>MetaGenomeSeq heatmap</td><td>R</td><td>3.1.0</td><td>R package = pheatmap</td><td>-</td></tr>
+                
+                
+                
+                <tr><td>MetaGenomeSeq combined</td><td>R</td><td>2.15.3</td><td>R package = ggplot2</td><td>-</td></tr>
+                
+                
+                
+                <tr><td>LEfSe</td><td>LEfSe</td><td>1.0</td><td>LDA Score&gt;4，function LDA Score&gt;2</td><td>-</td></tr>
+                
+                
+            
+            </tbody>
+            
+        </table>
+        
+    </div>
+    
+    <style>
+        .table-container {
+            width: 100%;  /* 可以根据需要调整 */
+            max-height: 800px; /* 设置容器的最大高度 */
+            overflow: auto; /* 启用滚动条 */
+            border: 1px solid #ccc; /* 可选的边框 */
+        }
+    
+        table {
+            width: 100%; /* 让表格宽度填满容器 */
+            border-collapse: collapse; /* 合并边框 */
+        }
+    
+        th, td {
+            border: 1px solid #ddd; /* 单元格边框 */
+            padding: 8px; /* 单元格内边距 */
+            text-align: left; /* 文本左对齐 */
+         }
+    
+        th {
+            background-color: #f2f2f2; /* 表头背景色 */
+         }
+    </style>
+
+<br />
+
+    <h3>5.2 Methods</h3>
+
+    <p class="paragraph">Click to open the method(pdf), and the corresponding file can be viewed directly.<a href="src/pdf_images/Sequencing_Methods_en.pdf" title="Click to open" >methods</a></p>
+
+    <h3>5.3 Result File Decompression Tool and Format Description </h3>
+    
+    <p class="paragraph">                 </p>
+
+
+<table class="gy" data-pagination="true" data-toggle="table" data-page-size="10">
+    
+    <thead>
+        
+        <tr>
+            
+            <th>Compressed.format</th><th>Customer.type</th><th>Uncompressed.method</th>
+            
+        </tr>
+            
+    </thead>
+        
+    <tbody>
+            
+        
+            
+        <tr><td>compressed files in the fomat of *.tar:</td><td>Unix/Linux/Mac user</td><td>use tar -xvf *.tar command</td></tr>
+            
+        
+            
+        <tr><td>compressed files in the fomat of *.tar:</td><td>Windows user</td><td>use uncompressed software such as WinRAR, 7-Zip et al</td></tr>
+            
+        
+            
+        <tr><td>compressed files in the format of *.gz:</td><td>Unix/Linux/Mac user</td><td>use gzip -d *.gz command</td></tr>
+            
+        
+            
+        <tr><td>compressed files in the format of *.gz:</td><td>Windows user</td><td>use uncompressed software such as WinRAR, 7-Zip et al</td></tr>
+            
+        
+            
+        <tr><td>compressed files in the format of *.zip:</td><td>Unix/Linux/Mac user</td><td>use unzip *.zip command</td></tr>
+            
+        
+            
+        <tr><td>compressed files in the format of *.zip:</td><td>Windows user</td><td>use uncompressed software such as WinRAR, 7-Zip et al</td></tr>
+            
+        
+        
+    </tbody>
+        
+</table>
+
+<br />
+
+<h2>6 References</h2>
+
+<p class="ref">
+
+Blanco-Míguez, A., Beghini, F., Cumbo, F., et al. (2023). Extending and improving metagenomic taxonomic profiling with uncharacterized species using MetaPhlAn 4. Nature Biotechnology, 41(11), 1633–1644. https://doi.org/10.1038/s41587-023-01688-w.</br></br>
+
+Chapman, M., & Underwood, A. (1999). Ecological patterns in multivariate assemblages: information and interpretation of negative values in ANOSIM tests. Marine Ecology Progress Series, 180, 257–265. https://doi.org/10.3354/meps180257.</br></br>
+
+Handelsman, J., Rondon, M. R., Brady, S. F., et al. (1998). Molecular biological access to the chemistry of unknown soil microbes: a new frontier for natural products. Chemistry & Biology, 5(10), R245-R249. https://doi.org/10.1016/s1074-5521(98)90108-9.</br></br>
+
+Harris, M. A., Clark, J., Ireland, A., et al. (2004). The Gene Ontology (GO) database and informatics resource. Nucleic Acids Research, 32(Database issue), D258-D261. https://doi.org/10.1093/nar/gkh036.</br></br>
+
+Huerta-Cepas, J., Szklarczyk, D., Heller, D., et al. (2019). eggNOG 5.0: a hierarchical, functionally and phylogenetically annotated orthology resource based on 5090 organisms and 2502 viruses. Nucleic Acids Research, 47(D1), D309-D314. https://doi.org/10.1093/nar/gky1085.</br></br>
+
+Kanehisa, M., & Goto, S. (2000). KEGG: Kyoto Encyclopedia of Genes and Genomes. Nucleic Acids Research, 28(1), 27–30. https://doi.org/10.1093/nar/28.1.27.</br></br>
+
+Karp, P. D., Riley, M., Paley, S. M., & Pellegrini-Toole, A. (2002). The MetaCyc Database. Nucleic Acids Research, 30(1), 59–61. https://doi.org/10.1093/nar/30.1.59.</br></br>
+
+Mistry, J., Chuguransky, S., Williams, L., et al. (2021). Pfam: The protein families database in 2021. Nucleic Acids Research, 49(D1), D412-D419. https://doi.org/10.1093/nar/gkaa913.</br></br>
+
+Paulson, J. N., Stine, O. C., Bravo, H. C., & Pop, M. (2013). Differential abundance analysis for microbial marker-gene surveys. Nature Methods, 10(12), 1200–1202. https://doi.org/10.1038/nmeth.2658.</br></br>
+
+Segata, N., Izard, J., Waldron, L., et al. (2011). Metagenomic biomarker discovery and explanation. Genome Biology, 12(6), R60. https://doi.org/10.1186/gb-2011-12-6-r60.</br></br>
+
+Truong, D. T., Tett, A., Pasolli, E., Huttenhower, C., & Segata, N. (2017). Microbial strain-level population structure and genetic diversity from metagenomes. Genome Research, 27(4), 626–638. https://doi.org/10.1101/gr.216242.116.</br></br>
+
+van der Heijden, M. G., Bardgett, R. D., & van Straalen, N. M. (2008). The unseen majority: soil microbes as drivers of plant diversity and productivity in terrestrial ecosystems. Ecology Letters, 11(3), 296–310. https://doi.org/10.1111/j.1461-0248.2007.01139.x.</br></br>
+
+Walter, J., & Ley, R. (2011). The human gut microbiome: ecology and recent evolutionary changes. Annual Review of Microbiology, 65, 411–429. https://doi.org/10.1146/annurev-micro-090110-102830.</br></br>
+
+Wood DE, Lu J, Langmead B. Improved metagenomic analysis with Kraken 2. Genome Biol. 2019;20(1):257. Published 2019 Nov 28. doi:10.1186/s13059-019-1891-0 </br></br>
+
+</p>

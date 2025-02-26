@@ -1,0 +1,7 @@
+compare	all	up	down	threshold
+SBI0640756vsControl	1103	678	425	DESeq2 padj<=0.05 |log2FoldChange|>=1.0
+A1874vsControl	4812	1862	2950	DESeq2 padj<=0.05 |log2FoldChange|>=1.0
+CTvsControl	4423	1895	2528	DESeq2 padj<=0.05 |log2FoldChange|>=1.0
+CTvsSBI0640756	4215	1681	2534	DESeq2 padj<=0.05 |log2FoldChange|>=1.0
+CTvsA1874	474	303	171	DESeq2 padj<=0.05 |log2FoldChange|>=1.0
+A1874vsSBI0640756	5601	2236	3365	DESeq2 padj<=0.05 |log2FoldChange|>=1.0

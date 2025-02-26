@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>data tables</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="../css/datatables.css" />
+    <link rel="stylesheet" type="text/css" href="../css/buttons.dataTables.min.css" />
+</head>
+<body>
+        <table id="nopaging_table" class="display" style="width: 100%; height: 50px; text-align: center; margin: auto;font-size: 14px;font-family: 黑体-简">
+        <thead>
+            <tr style='background-color: #036EB8;color: #FFFFFF'><th>Gene</th><th>OncodriveClust_pvalue</th><th>OncodriveClust_qvalue</th><th>OncodriveFM_pvalue</th><th>OncodriveFM_qvalue</th><th>SMG_pvalue</th><th>SMG_qvalue</th></tr>
+        </thead>
+        <tbody>
+			<tr style'background-color: #f1f5fb'><td>TP53</td><td>-</td><td>-</td><td>0.05400000000000005</td><td>0.1080000000000001</td><td>-</td><td>-</td></tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <script type="text/javascript" src="../js/datatables.js"></script>
+    <script type="text/javascript" src="../js/vfs_fonts.js"></script>
+    <script type="text/javascript" src="../js/buttons.colVis.min.js"></script>
+    <script type="text/javascript" src="../js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var table = $('#nopaging_table').DataTable( {
+                scrollX: true,
+                paging: false,
+                scrollY: 50,
+                sorting: true,
+                'order': [],
+                searching: false,
+                fixedHeader: {
+                    header: false,
+                    //footer: true
+                },
+                fixedColumns: {'leftColumns':1},
+                colReorder: true,
+                dom: 'Bfrtip',
+                buttons: [
+                    'colvis','excel'
+                ],
+                language:{
+                    'info': '',
+                    'sZeroRecords' : '没有找到数据',
+                    "oPaginate" : {
+                        "sFirst" : "第一页",
+                        "sPrevious" : "上一页",
+                        "sNext" : "下一页",
+                        "sLast" : "最后一页"
+                    }
+                }
+            } );
+        } );
+    </script>
+</body>
+</html>

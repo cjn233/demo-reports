@@ -1,0 +1,7 @@
+文件格式	操作系统	描述
+*.gz 格式	Unix/Linux/Mac	使用gzip -d *.gz命令打开
+*.gz 格式	Windows	使用WinRAR、7-Zip等解压缩软件打开
+*.zip 格式	Unix/Linux/Mac	使用unzip*.zip命令打开
+*.zip 格式	Windows	使用WinRAR、7-Zip等解压缩软件打开
+*.tar 格式	Unix/Linux/Mac	使用tar -xvf *.tar命令打开
+*.tar 格式	Windows	使用WinRAR、7-Zip等解压缩软件打开

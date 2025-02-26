@@ -1,0 +1,1677 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<html>
+<head>
+
+
+
+
+	
+        <title> X101SC11111111-Z01-F001:X101SC11111111-Z01-F001:test_test Plant and Animal Whole Genome Sequencing Standard Analysis Report </title>
+    
+
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+
+<link rel="stylesheet" href="src/css/jquery-ui.css" />
+
+<link rel="stylesheet" href="src/css/bootstrap-4.3.1.min.css" />
+
+<link rel="stylesheet" href="src/css/jquery.tocify.css" />
+
+<link rel="stylesheet" href="src/css/style.css"/>
+
+<link rel="stylesheet" href="src/css/base.css"/>
+
+<link rel="stylesheet" href="src/css/gallery.css"/>
+
+<script src="src/js/jquery-3.3.1.min.js" type="text/javascript"></script>
+
+<script src="src/js/jquery-ui.min.js" type="text/javascript"></script>
+
+<script src="src/js/jquery.tocify.min.js" type="text/javascript"></script>
+
+<script src="src/js/bootstrap-4.3.1.min.js" type="text/javascript"></script>
+
+<script src="src/js/scrollTop.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+        $(function () {
+
+                var options = {
+
+                        selectors: "h2,h3,h4,h5",
+
+                        theme: "bootstrap",
+
+                        scrollTo: "60"
+
+                };
+
+                var toc = $("#toc").tocify(options).data("toc-tocify");
+
+        });
+
+</script>
+
+
+
+
+
+<script type="text/javascript">
+
+function trans(img_div_id) {
+
+img_div = $("#" + img_div_id)
+
+img = $("#" + img_div_id + " img").first();
+
+if (img_div.hasClass("fullscreen-div")) {
+
+img_div.removeClass("fullscreen-div");
+
+img.removeClass("fullscreen-img");
+
+}
+
+else {
+
+img_div.addClass("fullscreen-div");
+
+img.addClass("fullscreen-img");
+
+}
+
+}
+
+
+
+function filter_display() {
+
+return $(this).css("display") != "none";
+
+}
+
+
+
+function show_default() {
+
+var list_group_id = "#" + $(this).attr("id");
+if ($(list_group_id + " a.active").css("display") == "none") {
+
+var list_tab = $(list_group_id + " a.active");
+
+var pan_id = list_tab.attr("href");
+
+$(pan_id).removeClass("active show");
+
+list_tab.removeClass("active");
+
+}
+
+if ($(list_group_id + " a.active").filter(filter_display).length == 0) {
+
+$(list_group_id + " a").filter(filter_display).first().tab("show");
+
+}
+
+}
+
+$.fn.show_default = show_default
+
+
+
+function next(botton_id) {
+
+var present_tab = $("#" + botton_id.replace("_button_next", "_list-tab") + " .active").first();
+
+while (present_tab.next().length == 1) {
+
+if (present_tab.next().css("display") != "none") {
+
+present_tab.next().tab("show");
+
+
+break;
+
+}
+
+else {
+
+present_tab = present_tab.next();
+
+}
+
+}
+
+
+
+}
+
+function prev(botton_id) {
+
+var present_tab = $("#" + botton_id.replace("_button_prev", "_list-tab") + " .active").first();
+
+while (present_tab.prev().length == 1) {
+
+if (present_tab.prev().css("display") != "none") {
+
+present_tab.prev().tab("show");
+
+break;
+
+}
+
+else {
+
+present_tab = present_tab.prev();
+
+}
+
+}
+
+
+
+
+
+}
+
+
+
+$(document).ready(function () {
+
+$(".form-control").on("keyup", function () {
+
+var value = $(this).val().toLowerCase();
+
+var input_box_id = "#" + $(this).attr("id");
+
+var list_group_id = input_box_id.replace("_InputList", "_list-tab");
+
+$(list_group_id + " a").filter(function () {
+
+$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+
+});
+
+$(list_group_id).show_default();
+
+});
+$(".list-group").each(show_default);
+
+});
+
+
+</script>
+
+<script type="text/javascript">
+    /* show or hide element*/
+    function hiddenShow(btnObj){
+      ctObj = btnObj.nextElementSibling;
+      if (ctObj.style.display == 'inline'){
+        ctObj.style.display = 'none';
+        btnObj.innerHTML = "Show Annotation";
+      }else{
+        ctObj.style.display = 'inline';
+        btnObj.innerHTML = "Hide Annotation";
+      };
+      return 0;
+    }
+  </script>
+
+  <script type="text/javascript">
+    /* show or hide element*/
+    function hiddenQA(btnObj){
+      ctObj = btnObj.nextElementSibling;
+      if (ctObj.style.display == 'inline'){
+        ctObj.style.display = 'none';
+        btnObj.innerHTML = "Show Q&A";
+      }else{
+        ctObj.style.display = 'inline';
+        btnObj.innerHTML = "Hide Q&A";
+      };
+      return 0;
+    }
+  </script>
+</head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<body>
+<div id="toc" class="tocify">
+
+</div>
+
+
+
+
+
+        <div style="position:fixed; top:0; left:0; width:100%; z-index:1000;">
+
+                <table width="100%" height="50px" border="0" cellpadding="5" cellspacing="0"
+
+                        style="background:#F3F3F3; border-bottom:1px solid #eee;border-top: none;background-image:-moz-linear-gradient(top,#EEEEEE,#FFFFFF); background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0,#EEEEEE), color-stop(1,#FFFFFF));filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#EEEEEE', endColorstr='#FFFFFF', GradientType='0')">
+
+                        <tr height="86%">
+
+                                <td width='1%'></td>
+
+                                <td><img src="src/images/logo1.png"></td>
+
+                                <td>
+
+                                        <div style="margin:5px;border-left:1px solid #DCDCDC;height:30px"></div>
+
+                                </td>
+
+                                <td width="20%"></td>
+
+                                <td width="15%"></td>
+
+                                <td width="25%"
+
+                                        style="text-align:right;padding:0px;margin:0px;color:black;font-size:14px;font-weight:50;">
+
+                                        
+
+                                        <br><a href="mailto:op-rna@novogene.com" target="black"
+
+                                                style="text-decoration:none;color:black;font-size:14px;font-weight:50;">
+
+                                                <a></td>
+
+                                <td width="1%"></td>
+
+                        </tr>
+
+                </table>
+
+        </div>
+
+
+</div>
+
+
+
+<!--------------------------标题---------------------------------->
+
+<div id="main">
+
+
+
+
+    
+        </br><h1> Plant and Animal Whole Genome Sequencing Standard Analysis Report </h1></br>
+    
+
+
+
+<table class= 'gy' style="text-align:left">
+
+<tbody>
+	<tr>
+	<td>Contract ID</td><td style="text-align:left">X101SC11111111-Z01-F001</td>
+	</tr>
+	<tr>
+	<td>Contract Name</td><td style="text-align:left">test</td>
+	</tr>
+	<tr>
+	<td>Batch ID</td><td style="text-align:left">X101SC11111111-Z01-F001</td>
+	</tr>
+	<tr>
+	<td>Reference Genome and Version</td><td style="text-align:left">test test</td>
+	</tr>
+	<tr>
+	<td>Report Time</td><td style="text-align:left">2024-01-31</td>
+	</tr>
+<!-- -->
+
+<td >Reminder</td>
+<td style="text-align:left">Partial results are presented in this report, while full results will be delivered in data release.<br/>
+    Hyperlink of results in this report will be only valid in data release, after statement confirmation.</td>
+</tr>
+</tbody></table>
+
+<br /><br />
+
+<!---------------------------Experimental Process--------------------------------------------------->
+<div id="page">
+
+<hr />
+</p><br />
+<h2>1 Introduction</h2>
+
+    <p class="paragraph">Plant and animal whole genome resequencing via Illumina platforms, based on mechanism of SBS (sequencing by synthesis), has become the most rapid and effective method to identify the genetic variations in individuals of the same species or between related species. The variation information such as Single Nucleotide Polymorphism (SNP), Insertion and Deletion (InDel), Copy Number Variation (CNV), and structural variation (SV) obtained through resequencing is used in population genetics research and genome-wide association studies (GWAS) to investigate the causes of diseases, to select plants and animals for agricultural breeding programs, and to identify common genetic variations among populations. Plant and animal whole genome resequencing projects are carried out as follows: </p>
+
+<p class="center">
+<img class="small2" src="src/images/experimentWorkflow.png" />
+</p>
+<p class="name_fig">Figure 1 Project workflow</p>
+
+
+<a name="2 Library Construction and Sequencing"></a>
+<hr />
+</p><br />
+<h2>2 Library Construction and Sequencing</h2>
+
+<a name="2.1 Sample Quality Control"></a>
+<h3>2.1 Sample Quality Control</h3>
+<p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;Please refer to Novogene’s sample QC report. </p>
+<br />
+
+<a name="2.2 Library Construction , Quality Control and Sequencing"></a>
+<h3>2.2 Library Construction , Quality Control and Sequencing</h3>
+
+<p class="paragraph">The genomic DNA was randomly sheared into shorter fragments. The obtained fragments were then end-repaired, A-tailed, and further ligated with Illumina adapters. The resulting fragments with adapters were size selected, PCR amplified unless otherwise specified as PCR-free, before proceeding for purification. 
+The experimental procedures of DNA library preparation are shown in Figure 2.</p>
+<p class="center">
+<img class="small7"  src="src/images/wgs_experiment_pipeline.png" />
+</p>
+
+<p class="name_fig">Figure 2 Workflow of library Construction</p>
+<p class="paragraph">The library was quantified through Qubit and qPCR, and size distribution detected with fragment analyzer. Quantified libraries were pooled and sequenced on Illumina platforms according to the effective library concentration and required data amount.</p>
+
+
+</div>
+<!---------------------------Experimental Process Over--------------------------------------------------->
+
+<!---------------------------Bioinformatics analysis process--------------------------------------------->
+<div id="page">
+	
+	<hr />
+	</p><br />
+	<h2>3 Bioinformatics Analysis Pipeline</h2>
+	<p class="paragraph">The bioinformatic analysis workflow of raw sequencing data is shown as follows：</p>
+		
+	<p class="center">
+	<img  class="small4" src="src/images/bioinfoWorkflow.png" />
+	</p>
+	<!-- 
+	
+	 -->
+	
+	<!-- 
+		
+		
+		
+		
+		
+		<p class="center">
+		<img  class="small6" src="src/images/flow_snpindel.png" />
+		</p>
+		
+	 -->
+	<p class="name_fig">Figure 3 Bioinformatic analysis workflow</p>
+	<p class="paragraph"><strong>Method details involved in the project are available at 
+	
+	
+	
+	
+	
+	
+		
+			
+				<a href="src/method/materials_methods_gatk.SNPINDEL.v1.pdf" title="点击打开" target="_blank">methods</a></strong></p>
+			
+			
+			
+				
+				
+				
+			
+		
+	
+	
+	
+	</div>
+	<!---------------------------Bioinformatics analysis process over--------------------------------------------->
+	
+	<!-- ------------------------------------Result Raw Data------------------------------------------>
+	<div id="page">
+	
+	<hr />
+	</p>
+	
+	<h2>4 Analysis Results</h2>
+	
+	<a name="4.1 Raw_Data"></a>
+	<h3>4.1 Raw Data</h3>
+	<p class="paragraph">Original image data file from high-throughput sequencing platforms (like Illumina) is transformed to sequenced reads (called Raw Data or Raw Reads) by CASAVA base recognition (Base Calling). Raw data are stored in FASTQ (.fq) format files(Cock et al., 2010), which contain sequencing reads and corresponding base quality. Each read has four descriptive lines, as indicated below:</p>
+	<p class="seq">
+	@K00124:82:H2MH5BBXX:1:1101:31389:1158 2:N:0:0<br/>
+	TAGCCACATAGAAACCAACAGCCATATAACTGGTAGCTTTAAGCGGCTCACCTTTAGCATCAACAGGCCACAACCAACCAGAACGTGAAAAAGCGTCCTGCGTGTAGCGAACTGCGATGGGCATACAGATCGGAAGAGCGTCGTGTAGGG<br/>
+	+<br/>
+	AAFFFKKKKKKKKFKKKFFKKAAFKKKKKFKKKKFKKA,FKKKKKKKKKAKKFKKKKKKKAKKKKKKFFKKKKF&lt;FFKKKKKKKKKKKKKFKKFKKF7FFFFFKFKKKFKKKKKKKKF&lt;FFKKKKFKKKKKFKFKFKKFK&lt;&lt;F,A7,AFK
+	</p>
+	<p class="tremark">Line 1: begins with the at sign (@), followed by sequence identifiers and an optional description (such as FASTA header).<br />Line 2: base sequences (raw read, A, G, C, and T)<br />Line 3: begins with the plus sign (+), optionally followed by the same Illumina sequence identifiers and description information as in Line 1.<br />Line 4: the quality values for each base, corresponding to the data in Line 2.<br />
+	</p>
+	
+	<div id="tb">
+	<p class="center">
+	<p class="name_fig">Table 4.1 Illumina sequence identifier details</p>
+	<table class="gy">
+	<tr><td>K00124</td><td>Unique instrument name</td></tr>
+	<tr><td>82</td><td>Run ID</td></tr>
+	<tr><td>H2MH5BBXX</td><td>Flowcell ID</td></tr>
+	<tr><td>1</td><td>Flowcell lane</td></tr>
+	<tr><td>1101</td><td>Tile number within the flowcell lane</td></tr>
+	<tr><td>31389</td><td>'x'-coordinate of the cluster within the tile</td></tr>
+	<tr><td>1158</td><td>'y'-coordinate of the cluster within the tile</td></tr>
+	<tr><td>2</td><td>Member of a pair, 1 or 2 (paired-end or mate-pair reads only)</td></tr>
+	<tr><td>N</td><td>Y if the read fails filter (read is bad), N otherwise</td></tr>
+	<tr><td>0</td><td>0 when none of the control bits are on, otherwise it is an even number</td></tr>
+	<tr><td>ATCACG</td><td>Index sequence</td></tr>
+	</table>
+	</p>
+	<p class="paragraph">Result：<a href="../result/01.OriginalData" title="点击打开" target="_blank">01.OriginalData</a></p>
+	</div>
+	<!-- ------------------------------------Result Raw Data over------------------------------------------>
+	
+	<!-- ------------------------------------Result QC------------------------------------------>
+	<div id="page">
+	
+	<hr />
+	</p>
+	<h3>4.2 Data Quality Control</h3>
+	
+	<a name="4.2.1 Sequencing Quality Distribution"></a>
+	<h4>4.2.1 Sequencing Quality Distribution</h4>
+	<p class="paragraph">If the sequencing error rate is represented by e, and Illumina sequencing quality by Q<sub>phred</sub>, the quality score of a base (Phred score) is calculated by the following equation: Q<sub>phred</sub>=-10log<sub>10</sub>(e). The correspondence relationship between Illunima sequencing quality and Phred score in base calling by Casava version 1.8 is listed as follows:</p>
+	<p class="name_fig">Table 4.2 Sequencing error rate and corresponding base quality value</p>
+	<table class="gy">
+	<tr><th>Phred score</th><th>Error Rate</th><th>Correct Rate</th><th>Q-score</th></tr>
+	<tr><td>10</td><td>1/10</td><td>90%</td><td>Q10</td></tr>
+	<tr><td>20</td><td>1/100</td><td>99%</td><td>Q20</td></tr>
+	<tr><td>30</td><td>1/1000</td><td>99.9%</td><td>Q30</td></tr>
+	<tr><td>40</td><td>1/10000</td><td>99.99%</td><td>Q40</td></tr>
+	</table>
+	
+	<p class="paragraph">For next-generation sequencing (NGS), the sequencing platform, chemical reactants, and sample quality can influence sequencing quality and base error rate. Sequencing quality distribution is examined over the full length of all sequences, to detect any sites (base positions) with an unusually low sequencing quality, where incorrect bases may be incorporated at abnormally high levels. For detailed sequencing quality distribution, please refer to <strong>Figure 4.1</strong>.
+	</p>
+	
+	
+	
+	<p class="center">
+	<div class="row gallery-row">
+	<div class="col-1">
+	<div id="gallery_figure1_1_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+	</div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure1_1_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure1_1_pane_sample1_AO_222KLNLT4_L1" role="tabpanel" aria-labelledby="gallery_figure1_1_list_sample1_AO_222KLNLT4_L1" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Quality/sample1_AO_222KLNLT4_L1.QM.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure1_1_pane_sample2_AO_22CN72LT3_L1" role="tabpanel" aria-labelledby="gallery_figure1_1_list_sample2_AO_22CN72LT3_L1" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Quality/sample2_AO_22CN72LT3_L1.QM.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure1_1_pane_sample3_AO_H25GJDSX7_L1" role="tabpanel" aria-labelledby="gallery_figure1_1_list_sample3_AO_H25GJDSX7_L1" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Quality/sample3_AO_H25GJDSX7_L1.QM.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure1_1_pane_sample4_AO_HGFVYDSX7_L1" role="tabpanel" aria-labelledby="gallery_figure1_1_list_sample4_AO_HGFVYDSX7_L1" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Quality/sample4_AO_HGFVYDSX7_L1.QM.png" /></div>
+	
+	</div>
+	</div>
+	<div class="col-1">
+	<div id="gallery_figure1_1_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+	</div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure1_1_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure1_1_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure1_1_list_sample1_AO_222KLNLT4_L1" data-toggle="list" href="#gallery_figure1_1_pane_sample1_AO_222KLNLT4_L1" role="tab" aria-controls="sample1_AO_222KLNLT4_L1">sample1_AO_222KLNLT4_L1</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure1_1_list_sample2_AO_22CN72LT3_L1" data-toggle="list" href="#gallery_figure1_1_pane_sample2_AO_22CN72LT3_L1" role="tab" aria-controls="sample2_AO_22CN72LT3_L1">sample2_AO_22CN72LT3_L1</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure1_1_list_sample3_AO_H25GJDSX7_L1" data-toggle="list" href="#gallery_figure1_1_pane_sample3_AO_H25GJDSX7_L1" role="tab" aria-controls="sample3_AO_H25GJDSX7_L1">sample3_AO_H25GJDSX7_L1</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure1_1_list_sample4_AO_HGFVYDSX7_L1" data-toggle="list" href="#gallery_figure1_1_pane_sample4_AO_HGFVYDSX7_L1" role="tab" aria-controls="sample4_AO_HGFVYDSX7_L1">sample4_AO_HGFVYDSX7_L1</a>
+	
+	</div>
+	</div>
+	</div>    
+	</p>
+	
+	
+	
+	
+	
+	
+	<p class="name_fig">Figure 4.1 Distribution of sequencing quality</p>
+	<p class="premark">The x-axis shows the base position within a sequencing read, and the y-axis shows the average phred score of all reads at each position.<br />(Pair-end sequencing data are plotted together, with the first PE150 bp representing read 1 and the following PE150 bp for read 2.)</p>
+	<p class="paragraph">Result：<a href="../result/02.QualityControl/QualityDistribution" title="点击打开" target="_blank">02.QualityControl/QualityDistribution</a></p>
+	</div>
+	
+	<!----------------------------------------- Distribution of Sequencing Errors -------------------------------------->
+	<div id="page">
+	
+	<hr />
+	</p><br />
+	<h4>4.2.2 Sequencing Error Rate</h4>
+	<p class="paragraph">Sequencing error rate and base quality can be affected by various factors such as sequencing platform, chemical reagent and sample quality. Due to the consumption of chemical reagents, error rate is increasing with read extension, which is a common feature of Illumina high throughput sequencing platforms. The sequencing error rate distribution can be featured as below: </p>
+	<p class="tremark">(1) Error rate increases with the sequencing reads for consumption of sequencing reagent. It is common in the Illumina high-throughput sequencing platform.<br />(2) The sequencing error rate is higher for the first several bases than at other positions, which is likely the result of reading errors during the first few cycles after calibration of the optical instruments.<br /></p>
+	
+	<br />
+	
+		<p class="center">
+		<div class="row gallery-row">
+		<div class="col-1">
+		<div id="gallery_figure_error_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+		</div>
+		<div class="col-6">
+		<div class="tab-content" id="gallery_figure_error_nav-tabContent">
+		
+		<div class="tab-pane fade" id="gallery_figure_error_pane_sample1_AO_222KLNLT4_L1" role="tabpanel" aria-labelledby="gallery_figure_error_list_sample1_AO_222KLNLT4_L1" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Error/sample1_AO_222KLNLT4_L1.Error.png" /></div>
+		
+		<div class="tab-pane fade" id="gallery_figure_error_pane_sample2_AO_22CN72LT3_L1" role="tabpanel" aria-labelledby="gallery_figure_error_list_sample2_AO_22CN72LT3_L1" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Error/sample2_AO_22CN72LT3_L1.Error.png" /></div>
+		
+		<div class="tab-pane fade" id="gallery_figure_error_pane_sample3_AO_H25GJDSX7_L1" role="tabpanel" aria-labelledby="gallery_figure_error_list_sample3_AO_H25GJDSX7_L1" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Error/sample3_AO_H25GJDSX7_L1.Error.png" /></div>
+		
+		<div class="tab-pane fade" id="gallery_figure_error_pane_sample4_AO_HGFVYDSX7_L1" role="tabpanel" aria-labelledby="gallery_figure_error_list_sample4_AO_HGFVYDSX7_L1" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Error/sample4_AO_HGFVYDSX7_L1.Error.png" /></div>
+		
+		</div>
+		</div>
+		<div class="col-1">
+		<div id="gallery_figure_error_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+		</div>
+		<div class="col-4">
+		<input class="form-control" id="gallery_figure_error_InputList" type="text" placeholder="Search..">
+		<div class="list-group" id="gallery_figure_error_list-tab" role="tablist">
+		
+		<a class="list-group-item list-group-item-action" id="gallery_figure_error_list_sample1_AO_222KLNLT4_L1" data-toggle="list" href="#gallery_figure_error_pane_sample1_AO_222KLNLT4_L1" role="tab" aria-controls="sample1_AO_222KLNLT4_L1">sample1_AO_222KLNLT4_L1</a>
+		
+		<a class="list-group-item list-group-item-action" id="gallery_figure_error_list_sample2_AO_22CN72LT3_L1" data-toggle="list" href="#gallery_figure_error_pane_sample2_AO_22CN72LT3_L1" role="tab" aria-controls="sample2_AO_22CN72LT3_L1">sample2_AO_22CN72LT3_L1</a>
+		
+		<a class="list-group-item list-group-item-action" id="gallery_figure_error_list_sample3_AO_H25GJDSX7_L1" data-toggle="list" href="#gallery_figure_error_pane_sample3_AO_H25GJDSX7_L1" role="tab" aria-controls="sample3_AO_H25GJDSX7_L1">sample3_AO_H25GJDSX7_L1</a>
+		
+		<a class="list-group-item list-group-item-action" id="gallery_figure_error_list_sample4_AO_HGFVYDSX7_L1" data-toggle="list" href="#gallery_figure_error_pane_sample4_AO_HGFVYDSX7_L1" role="tab" aria-controls="sample4_AO_HGFVYDSX7_L1">sample4_AO_HGFVYDSX7_L1</a>
+		
+		</div>
+		</div>
+		</div>
+	
+		</p>
+	
+	
+	
+	
+	<p class="name_fig">Figure 4.2 Distribution of sequencing error rate</p>
+	<p class="premark">The x-axis shows the base position along each sequencing read and the y-axis shows the base error rate.<br />(Pair-end sequencing data are plotted together, with the first PE150 bp representing read 1 and the following PE150 bp for read 2.)</p>
+	<p class="paragraph">Result：<a href="../result/02.QualityControl/ErrorRate" title="点击打开" target="_blank">02.QualityControl/ErrorRate</a></p>
+	</div>
+	
+	<!-----------------------------------------Sequencing Data Filtration-------------------------------------->
+	<div id="page">
+	
+	<hr />
+	</p><br />
+	<h4>4.2.3 Sequencing Data Filtration</h4>
+	<p class="paragraph">The sequencing reads/raw reads often contain low quality reads or reads with adaptors, which will affect the quality of downstream analysis. To avoid this, it is necessary to filter the raw reads and obtain clean reads. Raw reads filtering is as follows:</p>
+	<p class="list">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) Remove the paired reads when either read contains adapter contamination;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) Remove the paired reads when uncertain nucleotides (N) constitute more than 10 percent of either read;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3) Remove the paired reads when low quality nucleotides (base quality less than 5, Q ≤ 5) constitute more than 50 percent of either read.</p>
+	
+	
+		<p class="center">
+		<div class="row gallery-row">
+		<div class="col-1">
+		<div id="gallery_figure1_2_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+		</div>
+		<div class="col-6">
+		<div class="tab-content" id="gallery_figure1_2_nav-tabContent">
+		
+		<div class="tab-pane fade" id="gallery_figure1_2_pane_sample1_AO_222KLNLT4_L1" role="tabpanel" aria-labelledby="gallery_figure1_2_list_sample1_AO_222KLNLT4_L1" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Class/sample1_AO_222KLNLT4_L1.pie3d.png" /></div>
+		
+		<div class="tab-pane fade" id="gallery_figure1_2_pane_sample2_AO_22CN72LT3_L1" role="tabpanel" aria-labelledby="gallery_figure1_2_list_sample2_AO_22CN72LT3_L1" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Class/sample2_AO_22CN72LT3_L1.pie3d.png" /></div>
+		
+		<div class="tab-pane fade" id="gallery_figure1_2_pane_sample3_AO_H25GJDSX7_L1" role="tabpanel" aria-labelledby="gallery_figure1_2_list_sample3_AO_H25GJDSX7_L1" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Class/sample3_AO_H25GJDSX7_L1.pie3d.png" /></div>
+		
+		<div class="tab-pane fade" id="gallery_figure1_2_pane_sample4_AO_HGFVYDSX7_L1" role="tabpanel" aria-labelledby="gallery_figure1_2_list_sample4_AO_HGFVYDSX7_L1" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Class/sample4_AO_HGFVYDSX7_L1.pie3d.png" /></div>
+		
+		</div>
+		</div>
+		<div class="col-1">
+		<div id="gallery_figure1_2_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+		</div>
+		<div class="col-4">
+		<input class="form-control" id="gallery_figure1_2_InputList" type="text" placeholder="Search..">
+		<div class="list-group" id="gallery_figure1_2_list-tab" role="tablist">
+		
+		<a class="list-group-item list-group-item-action" id="gallery_figure1_2_list_sample1_AO_222KLNLT4_L1" data-toggle="list" href="#gallery_figure1_2_pane_sample1_AO_222KLNLT4_L1" role="tab" aria-controls="sample1_AO_222KLNLT4_L1">sample1_AO_222KLNLT4_L1</a>
+		
+		<a class="list-group-item list-group-item-action" id="gallery_figure1_2_list_sample2_AO_22CN72LT3_L1" data-toggle="list" href="#gallery_figure1_2_pane_sample2_AO_22CN72LT3_L1" role="tab" aria-controls="sample2_AO_22CN72LT3_L1">sample2_AO_22CN72LT3_L1</a>
+		
+		<a class="list-group-item list-group-item-action" id="gallery_figure1_2_list_sample3_AO_H25GJDSX7_L1" data-toggle="list" href="#gallery_figure1_2_pane_sample3_AO_H25GJDSX7_L1" role="tab" aria-controls="sample3_AO_H25GJDSX7_L1">sample3_AO_H25GJDSX7_L1</a>
+		
+		<a class="list-group-item list-group-item-action" id="gallery_figure1_2_list_sample4_AO_HGFVYDSX7_L1" data-toggle="list" href="#gallery_figure1_2_pane_sample4_AO_HGFVYDSX7_L1" role="tab" aria-controls="sample4_AO_HGFVYDSX7_L1">sample4_AO_HGFVYDSX7_L1</a>
+		
+		</div>
+		</div>
+		</div>
+	
+		</p>
+	
+	
+	<p class="name_fig">Figure 4.3 Classification of the sequenced reads</p>
+	<button onclick="hiddenShow(this)">Show Annotation</button>
+	<div class="comment">
+	<ul>
+	(1) Adapter related: (reads containing adapter) / (total raw reads).</br>
+	(2) Containing N: (reads with more than 10% N) / (total raw reads).</br>
+	(3) Low quality: (reads of low quality) / (total raw reads).</br>
+	(4) Clean reads: (clean reads) / (total raw reads).</br>
+	</ul>
+	</div>
+	<p class="paragraph">Result：<a href="../result/02.QualityControl/ReadsClassification" title="点击打开" target="_blank">02.QualityControl/ReadsClassification</a></p>
+	</div>
+	
+	<!-----------------------------------------GC Content-------------------------------------->
+	
+	
+	<!-----------------------------------------NT Blast-------------------------------------->
+	
+	
+	<!-----------------------------------------Statistics_of_Sequencing_Data-------------------------------------->
+	<div id="page">
+	
+	<hr />
+	</p><br />
+	
+		
+		<h4>4.2.4 Statistics of Sequencing Data</h4>
+		<p class="paragraph">According to the sequencing feature of Illumina platforms, for paired-end sequencing data we require that Q30 (the percent of bases with phred-scaled quality scores greater than 30) should be above 80%. Statistics of sequencing data are listed in <strong>Table 4.3</strong>.</p>
+		<p class="name_fig">Table 4.3 Statistics of Sequencing Data</p>
+		
+	
+	
+	
+	<p class="center">
+	<div id="tb">
+	<table class="gy">
+	<tr><th>Sample name</th><th>Lane</th><th>Raw reads</th><th>Raw data (G)</th><th>Clean data (G)</th><th>Effective (%)</th><th>Error (%)</th><th>Q20 (%)</th><th>Q30 (%)</th><th>GC (%)</th></tr>
+	
+		
+			
+				<tr>
+				<td>sample1</td><td>AO_222KLNLT4_L1</td><td>29916822</td><td rowspan=1>4.5</td><td rowspan=1>4.4</td><td>97.93</td><td>0.01</td><td>98.72</td><td>96.47</td><td>37.78</td>
+				</tr>
+			
+		
+	
+		
+			
+				<tr>
+				<td>sample2</td><td>AO_22CN72LT3_L1</td><td>73338718</td><td rowspan=1>11.0</td><td rowspan=1>10.6</td><td>96.29</td><td>0.01</td><td>97.71</td><td>93.92</td><td>37.60</td>
+				</tr>
+			
+		
+	
+		
+			
+				<tr>
+				<td>sample3</td><td>AO_H25GJDSX7_L1</td><td>9612080</td><td rowspan=1>1.4</td><td rowspan=1>1.4</td><td>98.85</td><td>0.03</td><td>97.68</td><td>93.35</td><td>38.01</td>
+				</tr>
+			
+		
+	
+		
+			
+				<tr>
+				<td>sample4</td><td>AO_HGFVYDSX7_L1</td><td>20334354</td><td rowspan=1>3.1</td><td rowspan=1>3.0</td><td>98.79</td><td>0.03</td><td>97.36</td><td>92.88</td><td>37.91</td>
+				</tr>
+			
+		
+	
+	</table>
+	</div>
+	</p>
+	
+	<button onclick="hiddenShow(this)">Show Annotation</button>
+	<div class="comment">
+	<ul>
+		(1) Sample name: Sample name.<br />
+		(2) Lane: The flowcell ID and lane number during the sequencing (FlowcellID_LaneNumber).<br />
+		(3) Raw reads: The number of sequencing reads pairs; four lines will be considered as one unit according to FASTQ format. <br />
+		(4) Raw data (G): The original sequence data volume.<br />
+		(5) Clean data (G): The sequence data volume calculated by clean data.<br />
+		(6) Effective (%): The ratio of clean data to raw data.<br />
+		(7) Error (%): Overall error rate of base.<br />
+		(8) Q20 (%): The percentage of bases with higher Phred score than 20.<br />
+		(9) Q30 (%): The percentage of bases with higher Phred score than 30.<br />
+		(10) GC: The percentage of G and C in the total bases.<br /></p>
+	<br />
+	</ul>
+	</div>
+	<p class="paragraph">Result：<a href="../result/02.QualityControl/CleanData_QCsummary" title="点击打开" target="_blank">02.QualityControl/CleanData_QCsummary</a></p>
+	
+	<!------------------------------------Statistics_of_Sequencing_Data over----------------------------------->
+	
+	<!------------------------------------Sequencing Evaluation Q&A----------------------------------->
+	
+	<button onclick="hiddenQA(this)">Show Q&A</button>
+	  <div class="comment">
+	  <table style="font-size:12px;font-family: 'Times New Roman' 'Montserrat'">
+		<tr style="background-color:#036EB8"><td align="left" style="background-color:#036EB8;color:#FFFFFF">Q.: As the sequencing error increases with the read length, what is the acceptable range of sequencing error rate?</td></tr>
+		<tr style="background-color:#f1f5fb"><td align="left" style="background-color:#f1f5fb;color:#3E3A39">A.: Currently for Illumina sequencers, the per base error rate is generally lower than 1%, and the highest acceptable threshold is 6%.</td></tr>
+		<tr style="background-color:#036EB8"><td align="left" style="background-color:#036EB8;color:#FFFFFF">Q.: What are the data filtering criteria at Novogene? Are they strictly adhered?</td></tr>
+		<tr style="background-color:#f1f5fb"><td align="left" style="background-color:#f1f5fb;color:#3E3A39">A.: Novogene utilizes stringent data quality control procedures and strictly adheres to the high standard to guarantee the accuracy and reliability of the sequencing data. The detailed data quality control criteria are as follows:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(1)</b> Discard the adapter-containing reads;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(2)</b> Discard the paired reads when uncertain nucleotides (N) constitute more than 10 percent of either read;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(3) </b>Discard the paired reads when low quality nucleotides (base quality less than 5, Q ≤ 5) constitute more than 50 percent of either read.</td></tr>
+		<tr style="background-color:#036EB8"><td align="left" style="background-color:#036EB8;color:#FFFFFF">List of Related Terms</b>:</td></tr>
+		<tr style="background-color:#f1f5fb"><td align="left" style="background-color:#f1f5fb;color:#3E3A39">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>adapter</b>: the oligo nucleotides ligated to sample DNA at library preparation, for proper adhesion to the flow-cell via base-pairing in DNA sequencing.</td></tr>
+		<tr style="background-color:#f1f5fb"><td align="left" style="background-color:#f1f5fb;color:#3E3A39">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>index</b>: the unique sequence tag for distinguishing each individual sample from multiplexing.</td></tr>
+		<tr style="background-color:#f1f5fb"><td align="left" style="background-color:#f1f5fb;color:#3E3A39">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Q20,Q30</b>: the proportion of bases with Phred score higher than 20 or 30. The Phred score, which is negatively correlated to the probability of incorrect base-calling, is calculated by the equation (Q<sub>phred</sub>=-10log<sub>10</sub>(e)) of sequencing error rate (e), indicating the sequencing quality.</td></tr>
+		<tr style="background-color:#f1f5fb"><td align="left" style="background-color:#f1f5fb;color:#3E3A39">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>raw data/raw reads</b>: the original sequence data output by the instrument for a specific sample.</td></tr>
+		<tr style="background-color:#f1f5fb"><td align="left" style="background-color:#f1f5fb;color:#3E3A39">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>clean data/clean reads</b>: the output of data from filtering raw data with quality control, which will be used for further analysis.</td></tr>
+			</table>
+	</div>
+	</div>
+	<!------------------------------------Sequencing Evaluation Q&A over----------------------------------->
+	
+	
+	<!----------------------------------------Mapping Statistics----------------------------------------->
+	
+	<div id="page">
+	
+	<hr />
+	</p><br />
+	<h3>4.3 Sequence Alignment</h3>
+	<p class="paragraph">The effective sequencing data was aligned with the reference sequence through BWA(Li et al., 2009a) software (parameters: mem -t 4 -k 32 -M), and the mapping rate and coverage were counted according to the alignment results (see Table 4.4).</p>
+	<br />
+	
+	<a name="4.3.1 Statistics of Reference Genome"></a>
+	<h4>4.3.1 Statistics of Reference Genome</h4>
+	
+	<p class="paragraph">Reference genome is downloaded from: <a href="test">test</a></p>
+	
+	<p class="name_fig">Table 4.4 Statistics of reference Genome</p>
+	<p class="center">
+	<div id="tb">
+	<table class="gy" align="center">
+	<tr><th>Seq number</th><th>Total length</th><th>GC content (%)</th><th>Gap rate (%)</th><th>N50 length</th><th>N90 length</th></tr>
+	
+		<tr>
+		<td>7</td><td>119,667,750</td><td>36.06</td><td>0.16</td><td>23,459,830</td><td>18,585,056</td>
+		</tr>
+	
+	</table>
+	</div>
+	</p>
+	<button onclick="hiddenShow(this)">Show Annotation</button>
+	<div class="comment">
+	  <ul>
+	  (1) Seq number: the total number of the assembled genomic sequences.<br />
+	  (2) Total length: the total length of the assembled genomic sequence.<br />
+	  (3) GC content: the GC content of the reference genome.<br />
+	  (4) Gap rate: the proportion of unknown sequence (N) in the reference genome assembly.<br />
+	  (5) N50 length: the length of scaffold N50, of which 50% of the sequence is higher than this level.<br />
+	  (6) N90 length: the length of scaffold N90, of which 90% of sequence is higher than this level.<br />
+	</ul></div>
+	<br />
+	</div>
+	
+	<!------------------------Mapping Statistics with Reference Genome--------------------------  -->
+	<div id="page">
+	
+	<hr />
+	</p><br />
+	<h4>4.3.2 Mapping Statistics with Reference Genome</h4>
+	<p class="paragraph">The mapping rates of samples reflect the similarity between each sample and the reference genome. The depth and coverage are indicators of the evenness and homology with the reference genome.</p>
+	
+	<p class="name_fig">Table 4.5 Statistics of mapping rate, depth and coverage</p>
+	<p class="center">
+	<div id="tb">
+	<table class="gy" align="center">
+	
+	<tr><th>Sample</th><th>Mapped reads</th><th>Total reads</th><th>Mapping rate (%)</th><th>Average depth(X)</th><th>Coverage at least 1X (%)</th><th>Coverage at least 4X (%)</th></tr>
+	
+		<tr>
+		<td>sample4</td><td>19,734,586</td><td>20,088,832</td><td>98.24</td><td>18.44</td><td>99.94</td><td>98.35</td>
+		</tr>
+	
+		<tr>
+		<td>sample1</td><td>28,560,134</td><td>29,298,808</td><td>97.48</td><td>22.73</td><td>99.97</td><td>99.85</td>
+		</tr>
+	
+		<tr>
+		<td>sample3</td><td>9,330,743</td><td>9,501,188</td><td>98.21</td><td>8.37</td><td>98.47</td><td>67.20</td>
+		</tr>
+	
+		<tr>
+		<td>sample2</td><td>69,488,935</td><td>70,620,532</td><td>98.40</td><td>78.42</td><td>99.98</td><td>99.96</td>
+		</tr>
+	
+	
+	</table>
+	</div>
+	</p>
+	
+	<button onclick="hiddenShow(this)">Show Annotation</button>
+	<div class="comment">
+	  <ul>
+	(1) Sample: Sample names.<br />
+	(2) Mapped reads: The number of clean reads mapped to the reference assembly, including both single-end reads and reads in pairs.<br />
+	(3) Total reads: Total number of effective reads in clean data.<br />
+	(4) Mapping rate: The ratio of the reference genome assembly mapped reads to the total sequenced clean reads.<br />
+	(5) Average depth: The average depth of mapped reads at each site, calculated by the total number of bases in the mapped reads dividing by size of the assembled genome.<br />
+	(6) Coverage at least 1X: The percentage of the assembled genome with more than one read at each site.<br />
+	(7) Coverage at least 4X: The percentage of the assembled genome with ≥4X coverage at each site.<br />
+	</ul></div>
+	
+	
+	<p class="center">
+	<div class="row gallery-row">
+	<div class="col-1">
+	<div id="gallery_figure1_mapbychrdepth_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+	</div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure1_mapbychrdepth_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure1_mapbychrdepth_pane_sample4" role="tabpanel" aria-labelledby="gallery_figure1_mapbychrdepth_list_sample4" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Map/sample4.mapbychrdepth.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure1_mapbychrdepth_pane_sample1" role="tabpanel" aria-labelledby="gallery_figure1_mapbychrdepth_list_sample1" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Map/sample1.mapbychrdepth.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure1_mapbychrdepth_pane_sample3" role="tabpanel" aria-labelledby="gallery_figure1_mapbychrdepth_list_sample3" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Map/sample3.mapbychrdepth.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure1_mapbychrdepth_pane_sample2" role="tabpanel" aria-labelledby="gallery_figure1_mapbychrdepth_list_sample2" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Map/sample2.mapbychrdepth.png" /></div>
+	
+	</div>
+	</div>
+	<div class="col-1">
+	<div id="gallery_figure1_mapbychrdepth_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+	</div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure1_mapbychrdepth_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure1_mapbychrdepth_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure1_mapbychrdepth_list_sample4" data-toggle="list" href="#gallery_figure1_mapbychrdepth_pane_sample4" role="tab" aria-controls="sample4">sample4</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure1_mapbychrdepth_list_sample1" data-toggle="list" href="#gallery_figure1_mapbychrdepth_pane_sample1" role="tab" aria-controls="sample1">sample1</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure1_mapbychrdepth_list_sample3" data-toggle="list" href="#gallery_figure1_mapbychrdepth_pane_sample3" role="tab" aria-controls="sample3">sample3</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure1_mapbychrdepth_list_sample2" data-toggle="list" href="#gallery_figure1_mapbychrdepth_pane_sample2" role="tab" aria-controls="sample2">sample2</a>
+	
+	</div>
+	</div>
+	</div>
+	</p>
+	
+	<p class="name_fig">Figure 4.4 The mean depth of each chromosome.</p>
+	
+	
+	<a name="4.3.3 Mapping Summary"></a>
+	<h4>4.3.3 Mapping Summary</h4>
+	
+	<p class="paragraph">For the current 119,667,750 bp reference genome, the mapping rate of each sample ranges from 97.48% to 98.40%. Refer to the reference genome (without Ns), the average depths are between 18.44X and 8.37X, and 1X coverages range from 98.47% to 99.98%. This result is in the qualified normal range and may serve in the subsequent variation detection and related analyses.</p>
+	
+	
+	<a name="4.3.4 Visualization of mapping results"></a>
+	<h4>4.3.4 Visualization of mapping results</h4>
+	<p class="paragraph">We provide BAM format files of mapping results, and corresponding reference genome and annotation files for some species. IGV (integrated genomics viewer) browser is recommended to visualize BAM files.</p>
+	<p class="paragraph">IGV browser has the following features:</p>
+	<p class="paragraph">(1) It can display the position of single or multiple reading segments on the genome at different scales, including the distribution of reading segments on each chromosome and the distribution of exon, intron, splicing junction area and intergenic area of annotation, etc;</p>
+	<p class="paragraph">(2) It can display the read segment abundance of different regions in different scales to reflect the number of reads support of different regions;</p>
+	<p class="paragraph">(3) It can display other annotation information;</p>
+	<p class="paragraph">(4) You can download all kinds of annotation information from the remote server, and load the annotation information locally.</p>
+	<p class="paragraph">This guide describes the Integrative Genomics Viewer (IGV). To start IGV, go to the IGV downloads page: <a href="http://www.broadinstitute.org/igv/download">http://www.broadinstitute.org/igv/download</a>
+	<p class="paragraph">Look at a printer-friendly HTML version of the whole User Guide: <a href="http://software.broadinstitute.org/software/igv/book/export/html/6">http://software.broadinstitute.org/software/igv/book/export/html/6</a>
+	<p class="center">
+	</li><a id="example2" href='src/images/igv.png' ><img src='src/images/igv.png'/></a></li>
+	</p>
+	<p class="name_fig">Figure 4.5 IGV browser</p>
+	
+	<p class="paragraph">Result：<a href="../result/03.Mapping" title="点击打开" target="_blank">03.Mapping</a></p>
+	
+	
+	 <button onclick="hiddenQA(this)">Show Q&A</button>
+	 <div class="comment">
+	 <table style="font-size:12px;font-family: 'Times New Roman' 'Montserrat'">
+	 <tr style="background-color:#036EB8"><td align="left" style="background-color:#036EB8;color:#FFFFFF">Q.: Which files are required for reference genome mapping?</td></tr>
+	 <tr style="background-color:#f1f5fb"><td align="left" style="background-color:#f1f5fb;color:#3E3A39">A.: As for whole genome sequencing (WGS), only the corresponding reference genome file in FASTA format is required, while the whole exome sequencing (WES) also needs the target region file in BED format.</td></tr>
+	 <tr style="background-color:#036EB8"><td align="left" style="background-color:#036EB8;color:#FFFFFF">Q.: What are the potential causes of low mapping rate?</td></tr>
+	 <tr style="background-color:#f1f5fb"><td align="left" style="background-color:#f1f5fb;color:#3E3A39">A.: The three major causes are: (1) with poorly assembled reference genome or a relatively far genetic relationship between the reference and the sample; (2) treatments to DNA that may change the sequence (e.g. bisulfite treatment) and herein affecting the mapping rate and (3) contamination of other species.</td></tr>
+	 <tr style="background-color:#036EB8"><td align="left" style="background-color:#036EB8;color:#FFFFFF">Q.: Could the full-length reads be mapped to the reference? or should we trim from the sequence ends?</td></tr>
+	 <tr style="background-color:#f1f5fb"><td align="left" style="background-color:#f1f5fb;color:#3E3A39">A.: According to the standard Illumina pair-end (PE) sequencing protocol, DNA fragments were ligated with adapters at both ends. The adapter habors universal sequences for flow-cell binding, DNA sequencing, as well as unique index located upstream of the sequencing primer for multiplexing. As for the PE150 sequencing of 350 bp library, the sequenced reads of PE150 bp at either end are adapter-free, which could be directly subjected to quality control for low quality reads filtration. The retaining sequences in PE150 bp length (namely clean data) are qualified for mapping with the reference genome.</td></tr>
+	</table>
+	</div>
+	</div>
+	
+	
+	
+	<!-----------------------SNP Detection & Annotation------------------------------------>
+	<div id="page">
+	
+	<hr />
+	</p><br />
+	<h3>4.4 SNP Detection & Annotation</h3>
+	
+
+    
+<p class="paragraph">Single nucleotide polymorphism (SNP) refers to a variation in a single nucleotide which may occur at some specific position in the genome, including transition and transversion of a single nucleotide. We detected the individual SNP variations using GATK(DePristo et al., 2011) with the following parameter: 'HaplotypeCaller --pair-hmm-gap-continuation-penalty 10 -ERC GVCF --genotyping-mode DISCOVERY -stand-call-conf 30'.</p>
+<p class="paragraph">Based on the population snp data set, the joint genotype has been applied according to the GATK best practices.</p>
+    
+
+	
+	<a name="4.4.1 Statistics of SNP Detection & Annotation"></a>
+	<h4>4.4.1 Statistics of SNP Detection & Annotation</h4>
+	<p class="paragraph">ANNOVAR is a widely used software in variation annotation with multiple capabilities, including gene-based annotation, region-based annotation, filter-based annotation as well as other functionalities(Wang et al., 2010). Novogene use ANNOVAR to do annotation of detected SNPs.</p>
+	<p class="name_fig">Table 4.6 Statistics of SNP detection and annotation</p>
+	<p class="center">
+	<div id="tb">
+	<table class="gy" align="center">
+	<tr><th rowspan='2'>Sample</th><th rowspan='2'>Upstream</th><th colspan='4'>Exonic</th><th rowspan='2'>Intronic</th><th rowspan='2'>Splicing</th><th rowspan='2'>Downstream</th><th rowspan='2'>Upstream/Downstream</th><th rowspan='2'>Intergenic</th><th rowspan='2'>3&#39UTR</th><th rowspan='2'>5&#39UTR</th><th rowspan='2'>5&#39UTR/3&#39UTR</th><th rowspan='2'>Others</th><th rowspan='2'>ts</th><th rowspan='2'>tv</th><th rowspan='2'>ts/tv</th><th rowspan='2'>Het rate(‰)</th><th rowspan='2'>Total</th></tr>
+	<tr><th>Stop gain</th><th>Stop loss</th><th>Synonymous</th><th>Non-synonymous</th></tr>
+	
+		<tr>
+<td>sample1</td><td>630</td><td>36</td><td>1</td><td>409</td><td>728</td><td>654</td><td>18</td><td>485</td><td>244</td><td>12406</td><td>192</td><td>189</td><td>1</td><td>90</td><td>9158</td><td>6925</td><td>1.322</td><td>0.125</td><td>16083</td>
+		</tr>
+	
+		<tr>
+<td>sample2</td><td>586</td><td>10</td><td>2</td><td>275</td><td>625</td><td>588</td><td>17</td><td>506</td><td>236</td><td>13737</td><td>172</td><td>206</td><td>1</td><td>77</td><td>9484</td><td>7554</td><td>1.255</td><td>0.132</td><td>17038</td>
+		</tr>
+	
+		<tr>
+<td>sample3</td><td>403</td><td>21</td><td>0</td><td>372</td><td>715</td><td>575</td><td>12</td><td>360</td><td>195</td><td>8836</td><td>151</td><td>132</td><td>0</td><td>74</td><td>7156</td><td>4689</td><td>1.526</td><td>0.085</td><td>11845</td>
+		</tr>
+	
+		<tr>
+<td>sample4</td><td>585</td><td>31</td><td>0</td><td>494</td><td>935</td><td>737</td><td>19</td><td>503</td><td>248</td><td>11899</td><td>225</td><td>183</td><td>0</td><td>87</td><td>9712</td><td>6234</td><td>1.558</td><td>0.120</td><td>15946</td>
+		</tr>
+	
+	</table>
+	</div>
+	</p>
+	<button onclick="hiddenShow(this)">Show Annotation</button>
+	<div class="comment">
+	<ul>
+(1) Sample: Sample name.<br />
+(2) Upstream: SNPs located within 1 kb upstream (away from transcription start site) of the gene.<br />
+(3) Exonic: SNPs located in exonic region; Non-synonymous: single nucleotide mutation with changing amino acid sequence; Stop gain/loss: a nonsynonymous SNP that leads to the introduction/removal of stop codon at the variant site; Synonymous: single nucleotide mutation without changing amino acid sequence.<br />
+(4) Intronic: SNPs located in intronic region.<br />
+(5) Splicing: SNPs located in the splicing site (2 bp range of the intron/exon boundary).<br />
+(6) Downstream: SNPs located within 1 kb downstream (away from transcription termination site) of the gene region.<br />
+(7) Upstream/Downstream: SNPs located within the &lt 2 kb intergenic region, which is in 1 kb downstream or upstream of the genes.<br />
+(8) Intergenic: SNPs located within the &gt 2 kb intergenic region.<br />
+(9) 3&#39UTR:  Variants within the 3&#39UTR.<br />
+(10) 5&#39UTR:  Variants within the 5&#39UTR.<br />
+(11) 5&#39UTR/3&#39UTR:  Variants within 3&#39UTR and 5&#39UTR jointly.<br />
+(12) Others: SNPs located in other region.<br />
+(13) ts: Transitions, a point mutation that changes a purine nucleotide to another purine (A ↔ G) or a pyrimidine nucleotide to another pyrimidine (C ↔ T). Approximately two out of three SNPs are transitions.<br />
+(14) tv: Transversions, the substitution of a (two ring) purine for a (one ring) pyrimidine or <i>vice versa</i>.<br />
+(15) ts/tv: The ratio of transitions to transversions.<br />
+(16) Het rate: Genome-wide heterozygous rate, calculated by the ratio of heterozygous SNPs to the total number of genome bases.<br />
+(17) Total: The total number of SNPs.<br />
+*Please note: The statistical data of Upstream、Intronic、Splicing、Downstream、Upstream/Downstream、Intergenic and Others is derived from genome-wide annotation file (*snp.avinput.variant_function.gz);The statistical data of Exonic including Stop gain, Stop loss, Synonymous, Non-synonymous comes from the exon annotation file (*snp.avinput.exonic_variant_function.gz); The statistical data of ts, tv, and Total indicating variant sites number  comes from the variants detection file (*filter.snp.vcf.gz). Multiallelic sites of identical SNP site are possibly annotated to different annotation types. Additionally, the sum of the number of annotation types possibly unequal to the total number of variants.<br />
+	</ul>
+	</div>
+	
+	<p class="center">
+	<div class="row gallery-row">
+	<div class="col-1">
+	<div id="gallery_figure1_snptable_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+	</div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure1_snptable_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure1_snptable_pane_sample4" role="tabpanel" aria-labelledby="gallery_figure1_snptable_list_sample4" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/SNP/sample4.SNP.table.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure1_snptable_pane_sample1" role="tabpanel" aria-labelledby="gallery_figure1_snptable_list_sample1" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/SNP/sample1.SNP.table.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure1_snptable_pane_sample3" role="tabpanel" aria-labelledby="gallery_figure1_snptable_list_sample3" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/SNP/sample3.SNP.table.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure1_snptable_pane_sample2" role="tabpanel" aria-labelledby="gallery_figure1_snptable_list_sample2" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/SNP/sample2.SNP.table.png" /></div>
+	
+	</div>
+	</div>
+	<div class="col-1">
+	<div id="gallery_figure1_snptable_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+	</div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure1_snptable_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure1_snptable_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure1_snptable_list_sample4" data-toggle="list" href="#gallery_figure1_snptable_pane_sample4" role="tab" aria-controls="sample4">sample4</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure1_snptable_list_sample1" data-toggle="list" href="#gallery_figure1_snptable_pane_sample1" role="tab" aria-controls="sample1">sample1</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure1_snptable_list_sample3" data-toggle="list" href="#gallery_figure1_snptable_pane_sample3" role="tab" aria-controls="sample3">sample3</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure1_snptable_list_sample2" data-toggle="list" href="#gallery_figure1_snptable_pane_sample2" role="tab" aria-controls="sample2">sample2</a>
+	
+	</div>
+	</div>
+	</div>
+	</p>
+	
+	<p class="name_fig">Figure 4.6 The number of SNPs in different regions of the genome</p>
+	<p class="premark">The number of SNPs in different regions of the genome (left) and the number of SNPs of different types in the coding region (right) are distributed.</p>
+	
+	
+	</div>
+	
+	
+	<!-- --------------------------------------SNP Quality Distribution--------------------------------------- -->
+	<div id="page">
+	
+	<hr />
+	</p><br />
+	<h4>4.4.2 SNP Quality Distribution</h4>
+	<p class="paragraph">To assess the credibility of detected SNPs, we checked the distribution of support reads number, SNP quality, as well as the distance between adjacent SNPs. The results are shown in <strong>Figure 4.7</strong>.</p>
+	
+	
+		<p class="center">
+		<div class="row gallery-row">
+		<div class="col-1">
+		<div id="gallery_figure_snp_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+		</div>
+		<div class="col-6">
+		<div class="tab-content" id="gallery_figure_snp_nav-tabContent">
+		
+		<div class="tab-pane fade" id="gallery_figure_snp_pane_SNP_readsNum_cumulative_distribution" role="tabpanel" aria-labelledby="gallery_figure_snp_list_SNP_readsNum_cumulative_distribution" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/SNP/SNP_readsNum_cumulative_distribution.png" /></div>
+		
+		<div class="tab-pane fade" id="gallery_figure_snp_pane_SNP_distance_cumulative_distribution" role="tabpanel" aria-labelledby="gallery_figure_snp_list_SNP_distance_cumulative_distribution" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/SNP/SNP_distance_cumulative_distribution.png" /></div>
+		
+		<div class="tab-pane fade" id="gallery_figure_snp_pane_SNP_quality_cumulative_distribution" role="tabpanel" aria-labelledby="gallery_figure_snp_list_SNP_quality_cumulative_distribution" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/SNP/SNP_quality_cumulative_distribution.png" /></div>
+		
+		</div>
+		</div>
+		<div class="col-1">
+		<div id="gallery_figure_snp_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+		</div>
+		<div class="col-4">
+		<input class="form-control" id="gallery_figure_snp_InputList" type="text" placeholder="Search..">
+		<div class="list-group" id="gallery_figure_snp_list-tab" role="tablist">
+		
+		<a class="list-group-item list-group-item-action" id="gallery_figure_snp_list_SNP_readsNum_cumulative_distribution" data-toggle="list" href="#gallery_figure_snp_pane_SNP_readsNum_cumulative_distribution" role="tab" aria-controls="SNP_readsNum_cumulative_distribution">SNP_readsNum_cumulative_distribution</a>
+		
+		<a class="list-group-item list-group-item-action" id="gallery_figure_snp_list_SNP_distance_cumulative_distribution" data-toggle="list" href="#gallery_figure_snp_pane_SNP_distance_cumulative_distribution" role="tab" aria-controls="SNP_distance_cumulative_distribution">SNP_distance_cumulative_distribution</a>
+		
+		<a class="list-group-item list-group-item-action" id="gallery_figure_snp_list_SNP_quality_cumulative_distribution" data-toggle="list" href="#gallery_figure_snp_pane_SNP_quality_cumulative_distribution" role="tab" aria-controls="SNP_quality_cumulative_distribution">SNP_quality_cumulative_distribution</a>
+		
+		</div>
+		</div>
+		</div>
+	
+		</p>
+	
+	
+	<p class="name_fig">Figure 4.7 Cumulative distribution of SNP quality</p>
+	<p class="premark">Note: These figures show the quality distribution of SNPs by, from top to bottom, the distribution of SNP support reads number, the distribution of distances between adjacent SNPs, and the cumulative distribution of SNP quality.</p>
+	</div>
+	
+	
+	
+	<!-- --------------------------------------SNP Mutation Frequency--------------------------------------- -->
+	<div id="page">
+	
+	<hr />
+	</p><br />
+	<h4>4.4.3 SNP Mutation Frequency</h4>
+	<p class="paragraph">Take the T:A>C:G mutations as an example, this category includes mutations from T to C and A to G. When T>C mutation appears on either of the double-strand, the A>G mutation will be found in the same position of the other chain. Therefore the T>C and A>G mutations are classified into one category. Accordingly, the whole-genome SNP mutations could be classified into six categories. The frequency of each type is shown in <strong>Figure 4.8</strong>.</p>
+	<p class="center">
+	<a id="example2" href="src//pictures/SNP/SNP_frequency.png"><img class="normal1" src="src//pictures/SNP/SNP_frequency.png" alt="example2"/></a>
+	<a id="example2" href="src//pictures/SNP/SNP.frequency.xls.barplot.png"><img class="normal1" src="src//pictures/SNP/SNP.frequency.xls.barplot.png" alt="example2"/></a>
+	</p>
+	<p class="name_fig">Figure 4.8 Frequency of SNP mutations</p>
+	<p class="premark">The x-axis represents the number of the SNPs, and y-axis indicates the mutation types.</p>
+	
+	<p class="paragraph">Result：<a href="../result/04.SNP_VarDetect" title="点击打开" target="_blank">04.SNP_VarDetect</a></p>
+	
+	<button onclick="hiddenQA(this)">Show Q&A</button>
+	  <div class="comment">
+	  <table style="font-size:12px;font-family: 'Times New Roman' 'Montserrat'">
+	<tr style="background-color:#036EB8"><td align="left" style="background-color:#036EB8;color:#FFFFFF">Q.: What is the MQ quality for a SNP?</td></tr>
+	<tr style="background-color:#f1f5fb"><td align="left" style="background-color:#f1f5fb;color:#3E3A39">A.: The SNP quality is represented by the mapping quality of covering reads, calculated by the root-mean-square of the support reads' mapping quality.</td></tr>
+	<tr style="background-color:#036EB8"><td align="left" style="background-color:#036EB8;color:#FFFFFF">Q.: What is QUAL value for a SNP?</td></tr>
+	<tr style="background-color:#f1f5fb"><td align="left" style="background-color:#f1f5fb;color:#3E3A39">A.: The QUAL value is the Phred quality score (QUAL), represents the probability (<i>p</i>) of SNP truly existing at certain position. The higher the QUAL value, the more likely the SNP exists. The relationship between QUAL and <i>p</i> is QUAL=-10*log<sub>10</sub> (1-<i>p</i>). Therefore, the QUAL value of 20 means the probability of the existence of this SNP is 99%.</td></tr>
+	<tr style="background-color:#036EB8"><td align="left" style="background-color:#036EB8;color:#FFFFFF">Q.: What are transitions and transversions?</td></tr>
+	<tr style="background-color:#f1f5fb"><td align="left" style="background-color:#f1f5fb;color:#3E3A39">A.: Transitions refers to the changes between A and G, which are both purines, or between C and T, which are both pyrimidines; while transversions reprents changes between a purine and a pyrimidine, such as between A and T.</td></tr>
+	  <tr style="background-color:#036EB8"><td align="left" style="background-color:#036EB8;color:#FFFFFF">Q.: What is the heterozygous SNP?</td></tr>
+	  <tr style="background-color:#f1f5fb"><td align="left" style="background-color:#f1f5fb;color:#3E3A39">A.: Heterozygous SNPs are those called with both REF (the same to reference) and ALT (different from reference) genotypes in a diploid species.</td></tr>
+	
+	  <tr style="background-color:#036EB8"><td align="left" style="background-color:#036EB8;color:#FFFFFF">Q.: How to verify the SNP genotypes?</td></tr>
+	  <tr style="background-color:#f1f5fb"><td align="left" style="background-color:#f1f5fb;color:#3E3A39">A.: The "golden standard" of SNP verification is PCR amplification followed by Sanger sequencing.</td></tr>
+	  <tr style="background-color:#036EB8"><td align="left" style="background-color:#036EB8;color:#FFFFFF">Q.: If the PCR-sequencing method failed to verify the detected SNP, did this mean that the NGS SNP calling is not reliable?</td></tr>
+	  <tr style="background-color:#f1f5fb"><td align="left" style="background-color:#f1f5fb;color:#3E3A39">A.: SNP calling in NGS is based on the support reads and depended on the sufficient coverage depth, which ensures the accuracy of most but not all the detected SNPs. We recommend to double-check the PCR results first, then use a genome browser such as <i>Savant</i> and <i>IGV</i> to manually check the mapped reads of the NGS result.</td></tr>
+	</table>
+	</div>
+	
+	</div>
+	
+	
+	<!-------------------------------------InDel Detection & Annotation------------------------------------->
+	<div id="page">
+	
+	<hr />
+	</p><br />
+	<h3>4.5 InDel Detection & Annotation</h3>
+	
+
+
+
+    
+<p class="paragraph">InDel refers to the small insertion or deletion in the DNA. We detected the individual InDel variations using GATK(DePristo et al., 2011) with the following parameter: 'HaplotypeCaller --pair-hmm-gap-continuation-penalty 10 -ERC GVCF --genotyping-mode DISCOVERY -stand-call-conf 30'.</p>
+<p class="paragraph">Based on the population InDel data set, the joint genotype has been applied according to the GATK best practices.</p>
+    
+
+	
+	<a name="4.5.1 Statistics of InDel Detection & Annotation"></a>
+	<h4>4.5.1 Statistics of InDel Detection & Annotation</h4>
+	<p class="name_fig">Table 4.7 Statistics of InDel detection and annotation</p>
+	<p class="center">
+	<div id="tb">
+	<table class="gy" align="center">
+	<tr><th rowspan='2'>Sample</th><th rowspan='2'>Upstream</th><th colspan='6'>Exonic</th><th rowspan='2'>Intronic</th><th rowspan='2'>Splicing</th><th rowspan='2'>Downstream</th><th rowspan='2'>Upstream/Downstream</th><th rowspan='2'>Intergenic</th><th rowspan='2'>3&#39UTR</th><th rowspan='2'>5&#39UTR</th><th rowspan='2'>5&#39UTR/3&#39UTR</th><th rowspan='2'>Others</th><th rowspan='2'>Insertion</th><th rowspan='2'>Deletion</th><th rowspan='2'>Het rate(‰)</th><th rowspan='2'>Total</th></tr>
+	<tr><th>Stop gain</th><th>Stop loss</th><th>Frameshift deletion</th><th>Frameshift insertion</th><th>Non-frameshift deletion</th><th>Non-frameshift insertion</th></tr>
+	
+		<tr>
+    <td>sample1</td><td>1755</td><td>2</td><td>0</td><td>85</td><td>106</td><td>34</td><td>12</td><td>1716</td><td>37</td><td>1026</td><td>976</td><td>3093</td><td>742</td><td>894</td><td>10</td><td>184</td><td>5883</td><td>4781</td><td>0.073</td><td>10671</td>
+		</tr>
+	
+		<tr>
+    <td>sample2</td><td>2234</td><td>2</td><td>0</td><td>90</td><td>112</td><td>24</td><td>11</td><td>2078</td><td>47</td><td>1305</td><td>1231</td><td>3841</td><td>862</td><td>1044</td><td>7</td><td>228</td><td>6770</td><td>6342</td><td>0.094</td><td>13114</td>
+		</tr>
+	
+		<tr>
+    <td>sample3</td><td>621</td><td>1</td><td>0</td><td>116</td><td>87</td><td>20</td><td>10</td><td>737</td><td>10</td><td>374</td><td>373</td><td>1483</td><td>245</td><td>277</td><td>1</td><td>106</td><td>2429</td><td>2028</td><td>0.022</td><td>4459</td>
+		</tr>
+	
+		<tr>
+    <td>sample4</td><td>1221</td><td>2</td><td>0</td><td>70</td><td>103</td><td>41</td><td>17</td><td>1360</td><td>37</td><td>748</td><td>742</td><td>2431</td><td>525</td><td>646</td><td>3</td><td>157</td><td>4539</td><td>3559</td><td>0.051</td><td>8101</td>
+		</tr>
+	
+	</table>
+	</div>
+	</p>
+	
+	
+	<button onclick="hiddenShow(this)">Show Annotation</button>
+	<div class="comment">
+	
+	  <ul>
+(1) Sample: Sample names.<br />
+(2) Upstream: InDels located within 1 kb upstream (away from transcription start site) of the gene.<br />
+(3) Exonic: InDels located in exonic region; Stop gain/loss: InDel that leads to the introduction/removal of stop codon at the variant site; Frameshift deletion/insertion: InDel mutation changing the open reading frame with deletion or insertion; Non-Frameshift deletion/insertion:
+InDel mutation without changing the open reading frame with deletion or insertion sequences of 3 or multiple of 3 bases;
+<br />
+(4) Intronic: InDel located in intronic region;<br />
+(5) Splicing: InDel located in the splicing site (2 bp range of the intron/exon boundary).<br />
+(6) Downstream: InDel located within 1 kb downstream (away from transcription termination site) of the gene region.<br />
+(7) Upstream/Downstream: InDel SNPs located within the &lt 2 kb intergenic region, which is in 1 kb downstream or upstream of the genes.<br />
+(8) Intergenic: InDel located within the > 2 kb intergenic region.<br />
+(9) 3&#39UTR: Variants within the 3&#39UTR.<br />
+(10) 5&#39UTR:  Variants within the 5&#39UTR.<br />
+(11) 5&#39UTR/3&#39UTR: Variants within 5&#39UTR and 3&#39UTR jointly.<br />
+(12) Others: InDel located in other region.<br />
+(13) Het rate: InDel heterozygous rate, calculated by the ratio of InDels to the total number of genome bases.<br />
+(14) Total: The total number of InDels.<br />
+*Please note: The statistical data of Upstream、Intronic、Splicing、Downstream、Upstream/Downstream、Intergenic and Others is derived from genome-wide annotation file (*indel.avinput.variant_function.gz);The statistical data of Exonic including Stop gain, Stop loss, Frameshift deletion/insertion and Non-Frameshift deletion/insertion comes from the exon annotation file (*indel.avinput.exonic_variant_function.gz);The statistical data of Total indicating variant sites number comes from variant detection file (*filter.indel.vcf.gz);Multiallelic sites of identical InDel site are possibly annotated to different structural intervals.Additionally, the sum of the number of annotation types possibly unequal to the total number of variants.<br />
+	</ul>
+	</div>
+	
+	<p class="center">
+	<div class="row gallery-row">
+	<div class="col-1">
+	<div id="gallery_figure1_indeltable_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+	</div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure1_indeltable_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure1_indeltable_pane_sample4" role="tabpanel" aria-labelledby="gallery_figure1_indeltable_list_sample4" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/InDel/sample4.InDel.table.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure1_indeltable_pane_sample1" role="tabpanel" aria-labelledby="gallery_figure1_indeltable_list_sample1" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/InDel/sample1.InDel.table.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure1_indeltable_pane_sample3" role="tabpanel" aria-labelledby="gallery_figure1_indeltable_list_sample3" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/InDel/sample3.InDel.table.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure1_indeltable_pane_sample2" role="tabpanel" aria-labelledby="gallery_figure1_indeltable_list_sample2" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/InDel/sample2.InDel.table.png" /></div>
+	
+	</div>
+	</div>
+	<div class="col-1">
+	<div id="gallery_figure1_indeltable_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+	</div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure1_indeltable_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure1_indeltable_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure1_indeltable_list_sample4" data-toggle="list" href="#gallery_figure1_indeltable_pane_sample4" role="tab" aria-controls="sample4">sample4</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure1_indeltable_list_sample1" data-toggle="list" href="#gallery_figure1_indeltable_pane_sample1" role="tab" aria-controls="sample1">sample1</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure1_indeltable_list_sample3" data-toggle="list" href="#gallery_figure1_indeltable_pane_sample3" role="tab" aria-controls="sample3">sample3</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure1_indeltable_list_sample2" data-toggle="list" href="#gallery_figure1_indeltable_pane_sample2" role="tab" aria-controls="sample2">sample2</a>
+	
+	</div>
+	</div>
+	</div>
+	</p>
+	
+	<p class="name_fig">Figure 4.9 The number of InDels in different regions of the genome</p>
+	<p class="premark">The number of InDels in different regions of the genome (left) and the number of InDels of different types in the coding region (right) are distributed.</p>
+	
+	</div>
+	
+	<!-------------------------Length Distribution of CDS-located InDels---------------------------------->
+	<div id="page">
+	
+	<hr />
+	</p><br />
+	<h4>4.5.2 Length Distribution of InDels</h4>
+	
+	<p class="paragraph">The figure 4.10 show the length distribution of InDels for the random four samples in the sample list. Please refer to the statistical result file (./results/05.InDel_VarDetect/Indel.GENOMEpercentage.xls and Indel.CDSpercentage.xls) for the details of all the samples.</p>
+	
+	<p class="center">
+	<a id="example2" href="src/pictures/InDel/InDel_CDSpercentage.png"><img class="normal1" src="src/pictures/InDel/InDel_CDSpercentage.png" alt="example2"/></a>
+	<a id="example2" href="src/pictures/InDel/InDel_GENOMEpercentage.png"><img class="normal1" src="src/pictures/InDel/InDel_GENOMEpercentage.png" alt="example2"/></a>
+	</p>
+	<p class="name_fig">Figure 4.10 Length distribution of InDels</p>
+	<p class="premark">The x-axis represents the proportion of the InDels with a certain length, and y-axis indicates the length of the InDels.</p>
+	
+	<p class="paragraph">Result：<a href="03.Result*/05.InDel_VarDetect" title="点击打开" target="_blank">05.InDel_VarDetect</a></p>
+	
+	<button onclick="hiddenQA(this)">Show Q&A</button>
+	  <div class="comment">
+	  <table style="font-size:12px;font-family: 'Times New Roman' 'Montserrat'">
+	  <tr style="background-color:#036EB8"><td align="left" style="background-color:#036EB8;color:#FFFFFF">Q.: What is the heterozygous rate for an InDel?</td></tr>
+	  <tr style="background-color:#f1f5fb"><td align="left" style="background-color:#f1f5fb;color:#3E3A39">A.: Ratio of heterozygous InDels to total number of InDels, the heterozygous Indel is an Indel only located in one of the homologous chromosomes of a diploid sample.</td></tr>
+	  <tr style="background-color:#036EB8"><td align="left" style="background-color:#036EB8;color:#FFFFFF">Q.: What's the difference between an InDel and a SNP?</td></tr>
+	  <tr style="background-color:#f1f5fb"><td align="left" style="background-color:#f1f5fb;color:#3E3A39">A.: SNP mutation refers to the change from one nucleotide to another nucleotide (eg. A↔T), while InDel is a type of mutation with insertion or deletion of one or more nucleotides (eg, A↔AT, with a T insertion).</td></tr>
+	</table>
+	</div>
+	</div>
+	
+	
+	
+	
+	<!----------------------------------------SV Detection & Annotation-------------------------------->
+	
+	
+	<!-----------------------------------CNV Detection & Annotation-------------------------->
+	
+	
+	
+	
+	
+	<!----------------------------------Visualization of Variation-------------------------------->
+	
+	
+	<div id="page">
+	
+	<hr />
+	</p><br />
+	
+	
+	
+	
+	<h3>4.6 Visualization of Variation</h3>
+	<p class="paragraph">For proper visualization of the structural variations on the whole-genome, we present them according to mutation types with Circos(Krzywinski et al., 2009):</p>
+	
+	
+	
+		<p class="center">
+		<div class="row gallery-row">
+		<div class="col-1">
+		<div id="gallery_figure_circos_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+		</div>
+		<div class="col-6">
+		<div class="tab-content" id="gallery_figure_circos_nav-tabContent">
+		
+		<div class="tab-pane fade" id="gallery_figure_circos_pane_sample4" role="tabpanel" aria-labelledby="gallery_figure_circos_list_sample4" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Circos/sample4.png" /></div>
+		
+		<div class="tab-pane fade" id="gallery_figure_circos_pane_sample1" role="tabpanel" aria-labelledby="gallery_figure_circos_list_sample1" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Circos/sample1.png" /></div>
+		
+		<div class="tab-pane fade" id="gallery_figure_circos_pane_sample3" role="tabpanel" aria-labelledby="gallery_figure_circos_list_sample3" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Circos/sample3.png" /></div>
+		
+		<div class="tab-pane fade" id="gallery_figure_circos_pane_sample2" role="tabpanel" aria-labelledby="gallery_figure_circos_list_sample2" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Circos/sample2.png" /></div>
+		
+		</div>
+		</div>
+		<div class="col-1">
+		<div id="gallery_figure_circos_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+		</div>
+		<div class="col-4">
+		<input class="form-control" id="gallery_figure_circos_InputList" type="text" placeholder="Search..">
+		<div class="list-group" id="gallery_figure_circos_list-tab" role="tablist">
+		
+		<a class="list-group-item list-group-item-action" id="gallery_figure_circos_list_sample4" data-toggle="list" href="#gallery_figure_circos_pane_sample4" role="tab" aria-controls="sample4">sample4</a>
+		
+		<a class="list-group-item list-group-item-action" id="gallery_figure_circos_list_sample1" data-toggle="list" href="#gallery_figure_circos_pane_sample1" role="tab" aria-controls="sample1">sample1</a>
+		
+		<a class="list-group-item list-group-item-action" id="gallery_figure_circos_list_sample3" data-toggle="list" href="#gallery_figure_circos_pane_sample3" role="tab" aria-controls="sample3">sample3</a>
+		
+		<a class="list-group-item list-group-item-action" id="gallery_figure_circos_list_sample2" data-toggle="list" href="#gallery_figure_circos_pane_sample2" role="tab" aria-controls="sample2">sample2</a>
+		
+		</div>
+		</div>
+		</div>
+		</div>
+		</p>
+	
+	
+	
+		
+		<p class="name_fig">Figure 4.11 Whole genome variations distribution</p>
+		<p class="premark">From outer to inner, chromosome, SNP, InDel.</p>
+		
+	
+	
+		<p class="center">
+		<div class="row gallery-row">
+		<div class="col-1">
+		<div id="gallery_figure_snpdensity_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+		</div>
+		<div class="col-6">
+		<div class="tab-content" id="gallery_figure_snpdensity_nav-tabContent">
+		
+		<div class="tab-pane fade" id="gallery_figure_snpdensity_pane_sample4" role="tabpanel" aria-labelledby="gallery_figure_snpdensity_list_sample4" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Circos/sample4.snpDensity.png" /></div>
+		
+		<div class="tab-pane fade" id="gallery_figure_snpdensity_pane_sample1" role="tabpanel" aria-labelledby="gallery_figure_snpdensity_list_sample1" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Circos/sample1.snpDensity.png" /></div>
+		
+		<div class="tab-pane fade" id="gallery_figure_snpdensity_pane_sample3" role="tabpanel" aria-labelledby="gallery_figure_snpdensity_list_sample3" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Circos/sample3.snpDensity.png" /></div>
+		
+		<div class="tab-pane fade" id="gallery_figure_snpdensity_pane_sample2" role="tabpanel" aria-labelledby="gallery_figure_snpdensity_list_sample2" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Circos/sample2.snpDensity.png" /></div>
+		
+		</div>
+		</div>
+		<div class="col-1">
+		<div id="gallery_figure_snpdensity_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+		</div>
+		<div class="col-4">
+		<input class="form-control" id="gallery_figure_snpdensity_InputList" type="text" placeholder="Search..">
+		<div class="list-group" id="gallery_figure_snpdensity_list-tab" role="tablist">
+		
+		<a class="list-group-item list-group-item-action" id="gallery_figure_circos_list_sample4" data-toggle="list" href="#gallery_figure_snpdensity_pane_sample4" role="tab" aria-controls="sample4">sample4</a>
+		
+		<a class="list-group-item list-group-item-action" id="gallery_figure_circos_list_sample1" data-toggle="list" href="#gallery_figure_snpdensity_pane_sample1" role="tab" aria-controls="sample1">sample1</a>
+		
+		<a class="list-group-item list-group-item-action" id="gallery_figure_circos_list_sample3" data-toggle="list" href="#gallery_figure_snpdensity_pane_sample3" role="tab" aria-controls="sample3">sample3</a>
+		
+		<a class="list-group-item list-group-item-action" id="gallery_figure_circos_list_sample2" data-toggle="list" href="#gallery_figure_snpdensity_pane_sample2" role="tab" aria-controls="sample2">sample2</a>
+		
+		</div>
+		</div>
+		</div>
+		</p>
+	
+		
+		<p class="name_fig">Figure 4.12 The SNP density</p>
+		<p class="premark">The SNP density on each window was counted with 100kb as the window.</p>
+		
+	
+	
+	
+		<p class="center">
+		<div class="row gallery-row">
+		<div class="col-1">
+		<div id="gallery_figure_inddensity_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+		</div>
+		<div class="col-6">
+		<div class="tab-content" id="gallery_figure_inddensity_nav-tabContent">
+		
+		<div class="tab-pane fade" id="gallery_figure_inddensity_pane_sample4" role="tabpanel" aria-labelledby="gallery_figure_inddensity_list_sample4" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Circos/sample4.indDensity.png" /></div>
+		
+		<div class="tab-pane fade" id="gallery_figure_inddensity_pane_sample1" role="tabpanel" aria-labelledby="gallery_figure_inddensity_list_sample1" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Circos/sample1.indDensity.png" /></div>
+		
+		<div class="tab-pane fade" id="gallery_figure_inddensity_pane_sample3" role="tabpanel" aria-labelledby="gallery_figure_inddensity_list_sample3" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Circos/sample3.indDensity.png" /></div>
+		
+		<div class="tab-pane fade" id="gallery_figure_inddensity_pane_sample2" role="tabpanel" aria-labelledby="gallery_figure_inddensity_list_sample2" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Circos/sample2.indDensity.png" /></div>
+		
+		</div>
+		</div>
+		<div class="col-1">
+		<div id="gallery_figure_inddensity_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+		</div>
+		<div class="col-4">
+		<input class="form-control" id="gallery_figure_inddensity_InputList" type="text" placeholder="Search..">
+		<div class="list-group" id="gallery_figure_inddensity_list-tab" role="tablist">
+		
+		<a class="list-group-item list-group-item-action" id="gallery_figure_inddensity_list_sample4" data-toggle="list" href="#gallery_figure_inddensity_pane_sample4" role="tab" aria-controls="sample4">sample4</a>
+		
+		<a class="list-group-item list-group-item-action" id="gallery_figure_inddensity_list_sample1" data-toggle="list" href="#gallery_figure_inddensity_pane_sample1" role="tab" aria-controls="sample1">sample1</a>
+		
+		<a class="list-group-item list-group-item-action" id="gallery_figure_inddensity_list_sample3" data-toggle="list" href="#gallery_figure_inddensity_pane_sample3" role="tab" aria-controls="sample3">sample3</a>
+		
+		<a class="list-group-item list-group-item-action" id="gallery_figure_inddensity_list_sample2" data-toggle="list" href="#gallery_figure_inddensity_pane_sample2" role="tab" aria-controls="sample2">sample2</a>
+		
+		</div>
+		</div>
+		</div>
+		</p>
+	
+		
+		<p class="name_fig">Figure 4.13 The InDel density</p>
+		<p class="premark">The InDel density on each window was counted with 100kb as the window.</p>
+		
+	
+	
+	
+	<p class="paragraph">Result：<a href="../result/08.VarDetect_Visualization" title="点击打开" target="_blank">08.VarDetect_Visualization</a></p>
+	
+	
+	</div>
+
+	
+<!----------------------------------------Appendix----------------------------------------->
+
+<div id="page">
+	
+	<hr />
+	</p><br />
+	
+	<h2>5 Appendix</h2>
+	<a name="List_of_Software"></a>
+	<h3>5.1 Software</h3>
+	<p class="paragraph">Novogene provides the software list in bioinformatics analysis pipeline for your reference.</p>
+	<p class="center">
+	<p class="name_fig">Table 5.1 List of software in WGS analyses</p>
+	<div id="tb">
+	<table class="tf2">
+	<tr><th>Analysis</th><th>Software</th><th>Version</th><th>Parameter</th><th>Remarks</th></tr>
+	<tr><td>&nbsp;&nbsp;Quality control </td><td>Fastp</td><td>0.20.0</td><td>-g -q 5 -u 50 -n 15 -l 150</td><td>Quality control</td></tr>
+	
+	<tr><td rowspan=3>&nbsp;&nbsp;Mapping</td><td>BWA</td><td>0.7.17-r1188</td><td>mem -t 4 -k 32 -M</td><td>Mapping clean reads to the reference genome and generation of bam result files.</td></tr>
+	<tr><td>SAMtools</td><td>1.13</td><td>sort -@ 6 -m 2G</td><td>Sorting the bam files.</td></tr>
+	<tr><td>Picard</td><td>1.111</td><td>VALIDATION_STRINGENCY=SILENT</td><td>Merging the bam files from the same sample.</td></tr>
+	
+	
+	
+		
+	<tr><td width="150px">&nbsp;&nbsp;SNP/InDel(Joint Calling) Detection</td><td>GATK</td><td>4.0.5.1</td><td width="200px">HaplotypeCaller --pair-hmm-gap-continuation-penalty 10 -ERC GVCF --genotyping-mode DISCOVERY -stand-call-conf 30</td><td>Detection and filtration of SNPs and InDels.</td></tr>
+		
+	
+	
+	
+	
+	<tr><td width="150px">&nbsp;&nbsp;Variation Annotation</td><td>ANNOVAR</td><td>2015Dec14</td><td>-</td><td>Annotation of the detected variations.</td></tr>
+	
+	</table>
+	</div>
+	</p>
+	
+	
+	<a name="Methods"></a>
+	<h3>5.2 Methods</h3>
+	
+	<p class="paragraph">Click to open the method(pdf), and the corresponding file can be viewed directly.</p>
+	
+	
+	
+	
+	
+		
+			
+				<p class="paragraph">File catalog: <a href="src/method/materials_methods_gatk.SNPINDEL.v1.pdf" title="点击打开" target="_blank">methods</a></p>
+			
+			
+			
+				
+				
+				
+			
+		
+	
+	
+	
+	<a name="Result File Decompression Method and Format Description"></a>
+	<h3>5.3 Result File Decompression Method and Format Description</h3>
+	<br />
+	<table width=95% align="center" id="result_note" cellspacing="0" cellpadding="5" class='tf2'>
+	
+			<tr><th>Compressed.format</th><th>Customer.type</th><th>Uncompressed.method</th></tr>
+	
+			<tr><td rowspan="2">compressed files in the fomat of *.tar:</td><td>Unix/Linux/Mac user</td><td>use tar -xvf *.tar command</td></tr>
+	
+			<tr><td>Windows user</td><td>use uncompressed software such as WinRAR, 7-Zip et al</td></tr>
+	
+			<tr><td rowspan="2">compressed files in the format of *.gz:</td><td>Unix/Linux/Mac user</td><td>use gzip –d *.gz command</td></tr>
+	
+			<tr><td>Windows user</td><td>use uncompressed software such as WinRAR, 7-Zip et al</td></tr>
+	
+			<tr><td rowspan="2">compressed files in the format of *.zip:</td><td>Unix/Linux/Mac user</td><td>use unzip *.zip command</td></tr>
+	
+			<tr><td>Windows user</td><td>use uncompressed software such as WinRAR, 7-Zip et al</td></tr>
+	
+	</table>
+	<br />
+	<br />
+	
+	
+	
+	
+	<table width=95% align="center" id="result_note" cellspacing="0" cellpadding="5" class='tf2'>
+	
+			<tr><th>File.type</th><th>Document.description</th><th>Open.mode</th></tr>
+	
+			<tr><td rowspan="2" >file.readme.pdf</td><td rowspan="2" >Results' construction files that help customers to undersdand all the results files better.</td><td >Windows/Mac user use Adobe Reader/Foxit reader/web browser to open.</td>
+	
+				</tr>
+	
+			<tr><td >Unix/Linux user use evince command to open.</td>
+	
+				</tr>
+	
+			<tr><td rowspan="2" >file.fa/fasta/fna</td><td rowspan="2" >Sequence file, in the fomat of fasta.</td><td >Unix/Linux/Mac user use less or more command can view sequences in the format of *.fasta.</td>
+	
+				</tr>
+	
+			<tr><td >Windows user use editor Editplus/Notepad++ et al.</td>
+	
+				</tr>
+	
+			<tr><td rowspan="2" >file.fq/fastq</td><td rowspan="2" >Reads sequence file, in the fomat of fastq.</td><td >Unix/Linux/Mac user use less or more command.</td>
+	
+				</tr>
+	
+			<tr><td > Windows user use editor Editplus/Notepad++ et al.</td>
+	
+				</tr>
+	
+			<tr><td >file.vcf.gz</td><td >This file contains variants in bgzip-compressed VCF (Variant Call Format) format. VCF is a flexible and extendable line-oriented text format developed by the 1000 Genomes Project for releases of SNVs, INDELs, copy number variants and structural variants.</td><td >Unix/Linux/Mac user use less or more command.</td>
+	
+			</tr>
+	
+			<tr><td rowspan="2" >file.pdf/svg</td><td rowspan="2" >Figure result files; vectorgraph, can be zoom in or out. It is very convenient for customer to view or edit. Using Adobe Illustrator to edit,the picture can be used in paper for publishing.</td><td >Windows/Mac user use Adobe Reader/Foxit reader/web browser to open.</td>
+				
+				</tr>
+	
+				<tr><td >Unix/Linux user use evince command to open.</td>
+			
+				</tr>
+	
+			<tr><td rowspan="2" >file.txt/xls</td><td rowspan="2" >Table result file; files are separated by(Tab).</td><td >Unix/Linux/Mac user use less or more command.</td>
+	
+				</tr>
+	
+			<tr><td >Windows user use editor Editplus/Notepad++ et al, also can use Microsoft Excel to open.</td>
+	
+				</tr>
+	
+			<tr><td >file.bam</td><td >BAM is compressed format for SAM file which contains sequence alignment information.</td><td >Unix/Linux/Mac user use samtools software.</td>
+	
+			</tr>
+	
+			<tr><td >file.bai</td><td >Index file for bam.</td><td >No need to open, put it in the same directory with bam file when manipulate bam.</td>
+	
+			</tr>
+	
+			<tr><td rowspan="2" >file.gff/gtf</td><td rowspan="2" >GFF/GTF is general feature format.</td><td >Unix/Linux/Mac user use less or more command.</td>
+	
+				</tr>
+	
+			<tr><td >Windows user use editor Editplus/Notepad++ et al.</td>
+	
+			</tr>
+	
+			<tr><td rowspan="2" >file.png</td><td rowspan="2" >Image file, bitmap, loseless compression.</td><td >Unix/Linux/Mac user use display command.</td>
+	
+				</tr>
+	
+			<tr><td >Windows user use Image browser，such as photoshop et al.</td>
+	
+			</tr>
+	
+	</table>
+	
+	<br />
+	<br />
+	
+	</div>
+	
+	<br />
+	<table width=95% align="center" id="result_note" cellspacing="0" cellpadding="5" class='tf2'>
+
+
+
+
+<!----------------------------------------References----------------------------------------->
+<div id="page">
+<p class="head">
+<a href="#home" title = "Home"></a>
+<hr />
+</p><br />
+<h2>6 References</h2>
+<p class="ref">
+
+
+
+<p class="paragraph">Cock, P.J.A., Fields, et al. The Sanger FASTQ file format for sequences with quality scores, and the Solexa/Illumina FASTQ variants. Nucleic Acids Research. 2010, 38(6):1767-1771.</p>
+
+
+
+<p class="paragraph">DePristo M A, Banks E, Poplin R, et al. A framework for variation discovery and genotyping using next-generation DNA sequencing data. Nature Genetics. 2011, 43(5):491-498.</p>
+
+
+
+<p class="paragraph">Krzywinski M, Schein J, Birol I, et al. Circos: an information aesthetic for comparative genomics. Genome Research. 2009, 19(9):1639-1645.</p>
+
+
+
+<p class="paragraph">Li H, Durbin R. Fast and accurate short read alignment with Burrows-Wheeler transform. Bioinformatics. 2009, 25(14):1754-1760.</p>
+
+
+
+<p class="paragraph">Li H, Handsaker B, Wysoker A, et al. The Sequence Alignment/Map format and SAMtools. Bioinformatics. 2009, 25(16):2078-2079.</p>
+
+
+
+<p class="paragraph">Shifu Chen, Yanqing Zhou, Yaru Chen and Jia Gu.(2018). fastp: an ultra-fast all-in-one FASTQ preprocessor, Bioinformatics, i884-i890.</p>
+
+
+
+<p class="paragraph">Wang K, Li M, Hakonarson H. ANNOVAR: functional annotation of genetic variants from high-throughput sequencing data. Nucleic Acids Research. 2010, 38(16):e164.</p>
+
+
+
+</p>
+</div>
+</body>
+</html>
+

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>data tables</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="../css/datatables.css" />
+    <link rel="stylesheet" type="text/css" href="../css/buttons.dataTables.min.css" />
+</head>
+<body>
+        <table id="nopaging_table" class="display" style="width: 100%; height: 50px; text-align: center; margin: auto;font-size: 14px;font-family: 黑体-简">
+        <thead>
+            <tr style='background-color: #036EB8;color: #FFFFFF'><th>Sample</th><th>tian</th><th>tianshu</th><th>songshu</th><th>tianzi</th></tr>
+        </thead>
+        <tbody>
+			<tr style'background-color: #f1f5fb'><td>Total</td><td>3,558,997</td><td>3,583,845</td><td>3,599,551</td><td>3,612,785</td></tr>
+			<tr style'background-color: #e3eff8'><td>Het</td><td>2,001,831</td><td>2,037,596</td><td>2,080,351</td><td>2,086,897</td></tr>
+			<tr style'background-color: #f1f5fb'><td>Hom</td><td>1,557,166</td><td>1,546,249</td><td>1,519,200</td><td>1,525,888</td></tr>
+			<tr style'background-color: #e3eff8'><td>ts</td><td>2,397,316</td><td>2,415,129</td><td>2,423,208</td><td>2,432,481</td></tr>
+			<tr style'background-color: #f1f5fb'><td>tv</td><td>1,161,681</td><td>1,168,716</td><td>1,176,343</td><td>1,180,304</td></tr>
+			<tr style'background-color: #e3eff8'><td>ts/tv</td><td>2.06</td><td>2.07</td><td>2.06</td><td>2.06</td></tr>
+			<tr style'background-color: #f1f5fb'><td>dbSNP percentage</td><td>3535613(99.34%)</td><td>3560898(99.36%)</td><td>3575987(99.35%)</td><td>3589103(99.34%)</td></tr>
+			<tr style'background-color: #e3eff8'><td>novel</td><td>23,384</td><td>22,947</td><td>23,564</td><td>23,682</td></tr>
+			<tr style'background-color: #f1f5fb'><td>novel_ts</td><td>14,461</td><td>14,125</td><td>14,454</td><td>14,506</td></tr>
+			<tr style'background-color: #e3eff8'><td>novel_tv</td><td>8,923</td><td>8,822</td><td>9,110</td><td>9,176</td></tr>
+			<tr style'background-color: #f1f5fb'><td>novel_ts/tv</td><td>1.62</td><td>1.60</td><td>1.59</td><td>1.58</td></tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <script type="text/javascript" src="../js/datatables.js"></script>
+    <script type="text/javascript" src="../js/vfs_fonts.js"></script>
+    <script type="text/javascript" src="../js/buttons.colVis.min.js"></script>
+    <script type="text/javascript" src="../js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var table = $('#nopaging_table').DataTable( {
+                scrollX: true,
+                paging: false,
+                scrollY: 420,
+                sorting: true,
+                'order': [],
+                searching: false,
+                fixedHeader: {
+                    header: false,
+                    //footer: true
+                },
+                fixedColumns: {'leftColumns':1},
+                colReorder: true,
+                dom: 'Bfrtip',
+                buttons: [
+                    'colvis','excel'
+                ],
+                language:{
+                    'info': '',
+                    'sZeroRecords' : '没有找到数据',
+                    "oPaginate" : {
+                        "sFirst" : "第一页",
+                        "sPrevious" : "上一页",
+                        "sNext" : "下一页",
+                        "sLast" : "最后一页"
+                    }
+                }
+            } );
+        } );
+    </script>
+</body>
+</html>

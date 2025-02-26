@@ -1,0 +1,16 @@
+Analysis	Software	Version	Remarks
+Mapping	Bowtie2	v2.3.4.3	Mapping to a reference genome.
+Expression Quantification	FeatureCounts	v1.5.0-p3	
+Novel Gene Prediction	Rockhopper	v2.0.3	
+SNP detection	GATK4	v4.1.0.0	
+SNPEff	v4.3q	
+Differential Expression Analysis	DESeq2	1.20.0	For sample with bio-replicate using DESeq2,samples without bio-replicate using EdgeR.
+edgeR	3.24.3
+GO Enrichment	clusterProfiler	v3.8.1	
+KEGG Enrichment	clusterProfiler	v3.8.1	
+GSEA Analysis	gsea	v3.0	
+Operon and TSS/TTS Prediction	Rockhopper	v2.0.3	
+SD Sequence prediction	RBSfinder	v1.0	
+Rho-independent terminator Sequence Prediction	TranstermHP	v2.0.9	
+sRNA Secondary Structure Prediction	RNAfold	v2.0	
+Targeted Gene Prediction	IntaRNA	v1.2.5	

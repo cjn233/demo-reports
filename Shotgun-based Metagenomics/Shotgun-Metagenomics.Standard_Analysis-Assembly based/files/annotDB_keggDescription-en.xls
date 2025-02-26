@@ -1,0 +1,12 @@
+Database	Category	Description
+KEGG	level1	6 sections
+KEGG	level2	43 domains
+KEGG	level3	KEGG pathways (e.g. ko00010)
+KEGG	KO	KEGG ortholog group (e.g. K00010)
+KEGG	ec	KEGG EC Number(e.g. EC 3.4.1.1)
+eggNOG	level1	24 Functions
+eggNOG	level2	ortholog group description
+eggNOG	og	ortholog group ID (e.g. ENOG410YU5S)
+CAZy	level1	6 Functions
+CAZy	level2	CAZy family (e.g. GT51)
+CAZy	level3	EC number [e.g. murein polymerase (EC 2.4.1.129)]

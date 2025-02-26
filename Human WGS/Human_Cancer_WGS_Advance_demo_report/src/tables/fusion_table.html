@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>data tables</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="../css/datatables.css" />
+    <link rel="stylesheet" type="text/css" href="../css/buttons.dataTables.min.css" />
+</head>
+<body>
+        <table id="nopaging_table" class="display" style="width: 100%; height: 50px; text-align: center; margin: auto;font-size: 14px;font-family: 黑体-简">
+        <thead>
+            <tr style='background-color: #036EB8;color: #FFFFFF'><th>Sample</th><th>CHR1</th><th>POS1</th><th>ORI1</th><th>CHR2</th><th>POS2</th><th>ORI2</th><th>TYPE</th><th>software</th><th>SU</th><th>PE</th><th>SR</th><th>LeftGene|RightGene</th><th>AAChange</th><th>SegmentDuplication</th></tr>
+        </thead>
+        <tbody>
+			<tr style'background-color: #f1f5fb'><td>cancer3</td><td>chr4</td><td>97,958,399</td><td>+</td><td>chr2</td><td>105,015,796</td><td>+</td><td>CTX</td><td>DELLY</td><td>3</td><td>0</td><td>3</td><td>STPG2|LOC102724691</td><td>NM_174952|STPG2:Intron7:13881/28273-NR_110603|LOC102724691:Intron1:22658/93377</td><td>0</td></tr>
+			<tr style'background-color: #e3eff8'><td>cancer3</td><td>chr7</td><td>1,983,155</td><td>-</td><td>chr3</td><td>61,665,474</td><td>+</td><td>CTX</td><td>DELLY</td><td>2</td><td>0</td><td>2</td><td>MAD1L1|PTPRG</td><td>NM_001013836|MAD1L1:Intron14:18910/21524-NM_002841|PTPRG:Intron1:103103/186506</td><td>0</td></tr>
+			<tr style'background-color: #f1f5fb'><td>cancer3</td><td>chr7</td><td>112,307,534</td><td>+</td><td>chr4</td><td>94,780,874</td><td>+</td><td>CTX</td><td>DELLY</td><td>3</td><td>0</td><td>3</td><td>ZNF277|BMPR1B</td><td>NM_021994|ZNF277:Intron4:11224/21871-NM_001203|BMPR1B:Intron1:22807/117763</td><td>0</td></tr>
+			<tr style'background-color: #e3eff8'><td>cancer3</td><td>chr9</td><td>109,657,413</td><td>-</td><td>chr3</td><td>158,194,096</td><td>-</td><td>CTX</td><td>DELLY</td><td>3</td><td>0</td><td>3</td><td>PALM2|RSRC1</td><td>NM_001037293|PALM2:Intron1:16548/139622-NM_001271838|RSRC1:Intron3:70106/79081</td><td>0</td></tr>
+			<tr style'background-color: #f1f5fb'><td>cancer3</td><td>chr9</td><td>110,492,603</td><td>-</td><td>chr4</td><td>154,302,787</td><td>-</td><td>CTX</td><td>DELLY</td><td>2</td><td>0</td><td>2</td><td>SVEP1|DCHS2</td><td>NM_153366|SVEP1:Intron8:4212/7036-NM_017639|DCHS2:Intron17:1882/5961</td><td>0</td></tr>
+			<tr style'background-color: #e3eff8'><td>cancer3</td><td>chr10</td><td>3,103,174</td><td>+</td><td>chr3</td><td>47,506,831</td><td>+</td><td>CTX</td><td>DELLY</td><td>12</td><td>6</td><td>6</td><td>PFKP|ELP6</td><td>NM_002627|PFKP:Intron4:1621/2225-NM_001031703|ELP6:Intron3:3353/5736</td><td>0</td></tr>
+			<tr style'background-color: #f1f5fb'><td>cancer3</td><td>chr10</td><td>6,623,700</td><td>+</td><td>chr8</td><td>95,355,096</td><td>+</td><td>CTX</td><td>DELLY</td><td>14</td><td>8</td><td>6</td><td>LOC101928150|C8orf37-AS1</td><td>NR_120634|LOC101928150:Intron3:1839/3455-NR_038202|C8orf37-AS1:Intron1:86207/163736</td><td>0</td></tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <script type="text/javascript" src="../js/datatables.js"></script>
+    <script type="text/javascript" src="../js/vfs_fonts.js"></script>
+    <script type="text/javascript" src="../js/buttons.colVis.min.js"></script>
+    <script type="text/javascript" src="../js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var table = $('#nopaging_table').DataTable( {
+                scrollX: true,
+                paging: false,
+                scrollY: 330,
+                sorting: true,
+                'order': [],
+                searching: false,
+                fixedHeader: {
+                    header: false,
+                    //footer: true
+                },
+                fixedColumns: {'leftColumns':1},
+                colReorder: true,
+                dom: 'Bfrtip',
+                buttons: [
+                    'colvis','excel'
+                ],
+                language:{
+                    'info': '',
+                    'sZeroRecords' : '没有找到数据',
+                    "oPaginate" : {
+                        "sFirst" : "第一页",
+                        "sPrevious" : "上一页",
+                        "sNext" : "下一页",
+                        "sLast" : "最后一页"
+                    }
+                }
+            } );
+        } );
+    </script>
+</body>
+</html>

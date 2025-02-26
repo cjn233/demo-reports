@@ -1,0 +1,2165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" >
+<html>
+
+<head>
+
+<TITLE> RNAseq analysis report-siRNA</TITLE>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+
+<link rel="stylesheet" href="src/css/jquery-ui.css" />
+
+<link rel="stylesheet" href="src/css/bootstrap-4.3.1.min.css" />
+
+<link rel="stylesheet" href="src/css/jquery.tocify.css" />
+
+<link rel="stylesheet" href="src/css/style.css"/>
+
+<link rel="stylesheet" href="src/css/base.css"/>
+
+<link rel="stylesheet" href="src/css/gallery.css"/>
+
+<script src="src/js/jquery-3.3.1.min.js" type="text/javascript"></script>
+
+<script src="src/js/jquery-ui.min.js" type="text/javascript"></script>
+
+<script src="src/js/jquery.tocify.min.js" type="text/javascript"></script>
+
+<script src="src/js/bootstrap-4.3.1.min.js" type="text/javascript"></script>
+
+<script src="src/js/scrollTop.js" type="text/javascript"></script>
+
+
+
+<script type="text/javascript">
+
+	$(function () {
+
+		var options = {
+
+			selectors: "h2,h3,h4",
+
+			theme: "bootstrap",
+
+			scrollTo: "60"
+
+		};
+
+		var toc = $("#toc").tocify(options).data("toc-tocify");
+
+	});
+
+</script>
+
+
+
+
+
+<script type="text/javascript">
+
+function trans(img_div_id) {
+
+img_div = $("#" + img_div_id)
+
+img = $("#" + img_div_id + " img").first();
+
+if (img_div.hasClass("fullscreen-div")) {
+
+img_div.removeClass("fullscreen-div");
+
+img.removeClass("fullscreen-img");
+
+}
+
+else {
+
+img_div.addClass("fullscreen-div");
+
+img.addClass("fullscreen-img");
+
+}
+
+}
+
+
+
+function filter_display() {
+
+return $(this).css("display") != "none";
+
+}
+
+
+
+function show_default() {
+
+var list_group_id = "#" + $(this).attr("id");
+
+if ($(list_group_id + " a.active").css("display") == "none") {
+
+var list_tab = $(list_group_id + " a.active");
+
+var pan_id = list_tab.attr("href");
+
+$(pan_id).removeClass("active show");
+
+list_tab.removeClass("active");
+
+}
+
+if ($(list_group_id + " a.active").filter(filter_display).length == 0) {
+
+$(list_group_id + " a").filter(filter_display).first().tab("show");
+
+}
+
+}
+
+$.fn.show_default = show_default
+
+
+
+function next(botton_id) {
+
+var present_tab = $("#" + botton_id.replace("_button_next", "_list-tab") + " .active").first();
+
+while (present_tab.next().length == 1) {
+
+if (present_tab.next().css("display") != "none") {
+
+present_tab.next().tab("show");
+
+break;
+
+}
+
+else {
+
+present_tab = present_tab.next();
+
+}
+
+}
+
+
+
+}
+
+function prev(botton_id) {
+
+var present_tab = $("#" + botton_id.replace("_button_prev", "_list-tab") + " .active").first();
+
+while (present_tab.prev().length == 1) {
+
+if (present_tab.prev().css("display") != "none") {
+
+present_tab.prev().tab("show");
+
+break;
+
+}
+
+else {
+
+present_tab = present_tab.prev();
+
+}
+
+}
+
+
+
+
+
+}
+
+
+
+$(document).ready(function () {
+
+$(".form-control").on("keyup", function () {
+
+var value = $(this).val().toLowerCase();
+
+var input_box_id = "#" + $(this).attr("id");
+
+var list_group_id = input_box_id.replace("_InputList", "_list-tab");
+
+$(list_group_id + " a").filter(function () {
+
+$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+
+});
+
+$(list_group_id).show_default();
+
+});
+
+$(".list-group").each(show_default);
+
+});
+
+
+
+</script>
+
+
+
+
+
+
+
+</head>
+
+
+
+<body>
+
+
+
+<div id="toc" class="tocify">
+
+</div>
+
+
+
+
+
+	<div style="position:fixed; top:0; left:0; width:100%; z-index:1000;">
+
+		<table width="100%" height="80px" border="0" cellpadding="5" cellspacing="0"
+
+			style="background:#F3F3F3; border-bottom:1px solid #eee;border-top: none;background-image:-moz-linear-gradient(top,#EEEEEE,#FFFFFF); background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0,#EEEEEE), color-stop(1,#FFFFFF));filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#EEEEEE', endColorstr='#FFFFFF', GradientType='0')">
+
+			<tr height="0%">
+
+				<td width='0%'></td>
+
+				<td><img src="src/images/logo_head.png"></td>
+
+				<td>
+
+					<div style="margin:4px;#DCDCDC;height:4px"></div>
+
+				</td>
+
+				<td width="0%"></td>
+
+				<td width="40%"></td>
+
+				<td width="20%"
+
+					style="text-align:right;padding:0px;margin:0px;color:black;font-size:14px;font-weight:50;">
+
+					
+
+					<br><a href="mailto:op-rna@novogene.com" target="black"
+
+						style="text-decoration:none;color:black;font-size:14px;font-weight:50;">
+
+						
+
+						<a></td>
+
+				<td width="1%"></td>
+
+			</tr>
+
+		</table>
+
+	</div>
+
+</div>
+
+<!--------------------------标题---------------------------------->
+
+<div id="main"> 
+
+</br><h1>Virus siRNA Standard Analysis Report</h1></br>
+
+<table class="gy">
+
+<thead><tr><th>Contract Information</th><th>Contract Content</th></tr></thead>
+
+<tbody>
+
+<tr>
+
+
+
+<td>Contract Name</td>
+
+
+
+<td>XXXXXXXXXXXXXX</td>
+
+
+
+</tr>
+
+
+<tr>
+
+
+
+<td>Contract ID</td>
+
+
+
+<td>XXXXXXXXXXXXXX</td>
+
+
+
+</tr>
+
+
+
+<tr>
+
+
+
+<td>Batch ID</td>
+
+
+
+<td>PXXXSCXXXXXXXX-01-01</td>
+
+
+
+</tr>
+
+
+
+<tr>
+
+
+
+<td>Report Time</td>
+
+
+
+<td>2019-10-30</td>
+
+
+
+</tr>
+
+
+
+</tbody></table>
+
+<br /><br />
+
+  <!----------------------------------------建库测序流程----------------------------------------->
+
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left" src="src/images/logo.png" /></a> <a name="建库测序流程">Novogene Corporation Inc.</a>
+    <hr />
+    </p>
+    <h2>Small RNA Sequencing Project Workflow</h2>
+    <p class="paragraph">Small RNA is a special kind of molecule in organisms that induces gene silencing and plays an important role in the regulation of cell growth, gene transcription, and translation. Small RNA digitalization analysis, based on mechanism of SBS (sequencing by synthesis), has the benefits of small sample requirements, high throughput, high accuracy, and a simple automatic platform.</p>
+    <p class="paragraph">Next-generation sequencing can obtain millions of small RNA sequence tags in one shot, comprehensively identifying small RNAs of a certain species under certain status, predicting novel miRNA and giving differential expression profile between samples. This expression can be a powerful tool for researching small RNA functions.</p>
+    <p class="paragraph">Small RNA sequencing projects are carried out as follows:</p>
+	<center>
+      <img  src="src/images/exp_library.png" />
+    </center>
+    
+
+  
+  <!----------------------------------------生物信息分析流程----------------------------------------->
+
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left" src="src/images/logo.png" /></a> <a name="生物信息分析流程">Novogene Corporation Inc.</a>
+    <hr />
+    </p>
+    <h2 id="pipline">1 Analysis Pipeline</h2>
+    <p class="center"> 
+    <p class="paragraph">Considering that data is obtained from plant with reference genome, the small RNA bioinformatic analysis process is shown as follows:</p>
+    <div style="text-align:center"> <img src="src/images/ref_sirna.png" /> </div>
+    
+    </p>
+  
+  
+  <!-------------------------------------------- 原始序列数据 --------------------------------------->
+
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left" src="src/images/logo.png" /></a> <a name="原始序列数据">Novogene Corporation Inc.</a>
+    <hr />
+    </p>
+    <h2>2 Project Result</h2>
+    <h3 id="1">2.1 Raw Data</h3>
+    <p class="paragraph">Original image data file from high-throughput sequencing (like Illumina) is transformed into sequenced reads (called Raw Data or Raw Reads) by CASAVA base recognition (Base Calling). Raw data are stored in FASTQ(fq) format files, which contain sequences of reads and corresponding base quality. Each read has four descriptive sentences in as follow:</p>
+    <p class="paragraph"><b>FASTQ file</b>:</p>
+	<div class="bs-docs-qa">
+	<p class="tremark">
+    <p class="seq">@HWI-ST1276:71:C1162ACXX:1:1101:1208:2458 1:N:0:CGATGT&nbsp;&nbsp;&nbsp;<br />
+      NAAGAACACGTTCGGTCACCTCAGCACACTTGTGAATGTCATGGGATCCAT<br />
+      +<br />
+      #55???BBBBB?BA@DEEFFCFFHHFFCFFHHHHHHHFAE0ECFFD/AEHH<br />
+    </p>
+	</p>
+	</div>
+    <p class="paragraph">(1) Line 1: the at sign (@) followed by sequence identifiers and optional description info (such as FASTA title line).</P>
+    <p class="paragraph">(2) Line 2: base sequences (raw read, A, G, C, and T).</P>
+	<p class="paragraph">(3) Line 3: the plus sign (+) optionally followed by the same Illumina sequence identifiers and description information as Line 1.</P>
+	<p class="paragraph">(4) Line 4: the quality values for each base, corresponding to the data in Line 2.</P>
+	<p class="paragraph"><b>Illumina Sequence Identifiers</b>:</p>
+    <p class="center">
+    <table class="gy">
+       <tr>
+        <th>ID Symbol</th>
+        <th>meaning</th>
+      </tr>
+	  <tr>
+        <td>HWI-ST1276</td>
+        <td>Instrument – unique identifier of the sequencer </td>
+      </tr>
+      <tr>
+        <td>71</td>
+        <td>run number – Run number on instrument</td>
+      </tr>
+      <tr>
+        <td>C1162ACXX</td>
+        <td>FlowCell ID – ID of flowcell</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>LaneNumber – positive integer</td>
+      </tr>
+      <tr>
+        <td>1101</td>
+        <td>TileNumber – positive integer</td>
+      </tr>
+      <tr>
+        <td>1208</td>
+        <td>X – x coordinate of the spot. Integer which can be negative</td>
+      </tr>
+      <tr>
+        <td>2458</td>
+        <td>Y – y coordinate of the spot. Integer which can be negative</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>ReadNumber - 1 for single reads; 1 or 2 for paired ends</td>
+      </tr>
+      <tr>
+        <td>N</td>
+        <td>whether it is filtered - NB :Y if the read is filtered out, not in the delivered fastq file, N otherwise</td>
+      </tr>
+      <tr>
+        <td>0</td>
+        <td>control number - 0 when none of the control bits are on, otherwise it is an even number</td>
+      </tr>
+      <tr>
+        <td>CGATGT</td>
+        <td>Illumina index sequences</td>
+      </tr>
+    </table>
+    </p>
+    <p class="paragraph">The details of sequencing identifier of Illumina are as follows:</p>
+	<p class="paragraph">(1) HWI-ST1276:71 HWI-ST1276, Instrument - unique identifier of the sequencer; 71, run number - Run number on instrument</p>
+	<p class="paragraph">(2) C1162ACXX:1:1101:1208:2458 means the coordinate of read on C1162ACXX (Flowcell ID) flowcell, line 1, 1101 tile is(x=1208, y=2458)</p>
+	<p class="paragraph">(3) 1:N:0:CGATGT the first number is 1 or 2, 1 means single reads or the first read of paired ends, 2 means the second of paired ends; the second letter means whether reads is adjusted(Y means yes, N means no); the third number represent the number of Control Bits in sequence; six bases on the fourth place is Illumina index sequence.</p>
+    <br />
+	<p class="paragraph">The relationship of Phred quality scores Q and base-calling error which were predicted by Illumina Casava 1.8 version Phred quality scores Q were logarithmically linked to base-calling error e :</p>
+    <p class="center">
+    <table class='gy'>
+      <tr>
+        <th>Error Rate</th>
+        <th>Quality Scores</th>
+        <th>ASCII code</th>
+      </tr>
+      <tr>
+        <td>5%</td>
+        <td>13</td>
+        <td>.</td>
+      </tr>
+      <tr>
+        <td>1%</td>
+        <td>20</td>
+        <td>5</td>
+      </tr>
+      <tr>
+        <td>0.1%</td>
+        <td>30</td>
+        <td>?</td>
+      </tr>
+      <tr>
+        <td>0.01%</td>
+        <td>40</td>
+        <td>I</td>
+      </tr>
+    </table>
+    </p>
+    <br/>
+  
+  
+  <!----------------------------------------- Sequencing data quality evaluation --------------------------------------> 
+  <!----------------------------------------- 2测序错误率分布检查 -------------------------------------->
+  
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left" src="src/images/logo.png" /></a> <a name="Evaluation of sequencing data quality ">Novogene Corporation Inc.</a>
+    <hr />
+    </p>
+    <h3 id="2">2.2 Data Quality Control</h3>
+    
+  
+  <!----------------------------------------- 2.1测序数据质量情况汇总 -------------------------------------->
+    <h4 id="2">2.2.1 Data Quality summary</h4>
+    </p>
+	<p class="paragraph"><b> Result Directory: Results/2.QualityControl/2.2.RawData_Stat/RawData_Stat.xls</b>:</p>
+    <br />
+   <p class="center">Table 2.2.1 Summary of the Data Production </p>
+    <p class="center">
+    <table class="gy">
+      <tr>
+        <th>Sample</th>
+        <th>Reads</th>
+        <th>Bases</th>
+        <th>Error rate</th>
+        <th>Q20</th>
+        <th>Q30</th>
+        <th>GC content</th>
+      </tr>
+      
+      <tr>
+        <td>sample1</td>
+        <td>44492834</td>
+        <td>2.225G</td>
+        <td>0.01%</td>
+        <td>96.49%</td>
+        <td>94.13%</td>
+        <td>48.45%</td>
+      </tr>
+      
+      <tr>
+        <td>sample2</td>
+        <td>29146539</td>
+        <td>1.457G</td>
+        <td>0.02%</td>
+        <td>95.27%</td>
+        <td>90.91%</td>
+        <td>47.74%</td>
+      </tr>
+      
+      <tr>
+        <td>sample3</td>
+        <td>28430337</td>
+        <td>1.422G</td>
+        <td>0.02%</td>
+        <td>95.07%</td>
+        <td>90.49%</td>
+        <td>47.92%</td>
+      </tr>
+      
+      <tr>
+        <td>sample4</td>
+        <td>28535500</td>
+        <td>1.427G</td>
+        <td>0.02%</td>
+        <td>95.46%</td>
+        <td>91.23%</td>
+        <td>48.24%</td>
+      </tr>
+      
+      <tr>
+        <td>sample5</td>
+        <td>27423009</td>
+        <td>1.371G</td>
+        <td>0.02%</td>
+        <td>94.74%</td>
+        <td>89.88%</td>
+        <td>48.90%</td>
+      </tr>
+      
+      <tr>
+        <td>sample6</td>
+        <td>29238591</td>
+        <td>1.462G</td>
+        <td>0.02%</td>
+        <td>95.41%</td>
+        <td>91.28%</td>
+        <td>48.17%</td>
+      </tr>
+      
+    </table>
+    </p>
+    <p class="tremark">
+      (1) Sample: Sample ID<br />
+      (2) Reads: Statistics of the original sequence data<br />
+      (3) Bases: Sequence number multiplied the length of the sequence, expressed in gigabase pairs (Gbp)<br />
+      (4) Error rate: Sequencing error rate<br />
+      (5) Q20: Percentage of bases whose Phred values exceed 20<br />
+      (6) Q30: Percentage of bases whose Phred values exceed 30<br />
+      (7) GC content: G and C bases as a percentage of all bases</p>
+    <br/>
+  
+
+	
+  <!----------------------------------------- 2.2测序数据过滤 -------------------------------------->
+  
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left" src="src/images/logo.png" /></a> <a name="测序数据过滤">Novogene Corporation Inc.</a>
+    <hr />
+    </p>
+    <h4>2.2.2 Data Filtering </h4>
+    <p class="paragraph">The sequenced reads/raw reads often contain low quality reads or reads with adapters, which will negatively affect the quality of downstream analysis. To avoid this, it's necessary to filter raw reads to get clean reads.</p>
+    <p class="paragraph">Raw reads filtering is as follows.<b> Result Directory: Results/2.QualityControl/2.3.ReadsClassification/clean_process_overview.xls</b>:</p>
+	<center>
+      <img  src="src/images/raw_filter.png" />
+    </center>
+	<p class="paragraph"><b>Data filtering was performed as follows</b>:</p>
+    <p class="paragraph">(1)Reads in which more than 50% of bases had a Qphred less than or equal to 5 were discarded.</p>
+    <!-- &lt; 转义小于号-->
+    <p class="paragraph">(2)Reads in which N accounted for more than 10% were discarded. (N indicates that base information was indeterminable)</p>
+    <p class="paragraph">(3)Reads with 5' primer contamination were discarded.</p>
+    <p class="paragraph">(4)Reads lacking a 3' primer or insert tag were discarded.</p>
+    <p class="paragraph">(5)The 3' primer sequence was trimmed.</p>
+    <p class="paragraph">(6)Reads with poly(A), poly(T), poly(G), or poly(C) tails were discarded.</p>
+    <br />
+    <p class="paragraph"> <b>Small RNA adapter sequences</b>:<br />
+	<div class="bs-docs-qa">
+    <p class="seq">RNA 5’ Adapter (RA5), part:<br />
+      5’-GTTCAGAGTTCTACAGTCCGACGATC-3’<br />
+      RNA 3’ Adapter (RA3), p<br />art:<br />
+      5’-AGATCGGAAGAGCACACGTCT-3’</p>
+	</div>
+<p class="center">Table 2.2.2 Data filtering summary</p>
+    <p class="center">
+
+    <table class="gy">
+      <tr>
+        <th>Sample</th>
+        <th>total reads</th>
+        <th>N% > 10%</th>
+        <th>low quality</th>
+        <th>5' adapter contamine</th>
+        <th>3' adapter null or insert null</th>
+        <th>with ployA/T/G/C</th>
+        <th>clean reads</th>
+      </tr>
+      
+      <tr>
+        <td>sample1</td>
+        <td>44492834 (100.00%)</td>
+        <td>1060 (0.00%)</td>
+        <td>703085 (1.58%)</td>
+        <td>19376 (0.04%)</td>
+        <td>353590 (0.79%)</td>
+        <td>8860 (0.02%)</td>
+        <td>43406863 (97.56%)</td>
+      </tr>
+      
+      <tr>
+        <td>sample2</td>
+        <td>29146539 (100.00%)</td>
+        <td>174 (0.00%)</td>
+        <td>450235 (1.54%)</td>
+        <td>8906 (0.03%)</td>
+        <td>381323 (1.31%)</td>
+        <td>14332 (0.05%)</td>
+        <td>28291569 (97.07%)</td>
+      </tr>
+      
+      <tr>
+        <td>sample3</td>
+        <td>28430337 (100.00%)</td>
+        <td>198 (0.00%)</td>
+        <td>458513 (1.61%)</td>
+        <td>10521 (0.04%)</td>
+        <td>407871 (1.43%)</td>
+        <td>14315 (0.05%)</td>
+        <td>27538919 (96.86%)</td>
+      </tr>
+      
+      <tr>
+        <td>sample4</td>
+        <td>28535500 (100.00%)</td>
+        <td>191 (0.00%)</td>
+        <td>412059 (1.44%)</td>
+        <td>7609 (0.03%)</td>
+        <td>396642 (1.39%)</td>
+        <td>9664 (0.03%)</td>
+        <td>27709335 (97.10%)</td>
+      </tr>
+      
+      <tr>
+        <td>sample5</td>
+        <td>27423009 (100.00%)</td>
+        <td>190 (0.00%)</td>
+        <td>491548 (1.79%)</td>
+        <td>9192 (0.03%)</td>
+        <td>328533 (1.20%)</td>
+        <td>12325 (0.04%)</td>
+        <td>26581221 (96.93%)</td>
+      </tr>
+      
+      <tr>
+        <td>sample6</td>
+        <td>29238591 (100.00%)</td>
+        <td>210 (0.00%)</td>
+        <td>459961 (1.57%)</td>
+        <td>5105 (0.02%)</td>
+        <td>352230 (1.20%)</td>
+        <td>8854 (0.03%)</td>
+        <td>28412231 (97.17%)</td>
+      </tr>
+      
+    </table>
+
+    </p>
+    <p class="tremark">
+      (1) Sample: Sample ID<br />
+      (2) Total Reads: Total sequenced reads<br />
+      (3) N% > 10%: Percentage of reads with N > 10%<br />
+      (4) Low Quality: Percentage of low quality reads<br />
+      (5) 5' Adapter Contamination: Percentage of reads with 5' adapter contamination<br />
+      (6) 3' Adapter or Insert Missing: Percentage of reads without a 3' adapter or insert <br />
+      (7) With Poly(A)/(T)/(G)/(C) : Percentage of reads with poly(A), poly(T), poly(G), or poly(C) tails<br />
+      (8) Clean Reads: Total clean reads followed by clean reads as a percentage of raw reads</p>
+
+  
+  <!----------------------------------------- 2.3 sRNA长度筛选 -------------------------------------->
+
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left" src="src/images/logo.png" /></a> <a name="sRNA长度筛选">Novogene Corporation Inc.</a>
+    <hr />
+    </p>
+    <h4>2.2.3 Length distribution</h4>
+    <p class="paragraph">The length of sRNA typically ranges from 18 to 40 nucleotides(nt). Analyzing length distribution helps determining the composition of small RNA samples. For example, miRNA is normally 21 or 22 nt, siRNA is 24 nt, and piRNA is between 28 and 30 nt.</p>
+    <p class="paragraph">Length distribution varies between plants and animals. In plants, there are often small RNA peaks at 21 or 24 nt, whereas peaks at 22 nt are normal in animals.<b> Result Directory: Results/2.QualityControl/2.4.Length_Filter/total_uniq.xls</b>.</p>
+	<br />
+<p class="center">Table 2.2.3 Type and quantity of sRNA</p>
+    <p class="center">
+    <table class="gy">
+      <tr>
+        <th>Sample</th>
+        <th>Total reads</th>
+        <th>Total bases (bp)</th>
+        <th>Uniq reads</th>
+        <th>Uniq bases (bp)</th>
+      </tr>
+      
+      <tr>
+        <td>sample1</td>
+        <td>38689553</td>
+        <td>1026415752</td>
+        <td>1662647</td>
+        <td>39013525</td>
+      </tr>
+      
+      <tr>
+        <td>sample2</td>
+        <td>27296224</td>
+        <td>736486933</td>
+        <td>1928436</td>
+        <td>47990336</td>
+      </tr>
+      
+      <tr>
+        <td>sample3</td>
+        <td>26334565</td>
+        <td>694771266</td>
+        <td>2126628</td>
+        <td>52165589</td>
+      </tr>
+      
+      <tr>
+        <td>sample4</td>
+        <td>26255731</td>
+        <td>713314612</td>
+        <td>2162393</td>
+        <td>52862437</td>
+      </tr>
+      
+      <tr>
+        <td>sample5</td>
+        <td>23900127</td>
+        <td>617615571</td>
+        <td>2501248</td>
+        <td>59301693</td>
+      </tr>
+      
+      <tr>
+        <td>sample6</td>
+        <td>27384278</td>
+        <td>748996442</td>
+        <td>1841602</td>
+        <td>45063926</td>
+      </tr>
+      
+    </table>
+    </p>
+	<p class="tremark">
+      (1) Sample: Sample ID<br />
+      (2) Total reads: Total number of sRNA reads<br />
+      (3) Total bases (bp): Total reads multiplied by sequence length<br />
+      (4) Unique reads: Types of sRNA<br />
+      (5) Unique bases (bp): Unique reads multiplied by sequence length</p>
+    <br />
+    <!--center><img class="normal1" src="src/images/seq_len_distribution.png" /></center-->
+    <p class="center">
+    <div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_lenFilter_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure_lenFilter_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure_lenFilter_pane_sample1" 
+	role="tabpanel" aria-labelledby="gallery_figure_lenFilter_list_sample1"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample1_seq_len_distribution.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_lenFilter_pane_sample2" 
+	role="tabpanel" aria-labelledby="gallery_figure_lenFilter_list_sample2"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample2_seq_len_distribution.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_lenFilter_pane_sample3" 
+	role="tabpanel" aria-labelledby="gallery_figure_lenFilter_list_sample3"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample3_seq_len_distribution.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_lenFilter_pane_sample4" 
+	role="tabpanel" aria-labelledby="gallery_figure_lenFilter_list_sample4"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample4_seq_len_distribution.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_lenFilter_pane_sample5" 
+	role="tabpanel" aria-labelledby="gallery_figure_lenFilter_list_sample5"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample5_seq_len_distribution.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_lenFilter_pane_sample6" 
+	role="tabpanel" aria-labelledby="gallery_figure_lenFilter_list_sample6"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample6_seq_len_distribution.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_figure_lenFilter_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure_lenFilter_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure_lenFilter_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_lenFilter_list_sample1"
+	data-toggle="list" href="#gallery_figure_lenFilter_pane_sample1" role="tab" aria-controls="sample1">sample1</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_lenFilter_list_sample2"
+	data-toggle="list" href="#gallery_figure_lenFilter_pane_sample2" role="tab" aria-controls="sample2">sample2</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_lenFilter_list_sample3"
+	data-toggle="list" href="#gallery_figure_lenFilter_pane_sample3" role="tab" aria-controls="sample3">sample3</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_lenFilter_list_sample4"
+	data-toggle="list" href="#gallery_figure_lenFilter_pane_sample4" role="tab" aria-controls="sample4">sample4</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_lenFilter_list_sample5"
+	data-toggle="list" href="#gallery_figure_lenFilter_pane_sample5" role="tab" aria-controls="sample5">sample5</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_lenFilter_list_sample6"
+	data-toggle="list" href="#gallery_figure_lenFilter_pane_sample6" role="tab" aria-controls="sample6">sample6</a>
+	
+	</div>
+	</div>
+	</div>
+
+    </p>
+    <p class="name_fig">Figure2.2.3 Length distribution of total sRNA</p>
+    <p class="premark"><p class="center">The abscissa is the length of sRNA reads, the ordinate is the percentage of one length read accounted for total sRNA.</p></p>
+    <!--p class="tremark">注:结题报告中只显示一个样本的sRNA长度分布结果(更多信息见结果文件夹2QualityControl/2.4Length_Filter).</p>  --> 
+    <br/>
+
+   
+  <!-----------------------------------------3.0参考序列宿主比对分析 -------------------------------------->
+  
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left" src="src/images/logo.png" /></a> <a name="病毒种类初步筛选">Novogene Corporation Inc.</a>
+    <hr />
+    </p>
+    <br />
+    <h3 id="3">2.3 Virus genus screening</h3>
+    <h4 id="3">2.3.1 Mapping to host genome</h4>
+    <p class="paragraph">Small RNA reads were mapped to the host genome using Bowtie (mismatch: 1), to analyze the distribution on genome.<b> Result Directory: Results/3.FirstScan/3.1HostMap/host.mapping.stat</b>.</p>
+    <p class="center">Table 2.3.1 Statistic results of mapping</p>
+    <p class="center">
+    <div style="overflow-x: auto">
+    <table class="gy">
+      <tr>
+        <th>Sample</th>
+        <th>Total sRNA</th>
+        <th>Mapped sRNA</th>
+        <th>mapped_sRNA/total_sRNA(percent%)</th>
+      </tr>
+      
+      <tr>
+        <td>sample1</td>
+        <td>1382470</td>
+        <td>1662647</td>
+        <td>83.15</td>
+      </tr>
+      
+      <tr>
+        <td>sample6</td>
+        <td>1089937</td>
+        <td>1841602</td>
+        <td>59.18</td>
+      </tr>
+      
+      <tr>
+        <td>sample3</td>
+        <td>1561002</td>
+        <td>2126628</td>
+        <td>73.40</td>
+      </tr>
+      
+      <tr>
+        <td>sample4</td>
+        <td>1449231</td>
+        <td>2162393</td>
+        <td>67.02</td>
+      </tr>
+      
+      <tr>
+        <td>sample5</td>
+        <td>1507292</td>
+        <td>2501248</td>
+        <td>60.26</td>
+      </tr>
+      
+      <tr>
+        <td>sample2</td>
+        <td>1428944</td>
+        <td>1928436</td>
+        <td>74.10</td>
+      </tr>
+      
+    </table>
+    </div>
+    </p>
+    <p class="tremark">
+      (1) Sample: Sample ID<br />
+      (2) Total sRNA: Reads Number of total sRNA after length filtering<br />
+      (3) Mapped sRNA: Reads Number of sRNA mapped to genome<br />
+      (4) mapped_sRNA/total_sRNA(percent%): Percentage of mapped sRNA in the same direction on the genome<br />
+    <br />
+    
+    <p class="paragraph">Density of small RNA reads on each chromosome is determined by each sample. Circos was used to graphically demonstrate distribution of reads on each chromosome. The longest 10 contigs or scaffolds were chosen for analysis.</p>
+    <br />
+    <p class="center">
+	
+    <div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_host_map_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure_host_map_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure_host_map_pane_sample1" 
+	role="tabpanel" aria-labelledby="gallery_figure_host_map_list_sample1"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample1.hostmap_seq_len_dis.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_host_map_pane_sample2" 
+	role="tabpanel" aria-labelledby="gallery_figure_host_map_list_sample2"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample2.hostmap_seq_len_dis.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_host_map_pane_sample3" 
+	role="tabpanel" aria-labelledby="gallery_figure_host_map_list_sample3"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample3.hostmap_seq_len_dis.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_host_map_pane_sample4" 
+	role="tabpanel" aria-labelledby="gallery_figure_host_map_list_sample4"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample4.hostmap_seq_len_dis.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_host_map_pane_sample5" 
+	role="tabpanel" aria-labelledby="gallery_figure_host_map_list_sample5"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample5.hostmap_seq_len_dis.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_host_map_pane_sample6" 
+	role="tabpanel" aria-labelledby="gallery_figure_host_map_list_sample6"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample6.hostmap_seq_len_dis.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_figure_host_map_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure_host_map_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure_host_map_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_host_map_list_sample1"
+	data-toggle="list" href="#gallery_figure_host_map_pane_sample1" role="tab" aria-controls="sample1">sample1</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_host_map_list_sample2"
+	data-toggle="list" href="#gallery_figure_host_map_pane_sample2" role="tab" aria-controls="sample2">sample2</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_host_map_list_sample3"
+	data-toggle="list" href="#gallery_figure_host_map_pane_sample3" role="tab" aria-controls="sample3">sample3</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_host_map_list_sample4"
+	data-toggle="list" href="#gallery_figure_host_map_pane_sample4" role="tab" aria-controls="sample4">sample4</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_host_map_list_sample5"
+	data-toggle="list" href="#gallery_figure_host_map_pane_sample5" role="tab" aria-controls="sample5">sample5</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_host_map_list_sample6"
+	data-toggle="list" href="#gallery_figure_host_map_pane_sample6" role="tab" aria-controls="sample6">sample6</a>
+	
+	</div></div></div>
+    </p>
+    <p class="name_fig">Figure 2.3.1 Reads distribution per chromosome</p>
+     
+  
+  
+  <!-----------------------------------------参考序列病毒数据库比对分析 -------------------------------------->
+  
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left" src="src/images/logo.png" /></a> <a name="病毒种类初步筛选">Novogene Corporation Inc.</a>
+    <hr />
+    </p>
+    <h4 id="3">2.3.2 Mapping to Virus RefSeq database</h4>
+    <p class="paragraph">The data were filtered by Bowtie software (mismatch: 1) and aligned to the GenBank Virus RefSeq nucleic acid database, to preliminarily identify the list of infected samples. <b> Result Directory: Results/3.FirstScan/3.2VirusMap/virus.mapping.stat</b>.</p>
+    <p class="center">Table 2.3.2 Summary table of alignment with GenBank Virus RefSeq database </p>
+    <p class="center">
+    <div style="overflow-x: auto">
+    <table class="gy">
+      <tr>
+        <th>Sample</th>
+        <th>Mapped sRNA</th>
+        <th>host_unmap_sRNA</th>
+        <th>mapped_sRNA/host_unmap_sRNA(percent%)</th>
+        <th>total_sRNA</th>
+        <th>mapped_sRNA/total_sRNA(percent%)</th>
+      </tr>
+      
+      <tr>
+        <td>sample1</td>
+        <td>9890</td>
+        <td>280177</td>
+        <td>3.53</td>
+        <td>1662647</td>
+        <td>0.59</td>
+      </tr>
+      
+      <tr>
+        <td>sample6</td>
+        <td>11639</td>
+        <td>751665</td>
+        <td>1.55</td>
+        <td>1841602</td>
+        <td>0.63</td>
+      </tr>
+      
+      <tr>
+        <td>sample3</td>
+        <td>6564</td>
+        <td>565626</td>
+        <td>1.16</td>
+        <td>2126628</td>
+        <td>0.31</td>
+      </tr>
+      
+      <tr>
+        <td>sample4</td>
+        <td>10425</td>
+        <td>713162</td>
+        <td>1.46</td>
+        <td>2162393</td>
+        <td>0.48</td>
+      </tr>
+      
+      <tr>
+        <td>sample5</td>
+        <td>26972</td>
+        <td>993956</td>
+        <td>2.71</td>
+        <td>2501248</td>
+        <td>1.08</td>
+      </tr>
+      
+      <tr>
+        <td>sample2</td>
+        <td>5417</td>
+        <td>499492</td>
+        <td>1.08</td>
+        <td>1928436</td>
+        <td>0.28</td>
+      </tr>
+      
+    </table>
+    </div>
+    </p>
+    <p class="tremark">
+      (1) Sample: Sample ID<br />
+      (2) Mapped sRNA:Number of sRNA mapped to genome<br />
+      (3) host_unmap_sRNA: Number of sRNA unmapped to host genome<br />
+      (4) mapped_sRNA/host_unmap_sRNA(percent%): Percentage of sRNA mapped virus database in the reads unmapped to host genome <br />
+      (5) total_sRNA:Number of sRNA<br />
+      (6) mapped_sRNA/total_sRNA(percent%):Percentage of sRNA mapped virus database in the total reads <br />
+    <br />
+    <p class="paragraph">Density of small RNA reads on each chromosome is determined by each sample. Circos was used to graphically demonstrate distribution of reads on each chromosome. The longest 10 contigs or scaffolds were chosen for analysis.</p>
+    <br />
+    <p class="center">
+	
+    <div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_virus_map_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure_virus_map_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure_virus_map_pane_sample1" 
+	role="tabpanel" aria-labelledby="gallery_figure_virus_map_list_sample1"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample1.virusmap_seq_len_dis.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_virus_map_pane_sample2" 
+	role="tabpanel" aria-labelledby="gallery_figure_virus_map_list_sample2"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample2.virusmap_seq_len_dis.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_virus_map_pane_sample3" 
+	role="tabpanel" aria-labelledby="gallery_figure_virus_map_list_sample3"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample3.virusmap_seq_len_dis.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_virus_map_pane_sample4" 
+	role="tabpanel" aria-labelledby="gallery_figure_virus_map_list_sample4"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample4.virusmap_seq_len_dis.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_virus_map_pane_sample5" 
+	role="tabpanel" aria-labelledby="gallery_figure_virus_map_list_sample5"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample5.virusmap_seq_len_dis.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_virus_map_pane_sample6" 
+	role="tabpanel" aria-labelledby="gallery_figure_virus_map_list_sample6"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample6.virusmap_seq_len_dis.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_figure_virus_map_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure_virus_map_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure_virus_map_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_virus_map_list_sample1"
+	data-toggle="list" href="#gallery_figure_virus_map_pane_sample1" role="tab" aria-controls="sample1">sample1</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_virus_map_list_sample2"
+	data-toggle="list" href="#gallery_figure_virus_map_pane_sample2" role="tab" aria-controls="sample2">sample2</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_virus_map_list_sample3"
+	data-toggle="list" href="#gallery_figure_virus_map_pane_sample3" role="tab" aria-controls="sample3">sample3</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_virus_map_list_sample4"
+	data-toggle="list" href="#gallery_figure_virus_map_pane_sample4" role="tab" aria-controls="sample4">sample4</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_virus_map_list_sample5"
+	data-toggle="list" href="#gallery_figure_virus_map_pane_sample5" role="tab" aria-controls="sample5">sample5</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_virus_map_list_sample6"
+	data-toggle="list" href="#gallery_figure_virus_map_pane_sample6" role="tab" aria-controls="sample6">sample6</a>
+	
+	</div></div></div>
+    </p>
+    <p class="name_fig">Figure 2.3.2 Reads distribution per chromosome</p>
+  
+
+  
+  <!----------------------------------------- sRNA拼接 -------------------------------------->
+  
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left" src="src/images/logo.png" /></a> <a name="sRNA拼接">Novogene Corporation Inc.</a>
+    <hr />
+    </p>
+    <h3 id="4">2.4 sRNA Assembly</h3>
+    <p class="paragraph">By mapping, short sRNAs were aligned to the known virus databases, and the distribution of the sequenced sRNAs was obtained on the virus genome, including the depth of sequencing. There was an average coverage of 100X or more for some sequences of virus, which can be used for further assembly, and longer contigs and more accurate virus infection information can be obtained.<b> Result Directory: Results/4.Assembly/</b></p>
+    <br />
+    <h4 id="4">2.4.1 PFOR assembly </h4>
+    <p class="paragraph">The sRNAs obtained in "Step 3" were spliced by PFOR (Wu et al., 2011) software with the parameter "-x 5".  <b>Statistic splicing is displayed by the following chart:</b>.</p>
+    <br />
+   <p class="center">Table 2.4.1 Statistic results of PFOR assembly</p>
+   <p class="center">
+   <div style="overflow-x: auto">
+   <table class="gy">
+     <tr>
+       <th>Sample</th>
+       <th><50</th>
+       <th>50-100</th>
+       <th>100-200</th>
+       <th>200-500</th>
+       <th>500-1K</th>
+       <th>500-1K</th>
+     </tr>
+     
+     <tr>
+       <td>sample1</td>
+       <td>0</td>
+       <td>0</td>
+       <td>6</td>
+       <td>2</td>
+       <td>2</td>
+       <td>0</td>
+     </tr>
+     
+     <tr>
+       <td>sample2</td>
+       <td>0</td>
+       <td>0</td>
+       <td>3</td>
+       <td>0</td>
+       <td>0</td>
+       <td>0</td>
+     </tr>
+     
+     <tr>
+       <td>sample3</td>
+       <td>0</td>
+       <td>0</td>
+       <td>3</td>
+       <td>2</td>
+       <td>0</td>
+       <td>0</td>
+     </tr>
+     
+     <tr>
+       <td>sample4</td>
+       <td>0</td>
+       <td>0</td>
+       <td>5</td>
+       <td>2</td>
+       <td>0</td>
+       <td>0</td>
+     </tr>
+     
+     <tr>
+       <td>sample5</td>
+       <td>0</td>
+       <td>0</td>
+       <td>6</td>
+       <td>1</td>
+       <td>0</td>
+       <td>0</td>
+     </tr>
+     
+     <tr>
+       <td>sample6</td>
+       <td>0</td>
+       <td>0</td>
+       <td>5</td>
+       <td>1</td>
+       <td>1</td>
+       <td>0</td>
+     </tr>
+      
+    </table>
+    <b>Note: The result contig sequences are shown as (partial results):  </b>
+    <p class="seq">
+    >Contig1<br />
+    GAATTTGCTTCACAATGATAGGAAGAGCCGACATCGAAGAATCAAAAAGCGACGTCACTA<br />
+    TGAACGCTTGGCCGCCACAAGCCAGTTATCCCTATGGTAACTTTTCTGACACCTCTTATT<br />
+    AAAAACTCTTTAAACCAAAAGGATCGATAGGCCGAGCTTGCTGTCCCTGTGTGTACTGAA<br />
+    CACCGAGATCAAGTCAGC<br />
+    >Contig2<br />
+    CATATCGCGATTCACTAGCTGATGAAACAAGAGCAAGCGCTATCTGGGGCCATGGTATTG<br />
+    </p>
+    <p class="center">
+	
+    <div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_PFOR_assemble_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure_PFOR_assemble_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure_PFOR_assemble_pane_sample1" 
+	role="tabpanel" aria-labelledby="gallery_figure_PFOR_assemble_list_sample1"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample1.PFOR_bar.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_PFOR_assemble_pane_sample2" 
+	role="tabpanel" aria-labelledby="gallery_figure_PFOR_assemble_list_sample2"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample2.PFOR_bar.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_PFOR_assemble_pane_sample3" 
+	role="tabpanel" aria-labelledby="gallery_figure_PFOR_assemble_list_sample3"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample3.PFOR_bar.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_PFOR_assemble_pane_sample4" 
+	role="tabpanel" aria-labelledby="gallery_figure_PFOR_assemble_list_sample4"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample4.PFOR_bar.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_PFOR_assemble_pane_sample5" 
+	role="tabpanel" aria-labelledby="gallery_figure_PFOR_assemble_list_sample5"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample5.PFOR_bar.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_PFOR_assemble_pane_sample6" 
+	role="tabpanel" aria-labelledby="gallery_figure_PFOR_assemble_list_sample6"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample6.PFOR_bar.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_figure_PFOR_assemble_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure_PFOR_assemble_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure_PFOR_assemble_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_PFOR_assemble_list_sample1"
+	data-toggle="list" href="#gallery_figure_PFOR_assemble_pane_sample1" role="tab" aria-controls="sample1">sample1</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_PFOR_assemble_list_sample2"
+	data-toggle="list" href="#gallery_figure_PFOR_assemble_pane_sample2" role="tab" aria-controls="sample2">sample2</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_PFOR_assemble_list_sample3"
+	data-toggle="list" href="#gallery_figure_PFOR_assemble_pane_sample3" role="tab" aria-controls="sample3">sample3</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_PFOR_assemble_list_sample4"
+	data-toggle="list" href="#gallery_figure_PFOR_assemble_pane_sample4" role="tab" aria-controls="sample4">sample4</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_PFOR_assemble_list_sample5"
+	data-toggle="list" href="#gallery_figure_PFOR_assemble_pane_sample5" role="tab" aria-controls="sample5">sample5</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_PFOR_assemble_list_sample6"
+	data-toggle="list" href="#gallery_figure_PFOR_assemble_pane_sample6" role="tab" aria-controls="sample6">sample6</a>
+	
+	</div></div></div>
+    </p>
+    <p class="name_fig">Figure 2.4.1 Length Distribution of contigs assembled by PFOR</p>
+    
+    <h4 id="4">2.4.2 velvet assembly </h4>
+    <p class="paragraph">Velvet (Zerbino et al., 2008) software was used to splice the unmapped sRNA obtained by "step 4 - screening" with the parameter k-mer 17 (Wu et al., 2010). The following display the splicing results:</p>
+    <br />
+    <p class="center">Table 2.4.2 Statistic results of velvet assembly</p>
+    <p class="center">
+    <div style="overflow-x: auto">
+    <table class="gy">
+      <tr>
+        <th>Sample</th>
+        <th><50</th>
+        <th>50-100</th>
+        <th>100-200</th>
+        <th>200-500</th>
+        <th>500-1K</th>
+        <th>500-1K</th>
+      </tr>
+      
+      <tr>
+        <td>sample1</td>
+        <td>216</td>
+        <td>4512</td>
+        <td>423</td>
+        <td>45</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      
+      <tr>
+        <td>sample2</td>
+        <td>297</td>
+        <td>6122</td>
+        <td>595</td>
+        <td>47</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      
+      <tr>
+        <td>sample3</td>
+        <td>213</td>
+        <td>5697</td>
+        <td>447</td>
+        <td>29</td>
+        <td>1</td>
+        <td>0</td>
+      </tr>
+      
+      <tr>
+        <td>sample4</td>
+        <td>319</td>
+        <td>6483</td>
+        <td>445</td>
+        <td>19</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      
+      <tr>
+        <td>sample5</td>
+        <td>312</td>
+        <td>5770</td>
+        <td>332</td>
+        <td>20</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      
+      <tr>
+        <td>sample6</td>
+        <td>247</td>
+        <td>5047</td>
+        <td>343</td>
+        <td>12</td>
+        <td>0</td>
+        <td>0</td>
+      </tr>
+      
+    </table>
+    <b>Note: The assembled contig sequences are shown as (partial results):  </b>
+    <p class="seq">
+    >NODE_17_length_37_cov_337.324310<br />
+    TGTTGATTTCATGAAAAACACGCTGTGTTGGAGGAACTCAAACAAAACAAGCa<br />
+    >NODE_27_length_59_cov_23.610170<br />
+    AGGCACTTGAAACAAGTACACCTGACTGTAAGGCACGCGTAAATGACTTAATCGCAGGAA<br />
+    ACAAATATCAGTTCa<br />
+    >NODE_28_length_132_cov_41.772728<br />
+    GCAGACCTTCATCTCGCTTCTGGAGTTCGCCGAGGAGAAGCTGGAGGTGGACGGCATCGT<br />
+    TATGGTAATGCCTAAAGATCAGCCGGATCGAGCTCGCCTCATCGAGGCGTTCCTCTTCAT<br />
+    GGGCTTCGAGCCGCTGTCCAGGAAGGCa<br />
+    >NODE_33_length_92_cov_121.391304<br />
+    TGCATAACATCTCTGTTTCGTCGCACACTGAATAGAACCAAATTGAAAAGATGGCGAGTT<br />
+    TGGCTACCAAGGGATCAGGACTTGTGAACAGGCTCCTCACACAGGCGa<br />
+    </p>
+
+    <p class="center">
+	
+    <div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_velvet_assemble_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure_velvet_assemble_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure_velvet_assemble_pane_sample1" 
+	role="tabpanel" aria-labelledby="gallery_figure_velvet_assemble_list_sample1"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample1.Velvet_bar.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_velvet_assemble_pane_sample2" 
+	role="tabpanel" aria-labelledby="gallery_figure_velvet_assemble_list_sample2"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample2.Velvet_bar.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_velvet_assemble_pane_sample3" 
+	role="tabpanel" aria-labelledby="gallery_figure_velvet_assemble_list_sample3"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample3.Velvet_bar.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_velvet_assemble_pane_sample4" 
+	role="tabpanel" aria-labelledby="gallery_figure_velvet_assemble_list_sample4"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample4.Velvet_bar.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_velvet_assemble_pane_sample5" 
+	role="tabpanel" aria-labelledby="gallery_figure_velvet_assemble_list_sample5"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample5.Velvet_bar.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_velvet_assemble_pane_sample6" 
+	role="tabpanel" aria-labelledby="gallery_figure_velvet_assemble_list_sample6"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample6.Velvet_bar.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_figure_velvet_assemble_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure_velvet_assemble_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure_velvet_assemble_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_velvet_assemble_list_sample1"
+	data-toggle="list" href="#gallery_figure_velvet_assemble_pane_sample1" role="tab" aria-controls="sample1">sample1</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_velvet_assemble_list_sample2"
+	data-toggle="list" href="#gallery_figure_velvet_assemble_pane_sample2" role="tab" aria-controls="sample2">sample2</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_velvet_assemble_list_sample3"
+	data-toggle="list" href="#gallery_figure_velvet_assemble_pane_sample3" role="tab" aria-controls="sample3">sample3</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_velvet_assemble_list_sample4"
+	data-toggle="list" href="#gallery_figure_velvet_assemble_pane_sample4" role="tab" aria-controls="sample4">sample4</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_velvet_assemble_list_sample5"
+	data-toggle="list" href="#gallery_figure_velvet_assemble_pane_sample5" role="tab" aria-controls="sample5">sample5</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_velvet_assemble_list_sample6"
+	data-toggle="list" href="#gallery_figure_velvet_assemble_pane_sample6" role="tab" aria-controls="sample6">sample6</a>
+	
+	</div></div></div>
+    </p>
+    <p class="name_fig">Figure 2.4.2 Length Distribution of Contigs assembled by Velvet</p>
+    
+  <!----------------------------------------- 候选病毒筛选 -------------------------------------->
+  
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left" src="src/images/logo.png" /></a> <a name="候选病毒筛选">Novogene Corporation Inc.</a>
+    <hr />
+    </p>
+    <h3 id="5">2.5 Candidate virus screening </h3>
+    <h4 id="5">2.5.1 Classification and annotation of assembled contigs </h4>
+    <p class="paragraph">The contigs obtained by splicing are classified and the species distribution is detected. The databases used for detection are: Host Genome, NCBI Nr (NCBI non-redundant protein sequences), NCBI Nt (NCBI non-redundant nucleotide sequences), GenBank Virus RefSeq nucleic acid database (simple representation is :"Virus RefSeq Nucletide"), GenBank Virus RefSeq protein database (simple representation is: "Virus RefSeq Protein"). The alignment algorithm used is  the Blast algorithm (Bendell et al., 2003) with parameter-limiting e-value (1e-6 for BLASTN, 1e-4 for BLASTX).</p>
+    <br />
+    <p class="paragraph">Annotation results and Venn diagram of a single one sample are displayed in the final results folder. <b> Result Directory: Results/5.Annotate/5.1Classify/</b></p>
+    <p class="center">Table 2.5.1.1 Statistic Results of Assembled Contigs and Virus RefSeq Nucletide (Best-hit reults)</p>
+    <p class="center">
+    <div style="overflow-x: auto">
+    <table class="gy">
+      <tr>
+        <th>Query_id</th>
+        <th>Query_length</th>
+        <th>Query_start</th>
+        <th>Query_end</th>
+        <th>Ref_id</th>
+        <th>E_value</th>
+        <th>Ref_description</th>
+      </tr>
+      
+      <tr>
+        <td>NODE_91_length_91_cov_54.285713</td>
+        <td>107</td>
+        <td>75</td>
+        <td>107</td>
+        <td>gi|57659681|ref|NC_006659.1|</td>
+        <td>1.7017e-09</td>
+        <td>Cotesia congregata bracovirus segment Circle32</td>
+      </tr>
+      
+      <tr>
+        <td>NODE_635_length_105_cov_676.828552</td>
+        <td>121</td>
+        <td>1</td>
+        <td>41</td>
+        <td>gi|109255272|ref|NC_008168.1|</td>
+        <td>1.51901e-10</td>
+        <td>Choristoneura occidentalis granulovirus</td>
+      </tr>
+      
+      <tr>
+        <td>NODE_900_length_49_cov_49.469387</td>
+        <td>65</td>
+        <td>1</td>
+        <td>65</td>
+        <td>gi|346421290|ref|NC_007919.3|</td>
+        <td>1.38404e-27</td>
+        <td>Nora virus</td>
+      </tr>
+      
+      <tr>
+        <td>NODE_1029_length_51_cov_12.784314</td>
+        <td>67</td>
+        <td>34</td>
+        <td>63</td>
+        <td>gi|213159161|ref|NC_011587.1|</td>
+        <td>4.14711e-08</td>
+        <td>Caviid herpesvirus 2</td>
+      </tr>
+      
+      <tr>
+        <td>NODE_1209_length_42_cov_14.428572</td>
+        <td>58</td>
+        <td>4</td>
+        <td>58</td>
+        <td>gi|346421290|ref|NC_007919.3|</td>
+        <td>1.99932e-20</td>
+        <td>Nora virus</td>
+      </tr>
+      
+      <tr>
+        <td>NODE_1848_length_46_cov_32.130436</td>
+        <td>62</td>
+        <td>1</td>
+        <td>62</td>
+        <td>gi|346421290|ref|NC_007919.3|</td>
+        <td>1.32755e-22</td>
+        <td>Nora virus</td>
+      </tr>
+      
+      <tr>
+        <td>NODE_1975_length_46_cov_40.717392</td>
+        <td>62</td>
+        <td>2</td>
+        <td>62</td>
+        <td>gi|346421290|ref|NC_007919.3|</td>
+        <td>2.22147e-20</td>
+        <td>Nora virus</td>
+      </tr>
+      
+      <tr>
+        <td>NODE_2205_length_36_cov_14.555555</td>
+        <td>52</td>
+        <td>1</td>
+        <td>48</td>
+        <td>gi|346421290|ref|NC_007919.3|</td>
+        <td>1.29712e-16</td>
+        <td>Nora virus</td>
+      </tr>
+      
+      <tr>
+        <td>NODE_3149_length_36_cov_17.305555</td>
+        <td>52</td>
+        <td>1</td>
+        <td>52</td>
+        <td>gi|346421290|ref|NC_007919.3|</td>
+        <td>1.67793e-15</td>
+        <td>Nora virus</td>
+      </tr>
+      
+      <tr>
+        <td>NODE_3244_length_40_cov_20.299999</td>
+        <td>56</td>
+        <td>1</td>
+        <td>56</td>
+        <td>gi|346421290|ref|NC_007919.3|</td>
+        <td>2.4426e-19</td>
+        <td>Nora virus</td>
+      </tr>
+      
+      <tr>
+        <td>NODE_3419_length_40_cov_22.525000</td>
+        <td>56</td>
+        <td>1</td>
+        <td>56</td>
+        <td>gi|346421290|ref|NC_007919.3|</td>
+        <td>5.28731e-16</td>
+        <td>Nora virus</td>
+      </tr>
+      
+      <tr>
+        <td>NODE_3615_length_61_cov_16.049181</td>
+        <td>77</td>
+        <td>1</td>
+        <td>77</td>
+        <td>gi|346421290|ref|NC_007919.3|</td>
+        <td>1.76694e-32</td>
+        <td>Nora virus</td>
+      </tr>
+      
+      <tr>
+        <td>NODE_3795_length_38_cov_5.394737</td>
+        <td>54</td>
+        <td>1</td>
+        <td>52</td>
+        <td>gi|346421290|ref|NC_007919.3|</td>
+        <td>1.77717e-20</td>
+        <td>Nora virus</td>
+      </tr>
+      
+      <tr>
+        <td>NODE_4054_length_41_cov_2.585366</td>
+        <td>57</td>
+        <td>1</td>
+        <td>57</td>
+        <td>gi|346421290|ref|NC_007919.3|</td>
+        <td>1.51331e-16</td>
+        <td>Nora virus</td>
+      </tr>
+      
+      <tr>
+        <td>NODE_4181_length_36_cov_6.500000</td>
+        <td>52</td>
+        <td>1</td>
+        <td>49</td>
+        <td>gi|346421290|ref|NC_007919.3|</td>
+        <td>7.75161e-19</td>
+        <td>Nora virus</td>
+      </tr>
+      
+      <tr>
+        <td>NODE_4188_length_43_cov_7.511628</td>
+        <td>59</td>
+        <td>1</td>
+        <td>59</td>
+        <td>gi|346421290|ref|NC_007919.3|</td>
+        <td>2.63939e-24</td>
+        <td>Nora virus</td>
+      </tr>
+      
+      <tr>
+        <td>NODE_4690_length_34_cov_5.941176</td>
+        <td>50</td>
+        <td>1</td>
+        <td>50</td>
+        <td>gi|346421290|ref|NC_007919.3|</td>
+        <td>4.35425e-16</td>
+        <td>Nora virus</td>
+      </tr>
+      
+      <tr>
+        <td>NODE_4825_length_36_cov_6.000000</td>
+        <td>52</td>
+        <td>1</td>
+        <td>51</td>
+        <td>gi|346421290|ref|NC_007919.3|</td>
+        <td>5.99237e-20</td>
+        <td>Nora virus</td>
+      </tr>
+      
+      <tr>
+        <td>NODE_5143_length_39_cov_13.692307</td>
+        <td>55</td>
+        <td>1</td>
+        <td>55</td>
+        <td>gi|346421290|ref|NC_007919.3|</td>
+        <td>1.83271e-20</td>
+        <td>Nora virus</td>
+      </tr>
+      
+      <tr>
+        <td>NODE_5345_length_41_cov_2.341463</td>
+        <td>57</td>
+        <td>1</td>
+        <td>57</td>
+        <td>gi|346421290|ref|NC_007919.3|</td>
+        <td>6.99109e-20</td>
+        <td>Nora virus</td>
+      </tr>
+      
+      <tr>
+        <td>Contig5</td>
+        <td>326</td>
+        <td>166</td>
+        <td>260</td>
+        <td>gi|109255272|ref|NC_008168.1|</td>
+        <td>2.13176e-28</td>
+        <td>Choristoneura occidentalis granulovirus</td>
+      </tr>
+      
+    </table>
+    <p class="tremark">
+      (1) Query_id:  id number of assembled contigs<br />
+      (2) Query_length: sequence length of the contigs<br />
+      (3) Query_start: start position of mapped region on the contig<br />
+      (4) Query_end: end position of mapped region on the contig<br />
+      (5) E_value: e-value of blast alignment, which indicates false positive rate. The smaller the value is, the better the result indicates.<br />
+      (6) Ref_id: reference sequence id mapped to the database<br />
+      (7) Ref_description: description information of reference sequence in the database<br />
+      (8) Ref_species: species information of reference sequence in the database</p>
+    <br />
+    <p class="center">
+	
+    <div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_anno_venn_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure_anno_venn_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure_anno_venn_pane_sample1" 
+	role="tabpanel" aria-labelledby="gallery_figure_anno_venn_list_sample1"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample1.annotate.venn.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_anno_venn_pane_sample2" 
+	role="tabpanel" aria-labelledby="gallery_figure_anno_venn_list_sample2"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample2.annotate.venn.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_anno_venn_pane_sample3" 
+	role="tabpanel" aria-labelledby="gallery_figure_anno_venn_list_sample3"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample3.annotate.venn.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_anno_venn_pane_sample4" 
+	role="tabpanel" aria-labelledby="gallery_figure_anno_venn_list_sample4"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample4.annotate.venn.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_anno_venn_pane_sample5" 
+	role="tabpanel" aria-labelledby="gallery_figure_anno_venn_list_sample5"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample5.annotate.venn.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_anno_venn_pane_sample6" 
+	role="tabpanel" aria-labelledby="gallery_figure_anno_venn_list_sample6"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample6.annotate.venn.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_figure_anno_venn_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure_anno_venn_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure_anno_venn_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_anno_venn_list_sample1"
+	data-toggle="list" href="#gallery_figure_anno_venn_pane_sample1" role="tab" aria-controls="sample1">sample1</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_anno_venn_list_sample2"
+	data-toggle="list" href="#gallery_figure_anno_venn_pane_sample2" role="tab" aria-controls="sample2">sample2</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_anno_venn_list_sample3"
+	data-toggle="list" href="#gallery_figure_anno_venn_pane_sample3" role="tab" aria-controls="sample3">sample3</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_anno_venn_list_sample4"
+	data-toggle="list" href="#gallery_figure_anno_venn_pane_sample4" role="tab" aria-controls="sample4">sample4</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_anno_venn_list_sample5"
+	data-toggle="list" href="#gallery_figure_anno_venn_pane_sample5" role="tab" aria-controls="sample5">sample5</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_anno_venn_list_sample6"
+	data-toggle="list" href="#gallery_figure_anno_venn_pane_sample6" role="tab" aria-controls="sample6">sample6</a>
+	
+	</div></div></div>
+    </p>
+    <p class="name_fig">Figure 2.5.1 Contig Venn diagram annotated by 5 datatbases</p>
+     <p class="tremark">The five oval shapes represent five databases separately: Host Genome, NCBI Nr, NCBI Nt, Virus RefSeq nucleic acid and Virus RefSeq protein. The sum of the numbers in each graph represents the number of contigs annotated by the database. The overlapped parts represent the number of contigs that are commonly annotated between the databases.</p>
+     <p class="paragraph">Combined all the annotations above, annotation summary information of assembled contigs was summarized as follows:</p>
+    <p class="center">Table 2.5.1.2 Statistic Results of Assembling Contigs and Virus RefSeq Nucletide Results (Best-hit reults)</p>
+    <p class="center">
+    <div style="overflow-x: auto">
+    <table class="gy">
+      <tr>
+        <th>Data base</th>
+        <th>Annotated number</th>
+      </tr>
+      
+      <tr>
+        <td>Total contig</td>
+        <td>5190</td>
+      </tr>
+      
+      <tr>
+        <td>NR</td>
+        <td>1412</td>
+      </tr>
+      
+      <tr>
+        <td>NT</td>
+        <td>5048</td>
+      </tr>
+      
+      <tr>
+        <td>virus_nucl</td>
+        <td>21</td>
+      </tr>
+      
+      <tr>
+        <td>virus_prot</td>
+        <td>28</td>
+      </tr>
+      
+      <tr>
+        <td>host</td>
+        <td>4703</td>
+      </tr>
+      
+    </table>
+    <h4 id="5">2.5.2 Summary of candidate virus types </h4>
+    <p class="paragraph">With classification annotation results above, the virus-related contigs annotation information can be mainly divided into three parts: the Virus RefSeq Nucletide annotation, the Virus RefSeq Protein annotation, and the virus information annotated to NCBI. Nr/Nt rather than the Host Genome. The analysis results are shown as follows:</p>
+    <br />
+   <p class="center">Table 2.5.2 Summary of Virus related contigs annotation information</p>
+   <p class="center">
+   <div style="overflow-x: auto">
+   <table class="gy">
+     <tr>
+       <th>Database</th>
+       <th>Virus_name</th>
+       <th>Annot_contigs_number</th>
+       <th>Annot_contigs_length</th>
+       <th>Hit_length</th>
+       <th>Annot_contigs_id</th>
+     </tr>
+     
+     <tr>
+       <td>NR</td>
+       <td>Nora virus</td>
+       <td>4</td>
+       <td>276</td>
+       <td>90</td>
+       <td>NODE_2770_length_54_cov_31.796297,NODE_4779_length_49_cov_32.979591,NODE_3615_length_61_cov_16.049181,NODE_1433_length_48_cov_14.041667</td>
+     </tr>
+     
+     <tr>
+       <td>NT</td>
+       <td>Nora virus isolate XH gp1 (gp1) gene, partial cds; replication polyprotein (gp2) and gp3 (gp3) genes, complete cds; and capsid protein (gp4) gene, partial cds</td>
+       <td>1</td>
+       <td>57</td>
+       <td>57</td>
+       <td>NODE_5345_length_41_cov_2.341463</td>
+     </tr>
+     
+     <tr>
+       <td>NT</td>
+       <td>Nora virus isolate DANMEL13 gp1 (gp1) and replication polyprotein (gp2) genes, partial cds; and gp3 (gp3) and capsid protein (gp4) genes, complete cds</td>
+       <td>6</td>
+       <td>355</td>
+       <td>354</td>
+       <td>NODE_4779_length_49_cov_32.979591,NODE_900_length_49_cov_49.469387,NODE_5047_length_36_cov_10.083333,NODE_3244_length_40_cov_20.299999,NODE_4181_length_36_cov_6.500000,NODE_2272_length_49_cov_18.326530</td>
+     </tr>
+     
+     <tr>
+       <td>NT</td>
+       <td>Nora virus isolate GEO58 gp1 (gp1) gene, partial cds; and replication polyprotein (gp2), gp3 (gp3), and capsid protein (gp4) genes, complete cds</td>
+       <td>3</td>
+       <td>187</td>
+       <td>187</td>
+       <td>NODE_1975_length_46_cov_40.717392,NODE_3450_length_41_cov_42.463413,NODE_4360_length_52_cov_35.211540</td>
+     </tr>
+     
+     <tr>
+       <td>NT</td>
+       <td>Galbut virus note fragment 1 ORF1 gene, partial cds</td>
+       <td>1</td>
+       <td>50</td>
+       <td>50</td>
+       <td>NODE_5587_length_34_cov_5.058824</td>
+     </tr>
+     
+   </table>
+   <p class="tremark">
+     (1) Database: annotate the virus source<br />
+     (2) Virus_name: annotate the virus name<br />
+     (3) Annot_contigs_number: contig number annotated to the virus<br />
+     (4) Annot_contigs_length: total length of contigs mapped to the virus<br />
+     (5) Hit_length: total length of contigs mapped to the virus sequence<br />
+     (6) Annot_contigs_id: contigs name mapped to the virus</p>
+   <br /> 
+   <p class="paragraph">Note: Candidate virus screening results of any single sample can be found in the result folder ( see result diectory:6Annotate/6.2Candidate for more information).</p>
+  <!----------------------------------------- 候选病毒筛选 -------------------------------------->
+  
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left" src="src/images/logo.png" /></a> <a name="候选病毒的进化树分析">Novogene Corporation Inc.</a>
+    <hr />
+    </p>
+    <h3 id="6">2.6 Evolutionary tree of candidate virus </h3> 
+   <p class="paragraph">The candidate viruses screened for each sample were extracted from GenBank Virus RefSeq, and the alignment of clustalw2 multiple sequence was performed with the protein sequences:<b> Result Directory: Results/6.VirusCompare/6.1Phylogenetic_Tree</b> </p>
+   <p class="center">
+
+   <div class="row">
+   <div class="col-1">
+   <div id="gallery_figure_evolution_button_prev" class="button_prev" onclick="prev(this.id)">
+   <svg viewbox="0 0 16000 16000" class="svg_prev">
+   <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+   <polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+   </polygon></svg></div></div>
+   <div class="col-6">
+   <div class="tab-content" id="gallery_figure_evolution_nav-tabContent">
+   
+   <div class="tab-pane fade" id="gallery_figure_evolution_pane_sample1" 
+   role="tabpanel" aria-labelledby="gallery_figure_evolution_list_sample1"
+   onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample1.CladeTree.png" /></div>
+   
+   <div class="tab-pane fade" id="gallery_figure_evolution_pane_sample2" 
+   role="tabpanel" aria-labelledby="gallery_figure_evolution_list_sample2"
+   onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample2.CladeTree.png" /></div>
+   
+   <div class="tab-pane fade" id="gallery_figure_evolution_pane_sample3" 
+   role="tabpanel" aria-labelledby="gallery_figure_evolution_list_sample3"
+   onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample3.CladeTree.png" /></div>
+   
+   <div class="tab-pane fade" id="gallery_figure_evolution_pane_sample4" 
+   role="tabpanel" aria-labelledby="gallery_figure_evolution_list_sample4"
+   onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample4.CladeTree.png" /></div>
+   
+   <div class="tab-pane fade" id="gallery_figure_evolution_pane_sample5" 
+   role="tabpanel" aria-labelledby="gallery_figure_evolution_list_sample5"
+   onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample5.CladeTree.png" /></div>
+   
+   <div class="tab-pane fade" id="gallery_figure_evolution_pane_sample6" 
+   role="tabpanel" aria-labelledby="gallery_figure_evolution_list_sample6"
+   onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample6.CladeTree.png" /></div>
+   
+   </div></div>
+   <div class="col-1">
+   <div id="gallery_figure_evolution_button_next" class="button_next" onclick="next(this.id)">
+   <svg viewbox="0 0 16000 16000" class="svg_next">
+   <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+   <polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+   </polygon></svg></div></div>
+   <div class="col-4">
+   <input class="form-control" id="gallery_figure_evolution_InputList" type="text" placeholder="Search..">
+   <div class="list-group" id="gallery_figure_evolution_list-tab" role="tablist">
+   
+   <a class="list-group-item list-group-item-action" id="gallery_figure_evolution_list_sample1"
+   data-toggle="list" href="#gallery_figure_evolution_pane_sample1" role="tab" aria-controls="sample1">sample1</a>
+   
+   <a class="list-group-item list-group-item-action" id="gallery_figure_evolution_list_sample2"
+   data-toggle="list" href="#gallery_figure_evolution_pane_sample2" role="tab" aria-controls="sample2">sample2</a>
+   
+   <a class="list-group-item list-group-item-action" id="gallery_figure_evolution_list_sample3"
+   data-toggle="list" href="#gallery_figure_evolution_pane_sample3" role="tab" aria-controls="sample3">sample3</a>
+   
+   <a class="list-group-item list-group-item-action" id="gallery_figure_evolution_list_sample4"
+   data-toggle="list" href="#gallery_figure_evolution_pane_sample4" role="tab" aria-controls="sample4">sample4</a>
+   
+   <a class="list-group-item list-group-item-action" id="gallery_figure_evolution_list_sample5"
+   data-toggle="list" href="#gallery_figure_evolution_pane_sample5" role="tab" aria-controls="sample5">sample5</a>
+   
+   <a class="list-group-item list-group-item-action" id="gallery_figure_evolution_list_sample6"
+   data-toggle="list" href="#gallery_figure_evolution_pane_sample6" role="tab" aria-controls="sample6">sample6</a>
+   
+   </div></div></div>
+   </p>
+   
+    <!----------------------------------------- 候选病毒筛选 -------------------------------------->
+  
+      <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left" src="src/images/logo.png" /></a> <a name="筛选病毒库评估">Novogene Corporation Inc.</a>
+      <hr />
+      </p>
+      <h3 id="7">2.7 Screening virus database assessment </h3> 
+      <p class="paragraph">Bowtie is used to make the comparison of the sRNAs (mismatch: 1) which cannot match to the host genome (mismatch: 1) but can map to the database with the listed viral nucleic acid sequences above in GenBank Virus RefSeq, to assess the validity of the virus list. The sRNAs were further mapped to the database to identify viral siRNAs.</p>
+      <p class="center">Table 2.7.1 Summary of nucleic acid sequence alignment information between sRNA and selected virus list</p>
+      <p class="center">
+      <div style="overflow-x: auto">
+      <table class="gy">
+        <tr>
+          <th>Sample_name</th>
+          <th>mapped_sRNA</th>
+          <th>total_sRNA</th>
+          <th>mapped_sRNA/total_sRNA(percent%)</th>
+        </tr>
+        
+        <tr>
+          <td>sample2</td>
+          <td>1982</td>
+          <td>27296224</td>
+          <td>0.01</td>
+        </tr>
+        
+        <tr>
+          <td>sample3</td>
+          <td>2217</td>
+          <td>26334565</td>
+          <td>0.01</td>
+        </tr>
+        
+        <tr>
+          <td>sample1</td>
+          <td>28862</td>
+          <td>38689553</td>
+          <td>0.07</td>
+        </tr>
+        
+        <tr>
+          <td>sample5</td>
+          <td>36241</td>
+          <td>23900127</td>
+          <td>0.15</td>
+        </tr>
+        
+        <tr>
+          <td>sample4</td>
+          <td>4008</td>
+          <td>26255731</td>
+          <td>0.02</td>
+        </tr>
+        
+        <tr>
+          <td>sample6</td>
+          <td>4638</td>
+          <td>27384278</td>
+          <td>0.02</td>
+        </tr>
+        
+      </table>
+      <p class="tremark">
+        (1) Sample_name: sample id<br />
+        (2) mapped_sRNA: number of reads that can be mapped to the database<br />
+        (3) total_sRNA: total read number of the sample<br />
+        (4) mapped_sRNA/total_sRNA(percent%): the number of reads in the sample that can be mapped to the reference sequence, as a percentage of the total number of reads<br />
+        (5) mapped virus segment：number of sequences of the sample that can be mapped to the database</p>
+      <br />
+      <p class="center">Table 2.7.2 Virus siRNA Matching Details (partial results)</p>
+      <p class="center">
+      <div style="overflow-x: auto">
+      <table class="gy">
+       <tr><th>read_sequence</th><th>sample1</th><th>virus_description</th><th>virus_id</th><th>strand</th><th>position</th></tr>
+       <tr><td>TTTTCTTGTGAATTTGGACCGTAATC</td><td>1</td><td>Nora virus</td><td>gi|346421290|ref|NC_007919.3|</td><td>+</td><td>2549</td></tr>
+       <tr><td>CAAGTACCGTGAGGGAAAGTT</td><td>1</td><td>Choristoneura occidentalis granulovirus</td><td>gi|109255272|ref|NC_008168.1|</td><td>-</td><td>19968</td></tr>
+       <tr><td>ATGGTCTACGAACTACAGC</td><td>1</td><td>Nora virus</td><td>gi|346421290|ref|NC_007919.3|</td><td>+</td><td>2319</td></tr>
+       <tr><td>CTAAAACGGCGAAAAGAGTG</td><td>1</td><td>Nora virus</td><td>gi|346421290|ref|NC_007919.3|</td><td>-</td><td>8223</td></tr>
+       <tr><td>TCTAATTAGTGACGCGCAT</td><td>1</td><td>Choristoneura occidentalis granulovirus</td><td>gi|109255272|ref|NC_008168.1|</td><td>-</td><td>25966</td></tr>
+       <tr><td>CGAAAGCACAGCCAAGGGAACGGG</td><td>1</td><td>Choristoneura occidentalis granulovirus</td><td>gi|109255272|ref|NC_008168.1|</td><td>-</td><td>25904</td></tr>
+       <tr><td>CTCGAAAAGATGAATGCTGCT</td><td>1</td><td>Nora virus</td><td>gi|346421290|ref|NC_007919.3|</td><td>+</td><td>1090</td></tr>
+       <tr><td>CCATGGATGAGAACCGCC</td><td>2</td><td>Nora virus</td><td>gi|346421290|ref|NC_007919.3|</td><td>+</td><td>10460</td></tr>
+       <tr><td>AACAACAGGACGTAGAGGTGTGTTAG</td><td>1</td><td>Nora virus</td><td>gi|346421290|ref|NC_007919.3|</td><td>+</td><td>2246</td></tr>
+        
+      </table>
+  
+  <!-------------------------------------------- 附录 --------------------------------------------->
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left" src="src/images/logo.png" /></a> <a name="附录">Novogene Corporation Inc.</a>
+    <hr />
+    </p>
+    <h2>Appendix</h2>
+
+    <a name="软件说明列表">
+    <h3 id="note_2">Software used in the analysis</h3>
+    </a>
+    <p class="paragraph">Software used in the analysis :</p>
+    <p class="center">
+    <div id="tb">
+    <table class="gy">	
+		<tr>
+          <th>Name</th>
+          <th>Version</th>
+          <th>Description</th>
+          <th>Main Parameter</th>
+        </tr>
+		
+		<tr>
+          <td>Bowtie</td>
+          <td>bowtie-0.12.9</td>
+          <td>for mapping</td>
+          <td>-v 0 -k 1</td>
+        </tr>
+		
+		<tr>
+          <td>velvet</td>
+          <td>Version 1.2.10</td>
+          <td>for assemble</td>
+          <td>hash_length 17 </td>
+        </tr>
+        	<tr>
+    	<td>PFOR</td>
+    	<td>v0.965</td>
+    	<td>for assemble</td>
+    	<td>k-mer 17 </td>
+  	</tr>
+		
+		<tr>
+          <td>blat</td>
+          <td>v. 35x1</td>
+          <td>for config merge</td>
+          <td>minIdentity 95</td>
+        </tr>
+		
+		<tr>
+          <td>Blast</td>
+          <td>v2.2.28</td>
+          <td>-evalue 1e-10</td>
+          <td>for virus annotate</td>
+        </tr>
+    </table>
+	
+	<br />
+
+ <!-------------------------------------------- 参考文献 ------------------------------------------->
+
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left" src="src/images/logo.png" /></a> <a name="参考文献">Novogene Corporation Inc.</a>
+    <hr />
+    </p>
+    <h2 id="reference_html">Reference</h2>
+    <p class="ref">Aregger, M., Borah, B.K., Seguin, J., Rajeswaran, R., Gubaeva, E.G., Zvereva, A.S., Windels D., Vazquez, F., Blevins, T., Farinelli, L., et al. (2012). Primary and secondary siRNAs in geminivirus-induced gene silencing. PLoS Pathog 8: e1002941. <br />
+      Bedell J., Korf I., Yandell M. (2003). BLAST. O'Reilly. ISBN 0-596-00299-8.<br />
+      Cock, P.J.A., Fields, C.J., Goto, N., Heuer, M.L., and Rice, P.M. (2010). The Sanger FASTQ file format for sequences with quality scores, and the Solexa/Illumina FASTQ variants. Nucleic acids research 38, 1767-1771..<br />
+      Erlich, Y., and Mitra, P.P. (2008). Alta-Cyclic: a self-optimizing base caller for next-generation sequencing. Nature methods 5, 679-682.<br />
+      Jiang, L., Schlesinger, F., Davis, C.A., Zhang, Y., Li, R., Salit, M., Gingeras, T.R., and Oliver, B.(2011). Synthetic spike-in standards for RNA-seq experiments. Genome research 21, 1543-1551.<br />
+      Wu Q., Luo Y ., Lu R., Lau N., Li W .X., et al. (2010). Virus discovery by deep sequencing and assembly of virus-derived small silencing RNAs. Proc Nat Acad Sci 107, 1606–1611.<br />
+      Zerbino D.R., Birney E. (2008). Velvet: Algorithms for de novo short read assembly using de Bruijn graphs. Genome Res 18:821–829.<br />
+      Wu Q., Wang Y., Cao M., Pantaleo V., Burgyan J., Li W.X., and Ding S.W. (2012). Homologyindependent discovery of replicating pathogenic circular RNAs by deep sequencing and a new computational algorithm. Proc Natl Acad Sci 109(10):3938-3943.<br />
+    </p>
+  
+  
+</div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>data tables</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="../css/datatables.css" />
+    <link rel="stylesheet" type="text/css" href="../css/buttons.dataTables.min.css" />
+</head>
+<body>
+        <table id="nopaging_table" class="display" style="width: 100%; height: 50px; text-align: center; margin: auto;font-size: 14px;font-family: 黑体-简">
+        <thead>
+            <tr style='background-color: #036EB8;color: #FFFFFF'><th>mutation_id</th><th>sample_id</th><th>cluster_id</th><th>cellular_prevalence</th><th>cellular_prevalence_std</th><th>variant_allele_frequency</th></tr>
+        </thead>
+        <tbody>
+			<tr style'background-color: #f1f5fb'><td>ACTR3B:chr7:152800571</td><td>cancer1</td><td>0</td><td>0.7621499537175774</td><td>0.1047015384178243</td><td>0.09375</td></tr>
+			<tr style'background-color: #e3eff8'><td>ANAPC1:chr2:111856852</td><td>cancer1</td><td>0</td><td>0.7661595166962756</td><td>0.10192650223250328</td><td>0.1111111111111111</td></tr>
+			<tr style'background-color: #f1f5fb'><td>BACH2:chr6:89951134</td><td>cancer1</td><td>0</td><td>0.7918788909392367</td><td>0.09005891527279772</td><td>0.25</td></tr>
+			<tr style'background-color: #e3eff8'><td>C10orf71:chr10:49327147</td><td>cancer1</td><td>0</td><td>0.7722835397629529</td><td>0.09821664796792871</td><td>0.14814814814814814</td></tr>
+			<tr style'background-color: #f1f5fb'><td>C17orf58:chr17:67993544</td><td>cancer1</td><td>0</td><td>0.7716289181001575</td><td>0.09693325133227301</td><td>0.15384615384615385</td></tr>
+			<tr style'background-color: #e3eff8'><td>CADPS:chr3:62875226</td><td>cancer1</td><td>0</td><td>0.7725270493717521</td><td>0.09617016381238752</td><td>0.15</td></tr>
+			<tr style'background-color: #f1f5fb'><td>CAPN14:chr2:31174534</td><td>cancer1</td><td>0</td><td>0.7719214627541516</td><td>0.09709760959196465</td><td>0.14893617021276595</td></tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <script type="text/javascript" src="../js/datatables.js"></script>
+    <script type="text/javascript" src="../js/vfs_fonts.js"></script>
+    <script type="text/javascript" src="../js/buttons.colVis.min.js"></script>
+    <script type="text/javascript" src="../js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var table = $('#nopaging_table').DataTable( {
+                scrollX: true,
+                paging: false,
+                scrollY: 242,
+                sorting: true,
+                'order': [],
+                searching: false,
+                fixedHeader: {
+                    header: false,
+                    //footer: true
+                },
+                fixedColumns: {'leftColumns':1},
+                colReorder: true,
+                dom: 'Bfrtip',
+                buttons: [
+                    'colvis','excel'
+                ],
+                language:{
+                    'info': '',
+                    'sZeroRecords' : '没有找到数据',
+                    "oPaginate" : {
+                        "sFirst" : "第一页",
+                        "sPrevious" : "上一页",
+                        "sNext" : "下一页",
+                        "sLast" : "最后一页"
+                    }
+                }
+            } );
+        } );
+    </script>
+</body>
+</html>

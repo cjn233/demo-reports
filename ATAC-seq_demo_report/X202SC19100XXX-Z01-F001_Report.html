@@ -1,0 +1,3522 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" >
+
+<html>
+
+<head>
+
+<TITLE>Assays for Transposase-Accessible Chromatin with high-throughput sequencing (ATAC-Seq) Analysis Report</TITLE>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+
+<link rel="stylesheet" href="src/css/jquery-ui.css" />
+
+<link rel="stylesheet" href="src/css/bootstrap-4.3.1.min.css" />
+
+<link rel="stylesheet" href="src/css/jquery.tocify.css" />
+
+<link rel="stylesheet" href="src/css/style.css"/>
+
+<link rel="stylesheet" href="src/css/base.css"/>
+
+<link rel="stylesheet" href="src/css/gallery.css"/>
+
+<script src="src/js/jquery-3.3.1.min.js" type="text/javascript"></script>
+
+<script src="src/js/jquery-ui.min.js" type="text/javascript"></script>
+
+<script src="src/js/jquery.tocify.min.js" type="text/javascript"></script>
+
+<script src="src/js/bootstrap-4.3.1.min.js" type="text/javascript"></script>
+
+<script src="src/js/scrollTop.js" type="text/javascript"></script>
+
+
+
+<script type="text/javascript">
+
+	$(function () {
+
+		var options = {
+
+			selectors: "h2,h3,h4",
+
+			theme: "bootstrap",
+
+			scrollTo: "60"
+
+		};
+
+		var toc = $("#toc").tocify(options).data("toc-tocify");
+
+	});
+
+</script>
+
+
+
+
+
+<script type="text/javascript">
+
+function trans(img_div_id) {
+
+img_div = $("#" + img_div_id)
+
+img = $("#" + img_div_id + " img").first();
+
+if (img_div.hasClass("fullscreen-div")) {
+
+img_div.removeClass("fullscreen-div");
+
+img.removeClass("fullscreen-img");
+
+}
+
+else {
+
+img_div.addClass("fullscreen-div");
+
+img.addClass("fullscreen-img");
+
+}
+
+}
+
+
+
+function filter_display() {
+
+return $(this).css("display") != "none";
+
+}
+
+
+
+function show_default() {
+
+var list_group_id = "#" + $(this).attr("id");
+
+if ($(list_group_id + " a.active").css("display") == "none") {
+
+var list_tab = $(list_group_id + " a.active");
+
+var pan_id = list_tab.attr("href");
+
+$(pan_id).removeClass("active show");
+
+list_tab.removeClass("active");
+
+}
+
+if ($(list_group_id + " a.active").filter(filter_display).length == 0) {
+
+$(list_group_id + " a").filter(filter_display).first().tab("show");
+
+}
+
+}
+
+$.fn.show_default = show_default
+
+
+
+function next(botton_id) {
+
+var present_tab = $("#" + botton_id.replace("_button_next", "_list-tab") + " .active").first();
+
+while (present_tab.next().length == 1) {
+
+if (present_tab.next().css("display") != "none") {
+
+present_tab.next().tab("show");
+
+break;
+
+}
+
+else {
+
+present_tab = present_tab.next();
+
+}
+
+}
+
+
+
+}
+
+function prev(botton_id) {
+
+var present_tab = $("#" + botton_id.replace("_button_prev", "_list-tab") + " .active").first();
+
+while (present_tab.prev().length == 1) {
+
+if (present_tab.prev().css("display") != "none") {
+
+present_tab.prev().tab("show");
+
+break;
+
+}
+
+else {
+
+present_tab = present_tab.prev();
+
+}
+
+}
+
+
+
+
+
+}
+
+
+
+$(document).ready(function () {
+
+$(".form-control").on("keyup", function () {
+
+var value = $(this).val().toLowerCase();
+
+var input_box_id = "#" + $(this).attr("id");
+
+var list_group_id = input_box_id.replace("_InputList", "_list-tab");
+
+$(list_group_id + " a").filter(function () {
+
+$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+
+});
+
+$(list_group_id).show_default();
+
+});
+
+$(".list-group").each(show_default);
+
+});
+
+
+
+</script>
+
+
+
+
+
+
+
+</head>
+
+
+
+<body>
+
+
+
+<div id="toc" class="tocify">
+
+</div>
+
+
+
+
+
+	<div style="position:fixed; top:0; left:0; width:100%; z-index:1000;">
+
+		<table width="100%" height="50px" border="0" cellpadding="5" cellspacing="0"
+
+			style="background:#F3F3F3; border-bottom:1px solid #eee;border-top: none;background-image:-moz-linear-gradient(top,#EEEEEE,#FFFFFF); background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0,#EEEEEE), color-stop(1,#FFFFFF));filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#EEEEEE', endColorstr='#FFFFFF', GradientType='0')">
+
+			<tr height="86%">
+
+				<td width='1%'></td>
+
+				<td><img src="src/images/logo_slogan.png"></td>
+
+				<td>
+
+					<div style="margin:5px;border-left:1px solid #DCDCDC;height:30px"></div>
+
+				</td>
+				<td width="20%"></td>
+
+				<td width="15%"></td>
+
+				<td width="25%"
+
+					style="text-align:right;padding:0px;margin:0px;color:black;font-size:14px;font-weight:50;">
+
+
+					<br><a href="mailto:op-rna@novogene.com" target="black"
+
+						style="text-decoration:none;color:black;font-size:14px;font-weight:50;">
+
+						<a></td>
+
+				<td width="1%"></td>
+
+			</tr>
+
+		</table>
+
+	</div>
+
+<div id="main">
+<div>
+</br><h1>Assays for Transposase-Accessible Chromatin with high-throughput sequencing (ATAC-Seq) Analysis Report</h1></br>
+<table class= 'gy' style="text-align:left">
+<thead><tr><th>Contract Information</th><th>Contract Content</th></tr></thead>
+<tbody>
+<tr><td>Contract ID</td><td>X202SC19100XXX-Z01-F001</td></tr>
+<tr><td>Batch ID</td><td>X202SC19100XXX-Z01-F001</td></tr>
+<tr><td>Species and Version</td><td>Homo_sapiens</td></tr>
+<tr><td>Report Time</td><td>2023-10-08</td></tr>
+</tbody></table>
+</p></div>
+<!---------------------------------------- Introduction ---------------------------------------->
+<div>
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<a name="Introduction">Novogene Corporation Inc.</a>
+<hr />
+</p>
+
+<h2 id="id_order_pipeline"><a name="The workflow of library construction">I. Background</a></h2>
+<p class="paragraph" >
+Assay for transposase-accessible chromatin with high-throughput sequencing (ATAC-seq) is an information rich assay, allowing simultaneous interrogation of factor occupancy, nucleosome positions in regulatory sites, and chromatin accessibility genome-wide. Chromatin accessibility plays a critical role in the regulation of gene expression. Interactions among chromatin regulators, sequence-specific transcription factors, and cis -regulatory sequence elements are the main driving forces shaping context-specific chromatin structure and gene expression. Therefore, the attractive combination of speed, simplicity and low input requirements of ATAC-seq will enable new gene regulatory insights into biology and medicine.
+</p>
+<br />
+</div>
+<!-------------------------------- The workflow of library construction --------------------------------->
+<div>
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<a name="The workflow of library construction">Novogene Corporation Inc.</a>
+<hr />
+</p>
+
+<h2 id="id_order_pipeline"><a name="build_library">II. Experimental Procedure</a></h2>
+<p class="paragraph" >
+The ATAC-seq project includes two parts: 1. The ATAC experiment；2. The subsequent Next Generation Sequencing (NGS) and data analysis. From the sample extraction to sequencing, each step may have an impact on the quality and quantity of data output, which will directly affect the bioinformatic analysis results. Obtaining high-quality data is the premise to ensure that bioinformatics analysis is correct, comprehensive and credible. Therefore, Novogene strictly checks every experimental step and fundamentally ensures the output of high-quality data. The workflow is shown as follows.</p>
+
+<p class="center">
+<img class="small4" src="src/images/ATAC_experiment_pipeline.png"  /></p>
+
+<!----------------------library construction---------------------->
+<a name="library construction"></a>
+<h3 id="id_12"><a id="part1.2">1 Library Preparation for Sequencing</a></h3>
+
+<p class="paragraph" >
+Nuclei are extracted from samples and tested for quality control (QC). After the QC, the nuclei pellets are resuspended in the Tn5 transposase reaction mix, which includes transposase and equimolar Adapter1 and Adapter 2. The mix of transposition reaction is incubated at 37°C for 30 min. PCR is then performed to amplify the library. Libraries were purified with the AMPure beads and library quality was assessed.
+The workflow of library construction is shown as follows.
+</p>
+<p class="center">
+<img class="normal4" src="src/images/library_pipeline.png" />
+</p>
+
+<h3 id="id_12"><a id="part1.2">2 Quality control of Library</a></h3>
+
+<p class="paragraph" >
+After the construction of the library, the initial quantification was done with Tapestation 4150, and the library is diluted to 2-4ng/μl. Then the insertion size of the library is detected with NGS3K. If meeting the expectation, the accurate concentration of the library is quantified by Q-PCR (library effective concentration > 2nM) to ensure the accurate molar amount that will pooled for sequencing. 
+</p>
+
+<h3 id="id_12"><a id="part1.2">3 Sequencing</a></h3>
+
+<p class="paragraph" >
+After library quality control, sequencing is performed for different libraries according to the concentration and the demand of data amount on Illumina HiSeq/NovaSeq platform. The basic principle of sequencing is sequencing by synthesis. Four kinds of fluorescent labeled dNTP, DNA polymerase and adapter primers are added to the flow cell for amplification. When each sequence cluster extends the complementary chain, each fluorescent labeled dNTP releases the corresponding fluorescence. The sequencer captures the fluorescent signal and converts the light signal into the sequencing peak through computer software to obtain the sequence information of the fragment to be detected. The sequencing process is shown in the following figure.
+</p>
+<p class="center">
+<img class="small2" src="src/images/ATAC_sequencing_principle_process.png" />
+</p>
+
+</div>
+
+<!-----------------   三、项目结果说明---------------->
+
+<!------------1. 测序数据质量评估------------>
+
+<!---------------------------------- FastQC of raw reads ---------------------------------->
+
+<div>
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<a name="结果展示及说明">Novogene Corporation Inc.</a>
+<hr />
+</p>
+
+<h2><a id="Analysis Results">III. Bioinformatic analysis results</a></h2>
+
+<p class="paragraph" >
+The bioinformatic analysis workflow of raw sequencing data is shown as follows:
+</p>
+<p class="center">
+<img class="small4" src="src/images/ATAC_analysis_pipeline.png"  width="1033"  />
+</p>
+
+<h3 id="id_order_qc" ><a name="Trimming">1 Data Quality Control</a></h3>
+<h4 id="id_order_qc1"><a name="part3.1.1">1.1　FastQC of Raw reads</a></h4>
+<p class="paragraph" >The massive raw data obtained by high-throughput sequencing technology must be qualified to guarantee the downstream bioinformatic data analysis. The popular software for the quality control FastQC is used to access the basic quality of the raw reads. Summary of the QC is shown in the following(Figure 1-1):</p>
+
+<p class="center">
+<div class="row">
+<div class="col-1">
+<div id="gallery_figure1_1_button_prev" class="button_prev" onclick="prev(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_prev">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-6">
+<div class="tab-content" id="gallery_figure1_1_nav-tabContent">
+
+<div class="tab-pane fade" id="gallery_figure1_1_pane_sample_1" 
+role="tabpanel" aria-labelledby="gallery_figure1_1_list_sample_1"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/FastQC_raw_sample_1.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure1_1_pane_sample_2" 
+role="tabpanel" aria-labelledby="gallery_figure1_1_list_sample_2"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/FastQC_raw_sample_2.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure1_1_pane_sample_3" 
+role="tabpanel" aria-labelledby="gallery_figure1_1_list_sample_3"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/FastQC_raw_sample_3.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure1_1_pane_sample_4" 
+role="tabpanel" aria-labelledby="gallery_figure1_1_list_sample_4"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/FastQC_raw_sample_4.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure1_1_pane_sample_5" 
+role="tabpanel" aria-labelledby="gallery_figure1_1_list_sample_5"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/FastQC_raw_sample_5.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure1_1_pane_sample_6" 
+role="tabpanel" aria-labelledby="gallery_figure1_1_list_sample_6"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/FastQC_raw_sample_6.png" /></div>
+
+</div></div>
+<div class="col-1">
+<div id="gallery_figure1_1_button_next" class="button_next" onclick="next(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_next">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-4">
+<input class="form-control" id="gallery_figure1_1_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="gallery_figure1_1_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="gallery_figure1_1_list_sample_1"
+data-toggle="list" href="#gallery_figure1_1_pane_sample_1" role="tab" aria-controls="sample_1">sample_1</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure1_1_list_sample_2"
+data-toggle="list" href="#gallery_figure1_1_pane_sample_2" role="tab" aria-controls="sample_2">sample_2</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure1_1_list_sample_3"
+data-toggle="list" href="#gallery_figure1_1_pane_sample_3" role="tab" aria-controls="sample_3">sample_3</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure1_1_list_sample_4"
+data-toggle="list" href="#gallery_figure1_1_pane_sample_4" role="tab" aria-controls="sample_4">sample_4</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure1_1_list_sample_5"
+data-toggle="list" href="#gallery_figure1_1_pane_sample_5" role="tab" aria-controls="sample_5">sample_5</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure1_1_list_sample_6"
+data-toggle="list" href="#gallery_figure1_1_pane_sample_6" role="tab" aria-controls="sample_6">sample_6</a>
+
+</div></div></div>
+</p>
+
+
+<p align="center"><b> Figure 1-1　raw reads of FastQC</b></p>
+<p><small>
+Top-left: horizontal axis represents position in read (bp), vertical axis represents quality scores. Different colors represent different quality range;</small></p>
+<p><small>
+Top-middle: horizontal axis represents position in read (bp), vertical axis represents base percentage; </small></p>
+<p><small>
+Top-right: the distribution of read length;</small></p>
+<p><small>
+Bottom-left: GC distribution over all sequences. Red line is the actual GC content distribution, blue line is the theoretical distribution;</small></p>
+<p><small>
+Bottom-middle: N-ratio across all bases;</small></p>
+<p><small>
+Bottom-right: x-axis is the sequence duplication level. y-axis is the percent of the deduplicated reads.</small></p>
+
+
+<!---------------------------------- 原始数据Trimming ---------------------------------->
+
+<div>
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<a name="Analysis Results">Novogene Corporation Inc.</a>
+<hr />
+</p>
+<h4 id="id_order_qc2"><a name="part3.1.2">1.2　Raw Data Trimming </a></h4>
+<p class="paragraph" >
+To make sure the quality of data analysis, raw data need to be filtered to get clean data that all the analysis are based on. We use Skewer to trim adaptor sequences and filter low quality sequences.The procedures for data trimming are listed below:
+</p>
+<p class="sub">
+(1) Discard the reads with mean quality lower than 20;</p>
+<p class="sub">
+(2) Discard the reads with N ratio (unsure base) larger than 15%;</p>
+<p class="sub">
+(3) Trim the adapter sequence at the 3’-end;</p>
+<p class="sub">
+(4) Discard the reads whose length are less than 18nt after trimming.</p>
+
+<p class="name_table">Table 1-1 Summary of raw data quality control</p>
+<div style="overflow-x: scroll">
+<table class="gy">
+	<tr>
+		<th>Sample</th>
+		<th>Raw_reads</th>
+		<th>Low_quality</th>
+		<th>Degeneratives</th>
+		<th>Empty</th>
+		<th>Too_short</th>
+		<th>Trimmed</th>
+		<th>Untrimmed</th>
+		<th>Clean_reads</th>
+		<th>Clean_rate</th>
+	</tr>
+	
+	<tr>
+		<td>sample_1</td>
+		<td>28647182</td>
+		<td>515</td>
+		<td>0</td>
+		<td>0</td>
+		<td>5</td>
+		<td>3510719</td>
+		<td>25135943</td>
+		<td>28646662</td>
+		<td>100.00%</td>
+	</tr>
+	
+	<tr>
+		<td>sample_2</td>
+		<td>29320281</td>
+		<td>624</td>
+		<td>0</td>
+		<td>0</td>
+		<td>5</td>
+		<td>3548219</td>
+		<td>25771433</td>
+		<td>29319652</td>
+		<td>100.00%</td>
+	</tr>
+	
+	<tr>
+		<td>sample_3</td>
+		<td>26186099</td>
+		<td>413</td>
+		<td>0</td>
+		<td>0</td>
+		<td>2</td>
+		<td>3067579</td>
+		<td>23118105</td>
+		<td>26185684</td>
+		<td>100.00%</td>
+	</tr>
+	
+	<tr>
+		<td>sample_4</td>
+		<td>27317914</td>
+		<td>353</td>
+		<td>0</td>
+		<td>0</td>
+		<td>5</td>
+		<td>3092175</td>
+		<td>24225381</td>
+		<td>27317556</td>
+		<td>100.00%</td>
+	</tr>
+	
+	<tr>
+		<td>sample_5</td>
+		<td>32653029</td>
+		<td>580</td>
+		<td>0</td>
+		<td>0</td>
+		<td>7</td>
+		<td>3827438</td>
+		<td>28825004</td>
+		<td>32652442</td>
+		<td>100.00%</td>
+	</tr>
+	
+	<tr>
+		<td>sample_6</td>
+		<td>29853641</td>
+		<td>507</td>
+		<td>16</td>
+		<td>0</td>
+		<td>3</td>
+		<td>3857634</td>
+		<td>25995481</td>
+		<td>29853115</td>
+		<td>100.00%</td>
+	</tr>
+	
+</table>
+</div>
+<p><small> 
+(1) Sample: Sample name</small></p>
+<p><small>
+(2) Raw_reads: the original sequencing reads counts;</small></p>
+<p><small>
+(3) Low_quality: reads with mean quality lower than 20 before trimming;</small></p>
+<p><small>
+(4) Degeneratives: reads with at least 15% N before trimming;</small></p>
+<p><small>
+(5) Empty: reads with all bases from adapter (s);</small></p>
+<p><small>
+(6) Too_short: reads shorter than 18nt that are discarded after trimming;</small></p>
+<p><small>
+(7) Trimmed: reads with at least 18nt that are kept after trimming;</small></p>
+<p><small>
+(8) Untrimmed: reads that are kept untrimmed;</small></p>
+<p><small>
+(9) Clean_reads: kept reads after trimming, including both trimmed and untrimmed;</small></p>
+<p><small>
+(10) Clean_rate: the ratio of Clean_reads to Raw_reads.</small></p>
+</div>
+
+<!---------------------------------- FastQC of clean reads ---------------------------------->
+
+<div>
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<a>Novogene Corporation Inc.</a>
+<hr />
+</p>
+<h4 id="id_order_qc3"><a name="part3.1.3">1.3 FastQC of Clean Reads</a></h4>
+
+<p class="paragraph" >
+Quality control of the clean reads after trimming is shown below(Figure 1-2):
+</p>
+
+<p class="center">
+<div class="row">
+<div class="col-1">
+<div id="gallery_figure1_2_button_prev" class="button_prev" onclick="prev(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_prev">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-6">
+<div class="tab-content" id="gallery_figure1_2_nav-tabContent">
+
+<div class="tab-pane fade" id="gallery_figure1_2_pane_sample_1" 
+role="tabpanel" aria-labelledby="gallery_figure1_2_list_sample_1"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/FastQC_clean_sample_1.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure1_2_pane_sample_2" 
+role="tabpanel" aria-labelledby="gallery_figure1_2_list_sample_2"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/FastQC_clean_sample_2.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure1_2_pane_sample_3" 
+role="tabpanel" aria-labelledby="gallery_figure1_2_list_sample_3"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/FastQC_clean_sample_3.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure1_2_pane_sample_4" 
+role="tabpanel" aria-labelledby="gallery_figure1_2_list_sample_4"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/FastQC_clean_sample_4.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure1_2_pane_sample_5" 
+role="tabpanel" aria-labelledby="gallery_figure1_2_list_sample_5"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/FastQC_clean_sample_5.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure1_2_pane_sample_6" 
+role="tabpanel" aria-labelledby="gallery_figure1_2_list_sample_6"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/FastQC_clean_sample_6.png" /></div>
+
+</div></div>
+<div class="col-1">
+<div id="gallery_figure1_2_button_next" class="button_next" onclick="next(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_next">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-4">
+<input class="form-control" id="gallery_figure1_2_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="gallery_figure1_2_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="gallery_figure1_2_list_sample_1"
+data-toggle="list" href="#gallery_figure1_2_pane_sample_1" role="tab" aria-controls="sample_1">sample_1</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure1_2_list_sample_2"
+data-toggle="list" href="#gallery_figure1_2_pane_sample_2" role="tab" aria-controls="sample_2">sample_2</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure1_2_list_sample_3"
+data-toggle="list" href="#gallery_figure1_2_pane_sample_3" role="tab" aria-controls="sample_3">sample_3</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure1_2_list_sample_4"
+data-toggle="list" href="#gallery_figure1_2_pane_sample_4" role="tab" aria-controls="sample_4">sample_4</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure1_2_list_sample_5"
+data-toggle="list" href="#gallery_figure1_2_pane_sample_5" role="tab" aria-controls="sample_5">sample_5</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure1_2_list_sample_6"
+data-toggle="list" href="#gallery_figure1_2_pane_sample_6" role="tab" aria-controls="sample_6">sample_6</a>
+
+</div></div></div>
+</p>
+<p align="center"><b> Figure 1-2 FastQC of Clean_reads</b></p>
+<p><small>
+Top-left: horizontal axis represents position in read (bp), vertical axis represents quality scores, different colors represent different quality range;</small></p>
+<p><small>
+Top-middle: horizontal axis represents position in read (bp), vertical axis represents base percentage;</small></p>
+<p><small>
+Top-right: the distribution of read length;</small></p>
+<p><small>
+Bottom-left: mean GC content (%). Red line is the actual GC content distribution, blue line is the theoretical distribution;</small></p>
+<p><small>
+Bottom-middle: N-ratio across all bases;</small></p>
+<p><small>
+Bottom-right: x-axis is the sequence duplication level. y-axis is the percent of the deduplicated reads.</small></p>
+</div>
+
+<!------------2. 参考序列比对分析 ------------>
+
+<div>
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<a name="参考序列比对分析">Novogene Corporation Inc.</a>
+<hr />
+</p>
+
+<h3 id="id_order_Mapping" ><a name="Mapping">2 Mapping</a></h3>
+<h4 id="id_order_Mapping1"><a id="part3.2.1">2.1 Summary of Mapping</a></h4>
+
+<p class="paragraph">
+BWA is used to do the genome mapping analysis for the clean reads (Li, H. and R. Durbin, 2009). In the analysis of ATAC-Seq, the percentage of the unique sequence in the total sequence is the most important information. In addition,  reads mapped on mitochondria in mammals or mapped on chloroplasts in plant should be removed before subsequent analysis. The mapping result is summarized in the table below (Table 2-1):
+</p>
+<p class="name_table">Table 2-1 Summary of mapping </p>
+<div style="overflow-x: scroll">
+<table class="gy">
+	<tr>
+		<th>Sample</th>
+		<th>Clean_reads</th>
+		<th>Mapped_MT/PT</th>
+		<th>Mapped_non_MT/PT</th>
+		<th>Unique_mapped</th>
+		<th>Unique_mapped_dedup</th>
+	</tr>
+	
+	<tr>
+		<td>sample_1</td>
+		<td>28646662</td>
+		<td>411980(1.44%)</td>
+		<td>27576235(96.26%)</td>
+		<td>25973246(90.67%)</td>
+		<td>22992038(80.26%)</td>
+	</tr>
+	
+	<tr>
+		<td>sample_2</td>
+		<td>29319652</td>
+		<td>420230(1.43%)</td>
+		<td>28320714(96.59%)</td>
+		<td>26711129(91.10%)</td>
+		<td>23687476(80.79%)</td>
+	</tr>
+	
+	<tr>
+		<td>sample_3</td>
+		<td>26185684</td>
+		<td>435029(1.66%)</td>
+		<td>25128619(95.96%)</td>
+		<td>23668739(90.39%)</td>
+		<td>21212942(81.01%)</td>
+	</tr>
+	
+	<tr>
+		<td>sample_4</td>
+		<td>27317556</td>
+		<td>418038(1.53%)</td>
+		<td>26346527(96.45%)</td>
+		<td>24845657(90.95%)</td>
+		<td>22210593(81.31%)</td>
+	</tr>
+	
+	<tr>
+		<td>sample_5</td>
+		<td>32652442</td>
+		<td>636615(1.95%)</td>
+		<td>31365449(96.06%)</td>
+		<td>29661491(90.84%)</td>
+		<td>26148564(80.08%)</td>
+	</tr>
+	
+	<tr>
+		<td>sample_6</td>
+		<td>29853115</td>
+		<td>514181(1.72%)</td>
+		<td>28779687(96.40%)</td>
+		<td>27182013(91.05%)</td>
+		<td>24288697(81.36%)</td>
+	</tr>
+	
+</table>
+</div>
+<p><small>
+(1) Sample: Sample name;</small></p>
+<p><small>
+(2) Clean_reads: the clean reads counts;</small></p>
+<p><small>
+(3) Mapped_MT/PT: Counts of reads mapping to to mitochondria or chloroplasts ( The ratio in parentheses is the ratio of reads which map to mitochondria or chloroplasts to Clean reads );</small></p>
+<p><small>
+(4) Mapped_non_MT/PT: Counts of reads whcih don’t map  to mitochondria or chloroplasts ( The ratio in parentheses is the ratio of reads which don’t map to mitochondria or chloroplasts to Clean reads );</small></p>
+<p><small>
+(5) Unique_mapped: Number of reads that can be uniquely mapped to the reference genome (The ratio in parentheses is the ratio of Unique_mapped reads to Clean reads.);</small></p>
+<p><small>
+(6) Unique_mapped_dedup: Read count after remove the Unique_mapped reads mapped to the exact same position of the genome( The ratio in parentheses is the ratio of Dedup_Unique_mapped reads to Clean reads ).</small></p>
+</div>
+
+
+<div>
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<a name="比对质量统计">Novogene Corporation Inc.</a>
+<hr />
+</p>
+
+<h4 id="id_order_Mapping2"><a id="part3.2.2">2.2 Mapping Quality Statistics</a></h4>
+
+<p class="paragraph">
+MAPQ (Mapping Quality) represents the reliability of reads map to the reference genome. Proper quality value is chosen as the threshold for mapping. Here we choose 13 as the threshold, which means that the mapping chance of the accordingly non-unique region is only 0.05. Only one read pair is kept for the duplicates in the following peak calling.
+</p><br />
+
+
+<p class="center">
+<div class="row">
+<div class="col-1">
+<div id="gallery_figure2_1_button_prev" class="button_prev" onclick="prev(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_prev">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-6">
+<div class="tab-content" id="gallery_figure2_1_nav-tabContent">
+
+<div class="tab-pane fade" id="gallery_figure2_1_pane_sample_1" 
+role="tabpanel" aria-labelledby="gallery_figure2_1_list_sample_1"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/MAPQ_stat_sample_1.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure2_1_pane_sample_2" 
+role="tabpanel" aria-labelledby="gallery_figure2_1_list_sample_2"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/MAPQ_stat_sample_2.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure2_1_pane_sample_3" 
+role="tabpanel" aria-labelledby="gallery_figure2_1_list_sample_3"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/MAPQ_stat_sample_3.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure2_1_pane_sample_4" 
+role="tabpanel" aria-labelledby="gallery_figure2_1_list_sample_4"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/MAPQ_stat_sample_4.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure2_1_pane_sample_5" 
+role="tabpanel" aria-labelledby="gallery_figure2_1_list_sample_5"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/MAPQ_stat_sample_5.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure2_1_pane_sample_6" 
+role="tabpanel" aria-labelledby="gallery_figure2_1_list_sample_6"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/MAPQ_stat_sample_6.png" /></div>
+
+</div></div>
+<div class="col-1">
+<div id="gallery_figure2_1_button_next" class="button_next" onclick="next(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_next">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-4">
+<input class="form-control" id="gallery_figure2_1_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="gallery_figure2_1_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="gallery_figure2_1_list_sample_1"
+data-toggle="list" href="#gallery_figure2_1_pane_sample_1" role="tab" aria-controls="sample_1">sample_1</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure2_1_list_sample_2"
+data-toggle="list" href="#gallery_figure2_1_pane_sample_2" role="tab" aria-controls="sample_2">sample_2</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure2_1_list_sample_3"
+data-toggle="list" href="#gallery_figure2_1_pane_sample_3" role="tab" aria-controls="sample_3">sample_3</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure2_1_list_sample_4"
+data-toggle="list" href="#gallery_figure2_1_pane_sample_4" role="tab" aria-controls="sample_4">sample_4</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure2_1_list_sample_5"
+data-toggle="list" href="#gallery_figure2_1_pane_sample_5" role="tab" aria-controls="sample_5">sample_5</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure2_1_list_sample_6"
+data-toggle="list" href="#gallery_figure2_1_pane_sample_6" role="tab" aria-controls="sample_6">sample_6</a>
+
+</div></div></div>
+</p>
+<p align="center"><b> Figure 2-1 Distribution of MAPQ</b></p>
+
+<p align="center"><small>
+Horizontal axis is MAPQ, vertical axis is the reads count.
+</small>
+<br />
+<br />
+</div>
+
+
+
+<div>
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<a name="reads在基因组上的分布统计">Novogene Corporation Inc.</a>
+<hr />
+</p>
+
+<h4 id="id_order_Mapping3"><a id="part3.2.3">2.3 Genome-wide Distribution of the Mapped Reads</a></h4>
+
+<p class="paragraph">Summary of the density of total mapped reads in different chromosomes (plus and minus) is shown in the figure below. With 5k slide window size, the medium of the number of reads mapped to each base within window is calculated, and converted to log2. The longer the whole chromosome is, the more reads are mapped (Marquez et al. 2012). From the correlation of the number of the mapped reads and the length of the chromosome in the figure, we can see the correlation between the total number of the reads and the length of the chromosome much easier.</p>
+<p class="center">
+<div class="row">
+<div class="col-1">
+<div id="gallery_figure2_2_button_prev" class="button_prev" onclick="prev(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_prev">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-6">
+<div class="tab-content" id="gallery_figure2_2_nav-tabContent">
+
+<div class="tab-pane fade" id="gallery_figure2_2_pane_sample_1" 
+role="tabpanel" aria-labelledby="gallery_figure2_2_list_sample_1"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Reads_on_chromosome_distribution_of_sample_1.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure2_2_pane_sample_2" 
+role="tabpanel" aria-labelledby="gallery_figure2_2_list_sample_2"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Reads_on_chromosome_distribution_of_sample_2.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure2_2_pane_sample_3" 
+role="tabpanel" aria-labelledby="gallery_figure2_2_list_sample_3"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Reads_on_chromosome_distribution_of_sample_3.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure2_2_pane_sample_4" 
+role="tabpanel" aria-labelledby="gallery_figure2_2_list_sample_4"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Reads_on_chromosome_distribution_of_sample_4.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure2_2_pane_sample_5" 
+role="tabpanel" aria-labelledby="gallery_figure2_2_list_sample_5"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Reads_on_chromosome_distribution_of_sample_5.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure2_2_pane_sample_6" 
+role="tabpanel" aria-labelledby="gallery_figure2_2_list_sample_6"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Reads_on_chromosome_distribution_of_sample_6.png" /></div>
+
+</div></div>
+<div class="col-1">
+<div id="gallery_figure2_2_button_next" class="button_next" onclick="next(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_next">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-4">
+<input class="form-control" id="gallery_figure2_2_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="gallery_figure2_2_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="gallery_figure2_2_list_sample_1"
+data-toggle="list" href="#gallery_figure2_2_pane_sample_1" role="tab" aria-controls="sample_1">sample_1</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure2_2_list_sample_2"
+data-toggle="list" href="#gallery_figure2_2_pane_sample_2" role="tab" aria-controls="sample_2">sample_2</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure2_2_list_sample_3"
+data-toggle="list" href="#gallery_figure2_2_pane_sample_3" role="tab" aria-controls="sample_3">sample_3</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure2_2_list_sample_4"
+data-toggle="list" href="#gallery_figure2_2_pane_sample_4" role="tab" aria-controls="sample_4">sample_4</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure2_2_list_sample_5"
+data-toggle="list" href="#gallery_figure2_2_pane_sample_5" role="tab" aria-controls="sample_5">sample_5</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure2_2_list_sample_6"
+data-toggle="list" href="#gallery_figure2_2_pane_sample_6" role="tab" aria-controls="sample_6">sample_6</a>
+
+</div></div></div>
+</p>
+<p align="center"><b> Figure 2-2 Genome wide distribution of the mapped reads </b></p>
+<p align="center"><small>
+Horizontal axis represents the postition of the chromosome, vertical axis represents the number of the reads mapped to 1000nt window size. Here is the unique mapping and deduplication results.
+</small></p>
+</div>
+
+
+<div>
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<a name="reads相对TSS位置的分布">Novogene Corporation Inc.</a>
+<hr />
+</p>
+
+<h4 id="id_order_Mapping4"><a id="part3.2.4">2.4 Distribution of the Reads Mapped to TSS</a></h4>
+
+<p class="paragraph">
+The computeMatrix module of the software deepTools is used to analyze the ATAC-Seq signal in the 3 kb upstream and downstream regions of the transcription start site (TSS). Each TSS and its 3kb upstream and 3kb downstream regions are divided into bins according to the window size of 50bp. Then the average signal strength is calculated in each bin. Reads density refers to the percentage of the reads in each part to total reads. The average signal distribution is shown below(Figure 2-3).
+</p>
+
+<p class="center">
+<div class="row">
+<div class="col-1">
+<div id="gallery_figure2_3_button_prev" class="button_prev" onclick="prev(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_prev">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-6">
+<div class="tab-content" id="gallery_figure2_3_nav-tabContent">
+
+<div class="tab-pane fade" id="gallery_figure2_3_pane_sample_1" 
+role="tabpanel" aria-labelledby="gallery_figure2_3_list_sample_1"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_1_TSS_Profile.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure2_3_pane_sample_2" 
+role="tabpanel" aria-labelledby="gallery_figure2_3_list_sample_2"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_2_TSS_Profile.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure2_3_pane_sample_3" 
+role="tabpanel" aria-labelledby="gallery_figure2_3_list_sample_3"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_3_TSS_Profile.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure2_3_pane_sample_4" 
+role="tabpanel" aria-labelledby="gallery_figure2_3_list_sample_4"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_4_TSS_Profile.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure2_3_pane_sample_5" 
+role="tabpanel" aria-labelledby="gallery_figure2_3_list_sample_5"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_5_TSS_Profile.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure2_3_pane_sample_6" 
+role="tabpanel" aria-labelledby="gallery_figure2_3_list_sample_6"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_6_TSS_Profile.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure2_3_pane_allSample_TSS_profile" 
+role="tabpanel" aria-labelledby="gallery_figure2_3_list_allSample_TSS_profile"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/allSample_TSS_Profile.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure2_3_pane_allSample_TSS_heatmap" 
+role="tabpanel" aria-labelledby="gallery_figure2_3_list_allSample_TSS_heatmap"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/allSample_TSS.heatmap.png" /></div>
+
+</div></div>
+<div class="col-1">
+<div id="gallery_figure2_3_button_next" class="button_next" onclick="next(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_next">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-4">
+<input class="form-control" id="gallery_figure2_3_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="gallery_figure2_3_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="gallery_figure2_3_list_sample_1"
+data-toggle="list" href="#gallery_figure2_3_pane_sample_1" role="tab" aria-controls="sample_1">sample_1</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure2_3_list_sample_2"
+data-toggle="list" href="#gallery_figure2_3_pane_sample_2" role="tab" aria-controls="sample_2">sample_2</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure2_3_list_sample_3"
+data-toggle="list" href="#gallery_figure2_3_pane_sample_3" role="tab" aria-controls="sample_3">sample_3</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure2_3_list_sample_4"
+data-toggle="list" href="#gallery_figure2_3_pane_sample_4" role="tab" aria-controls="sample_4">sample_4</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure2_3_list_sample_5"
+data-toggle="list" href="#gallery_figure2_3_pane_sample_5" role="tab" aria-controls="sample_5">sample_5</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure2_3_list_sample_6"
+data-toggle="list" href="#gallery_figure2_3_pane_sample_6" role="tab" aria-controls="sample_6">sample_6</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure2_3_list_allSample_TSS_profile"
+data-toggle="list" href="#gallery_figure2_3_pane_allSample_TSS_profile" role="tab" aria-controls="allSample_TSS_profile">allSample_TSS_profile</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure2_3_list_allSample_TSS_heatmap"
+data-toggle="list" href="#gallery_figure2_3_pane_allSample_TSS_heatmap" role="tab" aria-controls="allSample_TSS_heatmap">allSample_TSS_heatmap</a>
+
+</div></div></div>
+</p>
+
+<p align="center"><b> Figure 2-3 Distribution of the reads mapped to TSS</b></p>
+<p align="center"><small>
+Horizontal axis: relative position of the gene. Vertical axis reads density.
+</small>
+</p>
+</div>
+
+
+
+<div>
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<a name="reads相对gene body的分布">Novogene Corporation Inc.</a>
+<hr />
+</p>
+
+<h4 id="id_order_Mapping5"><a id="part3.2.5">2.5 Distribution of the Reads Mapped to the Gene Body</a></h4>
+
+<p class="paragraph">
+The computeMatrix module of the software deepTools is used to analyze the ATAC-Seq signal in the 3 kb upstream and downstream regions of the gene body as well. Each gene and its 3kb upstream and 3kb downstream regions are divided into bins according to the window size of 50bp. Then the average signal strength is calculated in each bin. Reads density refers to the percentage of the reads in each part to total reads. The average signal distribution is shown below (Figure 2-4)
+</p>
+
+<p class="center">
+<div class="row">
+<div class="col-1">
+<div id="gallery_figure2_4_button_prev" class="button_prev" onclick="prev(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_prev">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-6">
+<div class="tab-content" id="gallery_figure2_4_nav-tabContent">
+
+<div class="tab-pane fade" id="gallery_figure2_4_pane_sample_1" 
+role="tabpanel" aria-labelledby="gallery_figure2_4_list_sample_1"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_1_scale_Profile.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure2_4_pane_sample_2" 
+role="tabpanel" aria-labelledby="gallery_figure2_4_list_sample_2"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_2_scale_Profile.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure2_4_pane_sample_3" 
+role="tabpanel" aria-labelledby="gallery_figure2_4_list_sample_3"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_3_scale_Profile.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure2_4_pane_sample_4" 
+role="tabpanel" aria-labelledby="gallery_figure2_4_list_sample_4"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_4_scale_Profile.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure2_4_pane_sample_5" 
+role="tabpanel" aria-labelledby="gallery_figure2_4_list_sample_5"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_5_scale_Profile.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure2_4_pane_sample_6" 
+role="tabpanel" aria-labelledby="gallery_figure2_4_list_sample_6"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_6_scale_Profile.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure2_4_pane_allSample_scale_profile" 
+role="tabpanel" aria-labelledby="gallery_figure2_4_list_allSample_scale_profile"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/allSample_scale_Profile.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure2_4_pane_allSample_scale_heatmap" 
+role="tabpanel" aria-labelledby="gallery_figure2_4_list_allSample_scale_heatmap"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/allSample_scale.heatmap.png" /></div>
+
+</div></div>
+<div class="col-1">
+<div id="gallery_figure2_4_button_next" class="button_next" onclick="next(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_next">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-4">
+<input class="form-control" id="gallery_figure2_4_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="gallery_figure2_4_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="gallery_figure2_4_list_sample_1"
+data-toggle="list" href="#gallery_figure2_4_pane_sample_1" role="tab" aria-controls="sample_1">sample_1</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure2_4_list_sample_2"
+data-toggle="list" href="#gallery_figure2_4_pane_sample_2" role="tab" aria-controls="sample_2">sample_2</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure2_4_list_sample_3"
+data-toggle="list" href="#gallery_figure2_4_pane_sample_3" role="tab" aria-controls="sample_3">sample_3</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure2_4_list_sample_4"
+data-toggle="list" href="#gallery_figure2_4_pane_sample_4" role="tab" aria-controls="sample_4">sample_4</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure2_4_list_sample_5"
+data-toggle="list" href="#gallery_figure2_4_pane_sample_5" role="tab" aria-controls="sample_5">sample_5</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure2_4_list_sample_6"
+data-toggle="list" href="#gallery_figure2_4_pane_sample_6" role="tab" aria-controls="sample_6">sample_6</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure2_4_list_allSample_scale_profile"
+data-toggle="list" href="#gallery_figure2_4_pane_allSample_scale_profile" role="tab" aria-controls="allSample_scale_profile">allSample_scale_profile</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure2_4_list_allSample_scale_heatmap"
+data-toggle="list" href="#gallery_figure2_4_pane_allSample_scale_heatmap" role="tab" aria-controls="allSample_scale_heatmap">allSample_scale_heatmap</a>
+
+</div></div></div>
+</p>
+<p align="center"><b> Figure 2-4 Distribution of the reads mapped to gene body</b></p>
+<p align="center"><small>
+Horizontal axis: relative position of the gene. Vertical axis: reads density.
+</small>
+</p>
+</div>
+
+
+
+<div>
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<a name="样本相关性检查">Novogene Corporation Inc.</a>
+<hr />
+</p>
+
+<h4 id="id_order_Mapping6"><a id="part3.2.6">2.6 Sample Correlation Detection</a></h4>
+
+<p class="paragraph">
+Biological replicate is necessary for every experiment, same for high-throughput technology (Hansen et al.). Biological replicate mainly has two applications: One is to prove that the biological experiment can be replicated and there is no large variance. The other one is to make sure that following differential gene analysis can get reliable results. The correlation among samples is an important index to see whether the experiment design is reliable and whether the sampling is right. The closer correlation coefficient is to 1, the better the consistency between samples.
+</p>
+<p align="center">
+<img class="small"  src="src/pictures/pearson_correlation_of_bams.png" />
+</p>
+<p class="center"><b>Figure 2-6 Pearson test among samples</b></p>
+<p align="center"><small>
+Heat-map of sample correlation test, correlation coefficient among samples (Pearson correlation coefficient). The darkness of the color represents how large is the correlation coefficient.
+</small></p>
+
+</div>
+
+
+<div>
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<a name="Reads比对结果的可视化">Novogene Corporation Inc.</a>
+<hr />
+</p>
+
+<h4 id="id_order_Mapping7"><a id="part3.2.7">2.7 Visualization of Pileup Signal </a></h4>
+
+<p class="paragraph">
+We provide the visualization results of genome wide reads mapping in bam format. IGV (Integrative Genomics Viewer) browser is recommended to view the bam file. </p>
+<p class="paragraph">IGV browser has the following characters: </p>
+<p class="sub">(1) can reveal single or multiple mapping positions in the genome in different scales, including the distribution of the reads in different chromosomes, and the distribution of annotated exons, introns, splicing junctions and inter-gene region; </p>
+<p class="sub">
+(2) can reveal reads abundance in different regions under different scales which reflect the expression level; </p>
+<p class="sub">
+(3) can reveal the annotation information of the gene and alternative splicing isoforms; </p>
+<p class="sub">
+(4) can reveal other annotation information; </p>
+<p class="sub">
+(5) can download annotation information from remote and local server. </p>
+<p class="paragraph">
+Please refer to the IGV manual for detailed instruction (IGVQuickStart.pdf).</a>
+</p>
+
+<p align="center">
+	<img class="small3" src="src/images/igv_snapshot.png" />
+
+</p>
+
+<p class="center"><b>Figure 2-6 Visualization of pileup signal by IGV(demo)</b></p><br />
+</div>
+
+<!------------3. 插入片段预测 ------------>
+
+<div>
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<a name="插入片段预测">Novogene Corporation Inc.</a>
+<hr />
+</p>
+
+<h3 id="id_order_frag" ><a name="FRAG">3 Fragment Size Prediction</a></h3>
+
+<h4 id="id_order_frag1"><a id="part3.3.1">3.1 Summary of Fragment Size</a></h4>
+
+<p class="paragraph">
+The pair-end ATAC-Seq sequencing reads can reflect information on nucleosome packaging and positioning. The length of the inserted sequencing reads will show a periodic distribution of around 200 bp, which indicates such position is protected by the nucleosome and cannot be bound by the transposase. These fragments contain one or more small nucleosomes.
+</p>
+
+<p class="name_table">Table 3-1 Summary of Fragment size</p>
+<div style="overflow-x: scroll">
+<table class="gy">
+	<tr>
+		<th>Sample</th>
+		<th>fragment_sizes</th>
+	</tr>
+	
+	<tr>
+		<td>sample_1</td>
+		<td>242</td>
+	</tr>
+	
+	<tr>
+		<td>sample_2</td>
+		<td>253</td>
+	</tr>
+	
+	<tr>
+		<td>sample_3</td>
+		<td>234</td>
+	</tr>
+	
+	<tr>
+		<td>sample_4</td>
+		<td>248</td>
+	</tr>
+	
+	<tr>
+		<td>sample_5</td>
+		<td>258</td>
+	</tr>
+	
+	<tr>
+		<td>sample_6</td>
+		<td>244</td>
+	</tr>
+	
+</table>
+</div>
+<p><small> 
+(1) Sample: sample name<br />
+(2) frag_sizes: frag_sizes length<br />
+</small>
+</p>
+
+
+<h4 id="id_order_frag2"><a id="part3.3.2">3.2 Distribution of Fragment Size </a></h4>
+<p class="paragraph">
+Length distribution is analyzed and shown below:
+</p>
+<p class="center">
+<div class="row">
+<div class="col-1">
+<div id="gallery_figure3_1_button_prev" class="button_prev" onclick="prev(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_prev">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-6">
+<div class="tab-content" id="gallery_figure3_1_nav-tabContent">
+
+<div class="tab-pane fade" id="gallery_figure3_1_pane_sample_1" 
+role="tabpanel" aria-labelledby="gallery_figure3_1_list_sample_1"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_1_frag_size.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure3_1_pane_sample_2" 
+role="tabpanel" aria-labelledby="gallery_figure3_1_list_sample_2"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_2_frag_size.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure3_1_pane_sample_3" 
+role="tabpanel" aria-labelledby="gallery_figure3_1_list_sample_3"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_3_frag_size.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure3_1_pane_sample_4" 
+role="tabpanel" aria-labelledby="gallery_figure3_1_list_sample_4"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_4_frag_size.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure3_1_pane_sample_5" 
+role="tabpanel" aria-labelledby="gallery_figure3_1_list_sample_5"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_5_frag_size.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure3_1_pane_sample_6" 
+role="tabpanel" aria-labelledby="gallery_figure3_1_list_sample_6"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_6_frag_size.png" /></div>
+
+</div></div>
+<div class="col-1">
+<div id="gallery_figure3_1_button_next" class="button_next" onclick="next(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_next">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-4">
+<input class="form-control" id="gallery_figure3_1_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="gallery_figure3_1_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="gallery_figure3_1_list_sample_1"
+data-toggle="list" href="#gallery_figure3_1_pane_sample_1" role="tab" aria-controls="sample_1">sample_1</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure3_1_list_sample_2"
+data-toggle="list" href="#gallery_figure3_1_pane_sample_2" role="tab" aria-controls="sample_2">sample_2</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure3_1_list_sample_3"
+data-toggle="list" href="#gallery_figure3_1_pane_sample_3" role="tab" aria-controls="sample_3">sample_3</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure3_1_list_sample_4"
+data-toggle="list" href="#gallery_figure3_1_pane_sample_4" role="tab" aria-controls="sample_4">sample_4</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure3_1_list_sample_5"
+data-toggle="list" href="#gallery_figure3_1_pane_sample_5" role="tab" aria-controls="sample_5">sample_5</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure3_1_list_sample_6"
+data-toggle="list" href="#gallery_figure3_1_pane_sample_6" role="tab" aria-controls="sample_6">sample_6</a>
+
+</div></div></div>
+</p>
+<p align="center"><b> Figure 3-1 frag_size distribution Figure</b></p>
+<p align="center"><small>    
+Horizontal axis is the length of the predicted length of frag_sizes, vertical axis is the density value.
+</small></p>
+<br/>
+</div>
+
+<!------------4.Peak Calling ------------>
+
+<div>
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<a name="峰检出">Novogene Corporation Inc.</a>
+<hr />
+</p>
+
+<h3 id="id_order_peak" ><a name="Peak Calling">4 Peak Calling</a></h3>
+
+<h4 id="id_order_peak1"><a id="part3.4.1">4.1 Summary of Peak Calling</a></h4>
+
+<p class="paragraph">
+MACS2 software (Yong Zhang, Tao Liu et al., 2008) (threshold q value = 0.05) is used to call peak. The number of peaks, the peak width and its distribution are analyzed and the peak related genes are found.
+</p>
+
+<p class="name_table">Table 4-1 Summary of peak calling</p>
+<div style="overflow-x: scroll">
+<table class="gy">
+	<tr>
+		<th>Experiment</th>
+		<th>Sample</th>
+		<th>Count_of_narrow_peak</th>
+		<th>FRiP</th>
+		<th>Count_of_summits</th>
+	</tr>
+	
+	<tr>
+		<td>sample_1</td>
+		<td>sample_1</td>
+		<td>2003</td>
+		<td>1.1452%</td>
+		<td>2163</td>
+	</tr>
+	
+	<tr>
+		<td>sample_2</td>
+		<td>sample_2</td>
+		<td>1994</td>
+		<td>1.1232%</td>
+		<td>2157</td>
+	</tr>
+	
+	<tr>
+		<td>sample_3</td>
+		<td>sample_3</td>
+		<td>3316</td>
+		<td>1.2656%</td>
+		<td>3462</td>
+	</tr>
+	
+	<tr>
+		<td>sample_4</td>
+		<td>sample_4</td>
+		<td>2262</td>
+		<td>1.1312%</td>
+		<td>2415</td>
+	</tr>
+	
+	<tr>
+		<td>sample_5</td>
+		<td>sample_5</td>
+		<td>9249</td>
+		<td>1.7016%</td>
+		<td>9639</td>
+	</tr>
+	
+	<tr>
+		<td>sample_6</td>
+		<td>sample_6</td>
+		<td>3268</td>
+		<td>1.1417%</td>
+		<td>3442</td>
+	</tr>
+	
+</table>
+<p><small>
+(1) Experiment: experimental group name;</small></p>
+<p><small>
+(2) Sample: sample name;</small></p>
+<p><small>
+(3) Count_of peak: the number of peak (narrow);</small></p>
+<p><small>
+(4) FRiP: the ratio of the numer of the reads in the peak to the total reads, which can test the effect of IP experiment; </small></p>
+<p><small>
+(5) Count_of_summits: number of summits. Some peaks can have multiple summits due to close position</small></p>
+</div>
+
+
+
+
+
+
+<div>
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<a name="峰在染色体上的分布">Novogene Corporation Inc.</a>
+<hr />
+</p>
+
+<h4 id="id_order_peak2"><a id="part3.4.2">4.2 Genome Wide Distribution of Peaks</a></h4>
+
+<p class="paragraph">
+The summary of genome wide distribution of peaks is shown in the figure below. The number of the peaks mapping to the chromosome and its distribution can reflect the distribution of chromotin open regions.
+</p>
+<p class="center">
+<div class="row">
+<div class="col-1">
+<div id="gallery_figure5_1_button_prev" class="button_prev" onclick="prev(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_prev">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-6">
+<div class="tab-content" id="gallery_figure5_1_nav-tabContent">
+
+<div class="tab-pane fade" id="gallery_figure5_1_pane_sample_1" 
+role="tabpanel" aria-labelledby="gallery_figure5_1_list_sample_1"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Peak_on_chromosome_distribution_of_sample_1.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure5_1_pane_sample_2" 
+role="tabpanel" aria-labelledby="gallery_figure5_1_list_sample_2"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Peak_on_chromosome_distribution_of_sample_2.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure5_1_pane_sample_3" 
+role="tabpanel" aria-labelledby="gallery_figure5_1_list_sample_3"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Peak_on_chromosome_distribution_of_sample_3.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure5_1_pane_sample_4" 
+role="tabpanel" aria-labelledby="gallery_figure5_1_list_sample_4"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Peak_on_chromosome_distribution_of_sample_4.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure5_1_pane_sample_5" 
+role="tabpanel" aria-labelledby="gallery_figure5_1_list_sample_5"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Peak_on_chromosome_distribution_of_sample_5.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure5_1_pane_sample_6" 
+role="tabpanel" aria-labelledby="gallery_figure5_1_list_sample_6"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Peak_on_chromosome_distribution_of_sample_6.png" /></div>
+
+</div></div>
+<div class="col-1">
+<div id="gallery_figure5_1_button_next" class="button_next" onclick="next(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_next">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-4">
+<input class="form-control" id="gallery_figure5_1_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="gallery_figure5_1_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="gallery_figure5_1_list_sample_1"
+data-toggle="list" href="#gallery_figure5_1_pane_sample_1" role="tab" aria-controls="sample_1">sample_1</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure5_1_list_sample_2"
+data-toggle="list" href="#gallery_figure5_1_pane_sample_2" role="tab" aria-controls="sample_2">sample_2</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure5_1_list_sample_3"
+data-toggle="list" href="#gallery_figure5_1_pane_sample_3" role="tab" aria-controls="sample_3">sample_3</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure5_1_list_sample_4"
+data-toggle="list" href="#gallery_figure5_1_pane_sample_4" role="tab" aria-controls="sample_4">sample_4</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure5_1_list_sample_5"
+data-toggle="list" href="#gallery_figure5_1_pane_sample_5" role="tab" aria-controls="sample_5">sample_5</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure5_1_list_sample_6"
+data-toggle="list" href="#gallery_figure5_1_pane_sample_6" role="tab" aria-controls="sample_6">sample_6</a>
+
+</div></div></div>
+</p>
+<p align="center"><b> Figure 4-1 Genome wide distribution of peaks</b></p>
+<p align="center"><small>Horizontal axis is the coordinate of the peak in the chromosome. Vertical is the chromosome. Every blue line represents a peak.</small></p>
+</div>
+
+
+
+<div>
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<a name="峰的宽度分布">Novogene Corporation Inc.</a>
+<hr />
+</p>
+
+<h4 id="id_order_peak4"><a id="part3.4.4">4.3 Distribution of Peak Width </a></h4>
+<p class="paragraph">
+The peak width represents the length of the DNA that is fragmented by the transposase. The number of peaks of different peak width is calculated, as shown below. 
+</p>
+<p class="center">
+<div class="row">
+<div class="col-1">
+<div id="gallery_figure5_2_button_prev" class="button_prev" onclick="prev(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_prev">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-6">
+<div class="tab-content" id="gallery_figure5_2_nav-tabContent">
+
+<div class="tab-pane fade" id="gallery_figure5_2_pane_sample_1" 
+role="tabpanel" aria-labelledby="gallery_figure5_2_list_sample_1"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Peak_width_distribution_of_sample_1.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure5_2_pane_sample_2" 
+role="tabpanel" aria-labelledby="gallery_figure5_2_list_sample_2"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Peak_width_distribution_of_sample_2.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure5_2_pane_sample_3" 
+role="tabpanel" aria-labelledby="gallery_figure5_2_list_sample_3"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Peak_width_distribution_of_sample_3.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure5_2_pane_sample_4" 
+role="tabpanel" aria-labelledby="gallery_figure5_2_list_sample_4"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Peak_width_distribution_of_sample_4.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure5_2_pane_sample_5" 
+role="tabpanel" aria-labelledby="gallery_figure5_2_list_sample_5"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Peak_width_distribution_of_sample_5.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure5_2_pane_sample_6" 
+role="tabpanel" aria-labelledby="gallery_figure5_2_list_sample_6"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Peak_width_distribution_of_sample_6.png" /></div>
+
+</div></div>
+<div class="col-1">
+<div id="gallery_figure5_2_button_next" class="button_next" onclick="next(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_next">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-4">
+<input class="form-control" id="gallery_figure5_2_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="gallery_figure5_2_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="gallery_figure5_2_list_sample_1"
+data-toggle="list" href="#gallery_figure5_2_pane_sample_1" role="tab" aria-controls="sample_1">sample_1</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure5_2_list_sample_2"
+data-toggle="list" href="#gallery_figure5_2_pane_sample_2" role="tab" aria-controls="sample_2">sample_2</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure5_2_list_sample_3"
+data-toggle="list" href="#gallery_figure5_2_pane_sample_3" role="tab" aria-controls="sample_3">sample_3</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure5_2_list_sample_4"
+data-toggle="list" href="#gallery_figure5_2_pane_sample_4" role="tab" aria-controls="sample_4">sample_4</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure5_2_list_sample_5"
+data-toggle="list" href="#gallery_figure5_2_pane_sample_5" role="tab" aria-controls="sample_5">sample_5</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure5_2_list_sample_6"
+data-toggle="list" href="#gallery_figure5_2_pane_sample_6" role="tab" aria-controls="sample_6">sample_6</a>
+
+</div></div></div>
+</p>
+<p align="center"><b> Figure 4-2 Distribution of peak width</b></p>
+<p align="center"><small>
+Horizontal axis is the width of the peak (nt), vertical axis is the number of the corresponding peaks
+</small></p><br />
+</div>
+
+
+<div>
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<a name="峰的富集倍数分布">Novogene Corporation Inc.</a>
+<hr />
+</p>
+
+<h4 id="id_order_peak5"><a id="part3.4.5">4.4 Distribution of Fold Enrichment</a></h4>
+
+<p class="paragraph">
+The fold enrichment value is the digital display of the peak signal during peak calling, which can be called signal value. The larger the value, the more reads are enriched to this peak. The peak number of different fold changes is calculated. The distribution of fold enrichment is shown below:
+</p>
+<p class="center">
+<div class="row">
+<div class="col-1">
+<div id="gallery_figure5_3_button_prev" class="button_prev" onclick="prev(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_prev">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-6">
+<div class="tab-content" id="gallery_figure5_3_nav-tabContent">
+
+<div class="tab-pane fade" id="gallery_figure5_3_pane_sample_1" 
+role="tabpanel" aria-labelledby="gallery_figure5_3_list_sample_1"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Peak_fold_enrichment_distribution_of_sample_1.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure5_3_pane_sample_2" 
+role="tabpanel" aria-labelledby="gallery_figure5_3_list_sample_2"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Peak_fold_enrichment_distribution_of_sample_2.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure5_3_pane_sample_3" 
+role="tabpanel" aria-labelledby="gallery_figure5_3_list_sample_3"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Peak_fold_enrichment_distribution_of_sample_3.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure5_3_pane_sample_4" 
+role="tabpanel" aria-labelledby="gallery_figure5_3_list_sample_4"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Peak_fold_enrichment_distribution_of_sample_4.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure5_3_pane_sample_5" 
+role="tabpanel" aria-labelledby="gallery_figure5_3_list_sample_5"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Peak_fold_enrichment_distribution_of_sample_5.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure5_3_pane_sample_6" 
+role="tabpanel" aria-labelledby="gallery_figure5_3_list_sample_6"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Peak_fold_enrichment_distribution_of_sample_6.png" /></div>
+
+</div></div>
+<div class="col-1">
+<div id="gallery_figure5_3_button_next" class="button_next" onclick="next(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_next">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-4">
+<input class="form-control" id="gallery_figure5_3_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="gallery_figure5_3_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="gallery_figure5_3_list_sample_1"
+data-toggle="list" href="#gallery_figure5_3_pane_sample_1" role="tab" aria-controls="sample_1">sample_1</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure5_3_list_sample_2"
+data-toggle="list" href="#gallery_figure5_3_pane_sample_2" role="tab" aria-controls="sample_2">sample_2</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure5_3_list_sample_3"
+data-toggle="list" href="#gallery_figure5_3_pane_sample_3" role="tab" aria-controls="sample_3">sample_3</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure5_3_list_sample_4"
+data-toggle="list" href="#gallery_figure5_3_pane_sample_4" role="tab" aria-controls="sample_4">sample_4</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure5_3_list_sample_5"
+data-toggle="list" href="#gallery_figure5_3_pane_sample_5" role="tab" aria-controls="sample_5">sample_5</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure5_3_list_sample_6"
+data-toggle="list" href="#gallery_figure5_3_pane_sample_6" role="tab" aria-controls="sample_6">sample_6</a>
+
+</div></div></div>
+</p>
+<p align="center"><b> Figure 4-3 Distribution of fold enrichment</b></p>
+<p align="center"><small>
+Horizontal axis represents the enrichment fold change of the peak. Vertical axis represents the number of the peaks.
+</small>
+</p>
+</div>
+
+
+<div>
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<a name="Distribution of Q-values">Novogene Corporation Inc.</a>
+<hr />
+</p>
+
+<h4 id="id_order_peak6"><a id="part3.4.6">4.5 Distribution of Q-values</a></h4>
+
+<p class="paragraph">
+The significance of the peak is the indication of the credibility of the peak, so the q value for each peak is calculated. The peak number of different q values is calculated and the distribution is shown below:
+</p>
+<p class="center">
+<div class="row">
+<div class="col-1">
+<div id="gallery_figure5_4_button_prev" class="button_prev" onclick="prev(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_prev">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-6">
+<div class="tab-content" id="gallery_figure5_4_nav-tabContent">
+
+<div class="tab-pane fade" id="gallery_figure5_4_pane_sample_1" 
+role="tabpanel" aria-labelledby="gallery_figure5_4_list_sample_1"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Peak_qvalue_distribution_of_sample_1.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure5_4_pane_sample_2" 
+role="tabpanel" aria-labelledby="gallery_figure5_4_list_sample_2"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Peak_qvalue_distribution_of_sample_2.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure5_4_pane_sample_3" 
+role="tabpanel" aria-labelledby="gallery_figure5_4_list_sample_3"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Peak_qvalue_distribution_of_sample_3.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure5_4_pane_sample_4" 
+role="tabpanel" aria-labelledby="gallery_figure5_4_list_sample_4"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Peak_qvalue_distribution_of_sample_4.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure5_4_pane_sample_5" 
+role="tabpanel" aria-labelledby="gallery_figure5_4_list_sample_5"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Peak_qvalue_distribution_of_sample_5.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure5_4_pane_sample_6" 
+role="tabpanel" aria-labelledby="gallery_figure5_4_list_sample_6"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Peak_qvalue_distribution_of_sample_6.png" /></div>
+
+</div></div>
+<div class="col-1">
+<div id="gallery_figure5_4_button_next" class="button_next" onclick="next(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_next">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-4">
+<input class="form-control" id="gallery_figure5_4_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="gallery_figure5_4_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="gallery_figure5_4_list_sample_1"
+data-toggle="list" href="#gallery_figure5_4_pane_sample_1" role="tab" aria-controls="sample_1">sample_1</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure5_4_list_sample_2"
+data-toggle="list" href="#gallery_figure5_4_pane_sample_2" role="tab" aria-controls="sample_2">sample_2</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure5_4_list_sample_3"
+data-toggle="list" href="#gallery_figure5_4_pane_sample_3" role="tab" aria-controls="sample_3">sample_3</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure5_4_list_sample_4"
+data-toggle="list" href="#gallery_figure5_4_pane_sample_4" role="tab" aria-controls="sample_4">sample_4</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure5_4_list_sample_5"
+data-toggle="list" href="#gallery_figure5_4_pane_sample_5" role="tab" aria-controls="sample_5">sample_5</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure5_4_list_sample_6"
+data-toggle="list" href="#gallery_figure5_4_pane_sample_6" role="tab" aria-controls="sample_6">sample_6</a>
+
+</div></div></div>
+</p>
+<p align="center"><b> Figure 4-4　Distribution of Q-values</b></p>
+<p align="center"><small>Horizontal axis represents -log10 q value of the peak; Vertical axis represents the number of the peaks.</small></p>
+</div>
+
+
+<div>
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<a name="Count of Summits in Peaks">Novogene Corporation Inc.</a>
+<hr />
+</p>
+
+<h4 id="id_order_peak7"><a id="part3.4.7">4.6 Count of Summits in Peaks</a></h4>
+
+<p class="paragraph">
+The number of summits in each peak is analyzed.
+</p>
+<p class="center">
+<div class="row">
+<div class="col-1">
+<div id="gallery_figure5_5_button_prev" class="button_prev" onclick="prev(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_prev">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-6">
+<div class="tab-content" id="gallery_figure5_5_nav-tabContent">
+
+<div class="tab-pane fade" id="gallery_figure5_5_pane_sample_1" 
+role="tabpanel" aria-labelledby="gallery_figure5_5_list_sample_1"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Summits_count_distribution_of_sample_1.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure5_5_pane_sample_2" 
+role="tabpanel" aria-labelledby="gallery_figure5_5_list_sample_2"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Summits_count_distribution_of_sample_2.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure5_5_pane_sample_3" 
+role="tabpanel" aria-labelledby="gallery_figure5_5_list_sample_3"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Summits_count_distribution_of_sample_3.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure5_5_pane_sample_4" 
+role="tabpanel" aria-labelledby="gallery_figure5_5_list_sample_4"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Summits_count_distribution_of_sample_4.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure5_5_pane_sample_5" 
+role="tabpanel" aria-labelledby="gallery_figure5_5_list_sample_5"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Summits_count_distribution_of_sample_5.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure5_5_pane_sample_6" 
+role="tabpanel" aria-labelledby="gallery_figure5_5_list_sample_6"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Summits_count_distribution_of_sample_6.png" /></div>
+
+</div></div>
+<div class="col-1">
+<div id="gallery_figure5_5_button_next" class="button_next" onclick="next(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_next">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-4">
+<input class="form-control" id="gallery_figure5_5_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="gallery_figure5_5_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="gallery_figure5_5_list_sample_1"
+data-toggle="list" href="#gallery_figure5_5_pane_sample_1" role="tab" aria-controls="sample_1">sample_1</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure5_5_list_sample_2"
+data-toggle="list" href="#gallery_figure5_5_pane_sample_2" role="tab" aria-controls="sample_2">sample_2</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure5_5_list_sample_3"
+data-toggle="list" href="#gallery_figure5_5_pane_sample_3" role="tab" aria-controls="sample_3">sample_3</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure5_5_list_sample_4"
+data-toggle="list" href="#gallery_figure5_5_pane_sample_4" role="tab" aria-controls="sample_4">sample_4</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure5_5_list_sample_5"
+data-toggle="list" href="#gallery_figure5_5_pane_sample_5" role="tab" aria-controls="sample_5">sample_5</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure5_5_list_sample_6"
+data-toggle="list" href="#gallery_figure5_5_pane_sample_6" role="tab" aria-controls="sample_6">sample_6</a>
+
+</div></div></div>
+</div>
+</p>
+<p align="center"><b> Figure 4-5 Count of summits in peaks</b></p>
+<p align="center"><small> Horizontal axis represents the number of summit in each peak. Vertical axis is the corresponding number of the peak. 
+</small></p>
+<b></b>
+</div>
+
+
+<div>
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<a name="峰顶相对peak分布">Novogene Corporation Inc.</a>
+<hr />
+</p>
+
+<h4 id="id_order_peak8"><a id="part3.4.8">4.7 Summits Distribution</a></h4>
+
+<p class="paragraph">
+Each peak is divided into 100bp windows and the summits in each window of all the peaks are counted as shown below:
+</p>
+<p class="center">
+<div class="row">
+<div class="col-1">
+<div id="gallery_figure5_6_button_prev" class="button_prev" onclick="prev(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_prev">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-6">
+<div class="tab-content" id="gallery_figure5_6_nav-tabContent">
+
+<div class="tab-pane fade" id="gallery_figure5_6_pane_sample_1" 
+role="tabpanel" aria-labelledby="gallery_figure5_6_list_sample_1"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Summits_in_peak_position_distribution_of_sample_1.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure5_6_pane_sample_2" 
+role="tabpanel" aria-labelledby="gallery_figure5_6_list_sample_2"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Summits_in_peak_position_distribution_of_sample_2.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure5_6_pane_sample_3" 
+role="tabpanel" aria-labelledby="gallery_figure5_6_list_sample_3"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Summits_in_peak_position_distribution_of_sample_3.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure5_6_pane_sample_4" 
+role="tabpanel" aria-labelledby="gallery_figure5_6_list_sample_4"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Summits_in_peak_position_distribution_of_sample_4.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure5_6_pane_sample_5" 
+role="tabpanel" aria-labelledby="gallery_figure5_6_list_sample_5"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Summits_in_peak_position_distribution_of_sample_5.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure5_6_pane_sample_6" 
+role="tabpanel" aria-labelledby="gallery_figure5_6_list_sample_6"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Summits_in_peak_position_distribution_of_sample_6.png" /></div>
+
+</div></div>
+<div class="col-1">
+<div id="gallery_figure5_6_button_next" class="button_next" onclick="next(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_next">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-4">
+<input class="form-control" id="gallery_figure5_6_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="gallery_figure5_6_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="gallery_figure5_6_list_sample_1"
+data-toggle="list" href="#gallery_figure5_6_pane_sample_1" role="tab" aria-controls="sample_1">sample_1</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure5_6_list_sample_2"
+data-toggle="list" href="#gallery_figure5_6_pane_sample_2" role="tab" aria-controls="sample_2">sample_2</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure5_6_list_sample_3"
+data-toggle="list" href="#gallery_figure5_6_pane_sample_3" role="tab" aria-controls="sample_3">sample_3</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure5_6_list_sample_4"
+data-toggle="list" href="#gallery_figure5_6_pane_sample_4" role="tab" aria-controls="sample_4">sample_4</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure5_6_list_sample_5"
+data-toggle="list" href="#gallery_figure5_6_pane_sample_5" role="tab" aria-controls="sample_5">sample_5</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure5_6_list_sample_6"
+data-toggle="list" href="#gallery_figure5_6_pane_sample_6" role="tab" aria-controls="sample_6">sample_6</a>
+
+</div></div></div>
+</p>
+<p align="center"><b> Figure 4-6 Percentile position of summits in peaks</b></p>
+<p align="center"><small>
+Horizontal axis is the position of summits, vertical axis is the count of the summits. 
+</small>
+</p>
+<b></b>
+</div>
+
+<div>
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<a name="峰顶周围的信号分布">Novogene Corporation Inc.</a>
+<hr />
+</p>
+
+<h4 id="id_order_peak3"><a id="part3.4.3">4.8 Single Distribution in Summits</a></h4>
+
+<p class="paragraph">
+The computeMatrix module of the software deepTools is used to analyze the ATAC-Seq signal in the 3 kb upstream and downstream regions of the peak summits. Each summit and its 3kb upstream and 3kb downstream regions are divided into bins according to the window size of 50bp. Then the average signal strength is calculated in each bin. Reads density refers to the percentage of the reads in each part to total reads. The average signal distribution is shown below (Figure 4-7).
+</p>
+<p class="center">
+<div class="row">
+<div class="col-1">
+<div id="gallery_figure5_add_button_prev" class="button_prev" onclick="prev(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_prev">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-6">
+<div class="tab-content" id="gallery_figure5_add_nav-tabContent">
+
+<div class="tab-pane fade" id="gallery_figure5_add_pane_sample_1_Profile" 
+role="tabpanel" aria-labelledby="gallery_figure5_add_list_sample_1_Profile"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_1_summits_Profile.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure5_add_pane_sample_1_heatmap" 
+role="tabpanel" aria-labelledby="gallery_figure5_add_list_sample_1_heatmap"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_1_summits_heatmap.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure5_add_pane_sample_2_Profile" 
+role="tabpanel" aria-labelledby="gallery_figure5_add_list_sample_2_Profile"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_2_summits_Profile.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure5_add_pane_sample_2_heatmap" 
+role="tabpanel" aria-labelledby="gallery_figure5_add_list_sample_2_heatmap"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_2_summits_heatmap.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure5_add_pane_sample_3_Profile" 
+role="tabpanel" aria-labelledby="gallery_figure5_add_list_sample_3_Profile"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_3_summits_Profile.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure5_add_pane_sample_3_heatmap" 
+role="tabpanel" aria-labelledby="gallery_figure5_add_list_sample_3_heatmap"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_3_summits_heatmap.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure5_add_pane_sample_4_Profile" 
+role="tabpanel" aria-labelledby="gallery_figure5_add_list_sample_4_Profile"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_4_summits_Profile.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure5_add_pane_sample_4_heatmap" 
+role="tabpanel" aria-labelledby="gallery_figure5_add_list_sample_4_heatmap"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_4_summits_heatmap.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure5_add_pane_sample_5_Profile" 
+role="tabpanel" aria-labelledby="gallery_figure5_add_list_sample_5_Profile"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_5_summits_Profile.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure5_add_pane_sample_5_heatmap" 
+role="tabpanel" aria-labelledby="gallery_figure5_add_list_sample_5_heatmap"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_5_summits_heatmap.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure5_add_pane_sample_6_Profile" 
+role="tabpanel" aria-labelledby="gallery_figure5_add_list_sample_6_Profile"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_6_summits_Profile.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure5_add_pane_sample_6_heatmap" 
+role="tabpanel" aria-labelledby="gallery_figure5_add_list_sample_6_heatmap"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_6_summits_heatmap.png" /></div>
+
+</div></div>
+<div class="col-1">
+<div id="gallery_figure5_add_button_next" class="button_next" onclick="next(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_next">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-4">
+<input class="form-control" id="gallery_figure5_add_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="gallery_figure5_add_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="gallery_figure5_add_list_sample_1_Profile"
+data-toggle="list" href="#gallery_figure5_add_pane_sample_1_Profile" role="tab" aria-controls="sample_1_Profile">sample_1_Profile</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure5_add_list_sample_1_heatmap"
+data-toggle="list" href="#gallery_figure5_add_pane_sample_1_heatmap" role="tab" aria-controls="sample_1_heatmap">sample_1_heatmap</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure5_add_list_sample_2_Profile"
+data-toggle="list" href="#gallery_figure5_add_pane_sample_2_Profile" role="tab" aria-controls="sample_2_Profile">sample_2_Profile</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure5_add_list_sample_2_heatmap"
+data-toggle="list" href="#gallery_figure5_add_pane_sample_2_heatmap" role="tab" aria-controls="sample_2_heatmap">sample_2_heatmap</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure5_add_list_sample_3_Profile"
+data-toggle="list" href="#gallery_figure5_add_pane_sample_3_Profile" role="tab" aria-controls="sample_3_Profile">sample_3_Profile</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure5_add_list_sample_3_heatmap"
+data-toggle="list" href="#gallery_figure5_add_pane_sample_3_heatmap" role="tab" aria-controls="sample_3_heatmap">sample_3_heatmap</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure5_add_list_sample_4_Profile"
+data-toggle="list" href="#gallery_figure5_add_pane_sample_4_Profile" role="tab" aria-controls="sample_4_Profile">sample_4_Profile</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure5_add_list_sample_4_heatmap"
+data-toggle="list" href="#gallery_figure5_add_pane_sample_4_heatmap" role="tab" aria-controls="sample_4_heatmap">sample_4_heatmap</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure5_add_list_sample_5_Profile"
+data-toggle="list" href="#gallery_figure5_add_pane_sample_5_Profile" role="tab" aria-controls="sample_5_Profile">sample_5_Profile</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure5_add_list_sample_5_heatmap"
+data-toggle="list" href="#gallery_figure5_add_pane_sample_5_heatmap" role="tab" aria-controls="sample_5_heatmap">sample_5_heatmap</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure5_add_list_sample_6_Profile"
+data-toggle="list" href="#gallery_figure5_add_pane_sample_6_Profile" role="tab" aria-controls="sample_6_Profile">sample_6_Profile</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure5_add_list_sample_6_heatmap"
+data-toggle="list" href="#gallery_figure5_add_pane_sample_6_heatmap" role="tab" aria-controls="sample_6_heatmap">sample_6_heatmap</a>
+
+</div></div></div>
+</p>
+<p align="center"><b> Figure 4-7 Distribution of the 3 kb region upstream and downstream of the peak summit</b></p>
+<p align="center"><small>Line chart: Horizontal axis: relative position of the peak summit. Vertical axis: reads density.</small></p>
+<p align="center"><small>Heat map: Horizontal axis: relative position of thepeak summit. Vertical axis: clustering results of the read signal for each region</small></p>
+</div>
+
+
+<!------------6、Motif search ------------>
+<div>
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<a name="模体分析">Novogene Corporation Inc.</a>
+<hr />
+</p>
+
+<h3 id="id_order_motif" ><a name="Motif">5. Motif Analysis </a></h3>
+<p class="paragraph">Motif indicates the sequence conservation of the position of the peak, which may play a role in the regulation of gene expression. Using the sequence information of 250bp (total 500bp) upstream and downstream of the peak, Homer software is used to identify the conserved sequence features of the peak enrichment position. 
+</p>
+
+<h4 id="id_order_motif1"><a id="part3.5.1">5.1 Motif Searching</a></h4>
+
+<p class="center">
+<div class="row">
+<div class="col-1">
+<div id="gallery_figure6_1_button_prev" class="button_prev" onclick="prev(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_prev">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-6">
+<div class="tab-content" id="gallery_figure6_1_nav-tabContent">
+
+
+<div class="tab-pane fade" id="gallery_figure6_1_pane_sample_3_motifs8_all" 
+role="tabpanel" aria-labelledby="gallery_figure6_1_list_sample_3_motifs8_all"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_3_motifs8_all.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure6_1_pane_sample_3_motifs10_all" 
+role="tabpanel" aria-labelledby="gallery_figure6_1_list_sample_3_motifs10_all"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_3_motifs10_all.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure6_1_pane_sample_3_motifs12_all" 
+role="tabpanel" aria-labelledby="gallery_figure6_1_list_sample_3_motifs12_all"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_3_motifs12_all.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure6_1_pane_sample_3_motifs14_all" 
+role="tabpanel" aria-labelledby="gallery_figure6_1_list_sample_3_motifs14_all"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_3_motifs14_all.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure6_1_pane_sample_4_motifs8_all" 
+role="tabpanel" aria-labelledby="gallery_figure6_1_list_sample_4_motifs8_all"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_4_motifs8_all.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure6_1_pane_sample_4_motifs10_all" 
+role="tabpanel" aria-labelledby="gallery_figure6_1_list_sample_4_motifs10_all"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_4_motifs10_all.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure6_1_pane_sample_4_motifs12_all" 
+role="tabpanel" aria-labelledby="gallery_figure6_1_list_sample_4_motifs12_all"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_4_motifs12_all.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure6_1_pane_sample_4_motifs14_all" 
+role="tabpanel" aria-labelledby="gallery_figure6_1_list_sample_4_motifs14_all"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_4_motifs14_all.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure6_1_pane_sample_5_motifs8_all" 
+role="tabpanel" aria-labelledby="gallery_figure6_1_list_sample_5_motifs8_all"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_5_motifs8_all.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure6_1_pane_sample_5_motifs10_all" 
+role="tabpanel" aria-labelledby="gallery_figure6_1_list_sample_5_motifs10_all"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_5_motifs10_all.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure6_1_pane_sample_5_motifs12_all" 
+role="tabpanel" aria-labelledby="gallery_figure6_1_list_sample_5_motifs12_all"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_5_motifs12_all.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure6_1_pane_sample_5_motifs14_all" 
+role="tabpanel" aria-labelledby="gallery_figure6_1_list_sample_5_motifs14_all"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_5_motifs14_all.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure6_1_pane_sample_6_motifs8_all" 
+role="tabpanel" aria-labelledby="gallery_figure6_1_list_sample_6_motifs8_all"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_6_motifs8_all.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure6_1_pane_sample_6_motifs10_all" 
+role="tabpanel" aria-labelledby="gallery_figure6_1_list_sample_6_motifs10_all"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_6_motifs10_all.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure6_1_pane_sample_6_motifs12_all" 
+role="tabpanel" aria-labelledby="gallery_figure6_1_list_sample_6_motifs12_all"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_6_motifs12_all.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure6_1_pane_sample_6_motifs14_all" 
+role="tabpanel" aria-labelledby="gallery_figure6_1_list_sample_6_motifs14_all"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_6_motifs14_all.png" /></div>
+
+</div></div>
+<div class="col-1">
+<div id="gallery_figure6_1_button_next" class="button_next" onclick="next(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_next">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-4">
+<input class="form-control" id="gallery_figure6_1_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="gallery_figure6_1_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="gallery_figure6_1_list_sample_3_motifs8_all"
+data-toggle="list" href="#gallery_figure6_1_pane_sample_3_motifs8_all" role="tab" aria-controls="sample_3_motifs8_all">sample_3_motifs8_all</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure6_1_list_sample_3_motifs10_all"
+data-toggle="list" href="#gallery_figure6_1_pane_sample_3_motifs10_all" role="tab" aria-controls="sample_3_motifs10_all">sample_3_motifs10_all</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure6_1_list_sample_3_motifs12_all"
+data-toggle="list" href="#gallery_figure6_1_pane_sample_3_motifs12_all" role="tab" aria-controls="sample_3_motifs12_all">sample_3_motifs12_all</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure6_1_list_sample_3_motifs14_all"
+data-toggle="list" href="#gallery_figure6_1_pane_sample_3_motifs14_all" role="tab" aria-controls="sample_3_motifs14_all">sample_3_motifs14_all</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure6_1_list_sample_4_motifs8_all"
+data-toggle="list" href="#gallery_figure6_1_pane_sample_4_motifs8_all" role="tab" aria-controls="sample_4_motifs8_all">sample_4_motifs8_all</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure6_1_list_sample_4_motifs10_all"
+data-toggle="list" href="#gallery_figure6_1_pane_sample_4_motifs10_all" role="tab" aria-controls="sample_4_motifs10_all">sample_4_motifs10_all</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure6_1_list_sample_4_motifs12_all"
+data-toggle="list" href="#gallery_figure6_1_pane_sample_4_motifs12_all" role="tab" aria-controls="sample_4_motifs12_all">sample_4_motifs12_all</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure6_1_list_sample_4_motifs14_all"
+data-toggle="list" href="#gallery_figure6_1_pane_sample_4_motifs14_all" role="tab" aria-controls="sample_4_motifs14_all">sample_4_motifs14_all</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure6_1_list_sample_5_motifs8_all"
+data-toggle="list" href="#gallery_figure6_1_pane_sample_5_motifs8_all" role="tab" aria-controls="sample_5_motifs8_all">sample_5_motifs8_all</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure6_1_list_sample_5_motifs10_all"
+data-toggle="list" href="#gallery_figure6_1_pane_sample_5_motifs10_all" role="tab" aria-controls="sample_5_motifs10_all">sample_5_motifs10_all</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure6_1_list_sample_5_motifs12_all"
+data-toggle="list" href="#gallery_figure6_1_pane_sample_5_motifs12_all" role="tab" aria-controls="sample_5_motifs12_all">sample_5_motifs12_all</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure6_1_list_sample_5_motifs14_all"
+data-toggle="list" href="#gallery_figure6_1_pane_sample_5_motifs14_all" role="tab" aria-controls="sample_5_motifs14_all">sample_5_motifs14_all</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure6_1_list_sample_6_motifs8_all"
+data-toggle="list" href="#gallery_figure6_1_pane_sample_6_motifs8_all" role="tab" aria-controls="sample_6_motifs8_all">sample_6_motifs8_all</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure6_1_list_sample_6_motifs10_all"
+data-toggle="list" href="#gallery_figure6_1_pane_sample_6_motifs10_all" role="tab" aria-controls="sample_6_motifs10_all">sample_6_motifs10_all</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure6_1_list_sample_6_motifs12_all"
+data-toggle="list" href="#gallery_figure6_1_pane_sample_6_motifs12_all" role="tab" aria-controls="sample_6_motifs12_all">sample_6_motifs12_all</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure6_1_list_sample_6_motifs14_all"
+data-toggle="list" href="#gallery_figure6_1_pane_sample_6_motifs14_all" role="tab" aria-controls="sample_6_motifs14_all">sample_6_motifs14_all</a>
+
+</div></div></div>
+</p>
+<p align="center"><b> Figure 5-1 conservative sequence</b></p>
+<p align="center"><small>
+The most significant 25 motifs of length 8, 10, 12, 14 were identified for each set of experiments.
+</small></p>
+<p align="center"><small>
+For details on each motif, please refer to the result file and the readme file.
+</small></p>
+</div>
+
+<div>
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<a name="motif与已知转录因子motif的富集">Novogene Corporation Inc.</a>
+<hr />
+</p>
+
+<h4 id="id_order_motif2"><a id="part3.5.2">5.2 Enrichment of Motif and Known Transcription Factor Motif</a></h4>
+<p class="paragraph">The enrichment between the motifs of all samples and the known transcription factor motif in the database is analyzed and shown below. </p>
+
+<p align="center">
+<img class="small"  src="src/pictures/Motif_enrichment.png" />
+</p>
+<p align="center"><b> Figure 5-2 Enrichment of motif and known transcription factor motif</b></p>
+<p align="center"><small>Horizontal axis represents each sample and vertical axis represents the transcription factor in the database.</small></p>
+<p align="center"><small>The size of the circle indicates the degree of enrichment of the motif's motif and the corresponding transcription factor's motif. The larger the circle, the higher the degree of enrichment.  </small></p>
+</div>
+
+<!------------ 7、peak annotion ------------>
+
+<div>
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<a name="峰注释">Novogene Corporation Inc.</a>
+<hr />
+</p>
+
+<h3 id="id_order_anno" ><a name="Peak_annot">6 Peak Annotation</a></h3>
+
+<h4 id="id_order_anno1"><a id="part3.6.1">6.1 Peak-TSS Distance</a></h4>
+<p class="paragraph">
+Peak-TSS distance distribution can be used to predict the degree of accessibility around the TSS. TSS (transcription start site) of every peak related gene is detected by PeakAnnotator (Salmon-Divon and Dvinge et al., 2010). Peak-TSS distance distribution is analyzed according to the distance between the peak and TSS.
+</p>
+<p class="center">
+<div class="row">
+<div class="col-1">
+<div id="gallery_figure7_1_button_prev" class="button_prev" onclick="prev(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_prev">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-6">
+<div class="tab-content" id="gallery_figure7_1_nav-tabContent">
+
+<div class="tab-pane fade" id="gallery_figure7_1_pane_sample_1" 
+role="tabpanel" aria-labelledby="gallery_figure7_1_list_sample_1"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Distance_peaks_and_TSS_sample_1.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure7_1_pane_sample_1_enlarged" 
+role="tabpanel" aria-labelledby="gallery_figure7_1_list_sample_1_enlarged"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Distance_peaks_and_TSS_sample_1_enlarged.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure7_1_pane_sample_2" 
+role="tabpanel" aria-labelledby="gallery_figure7_1_list_sample_2"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Distance_peaks_and_TSS_sample_2.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure7_1_pane_sample_2_enlarged" 
+role="tabpanel" aria-labelledby="gallery_figure7_1_list_sample_2_enlarged"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Distance_peaks_and_TSS_sample_2_enlarged.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure7_1_pane_sample_3" 
+role="tabpanel" aria-labelledby="gallery_figure7_1_list_sample_3"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Distance_peaks_and_TSS_sample_3.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure7_1_pane_sample_3_enlarged" 
+role="tabpanel" aria-labelledby="gallery_figure7_1_list_sample_3_enlarged"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Distance_peaks_and_TSS_sample_3_enlarged.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure7_1_pane_sample_4" 
+role="tabpanel" aria-labelledby="gallery_figure7_1_list_sample_4"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Distance_peaks_and_TSS_sample_4.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure7_1_pane_sample_4_enlarged" 
+role="tabpanel" aria-labelledby="gallery_figure7_1_list_sample_4_enlarged"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Distance_peaks_and_TSS_sample_4_enlarged.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure7_1_pane_sample_5" 
+role="tabpanel" aria-labelledby="gallery_figure7_1_list_sample_5"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Distance_peaks_and_TSS_sample_5.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure7_1_pane_sample_5_enlarged" 
+role="tabpanel" aria-labelledby="gallery_figure7_1_list_sample_5_enlarged"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Distance_peaks_and_TSS_sample_5_enlarged.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure7_1_pane_sample_6" 
+role="tabpanel" aria-labelledby="gallery_figure7_1_list_sample_6"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Distance_peaks_and_TSS_sample_6.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure7_1_pane_sample_6_enlarged" 
+role="tabpanel" aria-labelledby="gallery_figure7_1_list_sample_6_enlarged"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Distance_peaks_and_TSS_sample_6_enlarged.png" /></div>
+
+</div></div>
+<div class="col-1">
+<div id="gallery_figure7_1_button_next" class="button_next" onclick="next(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_next">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-4">
+<input class="form-control" id="gallery_figure7_1_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="gallery_figure7_1_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_1_list_sample_1"
+data-toggle="list" href="#gallery_figure7_1_pane_sample_1" role="tab" aria-controls="sample_1">sample_1</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_1_list_sample_1_enlarged"
+data-toggle="list" href="#gallery_figure7_1_pane_sample_1_enlarged" role="tab" aria-controls="sample_1_enlarged">sample_1_enlarged</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_1_list_sample_2"
+data-toggle="list" href="#gallery_figure7_1_pane_sample_2" role="tab" aria-controls="sample_2">sample_2</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_1_list_sample_2_enlarged"
+data-toggle="list" href="#gallery_figure7_1_pane_sample_2_enlarged" role="tab" aria-controls="sample_2_enlarged">sample_2_enlarged</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_1_list_sample_3"
+data-toggle="list" href="#gallery_figure7_1_pane_sample_3" role="tab" aria-controls="sample_3">sample_3</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_1_list_sample_3_enlarged"
+data-toggle="list" href="#gallery_figure7_1_pane_sample_3_enlarged" role="tab" aria-controls="sample_3_enlarged">sample_3_enlarged</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_1_list_sample_4"
+data-toggle="list" href="#gallery_figure7_1_pane_sample_4" role="tab" aria-controls="sample_4">sample_4</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_1_list_sample_4_enlarged"
+data-toggle="list" href="#gallery_figure7_1_pane_sample_4_enlarged" role="tab" aria-controls="sample_4_enlarged">sample_4_enlarged</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_1_list_sample_5"
+data-toggle="list" href="#gallery_figure7_1_pane_sample_5" role="tab" aria-controls="sample_5">sample_5</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_1_list_sample_5_enlarged"
+data-toggle="list" href="#gallery_figure7_1_pane_sample_5_enlarged" role="tab" aria-controls="sample_5_enlarged">sample_5_enlarged</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_1_list_sample_6"
+data-toggle="list" href="#gallery_figure7_1_pane_sample_6" role="tab" aria-controls="sample_6">sample_6</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_1_list_sample_6_enlarged"
+data-toggle="list" href="#gallery_figure7_1_pane_sample_6_enlarged" role="tab" aria-controls="sample_6_enlarged">sample_6_enlarged</a>
+
+</div></div></div>
+</p>
+<p align="center"><b> Figure 6-1 Distribution of Peak-TSS Distance</b></p>
+<p align="center"><small>
+Horizontal axis represents the distance from peak to TSS. Vertical axis represents the number of the peak.
+</small>
+</p>
+</div>
+
+
+<div>
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<a name="peak在功能区域上的分布">Novogene Corporation Inc.</a>
+<hr />
+</p>
+
+<h4 id="id_order_anno2"><a id="part3.6.2">6.2 Distribution of Peaks in Functional Regions</a></h4>
+<p class="paragraph">
+The distribution of peak over various functional areas is analyzed by ChIPseeker software. The correspondence between peaks and functional areas is in the order of priority of promoter, 5'UTR, 3'UTR, Exon, Intron, Downstream, and Intergenic. For example, if the position of a peak may be an exon of a gene and an intron of another gene, according to the above priority, the peak is annotated to the exon. The figure below shows the distribution of peaks in different functional regions.
+</p>
+<p class="center">
+<div class="row">
+<div class="col-1">
+<div id="gallery_figure7_2_button_prev" class="button_prev" onclick="prev(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_prev">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-6">
+<div class="tab-content" id="gallery_figure7_2_nav-tabContent">
+
+<div class="tab-pane fade" id="gallery_figure7_2_pane_sample_1" 
+role="tabpanel" aria-labelledby="gallery_figure7_2_list_sample_1"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_1_plotAnnoPie.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure7_2_pane_sample_2" 
+role="tabpanel" aria-labelledby="gallery_figure7_2_list_sample_2"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_2_plotAnnoPie.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure7_2_pane_sample_3" 
+role="tabpanel" aria-labelledby="gallery_figure7_2_list_sample_3"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_3_plotAnnoPie.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure7_2_pane_sample_4" 
+role="tabpanel" aria-labelledby="gallery_figure7_2_list_sample_4"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_4_plotAnnoPie.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure7_2_pane_sample_5" 
+role="tabpanel" aria-labelledby="gallery_figure7_2_list_sample_5"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_5_plotAnnoPie.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure7_2_pane_sample_6" 
+role="tabpanel" aria-labelledby="gallery_figure7_2_list_sample_6"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_6_plotAnnoPie.png" /></div>
+
+</div></div>
+<div class="col-1">
+<div id="gallery_figure7_2_button_next" class="button_next" onclick="next(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_next">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-4">
+<input class="form-control" id="gallery_figure7_2_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="gallery_figure7_2_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_2_list_sample_1"
+data-toggle="list" href="#gallery_figure7_2_pane_sample_1" role="tab" aria-controls="sample_1">sample_1</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_2_list_sample_2"
+data-toggle="list" href="#gallery_figure7_2_pane_sample_2" role="tab" aria-controls="sample_2">sample_2</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_2_list_sample_3"
+data-toggle="list" href="#gallery_figure7_2_pane_sample_3" role="tab" aria-controls="sample_3">sample_3</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_2_list_sample_4"
+data-toggle="list" href="#gallery_figure7_2_pane_sample_4" role="tab" aria-controls="sample_4">sample_4</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_2_list_sample_5"
+data-toggle="list" href="#gallery_figure7_2_pane_sample_5" role="tab" aria-controls="sample_5">sample_5</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_2_list_sample_6"
+data-toggle="list" href="#gallery_figure7_2_pane_sample_6" role="tab" aria-controls="sample_6">sample_6</a>
+
+</div></div></div>
+</p>
+<p align="center"><b>Figure 6-2 Peak distribution in functional gene region </b></p>
+<p align="center"><small>
+Distribution of peak in different functional area.<br />
+</small>
+</p>
+<br />
+</div>
+
+
+
+
+<div>
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<a name="峰注释">Novogene Corporation Inc.</a>
+<hr />
+</p>
+
+<h4 id="id_order_anno3"><a id="part3.6.3">6.3 GO Enrichment Analysis</a></h4>
+
+<p class="paragraph">Gene Ontology (GO, http://www.geneontology.org/) is international standard classification system for gene function attributes. As the database built by Gene Ontology Consortium, it aims to build up an up-to-date, comprehensive, computational model of biological system, to describe gene and protein function at different levels, for all species. GO covers three domains: Molecular Function, Biological Process and Cellular Component. Gene or protein can find the corresponding GO accession number by ID access or sequence annotation. Every GO number can find its corresponding Term, which is the function classification or cellular localization. Any gene whose position is overlapped with peak is peak related gene. Results of GO enrichment analysis of the peak related gene are shown below.
+</p>
+<p class="name_table">Table 6-1 peak related gene GO enrichment</p>
+<div style="overflow-x: scroll">
+<table class="gy">
+	<tr>
+		<th>GO</th>
+		<th>Description</th>
+		<th>Term_type</th>
+		<th>Overrepresented_pvalue</th>
+		<th>Corrected_pvalue</th>
+		<th>Gene_item</th>
+		<th>Gene_list</th>
+		<th>Bg_item</th>
+		<th>Bg_list</th>
+	</tr>
+	
+	<tr>
+		<td>GO:0031838</td>
+		<td>haptoglobin-hemoglobin complex</td>
+		<td>cellular_component</td>
+		<td>2.5747e-05</td>
+		<td>0.25979</td>
+		<td>3</td>
+		<td>351</td>
+		<td>4</td>
+		<td>18756</td>
+	</tr>
+	
+	<tr>
+		<td>GO:0001649</td>
+		<td>osteoblast differentiation</td>
+		<td>biological_process</td>
+		<td>0.00010713</td>
+		<td>0.7206</td>
+		<td>13</td>
+		<td>351</td>
+		<td>200</td>
+		<td>18756</td>
+	</tr>
+	
+	<tr>
+		<td>GO:0015701</td>
+		<td>bicarbonate transport</td>
+		<td>biological_process</td>
+		<td>0.00034638</td>
+		<td>1</td>
+		<td>5</td>
+		<td>351</td>
+		<td>33</td>
+		<td>18756</td>
+	</tr>
+	
+	<tr>
+		<td>GO:0008355</td>
+		<td>olfactory learning</td>
+		<td>biological_process</td>
+		<td>0.00035026</td>
+		<td>1</td>
+		<td>2</td>
+		<td>351</td>
+		<td>2</td>
+		<td>18756</td>
+	</tr>
+	
+	<tr>
+		<td>GO:0031720</td>
+		<td>haptoglobin binding</td>
+		<td>molecular_function</td>
+		<td>1.0102e-05</td>
+		<td>0.20386</td>
+		<td>3</td>
+		<td>406</td>
+		<td>3</td>
+		<td>18756</td>
+	</tr>
+	
+	<tr>
+		<td>GO:0031838</td>
+		<td>haptoglobin-hemoglobin complex</td>
+		<td>cellular_component</td>
+		<td>3.9757e-05</td>
+		<td>0.40115</td>
+		<td>3</td>
+		<td>406</td>
+		<td>4</td>
+		<td>18756</td>
+	</tr>
+	
+</table>
+</div>
+<p><small>
+(1) GO_accession: the unique GO ID;</small></p>
+<p><small>
+(2) Description: Function description;</small></p>
+<p><small>
+(3) Term_type: Including cellular_component, biological_process and molecular_function; </small></p>
+<p><small>
+(4) Over_represented_pValue: significance of enrichment analysis;</small></p>
+<p><small>
+(5) Corrected_pValue: P-Value after correction, normally, with padj< 0.05 are enriched >;</small></p>
+<p><small>
+(6) Gene_with_peak_item: the number of peak related genes with this GO term;</small></p>
+<p><small>
+(7) Gene_with_peak_list: the number of peak related gene;</small></p>
+<p><small>
+(8) Bg_item: the number of background gene with this GO term;</small></p>
+<p><small>
+(9) Bg_list: the number of background genes; </small></p>
+<p><small>
+Choose the first five results for each experiment.</small></p>
+</div>
+
+
+<div>
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<a name="GO富集分析图">Novogene Corporation Inc.</a>
+<hr />
+</p>
+
+
+<p class="paragraph">Below is the GO enrichment bar of peak overlapping genes. It directly reflects the distribution of the number of the peak overlapping genes that are enriched in the biological process, cellular component and molecular function.</p>
+<p class="center">
+<div class="row">
+<div class="col-1">
+<div id="gallery_figure7_3_button_prev" class="button_prev" onclick="prev(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_prev">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-6">
+<div class="tab-content" id="gallery_figure7_3_nav-tabContent">
+
+
+<div class="tab-pane fade" id="gallery_figure7_3_pane_sample_5" 
+role="tabpanel" aria-labelledby="gallery_figure7_3_list_sample_5"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_5.Enriched_GO.bar_graph.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure7_3_pane_sample_5_mf" 
+role="tabpanel" aria-labelledby="gallery_figure7_3_list_sample_5_mf"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_5.Enriched_GO_mf_DAG.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure7_3_pane_sample_5_cc" 
+role="tabpanel" aria-labelledby="gallery_figure7_3_list_sample_5_cc"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_5.Enriched_GO_cc_DAG.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure7_3_pane_sample_5_bp" 
+role="tabpanel" aria-labelledby="gallery_figure7_3_list_sample_5_bp"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_5.Enriched_GO_bp_DAG.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure7_3_pane_sample_6" 
+role="tabpanel" aria-labelledby="gallery_figure7_3_list_sample_6"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_6.Enriched_GO.bar_graph.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure7_3_pane_sample_6_mf" 
+role="tabpanel" aria-labelledby="gallery_figure7_3_list_sample_6_mf"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_6.Enriched_GO_mf_DAG.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure7_3_pane_sample_6_cc" 
+role="tabpanel" aria-labelledby="gallery_figure7_3_list_sample_6_cc"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_6.Enriched_GO_cc_DAG.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure7_3_pane_sample_6_bp" 
+role="tabpanel" aria-labelledby="gallery_figure7_3_list_sample_6_bp"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_6.Enriched_GO_bp_DAG.png" /></div>
+
+</div></div>
+<div class="col-1">
+<div id="gallery_figure7_3_button_next" class="button_next" onclick="next(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_next">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-4">
+<input class="form-control" id="gallery_figure7_3_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="gallery_figure7_3_list-tab" role="tablist">
+
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_3_list_sample_5"
+data-toggle="list" href="#gallery_figure7_3_pane_sample_5" role="tab" aria-controls="sample_5">sample_5</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_3_list_sample_5_mf"
+data-toggle="list" href="#gallery_figure7_3_pane_sample_5_mf" role="tab" aria-controls="sample_5_mf">sample_5_mf</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_3_list_sample_5_cc"
+data-toggle="list" href="#gallery_figure7_3_pane_sample_5_cc" role="tab" aria-controls="sample_5_cc">sample_5_cc</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_3_list_sample_5_bp"
+data-toggle="list" href="#gallery_figure7_3_pane_sample_5_bp" role="tab" aria-controls="sample_5_bp">sample_5_bp</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_3_list_sample_6"
+data-toggle="list" href="#gallery_figure7_3_pane_sample_6" role="tab" aria-controls="sample_6">sample_6</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_3_list_sample_6_mf"
+data-toggle="list" href="#gallery_figure7_3_pane_sample_6_mf" role="tab" aria-controls="sample_6_mf">sample_6_mf</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_3_list_sample_6_cc"
+data-toggle="list" href="#gallery_figure7_3_pane_sample_6_cc" role="tab" aria-controls="sample_6_cc">sample_6_cc</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_3_list_sample_6_bp"
+data-toggle="list" href="#gallery_figure7_3_pane_sample_6_bp" role="tab" aria-controls="sample_6_bp">sample_6_bp</a>
+
+</div></div></div>
+</p>
+<p align="center"><b> Figure 6-3 GO enrichment </b></p>
+<p><small>
+Bar: horizontal axis is the number of the peak overlapping gene. Different colors are used to differentiate biological process, cellular component and molecular function.</small></p>
+<p><small>
+DAG figure: every note represents a GO project. Rectangular represents top 10 enrichment GO.</small></p>
+<p><small>
+GO term: Darkness represents the enrichment level. The darker of the color, the higher of the enrichment. The name of the project and the significance (padj) are shown in every note.</small></p>
+</div>
+
+
+<div>
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<a name="KEGG富集列表">Novogene Corporation Inc.</a>
+<hr />
+</p>
+
+<h4 id="id_order_anno5"><a id="part3.6.5">6.4 KEGG Enrichment Analysis</a></h4>
+<p class="paragraph">
+Different genes coordinate with each other to realize the function in organism. Kyoto Encyclopedia of Genes and Genomes (KEGG, http://www.kegg.jp/) is a collection of manually curated databases, containing resources onf genomic, biological-pathway and disease information (Kanehisa,2008). Pathway enrichment analysis identifies significantly enriched metabolic pathways or signal transduction pathways associated with peak overlapping genes, comparing the whole genome background.</p>
+
+<p class="name_table">Table 6-2 KEGG enrichment list</p>
+<div style="overflow-x: scroll">
+<table class="gy">
+	<tr>
+		<th>Term</th>
+		<th>Database</th>
+		<th>ID</th>
+		<th>Input number</th>
+		<th>Background number</th>
+		<th>pvalue</th>
+		<th>Corrected pvalue</th>
+	</tr>
+	
+	<tr>
+		<td>Ribosome biogenesis in eukaryotes</td>
+		<td>KEGG PATHWAY</td>
+		<td>hsa03008</td>
+		<td>13</td>
+		<td>89</td>
+		<td>9.77176941281e-05</td>
+		<td>0.0112375348247</td>
+	</tr>
+	
+	<tr>
+		<td>Basal transcription factors</td>
+		<td>KEGG PATHWAY</td>
+		<td>hsa03022</td>
+		<td>8</td>
+		<td>45</td>
+		<td>0.000679282250465</td>
+		<td>0.0421803455704</td>
+	</tr>
+	
+	<tr>
+		<td>Parkinson&#39;s disease</td>
+		<td>KEGG PATHWAY</td>
+		<td>hsa05012</td>
+		<td>15</td>
+		<td>142</td>
+		<td>0.000733571227312</td>
+		<td>0.0421803455704</td>
+	</tr>
+	
+	<tr>
+		<td>Oxidative phosphorylation</td>
+		<td>KEGG PATHWAY</td>
+		<td>hsa00190</td>
+		<td>14</td>
+		<td>133</td>
+		<td>0.00112114833822</td>
+		<td>0.0491726080969</td>
+	</tr>
+	
+	<tr>
+		<td>Ribosome</td>
+		<td>KEGG PATHWAY</td>
+		<td>hsa03010</td>
+		<td>43</td>
+		<td>138</td>
+		<td>1.73624322285e-21</td>
+		<td>4.09753400594e-19</td>
+	</tr>
+	
+	<tr>
+		<td>Basal transcription factors</td>
+		<td>KEGG PATHWAY</td>
+		<td>hsa03022</td>
+		<td>10</td>
+		<td>45</td>
+		<td>5.8989242446e-05</td>
+		<td>0.00696073060863</td>
+	</tr>
+	
+</table>
+</div>
+<p><small>
+(1) Term: Description information of KEGG pathway;</small></p>
+<p><small> 
+(2) Database: KEGG PATHWAY;</small></p>
+<p><small> 
+(3) ID: The unique pathway identifier in the KEGG database; </small></p>
+<p><small>
+(4) Input number: the number of peak overlapping gene in the corresponding pathway;</small></p>
+<p><small>
+(5) Background number: The number of the genes in the corresponding pathway;</small></p>
+<p><small> 
+(6) P-value: statistical significant level of enrichment analysis;</small></p>
+<p><small>
+(7) Corrected p-value: statistical significant level after correction. Normally, if the corrected P-value < 0.05 this pathway is enriched. </small></p>
+
+
+<p class="paragraph"> Peak overlapping gene KEGG enrichment scatter plot (Figure 6-4) is the visualization of KEGG enrichment analysis. In this figure, the extent of KEGG enrichment is measured by Rich factor, q-value and the number of the genes that are enriched in this pathway. The top 20 significantly enriched terms in the KEGG enrichment analysis are displayed below. If the enriched pathway is less than 20, all the terms will be displayed.</p>
+<p class="center">
+<div class="row">
+<div class="col-1">
+<div id="gallery_figure7_4_button_prev" class="button_prev" onclick="prev(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_prev">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-6">
+<div class="tab-content" id="gallery_figure7_4_nav-tabContent">
+
+<div class="tab-pane fade" id="gallery_figure7_4_pane_sample_1" 
+role="tabpanel" aria-labelledby="gallery_figure7_4_list_sample_1"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_1.enriched_KEGG_pathway_scatterplot.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure7_4_pane_sample_2" 
+role="tabpanel" aria-labelledby="gallery_figure7_4_list_sample_2"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_2.enriched_KEGG_pathway_scatterplot.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure7_4_pane_sample_3" 
+role="tabpanel" aria-labelledby="gallery_figure7_4_list_sample_3"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_3.enriched_KEGG_pathway_scatterplot.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure7_4_pane_sample_4" 
+role="tabpanel" aria-labelledby="gallery_figure7_4_list_sample_4"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_4.enriched_KEGG_pathway_scatterplot.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure7_4_pane_sample_5" 
+role="tabpanel" aria-labelledby="gallery_figure7_4_list_sample_5"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_5.enriched_KEGG_pathway_scatterplot.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure7_4_pane_sample_6" 
+role="tabpanel" aria-labelledby="gallery_figure7_4_list_sample_6"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_6.enriched_KEGG_pathway_scatterplot.png" /></div>
+
+</div></div>
+<div class="col-1">
+<div id="gallery_figure7_4_button_next" class="button_next" onclick="next(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_next">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-4">
+<input class="form-control" id="gallery_figure7_4_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="gallery_figure7_4_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_4_list_sample_1"
+data-toggle="list" href="#gallery_figure7_4_pane_sample_1" role="tab" aria-controls="sample_1">sample_1</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_4_list_sample_2"
+data-toggle="list" href="#gallery_figure7_4_pane_sample_2" role="tab" aria-controls="sample_2">sample_2</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_4_list_sample_3"
+data-toggle="list" href="#gallery_figure7_4_pane_sample_3" role="tab" aria-controls="sample_3">sample_3</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_4_list_sample_4"
+data-toggle="list" href="#gallery_figure7_4_pane_sample_4" role="tab" aria-controls="sample_4">sample_4</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_4_list_sample_5"
+data-toggle="list" href="#gallery_figure7_4_pane_sample_5" role="tab" aria-controls="sample_5">sample_5</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_4_list_sample_6"
+data-toggle="list" href="#gallery_figure7_4_pane_sample_6" role="tab" aria-controls="sample_6">sample_6</a>
+
+</div></div></div>
+</p>
+<p align="center"><b> Figure 6-4 KEGG enrichment scatter</b></p>
+<p align="center"><small>
+Vertical axis represents pathway name, horizontal axis represents Rich factor, the size of the dot represents the numbers of the overlapping peak genes in the pathway, and the color of the dots corresponds to different q-value range. The size of the dots represents the number of the genes whose peaks are overlapping in this pathway.
+</small>
+</p>
+<br />
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<!------------ 7、peak compare ------------>
+
+<div>
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<a name="差异分析">Novogene Corporation Inc.</a>
+<hr />
+</p>
+
+<h3 id="id_order_compare" ><a name="Diff Compare">7 Differential Analysis </a></h3>
+<p class="paragraph">
+Only when the number of groups is not less than two can the differential analysis be performed between groups.</p>
+<p class="paragraph">
+Differential analysis is performed using FoldEnrich values of different group peaks. Differential binding sites are analyzed in different groups by finding differential peaks when the ratio of FoldEnrich is larger than 2. Genes related to the differential sites are found by differential binding sites, then annotation and enrichment analysis are performed.
+</p>
+
+<h4 id="id_order_compare1"><a id="part3.7.1">7.1 Summary of Differential Peaks</a></h4>
+<p class="paragraph">
+The Differential Expression Venn diagram illustrates the differential peaks of the compared groups. The sum of all the numbers in the circle represents the total number in the compared groups, and the overlapping part is the common peak number between two compared groups., as shown in the figure below.
+</p>
+<p class="center">
+<div class="row">
+<div class="col-1">
+<div id="gallery_figure8_1_1_button_prev" class="button_prev" onclick="prev(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_prev">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-6">
+<div class="tab-content" id="gallery_figure8_1_1_nav-tabContent">
+
+<div class="tab-pane fade" id="gallery_figure8_1_1_pane_group_1_vs_group_2" 
+role="tabpanel" aria-labelledby="gallery_figure8_1_1_list_group_1_vs_group_2"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/group_1_vs_group_2_overlap_of_peak_inter_group.png" /></div>
+
+</div></div>
+<div class="col-1">
+<div id="gallery_figure8_1_1_button_next" class="button_next" onclick="next(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_next">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-4">
+<input class="form-control" id="gallery_figure8_1_1_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="gallery_figure8_1_1_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="gallery_figure8_1_1_list_group_1_vs_group_2"
+data-toggle="list" href="#gallery_figure8_1_1_pane_group_1_vs_group_2" role="tab" aria-controls="group_1_vs_group_2">group_1_vs_group_2</a>
+
+</div></div></div>
+</p>
+<p align="center"><b> Figure 7-1-1 Venn diagram of differential peaks in compared groups</b></p>
+<p align="center"><small>
+Different colors represent different compared groups (A or B). The sum of the number in the pie is the peak number in this compared group, and the overlapping part is the number of common genes among comparison groups.
+</p>
+</small>
+
+<p class="center">
+<<div class="row">
+<div class="col-1">
+<div id="gallery_figure8_1_2_button_prev" class="button_prev" onclick="prev(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_prev">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-6">
+<div class="tab-content" id="gallery_figure8_1_2_nav-tabContent">
+
+<div class="tab-pane fade" id="gallery_figure8_1_2_pane_group_1_vs_group_2" 
+role="tabpanel" aria-labelledby="gallery_figure8_1_2_list_group_1_vs_group_2"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/group_1_vs_group_2_overlap_of_peak_intra_group.png" /></div>
+
+</div></div>
+<div class="col-1">
+<div id="gallery_figure8_1_2_button_next" class="button_next" onclick="next(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_next">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-4">
+<input class="form-control" id="gallery_figure8_1_2_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="gallery_figure8_1_2_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="gallery_figure8_1_2_list_group_1_vs_group_2"
+data-toggle="list" href="#gallery_figure8_1_2_pane_group_1_vs_group_2" role="tab" aria-controls="group_1_vs_group_2">group_1_vs_group_2</a>
+
+</div></div></div>
+</p>
+<p align="center"><b> Figure 7-1-2 Venn diagram of differential peak in the same gruops</b></p>
+<p align="center"><small>
+Since some compared groups (eg. A or B) may include multiple experimental groups (eg. A1, A2, A3), here only show the number of peaks among experimental groups within one compared group (eg. A1&A2, A1&A3). Different colors represent different experimental groups (A1 or A2). The sum of the number in the pie is the peak number of this experimental group. Single color is group specific peak number. Overlapping part is the common peak number between two experimental groups.
+</p>
+</small>
+</div>
+
+
+
+
+<div>
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<a name="差异分析">Novogene Corporation Inc.</a>
+<hr />
+</p>
+
+<h4 id="id_order_compare2"><a id="part3.7.2">7.2 Enrichment Level Analysis Among Different Samples</a></h4>
+
+<p class="paragraph">
+RPM (Reads per million mapped reads) value of the peak in different samples (the ratio of 1M reads that enriched to the peak in a single sample) is used to do clustering analysis to determine the enrichment pattern of the same peak in different samples or the enrichment difference of different peaks in the same sample. Hierarchical clustering is performed based on RPM value in different samples. Different colors represent different clustering group information.</p>
+<p class="center">
+<div class="row">
+<div class="col-1">
+<div id="gallery_figure8_2_button_prev" class="button_prev" onclick="prev(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_prev">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-6">
+<div class="tab-content" id="gallery_figure8_2_nav-tabContent">
+
+<div class="tab-pane fade" id="gallery_figure8_2_pane_group_1_vs_group_2_heatmap" 
+role="tabpanel" aria-labelledby="gallery_figure8_2_list_group_1_vs_group_2_heatmap"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/group_1_vs_group_2_heatmap_of_RPM_in_peak.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure8_2_pane_group_1_vs_group_2_corralation" 
+role="tabpanel" aria-labelledby="gallery_figure8_2_list_group_1_vs_group_2_corralation"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/group_1_vs_group_2_pearson_corralations_of_RPM_in_peak.png" /></div>
+
+</div></div>
+<div class="col-1">
+<div id="gallery_figure8_2_button_next" class="button_next" onclick="next(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_next">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-4">
+<input class="form-control" id="gallery_figure8_2_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="gallery_figure8_2_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="gallery_figure8_2_list_group_1_vs_group_2_heatmap"
+data-toggle="list" href="#gallery_figure8_2_pane_group_1_vs_group_2_heatmap" role="tab" aria-controls="group_1_vs_group_2_heatmap">group_1_vs_group_2_heatmap</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure8_2_list_group_1_vs_group_2_corralation"
+data-toggle="list" href="#gallery_figure8_2_pane_group_1_vs_group_2_corralation" role="tab" aria-controls="group_1_vs_group_2_corralation">group_1_vs_group_2_corralation</a>
+
+</div></div></div>
+</div>
+</p>
+<p align="center"><b> Figure 7-2 Peak enrichment analysis among samples</b></p>
+<p align="center"><small>Top is the clustering among different samples in comparable groups.
+</small>
+</p>
+<p align="center"><small>Bottom is the correlation among different samples in comparable groups.
+</small>
+</p>
+
+
+<h4 id="id_order_compare3"><a id="part3.7.3">7.3 Reads Density Distribution Among Samples</a></h4>
+
+<p class="paragraph">
+RPM is the number of reads enriched in peak area per million reads. Boxplot is used to show reads enrichment in the annotated peak area in different samples.
+</p>
+<p class="center">
+<div class="row">
+<div class="col-1">
+<div id="gallery_figure8_3_button_prev" class="button_prev" onclick="prev(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_prev">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-6">
+<div class="tab-content" id="gallery_figure8_3_nav-tabContent">
+
+<div class="tab-pane fade" id="gallery_figure8_3_pane_group_1_vs_group_2" 
+role="tabpanel" aria-labelledby="gallery_figure8_3_list_group_1_vs_group_2"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/group_1_vs_group_2_boxplot_of_RPM_in_peak.png" /></div>
+
+</div></div>
+<div class="col-1">
+<div id="gallery_figure8_3_button_next" class="button_next" onclick="next(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_next">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-4">
+<input class="form-control" id="gallery_figure8_3_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="gallery_figure8_3_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="gallery_figure8_3_list_group_1_vs_group_2"
+data-toggle="list" href="#gallery_figure8_3_pane_group_1_vs_group_2" role="tab" aria-controls="group_1_vs_group_2">group_1_vs_group_2</a>
+
+</div></div></div>
+</p>
+<p class="name_fig"><b>Figure 7-3 Boxplot of RPM value among samples</b></p>
+
+
+<div>
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<a name="不同实验峰富集水平分析">Novogene Corporation Inc.</a>
+<hr />
+</p>
+
+<h4 id="id_order_compare4"><a id="part3.7.4">7.4 Peak Enrichment Level Analysis of Different Groups </a></h4>
+
+<p class="paragraph">
+RPM value of the peak in different groups (the ratio of 1M reads that enriched to the peak in a single group) is used to do clustering analysis to determine the enrichment pattern of the same peak in different group or the enrichment difference of different peaks in the same group. Hierarchical clustering is performed based on RPM value in different samples. Different colors represent different clustering group information.</p>
+<p class="center">
+<div class="row">
+<div class="col-1">
+<div id="gallery_figure8_4_button_prev" class="button_prev" onclick="prev(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_prev">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-6">
+<div class="tab-content" id="gallery_figure8_4_nav-tabContent">
+
+<div class="tab-pane fade" id="gallery_figure8_4_pane_group_1_vs_group_2_heatmap" 
+role="tabpanel" aria-labelledby="gallery_figure8_4_list_group_1_vs_group_2_heatmap"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/group_1_vs_group_2_heatmap_of_FoldEnrich_in_peak.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure8_4_pane_group_1_vs_group_2_corralation" 
+role="tabpanel" aria-labelledby="gallery_figure8_4_list_group_1_vs_group_2_corralation"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/group_1_vs_group_2_pearson_corralations_of_FoldEnrich_in_peak.png" /></div>
+
+</div></div>
+<div class="col-1">
+<div id="gallery_figure8_4_button_next" class="button_next" onclick="next(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_next">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-4">
+<input class="form-control" id="gallery_figure8_4_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="gallery_figure8_4_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="gallery_figure8_4_list_group_1_vs_group_2_heatmap"
+data-toggle="list" href="#gallery_figure8_4_pane_group_1_vs_group_2_heatmap" role="tab" aria-controls="group_1_vs_group_2_heatmap">group_1_vs_group_2_heatmap</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure8_4_list_group_1_vs_group_2_corralation"
+data-toggle="list" href="#gallery_figure8_4_pane_group_1_vs_group_2_corralation" role="tab" aria-controls="group_1_vs_group_2_corralation">group_1_vs_group_2_corralation</a>
+
+</div></div></div>
+</p>
+<p align="center"><b> Figure 7-4 Peak enrichment analysis among different experimental groups</b></p>
+<p align="center"><small>
+Top is the clustering analysis of peaks from different experimental groups.
+</small>
+</p>
+<p align="center"><small>
+Bottom is the correlation among different experimental groups.
+</small>
+</p>
+
+
+
+<h4 id="id_order_compare5"><a id="part3.7.5">7.5 Peak RPM Scatter Plot between Groups</a></h4>
+
+<p class="paragraph">
+The RPM of each comparison combination in the peak region was calculated (if there was a biological replicate, the RPM of the biological replicate samples was averaged) and presented as a scatter plot.</p>
+<p class="center">
+<div class="row">
+<div class="col-1">
+<div id="gallery_figure8_add_button_prev" class="button_prev" onclick="prev(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_prev">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-6">
+<div class="tab-content" id="gallery_figure8_add_nav-tabContent">
+
+<div class="tab-pane fade" id="gallery_figure8_add_pane_group_1_vs_group_2" 
+role="tabpanel" aria-labelledby="gallery_figure8_add_list_group_1_vs_group_2"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/group_1_vs_group_2_scatter_of_RPM_in_peak.png" /></div>
+
+</div></div>
+<div class="col-1">
+<div id="gallery_figure8_add_button_next" class="button_next" onclick="next(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_next">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-4">
+<input class="form-control" id="gallery_figure8_add_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="gallery_figure8_add_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="gallery_figure8_add_list_group_1_vs_group_2"
+data-toggle="list" href="#gallery_figure8_add_pane_group_1_vs_group_2" role="tab" aria-controls="group_1_vs_group_2">group_1_vs_group_2</a>
+
+</div></div></div>
+</p>
+<p align="center"><b> Figure 7-5 Peak RPM Scatter Plot between Groups</b></p>
+</br>
+</div>
+
+
+<div>
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<a name="差异分析">Novogene Corporation Inc.</a>
+<hr />
+</p>
+
+<h4 id="id_order_compare6"><a id="part3.7.6">7.6 GO Enrichment Analysis of Differential Peak Related Genes </a></h4>
+
+<p class="paragraph">
+GO enrichment analysis for the differential peak related genes is shown below:
+</p>
+<p class="center">
+<div class="row">
+<div class="col-1">
+<div id="gallery_figure8_6_button_prev" class="button_prev" onclick="prev(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_prev">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-6">
+<div class="tab-content" id="gallery_figure8_6_nav-tabContent">
+
+<div class="tab-pane fade" id="gallery_figure8_6_pane_group_1_vs_group_2" 
+role="tabpanel" aria-labelledby="gallery_figure8_6_list_group_1_vs_group_2"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Diff_peak_group_1_vs_group_2.Enriched_GO.bar_graph.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure8_6_pane_group_1_vs_group_2_mf" 
+role="tabpanel" aria-labelledby="gallery_figure8_6_list_group_1_vs_group_2_mf"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Diff_peak_group_1_vs_group_2.Enriched_GO_mf_DAG.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure8_6_pane_group_1_vs_group_2_cc" 
+role="tabpanel" aria-labelledby="gallery_figure8_6_list_group_1_vs_group_2_cc"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Diff_peak_group_1_vs_group_2.Enriched_GO_cc_DAG.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure8_6_pane_group_1_vs_group_2_bp" 
+role="tabpanel" aria-labelledby="gallery_figure8_6_list_group_1_vs_group_2_bp"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Diff_peak_group_1_vs_group_2.Enriched_GO_bp_DAG.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure8_6_pane_group_1_vs_group_2_up" 
+role="tabpanel" aria-labelledby="gallery_figure8_6_list_group_1_vs_group_2_up"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Up_peak_group_1_vs_group_2.Enriched_GO.bar_graph.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure8_6_pane_group_1_vs_group_2_up_mf" 
+role="tabpanel" aria-labelledby="gallery_figure8_6_list_group_1_vs_group_2_up_mf"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Up_peak_group_1_vs_group_2.Enriched_GO_mf_DAG.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure8_6_pane_group_1_vs_group_2_up_cc" 
+role="tabpanel" aria-labelledby="gallery_figure8_6_list_group_1_vs_group_2_up_cc"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Up_peak_group_1_vs_group_2.Enriched_GO_cc_DAG.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure8_6_pane_group_1_vs_group_2_up_bp" 
+role="tabpanel" aria-labelledby="gallery_figure8_6_list_group_1_vs_group_2_up_bp"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Up_peak_group_1_vs_group_2.Enriched_GO_bp_DAG.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure8_6_pane_group_1_vs_group_2_down" 
+role="tabpanel" aria-labelledby="gallery_figure8_6_list_group_1_vs_group_2_down"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Down_peak_group_1_vs_group_2.Enriched_GO.bar_graph.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure8_6_pane_group_1_vs_group_2_down_mf" 
+role="tabpanel" aria-labelledby="gallery_figure8_6_list_group_1_vs_group_2_down_mf"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Down_peak_group_1_vs_group_2.Enriched_GO_mf_DAG.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure8_6_pane_group_1_vs_group_2_down_cc" 
+role="tabpanel" aria-labelledby="gallery_figure8_6_list_group_1_vs_group_2_down_cc"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Down_peak_group_1_vs_group_2.Enriched_GO_cc_DAG.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure8_6_pane_group_1_vs_group_2_down_bp" 
+role="tabpanel" aria-labelledby="gallery_figure8_6_list_group_1_vs_group_2_down_bp"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Down_peak_group_1_vs_group_2.Enriched_GO_bp_DAG.png" /></div>
+
+</div></div>
+<div class="col-1">
+<div id="gallery_figure8_6_button_next" class="button_next" onclick="next(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_next">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-4">
+<input class="form-control" id="gallery_figure8_6_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="gallery_figure8_6_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="gallery_figure8_6_list_group_1_vs_group_2"
+data-toggle="list" href="#gallery_figure8_6_pane_group_1_vs_group_2" role="tab" aria-controls="group_1_vs_group_2">group_1_vs_group_2</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure8_6_list_group_1_vs_group_2_mf"
+data-toggle="list" href="#gallery_figure8_6_pane_group_1_vs_group_2_mf" role="tab" aria-controls="group_1_vs_group_2_mf">group_1_vs_group_2_mf</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure8_6_list_group_1_vs_group_2_cc"
+data-toggle="list" href="#gallery_figure8_6_pane_group_1_vs_group_2_cc" role="tab" aria-controls="group_1_vs_group_2_cc">group_1_vs_group_2_cc</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure8_6_list_group_1_vs_group_2_bp"
+data-toggle="list" href="#gallery_figure8_6_pane_group_1_vs_group_2_bp" role="tab" aria-controls="group_1_vs_group_2_bp">group_1_vs_group_2_bp</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure8_6_list_group_1_vs_group_2_up"
+data-toggle="list" href="#gallery_figure8_6_pane_group_1_vs_group_2_up" role="tab" aria-controls="group_1_vs_group_2_up">group_1_vs_group_2_up</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure8_6_list_group_1_vs_group_2_up_mf"
+data-toggle="list" href="#gallery_figure8_6_pane_group_1_vs_group_2_up_mf" role="tab" aria-controls="group_1_vs_group_2_up_mf">group_1_vs_group_2_up_mf</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure8_6_list_group_1_vs_group_2_up_cc"
+data-toggle="list" href="#gallery_figure8_6_pane_group_1_vs_group_2_up_cc" role="tab" aria-controls="group_1_vs_group_2_up_cc">group_1_vs_group_2_up_cc</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure8_6_list_group_1_vs_group_2_up_bp"
+data-toggle="list" href="#gallery_figure8_6_pane_group_1_vs_group_2_up_bp" role="tab" aria-controls="group_1_vs_group_2_up_bp">group_1_vs_group_2_up_bp</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure8_6_list_group_1_vs_group_2_down"
+data-toggle="list" href="#gallery_figure8_6_pane_group_1_vs_group_2_down" role="tab" aria-controls="group_1_vs_group_2_down">group_1_vs_group_2_down</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure8_6_list_group_1_vs_group_2_down_mf"
+data-toggle="list" href="#gallery_figure8_6_pane_group_1_vs_group_2_down_mf" role="tab" aria-controls="group_1_vs_group_2_down_mf">group_1_vs_group_2_down_mf</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure8_6_list_group_1_vs_group_2_down_cc"
+data-toggle="list" href="#gallery_figure8_6_pane_group_1_vs_group_2_down_cc" role="tab" aria-controls="group_1_vs_group_2_down_cc">group_1_vs_group_2_down_cc</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure8_6_list_group_1_vs_group_2_down_bp"
+data-toggle="list" href="#gallery_figure8_6_pane_group_1_vs_group_2_down_bp" role="tab" aria-controls="group_1_vs_group_2_down_bp">group_1_vs_group_2_down_bp</a>
+
+</div></div></div>
+</p>
+<p align="center"><b> Figure 7-6 GO enrichment analysis for the differential peak genes</b></p>
+
+
+<h4 id="id_order_compare7"><a id="part3.8.7">7.7 KEGG Enrichment Analysis of Differential Peak Related Genes</a></h4>
+
+<p class="paragraph">
+KEGG enrichment analysis for the differential peak related genes is shown below:
+</p>
+<p class="center">
+<div class="row">
+<div class="col-1">
+<div id="gallery_figure8_7_button_prev" class="button_prev" onclick="prev(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_prev">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-6">
+<div class="tab-content" id="gallery_figure8_7_nav-tabContent">
+
+<div class="tab-pane fade" id="gallery_figure8_7_pane_group_1_vs_group_2" 
+role="tabpanel" aria-labelledby="gallery_figure8_7_list_group_1_vs_group_2"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Diff_peak_group_1_vs_group_2.enriched_KEGG_pathway_scatterplot.png" /></div>
+
+</div></div>
+<div class="col-1">
+<div id="gallery_figure8_7_button_next" class="button_next" onclick="next(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_next">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-4">
+<input class="form-control" id="gallery_figure8_7_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="gallery_figure8_7_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="gallery_figure8_7_list_group_1_vs_group_2"
+data-toggle="list" href="#gallery_figure8_7_pane_group_1_vs_group_2" role="tab" aria-controls="group_1_vs_group_2">group_1_vs_group_2</a>
+
+</div></div></div>
+</p>
+<p align="center"><b> Figure 7-7 KEGG enrichment analysis for differential peak genes</b></p>
+</div>
+
+
+
+
+<!-------------------------------------------- 背景知识 ------------------------------------------>
+<div>
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<a name="备注">Novogene Corporation Inc.</a>
+<hr />
+</p>
+
+<h2 id="order_note" ><a name="备注"> IV  Appendix</a></h2>
+
+<h3 id="note_1" ><a name="软件列表" >1 Software List</a></h3>
+
+	<table class='gy2'>
+		<tr><th>Analysis</th><th>Software</th><th>Version</th><th>Parameters</th><th>Remarks</th></tr>
+		<tr><td>Trimming</td><td>skewer</td><td>0.2.2</td><td>-m pe</td><td>Filter rawdata</td></tr>
+		<tr><td>QC</td><td>fastqc</td><td>v0.11.5</td><td></td><td></td></tr>
+		<tr><td>mapping</td><td>BWA</td><td>0.7.12-r1039</td><td>-T 25 -k 18</td><td>Mapped to the reference genome</td></tr>
+		<tr><td>correlation between samples</td><td>deepTools</td><td>3.0.2</td><td>--corMethod pearson</td><td></td></tr>
+		<tr><td>peak calling</td><td>MACS2</td><td>2.1.2</td><td>-q 0.05 --call-summits --nomodel --shift -100 --extsize 200 --keep-dup all</td><td></td></tr>
+		<tr><td>Identification of motif </td><td>homer findMotifsGenome.pl </td><td>v4.9.1</td><td> -gc -len 8,10,12,14</td><td></td></tr>
+		<tr><td>GO enrichment</td><td>Goseq, topGO, Bioconductor(2.13)</td><td>4.10.2</td><td>corrected pvalue<0.05</td><td></td></tr>
+		<tr><td>KEGG enrichment</td><td>KOBAS</td><td>3.0</td><td>corrected pvalue<0.05</td><td></td></tr>
+	</table>
+
+<h3 id="Methods英文版">2 Methods</h3></a>
+<p class="paragraph">Methods：<a href="./src/Methods.ATAC.pdf" title="点击打开" target="_blank">PDF</a></p>
+
+</div>
+
+<div>
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<a name="原始数据说明">Novogene Corporation Inc.</a>
+<hr />
+</p>
+<h3 id="order_background1" ><a name="original_data">3 Raw Data Explanation </a></h3>
+
+<p class="paragraph" >
+The original raw data from Illumina platform are transformed to Sequenced Reads, known as Raw Data or RAW Reads, by base calling of CASAVA. Raw data are recorded in a FASTQ file, which contains sequencing reads and corresponding sequencing quality. Every read in FASTQ format is stored in four lines, as indicated below:
+</p>
+<p class="seq">
+@HWI-ST1276:71:C1162ACXX:1:1101:1208:2458 1:N:0:CGATGT&nbsp;&nbsp;&nbsp;<br />
+NAAGAACACGTTCGGTCACCTCAGCACACTTGTGAATGTCATGGGATCCAT<br />
++<br />
+#55???BBBBB?BA@DEEFFCFFHHFFCFFHHHHHHHFAE0ECFFD/AEHH<br />
+</p>
+<p class="paragraph">Line 1 begins with a '@' character and is followed by the Illumina Sequence Identifiers and an optional description. 
+</p>
+<table class="gy">
+	<tr>
+
+			<th>Identifier</th>
+
+			<th>Meaning</th>
+
+
+</tr>
+	<tr>
+
+			<td>HWI-ST1276</td>
+
+			<td>Instrument – unique identifier of the sequencer</td>
+</tr>
+	<tr>
+<td>71</td>
+<td>Run number – Run number on instrument</td>
+</tr>
+	<tr>
+<td>C1162ACXX</td>
+<td>Flowcell ID - ID of flow cell</td>
+</tr>
+	<tr>
+<td>1</td>
+<td>Lane Number - positive integer</td>
+</tr>
+	<tr>
+<td>1101</td>
+<td>Tile Number - positive integer</td>
+</tr>
+	<tr>
+<td>1208</td>
+<td>X - x coordinate of the spot. Integer which can be negative </td>
+</tr>
+	<tr>
+<td>2458</td>
+<td>Y - y coordinate of the spot. Integer which can be negative </td>
+</tr>
+	<tr>
+<td>1</td>
+<td>Read Number - 1 for single reads, 1 or 2 for paired ends</td>
+</tr>
+	<tr>
+<td>N</td>
+<td>whether it is filtered - NB: Y if the read is filtered out, not in the delivered fastq files, otherwise N</td>
+</tr>
+	<tr>
+<td>0</td>
+<td>Control number - 0 when none of the control bits are on. Otherwise it is an even number</td>
+</tr>
+	<tr>
+<td>CGATGT</td>
+<td>Illumina index sequences</td>
+</tr>
+</table>
+<p class="paragraph">
+Line 2 is the raw sequence reads.</p>
+<p class="paragraph">
+Line 3 begins with a '+' character and is optionally followed by the same sequence identifiers and descriptions as in Line 1.</p>
+<p class="paragraph">
+Line 4 encodes the quality values for the sequence in Line 2 and must contain the same number of characters as the bases in the sequence (Cock, 2009.).</p>
+<p class="paragraph">The details of Illumina Sequence Identifiers are as follows:</p>
+<p class="paragraph">(1) HWI-ST1276:71 HWI-ST1276, Instrument - unique identifier of the sequencer; 71, run number - Run number on instrument.</p>
+<p class="paragraph">(2) C1162ACXX:1:1101:1208:2458 refers to the coordinate of read on C1162ACXX (Flowcell ID) flowcell, line 1, 1101 tile is(x=1208, y=2458).</p>
+<p class="paragraph">(3) 1:N:0:CGATGT the first number is 1 or 2, 1 refers to a single reads or the first read of paired ends, 2 refers to the second of paired ends; the second letter refers to whether reads is adjusted(Y means yes, N means no); the third number represent the number of Control Bits in sequence; six bases on the fourth place is Illumina index sequence.</p>
+<p class="paragraph">Sequencing process itself has the possibility of machine errors. Sequencing error rate distribution can reflect the quality of sequencing data. The quality value of each base in sequence information is stored in the FASTQ file. Quality value of the reads represented by Qphred and the “e” represents the sequence error rate, Qphred=-10log10(e). The relationship between sequencing error rate (e) and sequencing base quality value (Qphred) is as following(Base Quality and Phred score relationship with the Illumina CASAVA v1.8 software).</p>
+<table class="gy"  >
+<tr><th>Phred Score</th><th>Error Rate</th><th>Correct Rate</th><th>Q-score</th></tr>
+<tr><td>10</td><td>1/10</td><td>90%</td><td>Q10</td></tr>
+<tr><td>20</td><td>1/100</td><td>99%</td><td>Q20</td></tr>
+<tr><td>30</td><td>1/1000</td><td>99.9%</td><td>Q30</td></tr>
+<tr><td>40</td><td>1/10000</td><td>99.99%</td><td>Q40</td></tr>
+</table>
+<p class="paragraph">(1) Due to the gradual consumption of reagents during sequencing, the sequencing error rate increases with the length of reads, which is a common feature of the Illumina high-throughput sequencing platform (Erlich Y, Mitra PP et al. 2008; Jiang L, Schlesinger F Et al.2011.).</p>
+<p class="paragraph">(2) The first six bases have a relatively high error rate due to the incomplete binding of random hexamers used in priming cDNA synthesis (Jiang et al.). In general, a single base error rate should be lower than 1%. Result Directory: Result/1.QC/ErrorRate</p>
+</div>
+<br/><br/>
+
+
+<div>
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<a name="">Novogene Corporation Inc.</a>
+<hr />
+</p>
+<h3 id="order_background2" ><a name="References">4 Reference</a></h3>
+
+<p class="ref">
+1. Andrews S. (2010). FastQC: a quality control tool for high throughput sequence data. Available online at: http://www.bioinformatics.babraham.ac.uk/projects/fastqc
+</p><p class="ref">
+2. Ashburner, M. and C. A. Ball, et al. (2000). "Gene ontology: tool for the unification of biology. The Gene Ontology Consortium." Nat Genet 25 (1): 25-9.
+</p><p class="ref">
+3. Sven H, and Christopher B,et al. (2010). "Simple Combinations of Lineage-Determining Transcription Factors Prime cis-Regulatory Elements Required for Macrophage and B Cell Identities." Molecular Cell 38, 576–589.
+</p><p class="ref">
+4. Bailey, T. and P. Krajewski, et al. (2013). "Practical guidelines for the comprehensive analysis of ChIP-seq data." PLoS Comput Biol 9 (11): e1003326.
+</p><p class="ref">
+5. Faust, G. G. and I. M. Hall (2014). "SAMBLASTER: fast duplicate marking and structural variant read extraction." Bioinformatics 30 (17): 2503-5.
+</p><p class="ref">
+6. Jiang, H. and R. Lei, et al. (2014). "Skewer: a fast and accurate adapter trimmer for next-generation sequencing paired-end reads." BMC Bioinformatics 15: 182.
+</p><p class="ref">
+7. Kanehisa, M. and S. Goto (2000). "KEGG: kyoto encyclopedia of genes and genomes." Nucleic Acids Res 28 (1): 27-30.
+</p><p class="ref">
+8. Kanehisa M., M. Araki, et al. (2008). KEGG for linking genomes to life and the environment. Nucleic acids research.(KEGG)
+</p><p class="ref">
+9. Kent, W. J. and A. S. Zweig, et al. (2010). "BigWig and BigBed: enabling browsing of large distributed datasets." Bioinformatics 26 (17): 2204-7. Available online at: http://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64/
+</p><p class="ref">
+10. Kharchenko, P. V. and M. Y. Tolstorukov, et al. (2008). "Design and analysis of ChIP-seq experiments for DNA-binding proteins." Nat Biotechnol 26 (12): 1351-9. Available online at: http://compbio.med.harvard.edu/Supplements/ChIP-seq/
+</p><p class="ref">
+11. Li, H. and R. Durbin (2009). "Fast and accurate short read alignment with Burrows-Wheeler transform." Bioinformatics 25 (14): 1754-60.
+</p><p class="ref">
+12. Li, H. and J. Ruan, et al. (2008). "Mapping short DNA sequencing reads and calling variants using mapping quality scores." Genome Res 18 (11): 1851-8.
+</p><p class="ref">
+13. Li, H. and B. Handsaker, et al. (2009). "The Sequence Alignment/Map format and SAMtools." Bioinformatics 25 (16): 2078-9.
+</p><p class="ref">
+14. Landt, S. G. and G. K. Marinov, et al. (2012). "ChIP-seq guidelines and practices of the ENCODE and modENCODE consortia." Genome Res 22 (9): 1813-31. 
+</p><p class="ref">
+15. Mao, X. and T. Cai, et al. (2005). "Automated genome annotation and pathway identification using the KEGG Orthology (KO) as a controlled vocabulary." Bioinformatics 21 (19): 3787-93.
+</p><p class="ref">
+16. Nicol, J. W. and G. A. Helt, et al. (2009). "The Integrated Genome Browser: free software for distribution and exploration of  genome-scale datasets." Bioinformatics 25 (20): 2730-1. Available online at: http://bioviz.org/igb/index.html
+</p><p class="ref">
+17. Peter J.Park(2009). ChIP-seq: advantages and challenges of a maturing technology. Nature Reviews Genetics 10, 669-679.
+</p><p class="ref">
+18. Ramirez, F. and F. Dundar, et al. (2014). "deepTools: a flexible platform for exploring deep-sequencing data." Nucleic Acids Res 42 (Web Server issue): W187-91.
+</p><p class="ref">
+19. R Core Team (2015). R: A Language and Environment for Statistical Computing. Available online at: https://www.r-project.org/
+</p><p class="ref">
+20. Shirley Pepke, Barbara Wold and Ali Mortazavi (2009).Computation for ChIP-seq and RNA-seq studies. Nature methods, VOL.6 NO.11s
+</p><p class="ref">
+21. Salmon-Divon, M. and H. Dvinge, et al. (2010). "PeakAnalyzer: genome-wide annotation of chromatin binding and modification loci." BMC Bioinformatics 11: 415.
+</p><p class="ref">
+22. Shobhit Gupta, JA Stamatoyannopolous, Timothy Bailey and William Stafford Noble, "Quantifying similarity between motifs", Genome Biology, 8(2):R24, 2007. 
+</p><p class="ref">
+23. Yong Zhang,Tao Liu et al. (2008). Model-based Analysis of ChIP-Seq (MACS). Genome Biology, 9:R137
+</p><p class="ref">
+24. Young, M. D. and M. J. Wakefield, et al. (2010). "Gene ontology analysis for RNA-seq: accounting for selection bias." Genome Biol 11 (2): R14. Available online at: https://bioconductor.org/packages/release/bioc/html/goseq.html
+</p><p class="ref">
+25. Thorvaldsdottir, H. and J. T. Robinson, et al. (2013). "Integrative Genomics Viewer (IGV): high-performance genomics data visualization and exploration." Brief Bioinform 14 (2): 178-92. Available online at: https://www.broadinstitute.org/igv/
+</p><p class="ref">
+26. Timothy L. Bailey and Charles Elkan, "Fitting a mixture model by expectation maximization to discover motifs in biopolymers", Proceedings of the Second International Conference on Intelligent Systems for Molecular Biology, pp. 28-36, AAAI Press, Menlo Park, California, 1994.
+</p><p class="ref">
+28. Young M D, Wakefield M J, Smyth G K, et al. (2010).Gene ontology analysis for RNA-seq: accounting for selection bias. Genome Biology, doi:10.1186/gb-2010-11-2-r14. (GOseq)
+</p><p class="ref">
+29. Kanehisa, M., M. Araki, et al. (2008). KEGG for linking genomes to life and the environment. Nucleic acids research.(KEGG)
+</p><p class="ref">
+30. Buenrostro, J. D., et al. (2013). "Transposition of native chromatin for fast and sensitive epigenomic profiling of open chromatin, DNA-binding proteins and nucleosome position." Nat Methods 10(12): 1213-1218.
+</p><p class="ref">
+31. Lu, Z., et al. (2017). "Combining ATAC-seq with nuclei sorting for discovery of cis-regulatory regions in plant genomes." Nucleic Acids Res 45(6): e41.
+</p>
+
+
+</body>
+</html>

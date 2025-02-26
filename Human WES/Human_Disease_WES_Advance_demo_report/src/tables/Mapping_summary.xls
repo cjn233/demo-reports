@@ -1,0 +1,23 @@
+Sample	YXHF	YXHM	YXHB	YXHP
+Total	75117166 (100%)	83379130 (100%)	91208202 (100%)	86468072 (100%)
+Duplicate	12603157 (16.79%)	14238608 (17.09%)	17425030 (19.12%)	16695122 (19.32%)
+Mapped	75064562 (99.93%)	83303349 (99.91%)	91122763 (99.91%)	86391770 (99.91%)
+Properly mapped	74577914 (99.28%)	82793532 (99.30%)	90518948 (99.24%)	85844730 (99.28%)
+PE mapped	75021104 (99.87%)	83245290 (99.84%)	91057834 (99.84%)	86331616 (99.84%)
+SE mapped	86916 (0.12%)	116118 (0.14%)	129858 (0.14%)	120308 (0.14%)
+With mate mapped to a different chr	302504 (0.40%)	285474 (0.34%)	357050 (0.39%)	342464 (0.40%)
+With mate mapped to a different chr ((mapQ>=5))	256605 (0.34%)	240879 (0.29%)	303003 (0.33%)	295809 (0.34%)
+Initial_bases_on_target	60507855	60507855	60507855	60507855
+Initial_bases_on_or_near_target	136466827	136466827	136466827	136466827
+Total_effective_yield(Mb)	11220.79	12448.90	13617.07	12909.63
+Effective_yield_on_target(Mb)	7934.30	8483.89	9475.07	9295.33
+Fraction_of_effective_bases_on_target	70.71%	68.15%	69.58%	72.00%
+Fraction_of_effective_bases_on_or_near_target	91.67%	91.23%	91.64%	92.18%
+Average_sequencing_depth_on_target	131.13	140.21	156.59	153.62
+Bases_covered_on_target	60292701	60170337	60320486	60308717
+Coverage_of_target_region	99.64%	99.44%	99.69%	99.67%
+Fraction_of_target_covered_with_at_least_100x	52.38%	55.30%	59.81%	59.38%
+Fraction_of_target_covered_with_at_least_50x	78.70%	80.44%	82.74%	82.36%
+Fraction_of_target_covered_with_at_least_20x	93.39%	93.85%	94.72%	94.52%
+Fraction_of_target_covered_with_at_least_10x	97.15%	97.21%	97.71%	97.62%
+Fraction_of_target_covered_with_at_least_4x	98.96%	98.82%	99.14%	99.10%

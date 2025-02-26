@@ -1,0 +1,3242 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" >
+<html>   
+
+<head>
+<TITLE>XXXXXXXXXXXXX</TITLE>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="icon" href="src/images/bitbug_favicon.ico" type="image/x-icons">
+
+<link rel="stylesheet" href="src/css/jquery-ui.css" />
+<link rel="stylesheet" href="src/css/bootstrap-4.3.1.min.css" />
+<link rel="stylesheet" href="src/css/jquery.tocify.css" />
+<link rel="stylesheet" href="src/css/style.css"/>
+<link rel="stylesheet" href="src/css/base.css"/>
+<link rel="stylesheet" href="src/css/gallery.css"/>
+<script src="src/js/jquery-3.3.1.min.js" type="text/javascript"></script>
+<script src="src/js/jquery-ui.min.js" type="text/javascript"></script>
+<script src="src/js/jquery.tocify.min.js" type="text/javascript"></script>
+<script src="src/js/bootstrap-4.3.1.min.js" type="text/javascript"></script>
+<script src="src/js/scrollTop.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$(function () {
+		var options = {
+			selectors: "h2,h3,h4,h5",
+			theme: "bootstrap",
+			scrollTo: "60"
+		};
+		var toc = $("#toc").tocify(options).data("toc-tocify");
+	});
+</script>
+
+
+
+<script type="text/javascript">
+function trans(img_div_id) {
+img_div = $("#" + img_div_id)
+img = $("#" + img_div_id + " img").first();
+if (img_div.hasClass("fullscreen-div")) {
+img_div.removeClass("fullscreen-div");
+img.removeClass("fullscreen-img");
+}
+else {
+img_div.addClass("fullscreen-div");
+img.addClass("fullscreen-img");
+}
+}
+function filter_display() {
+return $(this).css("display") != "none";
+}
+function show_default() {
+var list_group_id = "#" + $(this).attr("id");
+if ($(list_group_id + " a.active").css("display") == "none") {
+var list_tab = $(list_group_id + " a.active");
+var pan_id = list_tab.attr("href");
+$(pan_id).removeClass("active show");
+list_tab.removeClass("active");
+}
+if ($(list_group_id + " a.active").filter(filter_display).length == 0) {
+$(list_group_id + " a").filter(filter_display).first().tab("show");
+}
+}
+$.fn.show_default = show_default
+function next(botton_id) {
+var present_tab = $("#" + botton_id.replace("_button_next", "_list-tab") + " .active").first();
+while (present_tab.next().length == 1) {
+if (present_tab.next().css("display") != "none") {
+present_tab.next().tab("show");
+break;
+}
+else {
+present_tab = present_tab.next();
+}
+}
+}
+function prev(botton_id) {
+var present_tab = $("#" + botton_id.replace("_button_prev", "_list-tab") + " .active").first();
+while (present_tab.prev().length == 1) {
+if (present_tab.prev().css("display") != "none") {
+present_tab.prev().tab("show");
+break;
+}
+else {
+present_tab = present_tab.prev();
+}
+}
+}
+$(document).ready(function () {
+$(".form-control").on("keyup", function () {
+var value = $(this).val().toLowerCase();
+var input_box_id = "#" + $(this).attr("id");
+var list_group_id = input_box_id.replace("_InputList", "_list-tab");
+$(list_group_id + " a").filter(function () {
+$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+});
+$(list_group_id).show_default();
+});
+$(".list-group").each(show_default);
+});
+</script>
+
+<script type="text/javascript">
+            var pageSize1 = 15;    //每页显示的记录条数
+            var curPage1=0;        //当前页
+            var lastPage1;        //最后页
+            var direct1=0;        //方向
+            var len1;            //总行数
+            var page1;           //总页数
+            var begin1;
+            var end1;
+
+            $(document).ready(function display1(){
+                len1 =$("#mytable1 tr").length - 1;    // 求这个表的总行数，剔除第一行介绍
+                page1=len1 % pageSize1==0 ? len1/pageSize1 : Math.floor(len1/pageSize1)+1;//根据记录条数，计算页数
+                // alert("page==="+page);
+                curPage1=1;    // 设置当前为第一页
+                displayPage1(1);//显示第一页
+                document.getElementById("btn01").innerHTML="Current: " + curPage1 + "/" + page1 + " page | ";    // 显示当前多少页
+                document.getElementById("sjzl1").innerHTML="Total items: " + len1 + "";        // 显示数据量
+
+                $("#btn11").click(function firstPage1(){    // 首页
+                    curPage1=1;
+                    direct1 = 0;
+                    displayPage1();
+                });
+                $("#btn21").click(function frontPage1(){    // 上一页
+                    direct1=-1;
+                    displayPage1();
+                });
+                $("#btn31").click(function nextPage1(){    // 下一页
+                    direct1=1;
+                    displayPage1();
+                });
+                $("#btn41").click(function lastPage1(){    // 尾页
+                    curPage1=page1;
+                    direct1 = 0;
+                    displayPage1();
+                });
+                $("#btn51").click(function changePage1(){    // 转页
+                    curPage1=document.getElementById("changePage1").value * 1;
+                    if (!/^[1-9]\d*$/.test(curPage1)) {
+                        alert("请输入正整数");
+                        return ;
+                    }
+                    if (curPage1 > page1) {
+                        alert("超出数据页面");
+                        return ;
+                    }
+                    direct1 = 0;
+                    displayPage1();
+                });
+
+
+                $("#pageSizeSet1").click(function setPageSize1(){    // 设置每页显示多少条记录
+                    pageSize1 = document.getElementById("pageSize1").value;    //每页显示的记录条数
+                    if (!/^[1-9]\d*$/.test(pageSize)) {
+                        alert("请输入正整数");
+                        return ;
+                    }
+                    len1 = $("#mytable1 tr").length - 1;
+                    page1 = len1 % pageSize1==0 ? len1/pageSize1 : Math.floor(len1/pageSize1)+1;//根据记录条数，计算页数
+                    curPage1=1;        //当前页
+                    direct1=0;        //方向
+                    firstPage1();
+                });
+            });
+
+            function displayPage1(){
+                if(curPage1 <=1 && direct1==-1){
+                    direct1=0;
+                    alert("Already the first page !!!");
+                    return;
+                } else if (curPage1 >= page1 && direct1==1) {
+                    direct1=0;
+                    alert("Already the last page !!!");
+                    return ;
+                }
+                lastPage1 = curPage1;
+
+                // 修复当len=1时，curPage计算得0的bug
+                if (len1 > pageSize1) {
+                    curPage1 = ((curPage1 + direct1 + len1) % len1);
+                } else {
+                    curPage1 = 1;
+                }
+                document.getElementById("btn01").innerHTML="Current: " + curPage1 + "/" + page1 + " page  | ";        // 显示当前多少页
+
+                begin1=(curPage1-1)*pageSize1 + 1;// 起始记录号
+                end1 = begin1 + 1*pageSize1 - 1;    // 末尾记录号
+
+
+                if(end1 > len1 ) end1=len1;
+                $("#mytable1 tr").hide();    // 首先，设置这行为隐藏
+                $("#mytable1 tr").each(function(i){    // 然后，通过条件判断决定本行是否恢复显示
+                    if((i>=begin1 && i<=end1) || i==0 )//显示begin<=x<=end的记录
+                        $(this).show();
+                });
+
+             }
+</script>
+
+
+<script type="text/javascript">
+            var pageSize2 = 15;    //每页显示的记录条数
+            var curPage2=0;        //当前页
+            var lastPage2;        //最后页
+            var direct2=0;        //方向
+            var len2;            //总行数
+            var page2;           //总页数
+            var begin2;
+            var end2;
+
+            $(document).ready(function display2(){
+                len2 =$("#mytable2 tr").length - 1;    // 求这个表的总行数，剔除第一行介绍
+                page2=len2 % pageSize2==0 ? len2/pageSize2 : Math.floor(len2/pageSize2)+1;//根据记录条数，计算页数
+                // alert("page==="+page);
+                curPage2=1;    // 设置当前为第一页
+                displayPage2(1);//显示第一页
+                document.getElementById("btn02").innerHTML="Current: " + curPage2 + "/" + page2 + " page | ";    // 显示当前多少页
+                document.getElementById("sjzl2").innerHTML="Total items: " + len2 + "";        // 显示数据量
+
+                $("#btn12").click(function firstPage2(){    // 首页
+                    curPage2=1;
+                    direct2 = 0;
+                    displayPage2();
+                });
+                $("#btn22").click(function frontPage2(){    // 上一页
+                    direct2=-1;
+                    displayPage2();
+                });
+                $("#btn32").click(function nextPage2(){    // 下一页
+                    direct2=1;
+                    displayPage2();
+                });
+                $("#btn42").click(function lastPage2(){    // 尾页
+                    curPage2=page2;
+                    direct2 = 0;
+                    displayPage2();
+                });
+                $("#btn52").click(function changePage2(){    // 转页
+                    curPage2=document.getElementById("changePage2").value * 1;
+                    if (!/^[1-9]\d*$/.test(curPage2)) {
+                        alert("请输入正整数");
+                        return ;
+                    }
+                    if (curPage2 > page2) {
+                        alert("超出数据页面");
+                        return ;
+                    }
+                    direct2 = 0;
+                    displayPage2();
+                });
+
+
+                $("#pageSizeSet2").click(function setPageSize2(){    // 设置每页显示多少条记录
+                    pageSize2 = document.getElementById("pageSize2").value;    //每页显示的记录条数
+                    if (!/^[1-9]\d*$/.test(pageSize)) {
+                        alert("请输入正整数");
+                        return ;
+                    }
+                    len2 = $("#mytable2 tr").length - 1;
+                    page2 = len2 % pageSize2==0 ? len2/pageSize2 : Math.floor(len2/pageSize2)+1;//根据记录条数，计算页数
+                    curPage2=1;        //当前页
+                    direct2=0;        //方向
+                    firstPage2();
+                });
+            });
+
+            function displayPage2(){
+                if(curPage2 <=1 && direct2==-1){
+                    direct2=0;
+                    alert("Already the first page !!!");
+                    return;
+                } else if (curPage2 >= page2 && direct2==1) {
+                    direct2=0;
+                    alert("Already the last page !!!");
+                    return ;
+                }
+                lastPage2 = curPage2;
+
+                // 修复当len=1时，curPage计算得0的bug
+                if (len2 > pageSize2) {
+                    curPage2 = ((curPage2 + direct2 + len2) % len2);
+                } else {
+                    curPage2 = 1;
+                }
+                document.getElementById("btn02").innerHTML="Current: " + curPage2 + "/" + page2 + " page  | ";        // 显示当前多少页
+
+                begin2=(curPage2-1)*pageSize2 + 1;// 起始记录号
+                end2 = begin2 + 1*pageSize2 - 1;    // 末尾记录号
+
+
+                if(end2 > len2 ) end2=len2;
+                $("#mytable2 tr").hide();    // 首先，设置这行为隐藏
+                $("#mytable2 tr").each(function(i){    // 然后，通过条件判断决定本行是否恢复显示
+                    if((i>=begin2 && i<=end2) || i==0 )//显示begin<=x<=end的记录
+                        $(this).show();
+                });
+
+             }
+</script>
+
+
+<script type="text/javascript">
+            var pageSize3 = 15;    //每页显示的记录条数
+            var curPage3=0;        //当前页
+            var lastPage3;        //最后页
+            var direct3=0;        //方向
+            var len3;            //总行数
+            var page3;           //总页数
+            var begin3;
+            var end3;
+
+            $(document).ready(function display3(){
+                len3 =$("#mytable3 tr").length - 1;    // 求这个表的总行数，剔除第一行介绍
+                page3=len3 % pageSize3==0 ? len3/pageSize3 : Math.floor(len3/pageSize3)+1;//根据记录条数，计算页数
+                // alert("page==="+page);
+                curPage3=1;    // 设置当前为第一页
+                displayPage3(1);//显示第一页
+                document.getElementById("btn03").innerHTML="Current: " + curPage3 + "/" + page3 + " page | ";    // 显示当前多少页
+                document.getElementById("sjzl3").innerHTML="Total items: " + len3 + "";        // 显示数据量
+
+                $("#btn13").click(function firstPage3(){    // 首页
+                    curPage3=1;
+                    direct3 = 0;
+                    displayPage3();
+                });
+                $("#btn23").click(function frontPage3(){    // 上一页
+                    direct3=-1;
+                    displayPage3();
+                });
+                $("#btn33").click(function nextPage3(){    // 下一页
+                    direct3=1;
+                    displayPage3();
+                });
+                $("#btn43").click(function lastPage3(){    // 尾页
+                    curPage3=page3;
+                    direct3 = 0;
+                    displayPage3();
+                });
+                $("#btn53").click(function changePage3(){    // 转页
+                    curPage3=document.getElementById("changePage3").value * 1;
+                    if (!/^[1-9]\d*$/.test(curPage3)) {
+                        alert("请输入正整数");
+                        return ;
+                    }
+                    if (curPage3 > page3) {
+                        alert("超出数据页面");
+                        return ;
+                    }
+                    direct3 = 0;
+                    displayPage3();
+                });
+
+
+                $("#pageSizeSet3").click(function setPageSize3(){    // 设置每页显示多少条记录
+                    pageSize3 = document.getElementById("pageSize3").value;    //每页显示的记录条数
+                    if (!/^[1-9]\d*$/.test(pageSize)) {
+                        alert("请输入正整数");
+                        return ;
+                    }
+                    len3 = $("#mytable3 tr").length - 1;
+                    page3 = len3 % pageSize3==0 ? len3/pageSize3 : Math.floor(len3/pageSize3)+1;//根据记录条数，计算页数
+                    curPage3=1;        //当前页
+                    direct3=0;        //方向
+                    firstPage3();
+                });
+            });
+
+            function displayPage3(){
+                if(curPage3 <=1 && direct3==-1){
+                    direct3=0;
+                    alert("Already the first page !!!");
+                    return;
+                } else if (curPage3 >= page3 && direct3==1) {
+                    direct3=0;
+                    alert("Already the last page !!!");
+                    return ;
+                }
+                lastPage3 = curPage3;
+
+                // 修复当len=1时，curPage计算得0的bug
+                if (len3 > pageSize3) {
+                    curPage3 = ((curPage3 + direct3 + len3) % len3);
+                } else {
+                    curPage3 = 1;
+                }
+                document.getElementById("btn03").innerHTML="Current: " + curPage3 + "/" + page3 + " page  | ";        // 显示当前多少页
+
+                begin3=(curPage3-1)*pageSize3 + 1;// 起始记录号
+                end3 = begin3 + 1*pageSize3 - 1;    // 末尾记录号
+
+
+                if(end3 > len3 ) end3=len3;
+                $("#mytable3 tr").hide();    // 首先，设置这行为隐藏
+                $("#mytable3 tr").each(function(i){    // 然后，通过条件判断决定本行是否恢复显示
+                    if((i>=begin3 && i<=end3) || i==0 )//显示begin<=x<=end的记录
+                        $(this).show();
+                });
+
+             }
+</script>
+
+
+<script type="text/javascript">
+            var pageSize4 = 15;    //每页显示的记录条数
+            var curPage4=0;        //当前页
+            var lastPage4;        //最后页
+            var direct4=0;        //方向
+            var len4;            //总行数
+            var page4;           //总页数
+            var begin4;
+            var end4;
+
+            $(document).ready(function display4(){
+                len4 =$("#mytable4 tr").length - 1;    // 求这个表的总行数，剔除第一行介绍
+                page4=len4 % pageSize4==0 ? len4/pageSize4 : Math.floor(len4/pageSize4)+1;//根据记录条数，计算页数
+                // alert("page==="+page);
+                curPage4=1;    // 设置当前为第一页
+                displayPage4(1);//显示第一页
+                document.getElementById("btn04").innerHTML="Current: " + curPage4 + "/" + page4 + " page | ";    // 显示当前多少页
+                document.getElementById("sjzl4").innerHTML="Total items: " + len4 + "";        // 显示数据量
+
+                $("#btn14").click(function firstPage4(){    // 首页
+                    curPage4=1;
+                    direct4 = 0;
+                    displayPage4();
+                });
+                $("#btn24").click(function frontPage4(){    // 上一页
+                    direct4=-1;
+                    displayPage4();
+                });
+                $("#btn34").click(function nextPage4(){    // 下一页
+                    direct4=1;
+                    displayPage4();
+                });
+                $("#btn44").click(function lastPage4(){    // 尾页
+                    curPage4=page4;
+                    direct4 = 0;
+                    displayPage4();
+                });
+                $("#btn54").click(function changePage4(){    // 转页
+                    curPage4=document.getElementById("changePage4").value * 1;
+                    if (!/^[1-9]\d*$/.test(curPage4)) {
+                        alert("请输入正整数");
+                        return ;
+                    }
+                    if (curPage4 > page4) {
+                        alert("超出数据页面");
+                        return ;
+                    }
+                    direct4 = 0;
+                    displayPage4();
+                });
+
+
+                $("#pageSizeSet4").click(function setPageSize4(){    // 设置每页显示多少条记录
+                    pageSize4 = document.getElementById("pageSize4").value;    //每页显示的记录条数
+                    if (!/^[1-9]\d*$/.test(pageSize)) {
+                        alert("请输入正整数");
+                        return ;
+                    }
+                    len4 = $("#mytable4 tr").length - 1;
+                    page4 = len4 % pageSize4==0 ? len4/pageSize4 : Math.floor(len4/pageSize4)+1;//根据记录条数，计算页数
+                    curPage4=1;        //当前页
+                    direct4=0;        //方向
+                    firstPage4();
+                });
+            });
+
+            function displayPage4(){
+                if(curPage4 <=1 && direct4==-1){
+                    direct4=0;
+                    alert("Already the first page !!!");
+                    return;
+                } else if (curPage4 >= page4 && direct4==1) {
+                    direct4=0;
+                    alert("Already the last page !!!");
+                    return ;
+                }
+                lastPage4 = curPage4;
+
+                // 修复当len=1时，curPage计算得0的bug
+                if (len4 > pageSize4) {
+                    curPage4 = ((curPage4 + direct4 + len4) % len4);
+                } else {
+                    curPage4 = 1;
+                }
+                document.getElementById("btn04").innerHTML="Current: " + curPage4 + "/" + page4 + " page  | ";        // 显示当前多少页
+
+                begin4=(curPage4-1)*pageSize4 + 1;// 起始记录号
+                end4 = begin4 + 1*pageSize4 - 1;    // 末尾记录号
+
+
+                if(end4 > len4 ) end4=len4;
+                $("#mytable4 tr").hide();    // 首先，设置这行为隐藏
+                $("#mytable4 tr").each(function(i){    // 然后，通过条件判断决定本行是否恢复显示
+                    if((i>=begin4 && i<=end4) || i==0 )//显示begin<=x<=end的记录
+                        $(this).show();
+                });
+
+             }
+</script>
+
+
+<script type="text/javascript">
+            var pageSize5 = 15;    //每页显示的记录条数
+            var curPage5=0;        //当前页
+            var lastPage5;        //最后页
+            var direct5=0;        //方向
+            var len5;            //总行数
+            var page5;           //总页数
+            var begin5;
+            var end5;
+
+            $(document).ready(function display5(){
+                len5 =$("#mytable5 tr").length - 1;    // 求这个表的总行数，剔除第一行介绍
+                page5=len5 % pageSize5==0 ? len5/pageSize5 : Math.floor(len5/pageSize5)+1;//根据记录条数，计算页数
+                // alert("page==="+page);
+                curPage5=1;    // 设置当前为第一页
+                displayPage5(1);//显示第一页
+                document.getElementById("btn05").innerHTML="Current: " + curPage5 + "/" + page5 + " page | ";    // 显示当前多少页
+                document.getElementById("sjzl5").innerHTML="Total items: " + len5 + "";        // 显示数据量
+
+                $("#btn15").click(function firstPage5(){    // 首页
+                    curPage5=1;
+                    direct5 = 0;
+                    displayPage5();
+                });
+                $("#btn25").click(function frontPage5(){    // 上一页
+                    direct5=-1;
+                    displayPage5();
+                });
+                $("#btn35").click(function nextPage5(){    // 下一页
+                    direct5=1;
+                    displayPage5();
+                });
+                $("#btn45").click(function lastPage5(){    // 尾页
+                    curPage5=page5;
+                    direct5 = 0;
+                    displayPage5();
+                });
+                $("#btn55").click(function changePage5(){    // 转页
+                    curPage5=document.getElementById("changePage5").value * 1;
+                    if (!/^[1-9]\d*$/.test(curPage5)) {
+                        alert("请输入正整数");
+                        return ;
+                    }
+                    if (curPage5 > page5) {
+                        alert("超出数据页面");
+                        return ;
+                    }
+                    direct5 = 0;
+                    displayPage5();
+                });
+
+
+                $("#pageSizeSet5").click(function setPageSize5(){    // 设置每页显示多少条记录
+                    pageSize5 = document.getElementById("pageSize5").value;    //每页显示的记录条数
+                    if (!/^[1-9]\d*$/.test(pageSize)) {
+                        alert("请输入正整数");
+                        return ;
+                    }
+                    len5 = $("#mytable5 tr").length - 1;
+                    page5 = len5 % pageSize5==0 ? len5/pageSize5 : Math.floor(len5/pageSize5)+1;//根据记录条数，计算页数
+                    curPage5=1;        //当前页
+                    direct5=0;        //方向
+                    firstPage5();
+                });
+            });
+
+            function displayPage5(){
+                if(curPage5 <=1 && direct5==-1){
+                    direct5=0;
+                    alert("Already the first page !!!");
+                    return;
+                } else if (curPage5 >= page5 && direct5==1) {
+                    direct5=0;
+                    alert("Already the last page !!!");
+                    return ;
+                }
+                lastPage5 = curPage5;
+
+                // 修复当len=1时，curPage计算得0的bug
+                if (len5 > pageSize5) {
+                    curPage5 = ((curPage5 + direct5 + len5) % len5);
+                } else {
+                    curPage5 = 1;
+                }
+                document.getElementById("btn05").innerHTML="Current: " + curPage5 + "/" + page5 + " page  | ";        // 显示当前多少页
+
+                begin5=(curPage5-1)*pageSize5 + 1;// 起始记录号
+                end5 = begin5 + 1*pageSize5 - 1;    // 末尾记录号
+
+
+                if(end5 > len5 ) end5=len5;
+                $("#mytable5 tr").hide();    // 首先，设置这行为隐藏
+                $("#mytable5 tr").each(function(i){    // 然后，通过条件判断决定本行是否恢复显示
+                    if((i>=begin5 && i<=end5) || i==0 )//显示begin<=x<=end的记录
+                        $(this).show();
+                });
+
+             }
+</script>
+
+
+<script type="text/javascript">
+            var pageSize6 = 15;    //每页显示的记录条数
+            var curPage6=0;        //当前页
+            var lastPage6;        //最后页
+            var direct6=0;        //方向
+            var len6;            //总行数
+            var page6;           //总页数
+            var begin6;
+            var end6;
+
+            $(document).ready(function display6(){
+                len6 =$("#mytable6 tr").length - 1;    // 求这个表的总行数，剔除第一行介绍
+                page6=len6 % pageSize6==0 ? len6/pageSize6 : Math.floor(len6/pageSize6)+1;//根据记录条数，计算页数
+                // alert("page==="+page);
+                curPage6=1;    // 设置当前为第一页
+                displayPage6(1);//显示第一页
+                document.getElementById("btn06").innerHTML="Current: " + curPage6 + "/" + page6 + " page | ";    // 显示当前多少页
+                document.getElementById("sjzl6").innerHTML="Total items: " + len6 + "";        // 显示数据量
+
+                $("#btn16").click(function firstPage6(){    // 首页
+                    curPage6=1;
+                    direct6 = 0;
+                    displayPage6();
+                });
+                $("#btn26").click(function frontPage6(){    // 上一页
+                    direct6=-1;
+                    displayPage6();
+                });
+                $("#btn36").click(function nextPage6(){    // 下一页
+                    direct6=1;
+                    displayPage6();
+                });
+                $("#btn46").click(function lastPage6(){    // 尾页
+                    curPage6=page6;
+                    direct6 = 0;
+                    displayPage6();
+                });
+                $("#btn56").click(function changePage6(){    // 转页
+                    curPage6=document.getElementById("changePage6").value * 1;
+                    if (!/^[1-9]\d*$/.test(curPage6)) {
+                        alert("请输入正整数");
+                        return ;
+                    }
+                    if (curPage6 > page6) {
+                        alert("超出数据页面");
+                        return ;
+                    }
+                    direct6 = 0;
+                    displayPage6();
+                });
+
+
+                $("#pageSizeSet6").click(function setPageSize6(){    // 设置每页显示多少条记录
+                    pageSize6 = document.getElementById("pageSize6").value;    //每页显示的记录条数
+                    if (!/^[1-9]\d*$/.test(pageSize)) {
+                        alert("请输入正整数");
+                        return ;
+                    }
+                    len6 = $("#mytable6 tr").length - 1;
+                    page6 = len6 % pageSize6==0 ? len6/pageSize6 : Math.floor(len6/pageSize6)+1;//根据记录条数，计算页数
+                    curPage6=1;        //当前页
+                    direct6=0;        //方向
+                    firstPage6();
+                });
+            });
+
+            function displayPage6(){
+                if(curPage6 <=1 && direct6==-1){
+                    direct6=0;
+                    alert("Already the first page !!!");
+                    return;
+                } else if (curPage6 >= page6 && direct6==1) {
+                    direct6=0;
+                    alert("Already the last page !!!");
+                    return ;
+                }
+                lastPage6 = curPage6;
+
+                // 修复当len=1时，curPage计算得0的bug
+                if (len6 > pageSize6) {
+                    curPage6 = ((curPage6 + direct6 + len6) % len6);
+                } else {
+                    curPage6 = 1;
+                }
+                document.getElementById("btn06").innerHTML="Current: " + curPage6 + "/" + page6 + " page  | ";        // 显示当前多少页
+
+                begin6=(curPage6-1)*pageSize6 + 1;// 起始记录号
+                end6 = begin6 + 1*pageSize6 - 1;    // 末尾记录号
+
+
+                if(end6 > len6 ) end6=len6;
+                $("#mytable6 tr").hide();    // 首先，设置这行为隐藏
+                $("#mytable6 tr").each(function(i){    // 然后，通过条件判断决定本行是否恢复显示
+                    if((i>=begin6 && i<=end6) || i==0 )//显示begin<=x<=end的记录
+                        $(this).show();
+                });
+
+             }
+</script>
+
+
+<script type="text/javascript">
+            var pageSize7 = 15;    //每页显示的记录条数
+            var curPage7=0;        //当前页
+            var lastPage7;        //最后页
+            var direct7=0;        //方向
+            var len7;            //总行数
+            var page7;           //总页数
+            var begin7;
+            var end7;
+
+            $(document).ready(function display7(){
+                len7 =$("#mytable7 tr").length - 1;    // 求这个表的总行数，剔除第一行介绍
+                page7=len7 % pageSize7==0 ? len7/pageSize7 : Math.floor(len7/pageSize7)+1;//根据记录条数，计算页数
+                // alert("page==="+page);
+                curPage7=1;    // 设置当前为第一页
+                displayPage7(1);//显示第一页
+                document.getElementById("btn07").innerHTML="Current: " + curPage7 + "/" + page7 + " page | ";    // 显示当前多少页
+                document.getElementById("sjzl7").innerHTML="Total items: " + len7 + "";        // 显示数据量
+
+                $("#btn17").click(function firstPage7(){    // 首页
+                    curPage7=1;
+                    direct7 = 0;
+                    displayPage7();
+                });
+                $("#btn27").click(function frontPage7(){    // 上一页
+                    direct7=-1;
+                    displayPage7();
+                });
+                $("#btn37").click(function nextPage7(){    // 下一页
+                    direct7=1;
+                    displayPage7();
+                });
+                $("#btn47").click(function lastPage7(){    // 尾页
+                    curPage7=page7;
+                    direct7 = 0;
+                    displayPage7();
+                });
+                $("#btn57").click(function changePage7(){    // 转页
+                    curPage7=document.getElementById("changePage7").value * 1;
+                    if (!/^[1-9]\d*$/.test(curPage7)) {
+                        alert("请输入正整数");
+                        return ;
+                    }
+                    if (curPage7 > page7) {
+                        alert("超出数据页面");
+                        return ;
+                    }
+                    direct7 = 0;
+                    displayPage7();
+                });
+
+
+                $("#pageSizeSet7").click(function setPageSize7(){    // 设置每页显示多少条记录
+                    pageSize7 = document.getElementById("pageSize7").value;    //每页显示的记录条数
+                    if (!/^[1-9]\d*$/.test(pageSize)) {
+                        alert("请输入正整数");
+                        return ;
+                    }
+                    len7 = $("#mytable7 tr").length - 1;
+                    page7 = len7 % pageSize7==0 ? len7/pageSize7 : Math.floor(len7/pageSize7)+1;//根据记录条数，计算页数
+                    curPage7=1;        //当前页
+                    direct7=0;        //方向
+                    firstPage7();
+                });
+            });
+
+            function displayPage7(){
+                if(curPage7 <=1 && direct7==-1){
+                    direct7=0;
+                    alert("Already the first page !!!");
+                    return;
+                } else if (curPage7 >= page7 && direct7==1) {
+                    direct7=0;
+                    alert("Already the last page !!!");
+                    return ;
+                }
+                lastPage7 = curPage7;
+
+                // 修复当len=1时，curPage计算得0的bug
+                if (len7 > pageSize7) {
+                    curPage7 = ((curPage7 + direct7 + len7) % len7);
+                } else {
+                    curPage7 = 1;
+                }
+                document.getElementById("btn07").innerHTML="Current: " + curPage7 + "/" + page7 + " page  | ";        // 显示当前多少页
+
+                begin7=(curPage7-1)*pageSize7 + 1;// 起始记录号
+                end7 = begin7 + 1*pageSize7 - 1;    // 末尾记录号
+
+
+                if(end7 > len7 ) end7=len7;
+                $("#mytable7 tr").hide();    // 首先，设置这行为隐藏
+                $("#mytable7 tr").each(function(i){    // 然后，通过条件判断决定本行是否恢复显示
+                    if((i>=begin7 && i<=end7) || i==0 )//显示begin<=x<=end的记录
+                        $(this).show();
+                });
+
+             }
+</script>
+
+
+<script type="text/javascript">
+            var pageSize8 = 15;    //每页显示的记录条数
+            var curPage8=0;        //当前页
+            var lastPage8;        //最后页
+            var direct8=0;        //方向
+            var len8;            //总行数
+            var page8;           //总页数
+            var begin8;
+            var end8;
+
+            $(document).ready(function display8(){
+                len8 =$("#mytable8 tr").length - 1;    // 求这个表的总行数，剔除第一行介绍
+                page8=len8 % pageSize8==0 ? len8/pageSize8 : Math.floor(len8/pageSize8)+1;//根据记录条数，计算页数
+                // alert("page==="+page);
+                curPage8=1;    // 设置当前为第一页
+                displayPage8(1);//显示第一页
+                document.getElementById("btn08").innerHTML="Current: " + curPage8 + "/" + page8 + " page | ";    // 显示当前多少页
+                document.getElementById("sjzl8").innerHTML="Total items: " + len8 + "";        // 显示数据量
+
+                $("#btn18").click(function firstPage8(){    // 首页
+                    curPage8=1;
+                    direct8 = 0;
+                    displayPage8();
+                });
+                $("#btn28").click(function frontPage8(){    // 上一页
+                    direct8=-1;
+                    displayPage8();
+                });
+                $("#btn38").click(function nextPage8(){    // 下一页
+                    direct8=1;
+                    displayPage8();
+                });
+                $("#btn48").click(function lastPage8(){    // 尾页
+                    curPage8=page8;
+                    direct8 = 0;
+                    displayPage8();
+                });
+                $("#btn58").click(function changePage8(){    // 转页
+                    curPage8=document.getElementById("changePage8").value * 1;
+                    if (!/^[1-9]\d*$/.test(curPage8)) {
+                        alert("请输入正整数");
+                        return ;
+                    }
+                    if (curPage8 > page8) {
+                        alert("超出数据页面");
+                        return ;
+                    }
+                    direct8 = 0;
+                    displayPage8();
+                });
+
+
+                $("#pageSizeSet8").click(function setPageSize8(){    // 设置每页显示多少条记录
+                    pageSize8 = document.getElementById("pageSize8").value;    //每页显示的记录条数
+                    if (!/^[1-9]\d*$/.test(pageSize)) {
+                        alert("请输入正整数");
+                        return ;
+                    }
+                    len8 = $("#mytable8 tr").length - 1;
+                    page8 = len8 % pageSize8==0 ? len8/pageSize8 : Math.floor(len8/pageSize8)+1;//根据记录条数，计算页数
+                    curPage8=1;        //当前页
+                    direct8=0;        //方向
+                    firstPage8();
+                });
+            });
+
+            function displayPage8(){
+                if(curPage8 <=1 && direct8==-1){
+                    direct8=0;
+                    alert("Already the first page !!!");
+                    return;
+                } else if (curPage8 >= page8 && direct8==1) {
+                    direct8=0;
+                    alert("Already the last page !!!");
+                    return ;
+                }
+                lastPage8 = curPage8;
+
+                // 修复当len=1时，curPage计算得0的bug
+                if (len8 > pageSize8) {
+                    curPage8 = ((curPage8 + direct8 + len8) % len8);
+                } else {
+                    curPage8 = 1;
+                }
+                document.getElementById("btn08").innerHTML="Current: " + curPage8 + "/" + page8 + " page  | ";        // 显示当前多少页
+
+                begin8=(curPage8-1)*pageSize8 + 1;// 起始记录号
+                end8 = begin8 + 1*pageSize8 - 1;    // 末尾记录号
+
+
+                if(end8 > len8 ) end8=len8;
+                $("#mytable8 tr").hide();    // 首先，设置这行为隐藏
+                $("#mytable8 tr").each(function(i){    // 然后，通过条件判断决定本行是否恢复显示
+                    if((i>=begin8 && i<=end8) || i==0 )//显示begin<=x<=end的记录
+                        $(this).show();
+                });
+
+             }
+</script>
+
+
+<script type="text/javascript">
+            var pageSize9 = 15;    //每页显示的记录条数
+            var curPage9=0;        //当前页
+            var lastPage9;        //最后页
+            var direct9=0;        //方向
+            var len9;            //总行数
+            var page9;           //总页数
+            var begin9;
+            var end9;
+
+            $(document).ready(function display9(){
+                len9 =$("#mytable9 tr").length - 1;    // 求这个表的总行数，剔除第一行介绍
+                page9=len9 % pageSize9==0 ? len9/pageSize9 : Math.floor(len9/pageSize9)+1;//根据记录条数，计算页数
+                // alert("page==="+page);
+                curPage9=1;    // 设置当前为第一页
+                displayPage9(1);//显示第一页
+                document.getElementById("btn09").innerHTML="Current: " + curPage9 + "/" + page9 + " page | ";    // 显示当前多少页
+                document.getElementById("sjzl9").innerHTML="Total items: " + len9 + "";        // 显示数据量
+
+                $("#btn19").click(function firstPage9(){    // 首页
+                    curPage9=1;
+                    direct9 = 0;
+                    displayPage9();
+                });
+                $("#btn29").click(function frontPage9(){    // 上一页
+                    direct9=-1;
+                    displayPage9();
+                });
+                $("#btn39").click(function nextPage9(){    // 下一页
+                    direct9=1;
+                    displayPage9();
+                });
+                $("#btn49").click(function lastPage9(){    // 尾页
+                    curPage9=page9;
+                    direct9 = 0;
+                    displayPage9();
+                });
+                $("#btn59").click(function changePage9(){    // 转页
+                    curPage9=document.getElementById("changePage9").value * 1;
+                    if (!/^[1-9]\d*$/.test(curPage9)) {
+                        alert("请输入正整数");
+                        return ;
+                    }
+                    if (curPage9 > page9) {
+                        alert("超出数据页面");
+                        return ;
+                    }
+                    direct9 = 0;
+                    displayPage9();
+                });
+
+
+                $("#pageSizeSet9").click(function setPageSize9(){    // 设置每页显示多少条记录
+                    pageSize9 = document.getElementById("pageSize9").value;    //每页显示的记录条数
+                    if (!/^[1-9]\d*$/.test(pageSize)) {
+                        alert("请输入正整数");
+                        return ;
+                    }
+                    len9 = $("#mytable9 tr").length - 1;
+                    page9 = len9 % pageSize9==0 ? len9/pageSize9 : Math.floor(len9/pageSize9)+1;//根据记录条数，计算页数
+                    curPage9=1;        //当前页
+                    direct9=0;        //方向
+                    firstPage9();
+                });
+            });
+
+            function displayPage9(){
+                if(curPage9 <=1 && direct9==-1){
+                    direct9=0;
+                    alert("Already the first page !!!");
+                    return;
+                } else if (curPage9 >= page9 && direct9==1) {
+                    direct9=0;
+                    alert("Already the last page !!!");
+                    return ;
+                }
+                lastPage9 = curPage9;
+
+                // 修复当len=1时，curPage计算得0的bug
+                if (len9 > pageSize9) {
+                    curPage9 = ((curPage9 + direct9 + len9) % len9);
+                } else {
+                    curPage9 = 1;
+                }
+                document.getElementById("btn09").innerHTML="Current: " + curPage9 + "/" + page9 + " page  | ";        // 显示当前多少页
+
+                begin9=(curPage9-1)*pageSize9 + 1;// 起始记录号
+                end9 = begin9 + 1*pageSize9 - 1;    // 末尾记录号
+
+
+                if(end9 > len9 ) end9=len9;
+                $("#mytable9 tr").hide();    // 首先，设置这行为隐藏
+                $("#mytable9 tr").each(function(i){    // 然后，通过条件判断决定本行是否恢复显示
+                    if((i>=begin9 && i<=end9) || i==0 )//显示begin<=x<=end的记录
+                        $(this).show();
+                });
+
+             }
+</script>
+
+
+<script type="text/javascript">
+            var pageSize10 = 15;    //每页显示的记录条数
+            var curPage10=0;        //当前页
+            var lastPage10;        //最后页
+            var direct10=0;        //方向
+            var len10;            //总行数
+            var page10;           //总页数
+            var begin10;
+            var end10;
+
+            $(document).ready(function display10(){
+                len10 =$("#mytable10 tr").length - 1;    // 求这个表的总行数，剔除第一行介绍
+                page10=len10 % pageSize10==0 ? len10/pageSize10 : Math.floor(len10/pageSize10)+1;//根据记录条数，计算页数
+                // alert("page==="+page);
+                curPage10=1;    // 设置当前为第一页
+                displayPage10(1);//显示第一页
+                document.getElementById("btn010").innerHTML="Current: " + curPage10 + "/" + page10 + " page | ";    // 显示当前多少页
+                document.getElementById("sjzl10").innerHTML="Total items: " + len10 + "";        // 显示数据量
+
+                $("#btn110").click(function firstPage10(){    // 首页
+                    curPage10=1;
+                    direct10 = 0;
+                    displayPage10();
+                });
+                $("#btn210").click(function frontPage10(){    // 上一页
+                    direct10=-1;
+                    displayPage10();
+                });
+                $("#btn310").click(function nextPage10(){    // 下一页
+                    direct10=1;
+                    displayPage10();
+                });
+                $("#btn410").click(function lastPage10(){    // 尾页
+                    curPage10=page10;
+                    direct10 = 0;
+                    displayPage10();
+                });
+                $("#btn510").click(function changePage10(){    // 转页
+                    curPage10=document.getElementById("changePage10").value * 1;
+                    if (!/^[1-9]\d*$/.test(curPage10)) {
+                        alert("请输入正整数");
+                        return ;
+                    }
+                    if (curPage10 > page10) {
+                        alert("超出数据页面");
+                        return ;
+                    }
+                    direct10 = 0;
+                    displayPage10();
+                });
+
+
+                $("#pageSizeSet10").click(function setPageSize10(){    // 设置每页显示多少条记录
+                    pageSize10 = document.getElementById("pageSize10").value;    //每页显示的记录条数
+                    if (!/^[1-9]\d*$/.test(pageSize)) {
+                        alert("请输入正整数");
+                        return ;
+                    }
+                    len10 = $("#mytable10 tr").length - 1;
+                    page10 = len10 % pageSize10==0 ? len10/pageSize10 : Math.floor(len10/pageSize10)+1;//根据记录条数，计算页数
+                    curPage10=1;        //当前页
+                    direct10=0;        //方向
+                    firstPage10();
+                });
+            });
+
+            function displayPage10(){
+                if(curPage10 <=1 && direct10==-1){
+                    direct10=0;
+                    alert("Already the first page !!!");
+                    return;
+                } else if (curPage10 >= page10 && direct10==1) {
+                    direct10=0;
+                    alert("Already the last page !!!");
+                    return ;
+                }
+                lastPage10 = curPage10;
+
+                // 修复当len=1时，curPage计算得0的bug
+                if (len10 > pageSize10) {
+                    curPage10 = ((curPage10 + direct10 + len10) % len10);
+                } else {
+                    curPage10 = 1;
+                }
+                document.getElementById("btn010").innerHTML="Current: " + curPage10 + "/" + page10 + " page  | ";        // 显示当前多少页
+
+                begin10=(curPage10-1)*pageSize10 + 1;// 起始记录号
+                end10 = begin10 + 1*pageSize10 - 1;    // 末尾记录号
+
+
+                if(end10 > len10 ) end10=len10;
+                $("#mytable10 tr").hide();    // 首先，设置这行为隐藏
+                $("#mytable10 tr").each(function(i){    // 然后，通过条件判断决定本行是否恢复显示
+                    if((i>=begin10 && i<=end10) || i==0 )//显示begin<=x<=end的记录
+                        $(this).show();
+                });
+
+             }
+</script>
+
+
+<script type="text/javascript">
+            var pageSize11 = 15;    //每页显示的记录条数
+            var curPage11=0;        //当前页
+            var lastPage11;        //最后页
+            var direct11=0;        //方向
+            var len11;            //总行数
+            var page11;           //总页数
+            var begin11;
+            var end11;
+
+            $(document).ready(function display11(){
+                len11 =$("#mytable11 tr").length - 1;    // 求这个表的总行数，剔除第一行介绍
+                page11=len11 % pageSize11==0 ? len11/pageSize11 : Math.floor(len11/pageSize11)+1;//根据记录条数，计算页数
+                // alert("page==="+page);
+                curPage11=1;    // 设置当前为第一页
+                displayPage11(1);//显示第一页
+                document.getElementById("btn011").innerHTML="Current: " + curPage11 + "/" + page11 + " page | ";    // 显示当前多少页
+                document.getElementById("sjzl11").innerHTML="Total items: " + len11 + "";        // 显示数据量
+
+                $("#btn111").click(function firstPage11(){    // 首页
+                    curPage11=1;
+                    direct11 = 0;
+                    displayPage11();
+                });
+                $("#btn211").click(function frontPage11(){    // 上一页
+                    direct11=-1;
+                    displayPage11();
+                });
+                $("#btn311").click(function nextPage11(){    // 下一页
+                    direct11=1;
+                    displayPage11();
+                });
+                $("#btn411").click(function lastPage11(){    // 尾页
+                    curPage11=page11;
+                    direct11 = 0;
+                    displayPage11();
+                });
+                $("#btn511").click(function changePage11(){    // 转页
+                    curPage11=document.getElementById("changePage11").value * 1;
+                    if (!/^[1-9]\d*$/.test(curPage11)) {
+                        alert("请输入正整数");
+                        return ;
+                    }
+                    if (curPage11 > page11) {
+                        alert("超出数据页面");
+                        return ;
+                    }
+                    direct11 = 0;
+                    displayPage11();
+                });
+
+
+                $("#pageSizeSet11").click(function setPageSize11(){    // 设置每页显示多少条记录
+                    pageSize11 = document.getElementById("pageSize11").value;    //每页显示的记录条数
+                    if (!/^[1-9]\d*$/.test(pageSize)) {
+                        alert("请输入正整数");
+                        return ;
+                    }
+                    len11 = $("#mytable11 tr").length - 1;
+                    page11 = len11 % pageSize11==0 ? len11/pageSize11 : Math.floor(len11/pageSize11)+1;//根据记录条数，计算页数
+                    curPage11=1;        //当前页
+                    direct11=0;        //方向
+                    firstPage11();
+                });
+            });
+
+            function displayPage11(){
+                if(curPage11 <=1 && direct11==-1){
+                    direct11=0;
+                    alert("Already the first page !!!");
+                    return;
+                } else if (curPage11 >= page11 && direct11==1) {
+                    direct11=0;
+                    alert("Already the last page !!!");
+                    return ;
+                }
+                lastPage11 = curPage11;
+
+                // 修复当len=1时，curPage计算得0的bug
+                if (len11 > pageSize11) {
+                    curPage11 = ((curPage11 + direct11 + len11) % len11);
+                } else {
+                    curPage11 = 1;
+                }
+                document.getElementById("btn011").innerHTML="Current: " + curPage11 + "/" + page11 + " page  | ";        // 显示当前多少页
+
+                begin11=(curPage11-1)*pageSize11 + 1;// 起始记录号
+                end11 = begin11 + 1*pageSize11 - 1;    // 末尾记录号
+
+
+                if(end11 > len11 ) end11=len11;
+                $("#mytable11 tr").hide();    // 首先，设置这行为隐藏
+                $("#mytable11 tr").each(function(i){    // 然后，通过条件判断决定本行是否恢复显示
+                    if((i>=begin11 && i<=end11) || i==0 )//显示begin<=x<=end的记录
+                        $(this).show();
+                });
+
+             }
+</script>
+
+
+<script type="text/javascript">
+            var pageSize12 = 15;    //每页显示的记录条数
+            var curPage12=0;        //当前页
+            var lastPage12;        //最后页
+            var direct12=0;        //方向
+            var len12;            //总行数
+            var page12;           //总页数
+            var begin12;
+            var end12;
+
+            $(document).ready(function display12(){
+                len12 =$("#mytable12 tr").length - 1;    // 求这个表的总行数，剔除第一行介绍
+                page12=len12 % pageSize12==0 ? len12/pageSize12 : Math.floor(len12/pageSize12)+1;//根据记录条数，计算页数
+                // alert("page==="+page);
+                curPage12=1;    // 设置当前为第一页
+                displayPage12(1);//显示第一页
+                document.getElementById("btn012").innerHTML="Current: " + curPage12 + "/" + page12 + " page | ";    // 显示当前多少页
+                document.getElementById("sjzl12").innerHTML="Total items: " + len12 + "";        // 显示数据量
+
+                $("#btn112").click(function firstPage12(){    // 首页
+                    curPage12=1;
+                    direct12 = 0;
+                    displayPage12();
+                });
+                $("#btn212").click(function frontPage12(){    // 上一页
+                    direct12=-1;
+                    displayPage12();
+                });
+                $("#btn312").click(function nextPage12(){    // 下一页
+                    direct12=1;
+                    displayPage12();
+                });
+                $("#btn412").click(function lastPage12(){    // 尾页
+                    curPage12=page12;
+                    direct12 = 0;
+                    displayPage12();
+                });
+                $("#btn512").click(function changePage12(){    // 转页
+                    curPage12=document.getElementById("changePage12").value * 1;
+                    if (!/^[1-9]\d*$/.test(curPage12)) {
+                        alert("请输入正整数");
+                        return ;
+                    }
+                    if (curPage12 > page12) {
+                        alert("超出数据页面");
+                        return ;
+                    }
+                    direct12 = 0;
+                    displayPage12();
+                });
+
+
+                $("#pageSizeSet12").click(function setPageSize12(){    // 设置每页显示多少条记录
+                    pageSize12 = document.getElementById("pageSize12").value;    //每页显示的记录条数
+                    if (!/^[1-9]\d*$/.test(pageSize)) {
+                        alert("请输入正整数");
+                        return ;
+                    }
+                    len12 = $("#mytable12 tr").length - 1;
+                    page12 = len12 % pageSize12==0 ? len12/pageSize12 : Math.floor(len12/pageSize12)+1;//根据记录条数，计算页数
+                    curPage12=1;        //当前页
+                    direct12=0;        //方向
+                    firstPage12();
+                });
+            });
+
+            function displayPage12(){
+                if(curPage12 <=1 && direct12==-1){
+                    direct12=0;
+                    alert("Already the first page !!!");
+                    return;
+                } else if (curPage12 >= page12 && direct12==1) {
+                    direct12=0;
+                    alert("Already the last page !!!");
+                    return ;
+                }
+                lastPage12 = curPage12;
+
+                // 修复当len=1时，curPage计算得0的bug
+                if (len12 > pageSize12) {
+                    curPage12 = ((curPage12 + direct12 + len12) % len12);
+                } else {
+                    curPage12 = 1;
+                }
+                document.getElementById("btn012").innerHTML="Current: " + curPage12 + "/" + page12 + " page  | ";        // 显示当前多少页
+
+                begin12=(curPage12-1)*pageSize12 + 1;// 起始记录号
+                end12 = begin12 + 1*pageSize12 - 1;    // 末尾记录号
+
+
+                if(end12 > len12 ) end12=len12;
+                $("#mytable12 tr").hide();    // 首先，设置这行为隐藏
+                $("#mytable12 tr").each(function(i){    // 然后，通过条件判断决定本行是否恢复显示
+                    if((i>=begin12 && i<=end12) || i==0 )//显示begin<=x<=end的记录
+                        $(this).show();
+                });
+
+             }
+</script>
+
+
+<script type="text/javascript">
+            var pageSize13 = 15;    //每页显示的记录条数
+            var curPage13=0;        //当前页
+            var lastPage13;        //最后页
+            var direct13=0;        //方向
+            var len13;            //总行数
+            var page13;           //总页数
+            var begin13;
+            var end13;
+
+            $(document).ready(function display13(){
+                len13 =$("#mytable13 tr").length - 1;    // 求这个表的总行数，剔除第一行介绍
+                page13=len13 % pageSize13==0 ? len13/pageSize13 : Math.floor(len13/pageSize13)+1;//根据记录条数，计算页数
+                // alert("page==="+page);
+                curPage13=1;    // 设置当前为第一页
+                displayPage13(1);//显示第一页
+                document.getElementById("btn013").innerHTML="Current: " + curPage13 + "/" + page13 + " page | ";    // 显示当前多少页
+                document.getElementById("sjzl13").innerHTML="Total items: " + len13 + "";        // 显示数据量
+
+                $("#btn113").click(function firstPage13(){    // 首页
+                    curPage13=1;
+                    direct13 = 0;
+                    displayPage13();
+                });
+                $("#btn213").click(function frontPage13(){    // 上一页
+                    direct13=-1;
+                    displayPage13();
+                });
+                $("#btn313").click(function nextPage13(){    // 下一页
+                    direct13=1;
+                    displayPage13();
+                });
+                $("#btn413").click(function lastPage13(){    // 尾页
+                    curPage13=page13;
+                    direct13 = 0;
+                    displayPage13();
+                });
+                $("#btn513").click(function changePage13(){    // 转页
+                    curPage13=document.getElementById("changePage13").value * 1;
+                    if (!/^[1-9]\d*$/.test(curPage13)) {
+                        alert("请输入正整数");
+                        return ;
+                    }
+                    if (curPage13 > page13) {
+                        alert("超出数据页面");
+                        return ;
+                    }
+                    direct13 = 0;
+                    displayPage13();
+                });
+
+
+                $("#pageSizeSet13").click(function setPageSize13(){    // 设置每页显示多少条记录
+                    pageSize13 = document.getElementById("pageSize13").value;    //每页显示的记录条数
+                    if (!/^[1-9]\d*$/.test(pageSize)) {
+                        alert("请输入正整数");
+                        return ;
+                    }
+                    len13 = $("#mytable13 tr").length - 1;
+                    page13 = len13 % pageSize13==0 ? len13/pageSize13 : Math.floor(len13/pageSize13)+1;//根据记录条数，计算页数
+                    curPage13=1;        //当前页
+                    direct13=0;        //方向
+                    firstPage13();
+                });
+            });
+
+            function displayPage13(){
+                if(curPage13 <=1 && direct13==-1){
+                    direct13=0;
+                    alert("Already the first page !!!");
+                    return;
+                } else if (curPage13 >= page13 && direct13==1) {
+                    direct13=0;
+                    alert("Already the last page !!!");
+                    return ;
+                }
+                lastPage13 = curPage13;
+
+                // 修复当len=1时，curPage计算得0的bug
+                if (len13 > pageSize13) {
+                    curPage13 = ((curPage13 + direct13 + len13) % len13);
+                } else {
+                    curPage13 = 1;
+                }
+                document.getElementById("btn013").innerHTML="Current: " + curPage13 + "/" + page13 + " page  | ";        // 显示当前多少页
+
+                begin13=(curPage13-1)*pageSize13 + 1;// 起始记录号
+                end13 = begin13 + 1*pageSize13 - 1;    // 末尾记录号
+
+
+                if(end13 > len13 ) end13=len13;
+                $("#mytable13 tr").hide();    // 首先，设置这行为隐藏
+                $("#mytable13 tr").each(function(i){    // 然后，通过条件判断决定本行是否恢复显示
+                    if((i>=begin13 && i<=end13) || i==0 )//显示begin<=x<=end的记录
+                        $(this).show();
+                });
+
+             }
+</script>
+
+
+<script type="text/javascript">
+            var pageSize14 = 15;    //每页显示的记录条数
+            var curPage14=0;        //当前页
+            var lastPage14;        //最后页
+            var direct14=0;        //方向
+            var len14;            //总行数
+            var page14;           //总页数
+            var begin14;
+            var end14;
+
+            $(document).ready(function display14(){
+                len14 =$("#mytable14 tr").length - 1;    // 求这个表的总行数，剔除第一行介绍
+                page14=len14 % pageSize14==0 ? len14/pageSize14 : Math.floor(len14/pageSize14)+1;//根据记录条数，计算页数
+                // alert("page==="+page);
+                curPage14=1;    // 设置当前为第一页
+                displayPage14(1);//显示第一页
+                document.getElementById("btn014").innerHTML="Current: " + curPage14 + "/" + page14 + " page | ";    // 显示当前多少页
+                document.getElementById("sjzl14").innerHTML="Total items: " + len14 + "";        // 显示数据量
+
+                $("#btn114").click(function firstPage14(){    // 首页
+                    curPage14=1;
+                    direct14 = 0;
+                    displayPage14();
+                });
+                $("#btn214").click(function frontPage14(){    // 上一页
+                    direct14=-1;
+                    displayPage14();
+                });
+                $("#btn314").click(function nextPage14(){    // 下一页
+                    direct14=1;
+                    displayPage14();
+                });
+                $("#btn414").click(function lastPage14(){    // 尾页
+                    curPage14=page14;
+                    direct14 = 0;
+                    displayPage14();
+                });
+                $("#btn514").click(function changePage14(){    // 转页
+                    curPage14=document.getElementById("changePage14").value * 1;
+                    if (!/^[1-9]\d*$/.test(curPage14)) {
+                        alert("请输入正整数");
+                        return ;
+                    }
+                    if (curPage14 > page14) {
+                        alert("超出数据页面");
+                        return ;
+                    }
+                    direct14 = 0;
+                    displayPage14();
+                });
+
+
+                $("#pageSizeSet14").click(function setPageSize14(){    // 设置每页显示多少条记录
+                    pageSize14 = document.getElementById("pageSize14").value;    //每页显示的记录条数
+                    if (!/^[1-9]\d*$/.test(pageSize)) {
+                        alert("请输入正整数");
+                        return ;
+                    }
+                    len14 = $("#mytable14 tr").length - 1;
+                    page14 = len14 % pageSize14==0 ? len14/pageSize14 : Math.floor(len14/pageSize14)+1;//根据记录条数，计算页数
+                    curPage14=1;        //当前页
+                    direct14=0;        //方向
+                    firstPage14();
+                });
+            });
+
+            function displayPage14(){
+                if(curPage14 <=1 && direct14==-1){
+                    direct14=0;
+                    alert("Already the first page !!!");
+                    return;
+                } else if (curPage14 >= page14 && direct14==1) {
+                    direct14=0;
+                    alert("Already the last page !!!");
+                    return ;
+                }
+                lastPage14 = curPage14;
+
+                // 修复当len=1时，curPage计算得0的bug
+                if (len14 > pageSize14) {
+                    curPage14 = ((curPage14 + direct14 + len14) % len14);
+                } else {
+                    curPage14 = 1;
+                }
+                document.getElementById("btn014").innerHTML="Current: " + curPage14 + "/" + page14 + " page  | ";        // 显示当前多少页
+
+                begin14=(curPage14-1)*pageSize14 + 1;// 起始记录号
+                end14 = begin14 + 1*pageSize14 - 1;    // 末尾记录号
+
+
+                if(end14 > len14 ) end14=len14;
+                $("#mytable14 tr").hide();    // 首先，设置这行为隐藏
+                $("#mytable14 tr").each(function(i){    // 然后，通过条件判断决定本行是否恢复显示
+                    if((i>=begin14 && i<=end14) || i==0 )//显示begin<=x<=end的记录
+                        $(this).show();
+                });
+
+             }
+</script>
+
+
+<script type="text/javascript">
+            var pageSize15 = 15;    //每页显示的记录条数
+            var curPage15=0;        //当前页
+            var lastPage15;        //最后页
+            var direct15=0;        //方向
+            var len15;            //总行数
+            var page15;           //总页数
+            var begin15;
+            var end15;
+
+            $(document).ready(function display15(){
+                len15 =$("#mytable15 tr").length - 1;    // 求这个表的总行数，剔除第一行介绍
+                page15=len15 % pageSize15==0 ? len15/pageSize15 : Math.floor(len15/pageSize15)+1;//根据记录条数，计算页数
+                // alert("page==="+page);
+                curPage15=1;    // 设置当前为第一页
+                displayPage15(1);//显示第一页
+                document.getElementById("btn015").innerHTML="Current: " + curPage15 + "/" + page15 + " page | ";    // 显示当前多少页
+                document.getElementById("sjzl15").innerHTML="Total items: " + len15 + "";        // 显示数据量
+
+                $("#btn115").click(function firstPage15(){    // 首页
+                    curPage15=1;
+                    direct15 = 0;
+                    displayPage15();
+                });
+                $("#btn215").click(function frontPage15(){    // 上一页
+                    direct15=-1;
+                    displayPage15();
+                });
+                $("#btn315").click(function nextPage15(){    // 下一页
+                    direct15=1;
+                    displayPage15();
+                });
+                $("#btn415").click(function lastPage15(){    // 尾页
+                    curPage15=page15;
+                    direct15 = 0;
+                    displayPage15();
+                });
+                $("#btn515").click(function changePage15(){    // 转页
+                    curPage15=document.getElementById("changePage15").value * 1;
+                    if (!/^[1-9]\d*$/.test(curPage15)) {
+                        alert("请输入正整数");
+                        return ;
+                    }
+                    if (curPage15 > page15) {
+                        alert("超出数据页面");
+                        return ;
+                    }
+                    direct15 = 0;
+                    displayPage15();
+                });
+
+
+                $("#pageSizeSet15").click(function setPageSize15(){    // 设置每页显示多少条记录
+                    pageSize15 = document.getElementById("pageSize15").value;    //每页显示的记录条数
+                    if (!/^[1-9]\d*$/.test(pageSize)) {
+                        alert("请输入正整数");
+                        return ;
+                    }
+                    len15 = $("#mytable15 tr").length - 1;
+                    page15 = len15 % pageSize15==0 ? len15/pageSize15 : Math.floor(len15/pageSize15)+1;//根据记录条数，计算页数
+                    curPage15=1;        //当前页
+                    direct15=0;        //方向
+                    firstPage15();
+                });
+            });
+
+            function displayPage15(){
+                if(curPage15 <=1 && direct15==-1){
+                    direct15=0;
+                    alert("Already the first page !!!");
+                    return;
+                } else if (curPage15 >= page15 && direct15==1) {
+                    direct15=0;
+                    alert("Already the last page !!!");
+                    return ;
+                }
+                lastPage15 = curPage15;
+
+                // 修复当len=1时，curPage计算得0的bug
+                if (len15 > pageSize15) {
+                    curPage15 = ((curPage15 + direct15 + len15) % len15);
+                } else {
+                    curPage15 = 1;
+                }
+                document.getElementById("btn015").innerHTML="Current: " + curPage15 + "/" + page15 + " page  | ";        // 显示当前多少页
+
+                begin15=(curPage15-1)*pageSize15 + 1;// 起始记录号
+                end15 = begin15 + 1*pageSize15 - 1;    // 末尾记录号
+
+
+                if(end15 > len15 ) end15=len15;
+                $("#mytable15 tr").hide();    // 首先，设置这行为隐藏
+                $("#mytable15 tr").each(function(i){    // 然后，通过条件判断决定本行是否恢复显示
+                    if((i>=begin15 && i<=end15) || i==0 )//显示begin<=x<=end的记录
+                        $(this).show();
+                });
+
+             }
+</script>
+
+
+<script type="text/javascript">
+            var pageSize16 = 15;    //每页显示的记录条数
+            var curPage16=0;        //当前页
+            var lastPage16;        //最后页
+            var direct16=0;        //方向
+            var len16;            //总行数
+            var page16;           //总页数
+            var begin16;
+            var end16;
+
+            $(document).ready(function display16(){
+                len16 =$("#mytable16 tr").length - 1;    // 求这个表的总行数，剔除第一行介绍
+                page16=len16 % pageSize16==0 ? len16/pageSize16 : Math.floor(len16/pageSize16)+1;//根据记录条数，计算页数
+                // alert("page==="+page);
+                curPage16=1;    // 设置当前为第一页
+                displayPage16(1);//显示第一页
+                document.getElementById("btn016").innerHTML="Current: " + curPage16 + "/" + page16 + " page | ";    // 显示当前多少页
+                document.getElementById("sjzl16").innerHTML="Total items: " + len16 + "";        // 显示数据量
+
+                $("#btn116").click(function firstPage16(){    // 首页
+                    curPage16=1;
+                    direct16 = 0;
+                    displayPage16();
+                });
+                $("#btn216").click(function frontPage16(){    // 上一页
+                    direct16=-1;
+                    displayPage16();
+                });
+                $("#btn316").click(function nextPage16(){    // 下一页
+                    direct16=1;
+                    displayPage16();
+                });
+                $("#btn416").click(function lastPage16(){    // 尾页
+                    curPage16=page16;
+                    direct16 = 0;
+                    displayPage16();
+                });
+                $("#btn516").click(function changePage16(){    // 转页
+                    curPage16=document.getElementById("changePage16").value * 1;
+                    if (!/^[1-9]\d*$/.test(curPage16)) {
+                        alert("请输入正整数");
+                        return ;
+                    }
+                    if (curPage16 > page16) {
+                        alert("超出数据页面");
+                        return ;
+                    }
+                    direct16 = 0;
+                    displayPage16();
+                });
+
+
+                $("#pageSizeSet16").click(function setPageSize16(){    // 设置每页显示多少条记录
+                    pageSize16 = document.getElementById("pageSize16").value;    //每页显示的记录条数
+                    if (!/^[1-9]\d*$/.test(pageSize)) {
+                        alert("请输入正整数");
+                        return ;
+                    }
+                    len16 = $("#mytable16 tr").length - 1;
+                    page16 = len16 % pageSize16==0 ? len16/pageSize16 : Math.floor(len16/pageSize16)+1;//根据记录条数，计算页数
+                    curPage16=1;        //当前页
+                    direct16=0;        //方向
+                    firstPage16();
+                });
+            });
+
+            function displayPage16(){
+                if(curPage16 <=1 && direct16==-1){
+                    direct16=0;
+                    alert("Already the first page !!!");
+                    return;
+                } else if (curPage16 >= page16 && direct16==1) {
+                    direct16=0;
+                    alert("Already the last page !!!");
+                    return ;
+                }
+                lastPage16 = curPage16;
+
+                // 修复当len=1时，curPage计算得0的bug
+                if (len16 > pageSize16) {
+                    curPage16 = ((curPage16 + direct16 + len16) % len16);
+                } else {
+                    curPage16 = 1;
+                }
+                document.getElementById("btn016").innerHTML="Current: " + curPage16 + "/" + page16 + " page  | ";        // 显示当前多少页
+
+                begin16=(curPage16-1)*pageSize16 + 1;// 起始记录号
+                end16 = begin16 + 1*pageSize16 - 1;    // 末尾记录号
+
+
+                if(end16 > len16 ) end16=len16;
+                $("#mytable16 tr").hide();    // 首先，设置这行为隐藏
+                $("#mytable16 tr").each(function(i){    // 然后，通过条件判断决定本行是否恢复显示
+                    if((i>=begin16 && i<=end16) || i==0 )//显示begin<=x<=end的记录
+                        $(this).show();
+                });
+
+             }
+</script>
+
+
+
+</head>
+
+<body>
+<div id="toc" class="tocify">
+</div>
+	<div style="position:fixed; top:0; left:0; width:100%; z-index:1000;">
+		<table width="100%" height="50px" border="0" cellpadding="5" cellspacing="0"
+			style="background:#F3F3F3; border-bottom:1px solid #eee;border-top: none;background-image:-moz-linear-gradient(top,#EEEEEE,#FFFFFF); background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0,#EEEEEE), color-stop(1,#FFFFFF));filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#EEEEEE', endColorstr='#FFFFFF', GradientType='0')">
+			<tr height="86%">
+				<td width='1%'></td>
+				<td><img src="src/images/logo1.png"></td>
+				<td>
+					<div style="margin:5px;border-left:1px solid #DCDCDC;height:30px"></div>
+				</td>
+				<td width="20%"></td>
+				<td width="15%"></td>
+				<td width="25%"
+					style="text-align:right;padding:0px;margin:0px;color:black;font-size:14px;font-weight:50;">
+					<br><a href="mailto:op-rna@novogene.com" target="black"
+						style="text-decoration:none;color:black;font-size:14px;font-weight:50;">
+						<a></td>
+				<td width="1%"></td>
+			</tr>
+		</table>
+	</div>
+</div>  
+    
+<!--------------------------标题---------------------------------->
+<div id="main">
+<br><h1>Novogene microbial genome analysis report</h1></br>
+<table class="gy">
+<tr>
+<td>Contract ID</td>
+<td style="text-align :left">XXXXXXXXXXXXX</td>
+</tr>
+<tr>
+<td>Demo</td>
+<td style="text-align :left">XXXXXXXXXXXXX</td>
+</tr>
+<tr>
+<td>Batch ID</td>
+<td style="text-align :left">XXXXXXXXXXXXX</td>
+</tr>
+<tr>
+<td>Report time</td>
+<td style="text-align :left">2023-11-3</td>
+</tr>
+<tr>
+<td>Reminder</td>
+<td style="text-align :left">Partial results are presented in this report, while full results will be delivered in data re
+lease. <br>Hyperlink of results in this report will be only valid in data release, after statement confirmation. <br>If th
+ere are any doubts regarding the presentation of the final report's results or the file's location, please review the <a h
+ref= "#miao">ReadMe.html</a> file.</td>
+</tr>
+</table>
+<br /><br />
+<hr />
+</p><br />
+<h2>1 Summary of workflow</h2>
+
+
+        <br />
+
+        <br />
+
+<h3>1.1 Introduction</h3>
+        
+    <p class="paragraph">Prokaryotes are the earliest forms of life, appearing on earth 4 billion years ago. The Prokaryotes include the Archaea, which include inhabitants of some of the most extreme environments on the planet, and the Bacteria, which include both important pathogens and producers of fermented food, antibiotics, and vitamins. Ongoing technological advances in genome sequencing are allowing bacterial genomes to be sequenced at ever-lower cost, which generally provides at the draft genome map. A draft genome may be composed of a set of a few or several contigs or scaffolds.</p>
+
+<p class="center">
+<img src="src/images/Experimental_pepline_EN.jpg" width="900" height="450" />
+<p class="name_fig"><strong>Figure 1-1 Project workflow</strong></p>  
+</p>
+
+        <br />
+
+        <br />
+
+<h3>1.2 Library Construction and Sequencing</h3>
+        
+    <a name="T4"></a>
+    <h4>1.2.1 Sample Quality Control</h4>    
+
+    <p class="paragraph">Please refer to Novogene’s sample QC report.</p>
+
+    <a name="T4"></a>
+    <h4>1.2.2 Library Construction, Quality Control and Sequencing</h4>    
+
+    <p class="paragraph">The genomic DNA was randomly sheared into short fragments. The obtained fragments were end repaired. A-tailed and further ligated with Illumina adapter. The resulting fragments with adapters were size selected, PCR amplified unless otherwise specified as PCR-free, before proceeding for purification. Following is the workflow of library construction:</p>
+
+<p class="center">
+<img src="src/images/Library_construction_workflow_EN.png" width="900" height="450" />
+<p class="name_fig"><strong>Figure 1-2 Library construction workflow</strong></p>  
+</p>
+
+    <p class="paragraph">The library was quantified through Qubit and qPCR, and size distribution detected with fragment analyzer. Quantified libraries were pooled and sequenced on Illumina platforms according to the effective library concentration and required data amount.</p>
+
+        <br />
+
+        <br />
+
+<h3>1.3 Bioinformatics analysis pipeline</h3>
+        
+<p class="center">
+<img src="src/images/Bac_denovo_Bioinf_analysis_process_EN.png" width="900" height="450" />
+<p class="name_fig"><strong>Figure 1-2 Pipeline of Bioinformatics Analysis</strong></p>  
+</p>
+
+    <p class="paragraph">Analysis procedure：</p>
+
+    <p class="paragraph">1 Raw data filtering: low quality reads were removed and remained high-quality reads, which were clean data;</p>
+
+    <p class="paragraph">2 Genome assembly: perform genome assembly to obtain fasta and evaluate the assembly result;</p>
+
+    <p class="paragraph">3 Genome component analysis: analyze and predict the component of the genome, including coding gene, non-coding gene, replicate sequence, prophage, gene island, CRISPR, and so on</p>
+
+    <p class="paragraph">4 Function annotation: utilize various databases to perform functional annotation for coding sequence, including KEGG, COG and databases that aim to pathogenic microorganism.</p>
+
+        <br />
+
+        <br />
+
+<hr />
+</p><br />
+<h2>2 Analysis result</h2>
+
+
+        <br />
+
+        <br />
+
+<h3>2.1 Summary of data</h3>
+        
+    <p class="paragraph">Raw data filtering: raw data obtained from sequencing exist low quality reads, in order to guarantee the reliability of further analysis, fastp (Chen et al.,2018) was utilized to filter raw data to remove low quality data. Remaining data was called clean data and be used for subsequent analysis.</p>
+
+    <p class="paragraph">Parameters of fastp:</p>
+
+    <p class="paragraph">--in1 input_1.fq.gz, --out1 out_1.fq.gz, --in2 input_2.fq.gz, --out2 out_2.fq.gz, -g, -q 5, -u 50, -n 15, -l 150, --min_trim_length 10, --overlap_diff_limit 1, --overlap_diff_percent_limit 10, -j output.json, -h output.html</p>
+
+    <p class="paragraph">Specific procedure：</p>
+
+    <p class="paragraph">  1) When the N content in any sequencing read exceeds 10% of the base number of the read, the paired reads are removed;</p>
+
+    <p class="paragraph">  2) When the number of low-quality (Q<=5) bases in any sequencing read exceeds 50% of the base number of the reads, the paired reads are removed;</p>
+
+    <p class="paragraph">  3) When any sequencing read contains adapter sequences, remove the paired reads;</p>
+
+    <p class="paragraph">  4) Remove the PolyG tail.</p>
+
+    <p class="paragraph">Quality control result was shown below：</p>
+
+<p class="name_table"><p class="center"><strong>Table 2-1 Statistics for data quality control</strong></p>        
+<p class="center">
+<div style="overflow-x: auto">
+<table class="gy" id="mytable1" >
+        <thead><tr>
+<a id="btn01"></a>
+<a id="sjzl1"></a>
+<a  href="javascript:void(0)" id="btn11"> | First | </a>
+<a  href="javascript:void(0)" id="btn21"> Previous | </a>
+<a  href="javascript:void(0)" id="btn31"> Next | </a>
+<a  href="javascript:void(0)" id="btn41"> Last | </a>
+<a>Go to </a>
+<input id="changePage1" type="text" size="1" maxlength="4"/>
+<a> page </a>
+<a  href="javascript:void(0)" id="btn51"> Jump </a>
+                
+<th style="text-align :center">SampleID</th><th style="text-align :center">RawData(M)</th><th style="text-align :center">RawReads(#)</th><th style="text-align :center">CleanData(M)</th><th style="text-align :center">CleanReads(#)</th><th style="text-align :center">Clean_Q20(%)</th><th style="text-align :center">Clean_Q30(%)</th><th style="text-align :center">Clean_GC(%)</th><th style="text-align :center">Effective(%)
+</th></tr></thead>
+<tr>
+<td style="text-align :center">sample1</td><td style="text-align :center">1,004.29</td><td style="text-align :center">6,695,296</td><td style="text-align :center">1,002.76</td><td style="text-align :center">6,685,072</td><td style="text-align :center">97.11</td><td style="text-align :center">91.98</td><td style="text-align :center">35.00</td><td style="text-align :center">99.84
+</td></tr>
+
+</table>
+</div>
+</p>
+
+    <p class="paragraph"><details><summary> Show Annotation: </summary></p>
+<p class="premark" >Sample: sample name</p>
+<p class="premark" >Insert size: Length of insert fragment</p>
+<p class="premark" >RawData: Rawdata size(Mbp)</p>
+<p class="premark" >RawReads: Rawdata reads number</p>
+<p class="premark" >CleanData: Cleandata size(Mbp)</p>
+<p class="premark" >CleanReads: Cleandata reads number</p>
+<p class="premark" >Clean_Q20: Q20 value of clean data</p>
+<p class="premark" >Clean_Q30: Q30 value of clean data</p>
+<p class="premark" >Clean_GC: GC content of clean data</p>
+<p class="premark" >Effective: Ratio of clean data to raw data</p>
+
+    <p class="paragraph"></details></p>
+
+    <p class="paragraph">Distribution of base content and quality of clean data is shown below：</p>
+
+<p class="center">
+<div class="row gallery-row">
+<div class="col-1">
+<div id="FigureATGCDistribution_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-6">
+<div class="tab-content" id="FigureATGCDistribution_nav-tabContent">
+
+<div class="tab-pane active show" id="samplebasepng1" role="tabpanel" aria-labelledby="samplebasepng1" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample1.base.png" /></div>
+
+</div>
+</div>
+<div class="col-1">
+<div id="FigureATGCDistribution_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-4">
+<input class="form-control" id="FigureATGCDistribution_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="FigureATGCDistribution_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="samplebasepng1" data-toggle="list" href="#samplebasepng1" role="tab" aria-controls="samplebasepng1">sample1.base.png</a>
+
+</div>
+</div>
+</div>
+<p class="name_fig"><strong>Figure 2-1-1 A/T/G/C Distribution</strong></p>  
+
+<p class="center">
+<div class="row gallery-row">
+<div class="col-1">
+<div id="FigureErrorRateDistribution_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-6">
+<div class="tab-content" id="FigureErrorRateDistribution_nav-tabContent">
+
+<div class="tab-pane active show" id="samplequalpng1" role="tabpanel" aria-labelledby="samplequalpng1" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample1.qual.png" /></div>
+
+</div>
+</div>
+<div class="col-1">
+<div id="FigureErrorRateDistribution_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-4">
+<input class="form-control" id="FigureErrorRateDistribution_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="FigureErrorRateDistribution_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="samplequalpng1" data-toggle="list" href="#samplequalpng1" role="tab" aria-controls="samplequalpng1">sample1.qual.png</a>
+
+</div>
+</div>
+</div>
+<p class="name_fig"><strong>Figure 2-1-2 Error Rate Distribution</strong></p>  
+
+    <p class="paragraph"><details><summary> Show Annotation </summary></p>
+<p class="premark" >Distribution of base content: X-coordinate is the base location along reads. Y-coordinate is the base content.</p>
+<p class="premark" >Distribution of base quality: X-coordinate is the base location along reads. Y-coordinate is the average of the erro rate along the reads.</p>
+
+    <p class="paragraph"></details></p>
+
+    <p class="paragraph">Result Directory: result/01.QC/ & 00.CleanData</p>
+
+        <br />
+
+        <br />
+
+<h3>2.2 Summary of genome</h3>
+        
+    <a name="T4"></a>
+    <h4>2.2.1 Genome survey</h4>    
+
+    <p class="paragraph">Before assembly, we estimate genome size of every sample by K-mer analysis. 15 Kmer size is selected. The genome size estimated of samples is shown in table below. The kmer distribution diagram is shown in the figure below.</p>
+
+<p class="name_table"><p class="center"><strong>K-mer analysis statistics</strong></p>        
+<p class="center">
+<div style="overflow-x: auto">
+<table class="gy" id="mytable2" >
+        <thead><tr>
+<a id="btn02"></a>
+<a id="sjzl2"></a>
+<a  href="javascript:void(0)" id="btn12"> | First | </a>
+<a  href="javascript:void(0)" id="btn22"> Previous | </a>
+<a  href="javascript:void(0)" id="btn32"> Next | </a>
+<a  href="javascript:void(0)" id="btn42"> Last | </a>
+<a>Go to </a>
+<input id="changePage2" type="text" size="1" maxlength="4"/>
+<a> page </a>
+<a  href="javascript:void(0)" id="btn52"> Jump </a>
+                
+<th style="text-align :center">Sample ID</th><th style="text-align :center">K-mer</th><th style="text-align :center">K-mer Number</th><th style="text-align :center">K-mer Depth</th><th style="text-align :center">Genome Size(Mb)</th><th style="text-align :center">Revised Size(Mb)</th><th style="text-align :center">Heterozygous Rate(%)</th><th style="text-align :center">Repeat Rate(%)
+</th></tr></thead>
+<tr>
+<td style="text-align :center">sample1</td><td style="text-align :center">15</td><td style="text-align :center">167,630,901</td><td style="text-align :center">81.24</td><td style="text-align :center">2.06</td><td style="text-align :center">2.00</td><td style="text-align :center">0.49</td><td style="text-align :center">25.06
+</td></tr>
+
+</table>
+</div>
+</p>
+
+    <p class="paragraph"><details><summary> Show Annotation </summary></p>
+<p class="premark" >K-mer number: all Kmer numbers that are extracted from reads</p>
+<p class="premark" >K-mer depth: average Kmer depth</p>
+<p class="premark" >Genome size: genome size estimated</p>
+<p class="premark" >Revised size: corrected genome size</p>
+<p class="premark" >Heterozygous Rate: Heterozygous rate of the estimated genome</p>
+<p class="premark" >Repeat Rate: Repeat rate of the estimated genome</p>
+
+    <p class="paragraph"></details></p>
+
+<p class="center">
+<div class="row gallery-row">
+<div class="col-1">
+<div id="Figuremersdistributions_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-6">
+<div class="tab-content" id="Figuremersdistributions_nav-tabContent">
+
+<div class="tab-pane active show" id="samplekmerpng1" role="tabpanel" aria-labelledby="samplekmerpng1" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample1.kmer.png" /></div>
+
+</div>
+</div>
+<div class="col-1">
+<div id="Figuremersdistributions_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-4">
+<input class="form-control" id="Figuremersdistributions_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="Figuremersdistributions_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="samplekmerpng1" data-toggle="list" href="#samplekmerpng1" role="tab" aria-controls="samplekmerpng1">sample1.kmer.png</a>
+
+</div>
+</div>
+</div>
+<p class="name_fig"><strong>Figure 2-2 15-mers distributions</strong></p>  
+
+    <p class="paragraph"><details><summary> Show Annotation </summary></p>
+<p class="premark" >X-coordinate is Kmer depth. Y-coordinate is the frequency of each Kmer depth. The red curve is the statistics of sequencing reads. The black curve is the standard Poisson distribution.</p>
+
+    <p class="paragraph"></details></p>
+
+    <a name="T4"></a>
+    <h4>2.2.2 Assembly Results</h4>    
+
+    <p class="paragraph">After obtaining clean data, genome assembly was perfomed to obtain fasta and the assembly results were evaluated.</p>
+
+    <p class="paragraph">Assembly step:</p>
+
+    <p class="paragraph">1）Obtained clean data after pre-treatment. Manipulate SOAP denovo(version 2.04)(Li R et al.,2010; Li R et al.,2008), SPAdes(Bankevich A et al.,2012), ABySS(Simpson JT et al.,2009) software for assembly and finally use CISA(Lin S H et al.,2013) was finally used for integration;</p>
+
+    <p class="paragraph">2）Utilized gapclose（Version: 1.12）or other software for otpimization and fill gap the assembly assembly to obtain the final result;</p>
+
+    <p class="paragraph">3）Filtrated fragments whose length were shorter than 500bp, and decontaminated for any contamination before proceeding for data evaluation and statistical analysis;</p>
+
+    <p class="paragraph">Statistic result:</p>
+
+<p class="name_table"><p class="center"><strong>Table 2-3-1 Statistics of scaffolds</strong></p>        
+<p class="center">
+<div style="overflow-x: auto">
+<table class="gy" id="mytable3" >
+        <thead><tr>
+<a id="btn03"></a>
+<a id="sjzl3"></a>
+<a  href="javascript:void(0)" id="btn13"> | First | </a>
+<a  href="javascript:void(0)" id="btn23"> Previous | </a>
+<a  href="javascript:void(0)" id="btn33"> Next | </a>
+<a  href="javascript:void(0)" id="btn43"> Last | </a>
+<a>Go to </a>
+<input id="changePage3" type="text" size="1" maxlength="4"/>
+<a> page </a>
+<a  href="javascript:void(0)" id="btn53"> Jump </a>
+                
+<th style="text-align :center">Sample_name</th><th style="text-align :center">Total Num(>500bp)</th><th style="text-align :center">Total Length(bp)</th><th style="text-align :center">N50 Length(bp)</th><th style="text-align :center">N90 Length(bp)</th><th style="text-align :center">Max Length(bp)</th><th style="text-align :center">Min Length(bp)</th><th style="text-align :center">Sequence GC%
+</th></tr></thead>
+<tr>
+<td style="text-align :center">sample1</td><td style="text-align :center">14</td><td style="text-align :center">2,106,519</td><td style="text-align :center">589,498</td><td style="text-align :center">86,174</td><td style="text-align :center">898,301</td><td style="text-align :center">4,076</td><td style="text-align :center">34.9
+</td></tr>
+
+</table>
+</div>
+</p>
+
+<p class="name_table"><p class="center"><strong>Table 2-3-2 Statistics of contigs</strong></p>        
+<p class="center">
+<div style="overflow-x: auto">
+<table class="gy" id="mytable4" >
+        <thead><tr>
+<a id="btn04"></a>
+<a id="sjzl4"></a>
+<a  href="javascript:void(0)" id="btn14"> | First | </a>
+<a  href="javascript:void(0)" id="btn24"> Previous | </a>
+<a  href="javascript:void(0)" id="btn34"> Next | </a>
+<a  href="javascript:void(0)" id="btn44"> Last | </a>
+<a>Go to </a>
+<input id="changePage4" type="text" size="1" maxlength="4"/>
+<a> page </a>
+<a  href="javascript:void(0)" id="btn54"> Jump </a>
+                
+<th style="text-align :center">Sample_name</th><th style="text-align :center">Total Num(>500bp)</th><th style="text-align :center">Total Length(bp)</th><th style="text-align :center">N50 Length(bp)</th><th style="text-align :center">N90 Length(bp)</th><th style="text-align :center">Max Length(bp)</th><th style="text-align :center">Min Length(bp)</th><th style="text-align :center">Sequence GC%
+</th></tr></thead>
+<tr>
+<td style="text-align :center">sample1</td><td style="text-align :center">14</td><td style="text-align :center">2,106,519</td><td style="text-align :center">589,498</td><td style="text-align :center">86,174</td><td style="text-align :center">898,301</td><td style="text-align :center">4,076</td><td style="text-align :center">34.9
+</td></tr>
+
+</table>
+</div>
+</p>
+
+    <p class="paragraph"><details><summary> Show Annotation </summary></p>
+<p class="premark" >Table 2-3-1 is the statistic of scaffold longer than 500 bp，Table 2-3-2 is the statistic of contig got by breaking scaffold (>=500 bp) from the second column with N</p>
+
+    <p class="paragraph"></details></p>
+
+<p class="center">
+<div class="row gallery-row">
+<div class="col-1">
+<div id="FigureGCcontentvssequencingdepth_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-6">
+<div class="tab-content" id="FigureGCcontentvssequencingdepth_nav-tabContent">
+
+<div class="tab-pane active show" id="sampleGCdepthpng1" role="tabpanel" aria-labelledby="sampleGCdepthpng1" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample1.GC-depth.png" /></div>
+
+</div>
+</div>
+<div class="col-1">
+<div id="FigureGCcontentvssequencingdepth_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-4">
+<input class="form-control" id="FigureGCcontentvssequencingdepth_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="FigureGCcontentvssequencingdepth_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="sampleGCdepthpng1" data-toggle="list" href="#sampleGCdepthpng1" role="tab" aria-controls="sampleGCdepthpng1">sample1.GC-depth.png</a>
+
+</div>
+</div>
+</div>
+<p class="name_fig"><strong>Figure 2-3 GC content vs sequencing depth</strong></p>  
+
+    <p class="paragraph"><details><summary> Show Annotation </summary></p>
+<p class="premark" >The X-coordinate is GC content, and Y-coordinate is average depth. The right site is the sequence depth distribution. The upper site is the distribution of GC content.</p>
+<p class="premark" >Sequencing depth and GC content analysis can reflect whether any contaminating sequences and plasmids exist within the sample. They also help us realize the repeated sequence situation in target strain</p>
+
+    <p class="paragraph"></details></p>
+
+    <p class="paragraph">Result Directory：result/02.Assembly/</p>
+
+        <br />
+
+        <br />
+
+<h3>2.3 Genome component analysis</h3>
+        
+    <p class="paragraph">Microbial genomes contain abundant functional regions which are involved in various mechanisms such as transcription regulation, translation regulation, epigenetic regualtions, etc. These functional regions can also determine the species diversity as well.  The composition of the target genome is obtained by predicting coding genes, repetitive sequences, non-coding RNAs, etc, through various methods.</p>
+
+    <a name="T4"></a>
+    <h4>2.3.1 Coding gene</h4>    
+
+    <p class="paragraph">Use GeneMarkS(Version 4.17)(Besemer J et al.,2001)(<a href="http://topaz.gatech.edu/GeneMark/">http://topaz.gatech.edu/GeneMark/</a>) for coding gene prediction of new sequencing genome. Prediction result was shown as follow:</p>
+
+<p class="name_table"><p class="center"><strong>Table 2-4 Statistical Table of Protein-Coding Gene Prediction Results</strong></p>        
+<p class="center">
+<div style="overflow-x: auto">
+<table class="gy" id="mytable5" >
+        <thead><tr>
+<a id="btn05"></a>
+<a id="sjzl5"></a>
+<a  href="javascript:void(0)" id="btn15"> | First | </a>
+<a  href="javascript:void(0)" id="btn25"> Previous | </a>
+<a  href="javascript:void(0)" id="btn35"> Next | </a>
+<a  href="javascript:void(0)" id="btn45"> Last | </a>
+<a>Go to </a>
+<input id="changePage5" type="text" size="1" maxlength="4"/>
+<a> page </a>
+<a  href="javascript:void(0)" id="btn55"> Jump </a>
+                
+<th style="text-align :center">Sample ID</th><th style="text-align :center">Genome size(bp)</th><th style="text-align :center">Gene number(#)</th><th style="text-align :center">Gene total length(bp)</th><th style="text-align :center">Gene average length(bp)</th><th style="text-align :center">Gene length/Genome(%)
+</th></tr></thead>
+<tr>
+<td style="text-align :center">sample1</td><td style="text-align :center">2,106,519</td><td style="text-align :center">2,137</td><td style="text-align :center">1,886,142</td><td style="text-align :center">883</td><td style="text-align :center">89.54
+</td></tr>
+
+</table>
+</div>
+</p>
+
+    <p class="paragraph"><details><summary> Show Annotation </summary></p>
+<p class="premark" >Genome size: the total length of the whole genome</p>
+<p class="premark" >Gene number: the number of predicted protein-coding genes</p>
+<p class="premark" >Gene total length: the total length of all protein-coding genes</p>
+<p class="premark" >Gene average length: the average length of protein-coding genes</p>
+<p class="premark" >Gene length/Genome: the proportion of the total length of protein-coding regions to the entire genome</p>
+
+    <p class="paragraph"></details></p>
+
+    <p class="paragraph">The gene length distribution graph is shown below:</p>
+
+<p class="center">
+<div class="row gallery-row">
+<div class="col-1">
+<div id="FigureGenelengthDistributionofEachSample_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-6">
+<div class="tab-content" id="FigureGenelengthDistributionofEachSample_nav-tabContent">
+
+<div class="tab-pane active show" id="samplecdspng1" role="tabpanel" aria-labelledby="samplecdspng1" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample1.cds.png" /></div>
+
+</div>
+</div>
+<div class="col-1">
+<div id="FigureGenelengthDistributionofEachSample_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-4">
+<input class="form-control" id="FigureGenelengthDistributionofEachSample_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="FigureGenelengthDistributionofEachSample_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="samplecdspng1" data-toggle="list" href="#samplecdspng1" role="tab" aria-controls="samplecdspng1">sample1.cds.png</a>
+
+</div>
+</div>
+</div>
+<p class="name_fig"><strong>Figure 2-4 Gene length Distribution of Each Sample</strong></p>  
+
+    <p class="paragraph"><details><summary> Show Annotation </summary></p>
+<p class="premark" >X-coordinate represents gene length, Y-coordinate represents the corresponding gene count.</p>
+
+    <p class="paragraph"></details></p>
+
+    <p class="paragraph">Result Directory: result/03.Genome_Component/*/Gene/</p>
+
+    <a name="T4"></a>
+    <h4>2.3.2 Repeat sequence</h4>    
+
+    <p class="paragraph">Repeated sequences, components in gene regulation network, are segments that have similar or complementary sequences but originate from different positions on the genome. Repeated sequences can be classified into interspersed repeats (IR) and tandem repeats (TR) according to its genome distribution.</p>
+
+    <p class="paragraph">Interspersed repeats can be further subdivided into short-interspersed nuclear elements (SINEs) and longinterspersed nuclear elements (LINEs), both of which showcase transposition activity. Tandem repeats are specific sequences have two or more adjacent repeats, and can be subdivided into minisatellite DNA or microsatellite DNA. Tandem repeats showcase specific species composition and can be used as genetic species characterization for evolution relationship studies.</p>
+
+    <p class="paragraph">Perform RepeatMasker(Version open-4.0.5)(Saha S et al.,2008) for ST prediction and TRF(Tandem Repeats Finder, Version 4.07b)(Benson G et al.,1999) for TF searching. The result are shown as below:</p>
+
+<p class="name_table"><p class="center"><strong>Table 2-5 Statistic of Interspersed repeats</strong></p>        
+<p class="center">
+<div style="overflow-x: auto">
+<table class="gy" id="mytable6" >
+        <thead><tr>
+<a id="btn06"></a>
+<a id="sjzl6"></a>
+<a  href="javascript:void(0)" id="btn16"> | First | </a>
+<a  href="javascript:void(0)" id="btn26"> Previous | </a>
+<a  href="javascript:void(0)" id="btn36"> Next | </a>
+<a  href="javascript:void(0)" id="btn46"> Last | </a>
+<a>Go to </a>
+<input id="changePage6" type="text" size="1" maxlength="4"/>
+<a> page </a>
+<a  href="javascript:void(0)" id="btn56"> Jump </a>
+                
+<th style="text-align :center">Sample ID</th><th style="text-align :center">Type</th><th style="text-align :center">Number(#)</th><th style="text-align :center">Total Length(bp)</th><th style="text-align :center">In Genome(%)</th><th style="text-align :center">Average length(bp)
+</th></tr></thead>
+<tr>
+<td style="text-align :center">sample1</td><td style="text-align :center">LTR</td><td style="text-align :center">73</td><td style="text-align :center">5,179</td><td style="text-align :center">0.2459</td><td style="text-align :center">72
+</td></tr>
+<tr>
+<td style="text-align :center">sample1</td><td style="text-align :center">DNA</td><td style="text-align :center">30</td><td style="text-align :center">1,866</td><td style="text-align :center">0.0886</td><td style="text-align :center">62
+</td></tr>
+<tr>
+<td style="text-align :center">sample1</td><td style="text-align :center">LINE</td><td style="text-align :center">25</td><td style="text-align :center">1,519</td><td style="text-align :center">0.0721</td><td style="text-align :center">61
+</td></tr>
+<tr>
+<td style="text-align :center">sample1</td><td style="text-align :center">SINE</td><td style="text-align :center">7</td><td style="text-align :center">459</td><td style="text-align :center">0.0218</td><td style="text-align :center">66
+</td></tr>
+<tr>
+<td style="text-align :center">sample1</td><td style="text-align :center">RC</td><td style="text-align :center">2</td><td style="text-align :center">103</td><td style="text-align :center">0.0049</td><td style="text-align :center">52
+</td></tr>
+<tr>
+<td style="text-align :center">sample1</td><td style="text-align :center">Unknown</td><td style="text-align :center">0</td><td style="text-align :center">0</td><td style="text-align :center">0</td><td style="text-align :center">0
+</td></tr>
+<tr>
+<td style="text-align :center">sample1</td><td style="text-align :center">Total</td><td style="text-align :center">137</td><td style="text-align :center">8,901</td><td style="text-align :center">0.4225</td><td style="text-align :center">67
+</td></tr>
+
+</table>
+</div>
+</p>
+
+    <p class="paragraph"><details><summary> Show Annotation </summary></p>
+<p class="premark" >Type: the type of repeats</p>
+<p class="premark" >Number: the number of repeats</p>
+<p class="premark" >Total Length: the length of repeats accounting for the genome</p>
+<p class="premark" >In Genome: the proportion of the length of repeats accounting for the genome</p>
+<p class="premark" >the average length of repeats</p>
+<p class="premark" >LTR: Long Terminal Repeat</p>
+<p class="premark" >DNA: DNA Transposable element</p>
+<p class="premark" >LINE: long interspersed nuclear elements</p>
+<p class="premark" >SINE: short interspersed nuclear elements</p>
+<p class="premark" >RC: rolling circle</p>
+<p class="premark" >scRNA: small cytosol RNA</p>
+
+    <p class="paragraph"></details></p>
+
+<p class="name_table"><p class="center"><strong>Table 2-6 Statistic of Tandem repeats</strong></p>        
+<p class="center">
+<div style="overflow-x: auto">
+<table class="gy" id="mytable7" >
+        <thead><tr>
+<a id="btn07"></a>
+<a id="sjzl7"></a>
+<a  href="javascript:void(0)" id="btn17"> | First | </a>
+<a  href="javascript:void(0)" id="btn27"> Previous | </a>
+<a  href="javascript:void(0)" id="btn37"> Next | </a>
+<a  href="javascript:void(0)" id="btn47"> Last | </a>
+<a>Go to </a>
+<input id="changePage7" type="text" size="1" maxlength="4"/>
+<a> page </a>
+<a  href="javascript:void(0)" id="btn57"> Jump </a>
+                
+<th style="text-align :center">Sample ID</th><th style="text-align :center">Type</th><th style="text-align :center">Number(#)</th><th style="text-align :center">Repeat Size(bp)</th><th style="text-align :center">Total Length(bp)</th><th style="text-align :center">In Genome(%)
+</th></tr></thead>
+<tr>
+<td style="text-align :center">sample1</td><td style="text-align :center">TR</td><td style="text-align :center">56</td><td style="text-align :center">6~570</td><td style="text-align :center">7,458</td><td style="text-align :center">0.3540
+</td></tr>
+<tr>
+<td style="text-align :center">sample1</td><td style="text-align :center">Minisatellite DNA</td><td style="text-align :center">48</td><td style="text-align :center">10~54</td><td style="text-align :center">2,840</td><td style="text-align :center">0.1348
+</td></tr>
+<tr>
+<td style="text-align :center">sample1</td><td style="text-align :center">Microsatellite DNA</td><td style="text-align :center">1</td><td style="text-align :center"> 6~6</td><td style="text-align :center">53</td><td style="text-align :center">0.0025
+</td></tr>
+
+</table>
+</div>
+</p>
+
+    <p class="paragraph"><details><summary> Show Annotation </summary></p>
+<p class="premark" >Type: the type of repeats</p>
+<p class="premark" >Number: the number of repeats</p>
+<p class="premark" >Total Length: the length distribution of the repeat units in repeats</p>
+<p class="premark" >Total Length: the total length of repeats accounting for the genome</p>
+<p class="premark" >Average length: the proportion of the length repeats accounting for the genome</p>
+<p class="premark" >TR: Tandem Repeats</p>
+
+    <p class="paragraph"></details></p>
+
+    <p class="paragraph">Results directory: result/03.Genome_Component/*/Repeat/</p>
+
+    <a name="T4"></a>
+    <h4>2.3.3 Non-coding RNA</h4>    
+
+    <p class="paragraph">Non-coding RNA (ncRNA) is one type of RNA molecule that execute diverse biological function, they do not carry information of protein translation and can not directly influence species life. For microorganism, common ncRNA including sRNA, rRNA, tRNA and so on.</p>
+
+    <p class="paragraph">tRNA: predict tRNA by tRNAscan-SE(Version 1.3.1)(Lowe T M et al.,1997) software. </p>
+
+    <p class="paragraph">rRNA: ribosomal RNA, rRNA has highly conservative in species with close lineage. Two methods were used to predict rRNA. The first method aligned the sequences to a rRNA database for  relevant reference sequences. The second method used the  rRNAmmer(Version 1.2)(Lagesen K et al.,2007)software.</p>
+
+    <p class="paragraph">sRNA: used Rfam database(Gardner P P et al.,2009) for annotation before cmsearch(Version 1.1rc4)(Cui X et al.,2016) was used for verification.</p>
+
+<p class="name_table"><p class="center"><strong>Table 2-7 Statistic of the non-redundant ncRNAs</strong></p>        
+<p class="center">
+<div style="overflow-x: auto">
+<table class="gy" id="mytable8" >
+        <thead><tr>
+<a id="btn08"></a>
+<a id="sjzl8"></a>
+<a  href="javascript:void(0)" id="btn18"> | First | </a>
+<a  href="javascript:void(0)" id="btn28"> Previous | </a>
+<a  href="javascript:void(0)" id="btn38"> Next | </a>
+<a  href="javascript:void(0)" id="btn48"> Last | </a>
+<a>Go to </a>
+<input id="changePage8" type="text" size="1" maxlength="4"/>
+<a> page </a>
+<a  href="javascript:void(0)" id="btn58"> Jump </a>
+                
+<th style="text-align :center">Sample ID</th><th style="text-align :center">Type</th><th style="text-align :center">Number(#)</th><th style="text-align :center">Average length(bp)</th><th style="text-align :center">Total length(bp)
+</th></tr></thead>
+<tr>
+<td style="text-align :center">sample1</td><td style="text-align :center">tRNA</td><td style="text-align :center">55</td><td style="text-align :center">75</td><td style="text-align :center">4,174
+</td></tr>
+<tr>
+<td style="text-align :center">sample1</td><td style="text-align :center">5s(denovo)</td><td style="text-align :center">4</td><td style="text-align :center">116</td><td style="text-align :center">464
+</td></tr>
+<tr>
+<td style="text-align :center">sample1</td><td style="text-align :center">16s(denovo)</td><td style="text-align :center">4</td><td style="text-align :center">1,561</td><td style="text-align :center">6,244
+</td></tr>
+<tr>
+<td style="text-align :center">sample1</td><td style="text-align :center">23s(denovo)</td><td style="text-align :center">3</td><td style="text-align :center">2,904</td><td style="text-align :center">8,712
+</td></tr>
+<tr>
+<td style="text-align :center">sample1</td><td style="text-align :center">sRNA</td><td style="text-align :center">4</td><td style="text-align :center">162</td><td style="text-align :center">648
+</td></tr>
+
+</table>
+</div>
+</p>
+
+    <p class="paragraph"><details><summary> Show Annotation </summary></p>
+<p class="premark" >Type: the type of ncRNAs</p>
+<p class="premark" >Number: the number of ncRNAs</p>
+<p class="premark" >Average length: the average length of ncRNAs</p>
+<p class="premark" >Total length: the total length of ncRNAs</p>
+
+    <p class="paragraph"></details></p>
+
+    <p class="paragraph">Results directory：result/03.Genome_Component/*/ncRNA/</p>
+
+    <a name="T4"></a>
+    <h4>2.3.4 Genomics island（GIs）</h4>    
+
+    <p class="paragraph">Genomics island（GIs）is a specific genome region that present in bacteria, phage or plasmid. It can be integrated into the genome of microorganism under genic level. In addition, GI relate to the pathogenic mechanism, adaption of organism and many other biological function. Therefore, for those microorganism with specific function, we can find out the source of their specificity and function through the comparative genome analysis.</p>
+
+    <p class="paragraph">Base on the sequence content, IslandPath-DIOMB(Version 0.2)(Hsiao W et al.,2003) software  was performed to predict GI. By detecting the phylogentically bias of dinucleotide and mobility genes such as transposase and integrase to predict the GI and potential horizontal gene transfer. The result was shown as follow:</p>
+
+<p class="name_table"><p class="center"><strong>Table 2-8 Genomic island prediction</strong></p>        
+<p class="center">
+<div style="overflow-x: auto">
+<table class="gy" id="mytable9" >
+        <thead><tr>
+<a id="btn09"></a>
+<a id="sjzl9"></a>
+<a  href="javascript:void(0)" id="btn19"> | First | </a>
+<a  href="javascript:void(0)" id="btn29"> Previous | </a>
+<a  href="javascript:void(0)" id="btn39"> Next | </a>
+<a  href="javascript:void(0)" id="btn49"> Last | </a>
+<a>Go to </a>
+<input id="changePage9" type="text" size="1" maxlength="4"/>
+<a> page </a>
+<a  href="javascript:void(0)" id="btn59"> Jump </a>
+                
+<th style="text-align :center">Sample ID</th><th style="text-align :center">GIs number(#)</th><th style="text-align :center">GIs total length(bp)</th><th style="text-align :center">Average length(bp)
+</th></tr></thead>
+<tr>
+<td style="text-align :center">sample1</td><td style="text-align :center">6</td><td style="text-align :center">69,978</td><td style="text-align :center">11,663
+</td></tr>
+
+</table>
+</div>
+</p>
+
+<p class="center">
+<div class="row gallery-row">
+<div class="col-1">
+<div id="FigureThegenedistributionofgenomicislands_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-6">
+<div class="tab-content" id="FigureThegenedistributionofgenomicislands_nav-tabContent">
+
+<div class="tab-pane active show" id="sampleGIpng1" role="tabpanel" aria-labelledby="sampleGIpng1" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample1.GI.png" /></div>
+
+</div>
+</div>
+<div class="col-1">
+<div id="FigureThegenedistributionofgenomicislands_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-4">
+<input class="form-control" id="FigureThegenedistributionofgenomicislands_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="FigureThegenedistributionofgenomicislands_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="sampleGIpng1" data-toggle="list" href="#sampleGIpng1" role="tab" aria-controls="sampleGIpng1">sample1.GI.png</a>
+
+</div>
+</div>
+</div>
+<p class="name_fig"><strong>Figure 2-5 The gene distribution of genomic islands</strong></p>  
+
+    <p class="paragraph"><details><summary> Show Annotation </summary></p>
+<p class="premark" >The X-coordinate is length scales (the gene islands shown in the figure are less than 15 kb in length).</p>
+
+    <p class="paragraph"></details></p>
+
+    <p class="paragraph">Results directory: result/03.Genome_Component/*/Prophage/</p>
+
+    <a name="T4"></a>
+    <h4>2.3.5 Prophage</h4>    
+
+    <p class="paragraph">Prophage is a stable form of bacteriophage in which its genetic material can incorporated into the host without destroying it. And can also replicate and undergo division together with host. Integrating prophage can bring antibiotic resistance to some bacteria, increase their environmental adaption or adhesion and even make some bacteria become pathogen.</p>
+
+    <p class="paragraph">Through phiSpy(Version2.3)(Akhter S et al.,2012)software to predict prophage in sample genome, the result was shown as below:</p>
+
+<p class="name_table"><p class="center"><strong>Table 2-9 The prediction of prophage</strong></p>        
+<p class="center">
+<div style="overflow-x: auto">
+<table class="gy" id="mytable10" >
+        <thead><tr>
+<a id="btn010"></a>
+<a id="sjzl10"></a>
+<a  href="javascript:void(0)" id="btn110"> | First | </a>
+<a  href="javascript:void(0)" id="btn210"> Previous | </a>
+<a  href="javascript:void(0)" id="btn310"> Next | </a>
+<a  href="javascript:void(0)" id="btn410"> Last | </a>
+<a>Go to </a>
+<input id="changePage10" type="text" size="1" maxlength="4"/>
+<a> page </a>
+<a  href="javascript:void(0)" id="btn510"> Jump </a>
+                
+<th style="text-align :center">Sample_ID</th><th style="text-align :center">Prophage_Num</th><th style="text-align :center">Total_Length</th><th style="text-align :center">Average_Length
+</th></tr></thead>
+<tr>
+<td style="text-align :center">sample1</td><td style="text-align :center">7</td><td style="text-align :center">150,759</td><td style="text-align :center">21,537.000
+</td></tr>
+
+</table>
+</div>
+</p>
+
+    <p class="paragraph"><details><summary> Show Annotation </summary></p>
+<p class="premark" >Sample_ID: sample name in report</p>
+<p class="premark" >Prophage_Num: prophage number in genome</p>
+<p class="premark" >Total_Length: total prophage length in genome</p>
+<p class="premark" >Average_Length: average prophage lenght</p>
+
+    <p class="paragraph"></details></p>
+
+    <p class="paragraph">Results directory: result/03.Genome_Component/*/Prophage/</p>
+
+    <a name="T4"></a>
+    <h4>2.3.6 CRISPR</h4>    
+
+    <p class="paragraph">CRISPR (Clustered Regularly Interspaced Short Palindromic Repeat Sequences) are short repeats homologous to bacteriophages or plasmids, resistant to bacteriophages through interaction with foreign homologous DNA, and are part of the prokaryotic immune system</p>
+
+    <p class="paragraph">The CRISPR front end has CRISPR-associated genes (Cas genes) that bind to CRISPR to exercise immune effects, such as CRISPR/Cas9. CRISPR research can analyze the functional differences of different strains, especially the differences in environmental adaptability and pathogenicity of strains.</p>
+
+    <p class="paragraph">CRISPRdigger(Version 1.0)(Ge R et al.,2000) was used for CRISPR prediction. The result was shown as follow:</p>
+
+<p class="name_table"><p class="center"><strong>Table 2-10 The prediction of CRISPR</strong></p>        
+<p class="center">
+<div style="overflow-x: auto">
+<table class="gy" id="mytable11" >
+        <thead><tr>
+<a id="btn011"></a>
+<a id="sjzl11"></a>
+<a  href="javascript:void(0)" id="btn111"> | First | </a>
+<a  href="javascript:void(0)" id="btn211"> Previous | </a>
+<a  href="javascript:void(0)" id="btn311"> Next | </a>
+<a  href="javascript:void(0)" id="btn411"> Last | </a>
+<a>Go to </a>
+<input id="changePage11" type="text" size="1" maxlength="4"/>
+<a> page </a>
+<a  href="javascript:void(0)" id="btn511"> Jump </a>
+                
+<th style="text-align :center">Sample_ID</th><th style="text-align :center">CRISPR_Num</th><th style="text-align :center">Total_Length</th><th style="text-align :center">Average_Length
+</th></tr></thead>
+<tr>
+<td style="text-align :center">sample1</td><td style="text-align :center">7</td><td style="text-align :center">2,831</td><td style="text-align :center">404.429
+</td></tr>
+
+</table>
+</div>
+</p>
+
+    <p class="paragraph"><details><summary> Show Annotation </summary></p>
+<p class="premark" >Sample_ID: sample name in report</p>
+<p class="premark" >CRISPR_Num: total CRISPR number in genome</p>
+<p class="premark" >Total_Length: total CRISPR length</p>
+<p class="premark" >Average_Length: average CRISPR length in genome</p>
+
+    <p class="paragraph"></details></p>
+
+    <p class="paragraph">Results directory：result/03.Genome_Component/*/CRISPR/</p>
+
+        <br />
+
+        <br />
+
+<h3>2.4 Gene function analysis</h3>
+        
+    <a name="T4"></a>
+    <h4>2.4.1 Gene function annotation</h4>    
+
+    <p class="paragraph">The common database for annotation provide including GO、KEGG、COG/KOG、NR、Pfam、CAZy、TCDB和Swiss-Prot.</p>
+
+    <p class="paragraph">The step for gene function annotation:</p>
+
+    <p class="paragraph">1）Perform Diamond alignment (evalue ≤ 1e-5) between protein sequence of predicted gene and database;</p>
+
+    <p class="paragraph">2）Filtration for alignment: for each sequence, select the alignment result with highest score (indentify ≥ 40%, coverage ≥ 40% by default) for annotation;</p>
+
+    <a name="T5"></a>
+    <h5>2.4.1.1 GO database annotation</h5>    
+
+    <p class="paragraph">GO(Gene Ontology)(Ashburner M et al.,2000) is an international standard classification system for gene function annotation. It can be divided into three parts: 1) Cellular Component: describe the subcellular structure, location and macromolecule complexes such as nucleolus, telomere and initial-site reorganization complex and etc. 2) Molecular function: It is used to describe the functions of genes and gene productions, for example the combination of carbohydrates, the activity of ATP hydrolase and etc. 3) Biological process: It is used to describe the combination of functional molecular and the acquisition of broader biological functions, for example, mitosis, purine metabolism and etc. Genes were classified into one or several parts of GO by their functions. Relying on the GO annotation results, we could detect gene functions. The statistics of GO annotation was listed in the following figure:</p>
+
+<p class="center">
+<div class="row gallery-row">
+<div class="col-1">
+<div id="FigureGOannotation_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-6">
+<div class="tab-content" id="FigureGOannotation_nav-tabContent">
+
+<div class="tab-pane active show" id="samplegopng1" role="tabpanel" aria-labelledby="samplegopng1" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample1.go.png" /></div>
+
+</div>
+</div>
+<div class="col-1">
+<div id="FigureGOannotation_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-4">
+<input class="form-control" id="FigureGOannotation_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="FigureGOannotation_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="samplegopng1" data-toggle="list" href="#samplegopng1" role="tab" aria-controls="samplegopng1">sample1.go.png</a>
+
+</div>
+</div>
+</div>
+<p class="name_fig"><strong>Figure 2-6 GO annotation</strong></p>  
+
+    <p class="paragraph"><details><summary> Show Annotation </summary></p>
+<p class="premark" >Horizontal axis displays the GO function class for the annotated genes,the right vertical axis is the gene number, and the left vertial axis is the percent of gene number annotated in all the coding genes.</p>
+
+    <p class="paragraph"></details></p>
+
+    <p class="paragraph">Results directory: result/04.Genome_Function/*/General_Gene_Annotation/GO/</p>
+
+    <a name="T5"></a>
+    <h5>2.4.1.2 KEGG annotation</h5>    
+
+    <p class="paragraph">The whole name of KEGG is the Kyoto Encyclopedia of Genes and Genomes(Kanehisa M et al.,2004; Kanehisa M et al 2006). KEGG version 0.1 is published by Kanehisa Laboratories in 1995. It is a database resource for understanding high-level functions and utilities of the biological system, such as the cell, the organism and the ecosystem, from molecular-level information, especially large-scale molecular datasets generated by genome sequencing and other high-throughput experimental technologies. KEGG is an integrated database resource consisting of the seventeen main databases, such as KEGG PATHWAY, KEGG DRUG, KEGG DISEASE, KEGG MODULE and KEGG GENOME. KEGG database had a kit of KO(KEGG ORTHOLOG) annotation system which could assist us to carry out annotation of a new species genome. KEGG PATHWAY divides the biological pathways into eight main parts, and each part is combined by several subparts. Each part is annotated by related genes and exhibited in the figure. Using KEGG annotation, we could find genes that related to the annotated gene conveniently. See website<a href="http://www.genome.jp/kegg/">http://www.genome.jp/kegg/</a>。</p>
+
+    <p class="paragraph">The following figure was obtained from the statistics of KEGG annotation:</p>
+
+<p class="center">
+<div class="row gallery-row">
+<div class="col-1">
+<div id="FigureKEGGannotation_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-6">
+<div class="tab-content" id="FigureKEGGannotation_nav-tabContent">
+
+<div class="tab-pane active show" id="samplekeggfunctionalclassificationpng1" role="tabpanel" aria-labelledby="samplekeggfunctionalclassificationpng1" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample1.kegg.functional_classification.png" /></div>
+
+</div>
+</div>
+<div class="col-1">
+<div id="FigureKEGGannotation_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-4">
+<input class="form-control" id="FigureKEGGannotation_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="FigureKEGGannotation_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="samplekeggfunctionalclassificationpng1" data-toggle="list" href="#samplekeggfunctionalclassificationpng1" role="tab" aria-controls="samplekeggfunctionalclassificationpng1">sample1.kegg.functional_classification.png</a>
+
+</div>
+</div>
+</div>
+<p class="name_fig"><strong>Figure 2-7 KEGG annotation</strong></p>  
+
+    <p class="paragraph"><details><summary> Show Annotation </summary></p>
+<p class="premark" >The horizontal axis is type of KEGG pathway, and the vertical axis is the number of annotated genes.</p>
+
+    <p class="paragraph"></details></p>
+
+    <p class="paragraph">Results directory: result/04.Genome_Function/*/General_Gene_Annotation/KEGG/</p>
+
+    <a name="T5"></a>
+    <h5>2.4.1.3 COG database annotation</h5>    
+
+    <p class="paragraph">The Cluster of Orthologous Groups of proteins(COG)(Galperin MY et al.,2015) is a protein database established and maintained by NCBI. The database is based on the evolution relation of protein system among bacteria, algae and eukaryotes. Each protein sequence can be annotated by one type of COG by alignment. And every types of COG was composed of orthologous sequence. So the sequence function can be predicted. According to the function, COG database is divided into 25 parts by their functions. More details are available at: <a href="http://www.ncbi.nlm.nih.gov/COG/">http://www.ncbi.nlm.nih.gov/COG/</a>。</p>
+
+    <p class="paragraph">The statistic of COG annotation was listed in the following figure:</p>
+
+<p class="center">
+<div class="row gallery-row">
+<div class="col-1">
+<div id="FigureCOGannotation_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-6">
+<div class="tab-content" id="FigureCOGannotation_nav-tabContent">
+
+<div class="tab-pane active show" id="samplecogclasspng1" role="tabpanel" aria-labelledby="samplecogclasspng1" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample1.cog.class.png" /></div>
+
+</div>
+</div>
+<div class="col-1">
+<div id="FigureCOGannotation_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-4">
+<input class="form-control" id="FigureCOGannotation_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="FigureCOGannotation_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="samplecogclasspng1" data-toggle="list" href="#samplecogclasspng1" role="tab" aria-controls="samplecogclasspng1">sample1.cog.class.png</a>
+
+</div>
+</div>
+</div>
+<p class="name_fig"><strong>Figure 2-8 COG annotation</strong></p>  
+
+    <p class="paragraph"><details><summary> Show Annotation </summary></p>
+<p class="premark" >The horizontal axis is COG function type, and the vertical axis is the number of annotated genes.</p>
+
+    <p class="paragraph"></details></p>
+
+    <p class="paragraph">Results directory：result/04.Genome_Function/*/General_Gene_Annotation/COG/</p>
+
+    <a name="T5"></a>
+    <h5>2.4.1.4 NR database annotation</h5>    
+
+    <p class="paragraph">Non-redundant Protein Database (NR)(Li W et al.,2002) is a non-redundant protein database, established and maintained by NCBI. Since its comprehensive annotation result contains species information, it can therefore be used for species classification. Based on the species conditions of gene annotation, the number of species and annotated genes were counted. The result are shown below:</p>
+
+<p class="center">
+<div class="row gallery-row">
+<div class="col-1">
+<div id="FigureNRannotation_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-6">
+<div class="tab-content" id="FigureNRannotation_nav-tabContent">
+
+<div class="tab-pane active show" id="samplenrannopng1" role="tabpanel" aria-labelledby="samplenrannopng1" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample1.nr.anno.png" /></div>
+
+</div>
+</div>
+<div class="col-1">
+<div id="FigureNRannotation_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-4">
+<input class="form-control" id="FigureNRannotation_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="FigureNRannotation_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="samplenrannopng1" data-toggle="list" href="#samplenrannopng1" role="tab" aria-controls="samplenrannopng1">sample1.nr.anno.png</a>
+
+</div>
+</div>
+</div>
+<p class="name_fig"><strong>Figure 2-9 NR annotation</strong></p>  
+
+    <p class="paragraph"><details><summary> Show Annotation </summary></p>
+<p class="premark" >The horizontal axis is species ID, and the vertical axis is the number of annotated genes.</p>
+
+    <p class="paragraph"></details></p>
+
+    <p class="paragraph">Results directory: result/04.Genome_Function/*/General_Gene_Annotation/NR/</p>
+
+    <a name="T5"></a>
+    <h5>2.4.1.5 TCDB Database Annotation</h5>    
+
+    <p class="paragraph">TCDB, short for Transporter Classification Database(Milton SJ et al.,2014), is a classification system for membrane transport proteins, including ion channels (ion channels). The TC system classifies the transporters into 5 levels. The statistical results of the first level are shown in the following figure:</p>
+
+<p class="center">
+<div class="row gallery-row">
+<div class="col-1">
+<div id="FigureTCDBFunctionalClassificationChart_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-6">
+<div class="tab-content" id="FigureTCDBFunctionalClassificationChart_nav-tabContent">
+
+<div class="tab-pane active show" id="sampletcdbclasscatalogpng1" role="tabpanel" aria-labelledby="sampletcdbclasscatalogpng1" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample1.tcdb.class.catalog.png" /></div>
+
+</div>
+</div>
+<div class="col-1">
+<div id="FigureTCDBFunctionalClassificationChart_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-4">
+<input class="form-control" id="FigureTCDBFunctionalClassificationChart_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="FigureTCDBFunctionalClassificationChart_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="sampletcdbclasscatalogpng1" data-toggle="list" href="#sampletcdbclasscatalogpng1" role="tab" aria-controls="sampletcdbclasscatalogpng1">sample1.tcdb.class.catalog.png</a>
+
+</div>
+</div>
+</div>
+<p class="name_fig"><strong>Figure 2-10 TCDB Functional Classification Chart</strong></p>  
+
+    <p class="paragraph"><details><summary> Show Annotation </summary></p>
+<p class="premark" >The horizontal axis represents the first-level classification type of TCDB, and the vertical axis represents the number of genes annotated.</p>
+
+    <p class="paragraph"></details></p>
+
+    <p class="paragraph">Results directory: result/04.Genome_Function/*/General_Gene_Annotation/TCDB/</p>
+
+    <a name="T5"></a>
+    <h5>2.4.1.6 Pfam database annotation</h5>    
+
+    <p class="paragraph">Proteins are generally comprised of one or more functional regions, commonly termed domains. The presence of different domains in varying combinations in different proteins gives rise to the diverse repertoire of proteins found in nature. Identifying the domains present in a protein can provide insights into the function of that protein.</p>
+
+    <p class="paragraph">The Pfam database is a large collection of protein domain families. Each family is represented by multiple sequence alignments and a hidden Markov model (HMMs). More details could be found at:<a href="http://pfam.xfam.org/">http://pfam.xfam.org/</a>。</p>
+
+    <p class="paragraph">Results directory: result/04.Genome_Function/*/General_Gene_Annotation/Pfam/</p>
+
+    <a name="T5"></a>
+    <h5>2.4.1.7 Swiss-Prot database annotation</h5>    
+
+    <p class="paragraph">Swiss-Prot(Amos B et al.,2000) is a protein sequence database, it can provide a high-level annotation result. For example, the description of protein function, structural domian, modification after translation, mutation and so on. More details could be found at:<a href="http://www.ebi.ac.uk/uniprot/">http://www.ebi.ac.uk/uniprot/</a>。</p>
+
+    <p class="paragraph">Results directory: result/04.Genome_Function/*/General_Gene_Annotation/Swiss-Prot/</p>
+
+    <a name="T5"></a>
+    <h5>2.4.1.8 CAZy database annotation</h5>    
+
+    <p class="paragraph">Carbohydrate-Active enZYmes Database(Cantarel B L et al.,2009) is a professional database for carbohydrate enzyme. It involves the enzyme family relate to carbohydrate degradation, modification and biosynthesis. There are five mains categories: Glycoside Hydrolases (GHs), GlycosyITransferases (GTs), Polysaccharide Lyases (PLs), Carbohydrate Esterases (CEs) and Auxiliary Activities (AAs)</p>
+
+    <p class="paragraph">The annotation result was shown as follow:</p>
+
+<p class="name_table"><p class="center"><strong>Table 2-11 Annotation Results of Carbohydrate             Enzyme Classification</strong></p>        
+<p class="center">
+<div style="overflow-x: auto">
+<table class="gy" id="mytable12" >
+        <thead><tr>
+<a id="btn012"></a>
+<a id="sjzl12"></a>
+<a  href="javascript:void(0)" id="btn112"> | First | </a>
+<a  href="javascript:void(0)" id="btn212"> Previous | </a>
+<a  href="javascript:void(0)" id="btn312"> Next | </a>
+<a  href="javascript:void(0)" id="btn412"> Last | </a>
+<a>Go to </a>
+<input id="changePage12" type="text" size="1" maxlength="4"/>
+<a> page </a>
+<a  href="javascript:void(0)" id="btn512"> Jump </a>
+                
+<th style="text-align :center">Sample ID</th><th style="text-align :center">CBM</th><th style="text-align :center">CE</th><th style="text-align :center">GH</th><th style="text-align :center">GT</th><th style="text-align :center">PL</th><th style="text-align :center">AA
+</th></tr></thead>
+<tr>
+<td style="text-align :center">sample1</td><td style="text-align :center">6</td><td style="text-align :center">1</td><td style="text-align :center">49</td><td style="text-align :center">34</td><td style="text-align :center">0</td><td style="text-align :center">0
+</td></tr>
+
+</table>
+</div>
+</p>
+
+    <p class="paragraph"><details><summary> Show Annotation </summary></p>
+<p class="premark" >sample ID: sample name in report</p>
+<p class="premark" >CBM: the number of genes related to carbohydrate-binding modules (CBMs)</p>
+<p class="premark" >CE: the number of genes related to carbohydrate esterases (CEs)</p>
+<p class="premark" >GH: the number of genes related to glycoside hydrolases (GHs)</p>
+<p class="premark" >GT: the number of genes related to glycosyltransferases (GTs)</p>
+<p class="premark" >PL: the number of genes related to polysaccharide lyases (PLs)</p>
+<p class="premark" >AA: the number of genes related to auxiliary activities (AAs)</p>
+
+    <p class="paragraph"></details></p>
+
+<p class="center">
+<div class="row gallery-row">
+<div class="col-1">
+<div id="FigureCAZyFunctionalClassificationandCorrespondingGeneNumberChart_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-6">
+<div class="tab-content" id="FigureCAZyFunctionalClassificationandCorrespondingGeneNumberChart_nav-tabContent">
+
+<div class="tab-pane active show" id="samplesingleCAZyclasspng1" role="tabpanel" aria-labelledby="samplesingleCAZyclasspng1" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample1.single_CAZy_class.png" /></div>
+
+</div>
+</div>
+<div class="col-1">
+<div id="FigureCAZyFunctionalClassificationandCorrespondingGeneNumberChart_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-4">
+<input class="form-control" id="FigureCAZyFunctionalClassificationandCorrespondingGeneNumberChart_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="FigureCAZyFunctionalClassificationandCorrespondingGeneNumberChart_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="samplesingleCAZyclasspng1" data-toggle="list" href="#samplesingleCAZyclasspng1" role="tab" aria-controls="samplesingleCAZyclasspng1">sample1.single_CAZy_class.png</a>
+
+</div>
+</div>
+</div>
+<p class="name_fig"><strong>Figure 2-11 CAZy Functional Classification and Corresponding Gene Number Chart</strong></p>  
+
+    <p class="paragraph">Description: The sample ID is shown above, the horizontal axis represents the classification type of the CAZy database, and the vertical axis represents the number of annotated genes.</p>
+
+    <p class="paragraph">Results directory: result/04.Genome_Function/*/General_Gene_Annotation/CAZy/</p>
+
+    <a name="T4"></a>
+    <h4>2.4.2 Effectors</h4>    
+
+    <a name="T5"></a>
+    <h5>2.4.2.1 Secreted Protein Prediction</h5>    
+
+    <p class="paragraph">Secreted proteins are proteins that are synthesized inside cells and secreted outside the cell to act under the guidance of signal peptides. Many of the secreted proteins are important enzymes required for life activities. The N-terminus of a secreted protein is a signal peptide composed of 15 to 30 amino acids, which plays a leading role in the secretion of the secreted protein.</p>
+
+    <p class="paragraph">SignalP(Version 4.1)(Petersen T N et al.,2011) and TMHMM (Version 2.0c) tools were used to predict whether there is a signal peptide and transmembrane structure, and comprehensively predict whether the protein sequence is a secreted protein.</p>
+
+<p class="name_table"><p class="center"><strong>Table 2-12 Statistical Table of Secreted Protein Results</strong></p>        
+<p class="center">
+<div style="overflow-x: auto">
+<table class="gy" id="mytable13" >
+        <thead><tr>
+<a id="btn013"></a>
+<a id="sjzl13"></a>
+<a  href="javascript:void(0)" id="btn113"> | First | </a>
+<a  href="javascript:void(0)" id="btn213"> Previous | </a>
+<a  href="javascript:void(0)" id="btn313"> Next | </a>
+<a  href="javascript:void(0)" id="btn413"> Last | </a>
+<a>Go to </a>
+<input id="changePage13" type="text" size="1" maxlength="4"/>
+<a> page </a>
+<a  href="javascript:void(0)" id="btn513"> Jump </a>
+                
+<th style="text-align :center">Sample ID</th><th style="text-align :center">SignalP Protein(#)</th><th style="text-align :center">TMHMM Protein(#)</th><th style="text-align :center">Secreted Protein(#)
+</th></tr></thead>
+<tr>
+<td style="text-align :center">sample1</td><td style="text-align :center">43</td><td style="text-align :center">572</td><td style="text-align :center">23
+</td></tr>
+
+</table>
+</div>
+</p>
+
+    <p class="paragraph"><details><summary> Show Annotation </summary></p>
+<p class="premark" >sample ID: sample name in report</p>
+<p class="premark" >SignalP Protein: the number of proteins with signal peptide structures</p>
+<p class="premark" >TMHMM Protein: the number of proteins with transmembrane structures</p>
+<p class="premark" >Secreted Protein: the number of predicted secreted proteins</p>
+
+    <p class="paragraph"></details></p>
+
+    <p class="paragraph">Results directory: result/04.Genome_Function/*/Effector/Secretory_Protein/</p>
+
+    <a name="T5"></a>
+    <h5>2.4.2.2 Prediction of Secretion System Proteins and T3SS Effectors</h5>    
+
+    <p class="paragraph">Pathogenic bacteria use type N secretion systems (TNSS, currently known to have 7 types, I-VII) to secrete this type of protein into the extracellular space or host cells. By controlling immune response and causing cell death, they cause pathological reactions. Among them, the T3SS of Gram-negative bacteria is usually used to study pathogenic bacteria, infection mechanisms, virulence effects, etc., and is a more studied secretion system.</p>
+
+    <p class="paragraph">For the TNSS system, relevant secretion system proteins are extracted from the annotation results of the protein sequence functional database for annotation. For Gram-negative bacteria, EffectiveT3 [24]software (Version 1.0.1) was used to predict T3SS effector proteins.</p>
+
+    <p class="paragraph">The prediction results are as follows:</p>
+
+<p class="name_table"><p class="center"><strong>Table 2-13 TNSS Result Statistics</strong></p>        
+<p class="center">
+<div style="overflow-x: auto">
+<table class="gy" id="mytable14" >
+        <thead><tr>
+<a id="btn014"></a>
+<a id="sjzl14"></a>
+<a  href="javascript:void(0)" id="btn114"> | First | </a>
+<a  href="javascript:void(0)" id="btn214"> Previous | </a>
+<a  href="javascript:void(0)" id="btn314"> Next | </a>
+<a  href="javascript:void(0)" id="btn414"> Last | </a>
+<a>Go to </a>
+<input id="changePage14" type="text" size="1" maxlength="4"/>
+<a> page </a>
+<a  href="javascript:void(0)" id="btn514"> Jump </a>
+                
+<th style="text-align :center">Sample ID</th><th style="text-align :center">Total_Gene_Num</th><th style="text-align :center">T1SS</th><th style="text-align :center">T2SS</th><th style="text-align :center">T3SS</th><th style="text-align :center">T4SS</th><th style="text-align :center">T5SS</th><th style="text-align :center">T6SS</th><th style="text-align :center">T7SS
+</th></tr></thead>
+<tr>
+<td style="text-align :center">sample1</td><td style="text-align :center">2137</td><td style="text-align :center">0</td><td style="text-align :center">2</td><td style="text-align :center">0</td><td style="text-align :center">0</td><td style="text-align :center">0</td><td style="text-align :center">0</td><td style="text-align :center">0
+</td></tr>
+
+</table>
+</div>
+</p>
+
+    <p class="paragraph"><details><summary> Show Annotation </summary></p>
+<p class="premark" >sample ID: sample name in report</p>
+<p class="premark" >Total_Gene_Num: the total number of encoded genes</p>
+<p class="premark" >the number of predicted type I to type VII secretion system effector proteins</p>
+
+    <p class="paragraph"></details></p>
+
+    <p class="paragraph">Results directory：result/04.Genome_Function/*/Effector/TNSS/</p>
+
+<p class="name_table"><p class="center"><strong>Table 2-14 Statistics of T3SS Effector Protein Prediction Results</strong></p>        
+<p class="center">
+<div style="overflow-x: auto">
+<table class="gy" id="mytable15" >
+        <thead><tr>
+<a id="btn015"></a>
+<a id="sjzl15"></a>
+<a  href="javascript:void(0)" id="btn115"> | First | </a>
+<a  href="javascript:void(0)" id="btn215"> Previous | </a>
+<a  href="javascript:void(0)" id="btn315"> Next | </a>
+<a  href="javascript:void(0)" id="btn415"> Last | </a>
+<a>Go to </a>
+<input id="changePage15" type="text" size="1" maxlength="4"/>
+<a> page </a>
+<a  href="javascript:void(0)" id="btn515"> Jump </a>
+                
+<th style="text-align :center">Sample ID</th><th style="text-align :center">Total Protein(#)</th><th style="text-align :center">T3S effective true(#)</th><th style="text-align :center">T3S effective false(#)
+</th></tr></thead>
+<tr>
+<td style="text-align :center">sample1</td><td style="text-align :center">2137</td><td style="text-align :center">53</td><td style="text-align :center">2084
+</td></tr>
+
+</table>
+</div>
+</p>
+
+    <p class="paragraph"><details><summary> Show Annotation </summary></p>
+<p class="premark" >sample ID: sample name in report</p>
+<p class="premark" >Total Protein: the total number of encoded genes</p>
+<p class="premark" >T3SS effective true: the number of predicted T3SS effector proteins</p>
+<p class="premark" >T3SS effective false: the number of predicted non-T3SS effector proteins</p>
+
+    <p class="paragraph"></details></p>
+
+    <p class="paragraph">Results directory: result/04.Genome_Function/*/Effector/T3SS/</p>
+
+    <a name="T5"></a>
+    <h5>2.4.2.3 Secondary metabolite gene cluster</h5>    
+
+    <p class="paragraph">Secondary metabolite are the substances that synthesized by using primary metabolite as precursor in a certain period of growth. Their function for microorganism life activity are still undefined and not necessary to growth and reproduction. Gene cluster prediction was performed by antiSMASH(Version 2.0.2)(Medema M H et al.,2011) software.</p>
+
+    <p class="paragraph">PKS can be classified into three types: Type I is modular PKS, including multiple function enzyme complex constituted by many structural domain. Type II is aromatic PKS, mainly include aromatic complex. Type III is chalcone PKS. Also used antiSMASH-4.0.2 to do genome prediction. The predicted result were shown as below:</p>
+
+<p class="name_table"><p class="center"><strong>Table 2-15 Secondary metabolic gene clusters and gene number statistics</strong></p>        
+<p class="center">
+<div style="overflow-x: auto">
+<table class="gy" id="mytable16" >
+        <thead><tr>
+<a id="btn016"></a>
+<a id="sjzl16"></a>
+<a  href="javascript:void(0)" id="btn116"> | First | </a>
+<a  href="javascript:void(0)" id="btn216"> Previous | </a>
+<a  href="javascript:void(0)" id="btn316"> Next | </a>
+<a  href="javascript:void(0)" id="btn416"> Last | </a>
+<a>Go to </a>
+<input id="changePage16" type="text" size="1" maxlength="4"/>
+<a> page </a>
+<a  href="javascript:void(0)" id="btn516"> Jump </a>
+                
+<th style="text-align :center">Sample ID</th><th style="text-align :center">Clusters</th><th style="text-align :center">Clusters_number</th><th style="text-align :center">Gene_number
+</th></tr></thead>
+<tr>
+<td style="text-align :center">sample1</td><td style="text-align :center">bacteriocin</td><td style="text-align :center">1</td><td style="text-align :center">23
+</td></tr>
+<tr>
+<td style="text-align :center">sample1</td><td style="text-align :center">furan</td><td style="text-align :center">1</td><td style="text-align :center">28
+</td></tr>
+
+</table>
+</div>
+</p>
+
+    <p class="paragraph"><details><summary> Show Annotation </summary></p>
+<p class="premark" >Sample ID: sample name in report</p>
+<p class="premark" >Gene cluster ID: cluster name</p>
+<p class="premark" >Clusters number: cluster number</p>
+<p class="premark" >Gene number: gene number incluster</p>
+
+    <p class="paragraph"></details></p>
+
+<p class="center">
+<div class="row gallery-row">
+<div class="col-1">
+<div id="FigureStatisticalchartofgeneclustersandcorrespondinggenenumbers_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-6">
+<div class="tab-content" id="FigureStatisticalchartofgeneclustersandcorrespondinggenenumbers_nav-tabContent">
+
+<div class="tab-pane active show" id="sampleclusternumpng1" role="tabpanel" aria-labelledby="sampleclusternumpng1" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample1.cluster_num.png" /></div>
+
+</div>
+</div>
+<div class="col-1">
+<div id="FigureStatisticalchartofgeneclustersandcorrespondinggenenumbers_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-4">
+<input class="form-control" id="FigureStatisticalchartofgeneclustersandcorrespondinggenenumbers_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="FigureStatisticalchartofgeneclustersandcorrespondinggenenumbers_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="sampleclusternumpng1" data-toggle="list" href="#sampleclusternumpng1" role="tab" aria-controls="sampleclusternumpng1">sample1.cluster_num.png</a>
+
+</div>
+</div>
+</div>
+<p class="name_fig"><strong>Figure 2-12 Statistical chart of gene clusters and corresponding gene numbers</strong></p>  
+
+    <p class="paragraph">Results directory: result/04.Genome_Function/*/Effector/Secondary_Metabolism/</p>
+
+    <a name="T4"></a>
+    <h4>2.4.3 Pathogenicity or virulence analysis</h4>    
+
+    <a name="T5"></a>
+    <h5>2.4.3.1 PHI database annotation</h5>    
+
+    <p class="paragraph">Pathogen Host Interactions Database(PHI)(Martin U et al.,2015) is a database that researches the interaction between pathogen and host. Its main source of pathogen comes from fungus, oomycetes and bacteria. Its infectious host involves animals, plants, fungus and insects. PHI makes a difference in searching the target gene of drug intervention. And it includes anti-fungal compounds and corresponding target gene. All the genes within the database have nucleotide acid and amino acid sequences and descriptions of predicted protein function during host infection.</p>
+
+    <p class="paragraph">The result was shown as below:</p>
+
+<p class="center">
+<div class="row gallery-row">
+<div class="col-1">
+<div id="FigureGenefunctionannotationofpathogengicphenotypicmutationtypesdistribution_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-6">
+<div class="tab-content" id="FigureGenefunctionannotationofpathogengicphenotypicmutationtypesdistribution_nav-tabContent">
+
+<div class="tab-pane active show" id="samplephiclasspng1" role="tabpanel" aria-labelledby="samplephiclasspng1" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample1.phi.class.png" /></div>
+
+</div>
+</div>
+<div class="col-1">
+<div id="FigureGenefunctionannotationofpathogengicphenotypicmutationtypesdistribution_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-4">
+<input class="form-control" id="FigureGenefunctionannotationofpathogengicphenotypicmutationtypesdistribution_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="FigureGenefunctionannotationofpathogengicphenotypicmutationtypesdistribution_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="samplephiclasspng1" data-toggle="list" href="#samplephiclasspng1" role="tab" aria-controls="samplephiclasspng1">sample1.phi.class.png</a>
+
+</div>
+</div>
+</div>
+<p class="name_fig"><strong>Figure 2-13 Gene function annotation of pathogengic phenotypic mutation types distribution</strong></p>  
+
+    <p class="paragraph"><details><summary> Show Annotation </summary></p>
+<p class="premark" >The horizontal coordinate indicates the type of phenotypic mutation and the vertical coordinate indicates the number of genes on the annotation.</p>
+
+    <p class="paragraph"></details></p>
+
+    <p class="paragraph">Results directory: result/04.Genome_Function/*/Pathogenicity/PHI/</p>
+
+    <a name="T5"></a>
+    <h5>2.4.3.2 VFDB annotation</h5>    
+
+    <p class="paragraph">The VFDB database(Chen L et al.,2012), short for Virulence Factors of Pathogenic Bacteria, is a database specifically designed to study virulence factors of pathogenic bacteria, chlamydia, and rickettsia. In addition to collecting species information and basic feature descriptions of virulence genes, the database also provides detailed descriptions of virulence gene functions and pathogenic mechanisms. As of November 2017, the database collected 1796 virulence factors from 74 genera of pathogenic bacteria, including 926 related strains and 30,178 non-redundant VF-related genes annotations.</p>
+
+    <p class="paragraph">Using Diamond software, the amino acid sequence of the target species is compared with the VFDB database to combine the gene and its corresponding virulence factor functional annotation information to obtain the annotation result.</p>
+
+    <p class="paragraph">Results directory: result/04.Genome_Function/*/Pathogenicity/VFDB/</p>
+
+    <a name="T5"></a>
+    <h5>2.4.3.3 Annotation of Antibiotic Resistance Genes (ARDB, CARD)</h5>    
+
+    <p class="paragraph">The ARDB database(Liu B et al.,2009), short for Antibiotic Resistance Genes Database, can be used to find the name of antibiotic-resistant genes and their associated information such as specific antibiotics it resists.</p>
+
+    <p class="paragraph">Using the Diamond software, the amino acid sequence of the target species is compared with the ARDB database to combine the gene and its corresponding antibiotic resistance functional annotation information to obtain the annotation result.</p>
+
+    <p class="paragraph">Results directory: result/04.Genome_Function/*/Pathogenicity/ARDB/</p>
+
+    <p class="paragraph">The Comprehensive Antibiotic Research Database(CARD)(Jia B et al.,2017) integrates sequence, antibiotic resistance, mechanism of action, and associations between AROs. By annotating with this database, users can find the name of antibiotic-resistant genes and their associated information such as specific antibiotics it resists.</p>
+
+    <p class="paragraph">Using the Resistance Gene Identifier (RGI) software provided by the CARD database, the amino acid sequence of the target species is compared with the CARD database (which uses blastp with default e-value ≤ 1e-30). The annotated antibiotic resistance gene information is then collated based on the comparison results from RGI.</p>
+
+    <p class="paragraph">Results directory: result/04.Genome_Function/*/Pathogenicity/CARD/</p>
+
+        <br />
+
+        <br />
+
+<hr />
+</p><br />
+<h2>3 Appendix</h2>
+
+
+    <p class="paragraph">The method below is by default. It could be updated according to the actual situation.</p>
+
+        <p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="src/hyperlinks/Bac_EN_method.pdf" target="_blank"><b>English method</b></a></p>
+        
+
+        <p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="src/hyperlinks/Bac_Result_file_directory_EN.pdf" target="_blank"><b>Result directory guidance</b></a></p>
+        
+
+        <p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="src/hyperlinks/Version_information_EN.html" target="_blank"><b>The illustration of prediction software and database version</b></a></p>
+        
+
+        <br />
+
+        <br />
+
+<hr />
+</p><br />
+<h2>4 Reference</h2>
+
+
+    <p class="paragraph">  Akhter S, Aziz RK, Edwards RA: PhiSpy: a novel algorithm for finding prophages in bacterial genomes that combines similarity- and composition-based strategies. Nucleic Acids Res 2012, 40:e126.</p>
+
+    <p class="paragraph">  Amos B, Rolf A. The SWISS-PROT protein sequence database and its supplement TrEMBL in 2000. Nucleic Acids Res. 2000, 28(1): 45-48.</p>
+
+    <p class="paragraph">  Ashburner M, Ball C A, Blake J A, et al. Gene Ontology: tool for the unification of biology[J]. Nature genetics, 2000, 25(1): 25-29.</p>
+
+    <p class="paragraph">  Bankevich A, Nurk S, Antipov D, et al. SPAdes: a new genome assembly algorithm and its applications to single-cell sequencing[J]. Journal of Computational Biology, 2012, 19(5): 455-477.</p>
+
+    <p class="paragraph">  Benson G. Tandem repeats finder: a program to analyze DNA sequences[J]. Nucleic acids research, 1999, 27(2): 573.</p>
+
+    <p class="paragraph">  Besemer J, Lomsadze A, Borodovsky M. GeneMarkS: a self-training method for prediction of gene starts in microbial genomes. Implications for finding sequence motifs in regulatory regions[J]. Nucleic Acids Research, 2001, 29(12): 2607-2618.</p>
+
+    <p class="paragraph">  Cantarel B L, Coutinho P M, Rancurel C, et al. The Carbohydrate-Active EnZymes database (CAZy): an expert resource for glycogenomics[J]. Nucleic acids research, 2009, 37(suppl 1): D233-D238.</p>
+
+    <p class="paragraph">  Chen L, Xiong Z, Sun L, et al. VFDB 2012 update: toward the genetic diversity and molecular evolution of bacterial virulence factors[J]. Nucleic acids research, 2012, 40(D1): D641-D645.</p>
+
+    <p class="paragraph">  Cui X, Lu Z, Wang S, Jing-Yan Wang J, Gao X: CMsearch: simultaneous exploration of protein sequence space and structure space improves not only protein homology detection but also protein structure prediction. Bioinformatics 2016, 32:i332-i340.</p>
+
+    <p class="paragraph">  Chen S, Zhou Y, Chen Y, Gu J. fastp: an ultra-fast all-in-one FASTQ preprocessor. Bioinformatics. \                                        </p>
+
+    <p class="paragraph">  Eichinger V, Nussbaumer T, Platzer A, et al. Effective DB-updates and novel features for a better annotation of bacterial secreted proteins and Type III, IV, VI secretion systems. 2016, Nucleic Acids Res. doi:10.1093/nar/gkv1269.</p>
+
+    <p class="paragraph">  Galperin MY, Makarova KS, Wolf YI, et al. Expanded microbial genome coverage and improved protein family annotation in the COG database[J]. Nucleic Acids Research, 2015, 43(Database issue):261-9.</p>
+
+    <p class="paragraph">  Gardner P P, Daub J, Tate J G, et al. Rfam: updates to the RNA families database[J]. Nucleic acids research, 2009, 37(suppl 1): D136-D140.</p>
+
+    <p class="paragraph">  Ge R, Mai G, Wang P, Zhou M, Luo Y, Cai Y, Zhou F: CRISPRdigger: detecting CRISPRs with better direct repeat annotations. Sci Rep 2016, 6:32942.Ashburner M, Ball C A, Blake J A, et al. Gene Ontology: tool for the unification of biology[J]. Nature genetics, 2000, 25(1): 25-29.</p>
+
+    <p class="paragraph">  Hsiao W, Wan I, Jones S J, et al. IslandPath: aiding detection of genomic islands in prokaryotes[J]. Bioinformatics, 2003, 19(3): 418-420.</p>
+
+    <p class="paragraph">  Jia B, Raphenya A R, Alcock B, et al. CARD 2017: expansion and model-centric curation of the comprehensive antibiotic resistance database:[J]. Nucleic Acids Research, 2017, 45(Database issue):D566-D573.</p>
+
+    <p class="paragraph">  Kanehisa M, Goto S, Hattori M, et al. From genomics to chemical genomics: new developments in KEGG[J]. Nucleic acids research, 2006, 34(suppl 1): D354-D357.</p>
+
+    <p class="paragraph">  Kanehisa M, Goto S, Kawashima S, et al. The KEGG resource for deciphering the genome[J]. Nucleic acids research, 2004, 32(suppl 1): D277-D280.</p>
+
+    <p class="paragraph">  Lagesen K, Hallin P, Rødland E A, et al. RNAmmer: consistent and rapid annotation of ribosomal RNA genes[J]. Nucleic acids research, 2007, 35(9): 3100-3108.</p>
+
+    <p class="paragraph">  Lin S H, Liao Y C. CISA: contig integrator for sequence assembly of bacterial genomes[J]. PloS one, 2013, 8(3): e60843.</p>
+
+    <p class="paragraph">  Li R, Li Y, Kristiansen K, et al. SOAP: short oligonucleotide alignment program[J]. Bioinformatics, 2008, 24(5): 713-714.</p>
+
+    <p class="paragraph">  Li R, Zhu H, Ruan J, et al. De novo assembly of human genomes with massively parallel short read sequencing[J]. Genome research, 2010, 20(2): 265-272.</p>
+
+    <p class="paragraph">  Liu B, Pop M. ARDB-antibiotic resistance genes database[J]. Nucleic acids research, 2009, 37(suppl 1): D443-D447.</p>
+
+    <p class="paragraph">  Li W, Jaroszewski L, Godzik A. Tolerating some redundancy significantly speeds up clustering of large protein databases[J]. Bioinformatics, 2002, 18(1): 77-82.</p>
+
+    <p class="paragraph">  Lowe T M, Eddy S R. tRNAscan-SE: a program for improved detection of transfer RNA genes in genomic sequence[J]. Nucleic acids research, 1997, 25(5): 0955-964.</p>
+
+    <p class="paragraph">  Martin U, Rashmi P, Arathi R et al. The Pathogen-Host Interactions database (PHI-base): additions and future developments. Nucleic Acids Research. 2015, doi: 10.1093/nar/gku1165.</p>
+
+    <p class="paragraph">  Medema M H, Blin K, Cimermancic P, et al. antiSMASH: rapid identification, annotation and analysis of secondary metabolite biosynthesis gene clusters in bacterial and fungal genome sequences[J]. Nucleic acids research, 2011, 39(suppl 2): W339-W346.</p>
+
+    <p class="paragraph">  Milton SJ, Vamsee SR, Dorjee GT, et al. The Transporter Classification Database. Nucleic Acids Research, 2014, doi:10.1093/nar/gkt1097.</p>
+
+    <p class="paragraph">  Petersen T N, Brunak S, von Heijne G, et al. SignalP 4.0: discriminating signal peptides from transmembrane regions[J]. Nature methods. 2011, 8(10): 785-786.</p>
+
+    <p class="paragraph">  Saha S, Bridges S, Magbanua Z V, et al. Empirical comparison of ab initio repeat finding programs[J]. Nucleic acids research, 2008, 36(7): 2284-2294.</p>
+
+    <p class="paragraph">  Simpson JT, Wong K, Jackman SD, et al. ABySS: a parallel assembler for short read sequence data.[J]. Genome Research, 2009, 19(6):1117.</p>
+
+        <br />
+
+        <br />
+
+<hr />
+</p><br />
+<h2>5 Remarks</h2>
+
+
+    <p class="paragraph">Advise to open result file with Excel or EditPlus and other text editors.</p>
+
+    <p class="paragraph">Firefox is recommend for the web version of the report,The download link is available: <a href="http://www.firefox.com.cn/download/">http://www.firefox.com.cn/download/</a></p>
+
+        <br />
+
+        <br />
+
+
+</body> 
+    
+</html>    
+    

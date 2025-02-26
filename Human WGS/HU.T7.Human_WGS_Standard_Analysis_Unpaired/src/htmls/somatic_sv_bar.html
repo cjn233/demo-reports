@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Somatic CNV bar</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+<body>
+    <div id="somatic_cnv_bar" style="width: 800px; height: 400px; margin: auto"></div>
+    <script type="text/javascript" src="../js/echarts.min.js"></script>
+    <script type="text/javascript" src="../js/macarons.js"></script>
+    <script id="asdsf" type="text/javascript">
+        var CNV_show = function(){
+            var classif = ['INV', 'CTX', 'DEL', 'ITX', 'DUP'];
+            var sample_Now = new Array();
+            var series_Now = new Array();
+            var data_dict = {"CAT082_mice_F2": [0, 3503, 331, 143, 16], "CAT082_Ca": [0, 6707, 19, 175, 4], "CAT061-mice-F4": [0, 11485, 384, 349, 39], "CAT061_Ca": [0, 8014, 36, 234, 18], "CAT070_mice_F1": [0, 1084, 437, 54, 14], "CAT070_Ca": [1, 53703, 187, 3080, 147]};
+            var class_data = new Array();
+            for (var i = 0; i < classif.length; i++) {
+                class_data[classif[i]] = [];
+            };
+            for (i in data_dict){
+                sample_Now.push(i);
+                for (var j = 0; j < classif.length; j++) {
+                    class_data[classif[j]].push(data_dict[i][j]);
+                };
+            };
+            for (i in class_data){
+                series_Now.push({name: i, type: "bar", stack:"cnv size", itemStyle:{normal: {label:{show: true, position: 'insideRight'}}}, data: class_data[i]})
+            };
+            var myChart = echarts.init(document.getElementById('somatic_cnv_bar'), 'macarons');
+            var plot_option = {
+                tooltip : {
+                    trigger: 'axis',
+                    axisPointer : {
+                        type : 'shadow'
+                    }
+                },
+                legend: {
+                    show: true,
+                    orient: 'horizontal',
+                    left: '5%',
+                    data: classif
+                },
+                toolbox: {
+                    show : true,
+                    x : 580,
+                    feature : {
+                        mark : {show: true},
+                        dataView : {show: true, readOnly: false},
+                        magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                        restore : {show: true},
+                        saveAsImage : {show: true}
+                    }
+                },
+                calculable : true,
+                yAxis : [
+                    {
+                        type : 'value'
+                    }
+                ],
+                xAxis : [
+                    {
+                        type : 'category',
+                        data : sample_Now,
+                        axisLabel: {
+                            rotate: 40
+                        }
+                    }
+                ],
+                grid: {
+                    y2: 80
+                },
+                dataZoom: [
+                    {
+                        xAxisIndex: 0,
+                        type: 'slider',
+                        start: 0,
+                        end: 100
+                    }
+                ],
+                series : series_Now
+            };
+            myChart.setOption(plot_option);
+            return 0;
+        };
+        CNV_show();
+    </script>
+</body>
+</html>

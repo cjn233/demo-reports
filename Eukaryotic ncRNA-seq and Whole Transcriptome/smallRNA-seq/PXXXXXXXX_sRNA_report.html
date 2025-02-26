@@ -1,0 +1,3003 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" >
+<html>
+
+<head>
+
+<TITLE> RNAseq analysis report-sRNA</TITLE>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+
+<link rel="stylesheet" href="src/css/jquery-ui.css" />
+
+<link rel="stylesheet" href="src/css/bootstrap-4.3.1.min.css" />
+
+<link rel="stylesheet" href="src/css/jquery.tocify.css" />
+
+<link rel="stylesheet" href="src/css/style.css"/>
+
+<link rel="stylesheet" href="src/css/base.css"/>
+
+<link rel="stylesheet" href="src/css/gallery.css"/>
+
+<script src="src/js/jquery-3.3.1.min.js" type="text/javascript"></script>
+
+<script src="src/js/jquery-ui.min.js" type="text/javascript"></script>
+
+<script src="src/js/jquery.tocify.min.js" type="text/javascript"></script>
+
+<script src="src/js/bootstrap-4.3.1.min.js" type="text/javascript"></script>
+
+<script src="src/js/scrollTop.js" type="text/javascript"></script>
+
+<script src="js/jquery.albumSlider.min.js" type="text/javascript"></script>
+ <script type="text/javascript">
+    /* show or hide element*/
+    function hiddenShow(btnObj){
+      ctObj = btnObj.nextElementSibling;
+      if (ctObj.style.display == 'inline'){
+        ctObj.style.display = 'none';
+        btnObj.innerHTML = "Show Annotation";
+      }else{
+        ctObj.style.display = 'inline';
+        btnObj.innerHTML = "Hide Annotation";
+      };
+      return 0;
+    }
+ </script>
+<script type="text/javascript">
+    /* show or hide element*/
+    function hiddenQA(btnObj){
+      ctObj = btnObj.nextElementSibling;
+      if (ctObj.style.display == 'inline'){
+        ctObj.style.display = 'none';
+        btnObj.innerHTML = "Show Q&A";
+      }else{
+        ctObj.style.display = 'inline';
+        btnObj.innerHTML = "Hide Q&A";
+      };
+      return 0;
+    }
+  </script>
+
+<script type="text/javascript">
+
+	$(function () {
+
+		var options = {
+
+			selectors: "h2,h3,h4",
+
+			theme: "bootstrap",
+
+			scrollTo: "60"
+
+		};
+
+		var toc = $("#toc").tocify(options).data("toc-tocify");
+
+	});
+
+</script>
+
+
+
+
+
+<script type="text/javascript">
+
+function trans(img_div_id) {
+
+img_div = $("#" + img_div_id)
+
+img = $("#" + img_div_id + " img").first();
+
+if (img_div.hasClass("fullscreen-div")) {
+
+img_div.removeClass("fullscreen-div");
+
+img.removeClass("fullscreen-img");
+
+}
+
+else {
+
+img_div.addClass("fullscreen-div");
+
+img.addClass("fullscreen-img");
+
+}
+
+}
+
+
+
+function filter_display() {
+
+return $(this).css("display") != "none";
+
+}
+
+
+
+function show_default() {
+
+var list_group_id = "#" + $(this).attr("id");
+
+if ($(list_group_id + " a.active").css("display") == "none") {
+
+var list_tab = $(list_group_id + " a.active");
+
+var pan_id = list_tab.attr("href");
+
+$(pan_id).removeClass("active show");
+
+list_tab.removeClass("active");
+
+}
+
+if ($(list_group_id + " a.active").filter(filter_display).length == 0) {
+
+$(list_group_id + " a").filter(filter_display).first().tab("show");
+
+}
+
+}
+
+$.fn.show_default = show_default
+
+
+
+function next(botton_id) {
+
+var present_tab = $("#" + botton_id.replace("_button_next", "_list-tab") + " .active").first();
+
+while (present_tab.next().length == 1) {
+
+if (present_tab.next().css("display") != "none") {
+
+present_tab.next().tab("show");
+
+break;
+
+}
+
+else {
+
+present_tab = present_tab.next();
+
+}
+
+}
+
+
+
+}
+
+function prev(botton_id) {
+
+var present_tab = $("#" + botton_id.replace("_button_prev", "_list-tab") + " .active").first();
+
+while (present_tab.prev().length == 1) {
+
+if (present_tab.prev().css("display") != "none") {
+
+present_tab.prev().tab("show");
+
+break;
+
+}
+
+else {
+
+present_tab = present_tab.prev();
+
+}
+
+}
+
+
+
+
+
+}
+
+
+
+$(document).ready(function () {
+
+$(".form-control").on("keyup", function () {
+
+var value = $(this).val().toLowerCase();
+
+var input_box_id = "#" + $(this).attr("id");
+
+var list_group_id = input_box_id.replace("_InputList", "_list-tab");
+
+$(list_group_id + " a").filter(function () {
+
+$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+
+});
+
+$(list_group_id).show_default();
+
+});
+
+$(".list-group").each(show_default);
+
+});
+
+
+
+</script>
+
+
+
+
+
+
+
+</head>
+
+
+
+<body>
+
+
+
+<div id="toc" class="tocify">
+
+</div>
+
+
+
+
+
+	<div style="position:fixed; top:0; left:0; width:100%; z-index:1000;">
+
+		<table width="100%" height="80px" border="0" cellpadding="5" cellspacing="0"
+
+			style="background:#F3F3F3; border-bottom:1px solid #eee;border-top: none;background-image:-moz-linear-gradient(top,#EEEEEE,#FFFFFF); background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0,#EEEEEE), color-stop(1,#FFFFFF));filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#EEEEEE', endColorstr='#FFFFFF', GradientType='0')">
+
+			<tr height="0%">
+
+				<td width='0%'></td>
+
+				<td><img src="src/images/logo_head.png"></td>
+
+				<td>
+
+					<div style="margin:4px;#DCDCDC;height:4px"></div>
+
+				</td>
+
+				<td width="0%"></td>
+
+				<td width="40%"></td>
+
+				<td width="20%"
+
+					style="text-align:right;padding:0px;margin:0px;color:black;font-size:14px;font-weight:50;">
+
+				<!--	Tel: 916-252-0068-383 -->
+
+					<br><a href="mailto:op-rna@novogene.com" target="black"
+
+						style="text-decoration:none;color:black;font-size:14px;font-weight:50;">
+					 <!--	Email:inquiry_us@novogene.com -->
+
+						<a></td>
+
+				<td width="1%"></td>
+
+			</tr>
+
+		</table>
+
+	</div>
+
+</div>
+
+<!--------------------------标题---------------------------------->
+
+<div id="main"> 
+
+</br><h1>small RNA-seq Standard Analysis Report</h1></br>
+
+<table style="text-align:left" class="gy">
+
+
+<tbody>
+
+
+<tr>
+
+
+
+<td>Contract ID</td>
+
+
+
+<td style="text-align:left" >HXXXXX</td>
+
+
+
+</tr>
+
+
+<tr>
+
+
+
+<td>Contract Name</td>
+
+
+
+<td style="text-align:left" >XXXXXX</td>
+
+
+
+</tr>
+
+
+<tr>
+
+
+
+<td>Batch ID</td>
+
+
+
+<td style="text-align:left" >PXXXXXXXX</td>
+
+
+
+</tr>
+
+
+<tr>
+
+
+
+<td>Reference Genome and Version</td>
+
+
+
+<td style="text-align:left" >Homo_sapiens_Ensemble_97_sRNA</td>
+
+
+
+</tr>
+
+
+
+<tr>
+
+
+
+<td>Report Time</td>
+
+
+
+<td style="text-align:left" >2024-08-09</td>
+
+
+
+</tr>
+
+
+<tr>
+
+
+
+<td>Reminder</td>
+
+
+
+<td style="text-align:left" >Partial results are presented in this report, while full results will be delivered in data release.<br/>
+Hyperlink of results in this report will be only valid in data release, after statement confirmation. </td>
+
+
+
+</tr>
+
+
+
+</tbody></table>
+
+<br /><br />
+
+  <!----------------------------------------建库测序流程----------------------------------------->
+
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left"  /></a> <a name="建库测序流程"></a>
+    <hr />
+    </p>
+    <h2>1 Introduction</h2>
+    <p class="paragraph">Small RNA is a special kind of molecule in organisms that induces gene silencing and plays an important role in the regulation of cell growth, gene transcription, and translation. Small RNA digitalization analysis, based on mechanism of SBS (sequencing by synthesis), has the benefits of small sample requirements, high throughput, high accuracy, and a simple automatic platform.</p>
+    <p class="paragraph">Next-generation sequencing can obtain millions of small RNA sequence tags in one shot, comprehensively identifying small RNAs of a certain species under certain status, predicting novel miRNA and giving differential expression profile between samples. This expression can be a powerful tool for researching small RNA functions.</p>
+    <p class="paragraph">Small RNA sequencing projects are carried out as follows:</p>
+	<center>
+      <img  src="src/images/exp_library.png" />
+    </center>
+    
+
+  
+  <!----------------------------------------生物信息分析流程----------------------------------------->
+
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left"  /></a> <a name="生物信息分析流程"></a>
+    <hr />
+    </p>
+    <h2>2 Library Construction and Sequencing</h2>
+    <h3>2.1 Sample Quality Control</h3>
+    <p class="paragraph">Methods of sample quality control refer to QC report.</p>
+    <h3>2.2 Library Construction, Quality Control and Sequencing</h3>
+    <p class="paragraph">Briefly, 3’ and 5’ adaptors were ligated to 3’ and 5’ ends of small RNA, respectively. Then the first strand cDNA was synthesized after hybridization with reverse transcription primer. The double-stranded cDNA library was generated through PCR enrichment. After purification and size selection, libraries with insertions between 18~40 bp were ready for sequencing on Illumina sequencing platform with SE50. The experimental procedures of RNA library preparation are shown in Figure 1.</p>
+    <div style="text-align:center"> <img style="width:250px;height:600px" src="src/images/library_construction.png" /> </div>
+    <p class="name_fig">Figure 1. Workflow of library construction</p>
+    
+    <p class="paragraph">The library was checked with Qubit and real-time PCR for quantification and bioanalyzer for size distribution detection. Quantified libraries will be pooled and sequenced on Illumina platforms, according to effective library concentration and data amount required.</p>
+    <p class="paragraph"><b>Method details involved in the project are available at <a href="src/pdf/Methods.pdf" title="click open" target="_blank">methods</a></b></p>
+    
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left"  /></a> <a name="生物信息分析流程"></a>
+    <hr />
+    </p>
+
+    <h2 id="pipline">3 Bioinformatics Analysis Pipeline</h2>
+    <p class="center"> 
+    <p class="paragraph">Considering that data is obtained from animal with reference genome, the small RNA bioinformatic analysis process is shown as follows:</p>
+    <div style="text-align:center"> <img src="src/images/ref_animals.png" /> </div>
+    
+    </p>
+  
+  
+  <!-------------------------------------------- 原始序列数据 --------------------------------------->
+
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left"  /></a> <a name="原始序列数据"></a>
+    <hr />
+    </p>
+    <h2>4 Analysis Results</h2>
+    <h3 id="1">4.1 Raw Data</h3>
+    <p class="paragraph">Original image data file from high-throughput sequencing (like Illumina) is transformed into sequenced reads (called Raw Data or Raw Reads) by CASAVA base recognition (Base Calling). Raw data are stored in FASTQ(fq) format files, which contain sequences of reads and corresponding base quality. Each read has four descriptive sentences in as follow:</p>
+    <p class="paragraph"><b>FASTQ file</b>:</p>
+	<div class="bs-docs-qa">
+	<p class="tremark">
+    <p class="seq">@HWI-ST1276:71:C1162ACXX:1:1101:1208:2458 1:N:0:CGATGT&nbsp;&nbsp;&nbsp;<br />
+      NAAGAACACGTTCGGTCACCTCAGCACACTTGTGAATGTCATGGGATCCAT<br />
+      +<br />
+      #55???BBBBB?BA@DEEFFCFFHHFFCFFHHHHHHHFAE0ECFFD/AEHH<br />
+    </p>
+	</p>
+	</div>
+	<p class="step">(1) Line 1: the at sign (@) followed by sequence identifiers and optional description info (such as FASTA title line).<br />
+		(2) Line 2: base sequences (raw read, A, G, C, and T).<br />
+			(3) Line 3: the plus sign (+) optionally followed by the same Illumina sequence identifiers and description information as Line 1.<br />
+				(4) Line 4: the quality values for each base, corresponding to the data in Line 2.<br /> </p>
+
+
+<p style="font-weight: bold;">Illumina Sequence Identifier:</p>
+    <p class="center">
+    <table class="gy">
+       <tr>
+        <th>ID Symbol</th>
+        <th>meaning</th>
+      </tr>
+	  <tr>
+        <td>HWI-ST1276</td>
+        <td>Instrument – unique identifier of the sequencer </td>
+      </tr>
+      <tr>
+        <td>71</td>
+        <td>run number – Run number on instrument</td>
+      </tr>
+      <tr>
+        <td>C1162ACXX</td>
+        <td>FlowCell ID – ID of flowcell</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>LaneNumber – positive integer</td>
+      </tr>
+      <tr>
+        <td>1101</td>
+        <td>TileNumber – positive integer</td>
+      </tr>
+      <tr>
+        <td>1208</td>
+        <td>X – x coordinate of the spot. Integer which can be negative</td>
+      </tr>
+      <tr>
+        <td>2458</td>
+        <td>Y – y coordinate of the spot. Integer which can be negative</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>ReadNumber - 1 for single reads; 1 or 2 for paired ends</td>
+      </tr>
+      <tr>
+        <td>N</td>
+        <td>whether it is filtered - NB :Y if the read is filtered out, not in the delivered fastq file, N otherwise</td>
+      </tr>
+      <tr>
+        <td>0</td>
+        <td>control number - 0 when none of the control bits are on, otherwise it is an even number</td>
+      </tr>
+      <tr>
+        <td>CGATGT</td>
+        <td>Illumina index sequences</td>
+      </tr>
+    </table>
+    </p>
+    <p class="paragraph">The details of sequencing identifier of Illumina are as follows:</p>
+	  <p class="step">(1) HWI-ST1276:71 HWI-ST1276, Instrument - unique identifier of the sequencer; 71, run number - Run number on instrument<br />
+(2) C1162ACXX:1:1101:1208:2458 means the coordinate of read on C1162ACXX (Flowcell ID) flowcell, line 1, 1101 tile is(x=1208, y=2458)<br />
+(3) 1:N:0:CGATGT the first number is 1 or 2, 1 means single reads or the first read of paired ends, 2 means the second of paired ends; the second letter means whether reads is adjusted(Y means yes, N means no); the third number represent the number of Control Bits in sequence; six bases on the fourth place is Illumina index sequence.<br /></p>
+   
+	<p class="paragraph">The relationship of Phred quality scores Q and base-calling error which were predicted by Illumina Casava 1.8 version Phred quality scores Q were logarithmically linked to base-calling error e :</p>
+    <p class="center">
+    <table class='gy'>
+      <tr>
+        <th>Error Rate</th>
+        <th>Quality Scores</th>
+        <th>ASCII code</th>
+      </tr>
+      <tr>
+        <td>5%</td>
+        <td>13</td>
+        <td>.</td>
+      </tr>
+      <tr>
+        <td>1%</td>
+        <td>20</td>
+        <td>5</td>
+      </tr>
+      <tr>
+        <td>0.1%</td>
+        <td>30</td>
+        <td>?</td>
+      </tr>
+      <tr>
+        <td>0.01%</td>
+        <td>40</td>
+        <td>I</td>
+      </tr>
+    </table>
+    </p>
+    <br/>
+  
+  
+  <!----------------------------------------- Sequencing data quality evaluation --------------------------------------> 
+  <!----------------------------------------- 2.1测序错误率分布检查 -------------------------------------->
+  
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left"  /></a> <a name="Evaluation of sequencing data quality "></a>
+    <hr />
+    </p>
+    <h3 id="2">4.2 Data Quality Control</h3>
+    
+  
+  <!----------------------------------------- 2.2测序数据质量情况汇总 -------------------------------------->
+ 
+   <!-- <hr />-->
+    </p>
+    <h4 id="2">4.2.1 Data Quality summary</h4>
+    </p>
+    <br />
+   <p class="center">Table 4.1 Summary of the data production </p>
+    <p class="center">
+    <table class="gy">
+      <tr>
+        <th>Sample</th>
+        <th>Reads</th>
+        <th>Bases</th>
+        <th>Error rate</th>
+        <th>Q20</th>
+        <th>Q30</th>
+        <th>GC content</th>
+      </tr>
+      
+      <tr>
+        <td>sample1</td>
+        <td>13621527</td>
+        <td>0.68G</td>
+        <td>0.01%</td>
+        <td>99.26%</td>
+        <td>97.21%</td>
+        <td>48.79%</td>
+      </tr>
+      
+      <tr>
+        <td>sample2</td>
+        <td>11832240</td>
+        <td>0.59G</td>
+        <td>0.01%</td>
+        <td>99.18%</td>
+        <td>96.99%</td>
+        <td>48.41%</td>
+      </tr>
+      
+      <tr>
+        <td>sample3</td>
+        <td>1046101</td>
+        <td>0.05G</td>
+        <td>0.01%</td>
+        <td>99.37%</td>
+        <td>97.79%</td>
+        <td>48.89%</td>
+      </tr>
+      
+      <tr>
+        <td>sample4</td>
+        <td>4209826</td>
+        <td>0.21G</td>
+        <td>0.01%</td>
+        <td>99.50%</td>
+        <td>98.14%</td>
+        <td>51.05%</td>
+      </tr>
+      
+      <tr>
+        <td>sample5</td>
+        <td>10826770</td>
+        <td>0.54G</td>
+        <td>0.01%</td>
+        <td>99.22%</td>
+        <td>97.09%</td>
+        <td>49.61%</td>
+      </tr>
+      
+    </table>
+    </p>
+      <button onclick="hiddenShow(this)">Show Annotation</button>
+      <div class="comment"> 
+       <ul style="font-size: 12px;font-family:line-height: 20px">
+      (1) Sample: Sample ID<br/>
+      (2) Reads: Statistics of the original sequence data<br/>
+      (3) Bases: Sequence number multiplied the length of the sequence, expressed in gigabase pairs (Gbp)<br/>
+      (4) Error rate: Sequencing error rate<br/>
+      (5) Q20: Percentage of bases whose Phred values exceed 20<br/>
+      (6) Q30: Percentage of bases whose Phred values exceed 30 <br/>
+      (7) GC content: G and C bases as a percentage of all bases
+      </ul>
+     </div>
+    <br/>
+  
+
+	
+  <!----------------------------------------- 2.3测序数据过滤 -------------------------------------->
+  
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left"  /></a> <a name="测序数据过滤"></a>
+    <hr />
+    </p>
+    <h4>4.2.2 Data Filtering </h4>
+    <p class="paragraph">The sequenced reads/raw reads often contain low quality reads or reads with adapters, which will negatively affect the quality of downstream analysis. To avoid this, it's necessary to filter raw reads to get clean reads.</p>
+	<center>
+      <img  src="src/images/raw_filter.png" />
+    </center>
+	<p class="paragraph"><b>Data filtering was performed as follows</b>:</p>
+    <p class="step">(1)Reads in which more than 50% of bases had a Qphred less than or equal to 5 were discarded.<br />
+    <!-- &lt; 转义小于号-->
+    (2)Reads in which N accounted for more than 10% were discarded. (N indicates that base information was indeterminable)<br />
+    (3)Reads with 5' primer contamination were discarded.<br />
+    (4)Reads lacking a 3' primer or insert tag were discarded.<br />
+    (5)The 3' primer sequence was trimmed.<br />
+    (6)Reads with poly(A), poly(T), poly(G), or poly(C) tails were discarded.<br /></p>
+    <br />
+<p class="center">Table 4.2 Data filtering summary</p>
+    <p class="center">
+	<div style="overflow-x: auto">
+    <table class="gy">
+      <tr>
+        <th>Sample</th>
+        <th>total reads</th>
+        <th>N% > 10%</th>
+        <th>low quality</th>
+        <th>5' adapter contamine</th>
+        <th>3' adapter null or insert null</th>
+        <th>with ployA/T/G/C</th>
+        <th>clean reads</th>
+      </tr>
+      
+      <tr>
+        <td>sample1</td>
+        <td>13621527 (100.00%)</td>
+        <td>58 (0.00%)</td>
+        <td>0 (0.00%)</td>
+        <td>471 (0.00%)</td>
+        <td>416585 (3.06%)</td>
+        <td>9684 (0.07%)</td>
+        <td>13194729 (96.87%)</td>
+      </tr>
+      
+      <tr>
+        <td>sample2</td>
+        <td>11832240 (100.00%)</td>
+        <td>58 (0.00%)</td>
+        <td>0 (0.00%)</td>
+        <td>1357 (0.01%)</td>
+        <td>123340 (1.04%)</td>
+        <td>5283 (0.04%)</td>
+        <td>11702202 (98.90%)</td>
+      </tr>
+      
+      <tr>
+        <td>sample3</td>
+        <td>1046101 (100.00%)</td>
+        <td>2 (0.00%)</td>
+        <td>0 (0.00%)</td>
+        <td>356 (0.03%)</td>
+        <td>37849 (3.62%)</td>
+        <td>2238 (0.21%)</td>
+        <td>1005656 (96.13%)</td>
+      </tr>
+      
+      <tr>
+        <td>sample4</td>
+        <td>4209826 (100.00%)</td>
+        <td>20 (0.00%)</td>
+        <td>0 (0.00%)</td>
+        <td>814 (0.02%)</td>
+        <td>150097 (3.57%)</td>
+        <td>2723 (0.06%)</td>
+        <td>4056172 (96.35%)</td>
+      </tr>
+      
+      <tr>
+        <td>sample5</td>
+        <td>10826770 (100.00%)</td>
+        <td>43 (0.00%)</td>
+        <td>0 (0.00%)</td>
+        <td>1124 (0.01%)</td>
+        <td>95997 (0.89%)</td>
+        <td>8367 (0.08%)</td>
+        <td>10721239 (99.03%)</td>
+      </tr>
+      
+    </table>
+	</div>
+    </p>
+    <button onclick="hiddenShow(this)">Show Annotation</button>
+    <div class="comment"> 
+    <ul style="font-size: 12px;font-family:line-height: 20px">
+    (1) Sample: Sample ID<br/>
+    (2) Total Reads: Total sequenced reads<br/>
+    (3) N% > 10%: Percentage of reads with N > 10%<br/>
+    (4) Low Quality: Percentage of low quality reads<br/>
+    (5) 5' Adapter Contamination: Percentage of reads with 5' adapter contamination<br/>
+    (6) 3' Adapter or Insert Missing: Percentage of reads without a 3' adapter or insert<br/>
+    (7) With Poly(A)/(T)/(G)/(C) : Percentage of reads with poly(A), poly(T), poly(G), or poly(C) tails<br/>
+    (8) Clean Reads: Total clean reads followed by clean reads as a percentage of raw reads
+    </ul>
+    </div>
+
+  
+  <!----------------------------------------- 2.4 sRNA长度筛选 -------------------------------------->
+
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left"  /></a> <a name="sRNA长度筛选"></a>
+    <hr />
+    </p>
+    <h4>4.2.3 Length distribution</h4>
+    <p class="paragraph">The length of sRNA typically ranges from 18 to 40 nucleotides(nt). Analyzing length distribution helps determining the composition of small RNA samples. For example, miRNA is normally 21 or 22 nt, siRNA is 24 nt, and piRNA is between 28 and 30 nt.</p>
+    <p class="paragraph">Length distribution varies between plants and animals. In plants, there are often small RNA peaks at 21 or 24 nt, whereas peaks at 22 nt are normal in animals.</p>
+	<br />
+<p class="center">Table 4.3 Type and quantity of sRNA</p>
+    <p class="center">
+    <table class="gy">
+      <tr>
+        <th>Sample</th>
+        <th>Total reads</th>
+        <th>Total bases (bp)</th>
+        <th>Uniq reads</th>
+        <th>Uniq bases (bp)</th>
+      </tr>
+      
+      <tr>
+        <td>sample1</td>
+        <td>12843683</td>
+        <td>308534820</td>
+        <td>509809</td>
+        <td>12133818</td>
+      </tr>
+      
+      <tr>
+        <td>sample2</td>
+        <td>11613468</td>
+        <td>269104007</td>
+        <td>172043</td>
+        <td>4202843</td>
+      </tr>
+      
+      <tr>
+        <td>sample3</td>
+        <td>981554</td>
+        <td>23292417</td>
+        <td>53478</td>
+        <td>1319964</td>
+      </tr>
+      
+      <tr>
+        <td>sample4</td>
+        <td>3907813</td>
+        <td>96943556</td>
+        <td>136735</td>
+        <td>3476841</td>
+      </tr>
+      
+      <tr>
+        <td>sample5</td>
+        <td>10617339</td>
+        <td>263204109</td>
+        <td>179666</td>
+        <td>4551814</td>
+      </tr>
+      
+    </table>
+    </p>
+    <button onclick="hiddenShow(this)">Show Annotation</button>
+    <div class="comment"> 
+    <ul style="font-size: 12px;font-family:line-height: 20px">	
+    (1) Sample: Sample ID<br/>
+    (2) Total reads: Total number of sRNA reads<br/>
+    (3) Total bases (bp): Total reads multiplied by sequence length<br/>
+    (4) Unique reads: Types of sRNA<br/>
+    (5) Unique bases (bp): Unique reads multiplied by sequence length
+    </ul>
+    </div>
+    <br />
+    <!--center><img class="normal1" src="src/images/seq_len_distribution.png" /></center-->
+    <p class="center">
+    <div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_lenFilter_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure_lenFilter_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure_lenFilter_pane_sample1" 
+	role="tabpanel" aria-labelledby="gallery_figure_lenFilter_list_sample1"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample1_seq_len_distribution.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_lenFilter_pane_sample2" 
+	role="tabpanel" aria-labelledby="gallery_figure_lenFilter_list_sample2"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample2_seq_len_distribution.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_lenFilter_pane_sample3" 
+	role="tabpanel" aria-labelledby="gallery_figure_lenFilter_list_sample3"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample3_seq_len_distribution.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_lenFilter_pane_sample4" 
+	role="tabpanel" aria-labelledby="gallery_figure_lenFilter_list_sample4"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample4_seq_len_distribution.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_lenFilter_pane_sample5" 
+	role="tabpanel" aria-labelledby="gallery_figure_lenFilter_list_sample5"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample5_seq_len_distribution.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_figure_lenFilter_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure_lenFilter_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure_lenFilter_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_lenFilter_list_sample1"
+	data-toggle="list" href="#gallery_figure_lenFilter_pane_sample1" role="tab" aria-controls="sample1">sample1</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_lenFilter_list_sample2"
+	data-toggle="list" href="#gallery_figure_lenFilter_pane_sample2" role="tab" aria-controls="sample2">sample2</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_lenFilter_list_sample3"
+	data-toggle="list" href="#gallery_figure_lenFilter_pane_sample3" role="tab" aria-controls="sample3">sample3</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_lenFilter_list_sample4"
+	data-toggle="list" href="#gallery_figure_lenFilter_pane_sample4" role="tab" aria-controls="sample4">sample4</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_lenFilter_list_sample5"
+	data-toggle="list" href="#gallery_figure_lenFilter_pane_sample5" role="tab" aria-controls="sample5">sample5</a>
+	
+	</div>
+	</div>
+	</div>
+
+    </p>
+    <p class="name_fig">Figure 4.1 Length distribution of total sRNA</p>
+    <p class="premark"><p class="center">The x-axis is the length of sRNA reads, the y-axis is the percentage of one length read accounted for total sRNA.</p></p>
+    <!--p class="tremark">注:结题报告中只显示一个样本的sRNA长度分布结果(更多信息见结果文件夹2QualityControl/2.4Length_Filter).</p>  --> 
+    <br/>
+
+  
+   
+  <!-----------------------------------------参考序列比对分析 -------------------------------------->
+  
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left"  /></a> <a name="参考序列比对分析"></a>
+    <hr />
+    </p>
+    <br />
+    <h3 id="3">4.3 Mapping to genome</h3>
+    <p class="paragraph">Small RNA reads are mapped to the genome using Bowtie, to analyze their expression level and distribution on genome.</p>
+    <p class="center">Table 4.4 Statistics of mapping results</p>
+    <p class="center">
+    <div style="overflow-x: auto">
+    <table class="gy">
+      <tr>
+        <th>Sample</th>
+        <th>Total sRNA</th>
+        <th>Mapped sRNA</th>
+        <th>"+" Mapped sRNA</th>
+        <th>"-" Mapped sRNA</th>
+      </tr>
+      
+      <tr>
+        <td>sample1</td>
+        <td>12843683 (100.00%)</td>
+        <td>11894276 (92.61%)</td>
+        <td>6833438 (53.20%)</td>
+        <td>5060838 (39.40%)</td>
+      </tr>
+      
+      <tr>
+        <td>sample2</td>
+        <td>11613468 (100.00%)</td>
+        <td>10930349 (94.12%)</td>
+        <td>5758777 (49.59%)</td>
+        <td>5171572 (44.53%)</td>
+      </tr>
+      
+      <tr>
+        <td>sample3</td>
+        <td>981554 (100.00%)</td>
+        <td>655956 (66.83%)</td>
+        <td>424704 (43.27%)</td>
+        <td>231252 (23.56%)</td>
+      </tr>
+      
+      <tr>
+        <td>sample4</td>
+        <td>3907813 (100.00%)</td>
+        <td>3407819 (87.21%)</td>
+        <td>1571577 (40.22%)</td>
+        <td>1836242 (46.99%)</td>
+      </tr>
+      
+      <tr>
+        <td>sample5</td>
+        <td>10617339 (100.00%)</td>
+        <td>9448896 (88.99%)</td>
+        <td>4199507 (39.55%)</td>
+        <td>5249389 (49.44%)</td>
+      </tr>
+      
+    </table>
+    </div>
+    </p>
+    <button onclick="hiddenShow(this)">Show Annotation</button>
+    <div class="comment"> 
+    <ul style="font-size: 12px;font-family:line-height: 20px">	
+    (1) Sample: Sample ID<br/>
+    (2) Total sRNA: Number of total sRNA after length filtering<br/>
+    (3) Mapped sRNA: Number and percentage of sRNA mapped to genome<br/>
+    (4) + Mapped sRNA: Number and percentage of mapped sRNA in the same direction as the genome<br/>
+    (5) – Mapped sRNA: Number and percentage of mapped sRNA in the opposite direction to the genome
+    </ul>
+    </div>
+    <br />
+    
+    <p class="paragraph">Density of small RNA reads on each chromosome is determined by each sample. Circos is used to graphically demonstrate distribution of reads on each chromosome. The longest 10 contigs or scaffolds were chosen for analysis</p>
+    <br />
+    <p class="center">
+	
+    <div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_map_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure_map_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure_map_pane_sample1" 
+	role="tabpanel" aria-labelledby="gallery_figure_map_list_sample1"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample1.circos.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_map_pane_sample2" 
+	role="tabpanel" aria-labelledby="gallery_figure_map_list_sample2"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample2.circos.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_map_pane_sample3" 
+	role="tabpanel" aria-labelledby="gallery_figure_map_list_sample3"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample3.circos.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_map_pane_sample4" 
+	role="tabpanel" aria-labelledby="gallery_figure_map_list_sample4"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample4.circos.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_map_pane_sample5" 
+	role="tabpanel" aria-labelledby="gallery_figure_map_list_sample5"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample5.circos.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_figure_map_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure_map_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure_map_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_map_list_sample1"
+	data-toggle="list" href="#gallery_figure_map_pane_sample1" role="tab" aria-controls="sample1">sample1</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_map_list_sample2"
+	data-toggle="list" href="#gallery_figure_map_pane_sample2" role="tab" aria-controls="sample2">sample2</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_map_list_sample3"
+	data-toggle="list" href="#gallery_figure_map_pane_sample3" role="tab" aria-controls="sample3">sample3</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_map_list_sample4"
+	data-toggle="list" href="#gallery_figure_map_pane_sample4" role="tab" aria-controls="sample4">sample4</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_map_list_sample5"
+	data-toggle="list" href="#gallery_figure_map_pane_sample5" role="tab" aria-controls="sample5">sample5</a>
+	
+	</div></div></div>
+    </p>
+    <p class="name_fig">Figure 4.2 Reads distribution per chromosome</p>
+    <p class="paragraph">The chromosome is shown as the outer circle. Grey background in the middle area shows the distribution of 10,000 reads on the chromosome. Red represents the number of sRNAs on the sense strand of the chromosome, and blue represents the number of sRNAs on the antisense strand. All reads are shown in the center area of the circle. Yellow represents the number of sRNAs on the sense strand of the chromosome, and green represents the number of sRNAs on the antisense strand.</p></p>
+
+     
+  <p class="paragraph"> Result Directory: <a href="../Result_PXXXXXXXX_Homo_sapiens/3.Mapping_Stat" title="点击打开" target="_blank">Mapping_Stat</a></b></p>
+  
+  
+
+
+  
+   
+  <!----------------------------------------- 已知miRNA分析 -------------------------------------->
+  
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left"  /></a> <a name="已知miRNA分析"></a>
+    <hr />
+    </p>
+    <h3 id="4">4.4 Analysis of known miRNA </h3>
+    <p class="paragraph">The reads mapped to reference genome were compared with specific sequences in the miRBase to obtain detail information, including the secondary structure of the mapped miRNAs, the sequence of miRNAs in each sample, length, the number of occurrences and other information. Mature miRNA is developed from precursor through Dicer enzyme digestion. Specificity of enzyme digestion sites makes the first base of the mature miRNA sequence highly biased, so we have also analyzed first base distribution analysis of miRNAs with different lengths , as well as distribution of other bases.</p>
+    <br />
+
+    <p class="center">Table 4.5 Summary of known miRNA in each sample</p>
+    <p class="center">
+    <div style="overflow-x: auto">
+    <table class="gy">
+      <tr><th>Types</th><th>Total</th><th>sample1</th><th>sample2</th><th>sample3</th><th>sample4</th><th>sample5</th></tr>
+      
+      <tr>
+        <td>Mapped mature</td><td>995</td><td>895</td><td>645</td><td>276</td><td>356</td><td>530</td>
+      </tr>
+      
+      <tr>
+        <td>Mapped hairpin</td><td>877</td><td>796</td><td>574</td><td>263</td><td>331</td><td>467</td>
+      </tr>
+      
+      <tr>
+        <td>Mapped uniq sRNA</td><td>10917</td><td>4263</td><td>2631</td><td>765</td><td>1150</td><td>2108</td>
+      </tr>
+      
+      <tr>
+        <td>Mapped total sRNA</td><td>19484286</td><td>6685558</td><td>6705026</td><td>360259</td><td>1054450</td><td>4678993</td>
+      </tr>
+      
+    </table>
+    </div>
+    </p>
+    <button onclick="hiddenShow(this)">Show Annotation</button>
+    <div class="comment"> 
+    <ul style="font-size: 12px;font-family:line-height: 20px">    
+    (1) Mapped mature: The number of sRNAs align to miRNA mature sequence<br/>
+    (2) Mapped hairpin: The number of sRNAs align to miRNA hairpin sequence<br/>
+    (3) Mapped uniq sRNA: The number of mapped unique sRNAs<br/>
+    (4) Mapped total sRNA: The number of mapped total sRNAs
+      </ul>
+     </div>
+    <br />
+    <center>
+      <img style="height:400px" src="src/images/known_miRNA_structure.jpg" />
+    </center>
+    <p class="name_fig">Figure 4.3 The secondary structure of the known miRNAs on partial schematic matches.</p>
+    <p class="premark"><p class="center">The entire sequence is a miRNA precursor, the red section is the mature sequence. </p></p>
+    <br />
+    <p class="center">Table 4.6 Known miRNA expression profile</p>
+    <p class="center">
+    <div style="overflow-x: auto">
+    <table class="gy">
+      <tr><th>miRNA</th><th>sample1</th><th>sample2</th><th>sample3</th><th>sample4</th><th>sample5</th></tr>
+      
+      <tr><td>hsa-let-7a-2-3p</td><td>2.00</td><td>8.00</td><td>1.00</td><td>0</td><td>10.00</td></tr>
+      
+      <tr><td>hsa-let-7a-3p</td><td>166.00</td><td>203.00</td><td>1.00</td><td>36.00</td><td>165.00</td></tr>
+      
+      <tr><td>hsa-let-7a-5p</td><td>40571.00</td><td>127370.00</td><td>8284.00</td><td>5561.00</td><td>78368.00</td></tr>
+      
+      <tr><td>hsa-let-7b-3p</td><td>43.00</td><td>122.00</td><td>0</td><td>47.00</td><td>102.00</td></tr>
+      
+      <tr><td>hsa-let-7b-5p</td><td>11254.00</td><td>49803.00</td><td>1527.00</td><td>3919.00</td><td>44877.00</td></tr>
+      
+    </table>
+    </div>
+    </p>
+      <p class="tremark">(1) miRNA: Mature miRNA id</p>
+      <p class="tremark">(2) Columns 2-n+1 show the corresponding sample’s read count</p>
+
+	<div class="bs-docs-qa">
+    <p class="seq"> 
+      >hsa-let-7a-1<br />
+      
+      total read count                        260677<br />
+      
+      hsa-let-7a-5p read count                260098<br />
+      
+      hsa-let-7a-3p read count                571<br />
+      
+      remaining read count                    8<br />
+      
+      exp                                     fffff5555555555555555555555fffffffffffffffffffffffffffff333333333333333333333fff<br />
+      
+      pri_seq                                 ugggaugagguaguagguuguauaguuuuagggucacacccaccacugggagauaacuauacaaucuacugucuuuccua<br />
+      
+      pri_struct                              (((((.(((((((((((((((((((((.....(((...((((....)))).)))))))))))))))))))))))))))))	#MM	+/-<br />
+      
+      sample3_3153_x179                       .....ugagguaguagguuguau.........................................................	0	+<br />
+      
+      sample4_5693_x83                        .....ugagguaguagguuguau.........................................................	0	+<br />
+       </p>
+	</div>
+    <!--<p class="name_left_bord"><h4>匹配上已知miRNA的sRNA的细节情况展示(详解,见图.2)</h4></p>-->
+    <p class="name_left_bord">
+    <!--<h4>匹配上已知miRNA的sRNA的细节情况展示(详解见下图)</h4>-->
+  <li>The details of mapped known miRNA:</li>
+  <li>> miRNAs hairpin name</li>
+  <li>total readcount: the number of reads mapped to this hairpin</li>
+  <li>the mature miRNA name and the number of reads mapped to this mature</li>
+  <li>remaining read count: reads mapped to the hairpin but not in the mature region</li>
+  <li>exp: the annotation of  miRNA hairpin  each position, 5 representing 5' region, 3 representing 3' region, f representing others region of hairpin.</li>
+  <li>pri_seq: hairpin sequences</li>
+  <li>pri_struct: second structure of miRNA hairpin</li>
+  <li>XXX_X_x_X: the first three character is sample name, next is "_", then is the id of this reads in each sample, next is also "_", at last is x and the frequency of this read</li>
+    </p>
+
+	
+    <br />
+    <br />
+	
+    <p class="center">
+	
+    <div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_known_bias1_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure_known_bias1_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure_known_bias1_pane_sample1" 
+	role="tabpanel" aria-labelledby="gallery_figure_known_bias1_list_sample1"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample1.known_firstbase.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_known_bias1_pane_sample2" 
+	role="tabpanel" aria-labelledby="gallery_figure_known_bias1_list_sample2"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample2.known_firstbase.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_known_bias1_pane_sample3" 
+	role="tabpanel" aria-labelledby="gallery_figure_known_bias1_list_sample3"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample3.known_firstbase.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_known_bias1_pane_sample4" 
+	role="tabpanel" aria-labelledby="gallery_figure_known_bias1_list_sample4"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample4.known_firstbase.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_known_bias1_pane_sample5" 
+	role="tabpanel" aria-labelledby="gallery_figure_known_bias1_list_sample5"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample5.known_firstbase.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_figure_known_bias1_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure_known_bias1_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure_known_bias1_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_known_bias1_list_sample1"
+	data-toggle="list" href="#gallery_figure_known_bias1_pane_sample1" role="tab" aria-controls="sample1">sample1</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_known_bias1_list_sample2"
+	data-toggle="list" href="#gallery_figure_known_bias1_pane_sample2" role="tab" aria-controls="sample2">sample2</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_known_bias1_list_sample3"
+	data-toggle="list" href="#gallery_figure_known_bias1_pane_sample3" role="tab" aria-controls="sample3">sample3</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_known_bias1_list_sample4"
+	data-toggle="list" href="#gallery_figure_known_bias1_pane_sample4" role="tab" aria-controls="sample4">sample4</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_known_bias1_list_sample5"
+	data-toggle="list" href="#gallery_figure_known_bias1_pane_sample5" role="tab" aria-controls="sample5">sample5</a>
+	
+	</div></div></div>
+    <!--<center><img class="normal" src="src/images/known_miRNA_first_bias.png" /></center>-->
+    <p class="name_fig">Figure 4.4 miRNA first nucleotide bias</p>
+    <p class="premark"><p class="center">The length of miRNAs is shown in the X axis, the Y axis is the percentage.</p></p>
+    <br />
+    <p class="center">
+	
+    <div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_known_bias2_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure_known_bias2_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure_known_bias2_pane_sample1" 
+	role="tabpanel" aria-labelledby="gallery_figure_known_bias2_list_sample1"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample1.known_position.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_known_bias2_pane_sample2" 
+	role="tabpanel" aria-labelledby="gallery_figure_known_bias2_list_sample2"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample2.known_position.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_known_bias2_pane_sample3" 
+	role="tabpanel" aria-labelledby="gallery_figure_known_bias2_list_sample3"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample3.known_position.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_known_bias2_pane_sample4" 
+	role="tabpanel" aria-labelledby="gallery_figure_known_bias2_list_sample4"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample4.known_position.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_known_bias2_pane_sample5" 
+	role="tabpanel" aria-labelledby="gallery_figure_known_bias2_list_sample5"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample5.known_position.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_figure_known_bias2_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure_known_bias2_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure_known_bias2_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_known_bias2_list_sample1"
+	data-toggle="list" href="#gallery_figure_known_bias2_pane_sample1" role="tab" aria-controls="sample1">sample1</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_known_bias2_list_sample2"
+	data-toggle="list" href="#gallery_figure_known_bias2_pane_sample2" role="tab" aria-controls="sample2">sample2</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_known_bias2_list_sample3"
+	data-toggle="list" href="#gallery_figure_known_bias2_pane_sample3" role="tab" aria-controls="sample3">sample3</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_known_bias2_list_sample4"
+	data-toggle="list" href="#gallery_figure_known_bias2_pane_sample4" role="tab" aria-controls="sample4">sample4</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_known_bias2_list_sample5"
+	data-toggle="list" href="#gallery_figure_known_bias2_pane_sample5" role="tab" aria-controls="sample5">sample5</a>
+	
+	</div></div></div>
+    <!--<center><img class="normal1" src="src/images/known_miRNA_each_bias.png" /></center>-->
+    <p class="name_fig">Figure 4.5 miRNA nucleotide bias at each position</p>
+    <p class="premark"><p class="center">The X axis shown each position of miRNA nucleotide, The Y axis shown the percentage</p></p>
+    <br/>
+  <p class="paragraph"> Result Directory: <a href="../Result_PXXXXXXXX_Homo_sapiens/4.Known_miRNA" title="点击打开" target="_blank">Known_miRNA</a></b></p>
+  
+  
+  
+  
+   
+  <!----------------------------------------- ncRNA分析 -------------------------------------->
+  
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left"  /></a> <a name="ncRNA分析"></a>
+    <hr />
+    </p>
+    <h3 id="5">4.5 ncRNA Analysis</h3>
+    <p class="paragraph">Small RNA reads are annotated with sequences from the non-coding transcript sequences of the species with reference. For those species without reference, small RNA reads are annotated with sequences from Rfam. The matched reads from rRNA, tRNA, snRNA, and snoRNA are removed. </p>
+    <p class="paragraph">The following table shows number of reads mapped to different kinds of ncRNAs.</p>
+    <br />
+    <p class="center">Table 4.7 Statistics of annotated ncRNA</p>
+    <div style="overflow-x: auto">
+    <table class="gy">
+      <tr><th>Types</th><th>sample1</th><th>sample2</th><th>sample3</th><th>sample4</th><th>sample5</th></tr>
+      
+      <tr><td>rRNA</td><td>77318</td><td>7342</td><td>2884</td><td>28970</td><td>5510</td></tr>
+      
+      <tr><td>rRNA:+</td><td>77251</td><td>7234</td><td>2884</td><td>28970</td><td>5470</td></tr>
+      
+      <tr><td>rRNA:-</td><td>67</td><td>108</td><td>0</td><td>0</td><td>40</td></tr>
+      
+      <tr><td>tRNA</td><td>107809</td><td>2036</td><td>195</td><td>398</td><td>979</td></tr>
+      
+      <tr><td>tRNA:+</td><td>107276</td><td>1997</td><td>195</td><td>385</td><td>970</td></tr>
+      
+      <tr><td>tRNA:-</td><td>533</td><td>39</td><td>0</td><td>13</td><td>9</td></tr>
+      
+      <tr><td>snRNA</td><td>7703</td><td>1214</td><td>281</td><td>2873</td><td>1129</td></tr>
+      
+      <tr><td>snRNA:+</td><td>7615</td><td>1204</td><td>281</td><td>2869</td><td>1126</td></tr>
+      
+      <tr><td>snRNA:-</td><td>88</td><td>10</td><td>0</td><td>4</td><td>3</td></tr>
+      
+      <tr><td>snoRNA</td><td>105685</td><td>190275</td><td>4062</td><td>55763</td><td>187338</td></tr>
+      
+      <tr><td>snoRNA:+</td><td>105634</td><td>190252</td><td>4062</td><td>55763</td><td>187337</td></tr>
+      
+      <tr><td>snoRNA:-</td><td>51</td><td>23</td><td>0</td><td>0</td><td>1</td></tr>
+      
+    </table>
+    </div>
+      <p class="tremark">(1) Types: The kinds of ncRNA</p>
+      <p class="tremark">(2) Columns 2-n+1 show the corresponding samples reads mapping to that kind of ncRNA</p>
+    <br />
+    <p class="paragraph"> Result Directory: <a href="../Result_PXXXXXXXX_Homo_sapiens/5.ncRNA" title="点击打开" target="_blank">ncRNA</a></b></p>
+    
+  
+  
+  
+  
+   
+  <!----------------------------------------- 重复序列比对 -------------------------------------->
+  
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left"  /></a> <a name="重复序列比对"></a>
+    <hr />
+    </p>
+    <h3 id="6">4.6	Repeat Sequences Alignment</h3>
+    <p class="paragraph">If a species repeat transposon information, information of its repeated sequence is used to annotate the sRNA. Otherwise we will predict repeat sequences from the beginning based on reference genome. The sRNA is then aligned with the predicted repeating sequences and potential repetitive reads of sRNA are removed.. Statistics on the various repeats of sRNAs (uniquely expressed) and total number of sRNAs are calculated.</p>
+    <br />
+    <p class="paragraph">Results of the repeat classification are shown in the following figures.</p>
+    <!--<p class="tremark">重复序列表示方式:repeat type:strand(“+”表示正链,“-”表示负链)</p>--> 
+    <br />
+    <p class="center">
+	
+    <div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_repAna1_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure_repAna1_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure_repAna1_pane_sample1" 
+	role="tabpanel" aria-labelledby="gallery_figure_repAna1_list_sample1"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample1_total_repeats.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_repAna1_pane_sample2" 
+	role="tabpanel" aria-labelledby="gallery_figure_repAna1_list_sample2"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample2_total_repeats.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_repAna1_pane_sample3" 
+	role="tabpanel" aria-labelledby="gallery_figure_repAna1_list_sample3"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample3_total_repeats.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_repAna1_pane_sample4" 
+	role="tabpanel" aria-labelledby="gallery_figure_repAna1_list_sample4"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample4_total_repeats.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_repAna1_pane_sample5" 
+	role="tabpanel" aria-labelledby="gallery_figure_repAna1_list_sample5"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample5_total_repeats.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_figure_repAna1_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure_repAna1_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure_repAna1_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_repAna1_list_sample1"
+	data-toggle="list" href="#gallery_figure_repAna1_pane_sample1" role="tab" aria-controls="sample1">sample1</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_repAna1_list_sample2"
+	data-toggle="list" href="#gallery_figure_repAna1_pane_sample2" role="tab" aria-controls="sample2">sample2</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_repAna1_list_sample3"
+	data-toggle="list" href="#gallery_figure_repAna1_pane_sample3" role="tab" aria-controls="sample3">sample3</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_repAna1_list_sample4"
+	data-toggle="list" href="#gallery_figure_repAna1_pane_sample4" role="tab" aria-controls="sample4">sample4</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_repAna1_list_sample5"
+	data-toggle="list" href="#gallery_figure_repAna1_pane_sample5" role="tab" aria-controls="sample5">sample5</a>
+	
+	</div></div></div>
+	<!--<center><img class="normal1" src="src/images/sRNA_distribution_on_chr.png" /></center>--> 
+    </p>
+    <p class="name_fig">Figure 4.6 Total repeat reads </p>
+    <br />
+    <p class="center">
+    <div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_repAna2_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure_repAna2_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure_repAna2_pane_sample1" 
+	role="tabpanel" aria-labelledby="gallery_figure_repAna2_list_sample1"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample1_uniq_repeats.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_repAna2_pane_sample2" 
+	role="tabpanel" aria-labelledby="gallery_figure_repAna2_list_sample2"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample2_uniq_repeats.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_repAna2_pane_sample3" 
+	role="tabpanel" aria-labelledby="gallery_figure_repAna2_list_sample3"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample3_uniq_repeats.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_repAna2_pane_sample4" 
+	role="tabpanel" aria-labelledby="gallery_figure_repAna2_list_sample4"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample4_uniq_repeats.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_repAna2_pane_sample5" 
+	role="tabpanel" aria-labelledby="gallery_figure_repAna2_list_sample5"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample5_uniq_repeats.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_figure_repAna2_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure_repAna2_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure_repAna2_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_repAna2_list_sample1"
+	data-toggle="list" href="#gallery_figure_repAna2_pane_sample1" role="tab" aria-controls="sample1">sample1</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_repAna2_list_sample2"
+	data-toggle="list" href="#gallery_figure_repAna2_pane_sample2" role="tab" aria-controls="sample2">sample2</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_repAna2_list_sample3"
+	data-toggle="list" href="#gallery_figure_repAna2_pane_sample3" role="tab" aria-controls="sample3">sample3</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_repAna2_list_sample4"
+	data-toggle="list" href="#gallery_figure_repAna2_pane_sample4" role="tab" aria-controls="sample4">sample4</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_repAna2_list_sample5"
+	data-toggle="list" href="#gallery_figure_repAna2_pane_sample5" role="tab" aria-controls="sample5">sample5</a>
+	
+	</div></div></div>
+	<!--<center><img class="normal1" src="src/images/sRNA_distribution_on_chr.png" /></center>-->
+    </p>
+    <p class="name_fig">Figure 4.7 Uniq repeat reads </p>
+    <br/>
+  <p class="paragraph"> Result Directory: <a href="../Result_PXXXXXXXX_Homo_sapiens/6.Repeat" title="点击打开" target="_blank">Repeat</a></b></p>
+  
+  
+  
+  
+  
+  
+  
+   
+  <!----------------------------------------- 外显子,内含子比对 -------------------------------------->
+  
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left"  /></a> <a name="外显子,内含子比对"></a>
+    <hr />
+    </p>
+    <h3 id="7"> 4.7	Exon and Intron Alignment</h3>
+    <p class="paragraph">Small RNA reads are aligned to the exons and introns of mRNAs to find the degraded fragments of mRNA in the small RNA reads. The results are shown in the following table.</p>
+    <br />
+    <p class="center">Table 4.8 sRNAs mapped to exon and intron</p>
+    <p class="center">
+    <div style="overflow-x: auto">
+    <table class="gy">
+      <tr><th>Types</th><th>sample1</th><th>sample2</th><th>sample3</th><th>sample4</th><th>sample5</th></tr>
+      
+      <tr><td>exon</td><td>559471</td><td>183721</td><td>14224</td><td>94134</td><td>153545</td></tr>
+      
+      <tr><td>exon:+</td><td>429483</td><td>174594</td><td>9895</td><td>70638</td><td>144492</td></tr>
+      
+      <tr><td>exon:-</td><td>129988</td><td>9127</td><td>4329</td><td>23496</td><td>9053</td></tr>
+      
+      <tr><td>intron</td><td>171345</td><td>185003</td><td>18127</td><td>435235</td><td>236367</td></tr>
+      
+      <tr><td>intron:+</td><td>121455</td><td>39108</td><td>9858</td><td>402522</td><td>36044</td></tr>
+      
+      <tr><td>intron:-</td><td>49890</td><td>145895</td><td>8269</td><td>32713</td><td>200323</td></tr>
+      
+    </table>
+    </div>
+    </p>
+      <p class="tremark">(1) Types: Types of exon and intron</p>
+      <p class="tremark">(2) Columns 2-n+1 show each corresponding sample’s results</p>
+	<br />
+  
+  <p class="paragraph"> Result Directory: <a href="../Result_PXXXXXXXX_Homo_sapiens/7.gene" title="点
+击打开" target="_blank">gene</a></b></p>
+  
+
+
+	
+   <button onclick="hiddenQA(this)">Show Q&A</button>
+ <div class="comment">
+ <table style="font-size:12px;font-family: 'Times New Roman' 'Montserrat'">
+  <tr style="background-color:#036EB8"><td align="left" style="background-color:#036EB8;color:#FFFFFF">Q: Why reads are aligned exons and introns？</td></tr>
+  <tr style="background-color:#f1f5fb"><td align="left" style="background-color:#f1f5fb;color:#3E3A39">A: The sequences of sRNA sequencing may have degraded fragments of mRNA. This part of the analysis is to annotate the sequencing reads as much as possible. On another hand, it is to remove the sequences from these genes before the new miRNA predicted. As these regions might be the product of degraded fragments. These regions can predict relatively few miRNAs compared to the gene intergenic region. In order to eliminate interference, this part of the reads is currently taken directly.</td></tr>
+   </table>
+    </div>
+	
+  
+  
+  
+  
+   
+  <!----------------------------------------- 新miRNA预测 -------------------------------------->
+  
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left"  /></a> <a name="新miRNA预测"></a>
+    <hr />
+    </p>
+    <h3 id="8">4.8 Novel miRNA Prediction</h3>
+    <p class="paragraph">The characteristic hairpin structure of miRNA precursors can be used to predict novel miRNA, which can be conducted by miREvo (Wen et al., 2012) and mirdeep2 (Friedlander et al., 2011). The results are shown in the following tables and figures.</p>
+    <!--<p class="tremark">注:结题报告中只显示部分novel miRNA分析结果,完整的信息包含在结果文件夹中.</p>-->
+    <p class="center">Table 4.9 Summary of novel miRNA</p>
+    <div style="overflow-x: auto">
+    <table class="gy">
+      <tr><th>Types</th><th>Total</th><th>sample1</th><th>sample2</th><th>sample3</th><th>sample4</th><th>sample5</th></tr>
+      
+      <tr><td>Mapped mature</td><td>53</td><td>25</td><td>33</td><td>3</td><td>10</td><td>20</td></tr>
+      
+      <tr><td>Mapped star</td><td>1</td><td>1</td><td>1</td><td></td><td>1</td><td>1</td></tr>
+      
+      <tr><td>Mapped hairpin</td><td>53</td><td>25</td><td>33</td><td>3</td><td>10</td><td>20</td></tr>
+      
+      <tr><td>Mapped uniq sRNA</td><td>309</td><td>114</td><td>79</td><td>4</td><td>49</td><td>63</td></tr>
+      
+      <tr><td>Mapped total sRNA</td><td>18798</td><td>6077</td><td>2131</td><td>43</td><td>6678</td><td>3869</td></tr>
+      
+    </table>
+    </div>
+      <p class="tremark">(1) Type: The type of sRNA mapping</p>
+      <p class="tremark">(2) Total:The total amount</p>
+      <p class="tremark">(3) Columns 3-n+2 show the amount aligned to the predicted hairpin in each corresponding sample</p>
+    <p class="center"> <img style="height:400px" src="src/images/novel_miRNA_structure.jpg" /> </p>
+    <p class="name_fig">Figure 4.8 The secondary structure of the novel miRNAs on partial schematic matches.</p>
+    <p class="premark"><p class="center">The entire sequence is a miRNA precursor, the red section is the mature sequence</p></p>
+    <p class="name_table"><p class="center">Table 4.10 Novel miRNA expression profile</p></p>
+    <div style="overflow-x: auto">
+    <table class="gy">
+      <tr><th>miRNA</th><th>sample1</th><th>sample2</th><th>sample3</th><th>sample4</th><th>sample5</th></tr>
+      
+      <tr><td>novel_145</td><td>0</td><td>0</td><td>0</td><td>1.00</td><td>0</td></tr>
+      
+      <tr><td>novel_164</td><td>4.00</td><td>13.00</td><td>0</td><td>0</td><td>0</td></tr>
+      
+      <tr><td>novel_199</td><td>0</td><td>4.00</td><td>0</td><td>0</td><td>13.00</td></tr>
+      
+      <tr><td>novel_205</td><td>2.00</td><td>14.00</td><td>0</td><td>0</td><td>0</td></tr>
+      
+      <tr><td>novel_208</td><td>3.00</td><td>1.00</td><td>0</td><td>0</td><td>0</td></tr>
+      
+    </table>
+    </div>
+    <p class="tremark">
+      (1) miRNA: Mature miRNA id<br />
+	  (2) Columns 2-n+1 show the corresponding sample’s read count</p>
+    <br />
+  
+  
+  
+    <p class="name_left_bord">
+   <!-- <p>匹配上novel miRNA的reads的细节情况展示(详解,见图3.2)</p>
+    </p>
+    <p class="seq"> 
+      >novel_145<br />
+      
+      total read count                        1<br />
+      
+      novel_145* read count                   0<br />
+      
+      novel_145 read count                    1<br />
+      
+      remaining read count                    0<br />
+      
+      exp                                     *********************ffffffffffffffMMMMMMMMMMMMMMMMMMMMM<br />
+      
+      pri_seq                                 uuggaggguguggaagacaucugggccaacucugaucucuucaucuaccccccagg<br />
+      
+      pri_struct                              ((((.(((((..(((((.(((.(((....))).))).)))))...))))).)))).	#MM	+/-<br />
+      
+      sample4_22027_x1                        ...................................ucucuucaucuaccccccagg	0	+<br />
+      
+      <br />
+       </p>
+    <br />-->
+    <p class="center">
+	
+    <div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_novel_bias1_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure_novel_bias1_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure_novel_bias1_pane_sample1" 
+	role="tabpanel" aria-labelledby="gallery_figure_novel_bias1_list_sample1"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample1_novel_firstbase.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_novel_bias1_pane_sample2" 
+	role="tabpanel" aria-labelledby="gallery_figure_novel_bias1_list_sample2"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample2_novel_firstbase.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_novel_bias1_pane_sample3" 
+	role="tabpanel" aria-labelledby="gallery_figure_novel_bias1_list_sample3"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample3_novel_firstbase.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_novel_bias1_pane_sample4" 
+	role="tabpanel" aria-labelledby="gallery_figure_novel_bias1_list_sample4"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample4_novel_firstbase.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_novel_bias1_pane_sample5" 
+	role="tabpanel" aria-labelledby="gallery_figure_novel_bias1_list_sample5"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample5_novel_firstbase.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_figure_novel_bias1_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure_novel_bias1_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure_novel_bias1_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_novel_bias1_list_sample1"
+	data-toggle="list" href="#gallery_figure_novel_bias1_pane_sample1" role="tab" aria-controls="sample1">sample1</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_novel_bias1_list_sample2"
+	data-toggle="list" href="#gallery_figure_novel_bias1_pane_sample2" role="tab" aria-controls="sample2">sample2</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_novel_bias1_list_sample3"
+	data-toggle="list" href="#gallery_figure_novel_bias1_pane_sample3" role="tab" aria-controls="sample3">sample3</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_novel_bias1_list_sample4"
+	data-toggle="list" href="#gallery_figure_novel_bias1_pane_sample4" role="tab" aria-controls="sample4">sample4</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_novel_bias1_list_sample5"
+	data-toggle="list" href="#gallery_figure_novel_bias1_pane_sample5" role="tab" aria-controls="sample5">sample5</a>
+	
+	</div></div></div>
+	<!--<center><img class="normal1" src="src/images/sRNA_distribution_on_chr.png" /></center>-->
+    </p>
+    <p class="name_fig">Figure 4.9  miRNA first nucleotide bias</p>
+    <p class="premark"><p class="center">The length of miRNAs is shown in the X axis, the Y axis is the percentage.</p></p>
+    <br />
+    <p class="center">
+	
+    <div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_novel_bias2_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure_novel_bias2_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure_novel_bias2_pane_sample1" 
+	role="tabpanel" aria-labelledby="gallery_figure_novel_bias2_list_sample1"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample1_novel_position.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_novel_bias2_pane_sample2" 
+	role="tabpanel" aria-labelledby="gallery_figure_novel_bias2_list_sample2"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample2_novel_position.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_novel_bias2_pane_sample3" 
+	role="tabpanel" aria-labelledby="gallery_figure_novel_bias2_list_sample3"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample3_novel_position.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_novel_bias2_pane_sample4" 
+	role="tabpanel" aria-labelledby="gallery_figure_novel_bias2_list_sample4"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample4_novel_position.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_novel_bias2_pane_sample5" 
+	role="tabpanel" aria-labelledby="gallery_figure_novel_bias2_list_sample5"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample5_novel_position.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_figure_novel_bias2_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure_novel_bias2_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure_novel_bias2_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_novel_bias2_list_sample1"
+	data-toggle="list" href="#gallery_figure_novel_bias2_pane_sample1" role="tab" aria-controls="sample1">sample1</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_novel_bias2_list_sample2"
+	data-toggle="list" href="#gallery_figure_novel_bias2_pane_sample2" role="tab" aria-controls="sample2">sample2</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_novel_bias2_list_sample3"
+	data-toggle="list" href="#gallery_figure_novel_bias2_pane_sample3" role="tab" aria-controls="sample3">sample3</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_novel_bias2_list_sample4"
+	data-toggle="list" href="#gallery_figure_novel_bias2_pane_sample4" role="tab" aria-controls="sample4">sample4</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_novel_bias2_list_sample5"
+	data-toggle="list" href="#gallery_figure_novel_bias2_pane_sample5" role="tab" aria-controls="sample5">sample5</a>
+	
+	</div></div></div>
+	<!--<center><img class="normal1" src="src/images/sRNA_distribution_on_chr.png" /></center>-->
+    </p>
+    <p class="name_fig">Figure 4.10 miRNA nucleotide bias at each position</p>
+    <p class="premark"><p class="center">The X axis shown each position of miRNA nucleotide, The Y axis shown the percentage</p></p>
+    <br/>
+    
+    <p class="paragraph"> Result Directory: <a href="../Result_PXXXXXXXX_Homo_sapiens/8.Novel_miRNA" title="点击打开" target="_blank">Novel_miRNA</a></b></p>
+    
+ 
+  
+  
+  
+  
+  
+  
+   
+  <!----------------------------------------- sRNA分类注释统计 -------------------------------------->
+  
+
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left"  /></a> <a name="sRNA分类注释统计"></a>
+    <hr />
+    </p>
+    <h3 id="9">4.9	small RNA annotation</h3>
+    <p class="paragraph">After alignment and annotation, some small RNA reads may be mapped to multiple regions and annotated with multiple features. To denote each small RNA with a unique annotation, we follow below priority for annotation: known miRNA > rRNA > tRNA > snRNA > snoRNA > repeat > gene > novel miRNA.</p>
+	<p class="paragraph">The results of this process are shown below.</p>
+	<p class="center">Table 4.11 Result table</p>
+	<div style="overflow-x: auto">
+    <table class="gy">
+      <tr><th>Types</th><th>sample1</th><th>sample1(percent)</th><th>sample2</th><th>sample2(percent)</th><th>sample3</th><th>sample3(percent)</th><th>sample4</th><th>sample4(percent)</th><th>sample5</th><th>sample5(percent)</th></tr>
+      
+      <tr><td>total</td><td>11894276</td><td>100.00%</td><td>10930349</td><td>100.00%</td><td>655956</td><td>100.00%</td><td>3407819</td><td>100.00%</td><td>9448896</td><td>100.00%</td></tr>
+      
+      <tr><td>known_miRNA</td><td>6685558</td><td>56.21%</td><td>6705026</td><td>61.34%</td><td>360259</td><td>54.92%</td><td>1054450</td><td>30.94%</td><td>4678993</td><td>49.52%</td></tr>
+      
+      <tr><td>rRNA</td><td>77318</td><td>0.65%</td><td>7342</td><td>0.07%</td><td>2884</td><td>0.44%</td><td>28970</td><td>0.85%</td><td>5510</td><td>0.06%</td></tr>
+      
+      <tr><td>tRNA</td><td>107809</td><td>0.91%</td><td>2036</td><td>0.02%</td><td>195</td><td>0.03%</td><td>398</td><td>0.01%</td><td>979</td><td>0.01%</td></tr>
+      
+      <tr><td>snRNA</td><td>7703</td><td>0.06%</td><td>1214</td><td>0.01%</td><td>281</td><td>0.04%</td><td>2873</td><td>0.08%</td><td>1129</td><td>0.01%</td></tr>
+      
+      <tr><td>snoRNA</td><td>105685</td><td>0.89%</td><td>190275</td><td>1.74%</td><td>4062</td><td>0.62%</td><td>55763</td><td>1.64%</td><td>187338</td><td>1.98%</td></tr>
+      
+      <tr><td>repeat</td><td>1409345</td><td>11.85%</td><td>480313</td><td>4.39%</td><td>24487</td><td>3.73%</td><td>282202</td><td>8.28%</td><td>1150715</td><td>12.18%</td></tr>
+      
+      <tr><td>novel_miRNA</td><td>6077</td><td>0.05%</td><td>2131</td><td>0.02%</td><td>43</td><td>0.01%</td><td>6678</td><td>0.20%</td><td>3869</td><td>0.04%</td></tr>
+      
+      <tr><td>exon:+</td><td>429483</td><td>3.61%</td><td>174594</td><td>1.60%</td><td>9895</td><td>1.51%</td><td>70638</td><td>2.07%</td><td>144492</td><td>1.53%</td></tr>
+      
+      <tr><td>exon:-</td><td>129988</td><td>1.09%</td><td>9127</td><td>0.08%</td><td>4329</td><td>0.66%</td><td>23496</td><td>0.69%</td><td>9053</td><td>0.10%</td></tr>
+      
+      <tr><td>intron:+</td><td>121455</td><td>1.02%</td><td>39108</td><td>0.36%</td><td>9858</td><td>1.50%</td><td>402522</td><td>11.81%</td><td>36044</td><td>0.38%</td></tr>
+      
+      <tr><td>intron:-</td><td>49890</td><td>0.42%</td><td>145895</td><td>1.33%</td><td>8269</td><td>1.26%</td><td>32713</td><td>0.96%</td><td>200323</td><td>2.12%</td></tr>
+      
+      <tr><td>other</td><td>2763965</td><td>23.24%</td><td>3173288</td><td>29.03%</td><td>231394</td><td>35.28%</td><td>1447116</td><td>42.46%</td><td>3030451</td><td>32.07%</td></tr>
+      
+    </table>
+	</div>
+    </p>
+    <button onclick="hiddenShow(this)">Show Annotation</button>
+    <div class="comment"> 
+    <ul style="font-size: 12px;font-family:line-height: 20px">
+    (1) total: The quantity of sRNA reads mapped to genome.<br/>
+    (2) known_miRNA: The number and percentage of sRNAs reads mapped to known miRNA.<br/>
+    (3) rRNA/tRNA/snRNA/snoRNA: The number and percentage of sRNAs reads mapped to rRNA/tRNA/snRNA/snoRNA.<br/>
+    (4) repeat: The number and percentage of sRNAs reads mapped to repeat region.<br/>
+	  
+    (5) novel_miRNA: The number and percentage of sRNAs reads mapped to novel miRNA.<br/>
+	  
+	  
+    (6) exon: +/exon : -/exon : +/intron : -/intron: The number and percentage of sRNAs reads mapped to exon (+/-) and intron(+/-).<br/>
+	  
+    (7) other: The number and percentage of sRNAs reads mapped genome but could not mapped to known miRNA, ncRNA, repeat, novel miRNA, exon/intron.
+    </ul>
+    </div>
+  
+  <p class="paragraph"> Result Directory: <a href="../Result_PXXXXXXXX_Homo_sapiens/9.Category" title="点击打开" target="_blank">Category</a></b></p>
+  
+
+  
+  
+  
+  
+   
+  <!----------------------------------------- miRNA碱基编辑分析 -------------------------------------->
+  
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left"  /></a> <a name="miRNA碱基编辑分析"></a>
+    <hr />
+    </p>
+    <h3 id="10">4.10	miRNA Base Edit</h3>
+    <p class="paragraph">Position 2~8 of a mature miRNA is called a seed region, which is highly conserved. Targets of a miRNA can be different depending on change of nucleotides in seed region. In our analysis workflow, miRNAs with base edits can be detected by aligning unannotated sRNA reads with mature miRNAs from miRBase.</p>
+	<div class="bs-docs-qa">
+	<p class="seq"> 
+      >pre-miRNA: hsa-let-7a-1	51352	10606	20.65%<br />
+      
+      mature miRNA: hsa-let-7a-5p	47580	0	0.0%<br />
+      
+      site1:	289	0.61%<br />
+      
+      U->G: 46	0.1%<br />
+      
+      U->C: 169	0.36%<br />
+      
+      U->A: 74	0.16%<br />
+      
+      site2:	79	0.17%<br />
+      
+      G->U: 18	0.04%<br />
+      
+      G->A: 53	0.11%<br />
+      
+      G->C: 8	0.02%<br />
+       </p>
+	</div>
+		<b>pre-miRNA</b>:  miRNA precursor, the number of reads mapped to precursor, the number and percentage of reads with base edit.<br />
+    <b>mature miRNA</b>:  mature miRNA, the number of reads mapped to mature miRNA, the number and percentage of reads with base edit.<br />
+    <b>site[1-n]</b>:  the details of each base of this mature miRNA, each line represent the number and percentage of reads with base edit.<br />
+  
+  <p class="paragraph"> Result Directory: <a href="../Result_PXXXXXXXX_Homo_sapiens/10.miRNA_editing" title="点击打开" target="_blank">miRNA_editing</a></b></p>
+  
+	
+
+	  
+
+  
+  
+  
+   
+  <!----------------------------------------- miRNA家族分析 -------------------------------------->
+  
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left"  /></a> <a name="miRNA家族分析"></a>
+    <hr />
+    </p>
+    <h3 id="11">4.11	miRNA Family Analysis </h3>
+    <p class="paragraph">The following table explores the occurrence of known miRNA and novel miRNA families, identified from samples of other species. A "+" means that the miRNA family exists in this species, and a "-" means the miRNA family does not exist in this species.</p>
+    <br />
+    <p class="center">Table 4.12 Result table</p>
+    <div style="overflow-x: auto">
+    <table class="gy">
+      <tr><th>Species</th><th>mir-184</th><th>mir-1255</th><th>mir-935</th><th>mir-573</th><th>mir-331</th><th>mir-187</th><th>mir-1260a</th><th>mir-379</th><th>mir-2110</th><th>mir-155</th><th>mir-505</th><th>mir-149</th><th>mir-636</th><th>mir-4680</th><th>mir-340</th><th>mir-765</th><th>mir-1976</th><th>mir-15</th><th>mir-650</th><th>mir-1296</th><th>mir-1287</th><th>mir-3074</th><th>mir-302</th><th>mir-589</th><th>mir-202</th><th>mir-338</th><th>mir-887</th><th>mir-4662</th><th>mir-497</th><th>mir-576</th><th>mir-3648</th><th>mir-6505</th><th>mir-1289</th><th>mir-944</th><th>mir-6859</th><th>mir-3617</th><th>mir-9</th><th>mir-3160</th><th>mir-1295</th><th>mir-3149</th><th>mir-4679</th><th>mir-296</th><th>mir-3179</th><th>mir-1914</th><th>mir-203</th><th>mir-455</th><th>mir-375</th><th>mir-484</th><th>mir-4504</th><th>mir-145</th><th>mir-769</th><th>mir-27</th><th>mir-3065</th><th>mir-561</th><th>mir-1537</th><th>mir-708</th><th>mir-4791</th><th>mir-449</th><th>mir-4677</th><th>mir-210</th><th>mir-578</th><th>mir-425</th><th>mir-197</th><th>mir-194</th><th>mir-1307</th><th>mir-137</th><th>mir-4529</th><th>mir-1270</th><th>mir-1269</th><th>mir-365</th><th>mir-320</th><th>mir-134</th><th>mir-129</th><th>mir-3130</th><th>mir-26</th><th>mir-1248</th><th>mir-1278</th><th>mir-632</th><th>mir-599</th><th>mir-148</th><th>mir-4435</th><th>mir-3190</th><th>mir-362</th><th>mir-4536</th><th>mir-412</th><th>mir-214</th><th>mir-663</th><th>mir-3940</th><th>mir-6511</th><th>mir-217</th><th>mir-190</th><th>mir-3615</th><th>mir-744</th><th>mir-324</th><th>mir-224</th><th>mir-339</th><th>mir-130</th><th>mir-451</th><th>mir-506</th><th>mir-1271</th><th>mir-581</th><th>mir-766</th><th>mir-378</th><th>mir-1273c</th><th>mir-361</th><th>mir-605</th><th>mir-452</th><th>mir-126</th><th>mir-1299</th><th>mir-3145</th><th>mir-7973</th><th>mir-550</th><th>mir-582</th><th>mir-1226</th><th>mir-153</th><th>mir-96</th><th>mir-28</th><th>mir-142</th><th>mir-503</th><th>mir-368</th><th>mir-122</th><th>mir-3150</th><th>mir-1244</th><th>mir-490</th><th>mir-1257</th><th>mir-3943</th><th>mir-448</th><th>mir-335</th><th>mir-639</th><th>mir-624</th><th>mir-592</th><th>mir-423</th><th>mir-1285</th><th>mir-146</th><th>mir-33</th><th>mir-23</th><th>mir-3158</th><th>mir-627</th><th>mir-29</th><th>mir-1266</th><th>mir-940</th><th>mir-671</th><th>mir-614</th><th>mir-363</th><th>mir-2355</th><th>mir-143</th><th>mir-30</th><th>mir-1236</th><th>mir-5701</th><th>mir-598</th><th>mir-874</th><th>mir-4444</th><th>mir-877</th><th>mir-6827</th><th>mir-205</th><th>mir-654</th><th>mir-7</th><th>mir-1306</th><th>mir-128</th><th>mir-4484</th><th>let-7</th><th>mir-290</th><th>mir-199</th><th>mir-330</th><th>mir-124</th><th>mir-139</th><th>mir-3200</th><th>mir-1</th><th>mir-3912</th><th>mir-127</th><th>mir-1301</th><th>mir-8</th><th>mir-664</th><th>mir-612</th><th>mir-622</th><th>mir-223</th><th>mir-3116</th><th>mir-651</th><th>mir-743</th><th>mir-1298</th><th>mir-597</th><th>mir-3913</th><th>mir-937</th><th>mir-934</th><th>mir-628</th><th>mir-1245</th><th>mir-3199</th><th>mir-216</th><th>mir-185</th><th>mir-326</th><th>mir-504</th><th>mir-618</th><th>mir-489</th><th>mir-154</th><th>mir-559</th><th>mir-6724</th><th>mir-342</th><th>mir-643</th><th>mir-3135</th><th>mir-652</th><th>mir-885</th><th>mir-4716</th><th>mir-1304</th><th>mir-641</th><th>mir-1343</th><th>mir-322</th><th>mir-135</th><th>mir-3174</th><th>mir-3690</th><th>mir-499</th><th>mir-4446</th><th>mir-1260b</th><th>mir-346</th><th>mir-515</th><th>mir-19</th><th>mir-1258</th><th>mir-95</th><th>mir-454</th><th>mir-653</th><th>mir-3136</th><th>mir-221</th><th>mir-4524</th><th>mir-642</th><th>mir-873</th><th>mir-4703</th><th>mir-3910</th><th>mir-485</th><th>mir-6516</th><th>mir-1181</th><th>mir-1292</th><th>mir-374</th><th>mir-549</th><th>mir-3202</th><th>mir-4421</th><th>mir-10</th><th>mir-105</th><th>mir-147</th><th>mir-144</th><th>mir-218</th><th>mir-328</th><th>mir-616</th><th>mir-584</th><th>mir-1246</th><th>mir-889</th><th>mir-4433</th><th>mir-450</th><th>mir-3622</th><th>mir-3605</th><th>mir-3117</th><th>mir-3155</th><th>mir-607</th><th>mir-3129</th><th>mir-922</th><th>mir-191</th><th>mir-4773</th><th>mir-370</th><th>mir-1288</th><th>mir-25</th><th>mir-577</th><th>mir-891</th><th>mir-183</th><th>mir-574</th><th>mir-140</th><th>mir-1180</th><th>mir-552</th><th>mir-138</th><th>mir-580</th><th>mir-3529</th><th>mir-1303</th><th>mir-1294</th><th>mir-1468</th><th>mir-558</th><th>mir-186</th><th>mir-132</th><th>mir-4742</th><th>mir-3173</th><th>mir-192</th><th>mir-1262</th><th>mir-3127</th><th>mir-1251</th><th>mir-1228</th><th>mir-22</th><th>mir-32</th><th>mir-4796</th><th>mir-629</th><th>mir-433</th><th>mir-3934</th><th>mir-619</th><th>mir-101</th><th>mir-3064</th><th>mir-31</th><th>mir-21</th><th>mir-493</th><th>mir-4488</th><th>mir-551</th><th>mir-196</th><th>mir-542</th><th>mir-1179</th><th>mir-103</th><th>mir-4667</th><th>mir-491</th><th>mir-500</th><th>mir-34</th><th>mir-24</th><th>mir-182</th><th>mir-136</th><th>mir-3688</th><th>mir-431</th><th>mir-4520</th><th>mir-150</th><th>mir-941</th><th>mir-760</th><th>mir-204</th><th>mir-17</th><th>mir-875</th><th>mir-345</th><th>mir-483</th><th>mir-4477</th><th>mir-3680</th><th>mir-4423</th><th>mir-1268</th><th>mir-3170</th><th>mir-219</th><th>mir-3140</th><th>mir-486</th><th>mir-329</th><th>mir-1277</th><th>mir-432</th><th>mir-337</th><th>mir-1247</th><th>mir-181</th><th>mir-193</th><th>mir-1291</th><th>mir-4637</th><th>mir-188</th><th>mir-556</th><th>mir-625</th><th>mir-942</th><th>mir-615</th><th>mir-2278</th><th>mir-4449</th><th>mir-133</th><th>mir-590</th><th>mir-548</th><th>mir-23c</th></tr>
+      
+      <tr><td>Artibeus jamaicensis</td><td>-</td><td>-</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+      
+      <tr><td>Spodoptera frugiperda</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+      
+      <tr><td>Digitalis purpurea</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+      
+      <tr><td>Linum usitatissimum</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+      
+      <tr><td>Citrus sinensis</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+      
+      <tr><td>Apis mellifera</td><td>+</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>-</td></tr>
+      
+      <tr><td>Cucumis melo</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+      
+      <tr><td>Schmidtea mediterranea</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+      
+      <tr><td>Cavia porcellus</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+      
+      <tr><td>Mus musculus</td><td>+</td><td>-</td><td>+</td><td>-</td><td>+</td><td>+</td><td>-</td><td>+</td><td>-</td><td>+</td><td>+</td><td>+</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>-</td><td>+</td><td>+</td><td>-</td><td>+</td><td>+</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>+</td><td>+</td><td>+</td><td>+</td><td>-</td><td>+</td><td>-</td><td>+</td><td>+</td><td>-</td><td>-</td><td>+</td><td>-</td><td>+</td><td>-</td><td>+</td><td>-</td><td>+</td><td>-</td><td>+</td><td>-</td><td>+</td><td>-</td><td>-</td><td>-</td><td>+</td><td>+</td><td>+</td><td>+</td><td>-</td><td>+</td><td>-</td><td>-</td><td>-</td><td>+</td><td>+</td><td>-</td><td>-</td><td>+</td><td>-</td><td>+</td><td>+</td><td>-</td><td>-</td><td>-</td><td>+</td><td>+</td><td>-</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>-</td><td>-</td><td>-</td><td>+</td><td>-</td><td>+</td><td>-</td><td>+</td><td>+</td><td>-</td><td>-</td><td>-</td><td>-</td><td>+</td><td>-</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>+</td><td>+</td><td>-</td><td>-</td><td>+</td><td>+</td><td>-</td><td>+</td><td>+</td><td>+</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>+</td><td>-</td><td>+</td><td>-</td><td>+</td><td>+</td><td>-</td><td>-</td><td>+</td><td>+</td><td>-</td><td>+</td><td>-</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>-</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>-</td><td>+</td><td>-</td><td>+</td><td>-</td><td>+</td><td>+</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>+</td><td>+</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>+</td><td>+</td><td>+</td><td>+</td><td>-</td><td>+</td><td>+</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>+</td><td>+</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>+</td><td>-</td><td>+</td><td>-</td><td>+</td><td>-</td><td>+</td><td>-</td><td>+</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>+</td><td>+</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>-</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>+</td><td>-</td><td>+</td><td>-</td><td>+</td><td>-</td><td>-</td><td>+</td><td>+</td><td>+</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>+</td><td>+</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>+</td><td>-</td><td>+</td><td>+</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>-</td><td>+</td><td>+</td><td>+</td><td>-</td><td>+</td><td>-</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>-</td><td>+</td><td>-</td><td>+</td><td>-</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>+</td><td>-</td><td>+</td><td>+</td><td>-</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>+</td><td>-</td><td>+</td><td>-</td><td>-</td><td>-</td><td>+</td><td>-</td><td>-</td><td>+</td><td>+</td><td>-</td><td>-</td></tr>
+      
+    </table>
+    </div>
+    </p>
+    </p>
+  
+  <p class="paragraph"> Result Directory: <a href="../Result_PXXXXXXXX_Homo_sapiens/11.miRNA_family" title="点击打开" target="_blank">miRNA_family</a></b></p>
+  
+  
+  <button onclick="hiddenQA(this)">Show Q&A</button>
+      <div class="comment">
+      <table style="font-size:12px;font-family: 'Times New Roman' 'Montserrat'">
+  <tr style="background-color:#036EB8"><td align="left" style="background-color:#036EB8;color:#FFFFFF">Q: What is the miRNA family? What is the basis for determining that a miRNA belongs to a miRNA family?</td></tr>
+  <tr style="background-color:#f1f5fb"><td align="left" style="background-color:#f1f5fb;color:#3E3A39">A: In generally, the miRNAs in same miRNA family are able to regulate specific biological pathways. For example, if a set of miRNAs show consistently conserved at sites 2-7, which are sites to regulate the target gene, they will be defined as a miRNAs family. Sequence similarity comparison is the most straightforward method.</td></tr>
+      </table>
+  </div>
+  
+  
+  
+   
+  <!----------------------------------------- miRNA表达及差异分析 --------------------------------------> 
+  <!----------------------------------------- miRNA表达水平分析 -------------------------------------->
+ 
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left"  /></a> <a name="miRNA表达及差异分析"></a>
+    <hr />
+    </p>
+    <h3 id="12">4.12 miRNA Expression and Differential Expression </h3>
+    <h4>4.12.1	miRNA Expression</h4>
+    <p class="paragraph">The expression of known and unique miRNAs in each sample are statistically analyzed and normalized by TPM (Zhou et al., 2010).</p>
+    <p class="paragraph">The normalized expression = (read count*1,000,000)/libsize. Libsize is the sample miRNA read count. </p>
+    <br />
+    <p class="center">Table 4.13 Result table</p>
+    <div style="overflow-x: auto">
+    <table class="gy">
+      <tr><th>sRNA.readcount</th><th>sample1.readcount</th><th>sample2.readcount</th><th>sample3.readcount</th><th>sample4.readcount</th><th>sample5.readcount</th><th>group1.readcount</th><th>group2.readcount</th><th>group3.readcount</th><th>sample1.tpm</th><th>sample2.tpm</th><th>sample3.tpm</th><th>sample4.tpm</th><th>sample5.tpm</th></tr>
+      
+      <tr><td>hsa-let-7a-2-3p</td><td>2</td><td>8</td><td>1</td><td>0</td><td>10</td><td>6</td><td>3</td><td>10</td><td>0.295485920687</td><td>1.18494135059</td><td>2.664002664</td><td>0</td><td>2.12311565524</td></tr>
+      
+      <tr><td>hsa-let-7a-3p</td><td>166</td><td>203</td><td>1</td><td>36</td><td>165</td><td>165.5</td><td>80</td><td>165</td><td>24.525331417</td><td>30.0678867712</td><td>2.664002664</td><td>33.6244023496</td><td>35.0314083114</td></tr>
+      
+      <tr><td>hsa-let-7a-5p</td><td>40571</td><td>127370</td><td>8284</td><td>5561</td><td>78368</td><td>59469.5</td><td>47071.6666667</td><td>78368</td><td>5994.07964409</td><td>18865.747478</td><td>22068.5980686</td><td>5194.03615184</td><td>16638.432767</td></tr>
+      
+      <tr><td>hsa-let-7b-3p</td><td>43</td><td>122</td><td>0</td><td>47</td><td>102</td><td>72.5</td><td>56.3333333333</td><td>102</td><td>6.35294729477</td><td>18.0703555965</td><td>0</td><td>43.8985252898</td><td>21.6557796834</td></tr>
+      
+      <tr><td>hsa-let-7b-5p</td><td>11254</td><td>49803</td><td>1527</td><td>3919</td><td>44877</td><td>28065.5</td><td>18416.3333333</td><td>44877</td><td>1662.6992757</td><td>7376.70426041</td><td>4067.93206793</td><td>3660.38980022</td><td>9527.90612602</td></tr>
+      
+      <tr><td>hsa-let-7c-3p</td><td>3</td><td>8</td><td>0</td><td>0</td><td>0</td><td>1.5</td><td>2.66666666667</td><td>0</td><td>0.44322888103</td><td>1.18494135059</td><td>0</td><td>0</td><td>0</td></tr>
+      
+      <tr><td>hsa-let-7c-5p</td><td>2719</td><td>21255</td><td>1034</td><td>1103</td><td>27198</td><td>14958.5</td><td>7797.33333333</td><td>27198</td><td>401.713109174</td><td>3148.24105084</td><td>2754.57875458</td><td>1030.21432754</td><td>5774.44995912</td></tr>
+      
+      <tr><td>hsa-let-7d-3p</td><td>466</td><td>1086</td><td>2</td><td>636</td><td>291</td><td>378.5</td><td>574.666666667</td><td>291</td><td>68.84821952</td><td>160.855788342</td><td>5.32800532801</td><td>594.031108176</td><td>61.7826655675</td></tr>
+      
+      <tr><td>hsa-let-7d-5p</td><td>1517</td><td>2449</td><td>84</td><td>143</td><td>751</td><td>1134</td><td>892</td><td>751</td><td>224.126070841</td><td>362.740170949</td><td>223.776223776</td><td>133.563598222</td><td>159.445985708</td></tr>
+      
+      <tr><td>hsa-let-7e-3p</td><td>17</td><td>34</td><td>0</td><td>2</td><td>32</td><td>24.5</td><td>12</td><td>32</td><td>2.51163032584</td><td>5.03600074</td><td>0</td><td>1.86802235276</td><td>6.79397009677</td></tr>
+      
+    </table>
+    </div>
+    </p>
+    <button onclick="hiddenShow(this)">Show Annotation</button>
+    <div class="comment"> 
+    <ul style="font-size: 12px;font-family:line-height: 20px">
+    (1) Column 1 shows the miRNA mature ID of each<br/>
+    (2) Columns 2-n+1 show the read count of the corresponding sample<br/>
+    (3) Columns n+2-2n+1 show the read count of the corresponding sample (TPM normalization)
+    </ul>
+    </div>
+ 
+  
+  <!----------------------------------------- miRNA表达量TPM密度分布图 -------------------------------------->
+  
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left"  /></a> <a name="miRNA表达量TPM密度分布图"></a>
+    <hr />
+    </p>
+    <h4>4.12.2 miRNA TPM distribution</h4>
+	<p class="paragraph">TPM density distribution can represent gene expression mode of samples. The result is shown as below.</p>
+    <br />
+    <center>
+	  <div class="albumSlider_border"  style="width:480px;">
+      <div><img src='src/images/TPM_density_distribution.png' style="width:480px;"/></div>
+    </div>
+    </center>
+    <p class="name_fig">Figure 4.11 TPM distribution</p>
+    <p class="premark"><p class="center">The x axis is sample names and  y axis is the value of miRNA log<sub>10</sub>(TPM+1).</p></p>
+    
+	<button onclick="hiddenQA(this)">Show Q&A</button>
+      <div class="comment">
+      <table style="font-size:12px;font-family: 'Times New Roman' 'Montserrat'">
+  <tr style="background-color:#036EB8"><td align="left" style="background-color:#036EB8;color:#FFFFFF">Q: What is the difference between TPM and FPKM in miRNA expression quantification</td></tr>
+    <tr style="background-color:#f1f5fb"><td align="left" style="background-color:#f1f5fb;color:#3E3A39">A: Both FPKM and TPM are methods for normalizing data. The statistical meanings of these two methods are different. FPKM (expected number of Fragments Per Kilobase of transcript sequence per Millions base pairs sequenced) taking the effect of sequencing depth and gene length on fragment counts into account. TPM (transcripts per million reads)=(readCount*1,000,000)/total_readCount. TPM does not need to consider the length of Small RNA, because the sRNA fragment obtained by sequencing is a complete sRNA tag. In the transcriptome, a read may be a part of a gene, so the expression level of the genes needs to be normalized by the length of the genes.</td></tr>
+  </table>
+    </div>
+	
+	
+	<br/>
+ 
+   
+  <!----------------------------------------- 样品间相关性检查 -------------------------------------->
+  
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left"  /></a> <a name="样品间相关性检查"></a>
+    <hr />
+    </p>
+    <h4>4.12.3	RNA-Seq Correlation</h4>
+    <p class="paragraph">The biological replicates are necessary for any biological experiment including the RNA-seq technology (Hansen et al.). Correlation of the gene expression levels between samples plays an important role to verify reliability and sample selection, which can not only demonstrate the repeatability of the experiment but estimate the differential gene expression analysis as well.</p>
+    <p class="paragraph">The closer correlation coefficient is to 1, the higher similarity the samples are. Encode suggests that the square of the Pearson correlation coefficient should be larger than 0.92 (under ideal experiment conditions) and the R2 should be at least larger 0.8.</p>
+
+    <br />
+    <p class="center">
+	
+    <div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_cor_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure_cor_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure_cor_pane_Pearson_Correlation_Plot" 
+	role="tabpanel" aria-labelledby="gallery_figure_cor_list_Pearson_Correlation_Plot"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/cor_pearson.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_cor_pane_sample1_vs_sample3_scatter" 
+	role="tabpanel" aria-labelledby="gallery_figure_cor_list_sample1_vs_sample3_scatter"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample1_vs_sample3.scatter.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_cor_pane_sample1_vs_sample5_scatter" 
+	role="tabpanel" aria-labelledby="gallery_figure_cor_list_sample1_vs_sample5_scatter"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample1_vs_sample5.scatter.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_cor_pane_sample1_vs_sample2_scatter" 
+	role="tabpanel" aria-labelledby="gallery_figure_cor_list_sample1_vs_sample2_scatter"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample1_vs_sample2.scatter.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_cor_pane_sample3_vs_sample5_scatter" 
+	role="tabpanel" aria-labelledby="gallery_figure_cor_list_sample3_vs_sample5_scatter"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample3_vs_sample5.scatter.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_cor_pane_sample1_vs_sample4_scatter" 
+	role="tabpanel" aria-labelledby="gallery_figure_cor_list_sample1_vs_sample4_scatter"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/sample1_vs_sample4.scatter.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_figure_cor_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure_cor_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure_cor_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_cor_list_Pearson_Correlation_Plot"
+	data-toggle="list" href="#gallery_figure_cor_pane_Pearson_Correlation_Plot" role="tab" aria-controls="Pearson_Correlation_Plot">Pearson_Correlation_Plot</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_cor_list_sample1_vs_sample3_scatter"
+	data-toggle="list" href="#gallery_figure_cor_pane_sample1_vs_sample3_scatter" role="tab" aria-controls="sample1_vs_sample3_scatter">sample1_vs_sample3_scatter</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_cor_list_sample1_vs_sample5_scatter"
+	data-toggle="list" href="#gallery_figure_cor_pane_sample1_vs_sample5_scatter" role="tab" aria-controls="sample1_vs_sample5_scatter">sample1_vs_sample5_scatter</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_cor_list_sample1_vs_sample2_scatter"
+	data-toggle="list" href="#gallery_figure_cor_pane_sample1_vs_sample2_scatter" role="tab" aria-controls="sample1_vs_sample2_scatter">sample1_vs_sample2_scatter</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_cor_list_sample3_vs_sample5_scatter"
+	data-toggle="list" href="#gallery_figure_cor_pane_sample3_vs_sample5_scatter" role="tab" aria-controls="sample3_vs_sample5_scatter">sample3_vs_sample5_scatter</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_cor_list_sample1_vs_sample4_scatter"
+	data-toggle="list" href="#gallery_figure_cor_pane_sample1_vs_sample4_scatter" role="tab" aria-controls="sample1_vs_sample4_scatter">sample1_vs_sample4_scatter</a>
+	
+	</div></div></div>
+	<!--center><img class="normal1" src="src/images/corr_plot.png" /></center> -->
+    </p>
+    <p class="name_fig">Figure 4.12 RNA-Seq Correlation</p>
+    <p class="premark"><p class="center">The x axis and y axis represented the log<sub>10</sub>(TPM+1)(R<sup>2</sup>: pearson RSQ; Rho: spearman coefficient of association；Tau: kendall-tau coefficient of association)</p></p>
+    <br/>
+  
+   
+  <!----------------------------------------- miRNA差异表达分析结果 -------------------------------------->
+ 
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left"  /></a> <a name="miRNA差异表达分析结果"></a>
+    <hr />
+    </p>
+    <h4>4.12.4 Differential Expression</h4>
+    <p class="paragraph">The read count value is used to analyze the miRNA expressions level. For samples with biological replicates, DESeq2 (Michael et al.，2014) is used to perform the correlation cluster. For the samples without biological replicates, TMM is used to normalize the read count value and the EdgeR is used to calculate the differential expression level.</p>
+    <br />
+    <p class="center">Table 4.14 Different miRNA expressions result</p>
+	<div style="overflow-x: auto">
+    <table class="gy">
+      <tr><th>sRNA</th><th>group2_readcount</th><th>group1_readcount</th><th>log2FoldChange</th><th>pval</th><th>padj</th></tr>
+      
+      <tr><td>hsa-miR-122-3p</td><td>26.1900706738547</td><td>0.469858887301583</td><td>5.73854063114788</td><td>0.0379703813593211</td><td>0.92011947387006</td></tr>
+      
+      <tr><td>hsa-miR-122-5p</td><td>3870.28916408664</td><td>139.999588406055</td><td>4.7891738382131</td><td>0.0162875853315292</td><td>0.742184436205134</td></tr>
+      
+      <tr><td>hsa-miR-122b-3p</td><td>3869.49552558137</td><td>139.999588406055</td><td>4.78887793157848</td><td>0.0162937342351792</td><td>0.742184436205134</td></tr>
+      
+      <tr><td>hsa-miR-122b-5p</td><td>26.1900706738547</td><td>0.469858887301583</td><td>5.73854063114788</td><td>0.0379703813593211</td><td>0.92011947387006</td></tr>
+      
+      <tr><td>hsa-miR-124-3p</td><td>118.65602428819</td><td>6.04141840511657</td><td>4.29826299269444</td><td>0.0224620818327575</td><td>0.742184436205134</td></tr>
+      
+    </table>
+	</div>
+    </p>
+    <button onclick="hiddenShow(this)">Show Annotation</button>
+    <div class="comment"> 
+    <ul style="font-size: 12px;font-family:line-height: 20px">
+    (1) sRNA: mature miRNA id.<br/>
+    (2) Group1: readcount values of sample1 after normalized.<br/>
+    (3) Group2: readcount values of sample2 after normalized.<br/>
+    (4) log<sub>2</sub>.Fold_change.: log<sub>2</sub>(Sample1/Sample2).<br/>
+    (5) p.value: the p.value in hypergenometric test.<br/>
+    (6) q.value.Storey.et.al..2003.: pvalue after normalized.
+    </ul>
+    </div>
+    </p>
+ 	<button onclick="hiddenQA(this)">Show Q&A</button>
+      <div class="comment">
+      <table style="font-size:12px;font-family: 'Times New Roman' 'Montserrat'">
+  <tr style="background-color:#036EB8"><td align="left" style="background-color:#036EB8;color:#FFFFFF">Q: How is cluster analysis done?</td></tr>
+  
+    <tr style="background-color:#f1f5fb"><td align="left" style="background-color:#f1f5fb;color:#3E3A39">A: Clustering based on the expression level of small RNA. We calculate log10 (TPM+1) for expression level to determine the clustering pattern of differential miRNA expression under different experimental conditions. Clustering uses the pheatmap package in R. The relative expression level in union_for_cluster file (the union of differential miRNAs) is clustered with log2 (ratios) using the distance algorithm. The distance between each miRNA is calculated to obtain the relative distance by iterative iteration. H-cluster, K-means, and SOM are all clustering methods, all of which are implemented using R-language related code and functions. There is also some free software that can do the clustering analysis, such as gene_cluster.</td></tr>  
+  <tr style="background-color:#036EB8"><td align="left" style="background-color:#036EB8;color:#FFFFFF">Q: Why cluster analysis needed?</td></tr>
+    <tr style="background-color:#f1f5fb"><td align="left" style="background-color:#f1f5fb;color:#3E3A39">A: Cluster analysis is used to evaluate the expression patterns of differential miRNAs under different experimental conditions. The cluster can aggregate miRNAs with the same or similar expression patterns in order to identify unknown miRNA functions or unknown functions of known miRNAs. These miRNAs may share similar features.</td></tr>
+    </table>
+  </div>
+  <!----------------------------------------- 差异miRNA筛选 -------------------------------------->
+
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left"  /></a> <a name="差异miRNA筛选"></a>
+    <hr />
+    </p>
+    <h4>4.12.5	 Filtering the Different Expression miRNA</h4>
+    <p class="paragraph"> A volcano plot infers the overall distribution of different miRNA expressions. For an experiment with no biological replicate, the threshold is normally set as follows: <b>|log<sub>2</sub>(FoldChange)| >= 1 and qvalue <= 0.05</b>. </p>
+	<p class="paragraph">For experiments with a biological replicate, as the DESeq2 has already eliminated the biological variation, our threshold is normally set to the following,<b>padj <= 0.05</b>.</p>
+    </p>
+    <!--p class="tremark">注:结题报告中只显示一组比较的差异miRNA火山图,更多信息见结果文件夹.</p>--> 
+    <br />
+    <!--center><img class="normal1" src="src/images/vocalno.png" /></center>-->
+    <p class="center">
+	
+    <div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_volcano_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure_volcano_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure_volcano_pane_group2vsgroup1" 
+	role="tabpanel" aria-labelledby="gallery_figure_volcano_list_group2vsgroup1"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/group2vsgroup1.Volcanoplot.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_volcano_pane_group2vsgroup3" 
+	role="tabpanel" aria-labelledby="gallery_figure_volcano_list_group2vsgroup3"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/group2vsgroup3.Volcanoplot.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_volcano_pane_group3vsgroup1" 
+	role="tabpanel" aria-labelledby="gallery_figure_volcano_list_group3vsgroup1"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/group3vsgroup1.Volcanoplot.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_figure_volcano_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure_volcano_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure_volcano_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_volcano_list_group2vsgroup1"
+	data-toggle="list" href="#gallery_figure_volcano_pane_group2vsgroup1" role="tab" aria-controls="group2vsgroup1">group2vsgroup1</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_volcano_list_group2vsgroup3"
+	data-toggle="list" href="#gallery_figure_volcano_pane_group2vsgroup3" role="tab" aria-controls="group2vsgroup3">group2vsgroup3</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_volcano_list_group3vsgroup1"
+	data-toggle="list" href="#gallery_figure_volcano_pane_group3vsgroup1" role="tab" aria-controls="group3vsgroup1">group3vsgroup1</a>
+	
+	</div></div></div>
+    </p>
+    <p class="name_fig">Figure 4.13 Volcano Plot</p>
+    <p class="premark"><p class="center">The x-axis shows the fold change in miRNA expression between different samples, and the y-axis shows the statistical significance of the differences.Statistically significant differences are represented by red dots.</p></p>
+    <br/>
+
+  
+  <!----------------------------------------- 差异miRNA聚类分析 -------------------------------------->
+  
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left"  /></a> <a name="差异miRNA聚类分析"></a>
+    <hr />
+    </p>
+    <br />
+    <h4>4.12.6	 Cluster Analysis of the Differences between miRNAs Expressions</h4>
+    <p class="paragraph">Cluster analysis is used to find miRNA expression patterns under a variety of experiment conditions. By clustering miRNAs with similar expression patterns, it is possible to recognize unknown functions of miRNAs and/or the function of unknown miRNAs. </p>
+    <p class="paragraph">In hierarchical clustering, areas in different color represent different groups of the cluster. miRNAs within each group may have similar functions or take part in the same biological process. In addition to the TPM cluster, K-means and SOM were also used to cluster the log2(ratios). miRNAs within the same cluster have the same changing trend in expression levels under different conditions.</p>
+    <br />
+    <center>
+      <img class="normal1" src="src/images/Hcluster.png" />
+    </center>
+    <p class="name_fig">Figure 4.14 Cluster Analysis</p>
+
+    <br/>
+      <p class="premark"><p class="center">The overall TPM cluster analysis result is clustered by log10(TPM+1) value, red represents miRNAs with high expression level, blue represents miRNAs with low expression level. The colour from red to blue represents the log10(TPM+1) value from large to small. </p>
+	  </p><br />
+    
+ 
+   
+  <!----------------------------------------- 差异miRNA维恩图 -------------------------------------->
+  
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left"  /></a> <a name="差异miRNA维恩图"></a>
+    <hr />
+    </p>
+    <h4>4.12.7 Different Expression miRNA Venn Diagram</h4>
+    <p class="paragraph">The Venn diagrams in figure 4.15 represent the number of miRNAs that are uniquely expressed within each group, with the overlapping regions showing the number of miRNAs that are expressed in two or more groups.</p>
+    <br />
+    <!--<center><img class="normal1" src="src/images/DE_Venn_diagram.png" alt="比较组合数不符合维恩图分析条件"/></center>-->
+    <p class="center">
+	
+    <div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_venn_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure_venn_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure_venn_pane_group2vsgroup1_group2vsgroup3" 
+	role="tabpanel" aria-labelledby="gallery_figure_venn_list_group2vsgroup1_group2vsgroup3"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/group2vsgroup1_group2vsgroup3.DEG_Venn_diagram.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_figure_venn_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure_venn_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure_venn_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_venn_list_group2vsgroup1_group2vsgroup3"
+	data-toggle="list" href="#gallery_figure_venn_pane_group2vsgroup1_group2vsgroup3" role="tab" aria-controls="group2vsgroup1_group2vsgroup3">group2vsgroup1_group2vsgroup3</a>
+	
+	</div></div></div>
+    </p>
+    <p class="name_fig">Figure 4.15 Difference expression miRNA Venn diagram</p>
+    <p class="premark"><p class="center">Each circle represents the total number of miRNAs in a combination. Each overlap represents the number of miRNA expressions in the corresponding combinations.</p></p>
+    <br/>
+ 
+  
+  
+  
+  
+  <p class="paragraph"> Result Directory:  <a href="../Result_PXXXXXXXX_Homo_sapiens/12.DiffExprAnalysis" title="点击打开" target="_blank">DiffExprAnalysis</a></b></p>
+  
+  
+
+  
+   
+  <!----------------------------------------- miRNA靶基因预测 -------------------------------------->
+ 
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left"  /></a> <a name="miRNA靶基因预测"></a>
+    <hr />
+    </p>
+    <h3 id="13">4.13	Target Gene Prediction for Known and Novel miRNA</h3>
+    <p class="paragraph">The target genes of known and novel miRNAs are predicted, and the relationships between miRNAs and the corresponding target genes are found. </p>
+    <div class="bs-docs-qa">
+    <p class="seq"> 
+      hsa-let-7a-2-3p	ENSG00000005075<br />
+      
+      hsa-let-7a-2-3p	ENSG00000008441<br />
+      
+      hsa-let-7a-2-3p	ENSG00000035115<br />
+      
+      hsa-let-7a-2-3p	ENSG00000050767<br />
+      
+      hsa-let-7a-2-3p	ENSG00000064270<br />
+      
+      hsa-let-7a-2-3p	ENSG00000064999<br />
+      
+      hsa-let-7a-2-3p	ENSG00000066322<br />
+      
+      hsa-let-7a-2-3p	ENSG00000071127<br />
+      
+      hsa-let-7a-2-3p	ENSG00000080166<br />
+      
+      hsa-let-7a-2-3p	ENSG00000090615<br />
+       </p>
+	 </div> 
+    <br/>
+  
+  <p class="paragraph"> Result Directory: <a href="../Result_PXXXXXXXX_Homo_sapiens/13.miRNA_target" title="点击打开" target="_blank">miRNA_target</a></b></p>
+   
+  
+  
+  
+   
+  <!----------------------------------------- 候选靶基因GO富集分析 -------------------------------------->
+ 
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left"  /></a> <a name="差异miRNA靶基因富集分析"></a>
+    <hr />
+    </p>
+    <h3 id="14">4.14 Enrichment Analysis </h3>
+    <p class="paragraph">The clusterProfiler (Yu G, 2012) software is used for enrichment analysis, including GO Enrichment and KEGG Enrichment.</p>
+    <h4>4.14.1 GO Enrichment Analysis</h4>
+    <p class="paragraph">GO is the abbreviation of Gene Ontology which is a major bioinformatics classification system to unify the presentation of gene properties across all species. It includes three main branches: cellular compares, molecular function and biological process (See http://www.geneontology.org/). GO terms with padj < 0.05 are significant enrichment. </p>
+    <p class="paragraph">GO enrichment analysis will provide prediction target gene candidates of known and novel miRNAs, which can refer to the genes reference background and biological functions. The results could reveal the functions related to the predicted target gene candidates of known and novel miRNAs. </p>
+   <p class="center">Table 4.15 GO Enrichment Result</p>
+    <p class="center">
+	<div style="overflow-x: scroll"> 
+    <table class="gy">
+      <tr><th>Category</th><th>GOID</th><th>Description</th><th>GeneRatio</th><th>BgRatio</th><th>pvalue</th><th>padj</th><th>geneID</th><th>geneName</th><th>Count</th></tr>
+      
+      <tr><td>BP</td><td>GO:0050804</td><td>modulation of chemical synaptic transmission</td><td>108/2691</td><td>403/14404</td><td>3.15569443317072e-05</td><td>0.0881202303102191</td><td>ENSG00000171532/ENSG00000171862/ENSG00000105605/ENSG00000124181/ENSG00000106236/ENSG00000183044/ENSG00000171680/ENSG00000108306/ENSG00000162946/ENSG00000174576/ENSG00000101489/ENSG00000139182/ENSG00000124313/ENSG00000182771/ENSG00000087085/ENSG00000131095/ENSG00000166900/ENSG00000114646/ENSG00000166862/ENSG00000080854/ENSG00000162736/ENSG00000144619/ENSG00000196517/ENSG00000105464/ENSG00000154342/ENSG00000161509/ENSG00000160716/ENSG00000096433/ENSG00000118160/ENSG00000047579/ENSG00000154928/ENSG00000171603/ENSG00000204305/ENSG00000104142/ENSG00000176884/ENSG00000008056/ENSG00000100600/ENSG00000113262/ENSG00000137825/ENSG00000075073/ENSG00000141480/ENSG00000174775/ENSG00000169071/ENSG00000080644/ENSG00000087053/ENSG00000105662/ENSG00000162631/ENSG00000006210/ENSG00000169676/ENSG00000107954/ENSG00000163686/ENSG00000198400/ENSG00000158445/ENSG00000124493/ENSG00000137285/ENSG00000131759/ENSG00000105649/ENSG00000114353/ENSG00000108576/ENSG00000158828/ENSG00000132718/ENSG00000187902/ENSG00000123159/ENSG00000131389/ENSG00000157388/ENSG00000175866/ENSG00000175344/ENSG00000173805/ENSG00000165802/ENSG00000107404/ENSG00000163485/ENSG00000110881/ENSG00000130477/ENSG00000100151/ENSG00000112658/ENSG00000177807/ENSG00000100968/ENSG00000108852/ENSG00000196358/ENSG00000092051/ENSG00000184381/ENSG00000166569/ENSG00000018625/ENSG00000036530/ENSG00000104368/ENSG00000159842/ENSG00000105426/ENSG00000127955/ENSG00000184702/ENSG00000102003/ENSG00000169992/ENSG00000007402/ENSG00000138814/ENSG00000198576/ENSG00000182621/ENSG00000113758/ENSG00000120899/ENSG00000197283/ENSG00000128594/ENSG00000101098/ENSG00000011347/ENSG00000198722/ENSG00000152822/ENSG00000174791/ENSG00000162951/ENSG00000120907/ENSG00000108262/ENSG00000196712</td><td>NEUROD2/PTEN/CACNG7/PLCG1/NPTX2/ABAT/PLEKHG5/FBXL20/DISC1/NPAS4/CELF4/CLSTN3/IQSEC2/GRID1/ACHE/GFAP/STX3/CSPG5/CACNG2/IGSF9B/NCSTN/CNTN4/SLC6A9/GRIN2D/WNT3A/GRIN2C/CHRNB2/ITPR3/SLC8A2/DTNBP1/EPHB1/CLSTN1/AGER/VPS18/GRIN1/SYN1/LGMN/GRM6/ITPKA/TACR2/ARRB2/HRAS/ROR2/CHRNA3/MTMR2/CRTC1/NTNG1/CX3CL1/DRD5/NEURL1/ABHD6/NTRK1/KCNB1/GRM4/TUBB2B/RARA/RAB3A/GNAI2/SLC6A4/PINK1/SYT11/SHISA7/GIPC1/SLC6A6/CACNA1D/BAIAP2/CHRNA7/HAP1/NSMF/DVL1/ADORA1/ASIC1/UNC13A/PICK1/SRF/KCNJ10/NFATC4/MPP2/NTNG2/JPH4/PLA2G6/CPLX4/ATP1A2/CYP46A1/PLAT/ABR/PTPRS/GNAI1/SEPT5/SYP/NLGN2/CACNA2D2/PPP3CA/ARC/PLCB1/DBN1/PTK2B/SYNGAP1/LRRC4/RIMS4/SYT7/UNC13B/GRM1/RIN1/LRRTM1/ADRA1A/GIT1/NF1</td></tr>
+      
+      <tr><td>BP</td><td>GO:0099177</td><td>regulation of trans-synaptic signaling</td><td>108/2691</td><td>403/14404</td><td>3.15569443317072e-05</td><td>0.0881202303102191</td><td>ENSG00000171532/ENSG00000171862/ENSG00000105605/ENSG00000124181/ENSG00000106236/ENSG00000183044/ENSG00000171680/ENSG00000108306/ENSG00000162946/ENSG00000174576/ENSG00000101489/ENSG00000139182/ENSG00000124313/ENSG00000182771/ENSG00000087085/ENSG00000131095/ENSG00000166900/ENSG00000114646/ENSG00000166862/ENSG00000080854/ENSG00000162736/ENSG00000144619/ENSG00000196517/ENSG00000105464/ENSG00000154342/ENSG00000161509/ENSG00000160716/ENSG00000096433/ENSG00000118160/ENSG00000047579/ENSG00000154928/ENSG00000171603/ENSG00000204305/ENSG00000104142/ENSG00000176884/ENSG00000008056/ENSG00000100600/ENSG00000113262/ENSG00000137825/ENSG00000075073/ENSG00000141480/ENSG00000174775/ENSG00000169071/ENSG00000080644/ENSG00000087053/ENSG00000105662/ENSG00000162631/ENSG00000006210/ENSG00000169676/ENSG00000107954/ENSG00000163686/ENSG00000198400/ENSG00000158445/ENSG00000124493/ENSG00000137285/ENSG00000131759/ENSG00000105649/ENSG00000114353/ENSG00000108576/ENSG00000158828/ENSG00000132718/ENSG00000187902/ENSG00000123159/ENSG00000131389/ENSG00000157388/ENSG00000175866/ENSG00000175344/ENSG00000173805/ENSG00000165802/ENSG00000107404/ENSG00000163485/ENSG00000110881/ENSG00000130477/ENSG00000100151/ENSG00000112658/ENSG00000177807/ENSG00000100968/ENSG00000108852/ENSG00000196358/ENSG00000092051/ENSG00000184381/ENSG00000166569/ENSG00000018625/ENSG00000036530/ENSG00000104368/ENSG00000159842/ENSG00000105426/ENSG00000127955/ENSG00000184702/ENSG00000102003/ENSG00000169992/ENSG00000007402/ENSG00000138814/ENSG00000198576/ENSG00000182621/ENSG00000113758/ENSG00000120899/ENSG00000197283/ENSG00000128594/ENSG00000101098/ENSG00000011347/ENSG00000198722/ENSG00000152822/ENSG00000174791/ENSG00000162951/ENSG00000120907/ENSG00000108262/ENSG00000196712</td><td>NEUROD2/PTEN/CACNG7/PLCG1/NPTX2/ABAT/PLEKHG5/FBXL20/DISC1/NPAS4/CELF4/CLSTN3/IQSEC2/GRID1/ACHE/GFAP/STX3/CSPG5/CACNG2/IGSF9B/NCSTN/CNTN4/SLC6A9/GRIN2D/WNT3A/GRIN2C/CHRNB2/ITPR3/SLC8A2/DTNBP1/EPHB1/CLSTN1/AGER/VPS18/GRIN1/SYN1/LGMN/GRM6/ITPKA/TACR2/ARRB2/HRAS/ROR2/CHRNA3/MTMR2/CRTC1/NTNG1/CX3CL1/DRD5/NEURL1/ABHD6/NTRK1/KCNB1/GRM4/TUBB2B/RARA/RAB3A/GNAI2/SLC6A4/PINK1/SYT11/SHISA7/GIPC1/SLC6A6/CACNA1D/BAIAP2/CHRNA7/HAP1/NSMF/DVL1/ADORA1/ASIC1/UNC13A/PICK1/SRF/KCNJ10/NFATC4/MPP2/NTNG2/JPH4/PLA2G6/CPLX4/ATP1A2/CYP46A1/PLAT/ABR/PTPRS/GNAI1/SEPT5/SYP/NLGN2/CACNA2D2/PPP3CA/ARC/PLCB1/DBN1/PTK2B/SYNGAP1/LRRC4/RIMS4/SYT7/UNC13B/GRM1/RIN1/LRRTM1/ADRA1A/GIT1/NF1</td></tr>
+      
+      <tr><td>BP</td><td>GO:0034330</td><td>cell junction organization</td><td>75/2691</td><td>261/14404</td><td>4.45651872775889e-05</td><td>0.0881202303102191</td><td>ENSG00000171862/ENSG00000100034/ENSG00000146555/ENSG00000163539/ENSG00000110400/ENSG00000066933/ENSG00000159216/ENSG00000105370/ENSG00000166949/ENSG00000184697/ENSG00000070831/ENSG00000182578/ENSG00000168036/ENSG00000178209/ENSG00000155366/ENSG00000143951/ENSG00000035403/ENSG00000112679/ENSG00000130402/ENSG00000061273/ENSG00000123094/ENSG00000140575/ENSG00000177697/ENSG00000131697/ENSG00000006071/ENSG00000141556/ENSG00000169562/ENSG00000158856/ENSG00000128052/ENSG00000099889/ENSG00000164007/ENSG00000187513/ENSG00000040731/ENSG00000149177/ENSG00000104365/ENSG00000179776/ENSG00000248905/ENSG00000105245/ENSG00000108861/ENSG00000065243/ENSG00000065618/ENSG00000143545/ENSG00000163349/ENSG00000163531/ENSG00000140859/ENSG00000143398/ENSG00000196924/ENSG00000186111/ENSG00000071127/ENSG00000112658/ENSG00000161638/ENSG00000071054/ENSG00000130202/ENSG00000248746/ENSG00000171914/ENSG00000162706/ENSG00000079308/ENSG00000169862/ENSG00000072163/ENSG00000087077/ENSG00000108797/ENSG00000166689/ENSG00000169992/ENSG00000073008/ENSG00000115109/ENSG00000166333/ENSG00000164171/ENSG00000141376/ENSG00000196415/ENSG00000179051/ENSG00000204936/ENSG00000120899/ENSG00000232434/ENSG00000144711/ENSG00000188878</td><td>PTEN/PPM1F/SDK1/CLASP2/NECTIN1/MYO9A/RUNX1/LIM2/SMAD3/CLDN6/CDC42/CSF1R/CTNNB1/PLEC/RHOC/WDPCP/VCL/DUSP22/ACTN4/HDAC7/RASSF8/IQGAP1/CD151/NPHP4/ABCC8/TBCD/GJB1/DMTN/KDR/ARVCF/CLDN19/GJA4/CDH10/PTPRJ/IKBKB/CDH5/FMN1/NUMBL/DUSP3/PKN2/COL17A1/RAB13/HIPK1/NFASC/KIFC3/PIP5K1A/FLNA/PIP5K1C/WDR1/SRF/ITGA5/MAP4K4/NECTIN2/ACTN3/TLN2/CADM3/TNS1/CTNND2/LIMS2/TRIP6/CNTNAP1/PLEKHA7/NLGN2/PVR/EPB41L5/ILK/ITGA2/BCAS3/PRTN3/RCC2/CD177/PTK2B/AJM1/IQSEC1/FBF1</td></tr>
+      
+      <tr><td>BP</td><td>GO:0010769</td><td>regulation of cell morphogenesis involved in differentiation</td><td>76/2691</td><td>274/14404</td><td>0.000140812188010267</td><td>0.208824474819225</td><td>ENSG00000171862/ENSG00000167680/ENSG00000125968/ENSG00000131409/ENSG00000012171/ENSG00000257923/ENSG00000162946/ENSG00000010319/ENSG00000070831/ENSG00000143434/ENSG00000114646/ENSG00000154342/ENSG00000163623/ENSG00000203879/ENSG00000130402/ENSG00000160716/ENSG00000103260/ENSG00000162493/ENSG00000100106/ENSG00000155256/ENSG00000176884/ENSG00000171798/ENSG00000137825/ENSG00000182149/ENSG00000080644/ENSG00000053108/ENSG00000124006/ENSG00000114745/ENSG00000158856/ENSG00000164050/ENSG00000173406/ENSG00000137285/ENSG00000162415/ENSG00000004139/ENSG00000163462/ENSG00000197892/ENSG00000167178/ENSG00000006740/ENSG00000175866/ENSG00000137845/ENSG00000196924/ENSG00000138443/ENSG00000092929/ENSG00000165802/ENSG00000112658/ENSG00000049759/ENSG00000100968/ENSG00000169554/ENSG00000143320/ENSG00000105695/ENSG00000077942/ENSG00000168758/ENSG00000065320/ENSG00000143032/ENSG00000141522/ENSG00000163975/ENSG00000072163/ENSG00000105426/ENSG00000163785/ENSG00000100503/ENSG00000004399/ENSG00000174672/ENSG00000130558/ENSG00000138814/ENSG00000198576/ENSG00000166333/ENSG00000114554/ENSG00000113758/ENSG00000169783/ENSG00000179051/ENSG00000197283/ENSG00000118046/ENSG00000170381/ENSG00000185043/ENSG00000196576/ENSG00000277363</td><td>PTEN/SEMA6B/ID1/LRRC4B/SEMA3B/CUX1/DISC1/SEMA3G/CDC42/SEMA6C/CSPG5/WNT3A/NKX6-1/GDI1/ACTN4/CHRNB2/METRN/PDPN/TRIOBP/ZFYVE27/GRIN1/KNDC1/ITPKA/IST1/CHRNA3/FSTL4/OBSL1/GORASP1/DMTN/PLXNB1/DAB1/TUBB2B/ZSWIM5/SARM1/TRIM46/KIF13B/ISLR2/ARHGAP44/BAIAP2/ADAM10/FLNA/ABI2/UNC13D/NSMF/SRF/NEDD4L/NFATC4/ZEB2/CRABP2/MAG/FBLN1/SEMA4C/NTN1/BARHL2/ARHGDIA/MELTF/LIMS2/PTPRS/RYK/NIN/PLXND1/BRSK2/OLFM1/PPP3CA/ARC/ILK/PLXNA1/DBN1/LINGO1/RCC2/SYNGAP1/STK11/SEMA3E/CIB1/PLXNB2/SRCIN1</td></tr>
+      
+      <tr><td>BP</td><td>GO:0022604</td><td>regulation of cell morphogenesis</td><td>110/2691</td><td>432/14404</td><td>0.000248487334893118</td><td>0.270486212508832</td><td>ENSG00000171862/ENSG00000167680/ENSG00000105605/ENSG00000125968/ENSG00000111344/ENSG00000131409/ENSG00000119866/ENSG00000012171/ENSG00000104140/ENSG00000066933/ENSG00000257923/ENSG00000162946/ENSG00000010319/ENSG00000070831/ENSG00000143434/ENSG00000182578/ENSG00000114646/ENSG00000172725/ENSG00000164292/ENSG00000155366/ENSG00000143951/ENSG00000154342/ENSG00000163623/ENSG00000203879/ENSG00000130402/ENSG00000160716/ENSG00000103260/ENSG00000162493/ENSG00000100106/ENSG00000155256/ENSG00000176884/ENSG00000171798/ENSG00000137825/ENSG00000182149/ENSG00000080644/ENSG00000053108/ENSG00000127084/ENSG00000124006/ENSG00000114745/ENSG00000158856/ENSG00000164050/ENSG00000128052/ENSG00000173406/ENSG00000137285/ENSG00000180263/ENSG00000162415/ENSG00000004139/ENSG00000120063/ENSG00000163462/ENSG00000149798/ENSG00000100884/ENSG00000197892/ENSG00000167178/ENSG00000006740/ENSG00000175866/ENSG00000147130/ENSG00000137845/ENSG00000196924/ENSG00000138443/ENSG00000092929/ENSG00000165802/ENSG00000107404/ENSG00000131504/ENSG00000130477/ENSG00000071127/ENSG00000112658/ENSG00000143878/ENSG00000049759/ENSG00000100968/ENSG00000147010/ENSG00000169554/ENSG00000143320/ENSG00000105695/ENSG00000077942/ENSG00000077549/ENSG00000168758/ENSG00000198218/ENSG00000213023/ENSG00000179604/ENSG00000065320/ENSG00000143032/ENSG00000141522/ENSG00000163975/ENSG00000072163/ENSG00000105426/ENSG00000163785/ENSG00000100503/ENSG00000140416/ENSG00000004399/ENSG00000174672/ENSG00000130558/ENSG00000138814/ENSG00000198576/ENSG00000166333/ENSG00000114554/ENSG00000135424/ENSG00000113758/ENSG00000169783/ENSG00000179051/ENSG00000120899/ENSG00000197283/ENSG00000118046/ENSG00000170381/ENSG00000100345/ENSG00000075884/ENSG00000186174/ENSG00000185043/ENSG00000196576/ENSG00000277363/ENSG00000145555</td><td>PTEN/SEMA6B/CACNG7/ID1/RASAL1/LRRC4B/BCL11A/SEMA3B/RHOV/MYO9A/CUX1/DISC1/SEMA3G/CDC42/SEMA6C/CSF1R/CSPG5/CORO1B/RHOBTB3/RHOC/WDPCP/WNT3A/NKX6-1/GDI1/ACTN4/CHRNB2/METRN/PDPN/TRIOBP/ZFYVE27/GRIN1/KNDC1/ITPKA/IST1/CHRNA3/FSTL4/FGD3/OBSL1/GORASP1/DMTN/PLXNB1/KDR/DAB1/TUBB2B/FGD6/ZSWIM5/SARM1/GNA13/TRIM46/CDC42EP2/CPNE6/KIF13B/ISLR2/ARHGAP44/BAIAP2/ZMYM3/ADAM10/FLNA/ABI2/UNC13D/NSMF/DVL1/DIAPH1/UNC13A/WDR1/SRF/RHOB/NEDD4L/NFATC4/SH3KBP1/ZEB2/CRABP2/MAG/FBLN1/CAPZB/SEMA4C/QRICH1/SYT3/CDC42EP4/NTN1/BARHL2/ARHGDIA/MELTF/LIMS2/PTPRS/RYK/NIN/TPM1/PLXND1/BRSK2/OLFM1/PPP3CA/ARC/ILK/PLXNA1/ITGA7/DBN1/LINGO1/RCC2/PTK2B/SYNGAP1/STK11/SEMA3E/MYH9/ARHGAP15/BCL9L/CIB1/PLXNB2/SRCIN1/MYO10</td></tr>
+      
+    </table>
+	</div>
+    </p>
+    <button onclick="hiddenShow(this)">Show Annotation</button>
+    <div class="comment"> 
+    <ul style="font-size: 12px;font-family:line-height: 20px">
+    (1) Category: Classification of GO databases, including biological processes(BP), cellular components(CC), molecular function(MF)<br/>
+    (2) GOID: Unique identification id of Gene Ontology database<br/>
+    (3) Description: Function description corresponding to the GO number<br/>
+    (4) GeneRatio: Ratio between the number of differentially expressed miRNA target genes in each GO term and all differentially expressed miRNA target genes that can be found in GO database<br/>
+    (5) BgRatio: In background GO database, the ratio of all genes concerning this GO term to all genes<br/>
+    (6) pvalue: Statistics category term; abbreviation for probability value<br/>
+    (7) padj: Adjusted p-value. Generally, GO Terms with Corrected_pValue < 0.05 are significant enrichment<br/>
+    (8) geneID: Differentially expressed miRNA target genes in this term<br/>
+    (9) geneName: Differentially expressed miRNA target genes in this term<br/>
+    (10) Count: The number of difference miRNA target gene annotated to GO number<br/>
+     </ul>
+     </div>
+    </p>
+    <br />
+    <!--<center><img class="normal1" src="src/images/GO_enrichment.png" alt="no enriched result"/></center>-->
+    <p class="center">
+	
+    <div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_goBar_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure_goBar_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure_goBar_pane_group2vsgroup1" 
+	role="tabpanel" aria-labelledby="gallery_figure_goBar_list_group2vsgroup1"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/group2vsgroup1.Enriched_GO_classification.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_goBar_pane_group2vsgroup3" 
+	role="tabpanel" aria-labelledby="gallery_figure_goBar_list_group2vsgroup3"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/group2vsgroup3.Enriched_GO_classification.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_goBar_pane_group3vsgroup1" 
+	role="tabpanel" aria-labelledby="gallery_figure_goBar_list_group3vsgroup1"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/group3vsgroup1.Enriched_GO_classification.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_figure_goBar_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure_goBar_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure_goBar_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_goBar_list_group2vsgroup1"
+	data-toggle="list" href="#gallery_figure_goBar_pane_group2vsgroup1" role="tab" aria-controls="group2vsgroup1">group2vsgroup1</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_goBar_list_group2vsgroup3"
+	data-toggle="list" href="#gallery_figure_goBar_pane_group2vsgroup3" role="tab" aria-controls="group2vsgroup3">group2vsgroup3</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_goBar_list_group3vsgroup1"
+	data-toggle="list" href="#gallery_figure_goBar_pane_group3vsgroup1" role="tab" aria-controls="group3vsgroup1">group3vsgroup1</a>
+	
+	</div></div></div>
+    </p>
+    <p class="name_fig">Figure 4.16 The histogram of target gene candidates</p>
+    <p class="premark"><p class="center">The x axis shows the 3 GO ontologies' next GO term, the y axis shows the number and percentage of target gene candidates annotated in this GO term.</p></p>
+    </p>
+    <br />
+    <!--<center><img class="normal1" src="src/images/GO_enrichment.png" alt="no enriched result"/></center>-->
+    <p class="center">
+
+    <div class="row">
+        <div class="col-1">
+        <div id="gallery_figure_goDot_button_prev" class="button_prev" onclick="prev(this.id)">
+        <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon></svg></div></div>
+        <div class="col-6">
+        <div class="tab-content" id="gallery_figure_goDot_nav-tabContent">
+        
+        <div class="tab-pane fade" id="gallery_figure_goDot_pane_group2vsgroup1" 
+        role="tabpanel" aria-labelledby="gallery_figure_goDot_list_group2vsgroup1"
+        onclick="trans(this.id)"><img class="img-gallery" src="src/images/group2vsgroup1.Enriched_GO_classification_dot.png" /></div>
+        
+        <div class="tab-pane fade" id="gallery_figure_goDot_pane_group2vsgroup3" 
+        role="tabpanel" aria-labelledby="gallery_figure_goDot_list_group2vsgroup3"
+        onclick="trans(this.id)"><img class="img-gallery" src="src/images/group2vsgroup3.Enriched_GO_classification_dot.png" /></div>
+        
+        <div class="tab-pane fade" id="gallery_figure_goDot_pane_group3vsgroup1" 
+        role="tabpanel" aria-labelledby="gallery_figure_goDot_list_group3vsgroup1"
+        onclick="trans(this.id)"><img class="img-gallery" src="src/images/group3vsgroup1.Enriched_GO_classification_dot.png" /></div>
+        
+        </div></div>
+        <div class="col-1">
+        <div id="gallery_figure_goDot_button_next" class="button_next" onclick="next(this.id)">
+        <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon></svg></div></div>
+        <div class="col-4">
+        <input class="form-control" id="gallery_figure_goDot_InputList" type="text" placeholder="Search..">
+        <div class="list-group" id="gallery_figure_goDot_list-tab" role="tablist">
+        
+        <a class="list-group-item list-group-item-action" id="gallery_figure_goDot_list_group2vsgroup1"
+        data-toggle="list" href="#gallery_figure_goDot_pane_group2vsgroup1" role="tab" aria-controls="group2vsgroup1">group2vsgroup1</a>
+        
+        <a class="list-group-item list-group-item-action" id="gallery_figure_goDot_list_group2vsgroup3"
+        data-toggle="list" href="#gallery_figure_goDot_pane_group2vsgroup3" role="tab" aria-controls="group2vsgroup3">group2vsgroup3</a>
+        
+        <a class="list-group-item list-group-item-action" id="gallery_figure_goDot_list_group3vsgroup1"
+        data-toggle="list" href="#gallery_figure_goDot_pane_group3vsgroup1" role="tab" aria-controls="group3vsgroup1">group3vsgroup1</a>
+        
+        </div></div></div>
+    </p>
+    <p class="name_fig">Figure 4.17 The scatter plot of target gene candidates</p>
+    <p class="premark"><p class="center">The horizontal axis in the figure is GO Term, and the vertical axis is the significance level of the GO Term set</p></p>
+
+    <p class="paragraph">The Directed Acyclic Graph (DAG) is used to visualize the GO enrichment, where branches represent inclusion of the two GO terms, and the scope of the term definitions becomes smaller and smaller from top to bottom. Normally, the top 10 results from GO enrichment are selected as main nodes in directed acyclic graph, where the associated terms are also represented and the depth of colors indicates enrichment level. DAGs for biological process, molecular function and cellular component are shown respectively.</p>
+    <p class="center">
+	
+    <div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_goDAG_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure_goDAG_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure_goDAG_pane_group2vsgroup1_GO_bp_DAG" 
+	role="tabpanel" aria-labelledby="gallery_figure_goDAG_list_group2vsgroup1_GO_bp_DAG"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/group2vsgroup1.Enriched_GO_bp_DAG.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_goDAG_pane_group2vsgroup1_GO_cc_DAG" 
+	role="tabpanel" aria-labelledby="gallery_figure_goDAG_list_group2vsgroup1_GO_cc_DAG"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/group2vsgroup1.Enriched_GO_cc_DAG.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_goDAG_pane_group2vsgroup1_GO_mf_DAG" 
+	role="tabpanel" aria-labelledby="gallery_figure_goDAG_list_group2vsgroup1_GO_mf_DAG"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/group2vsgroup1.Enriched_GO_mf_DAG.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_goDAG_pane_group2vsgroup3_GO_bp_DAG" 
+	role="tabpanel" aria-labelledby="gallery_figure_goDAG_list_group2vsgroup3_GO_bp_DAG"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/group2vsgroup3.Enriched_GO_bp_DAG.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_goDAG_pane_group2vsgroup3_GO_cc_DAG" 
+	role="tabpanel" aria-labelledby="gallery_figure_goDAG_list_group2vsgroup3_GO_cc_DAG"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/group2vsgroup3.Enriched_GO_cc_DAG.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_goDAG_pane_group2vsgroup3_GO_mf_DAG" 
+	role="tabpanel" aria-labelledby="gallery_figure_goDAG_list_group2vsgroup3_GO_mf_DAG"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/group2vsgroup3.Enriched_GO_mf_DAG.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_goDAG_pane_group3vsgroup1_GO_bp_DAG" 
+	role="tabpanel" aria-labelledby="gallery_figure_goDAG_list_group3vsgroup1_GO_bp_DAG"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/group3vsgroup1.Enriched_GO_bp_DAG.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_goDAG_pane_group3vsgroup1_GO_cc_DAG" 
+	role="tabpanel" aria-labelledby="gallery_figure_goDAG_list_group3vsgroup1_GO_cc_DAG"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/group3vsgroup1.Enriched_GO_cc_DAG.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_goDAG_pane_group3vsgroup1_GO_mf_DAG" 
+	role="tabpanel" aria-labelledby="gallery_figure_goDAG_list_group3vsgroup1_GO_mf_DAG"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/group3vsgroup1.Enriched_GO_mf_DAG.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_figure_goDAG_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure_goDAG_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure_goDAG_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_goDAG_list_group2vsgroup1_GO_bp_DAG"
+	data-toggle="list" href="#gallery_figure_goDAG_pane_group2vsgroup1_GO_bp_DAG" role="tab" aria-controls="group2vsgroup1_GO_bp_DAG">group2vsgroup1_GO_bp_DAG</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_goDAG_list_group2vsgroup1_GO_cc_DAG"
+	data-toggle="list" href="#gallery_figure_goDAG_pane_group2vsgroup1_GO_cc_DAG" role="tab" aria-controls="group2vsgroup1_GO_cc_DAG">group2vsgroup1_GO_cc_DAG</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_goDAG_list_group2vsgroup1_GO_mf_DAG"
+	data-toggle="list" href="#gallery_figure_goDAG_pane_group2vsgroup1_GO_mf_DAG" role="tab" aria-controls="group2vsgroup1_GO_mf_DAG">group2vsgroup1_GO_mf_DAG</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_goDAG_list_group2vsgroup3_GO_bp_DAG"
+	data-toggle="list" href="#gallery_figure_goDAG_pane_group2vsgroup3_GO_bp_DAG" role="tab" aria-controls="group2vsgroup3_GO_bp_DAG">group2vsgroup3_GO_bp_DAG</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_goDAG_list_group2vsgroup3_GO_cc_DAG"
+	data-toggle="list" href="#gallery_figure_goDAG_pane_group2vsgroup3_GO_cc_DAG" role="tab" aria-controls="group2vsgroup3_GO_cc_DAG">group2vsgroup3_GO_cc_DAG</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_goDAG_list_group2vsgroup3_GO_mf_DAG"
+	data-toggle="list" href="#gallery_figure_goDAG_pane_group2vsgroup3_GO_mf_DAG" role="tab" aria-controls="group2vsgroup3_GO_mf_DAG">group2vsgroup3_GO_mf_DAG</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_goDAG_list_group3vsgroup1_GO_bp_DAG"
+	data-toggle="list" href="#gallery_figure_goDAG_pane_group3vsgroup1_GO_bp_DAG" role="tab" aria-controls="group3vsgroup1_GO_bp_DAG">group3vsgroup1_GO_bp_DAG</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_goDAG_list_group3vsgroup1_GO_cc_DAG"
+	data-toggle="list" href="#gallery_figure_goDAG_pane_group3vsgroup1_GO_cc_DAG" role="tab" aria-controls="group3vsgroup1_GO_cc_DAG">group3vsgroup1_GO_cc_DAG</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_goDAG_list_group3vsgroup1_GO_mf_DAG"
+	data-toggle="list" href="#gallery_figure_goDAG_pane_group3vsgroup1_GO_mf_DAG" role="tab" aria-controls="group3vsgroup1_GO_mf_DAG">group3vsgroup1_GO_mf_DAG</a>
+	
+	</div></div></div>
+    </p>
+    <p class="name_fig">Figure 4.18 DAGs of GO enrichment</p>
+    <p class="premark"><p class="center">Each node represents a GO term, and the TOP10 GO terms are boxed. The name and p-value of each term are shown on the node. 
+Branches  represent  inclusion  of  the  two  GO  terms,  and  the  scope  of  the  term definitions becomes smaller and smaller from top to bottom. Normally, the top 5 results from GO enrichment are selected as main nodes in directed acyclic graphs. Associated terms are also represented. Color depth indicates enrichment level.</p></p>
+ 
+  
+  <!----------------------------------------- 候选靶基因KEGG富集分析 -------------------------------------->
+  
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left"  /></a> <a name="候选靶基因KEGG富集分析"></a>
+    <hr />
+    </p>
+    <br />
+    <h4>4.14.2	KEGG Pathway Analysis</h4>
+    <p class="paragraph">KEGG (Kyoto Encyclopedia of Genes and Genomes) is a collection of manually curated databases related to genomes, biological pathways, diseases, drugs, and chemical substances. KEGG enrichment is utilized for bioinformatics research and education, including data analysis in genomics, metagenomics, metabolomics and other related studies.</p>
+    <p class="paragraph">Pathway enrichment analysis identifies significantly enriched metabolic pathways or signal transduction pathways associated with differentially expressed miRNA target genes related to the whole genome background. </p>
+
+    <p class="center">Table 4.16 KEGG Enrichment Analysis Partial Results</p>
+    <p class="center">
+	<div style="overflow-x: scroll"> 
+    <table class="gy">
+      <tr><th>KEGGID</th><th>Description</th><th>GeneRatio</th><th>BgRatio</th><th>pvalue</th><th>padj</th><th>geneID</th><th>geneName</th><th>keggID</th><th>Count</th></tr>
+      
+    </table>
+	</div>
+  </p>
+    <button onclick="hiddenShow(this)">Show Annotation</button>
+    <div class="comment"> 
+    <ul style="font-size: 12px;font-family:line-height: 20px">
+    (1) KEGGID: Unique identification id of KEGG database<br/>
+    (2) Description: Function description of this pathway<br/>
+    (3) GeneRatio: Ratio between the number of differentially expressed miRNA target genes in each pathway and all differentially expressed miRNA target genes that can be found in KEGG database<br/>
+    (4) BgRatio: In background KEGG database, the ratio of all genes concerning this KEGG pathway to all genes included<br/>
+    (5) pvalue: Statistics category term; abbreviation for probability value<br/>
+    (6) padj: Adjusted p-value. Generally, KEGG pathways with Corrected_pValue < 0.05 are significant enrichment<br/>
+    (7) geneID: Differentially expressed miRNA target genes in this pathway<br/>
+    (8) geneName: Differentially expressed miRNA target genes in this pathway<br/>
+    (9) keggID: Pathway gene id<br/>
+    (10) Count: Number of differentially expressed miRNA target genes concerning this pathway
+     </ul>
+    </div>
+  <br/>
+    <!--<center><img class="normal1" src="src/images/pathway_scatterplot.png" /></center>-->
+    <p class="center">
+	
+    <div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_kegg_bar_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure_kegg_bar_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure_kegg_bar_pane_group2vsgroup1" 
+	role="tabpanel" aria-labelledby="gallery_figure_kegg_bar_list_group2vsgroup1"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/group2vsgroup1.KEGG_pathway_scatterplot.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_kegg_bar_pane_group2vsgroup3" 
+	role="tabpanel" aria-labelledby="gallery_figure_kegg_bar_list_group2vsgroup3"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/group2vsgroup3.KEGG_pathway_scatterplot.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_kegg_bar_pane_group3vsgroup1" 
+	role="tabpanel" aria-labelledby="gallery_figure_kegg_bar_list_group3vsgroup1"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/images/group3vsgroup1.KEGG_pathway_scatterplot.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_figure_kegg_bar_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure_kegg_bar_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure_kegg_bar_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_kegg_bar_list_group2vsgroup1"
+	data-toggle="list" href="#gallery_figure_kegg_bar_pane_group2vsgroup1" role="tab" aria-controls="group2vsgroup1">group2vsgroup1</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_kegg_bar_list_group2vsgroup3"
+	data-toggle="list" href="#gallery_figure_kegg_bar_pane_group2vsgroup3" role="tab" aria-controls="group2vsgroup3">group2vsgroup3</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_kegg_bar_list_group3vsgroup1"
+	data-toggle="list" href="#gallery_figure_kegg_bar_pane_group3vsgroup1" role="tab" aria-controls="group3vsgroup1">group3vsgroup1</a>
+	
+	</div></div></div>
+    </p>
+    <p class="name_fig">Figure 4.19 The histogram of KEGG enrichment of target genes</p>
+    <p class="premark"><p class="center">The abscissa is the KEGG pathway, and the ordinate is the significance level of pathway enrichment</p></p>
+    <br />
+    <!--<center><img class="normal1" src="src/images/pathway_scatterplot.png" /></center>-->
+    <p class="center">
+
+    <div class="row">
+        <div class="col-1">
+        <div id="gallery_figure_kegg_dot_button_prev" class="button_prev" onclick="prev(this.id)">
+        <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon></svg></div></div>
+        <div class="col-6">
+        <div class="tab-content" id="gallery_figure_kegg_dot_nav-tabContent">
+        
+        <div class="tab-pane fade" id="gallery_figure_kegg_dot_pane_group2vsgroup1" 
+        role="tabpanel" aria-labelledby="gallery_figure_kegg_dot_list_group2vsgroup1"
+        onclick="trans(this.id)"><img class="img-gallery" src="src/images/group2vsgroup1.KEGG_pathway_scatterplot_dot.png" /></div>
+        
+        <div class="tab-pane fade" id="gallery_figure_kegg_dot_pane_group2vsgroup3" 
+        role="tabpanel" aria-labelledby="gallery_figure_kegg_dot_list_group2vsgroup3"
+        onclick="trans(this.id)"><img class="img-gallery" src="src/images/group2vsgroup3.KEGG_pathway_scatterplot_dot.png" /></div>
+        
+        <div class="tab-pane fade" id="gallery_figure_kegg_dot_pane_group3vsgroup1" 
+        role="tabpanel" aria-labelledby="gallery_figure_kegg_dot_list_group3vsgroup1"
+        onclick="trans(this.id)"><img class="img-gallery" src="src/images/group3vsgroup1.KEGG_pathway_scatterplot_dot.png" /></div>
+        
+        </div></div>
+        <div class="col-1">
+        <div id="gallery_figure_kegg_dot_button_next" class="button_next" onclick="next(this.id)">
+        <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon></svg></div></div>
+        <div class="col-4">
+        <input class="form-control" id="gallery_figure_kegg_dot_InputList" type="text" placeholder="Search..">
+        <div class="list-group" id="gallery_figure_kegg_dot_list-tab" role="tablist">
+        
+        <a class="list-group-item list-group-item-action" id="gallery_figure_kegg_dot_list_group2vsgroup1"
+        data-toggle="list" href="#gallery_figure_kegg_dot_pane_group2vsgroup1" role="tab" aria-controls="group2vsgroup1">group2vsgroup1</a>
+        
+        <a class="list-group-item list-group-item-action" id="gallery_figure_kegg_dot_list_group2vsgroup3"
+        data-toggle="list" href="#gallery_figure_kegg_dot_pane_group2vsgroup3" role="tab" aria-controls="group2vsgroup3">group2vsgroup3</a>
+        
+        <a class="list-group-item list-group-item-action" id="gallery_figure_kegg_dot_list_group3vsgroup1"
+        data-toggle="list" href="#gallery_figure_kegg_dot_pane_group3vsgroup1" role="tab" aria-controls="group3vsgroup1">group3vsgroup1</a>
+        
+        </div></div></div>
+    </p>
+    <p class="name_fig">Figure 4.20 KEGG enrichment scatter plot of DEGs</p>
+    <p class="premark"><p class="center">The y-axis shows the name of the pathway and the x-axis shows the Rich factor. Dot size represents the number of target genes and the color indicates the q-value.</p></p>
+    <br />
+ 
+  
+  
+   
+    <br />
+    <p class="center">
+	
+    <div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_kegg_path_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure_kegg_path_nav-tabContent">
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_figure_kegg_path_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure_kegg_path_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure_kegg_path_list-tab" role="tablist">
+	
+	</div></div></div>
+	<p class="name_fig">Figure 4.21 Metabolic map of target genes</p>
+    <!--<center><img class="normal1" src="src/images/pathway_API.png" /></center>-->
+    <!--<p class="name_fig">Figure14.4 Enriched KEGG pathways候选靶基因KEGG富集通路图</p>-->
+    <br/>
+    
+    <p class="paragraph"> Result Directory: <a href="../Result_PXXXXXXXX_Homo_sapiens/14.Enrichment" title="点击打开" target="_blank">Enrichment</a></b></p>
+    
+
+
+    <div class="alert alert-qa" role="alert" >
+  Q: How did the p-value get for each pathway?
+  <a class="a-qa" data-toggle="collapse" href="#qa2_3" role="button" aria-expanded="false" aria-controls="collapseExample" >
+        Click here for details »</a>
+  </div>
+
+  <div class="collapse" id="qa2_3">
+    <div class="bs-docs-qa">
+    A:  <br />
+    <center>
+      <img style="height:100px"  src="src/images/kegg_pvalue.png" />
+    </center>
+    N = the number of all genes with KEGG annotation<br />
+    n = the number of target gene candidates in N<br />
+    M = the number of all genes annotated to a certain pathway<br />
+    m = the number of target gene candidates in M<br />
+    <br />
+    </div>
+  </div>
+ 
+   
+  
+ 
+  <!-------------------------------------------- 附录 --------------------------------------------->
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left"  /></a> <a name="附录"></a>
+    <hr />
+    </p>
+    <h2>5 Appendix</h2>
+    <h3>5.1 Software</h3>
+    <a name="软件说明列表">
+    </a>
+    <p class="center">
+    <div id="tb">
+    <table class="gy2"> 
+    <tr>
+          <th>Analysis</th>
+          <th>Software</th>
+          <th>Version</th>
+          <th>Parameter</th>
+          <th>Remarks</th>
+        </tr>
+    
+    <tr>
+          <td>Mapping</td>
+          <td>Bowtie</td>
+          <td>1.0.1</td>
+          <td>-v 1 -k 1</td>
+          <td>for mapping</td>
+        </tr>
+    
+    <tr>
+          <td rowspan="2">known miRNA/novel miRNA</td>
+          <td>miREvo</td>
+          <td>miREvo_v1.1</td>
+          <td>-i -r -M -m -k -p 10 -g 50000</td>
+          <td rowspan="2">Modify mirdeep2 for known miRNA analysis ; IntegrationmiREvo and mirdeep2 for novel miRNA prediction ; ViennaRNA for mirdeep2 internal call</td>
+        </tr>
+    
+    <tr>
+          <td>mirdeep2; ViennaRNA</td>
+          <td>mirdeep2_0_0_5  ViennaRNA-2.1.1</td>
+          <td>quantifier.pl -p -m -r -y -g 0 -T 5 default</td>
+        </tr>
+    
+    <tr>
+          <td>TAS prediction</td>
+          <td>srna-tools-cli</td>
+          <td>http://srna-tools.cm p.uea.ac.uk/</td>
+          <td>--tool phasing --abundance 3 --pval 0.001 --minsize 20 --maxsize 26 --trrna</td>
+          <td>for plant TAS prediction</td>
+        </tr>
+    
+    <tr>
+          <td>Repeat</td>
+          <td>RepeatMasker</td>
+          <td>open-4.1.4</td>
+          <td>-species –nolow -no_is –norna –pa 8</td>
+          <td>for repeat analysis, based on Dfam3.6 , using trf and irf</td>
+        </tr>
+    
+    <tr>
+          <td>Target</td>
+          <td>miRanda</td>
+          <td>miRanda-3.3a</td>
+          <td>-sc 140 –en -10 –scale 4 –strict –out</td>
+          <td>animal target prediction</td>
+        </tr>
+
+    <tr>
+          <td>Target</td>
+          <td>RNAhybrid</td>
+          <td>RNAhybrid v2.0</td>
+          <td>-e -10 -p 0.05 -m 100000</td>
+          <td>animal target prediction</td>
+        </tr>
+    
+    <tr>
+          <td>Target</td>
+          <td>psRobot</td>
+          <td>psRobot_v1.2</td>
+          <td>-s –t –o –p 1</td>
+          <td>plant target prediction</td>
+        </tr>
+    
+    <tr>
+          <td>Diff</td>
+          <td>DESeq2</td>
+          <td>1.24.0</td>
+          <td>padj<=0.05</td>
+          <td>for Biological repeats analysis</td>
+        </tr>
+    
+    <tr>
+          <td>Diff</td>
+          <td>EdgeR</td>
+          <td>3.24.3</td>
+          <td>padj<=0.05 |log2foldchange|>=1</td>
+          <td>for no Biological repeats analysis</td>
+        </tr>
+    
+    <tr>
+          <td>Diff</td>
+          <td>DEGseq</td>
+          <td>1.38.0</td>
+          <td>qvalue<=0.01 |log2foldchange|>=1</td>
+          <td>for special circumstances analysis</td>
+        </tr>
+    
+    <tr>
+          <td>Enrichment</td>
+          <td>clusterProfiler</td>
+          <td>3.8.1</td>
+          <td>padj < 0.05</td>
+          <td>For GO, KEGG enrichment analysis</td>
+        </tr>
+    
+    </table>
+  <br />
+  <br />
+  <h3>5.2 Methods</h3>
+  <p class="paragraph">Click to open the method(pdf), and the corresponding file can be viewed directly.</p>
+  
+  <p class="paragraph">File catalog: <a href="src/pdf/Methods.pdf" title="click open" target="_blank">methods</a></p>
+  
+  <br />
+  <br />
+
+  <h3>5.3 Result File Decompression Method and Format Description</h3>
+
+    <a name="文件目录列表">
+<br/>
+<table width=95% align="center" id="result_note" cellspacing="0" cellpadding="5" class='gy2'>
+
+
+
+		<tr><th>Compressed.format</th><th>Customer.type</th><th>Uncomparessed.method</th></tr>
+
+		<tr><td rowspan="2">compressed files in the format of *.tar:</td><td>Unix/Linux/Mac user</td><td>use tar -zxvf *.tar command</td></tr>
+
+		<tr><td>Windows user</td><td>use uncompressed software such as WinRAR, 7-Zip et al</td></tr>
+
+		<tr><td rowspan="2">compressed files in the format of *.gz:</td><td>Unix/Linux/Mac user</td><td>use gzip –d  *.gz command</td></tr>
+
+		<tr><td>Windows user</td><td>use uncompressed software such as WinRAR, 7-Zip et al</td></tr>
+
+		<tr><td rowspan="2">compressed files in the format of *.zip:</td><td>Unix/Linux/Mac user</td><td>use unzip *.zip command</td></tr>
+
+		<tr><td>Windows user</td><td>use uncompressed software such as WinRAR, 7-Zip et al</td></tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+
+<table width=95% align="center" id="result_note" cellspacing="0" cellpadding="5" class='gy2'>
+
+		<tr><th>File.type</th><th>Document.description</th><th>Open.mode</th>
+
+			</tr>
+
+		<tr><td rowspan="2">file.fa/.fasta/.fna</td><td rowspan="2">sequence file, in the format of fasta in genaral.</td><td>Unix/Linux/Mac users use less or more commands.</td>
+
+			</tr>
+
+		<tr><td>Windows users use editor Editplus/Notepad++ et al.</td>
+
+			</tr>
+
+		<tr><td rowspan="2">file.fq/.fastq</td><td rowspan="2">reads sequence file, in the format of fasta. In genaral, because sequence of gene or genome is large, we provide customer with sampled*.fastq file ( partial sequences of *.fastq ). It will be more convenient to check file fomat.</td><td>Unix/Linux/Mac users use less or more command.</td>
+
+			</tr>
+
+		<tr><td>windows users use editor Editplus/Notepad++ et al</td>
+
+			</tr>
+
+		<tr><td rowspan="2">file.txt/.xls</td><td rowspan="2">Table result file; files are tab delimited.</td><td>Unix/Linux/Mac users use less or more command.</td>
+
+			</tr>
+
+		<tr><td>Windows users use editor Editplus/Notepad++ et al, also can use Microsoft Excel to open.</td>
+
+			</tr>
+
+		<tr><td rowspan="2">file.png</td><td rowspan="2">Image file, bitmap with loseless compression.</td><td>Unix/Linux/Mac users use display commands to open.</td>
+
+			</tr>
+
+		<tr><td>Windows users use picture viewer to view, for example Photoshop etc. al</td>
+
+		</tr>
+
+		<tr><td rowspan="2">file.pdf/.svg</td><td rowspan="2">Figure result files; vectorgraph, can be zoomed in or out. It is very convenient for customer to view or edit with Adobe Illustrator. The figure can be used in paper for publish.</td><td>unix/Linux user use evince command to open.</td>
+
+      </tr>
+      <tr><td>Windows/Mac user use Adobe Reader/Foxit reader/web browser to open.</td>
+
+			</tr>
+
+    <tr><td rowspan="2">file.gff/.gtf</td><td rowspan="2">GFF/GTF is general feature format.</td><td>Unix/Linux/Mac user use less or more command.</td>
+
+      </tr>
+      <tr><td>Windows user use editor Editplus/Notepad++ et al.</td>
+
+      </tr>
+
+</table>
+
+
+  <br />
+ <!-------------------------------------------- 参考文献 ------------------------------------------->
+
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left"  /></a> <a name="参考文献"></a>
+    <hr />
+    </p>
+    <h2 id="reference_html">6 Reference</h2>
+    <p class="ref">Bartel DP. Metazoan MicroRNAs. Cell. 2018;173(1):20-51. doi:10.1016/j.cell.2018.03.006.<br /><br />
+      Chen D, Yuan C, Zhang J, et al. PlantNATsDB: a comprehensive database of plant natural antisense transcripts. Nucleic Acids Res. 2012;40(Database issue):D1187-D1193. doi:10.1093/nar/gkr823. (PlantNATsDB)<br /><br />
+      Cock PJ, Fields CJ, Goto N, Heuer ML, Rice PM. The Sanger FASTQ file format for sequences with quality scores, and the Solexa/Illumina FASTQ variants. Nucleic Acids Res. 2010;38(6):1767-1771. doi:10.1093/nar/gkp1137.<br /><br />
+      Enright AJ, John B, Gaul U, Tuschl T, Sander C, Marks DS. MicroRNA targets in Drosophila. Genome Biol. 2003;5(1):R1. doi:10.1186/gb-2003-5-1-r1.(miRanda)<br /><br />
+      Erlich Y, Mitra PP, delaBastide M, McCombie WR, Hannon GJ. Alta-Cyclic: a self-optimizing base caller for next-generation sequencing. Nat Methods. 2008;5(8):679-682. doi:10.1038/nmeth.1230.<br /><br />
+      Esteller M. Non-coding RNAs in human disease. Nat Rev Genet. 2011;12(12):861-874. Published 2011 Nov 18. doi:10.1038/nrg3074.<br /><br />
+      Friedländer MR, Mackowiak SD, Li N, Chen W, Rajewsky N. miRDeep2 accurately identifies known and hundreds of novel microRNA genes in seven animal clades. Nucleic Acids Res. 2012;40(1):37-52. doi:10.1093/nar/gkr688. (miRDeep2)<br /><br />
+      Jiang L, Schlesinger F, Davis CA, et al. Synthetic spike-in standards for RNA-seq experiments. Genome Res. 2011;21(9):1543-1551. doi:10.1101/gr.121095.111.<br /><br />
+      Kanehisa M, Araki M, Goto S, et al. KEGG for linking genomes to life and the environment. Nucleic Acids Res. 2008;36(Database issue):D480-D484. doi:10.1093/nar/gkm882.(KEGG)<br /><br />     
+      Krüger J, Rehmsmeier M. RNAhybrid: microRNA target prediction easy, fast and flexible. Nucleic Acids Res. 2006;34(Web Server issue):W451-W454. doi:10.1093/nar/gkl243.(RNAhybrid)<br /><br />
+      Langmead B, Trapnell C, Pop M, Salzberg SL. Ultrafast and memory-efficient alignment of short DNA sequences to the human genome. Genome Biol. 2009;10(3):R25. doi:10.1186/gb-2009-10-3-r25. (Bowtie)<br /><br />
+      Love MI, Huber W, Anders S. Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2. Genome Biol. 2014;15(12):550. doi:10.1186/s13059-014-0550-8. (DESeq2)<br /><br />
+      Mao X, Cai T, Olyarchuk JG, Wei L. Automated genome annotation and pathway identification using the KEGG Orthology (KO) as a controlled vocabulary. Bioinformatics. 2005;21(19):3787-3793. doi:10.1093/bioinformatics/bti430 (KOBAS)<br /><br /> 
+      Morris KV, Mattick JS. The rise of regulatory RNA. Nat Rev Genet. 2014;15(6):423-437. doi:10.1038/nrg3722.<br /><br />    
+      Moxon S, Schwach F, Dalmay T, Maclean D, Studholme DJ, Moulton V. A toolkit for analysing large-scale plant small RNA datasets. Bioinformatics. 2008;24(19):2252-2253. doi:10.1093/bioinformatics/btn428. (UEA sRNA tools)<br /><br />
+      Storey, John D . The positive false discovery rate: a Bayesian interpretation and the q -value The Annals of Statistics, 2003, 31(6):2013-2035.(qvalue)<br /><br />
+      Wang L, Feng Z, Wang X, Wang X, Zhang X. DEGseq: an R package for identifying differentially expressed genes from RNA-seq data. Bioinformatics. 2010;26(1):136-138. doi:10.1093/bioinformatics/btp612. (DEGseq)<br /><br />
+      Wei Y, Chen S, Yang P, Ma Z, Kang L. Characterization and comparative profiling of the small RNA transcriptomes in two phases of locust. Genome Biol. 2009;10(1):R6. doi:10.1186/gb-2009-10-1-r6.<br /><br />
+      Wen M, Shen Y, Shi S, Tang T. miREvo: an integrative microRNA evolutionary analysis platform for next-generation sequencing experiments. BMC Bioinformatics. 2012;13:140. Published 2012 Jun 21. doi:10.1186/1471-2105-13-140.<br /><br />
+      Wu HJ, Ma YK, Chen T, Wang M, Wang XJ. PsRobot: a web-based plant small RNA meta-analysis toolbox. Nucleic Acids Res. 2012;40(Web Server issue):W22-W28. doi:10.1093/nar/gks554.(psRobot)<br /><br />
+      Zhou L, Chen J, Li Z, et al. Integrated profiling of microRNAs and mRNAs: microRNAs located on Xq27.3 associate with clear cell renal cell carcinoma. PLoS One. 2010;5(12):e15224. Published 2010 Dec 30. doi:10.1371/journal.pone.0015224.<br /><br />
+     </p>
+  
+  
+</div>
+</body>
+</html>

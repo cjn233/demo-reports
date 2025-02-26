@@ -1,0 +1,6 @@
+seqname	source	feature	start	end	score	strand	frame	attributes
+NC_051336.1	StringTie	exon	526188	526282	.	+	.	transcript_id "novel.1.1"; gene_id "novel.1";
+NC_051336.1	StringTie	exon	526305	526416	.	+	.	transcript_id "novel.1.1"; gene_id "novel.1";
+NC_051336.1	StringTie	transcript	1861954	1862864	.	+	.	transcript_id "novel.2.1"; gene_id "novel.2";
+NC_051336.1	StringTie	exon	1861954	1862057	.	+	.	transcript_id "novel.2.1"; gene_id "novel.2";
+NC_051336.1	StringTie	exon	1862116	1862864	.	+	.	transcript_id "novel.2.1"; gene_id "novel.2";

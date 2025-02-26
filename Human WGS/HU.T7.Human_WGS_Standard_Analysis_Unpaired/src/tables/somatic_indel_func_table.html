@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>data tables</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="../css/datatables.css" />
+    <link rel="stylesheet" type="text/css" href="../css/buttons.dataTables.min.css" />
+</head>
+<body>
+        <table id="nopaging_table" class="display" style="width: 100%; height: 50px; text-align: center; margin: auto;font-size: 14px">
+        <thead>
+            <tr style='background-color: #036EB8;color: #FFFFFF'><th>Sample</th><th>CAT082_mice_F2</th><th>CAT082_Ca</th><th>CAT061-mice-F4</th><th>CAT061_Ca</th><th>CAT070_mice_F1</th><th>CAT070_Ca</th></tr>
+        </thead>
+        <tbody>
+			<tr style'background-color: #f1f5fb'><td>CDS</td><td>31</td><td>1</td><td>129</td><td>3</td><td>292</td><td>0</td></tr>
+			<tr style'background-color: #e3eff8'><td>frameshift_deletion</td><td>3</td><td>0</td><td>21</td><td>2</td><td>45</td><td>0</td></tr>
+			<tr style'background-color: #f1f5fb'><td>frameshift_insertion</td><td>2</td><td>0</td><td>15</td><td>0</td><td>26</td><td>0</td></tr>
+			<tr style'background-color: #e3eff8'><td>nonframeshift_deletion</td><td>13</td><td>1</td><td>52</td><td>1</td><td>120</td><td>0</td></tr>
+			<tr style'background-color: #f1f5fb'><td>nonframeshift_insertion</td><td>12</td><td>0</td><td>39</td><td>0</td><td>96</td><td>0</td></tr>
+			<tr style'background-color: #e3eff8'><td>stopgain</td><td>1</td><td>0</td><td>0</td><td>0</td><td>4</td><td>0</td></tr>
+			<tr style'background-color: #f1f5fb'><td>stoploss</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+			<tr style'background-color: #e3eff8'><td>unknown</td><td>0</td><td>0</td><td>2</td><td>0</td><td>0</td><td>0</td></tr>
+			<tr style'background-color: #f1f5fb'><td>intronic</td><td>69</td><td>1</td><td>1188</td><td>2</td><td>2118</td><td>5</td></tr>
+			<tr style'background-color: #e3eff8'><td>UTR3</td><td>18</td><td>0</td><td>115</td><td>0</td><td>274</td><td>0</td></tr>
+			<tr style'background-color: #f1f5fb'><td>UTR5</td><td>15</td><td>0</td><td>55</td><td>0</td><td>163</td><td>1</td></tr>
+			<tr style'background-color: #e3eff8'><td>splicing</td><td>1</td><td>0</td><td>13</td><td>0</td><td>35</td><td>0</td></tr>
+			<tr style'background-color: #f1f5fb'><td>ncRNA_exonic</td><td>0</td><td>1</td><td>34</td><td>0</td><td>38</td><td>0</td></tr>
+			<tr style'background-color: #e3eff8'><td>ncRNA_intronic</td><td>10</td><td>0</td><td>61</td><td>0</td><td>108</td><td>0</td></tr>
+			<tr style'background-color: #f1f5fb'><td>ncRNA_UTR3</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+			<tr style'background-color: #e3eff8'><td>ncRNA_UTR5</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+			<tr style'background-color: #f1f5fb'><td>ncRNA_splicing</td><td>0</td><td>0</td><td>4</td><td>0</td><td>0</td><td>0</td></tr>
+			<tr style'background-color: #e3eff8'><td>upstream</td><td>4</td><td>0</td><td>18</td><td>0</td><td>48</td><td>0</td></tr>
+			<tr style'background-color: #f1f5fb'><td>downstream</td><td>0</td><td>0</td><td>11</td><td>0</td><td>16</td><td>0</td></tr>
+			<tr style'background-color: #e3eff8'><td>intergenic</td><td>2</td><td>1</td><td>93</td><td>0</td><td>221</td><td>5</td></tr>
+			<tr style'background-color: #f1f5fb'><td>Others</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td></tr>
+			<tr style'background-color: #e3eff8'><td>Total</td><td>150</td><td>4</td><td>1722</td><td>5</td><td>3314</td><td>11</td></tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <script type="text/javascript" src="../js/datatables.js"></script>
+    <script type="text/javascript" src="../js/vfs_fonts.js"></script>
+    <script type="text/javascript" src="../js/buttons.colVis.min.js"></script>
+    <script type="text/javascript" src="../js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var table = $('#nopaging_table').DataTable( {
+                scrollX: true,
+                paging: false,
+                scrollY: 420,
+                sorting: true,
+                'order': [],
+                searching: false,
+                fixedHeader: {
+                    header: false,
+                    //footer: true
+                },
+                fixedColumns: {'leftColumns':1},
+                colReorder: true,
+                dom: 'Bfrtip',
+                buttons: [
+                    'colvis','excel'
+                ],
+                language:{
+                    'info': '',
+                    'sZeroRecords' : '没有找到数据',
+                    "oPaginate" : {
+                        "sFirst" : "第一页",
+                        "sPrevious" : "上一页",
+                        "sNext" : "下一页",
+                        "sLast" : "最后一页"
+                    }
+                }
+            } );
+        } );
+    </script>
+</body>
+</html>

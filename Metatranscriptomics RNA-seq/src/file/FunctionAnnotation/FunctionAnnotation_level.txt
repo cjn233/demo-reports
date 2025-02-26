@@ -1,0 +1,12 @@
+database name	level	description of level
+KEGG	level1	KEGG pathway level1 include 6 pathway database；
+KEGG	level2	KEGG pathway level2 43 sub-pathway database；
+KEGG	level3	KEGG pathway id（e.g. map00010）；
+KEGG	KO	KEGG ortholog group (e.g. K00010)；
+KEGG	ec	KEGG EC Number（e.g. EC 3.4.1.1）；
+eggNOG	level1	24 function taxa；
+eggNOG	level2	ortholog group description；
+eggNOG	og	ortholog group ID(e.g. ENOG410YU5S)；
+CAZy	level1	6 major function classes；
+CAZy	level2	CAZy family（e.g. GT51）；
+CAZy	ec	EC number（e.g. murein polymerase (EC 2.4.1.129)）；

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="./slick/slick.css">
+  <link rel="stylesheet" type="text/css" href="./slick/slick-theme.css">
+  <style type="text/css">
+    * {
+      box-sizing: border-box;
+    }
+
+    .slider {
+        width: 90%;
+        margin: auto;
+    }
+
+    .slick-slide {
+      margin: 0px 20px;
+    }
+
+    .slick-slide img {
+      width: 100%;
+    }
+
+    .slick-prev:before,
+    .slick-next:before {
+      color: black;
+    }
+
+
+    .slick-slide {
+      transition: all ease-in-out .3s;
+      opacity: 1.0;
+    }
+
+    .slick-active {
+      opacity: .5;
+    }
+
+    .slick-current {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <section class="vertical-center-3 slider">
+    <div><p style="margin: 5% 60%; width: 100%; position: absolute;">HS6ST1-NM_004807-O60243</p><a href="../pictures/Smg_MutShow/HS6ST1-NM_004807-O60243.png" target="_blank"><img src="../pictures/Smg_MutShow/HS6ST1-NM_004807-O60243.png"/></a></div>
+    <div><p style="margin: 5% 60%; width: 100%; position: absolute;">RFPL4AL1-NM_001277397-F8VTS6</p><a href="../pictures/Smg_MutShow/RFPL4AL1-NM_001277397-F8VTS6.png" target="_blank"><img src="../pictures/Smg_MutShow/RFPL4AL1-NM_001277397-F8VTS6.png"/></a></div>
+    <div><p style="margin: 5% 60%; width: 100%; position: absolute;">KRT16-NM_005557-P08779</p><a href="../pictures/Smg_MutShow/KRT16-NM_005557-P08779.png" target="_blank"><img src="../pictures/Smg_MutShow/KRT16-NM_005557-P08779.png"/></a></div>
+    <div><p style="margin: 5% 60%; width: 100%; position: absolute;">DDX11-NM_001257144-Q96FC9</p><a href="../pictures/Smg_MutShow/DDX11-NM_001257144-Q96FC9.png" target="_blank"><img src="../pictures/Smg_MutShow/DDX11-NM_001257144-Q96FC9.png"/></a></div>
+    <div><p style="margin: 5% 60%; width: 100%; position: absolute;">DGKE-NM_003647-P52429</p><a href="../pictures/Smg_MutShow/DGKE-NM_003647-P52429.png" target="_blank"><img src="../pictures/Smg_MutShow/DGKE-NM_003647-P52429.png"/></a></div>
+    <div><p style="margin: 5% 60%; width: 100%; position: absolute;">KMT2C-NM_170606-Q8NEZ4</p><a href="../pictures/Smg_MutShow/KMT2C-NM_170606-Q8NEZ4.png" target="_blank"><img src="../pictures/Smg_MutShow/KMT2C-NM_170606-Q8NEZ4.png"/></a></div>
+  </section>
+  <script src="./slick/jquery-2.2.0.min.js" type="text/javascript"></script>
+  <script src="./slick/slick.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript">
+    $(document).on('ready', function() {
+      $(".vertical-center-3").slick({
+        dots: true,
+        vertical: true,
+        centerMode: true,
+        slidesToShow: 2,
+        slidesToScroll: 3,
+        adaptiveHeight: true,
+      });
+    });
+  </script>
+</body>
+</html>

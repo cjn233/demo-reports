@@ -1,0 +1,947 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg height="2020" width="612" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<line stroke="black" stroke-width="2" x1="59" x2="199" y1="1930" y2="1930" />
+	<line stroke="black" stroke-width="1" x1="59" x2="59" y1="1930" y2="1925" />
+	<line stroke="black" stroke-width="1" x1="199" x2="199" y1="1930" y2="1925" />
+	<text font-family="Arial" font-size="10" text-anchor="middle" x="59" y="1945">0</text>
+	<text font-family="Arial" font-size="10" text-anchor="middle" x="199" y="1945">0.006</text>
+	<text font-family="Arial" font-size="15" text-anchor="middle" x="129" y="1960">Means in groups</text>
+	<rect fill="sandybrown" height="10" stroke="black" width="28" x="6" y="70" />
+	<text font-family="Arial" font-size="10" text-anchor="start" x="39" y="80">C</text>
+	<rect fill="cornflowerblue" height="10" stroke="black" width="28" x="49" y="70" />
+	<text font-family="Arial" font-size="10" text-anchor="start" x="82" y="80">A</text>
+	<line stroke="black" stroke-width="2" x1="259" x2="509" y1="1930" y2="1930" />
+	<line stroke="black" stroke-width="1" x1="259" x2="259" y1="1930" y2="1925" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="259" y="1945">-0.002</text>
+	<line stroke="black" stroke-width="1" x1="321.5" x2="321.5" y1="1930" y2="1925" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="321.5" y="1945">-0.001</text>
+	<line stroke="black" stroke-width="1" x1="384" x2="384" y1="1930" y2="1925" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="384" y="1945">0</text>
+	<line stroke="black" stroke-width="1" x1="446.5" x2="446.5" y1="1930" y2="1925" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="446.5" y="1945">0.001</text>
+	<line stroke="black" stroke-width="1" x1="509" x2="509" y1="1930" y2="1925" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="509" y="1945">0.002</text>
+	<line stroke="black" stroke-dasharray="3 2" stroke-width="1" x1="384" x2="384" y1="1920" y2="100" />
+	<text font-family="Arial" font-size="15" text-anchor="middle" x="384" y="1960">Difference between groups</text>
+	<text font-family="Arial" font-size="10" text-anchor="middle" x="384" y="80">95% confidence intervals</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="115">K01990</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="115">0.010</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="59" y="100" />
+	<rect fill-opacity="0.1" height="20" width="250" x="259" y="100" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="135">K06147</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="135">0.020</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="155">K02003</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="155">0.022</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="59" y="140" />
+	<rect fill-opacity="0.1" height="20" width="250" x="259" y="140" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="175">K02529</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="175">0.001</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="195">K01190</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="195">&lt;0.001</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="59" y="180" />
+	<rect fill-opacity="0.1" height="20" width="250" x="259" y="180" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="215">K10117</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="215">0.005</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="235">K10119</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="235">0.006</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="59" y="220" />
+	<rect fill-opacity="0.1" height="20" width="250" x="259" y="220" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="255">K03091</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="255">0.004</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="275">K02025</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="275">0.002</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="59" y="260" />
+	<rect fill-opacity="0.1" height="20" width="250" x="259" y="260" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="295">K10118</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="295">0.005</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="315">K02026</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="315">0.002</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="59" y="300" />
+	<rect fill-opacity="0.1" height="20" width="250" x="259" y="300" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="335">K02030</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="335">0.001</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="355">K01206</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="355">&lt;0.001</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="59" y="340" />
+	<rect fill-opacity="0.1" height="20" width="250" x="259" y="340" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="375">K07720</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="375">0.003</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="395">K07718</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="395">0.004</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="59" y="380" />
+	<rect fill-opacity="0.1" height="20" width="250" x="259" y="380" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="415">K07258</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="415">0.021</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="435">K02014</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="435">0.006</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="59" y="420" />
+	<rect fill-opacity="0.1" height="20" width="250" x="259" y="420" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="455">K12373</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="455">0.003</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="475">K00059</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="475">0.001</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="59" y="460" />
+	<rect fill-opacity="0.1" height="20" width="250" x="259" y="460" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="495">K10439</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="495">0.017</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="515">K02027</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="515">0.002</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="59" y="500" />
+	<rect fill-opacity="0.1" height="20" width="250" x="259" y="500" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="535">K03169</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="535">0.011</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="555">K04758</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="555">0.026</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="59" y="540" />
+	<rect fill-opacity="0.1" height="20" width="250" x="259" y="540" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="575">K03657</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="575">0.002</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="595">K03655</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="595">&lt;0.001</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="59" y="580" />
+	<rect fill-opacity="0.1" height="20" width="250" x="259" y="580" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="615">K02057</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="615">0.002</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="635">K03530</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="635">0.017</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="59" y="620" />
+	<rect fill-opacity="0.1" height="20" width="250" x="259" y="620" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="655">K01154</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="655">0.007</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="675">K07025</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="675">0.021</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="59" y="660" />
+	<rect fill-opacity="0.1" height="20" width="250" x="259" y="660" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="695">K16787</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="695">0.028</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="715">K03585</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="715">0.001</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="59" y="700" />
+	<rect fill-opacity="0.1" height="20" width="250" x="259" y="700" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="735">K02035</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="735">0.001</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="755">K09955</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="755">&lt;0.001</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="59" y="740" />
+	<rect fill-opacity="0.1" height="20" width="250" x="259" y="740" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="775">K07636</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="775">&lt;0.001</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="795">K00384</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="795">&lt;0.001</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="59" y="780" />
+	<rect fill-opacity="0.1" height="20" width="250" x="259" y="780" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="815">K02029</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="815">0.001</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="835">K03308</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="835">0.031</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="59" y="820" />
+	<rect fill-opacity="0.1" height="20" width="250" x="259" y="820" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="855">K01897</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="855">0.011</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="875">K00975</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="875">0.006</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="59" y="860" />
+	<rect fill-opacity="0.1" height="20" width="250" x="259" y="860" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="895">K01104</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="895">0.013</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="915">K10440</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="915">0.003</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="59" y="900" />
+	<rect fill-opacity="0.1" height="20" width="250" x="259" y="900" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="935">K03574</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="935">0.001</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="955">K06889</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="955">&lt;0.001</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="59" y="940" />
+	<rect fill-opacity="0.1" height="20" width="250" x="259" y="940" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="975">K08303</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="975">0.003</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="995">K06871</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="995">0.001</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="59" y="980" />
+	<rect fill-opacity="0.1" height="20" width="250" x="259" y="980" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="1015">K16785</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="1015">0.017</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="1035">K03654</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="1035">0.001</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="59" y="1020" />
+	<rect fill-opacity="0.1" height="20" width="250" x="259" y="1020" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="1055">K03686</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="1055">0.020</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="1075">K07052</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="1075">0.006</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="59" y="1060" />
+	<rect fill-opacity="0.1" height="20" width="250" x="259" y="1060" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="1095">K11189</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="1095">0.026</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="1115">K03798</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="1115">0.004</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="59" y="1100" />
+	<rect fill-opacity="0.1" height="20" width="250" x="259" y="1100" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="1135">K02028</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="1135">0.003</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="1155">K03797</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="1155">0.003</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="59" y="1140" />
+	<rect fill-opacity="0.1" height="20" width="250" x="259" y="1140" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="1175">K15634</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="1175">0.013</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="1195">K02033</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="1195">0.002</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="59" y="1180" />
+	<rect fill-opacity="0.1" height="20" width="250" x="259" y="1180" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="1215">K07729</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="1215">0.001</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="1235">K00014</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="1235">0.014</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="59" y="1220" />
+	<rect fill-opacity="0.1" height="20" width="250" x="259" y="1220" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="1255">K01785</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="1255">0.002</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="1275">K04487</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="1275">0.001</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="59" y="1260" />
+	<rect fill-opacity="0.1" height="20" width="250" x="259" y="1260" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="1295">K08884</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="1295">0.001</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="1315">K07979</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="1315">0.003</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="59" y="1300" />
+	<rect fill-opacity="0.1" height="20" width="250" x="259" y="1300" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="1335">K03545</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="1335">0.041</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="1355">K02034</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="1355">0.003</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="59" y="1340" />
+	<rect fill-opacity="0.1" height="20" width="250" x="259" y="1340" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="1375">K07171</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="1375">0.025</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="1395">K00566</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="1395">&lt;0.001</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="59" y="1380" />
+	<rect fill-opacity="0.1" height="20" width="250" x="259" y="1380" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="1415">K02564</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="1415">0.001</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="1435">K01652</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="1435">0.007</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="59" y="1420" />
+	<rect fill-opacity="0.1" height="20" width="250" x="259" y="1420" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="1455">K02032</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="1455">0.001</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="1475">K02050</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="1475">0.001</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="59" y="1460" />
+	<rect fill-opacity="0.1" height="20" width="250" x="259" y="1460" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="1495">K10823</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="1495">0.020</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="1515">K07053</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="1515">0.017</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="59" y="1500" />
+	<rect fill-opacity="0.1" height="20" width="250" x="259" y="1500" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="1535">K03215</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="1535">0.044</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="1555">K07090</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="1555">0.046</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="59" y="1540" />
+	<rect fill-opacity="0.1" height="20" width="250" x="259" y="1540" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="1575">K03086</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="1575">0.026</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="1595">K02051</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="1595">&lt;0.001</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="59" y="1580" />
+	<rect fill-opacity="0.1" height="20" width="250" x="259" y="1580" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="1615">K01262</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="1615">0.007</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="1635">K00655</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="1635">0.005</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="59" y="1620" />
+	<rect fill-opacity="0.1" height="20" width="250" x="259" y="1620" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="1655">K01752</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="1655">0.047</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="1675">K01462</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="1675">0.002</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="59" y="1660" />
+	<rect fill-opacity="0.1" height="20" width="250" x="259" y="1660" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="1695">K02056</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="1695">0.002</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="1715">K03768</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="1715">0.003</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="59" y="1700" />
+	<rect fill-opacity="0.1" height="20" width="250" x="259" y="1700" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="1735">K01624</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="1735">0.018</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="1755">K01872</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="1755">0.023</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="59" y="1740" />
+	<rect fill-opacity="0.1" height="20" width="250" x="259" y="1740" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="1775">K03701</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="1775">0.028</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="1795">K07007</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="1795">&lt;0.001</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="59" y="1780" />
+	<rect fill-opacity="0.1" height="20" width="250" x="259" y="1780" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="1815">K00790</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="1815">0.017</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="1835">K00764</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="1835">0.034</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="59" y="1820" />
+	<rect fill-opacity="0.1" height="20" width="250" x="259" y="1820" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="1855">K03588</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="1855">0.028</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="1875">K00876</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="1875">0.007</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="59" y="1860" />
+	<rect fill-opacity="0.1" height="20" width="250" x="259" y="1860" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="1895">K00602</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="1895">&lt;0.001</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="54" y="1915">K00928</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="514" y="1915">0.045</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="59" y="1900" />
+	<rect fill-opacity="0.1" height="20" width="250" x="259" y="1900" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="130.193634875502" x="59" y="102" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="115.555872097544" x="59" y="110" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="131.875275810393" x="59" y="122" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="117.712282752238" x="59" y="130" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="115.860475896168" x="59" y="142" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="103.55916889197" x="59" y="150" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="82.1320329669616" x="59" y="162" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="68.2090603310263" x="59" y="170" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="36.7720455709931" x="59" y="182" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="55.4283968708638" x="59" y="190" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="44.1885045608449" x="59" y="202" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="26.7691195849063" x="59" y="210" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="42.2071489296847" x="59" y="222" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="25.8776234476146" x="59" y="230" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="57.342685693787" x="59" y="242" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="46.4387380902513" x="59" y="250" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="50.7731462131612" x="59" y="262" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="37.5848304864009" x="59" y="270" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="38.804114003634" x="59" y="282" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="23.6451749423451" x="59" y="290" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="49.0272639426211" x="59" y="302" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="37.163465577896" x="59" y="310" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="51.151377670267" x="59" y="322" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="39.1288795481374" x="59" y="330" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="13.470726037092" x="59" y="342" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="30.2281226746728" x="59" y="350" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="38.7505570114136" x="59" y="362" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="25.2542332503414" x="59" y="370" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="37.8336352796171" x="59" y="382" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="24.3575544980962" x="59" y="390" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="46.1092735841691" x="59" y="402" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="38.5554434148611" x="59" y="410" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="20.6035381949396" x="59" y="422" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="32.9607296642699" x="59" y="430" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="12.8460397474026" x="59" y="442" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="24.9634925150588" x="59" y="450" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="49.635332861355" x="59" y="462" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="43.3482005372675" x="59" y="470" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="30.7339234010459" x="59" y="482" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="22.8003842150498" x="59" y="490" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="37.8450352964563" x="59" y="502" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="28.9615394479439" x="59" y="510" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="34.4266606063786" x="59" y="522" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="39.1194573231198" x="59" y="530" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="39.1075851365593" x="59" y="542" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="33.8752322114537" x="59" y="550" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="41.2495365343278" x="59" y="562" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="35.9184690872803" x="59" y="570" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="39.2440690501561" x="59" y="582" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="45.0080047241853" x="59" y="590" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="39.6075938521452" x="59" y="602" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="32.1566299098914" x="59" y="610" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="26.5445795313713" x="59" y="622" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="32.8536827586338" x="59" y="630" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="33.0673052707858" x="59" y="642" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="37.5614489649189" x="59" y="650" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="28.3881700154304" x="59" y="662" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="32.816732760644" x="59" y="670" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="39.0227937967182" x="59" y="682" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="34.0721275031083" x="59" y="690" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="13.0551156566392" x="59" y="702" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="25.0963943006581" x="59" y="710" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="28.8539625585281" x="59" y="722" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="21.8253878041504" x="59" y="730" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="14.7391181008719" x="59" y="742" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="23.5096409934134" x="59" y="750" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="23.8525235796748" x="59" y="762" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="29.6551613898759" x="59" y="770" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="33.7902808559482" x="59" y="782" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="27.8978359882299" x="59" y="790" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="34.4937044885195" x="59" y="802" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="27.4471060359291" x="59" y="810" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="33.5545038251887" x="59" y="822" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="29.8793508867532" x="59" y="830" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="19.343300214773" x="59" y="842" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="25.662960397358" x="59" y="850" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="32.8268223778735" x="59" y="862" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="26.8343587341009" x="59" y="870" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="36.3650845052369" x="59" y="882" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="32.9089982843459" x="59" y="890" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="23.5409691874418" x="59" y="902" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="15.6733176365418" x="59" y="910" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="28.6353442210628" x="59" y="922" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="21.0431494314115" x="59" y="930" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="32.5711799799689" x="59" y="942" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="36.1034727090403" x="59" y="950" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="34.4819246925781" x="59" y="962" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="36.6825752114367" x="59" y="970" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="25.7659118017359" x="59" y="982" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="30.3229262646361" x="59" y="990" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="32.8555985228" x="59" y="1002" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="28.4964594696059" x="59" y="1010" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="21.7145839064445" x="59" y="1022" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="27.3442659118876" x="59" y="1030" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="29.2176085323673" x="59" y="1042" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="25.7836582580918" x="59" y="1050" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="27.4863991677751" x="59" y="1062" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="23.7931943810199" x="59" y="1070" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="30.1343285107076" x="59" y="1082" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="26.1351204951303" x="59" y="1090" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="32.5571740415826" x="59" y="1102" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="28.8757964006409" x="59" y="1110" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="32.4762806784047" x="59" y="1122" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="27.7714027084781" x="59" y="1130" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="21.4587354728218" x="59" y="1142" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="26.7054530126664" x="59" y="1150" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="24.8171001849125" x="59" y="1162" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="20.8125064875862" x="59" y="1170" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="29.2284804891714" x="59" y="1182" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="23.2916761819138" x="59" y="1190" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="25.0836695650389" x="59" y="1202" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="18.2179745341356" x="59" y="1210" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="25.6550519425055" x="59" y="1222" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="21.9971780394784" x="59" y="1230" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="20.1576010745777" x="59" y="1242" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="24.7873489451138" x="59" y="1250" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="27.3471034978167" x="59" y="1262" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="21.7528986765489" x="59" y="1270" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="26.9676838199816" x="59" y="1282" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="21.206544884603" x="59" y="1290" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="24.93593326209" x="59" y="1302" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="18.8061030043114" x="59" y="1310" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="28.4548999030574" x="59" y="1322" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="25.9857921367443" x="59" y="1330" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="27.5623438689104" x="59" y="1342" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="22.3047769098061" x="59" y="1350" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="23.7082981939267" x="59" y="1362" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="20.0485296921971" x="59" y="1370" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="19.8158456319778" x="59" y="1382" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="25.2736568262859" x="59" y="1390" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="20.9657580538273" x="59" y="1402" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="24.6801137048088" x="59" y="1410" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="28.0413945985558" x="59" y="1422" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="24.7084643927368" x="59" y="1430" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="24.4061776588411" x="59" y="1442" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="18.720730373561" x="59" y="1450" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="24.7854524654228" x="59" y="1462" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="18.2488425555646" x="59" y="1470" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="23.8413420952749" x="59" y="1482" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="19.7037393219694" x="59" y="1490" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="23.5241634879491" x="59" y="1502" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="19.7118659323236" x="59" y="1510" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="27.7214240300963" x="59" y="1522" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="25.6351934273806" x="59" y="1530" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="23.5160375429803" x="59" y="1542" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="20.6831177867791" x="59" y="1550" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="26.1521595660456" x="59" y="1562" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="23.9228234783526" x="59" y="1570" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="24.9848760141433" x="59" y="1582" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="18.7167339770887" x="59" y="1590" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="22.6708819701893" x="59" y="1602" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="25.2713460705533" x="59" y="1610" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="27.4252727427005" x="59" y="1622" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="25.2234352009404" x="59" y="1630" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="28.7880401748907" x="59" y="1642" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="27.4494371609409" x="59" y="1650" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="26.559672506097" x="59" y="1662" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="23.5521020273401" x="59" y="1670" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="23.612885325914" x="59" y="1682" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="18.4332591407037" x="59" y="1690" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="24.5167959091848" x="59" y="1702" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="20.8754881814038" x="59" y="1710" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="23.7532355852003" x="59" y="1722" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="21.8632097908653" x="59" y="1730" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="26.7444212264495" x="59" y="1742" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="25.0984033434344" x="59" y="1750" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="21.9958955918445" x="59" y="1762" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="24.2859381189143" x="59" y="1770" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="23.3494598702685" x="59" y="1782" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="18.6999582575881" x="59" y="1790" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="25.4614800811611" x="59" y="1802" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="23.6332966172039" x="59" y="1810" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="24.0226286810895" x="59" y="1822" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="25.5335677170061" x="59" y="1830" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="23.8880847519106" x="59" y="1842" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="22.321221724904" x="59" y="1850" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="22.5327477385535" x="59" y="1862" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="25.0909618100402" x="59" y="1870" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="19.7139424337593" x="59" y="1882" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="23.5292289829259" x="59" y="1890" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="23.4731554130883" x="59" y="1902" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="22.0429492066199" x="59" y="1910" />
+	<line stroke="black" stroke-width="1" x1="393.999942925149" x2="419.874959821911" y1="110" y2="110" />
+	<circle cx="423.208293155244" cy="110" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="426.541626488578" x2="452.41664338534" y1="110" y2="110" />
+	<line stroke="black" stroke-width="1" x1="393.999942925149" x2="393.999942925149" y1="108.333333333333" y2="111.666666666667" />
+	<line stroke="black" stroke-width="1" x1="452.41664338534" x2="452.41664338534" y1="108.333333333333" y2="111.666666666667" />
+	<line stroke="black" stroke-width="1" x1="390.201591848541" x2="418.603255215296" y1="130" y2="130" />
+	<circle cx="421.936588548629" cy="130" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="425.269921881963" x2="453.671585248718" y1="130" y2="130" />
+	<line stroke="black" stroke-width="1" x1="390.201591848541" x2="390.201591848541" y1="128.333333333333" y2="131.666666666667" />
+	<line stroke="black" stroke-width="1" x1="453.671585248718" x2="453.671585248718" y1="128.333333333333" y2="131.666666666667" />
+	<line stroke="black" stroke-width="1" x1="389.050848705749" x2="413.616596142197" y1="150" y2="150" />
+	<circle cx="416.949929475531" cy="150" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="420.283262808864" x2="444.849010245312" y1="150" y2="150" />
+	<line stroke="black" stroke-width="1" x1="389.050848705749" x2="389.050848705749" y1="148.333333333333" y2="151.666666666667" />
+	<line stroke="black" stroke-width="1" x1="444.849010245312" x2="444.849010245312" y1="148.333333333333" y2="151.666666666667" />
+	<line stroke="black" stroke-width="1" x1="400.543991176725" x2="417.960343370065" y1="170" y2="170" />
+	<circle cx="421.293676703398" cy="170" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="424.627010036731" x2="442.043362230071" y1="170" y2="170" />
+	<line stroke="black" stroke-width="1" x1="400.543991176725" x2="400.543991176725" y1="168.333333333333" y2="171.666666666667" />
+	<line stroke="black" stroke-width="1" x1="442.043362230071" x2="442.043362230071" y1="168.333333333333" y2="171.666666666667" />
+	<line stroke="black" stroke-width="1" x1="308.176955201091" x2="330.694297113442" y1="190" y2="190" />
+	<circle cx="334.027630446775" cy="190" fill="cornflowerblue" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="337.360963780108" x2="359.878305692459" y1="190" y2="190" />
+	<line stroke="black" stroke-width="1" x1="308.176955201091" x2="308.176955201091" y1="188.333333333333" y2="191.666666666667" />
+	<line stroke="black" stroke-width="1" x1="359.878305692459" x2="359.878305692459" y1="188.333333333333" y2="191.666666666667" />
+	<line stroke="black" stroke-width="1" x1="399.852325504873" x2="427.325733566502" y1="210" y2="210" />
+	<circle cx="430.659066899836" cy="210" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="433.992400233169" x2="461.465808294798" y1="210" y2="210" />
+	<line stroke="black" stroke-width="1" x1="399.852325504873" x2="399.852325504873" y1="208.333333333333" y2="211.666666666667" />
+	<line stroke="black" stroke-width="1" x1="461.465808294798" x2="461.465808294798" y1="208.333333333333" y2="211.666666666667" />
+	<line stroke="black" stroke-width="1" x1="397.694372424481" x2="424.406467065069" y1="230" y2="230" />
+	<circle cx="427.739800398402" cy="230" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="431.073133731735" x2="457.785228372323" y1="230" y2="230" />
+	<line stroke="black" stroke-width="1" x1="397.694372424481" x2="397.694372424481" y1="228.333333333333" y2="231.666666666667" />
+	<line stroke="black" stroke-width="1" x1="457.785228372323" x2="457.785228372323" y1="228.333333333333" y2="231.666666666667" />
+	<line stroke="black" stroke-width="1" x1="394.027756687449" x2="409.873669176137" y1="250" y2="250" />
+	<circle cx="413.207002509471" cy="250" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="416.540335842804" x2="432.386248331492" y1="250" y2="250" />
+	<line stroke="black" stroke-width="1" x1="394.027756687449" x2="394.027756687449" y1="248.333333333333" y2="251.666666666667" />
+	<line stroke="black" stroke-width="1" x1="432.386248331492" x2="432.386248331492" y1="248.333333333333" y2="251.666666666667" />
+	<line stroke="black" stroke-width="1" x1="397.586450986014" x2="415.992512363346" y1="270" y2="270" />
+	<circle cx="419.325845696679" cy="270" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="422.659179030013" x2="441.065240407345" y1="270" y2="270" />
+	<line stroke="black" stroke-width="1" x1="397.586450986014" x2="397.586450986014" y1="268.333333333333" y2="271.666666666667" />
+	<line stroke="black" stroke-width="1" x1="441.065240407345" x2="441.065240407345" y1="268.333333333333" y2="271.666666666667" />
+	<line stroke="black" stroke-width="1" x1="397.372142003363" x2="421.27096772369" y1="290" y2="290" />
+	<circle cx="424.604301057024" cy="290" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="427.937634390357" x2="451.836460110684" y1="290" y2="290" />
+	<line stroke="black" stroke-width="1" x1="397.372142003363" x2="397.372142003363" y1="288.333333333333" y2="291.666666666667" />
+	<line stroke="black" stroke-width="1" x1="451.836460110684" x2="451.836460110684" y1="288.333333333333" y2="291.666666666667" />
+	<line stroke="black" stroke-width="1" x1="395.987208487844" x2="412.444698000752" y1="310" y2="310" />
+	<circle cx="415.778031334085" cy="310" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="419.111364667418" x2="435.568854180326" y1="310" y2="310" />
+	<line stroke="black" stroke-width="1" x1="395.987208487844" x2="395.987208487844" y1="308.333333333333" y2="311.666666666667" />
+	<line stroke="black" stroke-width="1" x1="435.568854180326" x2="435.568854180326" y1="308.333333333333" y2="311.666666666667" />
+	<line stroke="black" stroke-width="1" x1="398.917489468201" x2="412.869786636657" y1="330" y2="330" />
+	<circle cx="416.20311996999" cy="330" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="419.536453303323" x2="433.48875047178" y1="330" y2="330" />
+	<line stroke="black" stroke-width="1" x1="398.917489468201" x2="398.917489468201" y1="328.333333333333" y2="331.666666666667" />
+	<line stroke="black" stroke-width="1" x1="433.48875047178" x2="433.48875047178" y1="328.333333333333" y2="331.666666666667" />
+	<line stroke="black" stroke-width="1" x1="320.256284998405" x2="335.780782816004" y1="350" y2="350" />
+	<circle cx="339.114116149337" cy="350" fill="cornflowerblue" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="342.44744948267" x2="357.971947300269" y1="350" y2="350" />
+	<line stroke="black" stroke-width="1" x1="320.256284998405" x2="320.256284998405" y1="348.333333333333" y2="351.666666666667" />
+	<line stroke="black" stroke-width="1" x1="357.971947300269" x2="357.971947300269" y1="348.333333333333" y2="351.666666666667" />
+	<line stroke="black" stroke-width="1" x1="397.155988449359" x2="416.817533883824" y1="370" y2="370" />
+	<circle cx="420.150867217157" cy="370" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="423.484200550491" x2="443.145745984955" y1="370" y2="370" />
+	<line stroke="black" stroke-width="1" x1="397.155988449359" x2="397.155988449359" y1="368.333333333333" y2="371.666666666667" />
+	<line stroke="black" stroke-width="1" x1="443.145745984955" x2="443.145745984955" y1="368.333333333333" y2="371.666666666667" />
+	<line stroke="black" stroke-width="1" x1="396.822463775804" x2="416.763311617169" y1="390" y2="390" />
+	<circle cx="420.096644950503" cy="390" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="423.429978283836" x2="443.370826125201" y1="390" y2="390" />
+	<line stroke="black" stroke-width="1" x1="396.822463775804" x2="396.822463775804" y1="388.333333333333" y2="391.666666666667" />
+	<line stroke="black" stroke-width="1" x1="443.370826125201" x2="443.370826125201" y1="388.333333333333" y2="391.666666666667" />
+	<line stroke="black" stroke-width="1" x1="387.251922927935" x2="400.900140334456" y1="410" y2="410" />
+	<circle cx="404.233473667789" cy="410" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="407.566807001123" x2="421.215024407643" y1="410" y2="410" />
+	<line stroke="black" stroke-width="1" x1="387.251922927935" x2="387.251922927935" y1="408.333333333333" y2="411.666666666667" />
+	<line stroke="black" stroke-width="1" x1="421.215024407643" x2="421.215024407643" y1="408.333333333333" y2="411.666666666667" />
+	<line stroke="black" stroke-width="1" x1="328.111736843718" x2="347.567046659532" y1="430" y2="430" />
+	<circle cx="350.900379992865" cy="430" fill="cornflowerblue" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="354.233713326199" x2="373.689023142012" y1="430" y2="430" />
+	<line stroke="black" stroke-width="1" x1="328.111736843718" x2="328.111736843718" y1="428.333333333333" y2="431.666666666667" />
+	<line stroke="black" stroke-width="1" x1="373.689023142012" x2="373.689023142012" y1="428.333333333333" y2="431.666666666667" />
+	<line stroke="black" stroke-width="1" x1="330.481907064684" x2="348.209203896159" y1="450" y2="450" />
+	<circle cx="351.542537229492" cy="450" fill="cornflowerblue" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="354.875870562826" x2="372.603167394301" y1="450" y2="450" />
+	<line stroke="black" stroke-width="1" x1="330.481907064684" x2="330.481907064684" y1="448.333333333333" y2="451.666666666667" />
+	<line stroke="black" stroke-width="1" x1="372.603167394301" x2="372.603167394301" y1="448.333333333333" y2="451.666666666667" />
+	<line stroke="black" stroke-width="1" x1="391.306096352202" x2="397.507199677615" y1="470" y2="470" />
+	<circle cx="400.840533010949" cy="470" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="404.173866344282" x2="410.374969669696" y1="470" y2="470" />
+	<line stroke="black" stroke-width="1" x1="391.306096352202" x2="391.306096352202" y1="468.333333333333" y2="471.666666666667" />
+	<line stroke="black" stroke-width="1" x1="410.374969669696" x2="410.374969669696" y1="468.333333333333" y2="471.666666666667" />
+	<line stroke="black" stroke-width="1" x1="388.105850617795" x2="401.917218057728" y1="490" y2="490" />
+	<circle cx="405.250551391061" cy="490" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="408.583884724394" x2="422.395252164327" y1="490" y2="490" />
+	<line stroke="black" stroke-width="1" x1="388.105850617795" x2="388.105850617795" y1="488.333333333333" y2="491.666666666667" />
+	<line stroke="black" stroke-width="1" x1="422.395252164327" x2="422.395252164327" y1="488.333333333333" y2="491.666666666667" />
+	<line stroke="black" stroke-width="1" x1="393.428071410966" x2="404.461744832325" y1="510" y2="510" />
+	<circle cx="407.795078165658" cy="510" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="411.128411498991" x2="422.16208492035" y1="510" y2="510" />
+	<line stroke="black" stroke-width="1" x1="393.428071410966" x2="393.428071410966" y1="508.333333333333" y2="511.666666666667" />
+	<line stroke="black" stroke-width="1" x1="422.16208492035" x2="422.16208492035" y1="508.333333333333" y2="511.666666666667" />
+	<line stroke="black" stroke-width="1" x1="361.807959023035" x2="368.09667546111" y1="530" y2="530" />
+	<circle cx="371.430008794443" cy="530" fill="cornflowerblue" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="374.763342127776" x2="381.052058565851" y1="530" y2="530" />
+	<line stroke="black" stroke-width="1" x1="361.807959023035" x2="361.807959023035" y1="528.333333333333" y2="531.666666666667" />
+	<line stroke="black" stroke-width="1" x1="381.052058565851" x2="381.052058565851" y1="528.333333333333" y2="531.666666666667" />
+	<line stroke="black" stroke-width="1" x1="385.799979264768" x2="394.681897716057" y1="550" y2="550" />
+	<circle cx="398.01523104939" cy="550" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="401.348564382723" x2="410.230482834012" y1="550" y2="550" />
+	<line stroke="black" stroke-width="1" x1="385.799979264768" x2="385.799979264768" y1="548.333333333333" y2="551.666666666667" />
+	<line stroke="black" stroke-width="1" x1="410.230482834012" x2="410.230482834012" y1="548.333333333333" y2="551.666666666667" />
+	<line stroke="black" stroke-width="1" x1="389.675751855233" x2="394.946311614115" y1="570" y2="570" />
+	<circle cx="398.279644947449" cy="570" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="401.612978280782" x2="406.883538039665" y1="570" y2="570" />
+	<line stroke="black" stroke-width="1" x1="389.675751855233" x2="389.675751855233" y1="568.333333333333" y2="571.666666666667" />
+	<line stroke="black" stroke-width="1" x1="406.883538039665" x2="406.883538039665" y1="568.333333333333" y2="571.666666666667" />
+	<line stroke="black" stroke-width="1" x1="360.741941318387" x2="365.227553254089" y1="590" y2="590" />
+	<circle cx="368.560886587422" cy="590" fill="cornflowerblue" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="371.894219920755" x2="376.379831856457" y1="590" y2="590" />
+	<line stroke="black" stroke-width="1" x1="360.741941318387" x2="360.741941318387" y1="588.333333333333" y2="591.666666666667" />
+	<line stroke="black" stroke-width="1" x1="376.379831856457" x2="376.379831856457" y1="588.333333333333" y2="591.666666666667" />
+	<line stroke="black" stroke-width="1" x1="392.072718293263" x2="400.624605797704" y1="610" y2="610" />
+	<circle cx="403.957939131037" cy="610" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="407.29127246437" x2="415.843159968812" y1="610" y2="610" />
+	<line stroke="black" stroke-width="1" x1="392.072718293263" x2="392.072718293263" y1="608.333333333333" y2="611.666666666667" />
+	<line stroke="black" stroke-width="1" x1="415.843159968812" x2="415.843159968812" y1="608.333333333333" y2="611.666666666667" />
+	<line stroke="black" stroke-width="1" x1="353.448498036357" x2="363.767283022214" y1="630" y2="630" />
+	<circle cx="367.100616355547" cy="630" fill="cornflowerblue" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="370.43394968888" x2="380.752734674736" y1="630" y2="630" />
+	<line stroke="black" stroke-width="1" x1="353.448498036357" x2="353.448498036357" y1="628.333333333333" y2="631.666666666667" />
+	<line stroke="black" stroke-width="1" x1="380.752734674736" x2="380.752734674736" y1="628.333333333333" y2="631.666666666667" />
+	<line stroke="black" stroke-width="1" x1="363.315660271961" x2="368.628781771667" y1="650" y2="650" />
+	<circle cx="371.962115105001" cy="650" fill="cornflowerblue" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="375.295448438334" x2="380.608569938042" y1="650" y2="650" />
+	<line stroke="black" stroke-width="1" x1="363.315660271961" x2="363.315660271961" y1="648.333333333333" y2="651.666666666667" />
+	<line stroke="black" stroke-width="1" x1="380.608569938042" x2="380.608569938042" y1="648.333333333333" y2="651.666666666667" />
+	<line stroke="black" stroke-width="1" x1="362.101618195567" x2="368.804445027702" y1="670" y2="670" />
+	<circle cx="372.137778361035" cy="670" fill="cornflowerblue" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="375.471111694368" x2="382.173938526504" y1="670" y2="670" />
+	<line stroke="black" stroke-width="1" x1="362.101618195567" x2="362.101618195567" y1="668.333333333333" y2="671.666666666667" />
+	<line stroke="black" stroke-width="1" x1="382.173938526504" x2="382.173938526504" y1="668.333333333333" y2="671.666666666667" />
+	<line stroke="black" stroke-width="1" x1="385.541557084926" x2="393.927379953122" y1="690" y2="690" />
+	<circle cx="397.260713286455" cy="690" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="400.594046619788" x2="408.979869487984" y1="690" y2="690" />
+	<line stroke="black" stroke-width="1" x1="385.541557084926" x2="385.541557084926" y1="688.333333333333" y2="691.666666666667" />
+	<line stroke="black" stroke-width="1" x1="408.979869487984" x2="408.979869487984" y1="688.333333333333" y2="691.666666666667" />
+	<line stroke="black" stroke-width="1" x1="334.224840773417" x2="348.41324172733" y1="710" y2="710" />
+	<circle cx="351.746575060664" cy="710" fill="cornflowerblue" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="355.079908393997" x2="369.268309347911" y1="710" y2="710" />
+	<line stroke="black" stroke-width="1" x1="334.224840773417" x2="334.224840773417" y1="708.333333333333" y2="711.666666666667" />
+	<line stroke="black" stroke-width="1" x1="369.268309347911" x2="369.268309347911" y1="708.333333333333" y2="711.666666666667" />
+	<line stroke="black" stroke-width="1" x1="392.92802419803" x2="399.493206187321" y1="730" y2="730" />
+	<circle cx="402.826539520654" cy="730" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="406.159872853988" x2="412.725054843279" y1="730" y2="730" />
+	<line stroke="black" stroke-width="1" x1="392.92802419803" x2="392.92802419803" y1="728.333333333333" y2="731.666666666667" />
+	<line stroke="black" stroke-width="1" x1="412.725054843279" x2="412.725054843279" y1="728.333333333333" y2="731.666666666667" />
+	<line stroke="black" stroke-width="1" x1="348.55864503931" x2="357.174194633073" y1="750" y2="750" />
+	<circle cx="360.507527966407" cy="750" fill="cornflowerblue" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="363.84086129974" x2="372.456410893504" y1="750" y2="750" />
+	<line stroke="black" stroke-width="1" x1="348.55864503931" x2="348.55864503931" y1="748.333333333333" y2="751.666666666667" />
+	<line stroke="black" stroke-width="1" x1="372.456410893504" x2="372.456410893504" y1="748.333333333333" y2="751.666666666667" />
+	<line stroke="black" stroke-width="1" x1="360.962854232316" x2="365.123886817914" y1="770" y2="770" />
+	<circle cx="368.457220151247" cy="770" fill="cornflowerblue" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="371.79055348458" x2="375.951586070178" y1="770" y2="770" />
+	<line stroke="black" stroke-width="1" x1="360.962854232316" x2="360.962854232316" y1="768.333333333333" y2="771.666666666667" />
+	<line stroke="black" stroke-width="1" x1="375.951586070178" x2="375.951586070178" y1="768.333333333333" y2="771.666666666667" />
+	<line stroke="black" stroke-width="1" x1="392.021159989575" x2="396.450001133769" y1="790" y2="790" />
+	<circle cx="399.783334467103" cy="790" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="403.116667800436" x2="407.54550894463" y1="790" y2="790" />
+	<line stroke="black" stroke-width="1" x1="392.021159989575" x2="392.021159989575" y1="788.333333333333" y2="791.666666666667" />
+	<line stroke="black" stroke-width="1" x1="407.54550894463" x2="407.54550894463" y1="788.333333333333" y2="791.666666666667" />
+	<line stroke="black" stroke-width="1" x1="392.104268288103" x2="399.541483950391" y1="810" y2="810" />
+	<circle cx="402.874817283724" cy="810" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="406.208150617058" x2="413.645366279346" y1="810" y2="810" />
+	<line stroke="black" stroke-width="1" x1="392.104268288103" x2="392.104268288103" y1="808.333333333333" y2="811.666666666667" />
+	<line stroke="black" stroke-width="1" x1="413.645366279346" x2="413.645366279346" y1="808.333333333333" y2="811.666666666667" />
+	<line stroke="black" stroke-width="1" x1="384.958829854151" x2="390.51082632319" y1="830" y2="830" />
+	<circle cx="393.844159656524" cy="830" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="397.177492989857" x2="402.729489458897" y1="830" y2="830" />
+	<line stroke="black" stroke-width="1" x1="384.958829854151" x2="384.958829854151" y1="828.333333333333" y2="831.666666666667" />
+	<line stroke="black" stroke-width="1" x1="402.729489458897" x2="402.729489458897" y1="828.333333333333" y2="831.666666666667" />
+	<line stroke="black" stroke-width="1" x1="354.254224460151" x2="363.739005463314" y1="850" y2="850" />
+	<circle cx="367.072338796648" cy="850" fill="cornflowerblue" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="370.405672129981" x2="379.890453133144" y1="850" y2="850" />
+	<line stroke="black" stroke-width="1" x1="354.254224460151" x2="354.254224460151" y1="848.333333333333" y2="851.666666666667" />
+	<line stroke="black" stroke-width="1" x1="379.890453133144" x2="379.890453133144" y1="848.333333333333" y2="851.666666666667" />
+	<line stroke="black" stroke-width="1" x1="388.906597878736" x2="396.717908569629" y1="870" y2="870" />
+	<circle cx="400.051241902962" cy="870" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="403.384575236296" x2="411.195885927189" y1="870" y2="870" />
+	<line stroke="black" stroke-width="1" x1="388.906597878736" x2="388.906597878736" y1="868.333333333333" y2="871.666666666667" />
+	<line stroke="black" stroke-width="1" x1="411.195885927189" x2="411.195885927189" y1="868.333333333333" y2="871.666666666667" />
+	<line stroke="black" stroke-width="1" x1="386.071333161767" x2="389.924040472625" y1="890" y2="890" />
+	<circle cx="393.257373805958" cy="890" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="396.590707139291" x2="400.443414450149" y1="890" y2="890" />
+	<line stroke="black" stroke-width="1" x1="386.071333161767" x2="386.071333161767" y1="888.333333333333" y2="891.666666666667" />
+	<line stroke="black" stroke-width="1" x1="400.443414450149" x2="400.443414450149" y1="888.333333333333" y2="891.666666666667" />
+	<line stroke="black" stroke-width="1" x1="391.699917585974" x2="401.740733320863" y1="910" y2="910" />
+	<circle cx="405.074066654196" cy="910" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="408.40739998753" x2="418.448215722418" y1="910" y2="910" />
+	<line stroke="black" stroke-width="1" x1="391.699917585974" x2="391.699917585974" y1="908.333333333333" y2="911.666666666667" />
+	<line stroke="black" stroke-width="1" x1="418.448215722418" x2="418.448215722418" y1="908.333333333333" y2="911.666666666667" />
+	<line stroke="black" stroke-width="1" x1="393.006255582335" x2="401.002902710376" y1="930" y2="930" />
+	<circle cx="404.336236043709" cy="930" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="407.669569377042" x2="415.666216505083" y1="930" y2="930" />
+	<line stroke="black" stroke-width="1" x1="393.006255582335" x2="393.006255582335" y1="928.333333333333" y2="931.666666666667" />
+	<line stroke="black" stroke-width="1" x1="415.666216505083" x2="415.666216505083" y1="928.333333333333" y2="931.666666666667" />
+	<line stroke="black" stroke-width="1" x1="369.62697563966" x2="371.205168285225" y1="950" y2="950" />
+	<circle cx="374.538501618559" cy="950" fill="cornflowerblue" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="377.871834951892" x2="379.450027597458" y1="950" y2="950" />
+	<line stroke="black" stroke-width="1" x1="369.62697563966" x2="369.62697563966" y1="948.333333333333" y2="951.666666666667" />
+	<line stroke="black" stroke-width="1" x1="379.450027597458" x2="379.450027597458" y1="948.333333333333" y2="951.666666666667" />
+	<line stroke="black" stroke-width="1" x1="374.305129144419" x2="374.772067062581" y1="970" y2="970" />
+	<circle cx="378.105400395914" cy="970" fill="cornflowerblue" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="381.438733729248" x2="381.905671647411" y1="970" y2="970" />
+	<line stroke="black" stroke-width="1" x1="374.305129144419" x2="374.305129144419" y1="968.333333333333" y2="971.666666666667" />
+	<line stroke="black" stroke-width="1" x1="381.905671647411" x2="381.905671647411" y1="968.333333333333" y2="971.666666666667" />
+	<line stroke="black" stroke-width="1" x1="365.118243685603" x2="368.460377926755" y1="990" y2="990" />
+	<circle cx="371.793711260089" cy="990" fill="cornflowerblue" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="375.127044593422" x2="378.469178834574" y1="990" y2="990" />
+	<line stroke="black" stroke-width="1" x1="365.118243685603" x2="365.118243685603" y1="988.333333333333" y2="991.666666666667" />
+	<line stroke="black" stroke-width="1" x1="378.469178834574" x2="378.469178834574" y1="988.333333333333" y2="991.666666666667" />
+	<line stroke="black" stroke-width="1" x1="386.17936321303" x2="392.342931987722" y1="1010" y2="1010" />
+	<circle cx="395.676265321056" cy="1010" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="399.009598654389" x2="405.173167429081" y1="1010" y2="1010" />
+	<line stroke="black" stroke-width="1" x1="386.17936321303" x2="386.17936321303" y1="1008.33333333333" y2="1011.66666666667" />
+	<line stroke="black" stroke-width="1" x1="405.173167429081" x2="405.173167429081" y1="1008.33333333333" y2="1011.66666666667" />
+	<line stroke="black" stroke-width="1" x1="360.181642282458" x2="365.587161294944" y1="1030" y2="1030" />
+	<circle cx="368.920494628277" cy="1030" fill="cornflowerblue" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="372.253827961611" x2="377.659346974096" y1="1030" y2="1030" />
+	<line stroke="black" stroke-width="1" x1="360.181642282458" x2="360.181642282458" y1="1028.33333333333" y2="1031.66666666667" />
+	<line stroke="black" stroke-width="1" x1="377.659346974096" x2="377.659346974096" y1="1028.33333333333" y2="1031.66666666667" />
+	<line stroke="black" stroke-width="1" x1="385.532047589807" x2="389.864747758476" y1="1050" y2="1050" />
+	<circle cx="393.198081091809" cy="1050" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="396.531414425143" x2="400.864114593811" y1="1050" y2="1050" />
+	<line stroke="black" stroke-width="1" x1="385.532047589807" x2="385.532047589807" y1="1048.33333333333" y2="1051.66666666667" />
+	<line stroke="black" stroke-width="1" x1="400.864114593811" x2="400.864114593811" y1="1048.33333333333" y2="1051.66666666667" />
+	<line stroke="black" stroke-width="1" x1="387.051052313561" x2="390.559179488332" y1="1070" y2="1070" />
+	<circle cx="393.892512821666" cy="1070" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="397.225846154999" x2="400.73397332977" y1="1070" y2="1070" />
+	<line stroke="black" stroke-width="1" x1="387.051052313561" x2="387.051052313561" y1="1068.33333333333" y2="1071.66666666667" />
+	<line stroke="black" stroke-width="1" x1="400.73397332977" x2="400.73397332977" y1="1068.33333333333" y2="1071.66666666667" />
+	<line stroke="black" stroke-width="1" x1="385.381081559667" x2="391.378830994106" y1="1090" y2="1090" />
+	<circle cx="394.712164327439" cy="1090" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="398.045497660773" x2="404.043247095212" y1="1090" y2="1090" />
+	<line stroke="black" stroke-width="1" x1="385.381081559667" x2="385.381081559667" y1="1088.33333333333" y2="1091.66666666667" />
+	<line stroke="black" stroke-width="1" x1="404.043247095212" x2="404.043247095212" y1="1088.33333333333" y2="1091.66666666667" />
+	<line stroke="black" stroke-width="1" x1="387.326537321519" x2="390.527499633475" y1="1110" y2="1110" />
+	<circle cx="393.860832966808" cy="1110" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="397.194166300141" x2="400.395128612097" y1="1110" y2="1110" />
+	<line stroke="black" stroke-width="1" x1="387.326537321519" x2="387.326537321519" y1="1108.33333333333" y2="1111.66666666667" />
+	<line stroke="black" stroke-width="1" x1="400.395128612097" x2="400.395128612097" y1="1108.33333333333" y2="1111.66666666667" />
+	<line stroke="black" stroke-width="1" x1="388.408036620805" x2="393.269018371827" y1="1130" y2="1130" />
+	<circle cx="396.602351705161" cy="1130" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="399.935685038494" x2="404.796666789516" y1="1130" y2="1130" />
+	<line stroke="black" stroke-width="1" x1="388.408036620805" x2="388.408036620805" y1="1128.33333333333" y2="1131.66666666667" />
+	<line stroke="black" stroke-width="1" x1="404.796666789516" x2="404.796666789516" y1="1128.33333333333" y2="1131.66666666667" />
+	<line stroke="black" stroke-width="1" x1="361.099706595568" x2="366.612958970654" y1="1150" y2="1150" />
+	<circle cx="369.946292303988" cy="1150" fill="cornflowerblue" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="373.279625637321" x2="378.792878012407" y1="1150" y2="1150" />
+	<line stroke="black" stroke-width="1" x1="361.099706595568" x2="361.099706595568" y1="1148.33333333333" y2="1151.66666666667" />
+	<line stroke="black" stroke-width="1" x1="378.792878012407" x2="378.792878012407" y1="1148.33333333333" y2="1151.66666666667" />
+	<line stroke="black" stroke-width="1" x1="386.443412436084" x2="391.393256927362" y1="1170" y2="1170" />
+	<circle cx="394.726590260695" cy="1170" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="398.059923594029" x2="403.009768085306" y1="1170" y2="1170" />
+	<line stroke="black" stroke-width="1" x1="386.443412436084" x2="386.443412436084" y1="1168.33333333333" y2="1171.66666666667" />
+	<line stroke="black" stroke-width="1" x1="403.009768085306" x2="403.009768085306" y1="1168.33333333333" y2="1171.66666666667" />
+	<line stroke="black" stroke-width="1" x1="390.442341593345" x2="396.568821061107" y1="1190" y2="1190" />
+	<circle cx="399.90215439444" cy="1190" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="403.235487727773" x2="409.361967195536" y1="1190" y2="1190" />
+	<line stroke="black" stroke-width="1" x1="390.442341593345" x2="390.442341593345" y1="1188.33333333333" y2="1191.66666666667" />
+	<line stroke="black" stroke-width="1" x1="409.361967195536" x2="409.361967195536" y1="1188.33333333333" y2="1191.66666666667" />
+	<line stroke="black" stroke-width="1" x1="391.653510889139" x2="399.056921213729" y1="1210" y2="1210" />
+	<circle cx="402.390254547062" cy="1210" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="405.723587880396" x2="413.126998204986" y1="1210" y2="1210" />
+	<line stroke="black" stroke-width="1" x1="391.653510889139" x2="391.653510889139" y1="1208.33333333333" y2="1211.66666666667" />
+	<line stroke="black" stroke-width="1" x1="413.126998204986" x2="413.126998204986" y1="1208.33333333333" y2="1211.66666666667" />
+	<line stroke="black" stroke-width="1" x1="386.17612366266" x2="390.464543192632" y1="1230" y2="1230" />
+	<circle cx="393.797876525966" cy="1230" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="397.131209859299" x2="401.419629389271" y1="1230" y2="1230" />
+	<line stroke="black" stroke-width="1" x1="386.17612366266" x2="386.17612366266" y1="1228.33333333333" y2="1231.66666666667" />
+	<line stroke="black" stroke-width="1" x1="401.419629389271" x2="401.419629389271" y1="1228.33333333333" y2="1231.66666666667" />
+	<line stroke="black" stroke-width="1" x1="363.982411280467" x2="368.265556299159" y1="1250" y2="1250" />
+	<circle cx="371.598889632493" cy="1250" fill="cornflowerblue" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="374.932222965826" x2="379.215367984519" y1="1250" y2="1250" />
+	<line stroke="black" stroke-width="1" x1="363.982411280467" x2="363.982411280467" y1="1248.33333333333" y2="1251.66666666667" />
+	<line stroke="black" stroke-width="1" x1="379.215367984519" x2="379.215367984519" y1="1248.33333333333" y2="1251.66666666667" />
+	<line stroke="black" stroke-width="1" x1="390.31815751702" x2="395.651143866491" y1="1270" y2="1270" />
+	<circle cx="398.984477199824" cy="1270" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="402.317810533158" x2="407.650796882629" y1="1270" y2="1270" />
+	<line stroke="black" stroke-width="1" x1="390.31815751702" x2="390.31815751702" y1="1268.33333333333" y2="1271.66666666667" />
+	<line stroke="black" stroke-width="1" x1="407.650796882629" x2="407.650796882629" y1="1268.33333333333" y2="1271.66666666667" />
+	<line stroke="black" stroke-width="1" x1="391.038307337267" x2="396.098288815002" y1="1290" y2="1290" />
+	<circle cx="399.431622148335" cy="1290" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="402.764955481669" x2="407.824936959404" y1="1290" y2="1290" />
+	<line stroke="black" stroke-width="1" x1="391.038307337267" x2="391.038307337267" y1="1288.33333333333" y2="1291.66666666667" />
+	<line stroke="black" stroke-width="1" x1="407.824936959404" x2="407.824936959404" y1="1288.33333333333" y2="1291.66666666667" />
+	<line stroke="black" stroke-width="1" x1="390.07504876364" x2="397.085854857145" y1="1310" y2="1310" />
+	<circle cx="400.419188190478" cy="1310" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="403.752521523812" x2="410.763327617316" y1="1310" y2="1310" />
+	<line stroke="black" stroke-width="1" x1="390.07504876364" x2="390.07504876364" y1="1308.33333333333" y2="1311.66666666667" />
+	<line stroke="black" stroke-width="1" x1="410.763327617316" x2="410.763327617316" y1="1308.33333333333" y2="1311.66666666667" />
+	<line stroke="black" stroke-width="1" x1="384.285654561946" x2="387.280348183577" y1="1330" y2="1330" />
+	<circle cx="390.61368151691" cy="1330" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="393.947014850243" x2="396.941708471873" y1="1330" y2="1330" />
+	<line stroke="black" stroke-width="1" x1="384.285654561946" x2="384.285654561946" y1="1328.33333333333" y2="1331.66666666667" />
+	<line stroke="black" stroke-width="1" x1="396.941708471873" x2="396.941708471873" y1="1328.33333333333" y2="1331.66666666667" />
+	<line stroke="black" stroke-width="1" x1="389.270002446322" x2="394.749435307125" y1="1350" y2="1350" />
+	<circle cx="398.082768640458" cy="1350" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="401.416101973791" x2="406.895534834594" y1="1350" y2="1350" />
+	<line stroke="black" stroke-width="1" x1="389.270002446322" x2="389.270002446322" y1="1348.33333333333" y2="1351.66666666667" />
+	<line stroke="black" stroke-width="1" x1="406.895534834594" x2="406.895534834594" y1="1348.33333333333" y2="1351.66666666667" />
+	<line stroke="black" stroke-width="1" x1="385.291733475923" x2="390.469618010585" y1="1370" y2="1370" />
+	<circle cx="393.802951343919" cy="1370" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="397.136284677252" x2="402.314169211914" y1="1370" y2="1370" />
+	<line stroke="black" stroke-width="1" x1="385.291733475923" x2="385.291733475923" y1="1368.33333333333" y2="1371.66666666667" />
+	<line stroke="black" stroke-width="1" x1="402.314169211914" x2="402.314169211914" y1="1368.33333333333" y2="1371.66666666667" />
+	<line stroke="black" stroke-width="1" x1="362.10937298596" x2="366.047529539056" y1="1390" y2="1390" />
+	<circle cx="369.380862872389" cy="1390" fill="cornflowerblue" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="372.714196205722" x2="376.652352758818" y1="1390" y2="1390" />
+	<line stroke="black" stroke-width="1" x1="362.10937298596" x2="362.10937298596" y1="1388.33333333333" y2="1391.66666666667" />
+	<line stroke="black" stroke-width="1" x1="376.652352758818" x2="376.652352758818" y1="1388.33333333333" y2="1391.66666666667" />
+	<line stroke="black" stroke-width="1" x1="368.133650897425" x2="370.717499744395" y1="1410" y2="1410" />
+	<circle cx="374.050833077728" cy="1410" fill="cornflowerblue" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="377.384166411062" x2="379.968015258032" y1="1410" y2="1410" />
+	<line stroke="black" stroke-width="1" x1="368.133650897425" x2="368.133650897425" y1="1408.33333333333" y2="1411.66666666667" />
+	<line stroke="black" stroke-width="1" x1="379.968015258032" x2="379.968015258032" y1="1408.33333333333" y2="1411.66666666667" />
+	<line stroke="black" stroke-width="1" x1="386.650432812067" x2="389.594158289396" y1="1430" y2="1430" />
+	<circle cx="392.927491622729" cy="1430" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="396.260824956063" x2="399.204550433392" y1="1430" y2="1430" />
+	<line stroke="black" stroke-width="1" x1="386.650432812067" x2="386.650432812067" y1="1428.33333333333" y2="1431.66666666667" />
+	<line stroke="black" stroke-width="1" x1="399.204550433392" x2="399.204550433392" y1="1428.33333333333" y2="1431.66666666667" />
+	<line stroke="black" stroke-width="1" x1="390.414663600233" x2="395.895543323667" y1="1450" y2="1450" />
+	<circle cx="399.228876657" cy="1450" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="402.562209990333" x2="408.043089713768" y1="1450" y2="1450" />
+	<line stroke="black" stroke-width="1" x1="390.414663600233" x2="390.414663600233" y1="1448.33333333333" y2="1451.66666666667" />
+	<line stroke="black" stroke-width="1" x1="408.043089713768" x2="408.043089713768" y1="1448.33333333333" y2="1451.66666666667" />
+	<line stroke="black" stroke-width="1" x1="392.151335546523" x2="398.17544321093" y1="1470" y2="1470" />
+	<circle cx="401.508776544263" cy="1470" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="404.842109877596" x2="410.866217542004" y1="1470" y2="1470" />
+	<line stroke="black" stroke-width="1" x1="392.151335546523" x2="392.151335546523" y1="1468.33333333333" y2="1471.66666666667" />
+	<line stroke="black" stroke-width="1" x1="410.866217542004" x2="410.866217542004" y1="1468.33333333333" y2="1471.66666666667" />
+	<line stroke="black" stroke-width="1" x1="385.870899649682" x2="391.749531238021" y1="1490" y2="1490" />
+	<circle cx="395.082864571354" cy="1490" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="398.416197904687" x2="404.294829493026" y1="1490" y2="1490" />
+	<line stroke="black" stroke-width="1" x1="385.870899649682" x2="385.870899649682" y1="1488.33333333333" y2="1491.66666666667" />
+	<line stroke="black" stroke-width="1" x1="404.294829493026" x2="404.294829493026" y1="1488.33333333333" y2="1491.66666666667" />
+	<line stroke="black" stroke-width="1" x1="385.993960853394" x2="390.878177976378" y1="1510" y2="1510" />
+	<circle cx="394.211511309711" cy="1510" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="397.544844643045" x2="402.429061766029" y1="1510" y2="1510" />
+	<line stroke="black" stroke-width="1" x1="385.993960853394" x2="385.993960853394" y1="1508.33333333333" y2="1511.66666666667" />
+	<line stroke="black" stroke-width="1" x1="402.429061766029" x2="402.429061766029" y1="1508.33333333333" y2="1511.66666666667" />
+	<line stroke="black" stroke-width="1" x1="384.157502550344" x2="386.254784352512" y1="1530" y2="1530" />
+	<circle cx="389.588117685846" cy="1530" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="392.921451019179" x2="395.018732821348" y1="1530" y2="1530" />
+	<line stroke="black" stroke-width="1" x1="384.157502550344" x2="384.157502550344" y1="1528.33333333333" y2="1531.66666666667" />
+	<line stroke="black" stroke-width="1" x1="395.018732821348" x2="395.018732821348" y1="1528.33333333333" y2="1531.66666666667" />
+	<line stroke="black" stroke-width="1" x1="384.12721176962" x2="388.254844585063" y1="1550" y2="1550" />
+	<circle cx="391.588177918396" cy="1550" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="394.921511251729" x2="399.049144067172" y1="1550" y2="1550" />
+	<line stroke="black" stroke-width="1" x1="384.12721176962" x2="384.12721176962" y1="1548.33333333333" y2="1551.66666666667" />
+	<line stroke="black" stroke-width="1" x1="399.049144067172" x2="399.049144067172" y1="1548.33333333333" y2="1551.66666666667" />
+	<line stroke="black" stroke-width="1" x1="384.768683502256" x2="386.638102615844" y1="1570" y2="1570" />
+	<circle cx="389.971435949177" cy="1570" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="393.304769282511" x2="395.174188396099" y1="1570" y2="1570" />
+	<line stroke="black" stroke-width="1" x1="384.768683502256" x2="384.768683502256" y1="1568.33333333333" y2="1571.66666666667" />
+	<line stroke="black" stroke-width="1" x1="395.174188396099" x2="395.174188396099" y1="1568.33333333333" y2="1571.66666666667" />
+	<line stroke="black" stroke-width="1" x1="392.627677484909" x2="397.456332837348" y1="1590" y2="1590" />
+	<circle cx="400.789666170682" cy="1590" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="404.122999504015" x2="408.951654856455" y1="1590" y2="1590" />
+	<line stroke="black" stroke-width="1" x1="392.627677484909" x2="392.627677484909" y1="1588.33333333333" y2="1591.66666666667" />
+	<line stroke="black" stroke-width="1" x1="408.951654856455" x2="408.951654856455" y1="1588.33333333333" y2="1591.66666666667" />
+	<line stroke="black" stroke-width="1" x1="372.086852509575" x2="373.701137826406" y1="1610" y2="1610" />
+	<circle cx="377.034471159739" cy="1610" fill="cornflowerblue" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="380.367804493073" x2="381.982089809903" y1="1610" y2="1610" />
+	<line stroke="black" stroke-width="1" x1="372.086852509575" x2="372.086852509575" y1="1608.33333333333" y2="1611.66666666667" />
+	<line stroke="black" stroke-width="1" x1="381.982089809903" x2="381.982089809903" y1="1608.33333333333" y2="1611.66666666667" />
+	<line stroke="black" stroke-width="1" x1="385.838515922896" x2="386.564445796381" y1="1630" y2="1630" />
+	<circle cx="389.897779129714" cy="1630" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="393.231112463048" x2="393.957042336533" y1="1630" y2="1630" />
+	<line stroke="black" stroke-width="1" x1="385.838515922896" x2="385.838515922896" y1="1628.33333333333" y2="1631.66666666667" />
+	<line stroke="black" stroke-width="1" x1="393.957042336533" x2="393.957042336533" y1="1628.33333333333" y2="1631.66666666667" />
+	<line stroke="black" stroke-width="1" x1="384.041507045503" x2="384.252210454032" y1="1650" y2="1650" />
+	<circle cx="387.585543787366" cy="1650" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="390.918877120699" x2="391.129580529229" y1="1650" y2="1650" />
+	<line stroke="black" stroke-width="1" x1="384.041507045503" x2="384.041507045503" y1="1648.33333333333" y2="1651.66666666667" />
+	<line stroke="black" stroke-width="1" x1="391.129580529229" x2="391.129580529229" y1="1648.33333333333" y2="1651.66666666667" />
+	<line stroke="black" stroke-width="1" x1="387.262831442479" x2="388.72265902048" y1="1670" y2="1670" />
+	<circle cx="392.055992353813" cy="1670" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="395.389325687146" x2="396.849153265147" y1="1670" y2="1670" />
+	<line stroke="black" stroke-width="1" x1="387.262831442479" x2="387.262831442479" y1="1668.33333333333" y2="1671.66666666667" />
+	<line stroke="black" stroke-width="1" x1="396.849153265147" x2="396.849153265147" y1="1668.33333333333" y2="1671.66666666667" />
+	<line stroke="black" stroke-width="1" x1="389.644923522603" x2="394.540665377052" y1="1690" y2="1690" />
+	<circle cx="397.873998710385" cy="1690" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="401.207332043718" x2="406.103073898167" y1="1690" y2="1690" />
+	<line stroke="black" stroke-width="1" x1="389.644923522603" x2="389.644923522603" y1="1688.33333333333" y2="1691.66666666667" />
+	<line stroke="black" stroke-width="1" x1="406.103073898167" x2="406.103073898167" y1="1688.33333333333" y2="1691.66666666667" />
+	<line stroke="black" stroke-width="1" x1="387.485183636609" x2="390.420169508937" y1="1710" y2="1710" />
+	<circle cx="393.753502842271" cy="1710" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="397.086836175604" x2="400.021822047932" y1="1710" y2="1710" />
+	<line stroke="black" stroke-width="1" x1="387.485183636609" x2="387.485183636609" y1="1708.33333333333" y2="1711.66666666667" />
+	<line stroke="black" stroke-width="1" x1="400.021822047932" x2="400.021822047932" y1="1708.33333333333" y2="1711.66666666667" />
+	<line stroke="black" stroke-width="1" x1="384.926812253558" x2="385.729235758636" y1="1730" y2="1730" />
+	<circle cx="389.062569091969" cy="1730" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="392.395902425302" x2="393.198325930379" y1="1730" y2="1730" />
+	<line stroke="black" stroke-width="1" x1="384.926812253558" x2="384.926812253558" y1="1728.33333333333" y2="1731.66666666667" />
+	<line stroke="black" stroke-width="1" x1="393.198325930379" x2="393.198325930379" y1="1728.33333333333" y2="1731.66666666667" />
+	<line stroke="black" stroke-width="1" x1="384.648045625053" x2="385.075643139029" y1="1750" y2="1750" />
+	<circle cx="388.408976472362" cy="1750" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="391.742309805695" x2="392.169907319671" y1="1750" y2="1750" />
+	<line stroke="black" stroke-width="1" x1="384.648045625053" x2="384.648045625053" y1="1748.33333333333" y2="1751.66666666667" />
+	<line stroke="black" stroke-width="1" x1="392.169907319671" x2="392.169907319671" y1="1748.33333333333" y2="1751.66666666667" />
+	<line stroke="black" stroke-width="1" x1="372.449566361266" x2="374.532624183444" y1="1770" y2="1770" />
+	<circle cx="377.865957516777" cy="1770" fill="cornflowerblue" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="381.199290850111" x2="383.28234867229" y1="1770" y2="1770" />
+	<line stroke="black" stroke-width="1" x1="372.449566361266" x2="372.449566361266" y1="1768.33333333333" y2="1771.66666666667" />
+	<line stroke="black" stroke-width="1" x1="383.28234867229" x2="383.28234867229" y1="1768.33333333333" y2="1771.66666666667" />
+	<line stroke="black" stroke-width="1" x1="389.998836769801" x2="393.120688843489" y1="1790" y2="1790" />
+	<circle cx="396.454022176822" cy="1790" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="399.787355510156" x2="402.909207583844" y1="1790" y2="1790" />
+	<line stroke="black" stroke-width="1" x1="389.998836769801" x2="389.998836769801" y1="1788.33333333333" y2="1791.66666666667" />
+	<line stroke="black" stroke-width="1" x1="402.909207583844" x2="402.909207583844" y1="1788.33333333333" y2="1791.66666666667" />
+	<line stroke="black" stroke-width="1" x1="384.921035402802" x2="385.563586659409" y1="1810" y2="1810" />
+	<circle cx="388.896919992743" cy="1810" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="392.230253326076" x2="392.872804582684" y1="1810" y2="1810" />
+	<line stroke="black" stroke-width="1" x1="384.921035402802" x2="384.921035402802" y1="1808.33333333333" y2="1811.66666666667" />
+	<line stroke="black" stroke-width="1" x1="392.872804582684" x2="392.872804582684" y1="1808.33333333333" y2="1811.66666666667" />
+	<line stroke="black" stroke-width="1" x1="376.234526959349" x2="376.619508534747" y1="1830" y2="1830" />
+	<circle cx="379.952841868081" cy="1830" fill="cornflowerblue" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="383.286175201414" x2="383.671156776812" y1="1830" y2="1830" />
+	<line stroke="black" stroke-width="1" x1="376.234526959349" x2="376.234526959349" y1="1828.33333333333" y2="1831.66666666667" />
+	<line stroke="black" stroke-width="1" x1="383.671156776812" x2="383.671156776812" y1="1828.33333333333" y2="1831.66666666667" />
+	<line stroke="black" stroke-width="1" x1="384.476168405484" x2="384.863621203292" y1="1850" y2="1850" />
+	<circle cx="388.196954536625" cy="1850" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="391.530287869958" x2="391.917740667767" y1="1850" y2="1850" />
+	<line stroke="black" stroke-width="1" x1="384.476168405484" x2="384.476168405484" y1="1848.33333333333" y2="1851.66666666667" />
+	<line stroke="black" stroke-width="1" x1="391.917740667767" x2="391.917740667767" y1="1848.33333333333" y2="1851.66666666667" />
+	<line stroke="black" stroke-width="1" x1="372.286360861439" x2="373.814307546613" y1="1870" y2="1870" />
+	<circle cx="377.147640879946" cy="1870" fill="cornflowerblue" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="380.48097421328" x2="382.008920898454" y1="1870" y2="1870" />
+	<line stroke="black" stroke-width="1" x1="372.286360861439" x2="372.286360861439" y1="1868.33333333333" y2="1871.66666666667" />
+	<line stroke="black" stroke-width="1" x1="382.008920898454" x2="382.008920898454" y1="1868.33333333333" y2="1871.66666666667" />
+	<line stroke="black" stroke-width="1" x1="369.235642740412" x2="370.447149124256" y1="1890" y2="1890" />
+	<circle cx="373.78048245759" cy="1890" fill="cornflowerblue" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="377.113815790923" x2="378.325322174768" y1="1890" y2="1890" />
+	<line stroke="black" stroke-width="1" x1="369.235642740412" x2="369.235642740412" y1="1888.33333333333" y2="1891.66666666667" />
+	<line stroke="black" stroke-width="1" x1="378.325322174768" x2="378.325322174768" y1="1888.33333333333" y2="1891.66666666667" />
+	<line stroke="black" stroke-width="1" x1="384.098439818104" x2="384.497576148278" y1="1910" y2="1910" />
+	<circle cx="387.830909481612" cy="1910" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="391.164242814945" x2="391.56337914512" y1="1910" y2="1910" />
+	<line stroke="black" stroke-width="1" x1="384.098439818104" x2="384.098439818104" y1="1908.33333333333" y2="1911.66666666667" />
+	<line stroke="black" stroke-width="1" x1="391.56337914512" x2="391.56337914512" y1="1908.33333333333" y2="1911.66666666667" />
+	<g transform="rotate(90,556.5,1010)">
+		<text font-family="Arial" font-size="10" text-anchor="middle" x="556.5" y="1010">p_value</text>
+	</g>
+	<!-- 
+	Generated using the Perl SVG Module V2.59
+	by Ronan Oger
+	Info: http://www.roitsystems.com/
+ -->
+</svg>

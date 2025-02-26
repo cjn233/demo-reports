@@ -1,0 +1,3 @@
+Type	Software	Normalzation method	p-value estimation model	FDR estimation method	Difference analysis threshold
+With biological duplicates	DESeq2(Anders et al, 2014)	DESeq	Negative binomial distribution	BH	|log2(FoldChange)| > 0&padj < 0.05
+Without biological duplicate	edgeR(Robinson et al, 2010)	TMM	Poisson distribution	BH	|log2(FoldChange)| > 1&padj < 0.005

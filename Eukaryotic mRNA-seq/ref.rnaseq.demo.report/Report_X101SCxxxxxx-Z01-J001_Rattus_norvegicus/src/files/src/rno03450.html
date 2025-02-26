@@ -1,0 +1,56 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<title>rno03450</title>
+<style type="text/css">
+<!--
+area {cursor: pointer;}
+-->
+</style>
+
+<script type="text/javascript" src="jquery.min.js"></script>
+</head>
+<body>
+<img src="rno03450.png" usemap="#mapdata" border="0" />
+
+<div><span class='maps'><img class='maps' src='bg_red.png' style='top:472px;left:857px;width:47px;height:18px;position:absolute;' usemap='#map_4'><map name='map_4'><area class="original" coords="0,0,47,18" data-coords="849,464,895,481" href="http://www.kegg.jp/entry/rno:289757" id="41C838BC" shape="rect" title="289757 (Polm)"/>
+</map></span> <span style='display:none;'><ul><li>rno:289757</li><ul><li><font color="red">Up regulated genes</font></li><ul><font color="red">289757(0.394169319078394)</font></ul></ul></ul></span></div>
+<div id="Detail" style=" display:none;position: fixed; left: 25%; top: 0px; width: 50%; border: 3px solid rgb(167, 201, 66); background-color: rgb(239, 254, 193); opacity: 0.95; font-size: 12px; padding-right: 20px;">	
+	<div style="cursor: pointer; position: absolute;top:5px; right: 5px; color: #7a9c14;" onclick="$('#Detail').hide();" title="close">Close</div>
+</div>
+
+<map data-scale="1" id="mapdata" name="mapdata">
+ <area class="original" coords="796,568,842,585" data-coords="796,568,842,585" href="http://www.kegg.jp/entry/rno:290907" id="2FAD45EC" shape="rect" title="290907 (Lig4)"/>
+ <area class="original" coords="796,464,842,481" data-coords="796,464,842,481" href="http://www.kegg.jp/entry/rno:361767" id="CAACC4E7" shape="rect" title="361767 (Poll)"/>
+ <area class="original" coords="535,568,581,585" data-coords="535,568,581,585" href="http://www.kegg.jp/entry/rno:290907" id="A3BC5041" shape="rect" title="290907 (Lig4)"/>
+ <area class="original" coords="796,485,842,502" data-coords="796,485,842,502" href="http://www.kegg.jp/entry/rno:294051" id="E4A4C6E1" shape="rect" title="294051 (Dntt)"/>
+ <area class="original" coords="0,0,47,18" data-coords="849,464,895,481" href="http://www.kegg.jp/entry/rno:289757" id="41C838BC" shape="rect" title="289757 (Polm)"/>
+ <area class="original" coords="796,336,841,355" data-coords="796,336,841,355" href="http://www.kegg.jp/entry/rno:259171" id="FBA94570" shape="rect" title="259171 (Dclre1c)"/>
+ <area class="original" coords="530,350,576,367" data-coords="530,350,576,367" href="http://www.kegg.jp/entry/rno:64046" id="68B470B5" shape="rect" title="64046 (Mre11)"/>
+ <area class="original" coords="530,334,576,351" data-coords="530,334,576,351" href="http://www.kegg.jp/entry/rno:64012" id="CCB369BB" shape="rect" title="64012 (Rad50)"/>
+ <area class="original" coords="796,353,842,370" data-coords="796,353,842,370" href="http://www.kegg.jp/entry/rno:360748" id="B0AB466A" shape="rect" title="360748 (Prkdc)"/>
+ <area class="original" coords="665,218,711,235" data-coords="665,218,711,235" href="http://www.kegg.jp/entry/rno:363247" id="AA954F23" shape="rect" title="363247 (Xrcc5)"/>
+ <area class="original" coords="796,585,842,602" data-coords="796,585,842,602" href="http://www.kegg.jp/entry/rno:309995" id="E5A543E1" shape="rect" title="309995 (Xrcc4)"/>
+ <area class="original" coords="665,201,711,218" data-coords="665,201,711,218" href="http://www.kegg.jp/entry/rno:25019" id="FB9351A1" shape="rect" title="25019 (Xrcc6)"/>
+ <area class="original" coords="535,485,581,502" data-coords="535,485,581,502" href="http://www.kegg.jp/entry/rno:84490" id="58B3D13B" shape="rect" title="84490 (Fen1)"/>
+ <area class="original" coords="796,602,842,619" data-coords="796,602,842,619" href="http://www.kegg.jp/entry/rno:363251" id="9AA6C3F9" shape="rect" title="363251 (Nhej1)"/>
+ <area class="original" coords="40,45,293,70" data-coords="40,45,293,70" data-entry="rno03450" href="http://www.kegg.jp/entry/rno03450" id="37B2CED3" shape="rect" title="rno03450: Non-homologous end-joining"/>
+ <area class="original" coords="535,602,581,619" data-coords="535,602,581,619" id="0EB5CE53" shape="rect"/>
+ <area class="original" coords="535,464,581,481" data-coords="535,464,581,481" id="3EBBCF41" shape="rect"/>
+ <area class="original" coords="219,336,265,353" data-coords="219,336,265,353" id="54A70EF2" shape="rect"/>
+ <area class="original" coords="530,367,576,384" data-coords="530,367,576,384" id="17B66E37" shape="rect"/>
+ <area class="original" coords="217,206,263,223" data-coords="217,206,263,223" id="59A38676" shape="rect"/>
+ <area class="original" coords="535,585,581,602" data-coords="535,585,581,602" id="59B44E3B" shape="rect"/>
+</map>
+
+
+<script type="text/javascript" >
+		$("span.maps").bind("mouseover",function(){
+			$("#Detail ul").remove();
+			$("#Detail").prepend($(this).siblings("span").html());
+			console.log($("#Detail").html());
+			$("#Detail").show();
+			});
+</script>
+</body>
+</html>

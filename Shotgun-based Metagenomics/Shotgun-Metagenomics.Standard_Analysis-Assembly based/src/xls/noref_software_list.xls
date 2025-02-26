@@ -1,0 +1,18 @@
+分析内容	软件及版本	参数	备注	软件链接
+原始数据处理及分析	SMRTlink V7.0	--minLength 50；--maxLength 15000；--minPasses 1；	--min_seq_len：Minimum sequence length to output	https://www.pacb.com/support/software-downloads
+转录本校正	LoRDEC V0.7	-k 23；-s 3	二代数据校正	http://atgc.lirmm.fr/lordec
+CDS	ANGEL V2.4	--min_angel_ aa_length 50	CDS预测	https://github.com/PacificBiosciences/ANGEL
+TF	植物:iTAK：1.7a	-f 3F	转录因子鉴定	https://github.com/kentnf/iTAK/
+TF	动物：AnimalTF DB：2.0	默认参数	转录因子鉴定	http://bioinfo.life.hust.edu.cn/AnimalTFDB/
+SSR	MISA 1	definition(unit_size, min_repeats):1-10 2-6 3-5 4-5 5-5 6-5； interruptions (max_difference_ for_2_SSRs): 100	SSR鉴定	http://pgrc.ipk-gatersleben.de/misa/misa.html
+lncRNA分析	CPC2 v0.1	默认参数	编码潜能预测	http://cpc2.cbi.pku.edu.cn/download.php
+lncRNA分析	CNCI V2	默认参数	编码潜能预测	https://github.com/www-bioinfo-org/CNCI
+lncRNA分析	PLEK v1.2	默认参数	编码潜能预测	https://sourceforge.net/projects/plek/
+lncRNA分析	PfamScan V1.6	默认参数	蛋白结构域检测	"https://www.ebi.ac.uk/seqdb/confluence/display/THD/PfamScan"
+转录本去冗余	cd-hit v4.6.8	-c 0.95；-T 6；-G 0；-aL 0.00；-aS 0.99；-AS 30	转录本去冗	https://github.com/weizhongli/cdhit
+比对定量	bowtie2 V2.3.4	-q；--phred33；--sensitive；--dpad 0；--gbar 99999999；--mp 1,1；--np 1；--score-min L,0,-0.1；-I 1；-X 1000；--no-mixed；--no-discordant；-p 8；-k 30	转录本比对	http://bowtie-bio.sourceforge.net/bowtie2/index.shtml
+比对定量	RSEM V1.3.0	--phred33；-quals；--forward-prob 0.5；--time	转录本定量分析	http://deweylab.github.io/RSEM/
+差异表达分析	DEseq v1.10.1	qvalue < 0.05	有生物学重复	 http://www.bioconductor.org/packages/release/bioc/html/DESeq.html
+差异表达分析	DEGseq v1.12.0	|log2(FoldChange)| > 1 & qvalue < 0.005	无生物学重复	 http://www.bioconductor.org/packages/release/bioc/html/DEGseq.html
+GO富集	GOSeq V1.10.0	Corrected P-Value<0.05	GO富集分析	 http://www.bioconductor.org/packages/release/bioc/html/goseq.html
+KEGG富集	KOBAS v3.0	Corrected P-Value<0.05	KEGG富集分析	http://kobas.cbi.pku.edu.cn/download.php

@@ -1,0 +1,22 @@
+分析内容	软件及版本	参数	备注	软件链接
+原始数据处理及分析	SMRT-Link V7.0	--minLength 50；--maxLength 15000；--minPasses 1；	--min_seq_len：Minimum sequence length to output	https://www.pacb.com/support/software-downloads
+转录本校正	LoRDEC V0.7	-k 23；-s 3	二代数据校正	http://atgc.lirmm.fr/lordec
+数据库功能注释	Diamond blastx v0.8.36	--more-sensitive -k 10；-e 1e-5；-f 6；-p 4	NR、KOG/COG、Swiss-prot、KEGG	https://github.com/bbuchfink/diamond
+数据库功能注释	ncbi-blast-2.7.1+ blastn V2.7.1	-outfmt 6；-evalue 1e-5；-max_target_seqs 10；-num_threads 4	NT注释	ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/
+数据库功能注释	Hmmscan v3.1b2	--acc；--domtblout	Pfam注释	http://hmmer.org/download.html
+基因结构分析	GMAP v2017-06-20	--no-chimeras；--expand-offsets 1；-B 5；-f samse；-n 1	参考基因组比对	http://research-pub.gene.com/gmap/
+基因结构分析	Tapis V1.2.1	默认参数	新基因、新转录本、APA鉴定	https://bitbucket.org/comp_bio/tapis
+基因结构分析	SUPPA V2.3	默认参数	可变剪接鉴定	https://bitbucket.org/regulatorygenomicsupf/suppa
+转录因子鉴定	植物：iTAK iTAK：1.7a	-f 3F	转录因子鉴定	https://github.com/kentnf/iTAK/
+转录因子鉴定	动物：AnimalTFDB AnimalTFDB：2.0		转录因子鉴定	http://bioinfo.life.hust.edu.cn/AnimalTFDB/
+lncRNA分析	CPC v0.9	默认参数	编码潜能预测	http://cpc.cbi.pku.edu.cn/
+lncRNA分析	CNCI V2	默认参数	编码潜能预测	https://github.com/www-bioinfo-org/CNCI
+lncRNA分析	PLEK v1.2	默认参数	编码潜能预测	https://sourceforge.net/projects/plek/
+lncRNA分析	PfamScan V1.6	默认参数	蛋白结构域检测	https://www.ebi.ac.uk/seqdb/confluence/display/THD/PfamScan
+融合基因鉴定	GMAP v2017-06-20	--max-intronlength-ends 50000；-f 4；-z sense_force；-n 0	融合基因鉴定	http://research-pub.gene.com/gmap/
+比对定量	HTSeq V0.6.1	-m union；-s no；-t exon	基因水平定量	http://htseq.readthedocs.io/en/release_0.9.1/
+比对定量	Cuffdiff V2.2.1	--FDR 0.05；--library-norm-method geometric；--dispersion-method pooled	转录本水平定量	http://cole-trapnell-lab.github.io/cufflinks/
+差异表达分析	DEseq v1.10.1	qvalue < 0.05	有生物学重复	http://www.bioconductor.org/packages/release/bioc/html/DESeq.html
+差异表达分析	DEGseq v1.12.0	|log2(FoldChange)| > 1 & qvalue < 0.005	无生物学重复	http://www.bioconductor.org/packages/release/bioc/html/DEGseq.html
+GO富集	GOSeq V1.10.0	Corrected P-Value<0.05	GO富集分析	http://www.bioconductor.org/packages/release/bioc/html/goseq.html
+KEGG富集	KOBAS v3.0	Corrected P-Value<0.05	KEGG富集分析	http://kobas.cbi.pku.edu.cn/download.php

@@ -1,0 +1,1742 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<html>
+<head>
+  <title>TESTXXXXXXXXXX</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <script src="js/jquery-1.8.3.min.js" type="text/javascript"></script>
+  <link rel="stylesheet" type="text/css" href="css/base.css">
+  <link rel="stylesheet" type="text/css" href="js/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
+  <link rel="stylesheet" href="css/style.css" />
+  
+
+  <script src="js/dataTables.rowsGroup.js" type="text/javascript"></script>
+  <script src="js/bootstrap.min.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="css/memu_style.css" media="screen" type="text/css" />
+  <script src="js/scrolltop.js" type="text/javascript"></script>
+  <script src="js/common.js" type="text/javascript"></script>
+  <script src="js/jquery.albumSlider.min.js" type="text/javascript"></script>
+  <link href="css/cloth.css" rel="stylesheet" type="text/css" media="screen" />
+  <script type="text/javascript" src="js/tablecloth.js"></script>
+  <script type="text/javascript" src="js/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
+  <script type="text/javascript" src="js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+  
+  <!-- <script src="js/bootstrap.js" type="text/javascript"></script> -->
+  <script src="js/echarts.min.js" type="text/javascript"></script>
+  <script src="js/dagre-d3.min.js" type="text/javascript"></script>
+  <script src="js/d3.v3.min.js" type="text/javascript"></script>
+
+  <script src="js/jquery.flexslider.js" type="text/javascript"></script>
+  <script src="js/jquery.dataTables.js" type="text/javascript"></script>
+  <script src="js/material-scrollTop.js" type="text/javascript"></script>
+  
+  <script src="js/bootstrap-select.min.js" type="text/javascript"></script>
+  <script src="js/bootstrap-switch.js" type="text/javascript"></script>
+  <script src="js/network.js" type="text/javascript"></script>
+  <script src="js/tableData.disease.js" type="text/javascript"></script>
+  <link href="css/base_new.css" type="text/css" rel="stylesheet">
+  <link href="css/flexslider.css" type="text/css" rel="stylesheet">
+  <script src="js/jquery.flexslider.js" type="text/javascript"></script>
+  <script src="js/jquery.dataTables.js" type="text/javascript"></script>
+  <link href="css/material-scrollTop.css" type="text/css" rel="stylesheet">
+  <link href="css/jquery.dataTables.css" type="text/css" rel="stylesheet">
+  <script src="js/cytoscape.min.js" type="text/javascript"></script>
+  <script src="js/jquery.cytoscape.js-panzoom.js" type="text/javascript"></script>
+    <!-- 增加导出excel功能 -->
+    <link rel="stylesheet" href="css/buttons.dataTables.min.css">
+    <script src="js/dataTables.buttons.min.js" type="text/javascript"></script>
+    <script src="js/jszip.min.js" type="text/javascript"></script>
+    <script src="js/buttons.html5.min.js" type="text/javascript"></script>
+  
+    <!-- <script src="js/jquery-migrate-1.3.0.js" type="text/javascript"></script> -->
+  <!-- <script src="js/test.js"></script> -->
+  <link href="css/bootstrap-switch.css" rel="stylesheet" />
+
+  <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="css/buttons.css">
+  <!-- <script src="adv_src/slick/jquery-2.2.0.min.js" type="text/javascript"></script> -->
+  <style type="text/css">
+    td.tb3 {
+      font: 0.8em 黑体-简, sans-serif;
+    }
+    table.dataTable.row-border tbody tr:first-child th, table.dataTable.row-border tbody tr:first-child td, table.dataTable.display tbody tr:first-child th, table.dataTable.display tbody tr:first-child td {
+      border-top: none;
+      font-size: 0.8em;
+    }
+   </style>
+  <style type="text/css">
+    td.tb2 {
+      font-size: 1em;
+      text-align: center;
+      padding: 0.5em;
+      border: 1px solid #3e3a39;
+    }
+  </style> 
+   <style type="text/css">
+    .gy td {
+      font-size: 0.8em;
+      border: 1px solid #3e3a39;
+      padding: 3px 7px 2px 7px;
+      text-align: center;
+      word-break: keep-all;
+      white-space: nowrap;
+    }
+    td {
+      font-size: 0.8em;
+      background: #f1f5fb;
+    }
+  </style>
+  <div class="noprint">
+    <div style="display: block;" id="goTopBtn">
+      <a class="backtotop" title="回顶部"><img src="images/goTop.jpg" width="30" height="30" class="back-tip"/></a>
+    </div>
+  </div>
+  <script type="text/javascript">
+    jQuery.browser = {};
+    (function () {
+        jQuery.browser.msie = false;
+        jQuery.browser.version = 0;
+        if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+            jQuery.browser.msie = true;
+            jQuery.browser.version = RegExp.$1;
+        }
+    })();
+</script>
+  <script type="text/javascript">
+    /* show or hide element*/
+    function hiddenShow(btnObj){
+      ctObj = btnObj.nextElementSibling;
+      if (ctObj.style.display == 'inline'){
+        ctObj.style.display = 'none';
+        btnObj.innerHTML = "显示注释";
+      }else{
+        ctObj.style.display = 'inline';
+        btnObj.innerHTML = "隐藏注释";
+      };
+      return 0;
+    }
+  </script>
+
+
+</script>
+  <script type="text/javascript">
+    /* show or hide element*/
+    function hiddenShow2(btnObj){
+      ctObj = btnObj.nextElementSibling;
+      if (ctObj.style.display == 'inline'){
+        ctObj.style.display = 'none';
+        btnObj.innerHTML = "显示附录";
+      }else{
+        ctObj.style.display = 'inline';
+        btnObj.innerHTML = "隐藏附录";
+      };
+      return 0;
+    }
+  </script>
+
+  <script type="text/javascript">
+    function hiddenQA(btnObj){
+      ctObj = btnObj.nextElementSibling;
+      if (ctObj.style.display == 'inline'){
+       ctObj.style.display = 'none';
+       btnObj.innerHTML = "显示Q&A";
+      }else{
+       ctObj.style.display = 'inline';
+       btnObj.innerHTML = "隐藏Q&A";
+      };
+      return 0;
+    }
+  </script>
+
+<!-- 2022-11-20 生成目录 -->
+<script src="js/jquery-ui.min.js" type="text/javascript"></script>
+  <script src="js/jquery.tocify.min.js" type="text/javascript"></script>
+  <link type="text/css" rel="stylesheet" href="css/jquery.tocify.css" />
+  <script type="text/javascript">
+    $(function () {
+            var options = {
+                    selectors: "h2,h3,h4,h5",
+                    theme: "bootstrap",
+                    scrollTo: "60"
+            };
+            console.log('options ==> ', options)
+            var toc = $("#toc").tocify(options).data("toc-tocify");
+            console.log('toc ==> ', toc)
+    });
+</script>
+<style>
+  .tocify {
+    width: 16%;
+    max-height: 80%;
+    overflow: auto;
+    margin-left: 0.5%;
+    position: fixed;
+    top: 100px;
+    border: 2px solid #ccc;
+    webkit-border-radius: 6px;
+    moz-border-radius: 6px;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+</style>
+<style>
+  ol {
+    list-style-type: none;
+    counter-reset: sectioncounter;
+  }
+  ol li:before {
+  content: "（"counter(sectioncounter)"）";
+  counter-increment: sectioncounter;
+  }
+ </style>
+  <!-- 20220528 -->
+  <script type="text/javascript">
+  let index = 0;
+  function previousFun(e) {
+    // a li ul -> div ul
+    let transformStr = $(e).parent().parent().prev().children().css('transform');
+    let transformMatrix = transformStr.slice(7, transformStr.length - 1).split(', ');
+    const x = transformMatrix[transformMatrix.length - 2];
+    console.log('x = ' + x);
+    let liElements = $(e).parent().parent().prev().children().children();
+    const liNum = liElements.length;
+    index = index - 1;
+    let temp = liElements.eq(index);
+    const liWidth = temp.width();
+    console.log('y = ' + liWidth);
+    const y = parseInt(x) + parseInt(liWidth);
+    if (y <= 20) {
+      $(e).parent().parent().prev().children().css('transform', 'translate3d(' + y + 'px, 0px, 0px)');
+    } else {
+      index = index + 1;
+    }
+  }
+  function nextFun(e) {
+    // a li ul -> div ul
+    let transformStr = $(e).parent().parent().prev().children().css('transform');
+    let transformMatrix = transformStr.slice(7, transformStr.length - 1).split(', ');
+    const x = transformMatrix[transformMatrix.length - 2];
+    console.log('x = ' + x);                                
+    let liElements = $(e).parent().parent().prev().children().children();
+    const liNum = liElements.length;
+    index = index + 1;
+    let temp = liElements.eq(index);
+    const liWidth = temp.width();
+    console.log('y = ' + liWidth);
+    const y = parseInt(x) - parseInt(liWidth);
+    if (y >= parseInt(liNum) * parseInt(liWidth) * parseInt('-1')) {
+      $(e).parent().parent().prev().children().css('transform', 'translate3d(' + y + 'px, 0px, 0px)');
+    } else {
+      index = index - 1;
+    }
+  }
+  </script>
+  
+  <!--<script src='js/jquery-1.8.3.min.js'></script>-->
+  <script src='js/jquery.flexslider.js'></script>
+  <script src='js/jquery.dataTables.js'></script>
+  <script src="js/material-scrollTop.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/bootstrap-select.min.js"></script>
+  <script src="js/bootstrap-switch.js"></script>
+  <script src="js/network.js"></script>
+  <script src="js/tableData.disease.js"></script>
+  <script src="js/d3.v3.min.js"></script>
+  <script src="js/dagre-d3.min.js"></script>
+  
+  <script src="js/cytoscape.min.js"></script>
+  <script src="js/jquery.cytoscape.js-panzoom.js"></script>
+  <script src="js/final.js"></script>
+  
+  <script src="js/echarts.min.js"></script>
+  <!-- 20220528 -->
+  <script src="js/echarts-gl.min.js"></script>
+  <script src="js/esl.js"></script>
+  <script src="js/test.js"></script>
+  
+  
+  
+</head>
+<body>
+<!-- --------------------------------- 目录 ------------------------------ -->
+<div id="toc" class="tocify"></div>
+<div id="main">
+<!-- --------------------------------------样品信息---------------------------------------  -->
+<div id="page">
+  <br><h1>疾病项目分析报告</h1></br>
+  <p class="head"><a href="#home" title = "返回首页"></a>
+  
+  <a name="标题"></a>
+  <div >
+    <table class="tb2">
+    <tr class="tb2"><td class="tb2">合同编号</td><td style="text-align:left" class="tb2">H20XXXXX</td></tr>
+    <tr class="tb2"><td class="tb2">合同名称</td><td style="text-align:left" class="tb2">TESTXXXXXXXXXX</td></tr>
+    <tr class="tb2"><td class="tb2">分期编号</td><td style="text-align:left" class="tb2">X202XXXXXX-Z01-F001</td></tr>
+    <tr class="tb2"><td class="tb2">参考基因组及版本</td><td style="text-align:left" class="tb2">B37</td></tr>
+    <tr class="tb2"><td class="tb2">报告时间</td><td style="text-align:left" class="tb2">20241028</td></tr>
+    <tr class="tb2"><td class="tb2">售后服务电话</td><td style="text-align:left" class="tb2">400-658-1585</td></tr>
+    <tr class="tb2"><td class="tb2">售后服务邮箱</td><td style="text-align:left" class="tb2">service-reseq@novogene.com</td></tr>
+    <tr class="tb2"><td class="tb2">温馨提示</td><td style="text-align:left" class="tb2">Report仅供展示部分结果，全部分析内容详见Result文件夹；<br/>在您拿到Result前Report中的Result超链接无效，确认结算后，释放结果文件Result中Report的结果目录超链接有效。</td></tr>
+    </table>
+  </div>
+  
+  <h2 id="goto_sampleinfo1">1 项目简介</h2>
+  <h3>1.1 产品概述</h3>
+  <p class="paragraph">
+    
+    全基因组测序（Whole Genome Sequencing, WGS）能够获得整个基因组的测序数据，有效数据覆盖均一，在保证SNV（点突变）、InDel（插入缺失）检出的同时，还适用于CNV（拷贝数变异）、SV（结构变异）、基因-疾病表型关联性分析等的研究。
+    
+  </p>
+  <p class="paragraph">
+    从DNA提取、文库构建到最终数据获得，每一个环节都可能会对数据质量和数量产生影响，而数据质量又会直接影响后续信息分析的结果。因此，获得高质量数据是保证生物信息分析正确、全面、可信的前提。为了从源头上保证测序数据的准确性、可靠性，我们对每一个生产环节都严格把关，从根本上确保高质量数据的产出。
+  </p>
+  <p class="paragraph">
+    项目整体流程图如下：
+  </p>
+  <p class="center"><img class="middle" src="images/project_pipline.png" style="height: 150px;"></p>
+  <p class="name_fig" style="font-size: 12px">图1 项目流程图</p>
+  <h3>1.2 样本信息</h3>
+  <p class="center">
+  <p class="name_fig" style="font-size: 12px">表1 样本信息</p>
+  <div >
+    <table class="tb2">
+    
+      
+        <tr class="tb2"><th class="tb2">FamilyID</th><th class="tb2">SampleID</th><th class="tb2">NovoID</th><th class="tb2">Type</th></tr>
+      
+    
+      
+        <tr class="tb2"><td class="tb2">P1</td><td class="tb2">tian</td><td class="tb2">FKDO230350531-1A</td><td class="tb2">N</td></tr>
+      
+    
+      
+        <tr class="tb2"><td class="tb2">P1</td><td class="tb2">tianshu</td><td class="tb2">FKDO230350529-1A</td><td class="tb2">N</td></tr>
+      
+    
+      
+        <tr class="tb2"><td class="tb2">P1</td><td class="tb2">songshu</td><td class="tb2">FKDO230350530-1A</td><td class="tb2">N</td></tr>
+      
+    
+      
+        <tr class="tb2"><td class="tb2">P1</td><td class="tb2">tianzi</td><td class="tb2">FKDO230350528-1A</td><td class="tb2">P</td></tr>
+      
+    
+    </table>
+    <p class="tremark" style="text-align: center;">Type: 样本类型 (P: Patient; N:Normal)</p>
+  </div>
+  </p>
+</div>
+<!-- --------------------------------------实验流程--------------------------------------- -->
+<!-- --------------------------------------实验流程--------------------------------------- -->
+<div id="page">
+<p class="head"><a href="#home" title = "返回首页"></a><a name="建库测序流程"></a><hr /></p><br />
+  <h2 id="goto_experiment1">2 建库测序流程</h2>
+    <a name="DNA样品检测"></a>
+    <h3 id="goto_experiment1">2.1 DNA样品检测</h3>
+    <p class="paragraph">详见样本检测报告。</p>
+    <a name="文库构建"></a>
+    <h3 id="goto_experiment2">2.2 文库构建及上机测序</h3>
+    <p class="paragraph">
+      
+      基因组DNA利用Covaris破碎仪随机打库检合格后，根据文库的有效浓度及数据产出需求进行MGI DNBSEQ-T7 PE150测序断成长度为350 bp的片段，经末端修复、磷酸化以及加A尾后，片段两端分别连接接头，制备成DNA文库。
+      
+    </p>
+    <p class="center">
+      
+      <img src="pictures/libEst/lib_est_wgs.png" style="height: 460px;" /><br/>
+      
+      <p class="name_fig" style="font-size: 12px">图2 建库流程</p>
+      <p class="paragraph">对文库的检测主要包括2种方法：</p>
+      <p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;（1）&nbsp;AATI检测文库DNA片段的完整性及插入片段大小。</p>
+      <p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;（2）&nbsp;QPCR检测文库有效浓度。</p>
+      <br />
+      
+      <p class="paragraph">文库检测合格后，按照有效浓度及目标下机数据量的需求将不同文库pooling至一起，将文库5’端磷酸化后进行环化，对环化文库进行滚环扩增，最终形成 DNA 纳米球(DNB)加载至 Flowcell ，使用 DNBSEQ-T7 进行测序。</p>
+      
+      
+          
+          <p class="paragraph">研究中涉及的方法见<a href="method/疾病WGS标准分析A-中文method.pdf" title="点击打开" target="_blank">中文版methods</a>和<a href="method/疾病WGS标准分析A-英文method.pdf" title="点击打开" target="_blank">英文版methods</a></p>
+          
+      
+    </p>
+  <button onclick="hiddenQA(this)">显示Q&A</button>
+  <div class="comment">
+  <table style="font-size:12px;font-family: '黑体-简'">
+    <tr><td align="left" style="background-color:#036EB8;color:#FFFFFF">Q1:什么是index标签?</td></tr>
+    <tr><td align="left" style="background-color:#f1f5fb;color:#3E3A39">A1：二代测序中的序列标签，含6个碱基，用来区分不同的样本</td></tr>
+    <tr><td align="left" style="background-color:#036EB8;color:#FFFFFF">Q2:什么是PE150测序？</td></tr>$
+    <tr><td align="left" style="background-color:#f1f5fb;color:#3E3A39">A2：PE150测序即Pair end 150 bp，意指高通量双端测序，每端各测 150 bp。双端测序是将每条插入片段的两端进行测序的方法，由于插入片段的长度分布已知，双端测序时不仅可以知道片段两端的序列，也能知道这两段序列之间的长度，从而便于后续比对。</td></tr>
+  </table>
+  </div> 
+</div>
+
+<!-- --------------------------------- 信息分析流程 -------------------------------- -->
+<!-- --------------------------------- 信息分析流程 -------------------------------- -->
+<div id="page">
+  <p class="head"><a href="#home" title = "返回首页"></a><a name="信息分析流程"></a><hr /></p><br />
+  <h2 id="goto_pipeline1">3 信息分析流程</h2>
+  <p class="paragraph">
+    获得原始测序序列(Sequenced Reads)后，在有参考序列或参考基因组 (B37)的情况下，进行信息分析流程，大致包括以下三个部分：
+    <ol style="font-size: 14px;font-family: '黑体-简'">
+      <li>测序数据质量评估：主要通过对测序错误率、数据量、比对率等进行统计，评估建库测序是否达到了标准，符合标准则进行后续的分析，否则需重新建库或加测。</li>
+      <li>
+        变异检测：将高质量的序列比对到人参考基因组上，检测样本中的变异信息，并对检出的变异进行统计和注释。
+      </li>
+      <li>候选致病突变筛选：主要基于有害性分类、样本情况筛选（显隐性模式筛选、新生突变等），得到最终的候选致病突变。</li>
+    </ol>
+  </p>
+  
+  <p class="center"><img src="images/disease_wgs_pipeline.png" style="height: 410px"/></p>
+  
+  <p class="name_fig" style="font-size: 12px">图3 信息分析流程图</p>
+</div>
+
+<!-- --------------------------------- 原始序列数据 --------------------------------- -->
+<div id="page">
+<p class="head"><a href="#home" title = "返回首页"></a><a name="基本分析结果"></a><hr /></p><br />
+  
+    <h2 id="goto_result1">4 分析结果</h2>
+    <h3 id="goto_result11">4.1 标准分析</h3>
+  
+    <a name="原始序列数据"></a>
+    
+        <h4 id="goto_result111">4.1.1 原始序列数据</h4>
+    
+    <p class="paragraph">高通量测序得到的原始图像数据文件经碱基识别(Base Calling)分析转化为原始测序序列(Sequenced Reads)，我们称之为Raw Data或Raw Reads，结果以FASTQ(简称为fq)文件格式存储，其中包含测序序列(reads)的序列信息以及其对应的测序质量信息。</p>
+    <p class="paragraph">FASTQ格式文件中每个read由四行描述，如下：</p>
+    
+    <p class="seq">
+    @E100005711L1C002R0040000085/1<br />
+    TCCCACCACGGGTTCCAACTTCCTTCATGCATTTACTTGACCACAGGCACTGAATTCCGACTGGGTGCAGAGGAGGGCCTTGTTGTGGAGGTAAAAAAAGAGAAATCAAGTCCCAGACCTTGAAGATGGCAGTTTAACACCAATGGAGCC<br />
+    +<br />
+    CEEEDE=DEEEEAEEEEEEEBDEEEEEEEDEBEEEEEEEEDEFEEEEEEEEEDEEEEEEEDEEEEEEEECEEEEEEEEEEEEEEEEEEEEEEEEEDEEEEEEEEDDB@E7EEDDEEDEEEECDEDCEEEEEECE6=B*EE7E;%EEDDEE</p>
+    <p class="paragraph">其中第一行以“@”开头，随后为测序标识符(Sequence Identifiers)和描述文字(选择性部分)；第二行是碱基序列；第三行以“+”开头，随后为测序标识符(选择性部分)；第四行是对应序列的测序质量。</p>
+    <p class="paragraph">MGI DNBSEQ-T7测序标识符详细信息如下：</p>
+    <div >
+    <p class="center">
+    <table class="tb2">
+      <tr class="tb2"><th class="tb2">MGI DNBSEQ-T7测序标识符</th><th class="tb2">详细信息</th></tr>
+      <tr class="tb2"><td class="tb2">E100005711</td><td class="tb2">Flow cell serial number</td></tr>
+      <tr class="tb2"><td class="tb2">L1</td><td class="tb2">Lane Number</td></tr>
+      <tr class="tb2"><td class="tb2">C002</td><td class="tb2">X-position (column number)</td></tr>
+      <tr class="tb2"><td class="tb2">R004</td><td class="tb2">Y-position (row number)</td></tr>
+      <tr class="tb2"><td class="tb2">0000085</td><td class="tb2">Tile/Field of view</td></tr>
+      <tr class="tb2"><td class="tb2">/1</td><td class="tb2">Read Number</td></tr>
+     </table>
+     </p>
+    </div>
+    
+    <p class="paragraph">第四行中每个字符对应的ASCII值减去33，即为对应第二行碱基的测序质量值。如果测序错误率用e表示，MGI DNBSEQ-T7 测序平台的碱基质量值用Q<sub>phred</sub>表示，则有下列关系：</p>
+    <p class="center">公式一：　Q<sub>phred</sub>　=　-10log<sub>10</sub>(e)</p>
+    <p class="paragraph">测序错误率与测序质量值简明对应关系如下：</p>
+    <div id="tb">
+      <p class="center">
+      <table class="tf1">
+        <tr class="tb2"><th class="tb2">测序错误率</th><th class="tb2">测序质量值</th><th class="tb2">对应字符</th></tr>
+        <tr class="tb2"><td class="tb2">5%</td><td class="tb2">13</td><td class="tb2">.</td></tr>
+        <tr class="tb2"><td class="tb2">1%</td><td class="tb2">20</td><td class="tb2">5</td></tr>
+        <tr class="tb2"><td class="tb2">0.1%</td><td class="tb2">30</td><td class="tb2">?</td></tr>
+        <tr class="tb2"><td class="tb2">0.01%</td><td class="tb2">40</td><td class="tb2">I</td></tr>
+      </table>
+      </p>
+    </div>
+<!--</div>-->
+<!-- --------------------------- 测序数据质量评估 -------------------------- -->
+<!-- --------------------------- 测序数据质量评估 -------------------------- -->
+<!--<div id="page">-->
+  <p class="head"><a href="#home" title = "返回首页"></a><a name="测序数据质量评估"></a><hr /></p><br />
+  
+    <h4 id="goto_result112">4.1.2 测序数据质量评估</h4>
+    <a name="测序数据过滤"></a>
+    <h5 id="goto_result1121">4.1.2.1 测序数据过滤</h5>
+  
+  <p class="paragraph">测序得到的原始测序序列，里面含有带接头的、低质量的reads，会对后续信息分析造成很大干扰。为了保证信息分析质量，必须对raw reads进行精细过滤，得到clean reads，后续分析都基于clean reads。</p>
+  <p class="paragraph">数据处理的步骤如下：</p>
+  <p class="tremark">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) 去除带接头(adapter)的reads；<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) 去除N(N表示无法确定碱基信息)的比例大于10%的reads；<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3) 当单端测序read中含有的低质量(低于5)碱基数超过该条read长度比例的 50% 时，需要去除此对paired reads。</p>
+  <p class="paragraph">关于测序adapter：</p>
+  <p class="tremark">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;P5 adapter：<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;P5→P7’(5’→3’)<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AATGATACGGCGACCACCGAGATCTACAC[i5]ACACTCTTTCCCTACACGACGCTCTTCCGATCT<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;P7 adapter：<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;P5→P7’(5’→3’)<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GATCGGAAGAGCACACGTCTGAACTCCAGTCAC[i7]ATCTCGTATGCCGTCTTCTGCTTG</p>
+  <br/>
+  <iframe style="text-align: center; width: 100%; height: 480px; margin: auto;" src="htmls/raw_data_pie.html"  frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+  
+    <p class="name_fig" style="font-size: 12px">图4.1　原始数据过滤结果</p>
+  
+  <button onclick="hiddenShow(this)">显示注释</button>
+  <div class="comment">
+    <ol style="font-size: 12px;font-family: '黑体-简';line-height: 20px">
+      <li>Adapter related：因有接头而过滤掉的Reads对数及其占总Raw reads对数的比例</li>
+      <li>Containing N：因单端测序Read中N含量超过该条Read碱基数10%而过滤掉的Reads对数及其占总Raw reads对数的比例</li>
+      <li>Low quality：因单端测序Read中低质量（低于5）碱基比例超过Read长度的50%而过滤掉的Reads对数及其占总Raw reads对数的比例</li>
+      <li>Clean reads：最终得到的Clean reads对数及其占总Raw reads对数的比例</li>
+    </ol>
+  </div>
+<!--</div>-->
+<!-- ---------------------------------------------- 测序错误率分布检查 ----------------------------------------------------- -->
+<!--<div id="page">-->
+  <p class="head"><a href="#home" title = "返回首页"></a><a name="测序错误率分布检查"></a><hr /></p><br />
+   
+      <h5 id="goto_result1122">4.1.2.2 测序错误率分布检查</h5>
+   
+    <p class="paragraph">每个碱基的测序Phred值(Phred score, Q<sub>phred</sub>)是由测序错误率通过公式一转化得到的，而测序错误率是在碱基识别(Base Calling)过程中通过一种判别发生错误概率的模型计算得到的。对应关系如下表所显示：</p>
+    <p class="paragraph">碱基识别与Phred分值之间的简明对应关系</p>
+    <div id="tb">
+      <p class="center">
+      <table class="tf1">
+        <tr class="tb2"><th class="tb2">Phred分值</th><th class="tb2">不正确的碱基识别</th><th class="tb2">碱基正确识别率</th><th class="tb2">Q-sorce</th></tr>
+        <tr class="tb2"><td class="tb2">10</td><td class="tb2">1/10</td><td class="tb2">90%</td><td class="tb2">Q10</td></tr>
+        <tr class="tb2"><td class="tb2">20</td><td class="tb2">1/100</td><td class="tb2">99%</td><td class="tb2">Q20</td></tr>
+        <tr class="tb2"><td class="tb2">30</td><td class="tb2">1/1000</td><td class="tb2">99.9%</td><td class="tb2">Q30</td></tr>
+        <tr class="tb2"><td class="tb2">40</td><td class="tb2">1/10000</td><td class="tb2">99.99%</td><td class="tb2">Q40</td></tr>
+      </table>
+      </p>
+    </div>
+    <p class="paragraph">
+     测序错误率分布检查用于检测在测序长度范围内，有无某些位置的碱基存在异常的高错误率，例如如果中间位置的碱基测序错误率显著高于其他位置，则可能存在异常碱基。测序错误率与碱基质量有关，受测序仪本身、测序试剂、样品等多个因素共同影响。对于高通量测序平台，测序错误率分布具有两个特点：
+      <ol style="font-size: 14px;font-family: '黑体-简'">
+        <li>测序错误率会随着测序的进行而升高，这是由于测序过程中荧光标记的不完全切割等因素引起荧光信号衰减，因而导致错误率升高</li>
+        <li>每个Read前几个碱基的位置也会有较高的测序错误率，这是由于边合成边测序过程初始阶段，测序仪荧光感光元件对焦速度较慢，获取的荧光图像质量较低，导致碱基识别错误率较高</li>
+      </ol>
+    </p>
+    <br/>
+  <iframe style="text-align: center;width: 100%; height: 450px; margin: 0 2%;" src="htmls/raw_error_rate.html"  frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+  
+    <p class="name_fig" style="font-size: 12px">图4.2　测序错误率分布图</p>
+    
+  <p class="tremark" style="text-align: center;">横坐标为Reads的碱基位置，纵坐标为所有Reads该位置碱基的平均错误率，左侧1~150 bp为Read1错误率分布，右侧151~300 bp为Read2错误率分布。</p>
+  <!--</div>-->
+<!-- ---------------------------------------------- GC含量分布检查 ----------------------------------------------------- -->
+
+<!-- ---------------------------------------------- 测序数据质量分布 ----------------------------------------------------- -->
+<!--<div id="page">-->
+<p class="head"><a href="#home" title = "返回首页"></a><a name="测序数据质量分布"></a><hr /></p><br />
+  
+    
+    <h5 id="goto_result124">4.1.2.3 测序数据质量分布</h5>
+    
+  
+  <p class="paragraph">测序数据的质量主要分布在Q30（&#8805;85%）以上，这样能够保证后续分析的正常进行。据测序技术的特点，测序片段末端的碱基质量一般会比前端的低。</p><br/>
+  <iframe style="text-align: center; width: 100%; height:450px; margin: auto;" src="htmls/raw_base_qlt.html"  frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+  
+    
+    <p class="name_fig" style="font-size: 12px">图4.3　数据质量分布</p>
+    
+  
+  <p class="tremark" style="text-align: center;">横坐标为Reads的碱基位置，纵坐标为所有Reads该位置碱基的平均质量值（Phred分值），左侧1~150 bp为Read1数据质量分布，右侧151~300 bp为Read2数据质量分布</p> 
+<!--</div>-->
+<!-- ---------------------------------------------- 测序数据质量情况汇总 ----------------------------------------------------- -->
+<!--<div id="page">-->
+<p class="head"><a href="#home" title = "返回首页"></a><hr /></p><br />
+  
+    
+    <h5 id="goto_result125">4.1.2.4 测序数据质量情况汇总</h5>
+    
+  
+  
+  <p class="paragraph">根据测序平台的测序特点，使用双端测序的数据，我们诺禾致源要求Q20平均比例在90%以上，Q30平均比例在85%以上，平均Error rate在0.1%以下。本次测序样本的平均Rawdata为96.50G，平均有效数据量占比99.26%，平均Q20为97.58%，平均Q30为93.32%，平均错误率为0.03%。综上所述本次测序数据质量良好，满足分析需求。
+  
+  </p>
+  
+  <p class="name_fig" style="font-size: 12px">表4.1　数据产出质量情况一览表</p>
+  
+ <p class="paragraph">
+   
+  <div>
+    <table id="qc_table" class="tb2" style="font-size:14px">
+        
+        <tr class="tb2"><th class="tb2">Sample name</th><th class="tb2">Library</th><th class="tb2">Flowcell/Lane</th><th class="tb2">Raw reads</th><th class="tb2">Raw data(G)</th><th class="tb2">Effective(%)</th><th class="tb2">Error(%)</th><th class="tb2">Q20(%)</th><th class="tb2">Q30(%)</th><th class="tb2">GC(%)</th></tr>
+        
+      
+      
+        
+        <tr><td class="tb2">tian</td><td  class="tb2">FKDO230350531-1A</td><td  class="tb2">AHWN3FDSX5-new_L1</td><td  class="tb2">31,606,068</td><td rowspan=2  class="tb2">93.14</td><td  class="tb2">99.16</td><td  class="tb2">0.03</td><td  class="tb2">97.19</td><td  class="tb2">92.45</td><td  class="tb2">40.27</td></tr>
+         
+        
+        
+        <tr><td  class="tb2">tian</td><td  class="tb2">FKDO230350531-1A</td><td  class="tb2">BHWC2NDSX5-new_L2</td><td  class="tb2">278,872,927</td><td  class="tb2">99.21</td><td  class="tb2">0.03</td><td  class="tb2">97.44</td><td  class="tb2">93.00</td><td  class="tb2">40.37</td></tr>
+        
+        
+        
+      
+        
+        <tr><td class="tb2">tianshu</td><td  class="tb2">FKDO230350529-1A</td><td  class="tb2">BHWC2NDSX5-new_L1</td><td  class="tb2">309,579,461</td><td rowspan=1  class="tb2">92.87</td><td  class="tb2">99.27</td><td  class="tb2">0.03</td><td  class="tb2">97.77</td><td  class="tb2">93.72</td><td  class="tb2">40.83</td></tr>
+         
+        
+        
+      
+        
+        <tr><td class="tb2">songshu</td><td  class="tb2">FKDO230350530-1A</td><td  class="tb2">BHWC2NDSX5-new_L1</td><td  class="tb2">333,681,575</td><td rowspan=1  class="tb2">100.10</td><td  class="tb2">99.30</td><td  class="tb2">0.03</td><td  class="tb2">97.70</td><td  class="tb2">93.59</td><td  class="tb2">40.58</td></tr>
+         
+        
+        
+      
+        
+        <tr><td class="tb2">tianzi</td><td  class="tb2">FKDO230350528-1A</td><td  class="tb2">BHWC2NDSX5-new_L2</td><td  class="tb2">332,879,560</td><td rowspan=1  class="tb2">99.86</td><td  class="tb2">99.25</td><td  class="tb2">0.03</td><td  class="tb2">97.42</td><td  class="tb2">93.02</td><td  class="tb2">41.02</td></tr>
+         
+        
+        
+    </table>
+    <script type="text/javascript">
+      $(function() {
+        $('table#Error tr').find('th:eq(1)').hide();
+        $('table#Error tr').find('td:eq(1)').hide();
+      })
+    </script>
+  </div>
+  <button onclick="hiddenShow(this)">显示注释</button>
+
+  <div class="comment">
+      <ol style="font-size: 12px;font-family: '黑体-简';line-height: 20px">
+        <li> Sample name：样本名称</li>
+        <li> Library：文库名称</li>
+        <li> Flowcell/Lane：测序所在测序机器号和Lane号</li>
+        <li> Raw reads：统计原始序列双端read pair总数目;根据FASTQ的格式，以四行为一个单位进行统计</li>
+        <li> Raw data(G)：统计原始序列数据量</li>
+        <li> Effective(%)：过滤后用于后续的生物信息分析的Clean reads占原始数据的比例</li>
+        <li> Error(%):所有碱基的平均错误率</li>
+        <li> Q20(%)：分别计算 Phred 数值大于20的碱基占总体碱基的百分比</li>
+        <li> Q30(%)：分别计算 Phred 数值大于30的碱基占总体碱基的百分比</li>
+        <li> GC(%)：计算碱基G和C的数量总和占总的碱基数量的百分比</li>
+      </ol>
+  </div><br/><br/>
+
+ <div>
+    <p class="paragraph">结果目录：<a href="../../../../01.Rawdata" title="点击打开" target="_blank">01.Rawdata</a></p>
+<!-- ---------------------------------------------- 测序数据质量情况汇总 ----------------------------------------------------- -->
+
+<!-- ---------------------- 测序深度、覆盖度统计------------------------------ -->
+<!-- ---------------------- 测序深度、覆盖度统计------------------------------ -->
+
+<div id="page">
+<p class="head"><a href="#home" title = "返回首页"></a><a name="参考序列比对分析"></a><hr /></p><br />
+  <h4 id="goto_result2">4.1.3 参考序列比对分析</h4>
+  
+  <p class="paragraph">
+    有效测序数据通过 BWA (Li H <i>et al.</i>) 比对到参考基因组，得到 BAM格式的最初的比对结果。然后，用Sambamba（Tarasov <i>et al.</i>, 2015）对比对结果进行排序；并标记重复reads（mark duplicate reads）。最后，我们利用重复标记后的比对结果进行覆盖度、深度等的统计。通常，人类样本的测序reads能达到95%以上的比对率；当一个位点的碱基覆盖深度（read depth）达到10X以上时，该位点处检测出的SNP比较可信。</p>
+  
+    
+    <a name="测序深度、覆盖度分布"></a>
+    <h5>4.1.3.1  测序深度、覆盖度分布</h5>
+    <p class="center">
+    <script src="js/data.js"></script>
+    <script src="js/newdc.js"></script>
+    <div style="clear:both"></div>
+    <table align="center">
+      <tr class="tb4"><td class="tb4">
+        <div style="width：100%;margin:auto">
+          <div id="leng" class="middle" style="width:95%;height:60px"></div>
+          <div id="depth1" class="middle" style="width:49%;float:left;height:500px;"></div>
+          <div id="depth2" class="middle" style="width:49%;float:right;height:500px;"></div>
+        </div>
+      </td>
+      </tr>
+      <tr class="tb4">
+        <td class="tb4">
+          <div>
+          <p class="name_fig" style="font-size: 12px">图4.4　测序深度</p>
+           <p class="tremark" style="text-align: center;">左图为不同测序深度的碱基比例，横坐标表示测序深度，纵坐标表示测序深度为x的碱基在所有碱基中的比例；图像一般在平均深度周围成泊松分布；右图为不同深度上的累积碱基比例，横坐标表示测序深度，纵坐标代表测序深度超过x的碱基在所有碱基中的比例，比如测序深度为0对应了碱基比例100%，表示有100%的碱基其测序深度大于0。</p>
+          <br/>
+        </div>
+        </td>
+      </tr>
+    </table>
+    <div id="cover" style="height:400px;width:100%;margin: auto"></div>
+    <p class="name_fig" style="font-size: 12px">图4.5　每个染色体的覆盖深度 (左侧坐标) 和覆盖率 (右侧坐标) </p>
+    
+     <p class="tremark" style="text-align: center;">横坐标表示染色体编号，左侧纵坐标表示平均覆盖深度，右侧纵坐标表示覆盖率。 对每条染色体计算覆盖深度时，计算公式为：每条染色体覆盖深度＝每条染色体的测序数据量/每条染色体的总长度。覆盖率＝每条染色体被覆盖的总长度/每条染色体的总长度。</p>
+     
+  <br/>
+    
+<p class="head"><a href="#home" title = "返回首页"></a><a name="覆盖度统计结果"></a><hr /></p><br />
+  <a name="覆盖度统计结果"></a>
+  <P class="paragraph"></p>
+  
+  <h5>4.1.3.2 覆盖度统计结果</h5>
+  
+  <p class="center">
+  <P class="paragraph">
+  
+    本次所有测序样本的平均比对率为99.87%，目标区域的平均测序深度为32.00X，通过不同深度的占比情况可以看出本次样本测序深度的均一性较好。
+  
+  </p>
+    <p class="name_fig" style="font-size: 12px">表4.2　比对率和覆盖度统计</p>
+    <iframe style="text-align: center; width: 95%; height: 530px;margin: auto;" src="tables/coverage_stats_table.html"  frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+  </p>
+  <button onclick="hiddenShow(this)">显示注释</button>
+  <div class="comment">
+  
+    <ol style="font-size: 12px;font-family: '黑体-简';line-height: 20px">
+      <li>Sample：样本名称</li>
+      <li>Total：clean data双端总reads数目</li>
+      <li>Duplicate：重复的reads数目</li>
+      <li>Mapped：比对到参考基因组上的总reads数目 (比例)</li>
+      <li>Properly mapped：比对到参考基因组且插入片段大小正确的reads数目 (比例)</li>
+      <li>PE mapped：双端reads比对到参考基因组上的reads数目 (比例)</li>
+      <li>SE mapped：仅单端read比对到参考基因组上的reads数目 (比例)</li>
+      <li>with mate mapped to a different chr：比对到不同染色体的reads数目</li>
+      <li>with mate mapped to a different chr (mapQ>=5)：比对到不同染色体且比对质量不低于5的reads数目</li>
+      <li>Average_sequencing_depth: 比对到参考基因组的平均测序深度 (测序数据量/基因组大小)</li>
+      <li>Coverage: 比对数据对全基因组区域的覆盖度 (碱基覆盖长度占全基因组碱基总长的比例)</li>
+      <li>Coverage_at_least_4X: 全基因组区域中碱基覆盖深度不低于4X的比例</li>
+      <li>Coverage_at_least_10X：全基因组区域中碱基覆盖深度不低于10X的比例</li>
+      <li>Coverage_at_least_20X：全基因组区域中碱基覆盖深度不低于20X的比例</li>
+    </ol>
+  
+  </div><br/><br/>
+  <iframe style="text-align: center; width: 100%; height: 300px; text-align: center; margin: auto;" src="htmls/reads_strait_stats.html"  frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+  <p class="name_fig" style="font-size: 12px">图4.6 各特性reads占总reads数量的比值</p>
+  <p class="paragraph">结果目录：<a href="../../../../02.Bam" title="点击打开" target="_blank">02.Bam</a></p>
+ </div>
+  
+  <p class="paragraph">分析点解读视频：<a href="https://magic.novogene.com/customer/main#/video-info-new/e4984c10eede71ed806d6733a68f0102?rId=23">https://magic.novogene.com/customer/main#/video-info-new/e4984c10eede71ed806d6733a68f0102?rId=23</a></p>
+  
+
+<!-- ----------------------------- snp/indel结果 ------------------------------------------ -->
+<!-- ----------------------------- snp/indel结果 ------------------------------------------ -->
+
+ <div id="page">
+<p class="head"><a href="#home" title = "返回首页"></a><a name="变异检测结果"></a><hr /></p><br />
+  <h4 id="goto_result3">4.1.4 变异检测结果</h4>
+  
+    <h5 id="goto_result31">4.1.4.1 SNP统计结果</h5>
+    <p class="paragraph">SNP是Single Nucleotide Polymorphism的缩写。通常，一个人全基因组内会有约 3.6~4.4 M 个 SNP，绝大数（大于 95%）的高频SNP（群体中等位基因频率大于 5%） 在 dbSNP（Sherry <i>et al.</i>, 2001）中有记录，高频SNP一般都不是致病的主要突变位点。</p>
+  <p class="paragraph">在比对结果的基础上，我们利用bcftools（Li <i>et al</i>., 2009）识别SNP位点，并采用国际惯用的过滤标准对SNP位点进行过滤。本次测序样品中，平均每个样本发现3588794个SNP，其中22218出现在外显子区，1954436个在基因间区，619个在splicing区。在编码区的SNP中，平均每个样本有11324个同义突变，10279个错义突变，80个SNP导致该碱基所在的密码子变为终止密码子，有9个SNP导致该碱基所在的终止密码子变为非终止密码子。SNP统计结果具体如下表所示：</p>
+        <br/>
+
+        
+
+    <p class="center">
+       <p class="name_fig" style="font-size: 12px">表4.3　基因组和编码区不同区域上SNP的数目 </p>
+       <iframe style="text-align: center; width: 95%; height: 530px;margin: auto;" src="tables/germline_snp_func_table.html"  frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+    </p>
+  <button onclick="hiddenShow(this)">显示注释</button>
+  <div class="comment">
+    <ol style="font-size: 12px;font-family: '黑体-简';line-height: 20px">
+      <li>Sample：样本名称</li>
+      <li>CDS：外显子编码区域</li>
+        <p class="paragraph" style="font-size: 12px;font-family: '黑体-简';line-height: 5px">&nbsp;synonymous_SNP：同义突变</p>
+        <p class="paragraph" style="font-size: 12px;font-family: '黑体-简';line-height: 5px">&nbsp;missense_SNP：错义突变，编码不同的氨基酸，属于非同义突变</p>
+        <p class="paragraph" style="font-size: 12px;font-family: '黑体-简';line-height: 5px">&nbsp;stopgain：非同义突变，由于插入、删除或连续碱基替换导致变异位点处产生一个新的终止密码子</p>
+        <p class="paragraph" style="font-size: 12px;font-family: '黑体-简';line-height: 5px">&nbsp;stoploss：非同义突变，由于插入、删除或连续碱基替换导致变异位点处的终止密码子丢失</p>
+        <p class="paragraph" style="font-size: 12px;font-family: '黑体-简';line-height: 5px">&nbsp;startloss：非同义突变，由于插入、删除或连续碱基替换导致变异位点处的起始密码子丢失</p>
+        <p class="paragraph" style="font-size: 12px;font-family: '黑体-简';line-height: 5px">&nbsp;unknown：由于注释用的基因结构注释数据库的错误导致的未知功能位点</p>
+      <li>intronic：基因的内含子区域</li>
+      <li>UTR3：基因的3'UTR区域</li>
+      <li>UTR5：基因的5'UTR区域</li>
+      <li>splicing：剪切位点10bp区域</li>
+      <li>ncRNA_exonic：非编码RNA外显子区域</li>
+      <li>ncRNA_intronic：非编码RNA内含子区域</li>
+      <li>ncRNA_UTR3：非编码RNA的3'UTR区域</li>
+      <li>ncRNA_UTR5：非编码RNA的5'UTR区域</li>
+      <li>ncRNA_splicing：非编码RNA的剪切位点4bp区域</li>
+      <li>upstream：转录起始位点上游1Kb区域</li>
+      <li>downstream：转录终止位点下游1Kb区域</li>
+      <li>intergnic：基因间隔区域</li>
+      <li>Total：SNP的总数</li>
+    </ol>
+  </div><br/><br/>
+  <iframe style="text-align: center; width: 100%; height:400px; margin: auto;" src="htmls/germline_pie_snp.html"  frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+  <p class="name_fig" style="font-size: 12px">图4.7　基因组不同区域上SNP数目 (左) 和编码区上不同类型的SNP数目 (右) 分布</p>
+  <br /><br />
+  <P class="paragraph">转换/颠换的比值（Ts:Tv）可以反应SNP数据集的准确性，全基因组内碱基转换与碱基颠换的比率在2.2左右。本次测序样本中，平均每个样本有2051668个杂合基因型，1537125个纯合基因型，23394个新SNP，新SNP所占的平均比例为0.01%。</p>
+  <p class="center">
+    <p class="name_fig" style="font-size: 12px">表4.4　基因组上SNP的特征</p>
+    <iframe style="text-align: center; width: 95%; height: 530px;margin: auto;" src="tables/germline_snp_feature_table.html"  frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+  </p>
+  <button onclick="hiddenShow(this)">显示注释</button>
+  <div class="comment">
+    <ol style="font-size: 12px;font-family: '黑体-简';line-height: 20px">
+      <li>Sample：样品名称</li>
+      <li>Total：SNP总数</li>
+      <li>Het(heterozygote)：杂合子基因型</li>
+      <li>Hom(homozygote)：纯合子基因型</li>
+      <li>transition (ts) ：碱基转换</li>
+      <li>transversion (tv) ：碱基颠换</li>
+      <li>ts/tv：转换和颠换比值</li>
+      
+      <li>dbSNP percentage：dbSNP中的比例</li>
+      <li>novel：未被dbSNP注释的新SNP</li>
+      <li>novel ts：新的 (未被dbSNP注释) 碱基转换</li>
+      <li>novel tv：新的 (未被dbSNP注释) 碱基颠换</li>
+      <li>novel ts/tv：新的转换和颠换比值</li>
+      
+    </ol>
+  </div><br/>
+  <iframe style="text-align: center; width: 100%; height:400px; margin: auto;" src="htmls/germline_snp_feature_plot.html"  frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+  <p class="name_fig" style="font-size: 12px">图4.8 基因组SNP特征</p>
+  <br/>
+  <h5 id="goto_result31">4.1.4.2  SNP注释结果</h5>
+  
+  <p class="paragraph">利用ANNOVAR（Wang <i>et al.</i>, 2010）软件对SNP进行注释，其中包括dbSNP数据库（Sherry <i>et al.</i>, 2001）、千人基因组计划（Abecasis <i>et al.</i>, 2012）和其他已有的数据库的注释信息，注释内容涵盖变异的位置信息、类型、保守型预测等。具体的注释内容展示如表4.5。</p>
+  <p class="center">
+  <p class="name_fig" style="font-size: 12px">表4.5　SNP注释结果展示（只显示前1行）</p>
+    <div id="tb">
+     <table class="tb1">
+     
+     <tr class="tb1"><th class="tb1">Priority<sup>1</sup></td><th class="tb1">CHROM<sup>2</sup></td><th class="tb1">POS<sup>3</sup></td><th class="tb1">ID<sup>4</sup></td><th class="tb1">REF<sup>5</sup></td><th class="tb1">ALT<sup>6</sup></td><th class="tb1">QUAL<sup>7</sup></td><th class="tb1">FILTER<sup>8</sup></td><th class="tb1">GeneName<sup>9</sup></td><th class="tb1">Description<sup>10</sup></td><th class="tb1">Func<sup>11</sup></td><th class="tb1">Gene<sup>12</sup></td><th class="tb1">GeneDetail<sup>13</sup></td><th class="tb1">ExonicFunc<sup>14</sup></td><th class="tb1">AAChange<sup>15</sup></td><th class="tb1">Gencode<sup>16</sup></td><th class="tb1">cpgIslandExt<sup>17</sup></td><th class="tb1">cytoBand<sup>18</sup></td><th class="tb1">wgRna<sup>19</sup></td><th class="tb1">targetScanS<sup>20</sup></td><th class="tb1">tfbsConsSites<sup>21</sup></td><th class="tb1">genomicSuperDups<sup>22</sup></td><th class="tb1">Repeat<sup>23</sup></td><th class="tb1">avsnp<sup>24</sup></td><th class="tb1">CLNALLELEID<sup>25</sup></td><th class="tb1">CLNDN<sup>26</sup></td><th class="tb1">CLNDISDB<sup>27</sup></td><th class="tb1">CLNREVSTAT<sup>28</sup></td><th class="tb1">CLNSIG<sup>29</sup></td><th class="tb1">cosmic<sup>30</sup></td><th class="tb1">gwasCatalog<sup>31</sup></td><th class="tb1">1000g_Chinese<sup>32</sup></td><th class="tb1">1000g_EAS<sup>33</sup></td><th class="tb1">1000g_ALL<sup>34</sup></td><th class="tb1">esp6500siv2_all<sup>35</sup></td><th class="tb1">GnomAD_exome_AF_ALL<sup>36</sup></td><th class="tb1">GnomAD_exome_AF_ALL_eas<sup>37</sup></td><th class="tb1">GnomAD_genome_AF<sup>38</sup></td><th class="tb1">GnomAD_genome_AF_eas<sup>39</sup></td><th class="tb1">ExAC_ALL<sup>40</sup></td><th class="tb1">ExAC_EAS<sup>41</sup></td><th class="tb1">dbscSNV_ADA_SCORE<sup>42</sup></td><th class="tb1">dbscSNV_RF_SCORE<sup>43</sup></td><th class="tb1">spidex<sup>44</sup></td><th class="tb1">Interpro_domain<sup>45</sup></td><th class="tb1">SIFT<sup>46</sup></td><th class="tb1">Polyphen2_HDIV<sup>47</sup></td><th class="tb1">Polyphen2_HVAR<sup>48</sup></td><th class="tb1">LRT<sup>49</sup></td><th class="tb1">MutationTaster<sup>50</sup></td><th class="tb1">MutationAssessor<sup>51</sup></td><th class="tb1">FATHMM<sup>52</sup></td><th class="tb1">phyloP100way_vertebrate<sup>53</sup></td><th class="tb1">phyloP30way_mammalian<sup>54</sup></td><th class="tb1">SiPhy_29way_logOdds<sup>55</sup></td><th class="tb1">CADD<sup>56</sup></td><th class="tb1">gerp++gt2<sup>57</sup></td><th class="tb1">MCAP<sup>58</sup></td><th class="tb1">REVEL<sup>59</sup></td><th class="tb1">INFO<sup>60</sup></td><th class="tb1">FORMAT<sup>61</sup></td><th class="tb1">tian<sup>62</sup></td><th class="tb1">Ori_REF<sup>63</sup></td><th class="tb1">Ori_ALT<sup>64</sup></td><th class="tb1">shared_hom<sup>65</sup></td><th class="tb1">shared_het<sup>66</sup></td><th class="tb1">OMIM<sup>67</sup></td><th class="tb1">GWAS_Pubmed_pValue<sup>68</sup></td><th class="tb1">HGMD_Disease_ID<sup>69</sup></td><th class="tb1">HGMD_Mutation_URL<sup>70</sup></td><th class="tb1">PubMedID<sup>71</sup></td><th class="tb1">GO_BP<sup>72</sup></td><th class="tb1">GO_CC<sup>73</sup></td><th class="tb1">GO_MF<sup>74</sup></td><th class="tb1">KEGG_PATHWAY<sup>75</sup></td><th class="tb1">PID_PATHWAY<sup>76</sup></td><th class="tb1">BIOCARTA_PATHWAY<sup>77</sup></td><th class="tb1">REACTOME_PATHWAY<sup>78</sup></td><th class="tb1">Expression_summary<sup>79</sup></td><th class="tb1">RNA tissue specificity<sup>80</sup></td><th class="tb1">RNA tissue distribution<sup>81</sup></td><th class="tb1">Subcellular_Location<sup>82</sup></td><th class="tb1">RNA tissue specific nTPM<sup>83</sup></td></tr>
+     
+     <tr class="tb1"><td class="tb1">L</td><td class="tb1">1</td><td class="tb1">10450</td><td class="tb1">.</td><td class="tb1">T</td><td class="tb1">C</td><td class="tb1">65.0133</td><td class="tb1">PASS</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">intergenic</td><td class="tb1">NONE,NR_148357</td><td class="tb1">dist=NONE;dist=1419</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">1p36.33</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">Score=0.991956;Name=chr15:102446355</td><td class="tb1">Score=1504;Name="1:(CCCTAA)n(Simple_repeat)"</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">0.0056</td><td class="tb1">0.0024</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">DP=17;VDB=0.115226;SGB=-0.636426;RPBZ=0.318256;MQBZ=-2.18935;MQSBZ=0.106798;BQBZ=-1.94009;NMBZ=0.705361;SCBZ=0;FS=0;MQ0F=0;AC=1;AN=2;DP4=5,4,2,5;MQ=41</td><td class="tb1">GT:PL:DP:SP:AD</td><td class="tb1">0/1:98,0,197:16:4:9,6</td><td class="tb1">T</td><td class="tb1">C</td><td class="tb1">0</td><td class="tb1">1</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">Not detected</td><td class="tb1">Not detected</td><td class="tb1">.</td><td class="tb1">.</td></tr>
+     
+     </table> 
+   </div>
+      <button onclick="hiddenShow(this)">显示注释</button>
+       <div class="comment">
+  
+       <p class="paragraph" style="font-size: 12px;font-family: '黑体-简';line-height: 20px">注：注释内容包括7个部分，分别为优先级信息（1)，基因及区域注释（2-23)，数据库（频率)注释（24-41)，保守（有害)性预测（42-59)，变异位点信息（60-66)，基因功能及通路注释（67-78), 基因的组织特异性表达情况的注释（79-83)。</br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（1）优先级，H:High，表示该位点不在genome repeat 区域（即genomicSuperDups和Repeat 没有注释信息)，千人基因组数据库中频率小于0.01，该位点位于exonic 或者 splicing 区域，且该位点经SIFT、Polyphen（Adzhubei <i>et al.</i>, 2013）、MutationTaster、CADD预测至少有一个软件预测为有害；M:Medium，表示该位点不在genome repeat 区域（即genomicSuperDups和Repeat 没有注释信息)，千人基因组数据库中频率小于0.01，该位点位于exonic 或者 splicing 区域；L:Low，表示该位点不满足H或M条件的其他所有的突变。国际小鼠表型分析联盟（International Mouse Phenotyping Consortium ，IMPC)对小鼠进行大规模基因敲除，并进行表型分析。优先级（H、M、L)后面的符号（*、+、-)表示 *：在小鼠大规模基因敲除表型分析中，基因为lethal基因（完全致死基因）+：在小鼠大规模基因敲除表型分析中，基因为subviable基因（可能致死基因：＜12.5%的胚胎存活率）-：在小鼠大规模基因敲除表型分析中，基因为vialbe（可存活基因)<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第2-23项为基因及区域注释信息———变异位点所处的基因（对应的氨基酸)可能直接与疾病相关。对变异位点进行已知基因结构及所处区域注释，有助于老师了解此变异位点对应的基因结构及所处区域信息。 <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（2）染色体<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（3）变异位点在染色体上的绝对位置<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（4）dbSNP注释ID<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（5）参考基因组碱基型<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（6）样本基因组碱基型<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（7）变异的质量值，值越高越好。文献中常见以变异的质量值大于20为过滤标准<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（8）过滤TAG，如果该位点满足所有过滤条件，则标记为PASS（采用国际惯用的过滤标准)<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（9）基因名称注释，列出该变异所在的基因<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（10） 变异位点所在基因的描述<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（11）对变异位点所在的区域进行注释（exonic, splicing, UTR5, UTR3, intronic, ncRNA_exonic, ncRNA_intronic, ncRNA_UTR3, ncRNA_UTR5, ncRNA _splicing, upstream, downstream, intergenic)。说明1、exonic应该包括coding exonic portion、UTR3和UTR5，但ANNOVAR注释结果中exonic只代表coding exonic portion。2、当一个变异位点位于多个基因或转录本，且功能不同，这些功能按照优先级排序，该列输出优先级最高的功能类型Exonic = splicing > ncRNA > UTR5/UTR3 > intron > upstream/downstream > intergenic。 当一个变异既位于一个基因的UTR3，又位于另一个基因的UTR5时，该列输出"UTR5,UTR3"。当一个变异既位于一个基因的downstream，又位于另一个基因的upstream时，该列输出"upstream,downstream "<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（12）列出该变异位点相关的转录本（只有功能符合Func列的转录本才列出)。如果Func列为intergenic，此处列出两侧的基因名<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（13）描述UTR、splicing、ncRNA_splicing、intergenic、upstream或downstream区域的变异情况。当Func列的值为exonic; splicing或者splicing时,该列会给出该位点对于转录本splicing的影响，例如： NM_172210:exon6:c.1090+5C>A, NM_172210是转录本; exon6:c.1090+5C>A是序列改变，表示C>A 发生在第6个外显子下游的第5个碱基(1090是cDNA第6个外显子的结束位置)；当Func列的值为intergenic时，该列格式为dist=1366;dist=22344，表示该变异位点距离两侧基因的距离；当Func列的值为UTR*时，该列给出UTR中的序列变化，例如NM_198576:c. *19C>T表示着C>T位于NM_198576上终止密码子下游的第19个碱基上；当Func列的值为upstream或downstream时，该列给出该变异位点距离下游或上游基因的距离<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（14）外显子区的SNV 或 InDel变异类型（SNV的变异类型包括synonymous_SNV, missense_SNV, stopgain, stopgloss和unknown；InDel的变异类型包括frameshift insertion, frameshift deletion, stopgain, stoploss, nonframeshift insertion, nonframeshift deletion和unknown)<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（15）氨基酸改变，只有当Func列为exonic或exonic;splicing时，该列才有结果。按照每个转录本进行注释（例如，AIM1L:NM_001039775:exon2:c.C2768T:p.P923L，其中，AIM1L表示该变异所在的基因名称，NM_001039775表示该变异所在的转录本ID，exon2表示该变异位于转录本的第二个外显子上，c.C2768T表示该变异引起CDS在第2768位上由C突变为T，p.P923L表示该变异引起蛋白序列在第923位上的氨基酸由Pro变为Leu)<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（16）Gencode注释的基因名称<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（17）CpG岛预测结果，注释结果为CpG岛名称，如CpG: 116（116是该CpG岛中CG二核苷酸的数目)<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（18）该变异位点所处的染色体区段（利用Giemas染色观察得到的)。如果变异位点跨过多个区段，用短横线连接<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（19）基于miRBase和snoRNABase，对变异位点相关的microRNA和snoRNA进行注释，给出microRNA和snoRNA的基因名称<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（20）UCSC（Kent <i>et al.</i>, 2002）提供TargetScanS注释数据库，库中包含在3’UTR中保守的microRNA结合位点，来源于TargetScanHuman 5.1的预测结果；该软件预测microRNA的靶点，预测结果依据microRNA与靶点之间结合的效能进行排序，排名越靠前，说明microRNA与其靶点的结合越可能是实际存在的事件。此项给出microRNA靶点的信息，一是score，是该靶点的分值，反映的是结合效能的排名，因此，score越大，说明排名越靠后，实际发生该结合的可能性越小，作者没有推荐阈值；二是Name，是作用于该靶点的microRNA名称。例如，Score=62;Name=KRAS:miR-181:1，表示该靶点的分值是62，其位于KRAS基因的3’UTR中，受到该变异位点影响的microRNA是miR-181:1。表示该变异位点位于microRNA（miR-181:1)在基因KRAS的3’UTR上的结合位点<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（21）基于transfac矩阵数据库（v7.0)，计算所有转录因子结合位点在人/小鼠/大鼠比对中的保守分值，当结合位点的分值达到阈值时，认为该位点在人/小鼠/大鼠中保守。该列给出的是该变异位点所在的保守转录因子结合位点的位置和分值，即Name和Score。Name是结合位点处的motif名称，这些motif能够被转录因子识别，例如V$CDPCR3_01，利用一些在线服务器（如MSigDB)能够查询这个motif能够被哪些转录因子识别；Score是该结合位点的保守分值<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（22）检测该变异位点是否位于重复片段（segmental duplication)中。重复区域中检测到的遗传变异大多数是由于序列比对错误造成的，所以被注释到segmental duplications的变异需要谨慎对待，很可能是假阳性位点。给出两个值，一是Name，表示基因组中与该变异位点所在区域相似的片段的位置；二是Score，表示两个相似片段的序列一致性。例如，Score=0.994828;Name=chr19:60000，表示chr19:60000所在片段跟该变异位点所在片段相似，序列一致性为0.994828,，范围0~1<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（23）重复序列注释信息，重复序列来源于RepeatMasker注释。例如， Score=180;Name="1385:（CACCC)n（Simple_repeat)"。Score表示该repeat的分值；Name由两部分构成，一部分（CACCC)n是repeat的名称，另一部分Simple是repeat的类别。只要有注释信息，就表明该变异位于散在重复序列或低复杂度序列中；这些区域容易出现比对错误，所以该区域的变异位点可靠性不高<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第24-41项为数据库（频率)注释————人群中有很多变异位点是多态性的（高频的)，而真正有害的变异位点一般是低频的。对每个变异位点注释国际通用的部分数据库中的频率，有助于了解这个变异位点发生的频率高低的信息，协助找出致病突变位点。<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（24）该变异在dbSNP中的ID<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（25）注释变异与人类健康之间的关系，临床意义的数据来源于NCBI。ClinVar等位基因ID<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（26）ClinVar对CLNDISDB中疾病标识符指定的概念的首选疾病名称<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（27）疾病数据库名称和标识符的一对标签值，如OMIM: NNNNNN<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（28）变异ID的ClinVar审查状态<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（29）该单变异的临床意义,可取值为unknown, untested, non-pathogenic, probable-non-pathogenic, probable-pathogenic, pathogenic, drug-response, histocompatibility, other等<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（30）cosmic肿瘤相关变异数据库的注释<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（31）检测变异位点是否在以往的GWAS研究中被报导，表示该变异位点与哪些疾病相关联，"."表示没有GWAS报导<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（32）给出千人基因组计划数据的中国人群中，该变异位点上突变碱基的等位基因频率<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（33）给出千人基因组计划数据的东亚人群中，该变异位点上突变碱基的等位基因频率<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（34）给出千人基因组计划数据的所有人群中，该变异位点上突变碱基的等位基因频率，文献通常采用0.01的标准进行过滤<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（35）国家心肺和血液研究所外显子组测序计划（NHLBI-ESP project，esp6500si_all数据库中包含SNP变异、InDel变异和Y染色体上的变异的所有个体中，突变碱基的等位基因频率（alternative allele frequency)，文献通常采用0.01的标准进行过滤<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（36）GnomAD是The Genome Aggregation Database的简称，GnomAD_exome涵盖了来自不相关个体的125,748个外显子序列，作为各种疾病特异性和群体遗传研究的一部分进行测序。GnomAD_exome_AF_ALL指在所有人群中，该变异位点上突变碱基的等位基因频率，考虑到发病率和外显率数据对125,748个外显子人群数据进行了修正，更好地适用于频率过滤<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（37）GnomAD是The Genome Aggregation Database的简称，GnomAD_exome涵盖了来自不相关个体的125,748个外显子序列，作为各种疾病特异性和群体遗传研究的一部分进行测序。GnomAD_exome_AF_eas指在所有亚洲人群中，该变异位点上突变碱基的等位基因频率<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（38）GnomAD是The Genome Aggregation Database的简称，GnomAD_genome涵盖了来自不相关个体的15,708个全基因组序列，作为各种疾病特异性和群体遗传研究的一部分进行测序。GnomAD_genome_AF_ALL指在所有亚洲人群中，该变异位点上突变碱基的等位基因频率,虑到发病率和外显率数据对15,708个全基因组人群数据进行了修正，更好地适用于频率过滤<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（39）GnomAD是The Genome Aggregation Database的简称，GnomAD_genome涵盖了来自不相关个体的15,708个全基因组序列，作为各种疾病特异性和群体遗传研究的一部分进行测序。GnomAD_genome_AF_eas指在所有亚洲人群中，该变异位点上突变碱基的等位基因基因的数目<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（40）ExAC是Exome Aggregation Consortium的简称，整合了60706个无关个体的数据，这些个体来源于大量disease-specific研究和群体遗传学研究，能够用做严重疾病研究的reference set of allele frequency。目前ExAC数据库中包括ALL, AFR （African), AMR （Admixed American), EAS （East Asian), FIN （Finnish), NFE （Non-finnish European), OTH （other), SAS （South Asian)。ExAC_ALL是指在所有人群中，该变异位点上突变碱基的等位基因频率<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（41）在ExAC的东亚人群中，该变异位点上突变碱基的等位基因频率<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第42-59项为保守（有害)性注释————个体中的突变往往非常多（全基因组范围内能达到3.6M-4.4M)，而真正有害的突变却是罕见的，有很多根据变异位点的保守性等信息进行有害性预测的软件能帮助我们进行突变位点的有害性评估。本公司采用国际惯用的变异有害性预测软件对突变位点的有害性进行预测，协助找出真正有害的突变位点。 <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（42）基于adaptive boosting预测突变是否影响splicing的注释数据库。dbscSNV基于多种预测突变是否影响splicing的软件，通过Ada和RF两种机器学习方法得到两个综合的预测分值。建议使用0.6作为判定阈值，即dbscSNV_ADA_SCORE和dbscSNV_RF_SCORE这两个分值中至少一个大于0.6，认为突变可能影响剪接<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（43）基于Random Forest预测突变是否影响splicing的注释数据库。dbscSNV基于多种预测突变是否影响splicing的软件，通过Ada和RF两种机器学习方法得到两个综合的预测分值。建议使用0.6作为判定阈值，即dbscSNV_ADA_SCORE和dbscSNV_RF_SCORE这两个分值中至少一个大于0.6，认为突变可能影响剪接<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（44）一种机器学习方法用来预测基因突变如何影响RNA剪接，一般认为分值大于4小于-4影响拼接<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（45）Interpro数据库注释的突变位点所在蛋白质的结构域<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（46）SIFT分值（dbNSFP)，表示该变异对蛋白序列的影响。逗号前后分别是SIFT_score和SIFT_predSIFT_score是SIFT分值，分值越小越可能“有害”，表明该SNP导致蛋白结构或功能改变的可能性大。SIFT_pred是预测结果，取值为T或者D。当该变异同时影响多个蛋白序列时，对每条蛋白序列有一个SIFT值，取最小值。D: Deleterious （sift<=0.05); T: Tolerated （sift>0.05))<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（47）利用PolyPhen2基于HumanVar数据库预测该变异对蛋白序列的影响，用于单基因遗传病（dbNSFP)。该列包含两个值，第一个是PolyPhen 2分值，数值越大越“有害”，表明该SNP导致蛋白结构或功能改变的可能性大；第二个是D或P或B（D: Probably damaging （>=0.909), P: Possibly damaging （0.447<=pp2_hvar<=0.909); B: Benign （pp2_hvar<=0.446))<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（48）利用PolyPhen2基于HumanDiv数据库预测该变异对蛋白序列的影响，用于复杂疾病（dbNSFP)。逗号前后分别是Polyphen2_HDIV_score和Polyphen2_HDIV_predPolyphen2_HDIV_score是PolyPhen 2分值，数值越大越可能“有害”，表明该SNP导致蛋白结构或功能改变的可能性大；Polyphen2_HDIV_pred是预测结果，取值为D或P或B（D: Probably damaging （>=0.957), P: Possibly damaging （0.453<=pp2_hdiv<=0.956); B: Benign （pp2_hdiv<=0.452))<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（49）LRT预测结果（dbNSFP)，表示该变异对蛋白序列的影响。逗号前后分别是LRT_score和LRT_predLRT_score是LRT分值，分值越小越可能“有害”，表明该SNP导致蛋白结构或功能改变的可能性大。LRT_pred是预测结果，取值为D、N或者U（D: Deleterious; N: Neutral; U: Unknown)<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（50）MutationTaster预测结果（dbNSFP)，表示该变异对蛋白序列的影响。逗号前后分别是MutationTaster_score和MutationTaster_predMutationTaster_score是MutationTaster分值，取值为0-1，分值越大，表示预测结果越可靠。MutationTaster_pred是预测结果，取值为A、D、N或者P。"A" （"Disease_causing_automatic"); "D" （"Disease_causing"); "N" （"Polymorphism"); "P" （"Polymorphism_automatic")。A和D都表示位点可能有害。<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（51）MutationAssessor预测结果（dbNSFP)，表示该变异对蛋白序列的影响。逗号前后分别是MutationAssessor_score和MutationAssessor_predMutationAssessor_score是MutationAssessor初始分值，越大越可能“有害”，表明该SNP导致蛋白结构或功能改变的可能性大。MutationAssessor_pred是H、M、L或N（H: High; M: Medium; L: Low; N: Neutral.)。H和M表示功能性的，L和N表示non-functional<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（52）FATHMM预测结果（dbNSFP)，表示该变异对蛋白序列的影响。逗号前后分别是FATHMM_score和FATHMM_predFATHMM_score是FATHMM初始分值，分值小于-1.5认为是Deleterious，分值越小越可能有害，表明该SNP导致蛋白结构或功能改变的可能性大。FATHMM_pred是D或T（D: Deleterious; T: Tolerated)<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（53）基于100只脊椎动物全基因组比对的phylop100way_vertebratephylop评分(dbNSFP)。一般来说，分数越高，位点越保守<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（54）基于30种哺乳动物全基因组比对的PhyloP评分(dbNSFP)<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（55）基于29个哺乳动物基因组全基因组比对的SiPhy评分 (dbNSFP)。分数越大，表明该位点越保守<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（56）CADD是一种对SNV和InDel的有害性进行打分的工具。它整合多种信息来注释变异位点的功能；不仅预测编码区变异（包括同义突变和非同义突变)的功能影响，还预测非编码区变异的功能影响。我们的注释结果中，有分值时，逗号前后分别是CADD和CADD_Phred；CADD列是初始分值，CADD_Phred是转换后的分值；CADD_Phred分值中，10表示score排名在前10%，20表示前1%，30表示前0.1%. 对于InDel，对全部有CADD分值的InDel给出分值，'.'表示没有CADD分值。对于SNP，仅对CADD分值排名在前10%的SNP给出分值，'.'表示CADD分值排名不在前10%。CADD作者建议SNP的有害性阈值为CADD_Phred分值>15，文章中通常用10或15；InDel没有建议值。<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（57）dbNSFP中的GERP++只包含coding variant的注释。为了注释所有变异位点的保守性，ANNOVAR整理了gerp++gt2，包含GERP++ 分值大于2的位点。越保守的位点发生变异，对于蛋白的影响越大。分值越高，位点越保守。通常，GERP++ 分值大于2的位点认为是保守位点，可能具有功能<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（58）是一种致病性似然分数，即孟德尔临床应用致病性（Mendelian Clinically Applicable Pathogenicity，MCAP)分数。MCAP用于分类的变量是基于现有致病性似然值结合对进化保守性和跨物种推断人类种群内频率的直接评估，MCAP作者建议的阈值分值大于0.025<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（59）是一种整合了多种软件预测分值，预测罕见错义突变致病性的方法。REVEL的分值范围为0-1，分值越大越有害，文献中作者取值分值为0.5时对应检测有害性突变的敏感性为0.754，特异性为0.891<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第60-66项为变异位点信息注释————此部分信息为变异位点的详细信息，包括变异位点的覆盖深度，突变前后碱基型和纯杂合信息等。变异位点的信息能在家系分析或者筛选中起到重要的作用。 <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（60）变异软件检测的变异位点信息<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（61）用“”分隔了若干个字段<br/>
+      
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GT：该位点基因型（Genotype），表示为由/或|分隔的等位基因值。参考等位基因(在Ori_REF字段中)的等位基因值为0，在Ori_ALT中列出的第一个等位基因为1，在Ori_ALT中列出的第二个等位基因为2，以此类推。0/0和1/1代表纯合子。0/1为杂合子。‘.’表示未检测到该位点基因型<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AD：列出的ref和alt等位基因的等位基因深度<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DP：该位点大致的测序深度（MQ=255或错配碱基被过滤掉）<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GQ：基因型质量PL：标准化基因型似然值（逗号分隔的三个值，依次对应0/0、0/1、1/1三种基因型，值越小越好)<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PL：标准化基因型似然值（逗号分隔的三个值，依次对应0/0、0/1、1/1三种基因型，值越小越好)<br/>
+      
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（62）与FORMAT列对应，‘’分隔的每一部分对应FORMAT‘’分隔的每一部分<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（63）该位点在VCF文件中REF列的值。对于InDel，VCF文件中REF的值可能跟本文件REF列的值不一致，因为使用ANNOVAR注释时，用bcftools norm对InDel位点进行了left-normalization，导致InDel注释结果文件中的REF和ALT比VCF文件中的REF、ALT短<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（64）该位点在VCF文件中ALT列的值，即该位点所有的突变碱基型。每个样本的GT中0、1、2、…等编号是依据Ori_REF和Ori_ALT这两列进行编号的，0表示跟Ori_REF相同，1表示Ori_ALT的第一种突变碱基型。本文件ALT列的值对应Ori_ALT列中的一个，但可能不一致，因为使用ANNOVAR注释时，用bcftools norm对InDel位点进行了left-normalization，导致InDel的ALT列的值比其在VCF文件中对应的ALT短<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（65）在当前位点处发生纯合突变的样本数目<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（66）在当前位点处发生杂合突变的样本数目<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第67-78项为基因功能及通路注释————对突变位点所在基因进行疾病相关数据库，通路及功能相关注释，能了解到该突变位点是否已知与某类型疾病相关，也能了解到该突变位点所在基因存在于哪些通路中，对了解该基因的生物学功能有重要意义<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（67）人类孟德尔遗传病数据库注释（Hamosh <i>et al.</i>, 2005），给出与变异位点所在基因相关的遗传疾病名称<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（68）该变异位点在以往的GWAS研究中，被哪篇文章报导与疾病相关联，并给出该位点在文章中的p-value。格式为分号分隔的pubmedID（p-value)<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（69） 人类基因突变数据库注释，给出该变异位点相关的疾病名称和在HGMD数据库中的ID。格式为Disease_name（HGMD中的ID号)<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（70） 给出该变异位点在人类基因突变数据库（HGMD)中收录的文献报道中的突变形式以及参考文献网址（注意注释的是这个位点的突变，没有完全按照一样的参考碱基型和突变碱基型注释，比如一个位点发生了SNP突变，但按照发生在这个位点的突变注释，可能注释上的为InDel突变)。以“|”分隔的几部分分别表示突变的密码子，氨基酸，CDS等信息。例如gCGC-TGC|Arg27Cys|c.79C>T|p.R27C 表示CGC 密码子第一个C突变成了T，第27位氨基酸由精氨酸变成半胱氨酸（p.R27C表示同样意思)，突变在CDS上第79位由C变成T。由于突变是密码子第一个碱基，在其左侧的碱基“G”也以小写字母体现。另外还有如IVS1 ds G-A +37|c.154+37G>A， IVS 表示内含子编号，“+” 表示下游，“-” 表示上游，"as" 表示 acceptor splice site，"ds" 表示 donor splice site；对于indel突变，如 TGCCCCC^408CCCccATGAATGGTC|c.1223_1224dupCC，突变本身以小写碱基表示，且会在两侧加上各10bp flanking碱基，以^开头的数字表示密码子的个数。突变的命名规则详情可参见<a href="http://www.hgvs.org/mutnomen/recs-DNA.html#number"  target=_blank>HGVS（HUMAN GENOME VARIATION SOCIETY)</a><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（71）给出与该突变位点或基因相关的PubMed文献编号，来源于HGMD和OMIM数据库，通过在<a href="https://www.ncbi.nlm.nih.gov/pubmed/"  target=_blank>Pubmed</a>中输入编号可检索到编号对应的文献，PubMed编号以|分隔。在HGMD中有突变时（即HGMD_Disease_ID 列不为'.')，第一个PubMed编号一般为HGMD数据库中突变点所对应的参考文献编号，其他的参考文献按照发表时间排列，编号顺序越靠前表示越是最近发表的，因此同一个基因的第一个PubMed编号可能不同，这是因为HGMD对应的参考文献是对应到位点的，而同一基因在HGMD中的不同突变位点的参考文献并没有合并到一起，以便于区分同一基因已知不同突变位点的参考文献编号<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（72-74） Gene Ontology数据库注释（Harris <i>et al.</i>, 2004），GO是基因本体学注释，包括了基因的生物学过程（Biological Process，BP)，细胞组分（Cellular Component，CC)和分子功能（Molecular Function，MF)的注释。给出变异位点所在蛋白质或者基因参与的生物学通路名称<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（75）全基因组及代谢途径数据库注释（Kanehisa <i>et al.</i>, 2000），给出变异位点所在基因参与的代谢通路名称 <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（76）通路相互作用数据库注释，给出与变异位点所在蛋白相互作用的通路名称<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（77）BIOCARTA数据库注释，给出变异位点所在基因参与的分子通路名称<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（78）人类生物学反应及信号通路数据库注释，给出变异位点所在基因参与的信号通路名称<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 第79-83项为基因的组织特异性表达情况的注释————本部分展示Human Protein Atlas（HPA)数据库（Uhlén M, et al. Science, 2015)中记录的可编码蛋白的基因在正常人类的44个组织的蛋白表达情况和32个组织的RNA转录水平的检测结果，及HPA网站的相应可视化结果链接 <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（79）蛋白表达情况的概述，综合免疫组化结果、RNA结果、和亚细胞分布结果，描述基因在不同组织的表达分布情况和在亚细胞层面的表达分布情况<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（80）RNA组织表达情况概述，分为：(1) Tissue enriched：与任何其他组织相比，特定组织中的mRNA水平至少高出四倍 (2) Group enriched：与其他组织相比，组内的2-5种组织的平均mRNA水平至少高出4倍 (3) Tissue enhanced：与所有其他组织的平均水平相比，特定组织中的mRNA水平至少高出四倍 (4) Low tissue specificity：在各个组织中表达量低<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（81）组织中基因表达的可视化。所有表达量升高的基因被分类为：(1) Detected in single：在单个组织中检测 (2) Detected in some：多于一种但少于三分之一的组织中检测到 (3) Detected in many：在至少三分之一但不是全部组织中发现 (4) Detected in all：所有组织均检测到<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（82）基因的亚细胞分布位置，如“nucleus”,“ mitochondria”等<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（83）基于HPA和GTEx的转录组学数据，总结了50个组织中每个基因的一致转录表达水平。“nTPM”（consensus normalized expression）值取两个数据源中每个基因的最大nTPM值。若“RNA tissue specificity”列为“Low tissue specificity”，此栏为空<br/>
+  </p>
+  
+      </div> <br/>
+         <button onclick="hiddenQA(this)">显示Q&A</button>
+         <div class="comment">
+         <table style="font-size:12px;font-family: '黑体-简'">
+    <tr><td align="left" style="background-color:#036EB8;color:#FFFFFF">Q1：SNP质量值(MQ)是什么？</td></tr>
+    <tr><td align="left" style="background-color:#f1f5fb;color:#3E3A39">A1：Root-mean-square mapping quality of covering reads，reads比对到参考基因组，每个碱基均有一个比对错误率，如果比对错误率是0.001，那MQ=-10lg0.001=30。</td></tr>
+    <tr><td align="left" style="background-color:#036EB8;color:#FFFFFF">Q2：SNP质量值(QUAL)是什么？</td></tr>
+    <tr><td align="left" style="background-color:#f1f5fb;color:#3E3A39">A2：Phred 格式(Phred_scaled)的质量值，表示该位点存在variant的可能性；该值越高，则variant的可能性越大；计算方法为，Phred值 = -10 * log (1-p)， p为variant存在的概率; 通过计算公式可以得出值是20的位点为variant的概率达到99%。</td></tr>
+  </table>
+  
+       </div>
+  <p class="paragraph">结果目录：<a href="../../../result/Mutation/SNP" title="点击打开" target="_blank">03.Result_X202XXXXXX-Z01-F001_disease/result/Mutation/SNP</a></p>
+</div>
+<br/>
+<!-- ----------------------------- indel结果 ------------------------------------------ -->
+<!-- ----------------------------- indel结果 ------------------------------------------ -->
+<div id="page">
+<p class="head"><a href="#home" title = "返回首页"></a><a name="InDel检测结果"></a><hr /></p><br />
+  <h5 id="goto_result32">4.1.4.3 InDel统计结果</h5>
+  <p class="paragraph">编码区或剪接位点处发生的插入缺失都可能会改变蛋白的翻译。移码变异，其插入或缺失的碱基串的长度为3的非整数倍，因此可能导致整个读框的改变；移码变异与非移码变异相比较，前者对基因功能的影响更大，同时在群体中受到更大的筛选压力。InDel长度分布如下图所示：</p>
+    <iframe style="text-align: center; width: 100%; height: 500px; margin: auto;" src="htmls/indel_length_stats.html"  frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+    <p class="name_fig" style="font-size: 12px">图4.9　InDel长度分布</p>
+    <p class="premark">横坐标代表InDel的长度（+为插入，-为缺失），纵坐标代表长度为x的InDel在所有InDel中的数目。</p>
+  <p class="paragraph">在比对结果的基础上，我们利用bcftools(Li <i>et al.</i>, 2009)识别InDel，并采用国际惯用的过滤标准对InDel结果进行过滤。本次测序样品中，平均每个样本发现1020373个InDel，其中598出现在外显子区，520298个在基因间区，401个在splicing区。在编码区的InDel中，平均每个样本有63个移码缺失，57个移码插入，196个非移码缺失，167个非移码插入，1个InDel导致丢失终止密码子，9个InDel导致获得终止密码子。InDel结果统计如下：</p>
+  <p class="center">
+   <p class="name_fig" style="font-size: 12px">表4.6　基因组和编码区上不同类型InDel的数目</p>
+   <iframe style="text-align: center; width: 95%; height: 530px;margin: auto;" src="tables/germline_indel_func_table.html"  frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+  </p>
+  <button onclick="hiddenShow(this);">显示注释</button>
+  <div class="comment">
+    <ol style="font-size: 12px;font-family: '黑体-简';line-height: 20px">
+      <li>Sample：样本名称</li>
+      <li>CDS：外显子编码区域</li>
+        <p class="paragraph" style="font-size: 12px;font-family: '黑体-简';line-height: 5px">&nbsp;frameshift_deletion：移码缺失，导致编码蛋白的读框改变的删除；该删除的长度为非3的整数倍<br/>
+        <p class="paragraph" style="font-size: 12px;font-family: '黑体-简';line-height: 5px">&nbsp;frameshift_insertion：移码插入，导致编码蛋白的读框改变的插入；该插入的长度为非3的整数倍<br/>
+        <p class="paragraph" style="font-size: 12px;font-family: '黑体-简';line-height: 5px">&nbsp;nonframeshift_deletion：非移码缺失，不改变编码蛋白的读框的删除；该删除的长度为3的整数倍<br/>
+        <p class="paragraph" style="font-size: 12px;font-family: '黑体-简';line-height: 5px">&nbsp;nonframeshift_insertion：非移码插入，不改变编码蛋白的读框的插入；该插入的长度为3的整数倍<br/>
+        <p class="paragraph" style="font-size: 12px;font-family: '黑体-简';line-height: 5px">&nbsp;stopgain：非同义突变，由于插入、删除或连续碱基替换导致变异位点处产生一个新的终止密码子<br/>
+        <p class="paragraph" style="font-size: 12px;font-family: '黑体-简';line-height: 5px">&nbsp;stoploss：非同义突变，由于插入、删除或连续碱基替换导致变异位点处的终止密码子丢失<br/>
+        <p class="paragraph" style="font-size: 12px;font-family: '黑体-简';line-height: 5px">&nbsp;startloss：非同义突变，由于插入、删除或连续碱基替换导致变异位点处的起始密码子丢失<br/>
+        <p class="paragraph" style="font-size: 12px;font-family: '黑体-简';line-height: 5px">&nbsp;unknown：由于注释用的基因结构注释数据库的错误导致的未知功能位点<br/>
+      </p>
+      <li>intronic：基因的内含子区域</li>
+      <li>UTR3：基因的3'UTR区域</li>
+      <li>UTR5：基因的5'UTR区域</li>
+      <li>splicing：剪切位点10bp区域</li>
+      <li>ncRNA_exonic：非编码RNA外显子区域</li>
+      <li>ncRNA_intronic：非编码RNA内含子区域</li>
+      <li>ncRNA_UTR3：非编码RNA的3'UTR区域</li>
+      <li>ncRNA_UTR5：非编码RNA的5'UTR区域</li>
+      <li>ncRNA_splicing：非编码RNA的剪切位点4bp区域</li>
+      <li>upstream：转录起始位点上游1Kb区域</li>
+      <li>downstream：转录终止位点下游1Kb区域</li>
+      <li>intergnic：基因间隔区域</li>
+      <li>Total：InDel的总数</li>
+    </ol>
+  </div><br/><br/>
+  <p class="center"></p>
+  <iframe style="text-align: center; width: 100%; height:400px; margin: auto;" src="htmls/germline_pie_indel.html"  frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+  <p class="name_fig" style="font-size: 12px">图4.10 基因组不同区域上InDel数目  (左) 和编码区上不同类型的InDel数目 (右) 分布</p>
+  <button onclick="hiddenShow(this)">显示注释</button>
+  <div class="comment">
+  <ul style="font-size: 12px;font-family: '黑体-简';line-height: 20px">
+    <li>左图中，frameshift deletion：移码缺失，即导致编码蛋白的读框发生改变的删除；该删除的长度不是3的整数倍。Frameshift insertion：移码插入，即导致编码蛋白的读框发生改变的插入；该插入的长度不是3的整数倍。nonframeshift deletion：非移码缺失，即不改变编码蛋白的读框的删除；该删除的长度为3的整数倍。nonframeshift insertion：非移码插入，即不改变编码蛋白的读框的插入；该插入的长度为3的整数倍。stopgain：导致获得终止密码子的InDel。stoploss：导致丢失终止密码子的InDel。unknown代表由于注释用的基因结构注释数据库的不完善导致的未知功能位点。</li>
+    <li>右图中，downstream代表转录终止位点下游1Kb区域内的InDel数目；exonic代表外显子区域内的InDel数目；intergenic代表基因间区域内的InDel数目；intronic代表内含子区域内的InDel数目；ncRNA_exonic代表非编码RNA外显子区域内的InDel数目；ncRNA_intronic代表非编码RNA内含子区域内的InDel数目；ncRNA_splicing代表非编码RNA的splicing junction 10bp区域内的InDel数目；ncRNA_UTR3代表非编码RNA 3’UTR区域内的InDel数目；ncRNA_UTR5代表非编码RNA 5’UTR区域内的InDel数目；spling代表splicing junction 10bp区域内的InDel数目；upstream代表转录起始位点上游1Kb区域内的InDel数目；UTR3代表3’UTR区域内的InDel数目；UTR5代表5’UTR区域的InDel数目。</li>
+  </ul>
+  </div><br/><br/>
+  <p class="paragraph">本次测序样本中，每个样本平均有782224个杂合基因型，238148个纯合基因型，有208758个新InDel，新InDel所占的平均比例为20.455%。</p>
+  <p class="center">
+    <p class="name_fig" style="font-size: 12px">表4.7 基因组上InDel的特征</p>
+    <iframe style="text-align: center; width: 95%; height: 360.0px; margin: auto;" src="tables/germline_indel_feature_table.html"  frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+  </p>
+  <button onclick="hiddenShow(this)">显示注释</button>
+  <div class="comment">
+    <ol style="font-size: 12px;font-family: '黑体-简';line-height: 20px">
+      <li>Sample：样品名称</li>
+      <li>Total：InDel总数</li>
+      <li>Het(heterozygote)：杂合基因型的InDel数目</li>
+      <li>Hom(homozygote)：纯合基因型的InDel数目</li>
+      
+      <li>dbSNP percentage:被dbSNP注释的InDel数目</li>
+      <li>novel：未被dbSNP注释的新InDel数目</li>
+      <li>novel_proportion：新InDel所占的比例</li>
+      
+    </ol>
+  </div>
+</br>
+  <iframe style="text-align: center; width: 100%; height:400px; margin: auto;" src="htmls/germline_indel_feature_plot.html"  frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+  <p class="name_fig" style="font-size: 12px">图4.11 基因组InDel特征</p>
+  <br/>
+
+  <h5 id="goto_result35">4.1.4.4 InDel注释结果</h5>
+  
+  <p class="paragraph"> 利用ANNOVAR(Wang <i>et al.</i>,2010)软件对InDel位点进行注释，其中包括dbSNP数据库、千人基因组计划和其他已有的数据库的注释信息，注释内容涵盖变异的位置信息、类型、保守型预测等。具体的注释内容展示如表4.8。 </p>
+  <p class="center">
+  <p class="name_fig" style="font-size: 12px">表4.8　InDel注释结果展示（只显示前1行）</p>
+  <div id="tb">
+    <table class="gy">    
+    
+    <tr class="tb1"><th class="tb1">Priority<sup>1</sup></td><th class="tb1">CHROM<sup>2</sup></td><th class="tb1">POS<sup>3</sup></td><th class="tb1">ID<sup>4</sup></td><th class="tb1">REF<sup>5</sup></td><th class="tb1">ALT<sup>6</sup></td><th class="tb1">QUAL<sup>7</sup></td><th class="tb1">FILTER<sup>8</sup></td><th class="tb1">GeneName<sup>9</sup></td><th class="tb1">Description<sup>10</sup></td><th class="tb1">Func<sup>11</sup></td><th class="tb1">Gene<sup>12</sup></td><th class="tb1">GeneDetail<sup>13</sup></td><th class="tb1">ExonicFunc<sup>14</sup></td><th class="tb1">AAChange<sup>15</sup></td><th class="tb1">Gencode<sup>16</sup></td><th class="tb1">cpgIslandExt<sup>17</sup></td><th class="tb1">cytoBand<sup>18</sup></td><th class="tb1">wgRna<sup>19</sup></td><th class="tb1">targetScanS<sup>20</sup></td><th class="tb1">tfbsConsSites<sup>21</sup></td><th class="tb1">genomicSuperDups<sup>22</sup></td><th class="tb1">Repeat<sup>23</sup></td><th class="tb1">avsnp<sup>24</sup></td><th class="tb1">CLNALLELEID<sup>25</sup></td><th class="tb1">CLNDN<sup>26</sup></td><th class="tb1">CLNDISDB<sup>27</sup></td><th class="tb1">CLNREVSTAT<sup>28</sup></td><th class="tb1">CLNSIG<sup>29</sup></td><th class="tb1">cosmic<sup>30</sup></td><th class="tb1">gwasCatalog<sup>31</sup></td><th class="tb1">1000g_Chinese<sup>32</sup></td><th class="tb1">1000g_EAS<sup>33</sup></td><th class="tb1">1000g_ALL<sup>34</sup></td><th class="tb1">esp6500siv2_all<sup>35</sup></td><th class="tb1">GnomAD_exome_AF_ALL<sup>36</sup></td><th class="tb1">GnomAD_exome_AF_ALL_eas<sup>37</sup></td><th class="tb1">GnomAD_genome_AF<sup>38</sup></td><th class="tb1">GnomAD_genome_AF_eas<sup>39</sup></td><th class="tb1">ExAC_ALL<sup>40</sup></td><th class="tb1">ExAC_EAS<sup>41</sup></td><th class="tb1">dbscSNV_ADA_SCORE<sup>42</sup></td><th class="tb1">dbscSNV_RF_SCORE<sup>43</sup></td><th class="tb1">spidex<sup>44</sup></td><th class="tb1">Interpro_domain<sup>45</sup></td><th class="tb1">SIFT<sup>46</sup></td><th class="tb1">Polyphen2_HDIV<sup>47</sup></td><th class="tb1">Polyphen2_HVAR<sup>48</sup></td><th class="tb1">LRT<sup>49</sup></td><th class="tb1">MutationTaster<sup>50</sup></td><th class="tb1">MutationAssessor<sup>51</sup></td><th class="tb1">FATHMM<sup>52</sup></td><th class="tb1">phyloP100way_vertebrate<sup>53</sup></td><th class="tb1">phyloP30way_mammalian<sup>54</sup></td><th class="tb1">SiPhy_29way_logOdds<sup>55</sup></td><th class="tb1">CADD<sup>56</sup></td><th class="tb1">gerp++gt2<sup>57</sup></td><th class="tb1">MCAP<sup>58</sup></td><th class="tb1">REVEL<sup>59</sup></td><th class="tb1">INFO<sup>60</sup></td><th class="tb1">FORMAT<sup>61</sup></td><th class="tb1">tian<sup>62</sup></td><th class="tb1">Ori_REF<sup>63</sup></td><th class="tb1">Ori_ALT<sup>64</sup></td><th class="tb1">shared_hom<sup>65</sup></td><th class="tb1">shared_het<sup>66</sup></td><th class="tb1">OMIM<sup>67</sup></td><th class="tb1">GWAS_Pubmed_pValue<sup>68</sup></td><th class="tb1">HGMD_Disease_ID<sup>69</sup></td><th class="tb1">HGMD_Mutation_URL<sup>70</sup></td><th class="tb1">PubMedID<sup>71</sup></td><th class="tb1">GO_BP<sup>72</sup></td><th class="tb1">GO_CC<sup>73</sup></td><th class="tb1">GO_MF<sup>74</sup></td><th class="tb1">KEGG_PATHWAY<sup>75</sup></td><th class="tb1">PID_PATHWAY<sup>76</sup></td><th class="tb1">BIOCARTA_PATHWAY<sup>77</sup></td><th class="tb1">REACTOME_PATHWAY<sup>78</sup></td><th class="tb1">Expression_summary<sup>79</sup></td><th class="tb1">RNA tissue specificity<sup>80</sup></td><th class="tb1">RNA tissue distribution<sup>81</sup></td><th class="tb1">Subcellular_Location<sup>82</sup></td><th class="tb1">RNA tissue specific nTPM<sup>83</sup></td></tr>
+    
+    <tr class="tb1"><td class="tb1">L</td><td class="tb1">1</td><td class="tb1">54712</td><td class="tb1">rs773293602</td><td class="tb1">TTTTC</td><td class="tb1">T</td><td class="tb1">225.417</td><td class="tb1">PASS</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">intergenic</td><td class="tb1">NR_026818,NM_001005484</td><td class="tb1">dist=18632;dist=14375</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">1p36.33</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">Score=0.994828;Name=chr19:60000</td><td class="tb1">Score=761;Name="69:(TTTC)n(Simple_repeat)"</td><td class="tb1">rs773293602</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">0.2910</td><td class="tb1">0.2910</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">-0.145218,1.032</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">INDEL;IDV=12;IMF=0.461538;DP=26;VDB=0.0403235;SGB=-0.680642;RPBZ=-4.32493;MQBZ=0.55604;MQSBZ=-0.600592;BQBZ=-1.99304;SCBZ=-1.33524;FS=0;MQ0F=0;AC=2;AN=2;DP4=0,0,6,6;MQ=49</td><td class="tb1">GT:PL:DP:SP:AD</td><td class="tb1">1/1:255,36,0:12:0:0,12</td><td class="tb1">TTTTC</td><td class="tb1">T</td><td class="tb1">1</td><td class="tb1">0</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">Not detected</td><td class="tb1">Not detected</td><td class="tb1">.</td><td class="tb1">.</td></tr>
+    
+    </table>
+  </div>
+  </p>
+  <button onclick="hiddenShow(this)">显示注释</button>
+  <div class="comment">
+  
+       <p class="paragraph" style="font-size: 12px;font-family: '黑体-简';line-height: 20px">注：注释内容包括7个部分，分别为优先级信息（1)，基因及区域注释（2-23)，数据库（频率)注释（24-41)，保守（有害)性预测（42-59)，变异位点信息（60-66)，基因功能及通路注释（67-78), 基因的组织特异性表达情况的注释（79-83)。</br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（1）优先级，H:High，表示该位点不在genome repeat 区域（即genomicSuperDups和Repeat 没有注释信息)，千人基因组数据库中频率小于0.01，该位点位于exonic 或者 splicing 区域，且该位点经SIFT、Polyphen（Adzhubei <i>et al.</i>, 2013）、MutationTaster、CADD预测至少有一个软件预测为有害；M:Medium，表示该位点不在genome repeat 区域（即genomicSuperDups和Repeat 没有注释信息)，千人基因组数据库中频率小于0.01，该位点位于exonic 或者 splicing 区域；L:Low，表示该位点不满足H或M条件的其他所有的突变。国际小鼠表型分析联盟（International Mouse Phenotyping Consortium ，IMPC)对小鼠进行大规模基因敲除，并进行表型分析。优先级（H、M、L)后面的符号（*、+、-)表示 *：在小鼠大规模基因敲除表型分析中，基因为lethal基因（完全致死基因）+：在小鼠大规模基因敲除表型分析中，基因为subviable基因（可能致死基因：＜12.5%的胚胎存活率）-：在小鼠大规模基因敲除表型分析中，基因为vialbe（可存活基因)<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第2-23项为基因及区域注释信息———变异位点所处的基因（对应的氨基酸)可能直接与疾病相关。对变异位点进行已知基因结构及所处区域注释，有助于老师了解此变异位点对应的基因结构及所处区域信息。 <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（2）染色体<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（3）变异位点在染色体上的绝对位置<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（4）dbSNP注释ID<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（5）参考基因组碱基型<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（6）样本基因组碱基型<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（7）变异的质量值，值越高越好。文献中常见以变异的质量值大于20为过滤标准<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（8）过滤TAG，如果该位点满足所有过滤条件，则标记为PASS（采用国际惯用的过滤标准)<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（9）基因名称注释，列出该变异所在的基因<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（10） 变异位点所在基因的描述<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（11）对变异位点所在的区域进行注释（exonic, splicing, UTR5, UTR3, intronic, ncRNA_exonic, ncRNA_intronic, ncRNA_UTR3, ncRNA_UTR5, ncRNA _splicing, upstream, downstream, intergenic)。说明1、exonic应该包括coding exonic portion、UTR3和UTR5，但ANNOVAR注释结果中exonic只代表coding exonic portion。2、当一个变异位点位于多个基因或转录本，且功能不同，这些功能按照优先级排序，该列输出优先级最高的功能类型Exonic = splicing > ncRNA > UTR5/UTR3 > intron > upstream/downstream > intergenic。 当一个变异既位于一个基因的UTR3，又位于另一个基因的UTR5时，该列输出"UTR5,UTR3"。当一个变异既位于一个基因的downstream，又位于另一个基因的upstream时，该列输出"upstream,downstream "<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（12）列出该变异位点相关的转录本（只有功能符合Func列的转录本才列出)。如果Func列为intergenic，此处列出两侧的基因名<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（13）描述UTR、splicing、ncRNA_splicing、intergenic、upstream或downstream区域的变异情况。当Func列的值为exonic; splicing或者splicing时,该列会给出该位点对于转录本splicing的影响，例如： NM_172210:exon6:c.1090+5C>A, NM_172210是转录本; exon6:c.1090+5C>A是序列改变，表示C>A 发生在第6个外显子下游的第5个碱基(1090是cDNA第6个外显子的结束位置)；当Func列的值为intergenic时，该列格式为dist=1366;dist=22344，表示该变异位点距离两侧基因的距离；当Func列的值为UTR*时，该列给出UTR中的序列变化，例如NM_198576:c. *19C>T表示着C>T位于NM_198576上终止密码子下游的第19个碱基上；当Func列的值为upstream或downstream时，该列给出该变异位点距离下游或上游基因的距离<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（14）外显子区的SNV 或 InDel变异类型（SNV的变异类型包括synonymous_SNV, missense_SNV, stopgain, stopgloss和unknown；InDel的变异类型包括frameshift insertion, frameshift deletion, stopgain, stoploss, nonframeshift insertion, nonframeshift deletion和unknown)<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（15）氨基酸改变，只有当Func列为exonic或exonic;splicing时，该列才有结果。按照每个转录本进行注释（例如，AIM1L:NM_001039775:exon2:c.C2768T:p.P923L，其中，AIM1L表示该变异所在的基因名称，NM_001039775表示该变异所在的转录本ID，exon2表示该变异位于转录本的第二个外显子上，c.C2768T表示该变异引起CDS在第2768位上由C突变为T，p.P923L表示该变异引起蛋白序列在第923位上的氨基酸由Pro变为Leu)<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（16）Gencode注释的基因名称<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（17）CpG岛预测结果，注释结果为CpG岛名称，如CpG: 116（116是该CpG岛中CG二核苷酸的数目)<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（18）该变异位点所处的染色体区段（利用Giemas染色观察得到的)。如果变异位点跨过多个区段，用短横线连接<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（19）基于miRBase和snoRNABase，对变异位点相关的microRNA和snoRNA进行注释，给出microRNA和snoRNA的基因名称<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（20）UCSC（Kent <i>et al.</i>, 2002）提供TargetScanS注释数据库，库中包含在3’UTR中保守的microRNA结合位点，来源于TargetScanHuman 5.1的预测结果；该软件预测microRNA的靶点，预测结果依据microRNA与靶点之间结合的效能进行排序，排名越靠前，说明microRNA与其靶点的结合越可能是实际存在的事件。此项给出microRNA靶点的信息，一是score，是该靶点的分值，反映的是结合效能的排名，因此，score越大，说明排名越靠后，实际发生该结合的可能性越小，作者没有推荐阈值；二是Name，是作用于该靶点的microRNA名称。例如，Score=62;Name=KRAS:miR-181:1，表示该靶点的分值是62，其位于KRAS基因的3’UTR中，受到该变异位点影响的microRNA是miR-181:1。表示该变异位点位于microRNA（miR-181:1)在基因KRAS的3’UTR上的结合位点<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（21）基于transfac矩阵数据库（v7.0)，计算所有转录因子结合位点在人/小鼠/大鼠比对中的保守分值，当结合位点的分值达到阈值时，认为该位点在人/小鼠/大鼠中保守。该列给出的是该变异位点所在的保守转录因子结合位点的位置和分值，即Name和Score。Name是结合位点处的motif名称，这些motif能够被转录因子识别，例如V$CDPCR3_01，利用一些在线服务器（如MSigDB)能够查询这个motif能够被哪些转录因子识别；Score是该结合位点的保守分值<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（22）检测该变异位点是否位于重复片段（segmental duplication)中。重复区域中检测到的遗传变异大多数是由于序列比对错误造成的，所以被注释到segmental duplications的变异需要谨慎对待，很可能是假阳性位点。给出两个值，一是Name，表示基因组中与该变异位点所在区域相似的片段的位置；二是Score，表示两个相似片段的序列一致性。例如，Score=0.994828;Name=chr19:60000，表示chr19:60000所在片段跟该变异位点所在片段相似，序列一致性为0.994828,，范围0~1<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（23）重复序列注释信息，重复序列来源于RepeatMasker注释。例如， Score=180;Name="1385:（CACCC)n（Simple_repeat)"。Score表示该repeat的分值；Name由两部分构成，一部分（CACCC)n是repeat的名称，另一部分Simple是repeat的类别。只要有注释信息，就表明该变异位于散在重复序列或低复杂度序列中；这些区域容易出现比对错误，所以该区域的变异位点可靠性不高<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第24-41项为数据库（频率)注释————人群中有很多变异位点是多态性的（高频的)，而真正有害的变异位点一般是低频的。对每个变异位点注释国际通用的部分数据库中的频率，有助于了解这个变异位点发生的频率高低的信息，协助找出致病突变位点。<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（24）该变异在dbSNP中的ID<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（25）注释变异与人类健康之间的关系，临床意义的数据来源于NCBI。ClinVar等位基因ID<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（26）ClinVar对CLNDISDB中疾病标识符指定的概念的首选疾病名称<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（27）疾病数据库名称和标识符的一对标签值，如OMIM: NNNNNN<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（28）变异ID的ClinVar审查状态<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（29）该单变异的临床意义,可取值为unknown, untested, non-pathogenic, probable-non-pathogenic, probable-pathogenic, pathogenic, drug-response, histocompatibility, other等<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（30）cosmic肿瘤相关变异数据库的注释<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（31）检测变异位点是否在以往的GWAS研究中被报导，表示该变异位点与哪些疾病相关联，"."表示没有GWAS报导<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（32）给出千人基因组计划数据的中国人群中，该变异位点上突变碱基的等位基因频率<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（33）给出千人基因组计划数据的东亚人群中，该变异位点上突变碱基的等位基因频率<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（34）给出千人基因组计划数据的所有人群中，该变异位点上突变碱基的等位基因频率，文献通常采用0.01的标准进行过滤<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（35）国家心肺和血液研究所外显子组测序计划（NHLBI-ESP project，esp6500si_all数据库中包含SNP变异、InDel变异和Y染色体上的变异的所有个体中，突变碱基的等位基因频率（alternative allele frequency)，文献通常采用0.01的标准进行过滤<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（36）GnomAD是The Genome Aggregation Database的简称，GnomAD_exome涵盖了来自不相关个体的125,748个外显子序列，作为各种疾病特异性和群体遗传研究的一部分进行测序。GnomAD_exome_AF_ALL指在所有人群中，该变异位点上突变碱基的等位基因频率，考虑到发病率和外显率数据对125,748个外显子人群数据进行了修正，更好地适用于频率过滤<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（37）GnomAD是The Genome Aggregation Database的简称，GnomAD_exome涵盖了来自不相关个体的125,748个外显子序列，作为各种疾病特异性和群体遗传研究的一部分进行测序。GnomAD_exome_AF_eas指在所有亚洲人群中，该变异位点上突变碱基的等位基因频率<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（38）GnomAD是The Genome Aggregation Database的简称，GnomAD_genome涵盖了来自不相关个体的15,708个全基因组序列，作为各种疾病特异性和群体遗传研究的一部分进行测序。GnomAD_genome_AF_ALL指在所有亚洲人群中，该变异位点上突变碱基的等位基因频率,虑到发病率和外显率数据对15,708个全基因组人群数据进行了修正，更好地适用于频率过滤<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（39）GnomAD是The Genome Aggregation Database的简称，GnomAD_genome涵盖了来自不相关个体的15,708个全基因组序列，作为各种疾病特异性和群体遗传研究的一部分进行测序。GnomAD_genome_AF_eas指在所有亚洲人群中，该变异位点上突变碱基的等位基因基因的数目<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（40）ExAC是Exome Aggregation Consortium的简称，整合了60706个无关个体的数据，这些个体来源于大量disease-specific研究和群体遗传学研究，能够用做严重疾病研究的reference set of allele frequency。目前ExAC数据库中包括ALL, AFR （African), AMR （Admixed American), EAS （East Asian), FIN （Finnish), NFE （Non-finnish European), OTH （other), SAS （South Asian)。ExAC_ALL是指在所有人群中，该变异位点上突变碱基的等位基因频率<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（41）在ExAC的东亚人群中，该变异位点上突变碱基的等位基因频率<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第42-59项为保守（有害)性注释————个体中的突变往往非常多（全基因组范围内能达到3.6M-4.4M)，而真正有害的突变却是罕见的，有很多根据变异位点的保守性等信息进行有害性预测的软件能帮助我们进行突变位点的有害性评估。本公司采用国际惯用的变异有害性预测软件对突变位点的有害性进行预测，协助找出真正有害的突变位点。 <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（42）基于adaptive boosting预测突变是否影响splicing的注释数据库。dbscSNV基于多种预测突变是否影响splicing的软件，通过Ada和RF两种机器学习方法得到两个综合的预测分值。建议使用0.6作为判定阈值，即dbscSNV_ADA_SCORE和dbscSNV_RF_SCORE这两个分值中至少一个大于0.6，认为突变可能影响剪接<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（43）基于Random Forest预测突变是否影响splicing的注释数据库。dbscSNV基于多种预测突变是否影响splicing的软件，通过Ada和RF两种机器学习方法得到两个综合的预测分值。建议使用0.6作为判定阈值，即dbscSNV_ADA_SCORE和dbscSNV_RF_SCORE这两个分值中至少一个大于0.6，认为突变可能影响剪接<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（44）一种机器学习方法用来预测基因突变如何影响RNA剪接，一般认为分值大于4小于-4影响拼接<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（45）Interpro数据库注释的突变位点所在蛋白质的结构域<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（46）SIFT分值（dbNSFP)，表示该变异对蛋白序列的影响。逗号前后分别是SIFT_score和SIFT_predSIFT_score是SIFT分值，分值越小越可能“有害”，表明该SNP导致蛋白结构或功能改变的可能性大。SIFT_pred是预测结果，取值为T或者D。当该变异同时影响多个蛋白序列时，对每条蛋白序列有一个SIFT值，取最小值。D: Deleterious （sift<=0.05); T: Tolerated （sift>0.05))<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（47）利用PolyPhen2基于HumanVar数据库预测该变异对蛋白序列的影响，用于单基因遗传病（dbNSFP)。该列包含两个值，第一个是PolyPhen 2分值，数值越大越“有害”，表明该SNP导致蛋白结构或功能改变的可能性大；第二个是D或P或B（D: Probably damaging （>=0.909), P: Possibly damaging （0.447<=pp2_hvar<=0.909); B: Benign （pp2_hvar<=0.446))<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（48）利用PolyPhen2基于HumanDiv数据库预测该变异对蛋白序列的影响，用于复杂疾病（dbNSFP)。逗号前后分别是Polyphen2_HDIV_score和Polyphen2_HDIV_predPolyphen2_HDIV_score是PolyPhen 2分值，数值越大越可能“有害”，表明该SNP导致蛋白结构或功能改变的可能性大；Polyphen2_HDIV_pred是预测结果，取值为D或P或B（D: Probably damaging （>=0.957), P: Possibly damaging （0.453<=pp2_hdiv<=0.956); B: Benign （pp2_hdiv<=0.452))<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（49）LRT预测结果（dbNSFP)，表示该变异对蛋白序列的影响。逗号前后分别是LRT_score和LRT_predLRT_score是LRT分值，分值越小越可能“有害”，表明该SNP导致蛋白结构或功能改变的可能性大。LRT_pred是预测结果，取值为D、N或者U（D: Deleterious; N: Neutral; U: Unknown)<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（50）MutationTaster预测结果（dbNSFP)，表示该变异对蛋白序列的影响。逗号前后分别是MutationTaster_score和MutationTaster_predMutationTaster_score是MutationTaster分值，取值为0-1，分值越大，表示预测结果越可靠。MutationTaster_pred是预测结果，取值为A、D、N或者P。"A" （"Disease_causing_automatic"); "D" （"Disease_causing"); "N" （"Polymorphism"); "P" （"Polymorphism_automatic")。A和D都表示位点可能有害。<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（51）MutationAssessor预测结果（dbNSFP)，表示该变异对蛋白序列的影响。逗号前后分别是MutationAssessor_score和MutationAssessor_predMutationAssessor_score是MutationAssessor初始分值，越大越可能“有害”，表明该SNP导致蛋白结构或功能改变的可能性大。MutationAssessor_pred是H、M、L或N（H: High; M: Medium; L: Low; N: Neutral.)。H和M表示功能性的，L和N表示non-functional<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（52）FATHMM预测结果（dbNSFP)，表示该变异对蛋白序列的影响。逗号前后分别是FATHMM_score和FATHMM_predFATHMM_score是FATHMM初始分值，分值小于-1.5认为是Deleterious，分值越小越可能有害，表明该SNP导致蛋白结构或功能改变的可能性大。FATHMM_pred是D或T（D: Deleterious; T: Tolerated)<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（53）基于100只脊椎动物全基因组比对的phylop100way_vertebratephylop评分(dbNSFP)。一般来说，分数越高，位点越保守<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（54）基于30种哺乳动物全基因组比对的PhyloP评分(dbNSFP)<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（55）基于29个哺乳动物基因组全基因组比对的SiPhy评分 (dbNSFP)。分数越大，表明该位点越保守<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（56）CADD是一种对SNV和InDel的有害性进行打分的工具。它整合多种信息来注释变异位点的功能；不仅预测编码区变异（包括同义突变和非同义突变)的功能影响，还预测非编码区变异的功能影响。我们的注释结果中，有分值时，逗号前后分别是CADD和CADD_Phred；CADD列是初始分值，CADD_Phred是转换后的分值；CADD_Phred分值中，10表示score排名在前10%，20表示前1%，30表示前0.1%. 对于InDel，对全部有CADD分值的InDel给出分值，'.'表示没有CADD分值。对于SNP，仅对CADD分值排名在前10%的SNP给出分值，'.'表示CADD分值排名不在前10%。CADD作者建议SNP的有害性阈值为CADD_Phred分值>15，文章中通常用10或15；InDel没有建议值。<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（57）dbNSFP中的GERP++只包含coding variant的注释。为了注释所有变异位点的保守性，ANNOVAR整理了gerp++gt2，包含GERP++ 分值大于2的位点。越保守的位点发生变异，对于蛋白的影响越大。分值越高，位点越保守。通常，GERP++ 分值大于2的位点认为是保守位点，可能具有功能<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（58）是一种致病性似然分数，即孟德尔临床应用致病性（Mendelian Clinically Applicable Pathogenicity，MCAP)分数。MCAP用于分类的变量是基于现有致病性似然值结合对进化保守性和跨物种推断人类种群内频率的直接评估，MCAP作者建议的阈值分值大于0.025<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（59）是一种整合了多种软件预测分值，预测罕见错义突变致病性的方法。REVEL的分值范围为0-1，分值越大越有害，文献中作者取值分值为0.5时对应检测有害性突变的敏感性为0.754，特异性为0.891<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第60-66项为变异位点信息注释————此部分信息为变异位点的详细信息，包括变异位点的覆盖深度，突变前后碱基型和纯杂合信息等。变异位点的信息能在家系分析或者筛选中起到重要的作用。 <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（60）变异软件检测的变异位点信息<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（61）用“”分隔了若干个字段<br/>
+      
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GT：该位点基因型（Genotype），表示为由/或|分隔的等位基因值。参考等位基因(在Ori_REF字段中)的等位基因值为0，在Ori_ALT中列出的第一个等位基因为1，在Ori_ALT中列出的第二个等位基因为2，以此类推。0/0和1/1代表纯合子。0/1为杂合子。‘.’表示未检测到该位点基因型<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AD：列出的ref和alt等位基因的等位基因深度<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DP：该位点大致的测序深度（MQ=255或错配碱基被过滤掉）<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GQ：基因型质量PL：标准化基因型似然值（逗号分隔的三个值，依次对应0/0、0/1、1/1三种基因型，值越小越好)<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PL：标准化基因型似然值（逗号分隔的三个值，依次对应0/0、0/1、1/1三种基因型，值越小越好)<br/>
+      
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（62）与FORMAT列对应，‘’分隔的每一部分对应FORMAT‘’分隔的每一部分<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（63）该位点在VCF文件中REF列的值。对于InDel，VCF文件中REF的值可能跟本文件REF列的值不一致，因为使用ANNOVAR注释时，用bcftools norm对InDel位点进行了left-normalization，导致InDel注释结果文件中的REF和ALT比VCF文件中的REF、ALT短<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（64）该位点在VCF文件中ALT列的值，即该位点所有的突变碱基型。每个样本的GT中0、1、2、…等编号是依据Ori_REF和Ori_ALT这两列进行编号的，0表示跟Ori_REF相同，1表示Ori_ALT的第一种突变碱基型。本文件ALT列的值对应Ori_ALT列中的一个，但可能不一致，因为使用ANNOVAR注释时，用bcftools norm对InDel位点进行了left-normalization，导致InDel的ALT列的值比其在VCF文件中对应的ALT短<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（65）在当前位点处发生纯合突变的样本数目<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（66）在当前位点处发生杂合突变的样本数目<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第67-78项为基因功能及通路注释————对突变位点所在基因进行疾病相关数据库，通路及功能相关注释，能了解到该突变位点是否已知与某类型疾病相关，也能了解到该突变位点所在基因存在于哪些通路中，对了解该基因的生物学功能有重要意义<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（67）人类孟德尔遗传病数据库注释（Hamosh <i>et al.</i>, 2005），给出与变异位点所在基因相关的遗传疾病名称<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（68）该变异位点在以往的GWAS研究中，被哪篇文章报导与疾病相关联，并给出该位点在文章中的p-value。格式为分号分隔的pubmedID（p-value)<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（69） 人类基因突变数据库注释，给出该变异位点相关的疾病名称和在HGMD数据库中的ID。格式为Disease_name（HGMD中的ID号)<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（70） 给出该变异位点在人类基因突变数据库（HGMD)中收录的文献报道中的突变形式以及参考文献网址（注意注释的是这个位点的突变，没有完全按照一样的参考碱基型和突变碱基型注释，比如一个位点发生了SNP突变，但按照发生在这个位点的突变注释，可能注释上的为InDel突变)。以“|”分隔的几部分分别表示突变的密码子，氨基酸，CDS等信息。例如gCGC-TGC|Arg27Cys|c.79C>T|p.R27C 表示CGC 密码子第一个C突变成了T，第27位氨基酸由精氨酸变成半胱氨酸（p.R27C表示同样意思)，突变在CDS上第79位由C变成T。由于突变是密码子第一个碱基，在其左侧的碱基“G”也以小写字母体现。另外还有如IVS1 ds G-A +37|c.154+37G>A， IVS 表示内含子编号，“+” 表示下游，“-” 表示上游，"as" 表示 acceptor splice site，"ds" 表示 donor splice site；对于indel突变，如 TGCCCCC^408CCCccATGAATGGTC|c.1223_1224dupCC，突变本身以小写碱基表示，且会在两侧加上各10bp flanking碱基，以^开头的数字表示密码子的个数。突变的命名规则详情可参见<a href="http://www.hgvs.org/mutnomen/recs-DNA.html#number"  target=_blank>HGVS（HUMAN GENOME VARIATION SOCIETY)</a><br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（71）给出与该突变位点或基因相关的PubMed文献编号，来源于HGMD和OMIM数据库，通过在<a href="https://www.ncbi.nlm.nih.gov/pubmed/"  target=_blank>Pubmed</a>中输入编号可检索到编号对应的文献，PubMed编号以|分隔。在HGMD中有突变时（即HGMD_Disease_ID 列不为'.')，第一个PubMed编号一般为HGMD数据库中突变点所对应的参考文献编号，其他的参考文献按照发表时间排列，编号顺序越靠前表示越是最近发表的，因此同一个基因的第一个PubMed编号可能不同，这是因为HGMD对应的参考文献是对应到位点的，而同一基因在HGMD中的不同突变位点的参考文献并没有合并到一起，以便于区分同一基因已知不同突变位点的参考文献编号<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（72-74） Gene Ontology数据库注释（Harris <i>et al.</i>, 2004），GO是基因本体学注释，包括了基因的生物学过程（Biological Process，BP)，细胞组分（Cellular Component，CC)和分子功能（Molecular Function，MF)的注释。给出变异位点所在蛋白质或者基因参与的生物学通路名称<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（75）全基因组及代谢途径数据库注释（Kanehisa <i>et al.</i>, 2000），给出变异位点所在基因参与的代谢通路名称 <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（76）通路相互作用数据库注释，给出与变异位点所在蛋白相互作用的通路名称<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（77）BIOCARTA数据库注释，给出变异位点所在基因参与的分子通路名称<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（78）人类生物学反应及信号通路数据库注释，给出变异位点所在基因参与的信号通路名称<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 第79-83项为基因的组织特异性表达情况的注释————本部分展示Human Protein Atlas（HPA)数据库（Uhlén M, et al. Science, 2015)中记录的可编码蛋白的基因在正常人类的44个组织的蛋白表达情况和32个组织的RNA转录水平的检测结果，及HPA网站的相应可视化结果链接 <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（79）蛋白表达情况的概述，综合免疫组化结果、RNA结果、和亚细胞分布结果，描述基因在不同组织的表达分布情况和在亚细胞层面的表达分布情况<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（80）RNA组织表达情况概述，分为：(1) Tissue enriched：与任何其他组织相比，特定组织中的mRNA水平至少高出四倍 (2) Group enriched：与其他组织相比，组内的2-5种组织的平均mRNA水平至少高出4倍 (3) Tissue enhanced：与所有其他组织的平均水平相比，特定组织中的mRNA水平至少高出四倍 (4) Low tissue specificity：在各个组织中表达量低<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（81）组织中基因表达的可视化。所有表达量升高的基因被分类为：(1) Detected in single：在单个组织中检测 (2) Detected in some：多于一种但少于三分之一的组织中检测到 (3) Detected in many：在至少三分之一但不是全部组织中发现 (4) Detected in all：所有组织均检测到<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（82）基因的亚细胞分布位置，如“nucleus”,“ mitochondria”等<br/>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（83）基于HPA和GTEx的转录组学数据，总结了50个组织中每个基因的一致转录表达水平。“nTPM”（consensus normalized expression）值取两个数据源中每个基因的最大nTPM值。若“RNA tissue specificity”列为“Low tissue specificity”，此栏为空<br/>
+  </p>
+  
+
+  </div><br/>
+    <button onclick="hiddenQA(this)">显示Q&A</button>
+        <div class="comment">
+        <table style="font-size:12px;font-family: '黑体-简'">
+    <tr><td align="left" style="background-color:#036EB8;color:#FFFFFF">Q1：什么是InDel的杂合率？</td></tr>
+    <tr><td align="left" style="background-color:#f1f5fb;color:#3E3A39">A1：杂合InDel占InDel总数的比例，杂合InDel是指二倍体两个等位基因中只有一个发生了InDel突变。</td></tr>
+  </table>
+      </div>
+  
+  <p class="paragraph">结果目录：<a href="../../../result/Mutation/InDel" title="点击打开" target="_blank">03.Result_X202XXXXXX-Z01-F001_disease/result/Mutation/InDel</a></p>
+  </div>
+
+<br/>
+
+<!-- ---------------------------------- SV结果  ----------------------------------- -->
+<!-- ---------------------------------- SV结果  ----------------------------------- -->
+<div id="page">
+<p class="head"><a href="#home" title = "返回首页"></a><a name="SV检测结果"></a><hr /></p><br />
+  <h5 id="goto_result33">4.1.4.5 SV统计结果</h5>
+  <p class="paragraph">SV是structural variation (结构变异) 的缩写。结构变异指的是在基因组上一些大的结构性的变异，比如大片段丢失 (deletion) ，大片段插入 (insertion) , 大片段重复 (duplication) ，拷贝数变异 (copy number variants) ，倒位 (inversion) ，易位 (translocation) 。一般来说结构变异涉及的序列长度在1kb到3Mb之间。结构变异普遍存在于人类基因组中，是个人差异和一些疾病易感性的来源。在癌症中，癌细胞基因组和正常组织的基因组相比也存在着结构变异，一些差异已经被证实和癌症的发生有关。结构变异还可能导致融合基因的发生，一些癌症已经证实和结构变异导致的基因融合事件有关。我们采用Lumpy（Layer <i>et al.</i>,2014）对SV信息进行检测。</p>
+  <p class="center">
+  <p class="name_fig" style="font-size: 12px">表4.9　SV检测结果汇总</p>
+  <iframe style="text-align: center; width: 95%; height: 288.0px;margin: auto;" src="tables/germline_sv_feature_table.html"  frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+  <button onclick="hiddenShow(this)">显示注释</button>
+  <div class="comment">
+    
+    <ol style="font-size: 12px;font-family: '黑体-简';line-height: 20px">
+      <li>Sample：样本名称</li>
+      <li>CTX：(Inter-chromosomal translocations)发生染色体间易位的SV数目</li>
+      <li>DEL：(Deletion)发生删除的SV数目</li>
+      <li>DUP：(Duplicate)发生重复的SV数目</li>
+      <li>INV：(Inversions)发生倒位的SV数目</li>
+      <li>ITX：(Intra-chromosomal translocations)发生染色体内易位的SV数目</li>
+    </ol>
+    
+  </div><br/><br/>
+  <p class="center">
+  <iframe id="somatic_sv_bar_iframe" style="width:800px; height: 400px; text-align: center; margin: auto;" src="htmls/germline_sv_bar.html"  frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+  <p class="name_fig" style="font-size: 12px">图4.12　不同类型的SV统计分布图</p>
+  <p class="premark">图中横坐标表示样本，纵坐标为不同类型的SV数目</p>
+  <p class="premark">&nbsp </p>
+  </p>
+
+  <h5 id="goto_result35">4.1.4.6 SV注释结果</h5>
+  
+  <p class="paragraph"> 利用ANNOVAR软件对结构变异进行注释，注释信息包括4个部分，分别为基因及区域注释，数据库注释，Encode注释，结构变异信息等。具体的注释内容展示如表4.10。 </p>
+  <p class="center">
+  <p class="name_fig" style="font-size: 12px">表4.10　SV注释结果展示（只显示前1行）</p>
+  <div id="tb">
+    <table class="gy">    
+    
+    <tr class="tb1"><th class="tb1">Chr<sup>1</sup></td><th class="tb1">Start<sup>2</sup></td><th class="tb1">End<sup>3</sup></td><th class="tb1">GeneName<sup>4</sup></td><th class="tb1">Func<sup>5</sup></td><th class="tb1">Gene<sup>6</sup></td><th class="tb1">GeneDetail<sup>7</sup></td><th class="tb1">Gencode<sup>8</sup></td><th class="tb1">cpgIslandExt<sup>9</sup></td><th class="tb1">cytoBand<sup>10</sup></td><th class="tb1">wgRna<sup>11</sup></td><th class="tb1">targetScanS<sup>12</sup></td><th class="tb1">phastConsElements100way<sup>13</sup></td><th class="tb1">tfbsConsSites<sup>14</sup></td><th class="tb1">genomicSuperDups<sup>15</sup></td><th class="tb1">Repeat<sup>16</sup></td><th class="tb1">dgvMerged<sup>17</sup></td><th class="tb1">gwasCatalog<sup>18</sup></td><th class="tb1">encodeGm12878<sup>19</sup></td><th class="tb1">encodeH1hesc<sup>20</sup></td><th class="tb1">encodeHelas3<sup>21</sup></td><th class="tb1">encodeHepg2<sup>22</sup></td><th class="tb1">encodeHuvec<sup>23</sup></td><th class="tb1">encodeK562<sup>24</sup></td><th class="tb1">TCHR1<sup>25</sup></td><th class="tb1">TPOS1<sup>26</sup></td><th class="tb1">TCHR2<sup>27</sup></td><th class="tb1">TPOS2<sup>28</sup></td><th class="tb1">SVID<sup>29</sup></td><th class="tb1">SVType<sup>30</sup></td><th class="tb1">SU<sup>31</sup></td><th class="tb1">PE<sup>32</sup></td><th class="tb1">SR<sup>33</sup></td></tr>
+    
+    <tr class="tb1"><td class="tb1">1</td><td class="tb1">1142719</td><td class="tb1">1142719</td><td class="tb1">.</td><td class="tb1">upstream</td><td class="tb1">NM_004195;NM_148901;NM_148902</td><td class="tb1">dist=747</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">1p36.33</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">nsv517709,dgv9n106,esv3566647,nsv1069687,nsv469848,esv9332,nsv950452,esv2673981,dgv2n67,nsv544956,nsv482937,nsv544960,nsv1160644,nsv1003578,esv3584990,nsv428334,nsv544963,nsv1160772,dgv24n54,nsv544947,nsv470680,nsv10161</td><td class="tb1">.</td><td class="tb1">EnhW</td><td class="tb1">CtcfO</td><td class="tb1">DnaseD</td><td class="tb1">ReprD</td><td class="tb1">ReprD</td><td class="tb1">EnhW</td><td class="tb1">1</td><td class="tb1">1142719</td><td class="tb1">1</td><td class="tb1">1143140</td><td class="tb1">1</td><td class="tb1">breakpoint</td><td class="tb1">15</td><td class="tb1">5</td><td class="tb1">10</td></tr>
+    
+    </table>
+  </div>
+  </p>
+  
+  <button onclick="hiddenShow(this)">显示注释</button>
+  <div class="comment">
+    <p class="paragraph" style="font-size: 12px;font-family: '黑体-简';line-height: 20px">注：注释信息包括6个部分，分别为基因及区域注释，数据库注释，Encode注释，结构变异信息,良性与恶性数据库注释。<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第1-16项为基因及区域注释————变异位点所处的基因（对应的氨基酸）可能直接与疾病相关。对变异位点进行已知基因结构及所处区域注释，有助于老师了解此变异位点对应的基因结构及所处区域信息。<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（1）染色体<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（2）SV的起始位置<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（3）SV的终止位置<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（4）基因名称注释，列出该SV相关的基因<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（5）对SV所在的区域进行注释（exonic, splicing, UTR5, UTR3, intronic, ncRNA_exonic, ncRNA_intronic, ncRNA_UTR3, ncRNA_UTR5, ncRNA _splicing, upstream, downstream, intergenic）<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（6）列出该SV相关的转录本ID<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（7）描述UTR、splicing、ncRNA_splicing或intergenic区域的变异情况。当Func列的值为exonic、ncRNA_exonic、intronic、ncRNA_intronic、upstream、downstream、upstream;downstream、ncRNA_UTR3、ncRNA_UTR5时，该列为空；当Func列的值为intergenic时，该列格式为dist=1366;dist=22344，表示该SV距离两侧基因的距离<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（8）Gencode注释的基因名称<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（9）CpG岛预测结果，注释结果为CpG岛名称，如CpG: 116（116是该CpG岛中CG二核苷酸的数目），CpG岛是指在基因组的某些区段，CpG保持或高于正常概率，与甲基化修饰及基因表达调控相关<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（10）该SV所处的染色体区段（利用Giemas染色观察得到的）。如果变异位点跨过多个区段，用短横线连接<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（11）基于miRBase和snoRNABase，对变异位点相关的microRNA和snoRNA进行注释，给出microRNA和snoRNA的基因名称<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（12）UCSC提供TargetScanS注释数据库，库中包含在3’UTR中保守的microRNA结合位点，来源于TargetScanHuman 5.1的预测结果；该软件预测microRNA的靶点，预测结果依据microRNA与靶点之间结合的效能进行排序，排名越靠前，说明microRNA与其靶点的结合越可能是实际存在的事件。此项给出microRNA靶点的信息，一是score，是该靶点的分值，反映的是结合效能的排名，因此，score越大，说明排名越靠后，实际发生该结合的可能性越小，作者没有推荐阈值；二是Name，是作用于该靶点的microRNA名称。例如，Score=62;Name=KRAS:miR-181:1，表示该靶点的分值是62，其位于KRAS基因的3’UTR中，受到该变异位点影响的microRNA是miR-181:1。表示该变异位点位于microRNA（miR-181:1）在基因KRAS的3’UTR上的结合位点<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（13）给出该变异位点是否位于保守区域中；如果在保守区域中，给出该区域的分值。保守区域是由 phastCons 程序基于脊椎动物全基因组比对预测得到的，100way是指使用的物种数目为 100 个。有两个值，一是 score，是该保守区域的分值（transformed log-odds scores），取值为 0-1000；二是 name，是 ANNOVAR 给该保守区域的名称<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（14）基于transfac矩阵数据库(v7.0)，得到在人/小鼠/大鼠比对中保守的转录因子结合位点。给出的是该变异位点所在的保守转录因子结合位点的位置和分值，即Name和Score。Name是结合位点处的motif名称，这些motif能够被转录因子识别，例如V$CDPCR3_01，利用一些在线服务器（如MSigDB）能够查询这个motif能够被哪些转录因子识别；Score是该结合位点的保守分值<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（15）检测该变异位点是否位于重复片段（segmental duplication）中。重复区域中检测到的遗传变异大多数是由于序列比对错误造成的，所以被注释到segmental duplications的变异需要谨慎对待，很可能是假阳性位点。给出两个值，一是Name，表示基因组中与该变异位点所在区域相似的片段的位置；二是Score，表示两个相似片段的序列一致性。例如，Score=0.994828;Name=chr19:60000，表示chr19:60000所在片段跟该变异位点所在片段相似，序列一致性为0.994828，范围0~1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（16）重复序列注释信息，重复序列来源于RepeatMasker注释。例如， Score=180;Name="1385:(CACCC)n(Simple_repeat)"。Score表示该repeat的分值；Name由两部分构成，一部分(CACCC)n是repeat的名称，另一部分Simple是repeat的类别。只要有注释信息，就表明该变异位于散在重复序列或低复杂度序列中；这些区域容易出现比对错误，所以该区域的变异位点可靠性不高<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第17-18项为数据库注释————对发现的结构变异进行数据库注释，方便查询此变异是否已知或者与疾病相关。<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（17）将变异位点与基因组变异数据库(Database of Genomic Variants，简称DGV)中的SV进行比较，输出该变异位点处已经被报导的SV<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（18）检测SV是否在以往的GWAS研究中被报导，表示该变异位点与哪些疾病相关联，“.”表示没有GWAS报导<br/>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第19-24项为ENCODE注释————基于ENCODE的基因组中区域的功能注释，突出基因组上的可能功能元件。<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（19）SV所在基因组中区域的功能注释。利用ChromHMM程序整合ENCODE中Gm12878细胞系的ChIP-seq、DNase-seq、FAIRE-seq数据，根据可能的功能（共25种功能，如Tss、TssF等），将Gm12878细胞的基因组进行分区。然后对这些功能分组，突出基因组上可能的功能元件。（该列取值与其代表的功能元件之间的对应关系为：Tss, TssF——Active Promoter；PromF——Promoter Flanking；PromP——Inactive Promoter；Enh, EnhF——Candidate Strong enhancer；EnhWF, EnhW, DNaseU, DNaseD, FaireW——Candidate Weak enhancer/DNase；CtrcfO, Ctcf——Distal CTCF/Candidate Insulator；Gen5', Elon, ElonW, Gen3', Pol2, H4K20——Transcription associated；Low——Low activity proximal to active states；ReprD, Repr, ReprW——Polycob repressed；Quies, Art——Heterochromatin/Repetitive/Copy Number Variation）<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（20）SV所在基因组中区域的功能注释。同上，只是细胞系为H1-hESC<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（21）SV所在基因组中区域的功能注释。同上，只是细胞系为HeLa-S3<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（22）SV所在基因组中区域的功能注释。同上，只是细胞系为HepG2<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（23）SV所在基因组中区域的功能注释。同上，只是细胞系为HUVEC<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（24）SV所在基因组中区域的功能注释。同上，只是细胞系为K562<br/>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第25-33项为结构变异信息注释————此部分信息为结构变异的详细信息，包括变异的类型，覆盖深度等。<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（25）第一个断点所在的染色体<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（26）第一个断点所在染色体的坐标<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（27）第二个断点所在的染色体<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（28）第二个断点所在的染色体的坐标<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（29）SV 的 ID 号<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（30）SV 的类型<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Breakpoint：SV的断点<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CTX：(Inter-chromosomal translocations)染色体间易位<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ITX：(Intra-chromosomal translocations)染色体内易位<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DEL：(Deletion)删除<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DUP：(Duplicate)重复<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INV：(Inversions)倒位<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（31）支持该变异的所有 reads 数<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（32）支持该变异的 pair-end reads 数<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（33）支持该变异的 split reads 数<br/>
+
+</p>
+    </div>
+    
+    <p class="paragraph">结果目录：<a href="../../../result/Mutation/SV" title="点击打开" target="_blank">03.Result_X202XXXXXX-Z01-F001_disease/result/Mutation/SV</a></p>
+</div>
+
+
+<!-- --------------------------------------- CNV结果  ------------------------------------------------- -->
+<!-- --------------------------------------- CNV结果  ------------------------------------------------- -->
+<div id="page">
+<p class="head"><a href="#home" title = "返回首页"></a><hr /></p><br />
+  <h5 id="goto_result34">4.1.4.7 CNV统计结果</h5>
+  <p class="paragraph">CNV是copy number variation (拷贝数变异) 的缩写。拷贝数变异指的是基因组上大片段序列拷贝数的增加或者减少，可分为缺失 (deletion) 和重复(duplication)两种类型，是一种重要的分子机制。异常的拷贝数变化会成为某些疾病的重要起因，因此对于染色体水平的缺失、扩增的研究已经成为许多疾病研究的热点。我们采用control-FREEC (Boeva <i>et al.</i>, 2012；Krumm <i>et al.</i>, 2012)对CNV信息进行检测。</p>
+  <p class="center">
+  <p class="name_fig" style="font-size: 12px">表4.11　CNV检测结果汇总</p>
+  <div id="tb">
+    <table class="gy">
+      <tr class="tb1"><th class="tb1">Sample</th><th class="tb1">gain_count</th><th class="tb1">gain_size</th><th class="tb1">loss_count</th><th class="tb1">loss_size</th><th class="tb1">total_count</th><th class="tb1">total_size</th></tr>
+      
+        
+        <tr class="tb1"><td class="tb1">tian</td><td class="tb1">121</td><td class="tb1">5186121</td><td class="tb1">159</td><td class="tb1">1730159</td><td class="tb1">280</td><td class="tb1">6916280</td></tr>
+        
+      
+        
+        <tr class="tb1"><td class="tb1">tianshu</td><td class="tb1">122</td><td class="tb1">5716122</td><td class="tb1">157</td><td class="tb1">1599157</td><td class="tb1">279</td><td class="tb1">7315279</td></tr>
+        
+      
+        
+        <tr class="tb1"><td class="tb1">songshu</td><td class="tb1">123</td><td class="tb1">3101123</td><td class="tb1">170</td><td class="tb1">1915170</td><td class="tb1">293</td><td class="tb1">5016293</td></tr>
+        
+      
+        
+        <tr class="tb1"><td class="tb1">tianzi</td><td class="tb1">135</td><td class="tb1">3766135</td><td class="tb1">161</td><td class="tb1">2325161</td><td class="tb1">296</td><td class="tb1">6091296</td></tr>
+        
+      
+    </table>
+  </div>
+  </p>
+  <button onclick="hiddenShow(this)">显示注释</button>
+  <div class="comment">
+    <ol style="font-size: 12px;font-family: '黑体-简';line-height: 20px">
+      <li>Sample：样本名称</li>
+      <li>gain_count：CNV类型为gain的数目</li>
+      <li>gain_size：CNV类型为gain的区域大小</li>
+      <li>loss_count：CNV类型为loss的数目</li>
+      <li>loss_size：CNV类型为loss的区域大小</li>
+      <li>total_count：总的CNV数目</li>
+      <li>total_size：总的CNV的区域大小</li>
+    </ol>
+  </div><br/><br/>
+  
+  <div style="text-align: center;">
+    <img src="pictures/conifer/tianzi.Chr_CNV.png" style="height: 400px;" id="conifer_cnv_plot">
+  </div>
+  
+  <form style="text-align: center;">
+    <label id='lblSelect'>
+    <select id="selectPointOfInterest" style="margin: 0; padding: 1%" onchange="coniferByChr(this.options[this.options.selectedIndex].innerHTML);">
+    
+    <option>tian</option>
+    
+    <option>tianshu</option>
+    
+    <option>songshu</option>
+    
+    <option>tianzi</option>
+    
+    </select>
+    </label>&nbsp;&nbsp;
+    <button type="button" id="pageUp" class="button button-normal button-border button-circle">
+    <i class="icon-circle-arrow-up"></i>
+    </button>
+    <button type="button" id="pageDown" class="button button-normal button-border button-circle">
+    <i class="icon-circle-arrow-down"></i>
+    </button>
+  </form>
+      <p class="center">
+      <p class="name_fig" style="font-size: 12px">图4.13　CNV检测结果统计图，单位Mb</p>
+      <p class="premark" style="font-size: 12px">图中横坐标表示各个染色体上的区域位置，纵坐标为染色体</p>
+      <p class="premark">&nbsp;</p>
+  <script type="text/javascript">
+    function coniferByChr(title) {
+      dd = document.getElementById("conifer_cnv_plot")
+      dd.src = "pictures/conifer/"+title+".Chr_CNV.png"
+      return 0
+    }
+    $(function() {
+        $("#pageUp").click(function(){
+            let downNode = this.nextElementSibling;
+            let selectNode = this.parentNode.firstElementChild.firstElementChild;
+            if (selectNode.selectedIndex == 0){
+                this.style.visibility = 'hidden';
+            }else{
+                selectNode.selectedIndex = selectNode.selectedIndex - 1;
+                coniferByChr(selectNode.options[selectNode.selectedIndex].innerHTML);
+                downNode.style.visibility = 'visible';
+            };
+        });
+        $("#pageDown").click(function(){
+            let upNode = this.previousElementSibling;
+            let selectNode = this.parentNode.firstElementChild.firstElementChild;
+            if ( selectNode.selectedIndex == selectNode.options.length - 1){
+                this.style.visibility = 'hidden';
+            }else{
+                selectNode.selectedIndex = selectNode.selectedIndex + 1;
+                coniferByChr(selectNode.options[selectNode.selectedIndex].innerHTML);
+                upNode.style.visibility = 'visible';
+            }
+        });
+        $("#selectPointOfInterest").change(function(){
+            let upNode = this.parentNode.nextElementSibling;
+            let downNode = upNode.nextElementSibling;
+            upNode.style.visibility = 'visible';
+            downNode.style.visibility = 'visible';
+        });
+    });
+  </script>
+
+  <h5 id="goto_result35">4.1.4.8 CNV注释结果</h5>
+  
+  <p class="paragraph"> 利用ANNOVAR软件对拷贝数变异进行注释，注释信息包括4个部分，分别为基因及区域注释，数据库注释，ENCODE注释，结构变异信息等。具体的注释内容展示如表4.12。 </p>
+  <p class="center">
+  <p class="name_fig" style="font-size: 12px">表4.12　CNV注释结果展示（只显示前1行）</p>
+  <div id="tb">
+    <table class="gy">
+    
+    <tr class="tb1"><th class="tb1">Chr<sup>1</sup></td><th class="tb1">Start<sup>2</sup></td><th class="tb1">End<sup>3</sup></td><th class="tb1">GeneName<sup>4</sup></td><th class="tb1">Func<sup>5</sup></td><th class="tb1">Gene<sup>6</sup></td><th class="tb1">GeneDetail<sup>7</sup></td><th class="tb1">Gencode<sup>8</sup></td><th class="tb1">cpgIslandExt<sup>9</sup></td><th class="tb1">cytoBand<sup>10</sup></td><th class="tb1">wgRna<sup>11</sup></td><th class="tb1">targetScanS<sup>12</sup></td><th class="tb1">phastConsElements100way<sup>13</sup></td><th class="tb1">tfbsConsSites<sup>14</sup></td><th class="tb1">genomicSuperDups<sup>15</sup></td><th class="tb1">Repeat<sup>16</sup></td><th class="tb1">dgvMerged<sup>17</sup></td><th class="tb1">gwasCatalog<sup>18</sup></td><th class="tb1">encodeGm12878<sup>19</sup></td><th class="tb1">encodeH1hesc<sup>20</sup></td><th class="tb1">encodeHelas3<sup>21</sup></td><th class="tb1">encodeHepg2<sup>22</sup></td><th class="tb1">encodeHuvec<sup>23</sup></td><th class="tb1">encodeK562<sup>24</sup></td><th class="tb1">CopyNumber<sup>25</sup></td><th class="tb1">Size<sup>26</sup></td><th class="tb1">CNVType<sup>27</sup></td></tr>
+    
+    <tr class="tb1"><td class="tb1">1</td><td class="tb1">4123000</td><td class="tb1">4127000</td><td class="tb1">.</td><td class="tb1">intergenic</td><td class="tb1">NR_040065;NR_027088</td><td class="tb1">dist=110357;dist=345111</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">1p36.32</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">.</td><td class="tb1">Score=810;Name="5580:(CTCA)n(Simple_repeat)","5579:(CTCA)n(Simple_repeat)"</td><td class="tb1">nsv1120185,nsv1153626,esv3893656,esv5764,dgv7e199,nsv545134,dgv3e214,esv2674556,nsv545133,nsv545132,dgv28e59,nsv1125452,esv3893767,nsv1144342,nsv1012423,dgv57n54,nsv460283,nsv1118427,esv3585042,esv21720,nsv520675,nsv1145310,nsv545130,nsv511674,nsv1077281,esv5203,nsv952035,esv1280652</td><td class="tb1">Multiplesystematrophy</td><td class="tb1">Quies</td><td class="tb1">DnaseD,Low</td><td class="tb1">DnaseD,H4K20,Low</td><td class="tb1">DnaseD,EnhWF,ReprW</td><td class="tb1">FaireW,Quies,Low</td><td class="tb1">Elon,ReprW,Low,Repr</td><td class="tb1">0</td><td class="tb1">4000</td><td class="tb1">loss</td></tr>
+    
+    </table>
+  </div>
+  </p>
+
+  <button onclick="hiddenShow(this)">显示注释</button>
+  <div class="comment">
+    <p class="paragraph" style="font-size: 12px;font-family: '黑体-简';line-height: 20px">第1-16项为基因及区域注释————变异位点所处的基因（对应的氨基酸）可能直接与疾病相关。对变异位点进行已知基因结构及所处区域注释，有助于老师了解此变异位点对应的基因结构及所处区域信息。<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（1）染色体<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（2）CNV的起始位置<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（3）CNV的终止位置<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（4）基因名称注释，列出该SV相关的基因<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（5）对CNV所在的区域进行注释（exonic, splicing, UTR5, UTR3, intronic, ncRNA_exonic, ncRNA_intronic, ncRNA_UTR3, ncRNA_UTR5, ncRNA _splicing, upstream, downstream, intergenic）<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（6）列出该CNV相关的转录本ID<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（7）描述UTR、splicing、ncRNA_splicing或intergenic区域的变异情况。当Func列的值为exonic、ncRNA_exonic、intronic、ncRNA_intronic、upstream、downstream、upstream;downstream、ncRNA_UTR3、ncRNA_UTR5时，该列为空；当Func列的值为intergenic时，该列格式为dist=1366;dist=22344，表示该CNV距离两侧基因的距离<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（8）Gencode注释的基因名称<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（9）CpG岛预测结果，注释结果为CpG岛名称，如CpG: 116（116是该CpG岛中CG二核苷酸的数目），CpG岛是指在基因组的某些区段，CpG保持或高于正常概率，与甲基化修饰及基因表达调控相关<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（10）该CNV所处的染色体区段（利用Giemas染色观察得到的）。如果变异位点跨过多个区段，用短横线连接<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（11）基于miRBase和snoRNABase，对变异位点相关的microRNA和snoRNA进行注释，给出microRNA和snoRNA的基因名称<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（12）UCSC（Kent <i>et al.</i>, 2002）提供TargetScanS注释数据库，库中包含在3’UTR中保守的microRNA结合位点，来源于TargetScanHuman 5.1的预测结果；该软件预测microRNA的靶点，预测结果依据microRNA与靶点之间结合的效能进行排序，排名越靠前，说明microRNA与其靶点的结合越可能是实际存在的事件。此项给出microRNA靶点的信息，一是score，是该靶点的分值，反映的是结合效能的排名，因此，score越大，说明排名越靠后，实际发生该结合的可能性越小，作者没有推荐阈值；二是Name，是作用于该靶点的microRNA名称。例如，Score=62;Name=KRAS:miR-181:1，表示该靶点的分值是62，其位于KRAS基因的3’UTR中，受到该变异位点影响的microRNA是miR-181:1。表示该变异位点位于microRNA（miR-181:1）在基因KRAS的3’UTR上的结合位点<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（13）给出该变异位点是否位于保守区域中；如果在保守区域中，给出该区域的分值。保守区域是由phastCons程序基于脊椎动物全基因组比对预测得到的，100way是指使用的物种数目为100个。有两个值，一是score，是该保守区域的分值（transformed log-odds scores），取值为0-1000；二是name，是ANNOVAR给该保守区域的名称<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（14）基于transfac矩阵数据库(v7.0)，得到在人/小鼠/大鼠比对中保守的转录因子结合位点。给出的是该变异位点所在的保守转录因子结合位点的位置和分值，即Name和Score。Name是结合位点处的motif名称，这些motif能够被转录因子识别，例如V$CDPCR3_01，利用一些在线服务器（如MSigDB）能够查询这个motif能够被哪些转录因子识别；Score是该结合位点的保守分值<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（15）检测该变异位点是否位于重复片段（segmental duplication）中。重复区域中检测到的遗传变异大多数是由于序列比对错误造成的，所以被注释到segmental duplications的变异需要谨慎对待，很可能是假阳性位点。给出两个值，一是Name，表示基因组中与该变异位点所在区域相似的片段的位置；二是Score，表示两个相似片段的序列一致性。例如，Score=0.994828;Name=chr19:60000，表示chr19:60000所在片段跟该变异位点所在片段相似，序列一致性为0.994828，范围0~1<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（16）重复序列注释信息，重复序列来源于RepeatMasker注释。例如， Score=180;Name="1385:(CACCC)n(Simple_repeat)"。Score表示该repeat的分值；Name由两部分构成，一部分(CACCC)n是repeat的名称，另一部分Simple是repeat的类别。只要有注释信息，就表明该变异位于散在重复序列或低复杂度序列中；这些区域容易出现比对错误，所以该区域的变异位点可靠性>不高<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第17-18项为数据库注释————对发现的结构变异进行数据库注释，方便查询此变异是否已知或者与疾病相关。<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（17）将变异位点与基因组变异数据库(Database of Genomic Variants，简称DGV)中的CNV进行比较，输出该变异位点处已经被报导的SV<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（18）检测CNV是否在以往的GWAS研究中被报导，表示该变异位点与哪些疾病相关联，“.”表示没有GWAS报导<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第19-24项为ENCODE注释————基于ENCODE的基因组中区域的功能注释，突出基因组上的可能功能原件。<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（19）CNV所在基因组中区域的功能注释。利用ChromHMM程序整合ENCODE中Gm12878细胞系的ChIP-seq、DNase-seq、FAIRE-seq数据，根据可能的功能（共25种功能，如Tss、TssF等），将Gm12878细胞的基因组进行分区。然后对这些功能分组，突出基因组上可能的功能元件。（该列取值与其代表的功能元件之间的对应关系为：Tss, TssF——Active Promoter；PromF——Promoter Flanking；PromP——Inactive Promoter；Enh, EnhF——Candidate Strong enhancer；EnhWF, EnhW, DNaseU, DNaseD, FaireW——Candidate Weak enhancer/DNase；CtrcfO, Ctcf——Distal CTCF/Candidate Insulator；Gen5', Elon, ElonW, Gen3', Pol2, H4K20——Transcription associated；Low——Low activity proximal to active states；ReprD, Repr, ReprW——Polycob repressed；Quies, Art——Heterochromatin/Repetitive/Copy Number Variation）<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（20）CNV所在基因组中区域的功能注释。同上，只是细胞系为H1-hESC<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（21）CNV所在基因组中区域的功能注释。同上，只是细胞系为HeLa-S3<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（22）CNV所在基因组中区域的功能注释。同上，只是细胞系为HepG2<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（23）CNV所在基因组中区域的功能注释。同上，只是细胞系为HUVEC<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（24）CNV所在基因组中区域的功能注释。同上，只是细胞系为K562<br/>
+    
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第25-27项为拷贝数变异信息注释————此部分信息为拷贝数变异的详细信息，包括变异的类型，覆盖深度等。<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（25）CopyNumber：拷贝数个数<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（26）Size：发生CNV的区域的大小<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（27）CNVType：CNV的类型<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;loss：拷贝数减少（Deletion）<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gain：拷贝数增加（Duplication）<br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;breakpoint：CNV的断点<br/>
+    
+</p>
+  </div>
+  
+  <p class="paragraph">结果目录：<a href="../../../result/Mutation/CNV" title="点击打开" target="_blank">03.Result_X202XXXXXX-Z01-F001_disease/result/Mutation/CNV</a></p>
+</div>
+
+
+
+<!-- ------------------------------------------- Circos ------------------------------------------------- -->
+<!-- ------------------------------------------- Circos ------------------------------------------------- -->
+<div id="page">
+<p class="head"><a href="#home" title = "返回首页"></a><a name="Circos图"></a><hr /></p><br />
+  <h5 id="goto_resultadv10">4.1.4.9 基因组变异Circos展示</a></h5>
+  <p class="paragraph">基于全基因组数据分析结果，我们对基因组序列相关数据进行了Circos展示。</p>
+
+  <div style="text-align: center;">
+    <img src="pictures/circos/tianzi.circos.png" style="height: 400px;" id="Circos_plot">
+  </div>
+
+  <form style="text-align: center;">
+    <label id='lblSelect'>
+    <select id="selectPointOfCircos" style="margin: 0; padding: 1%" onchange="circosPlot(this.options[this.options.selectedIndex].innerHTML);">
+    
+    <option>tian</option>
+    
+    <option>tianshu</option>
+    
+    <option>songshu</option>
+    
+    <option>tianzi</option>
+    
+    </select>
+    </label>&nbsp;&nbsp;
+    <button type="button" id="pageUpCircos" class="button button-normal button-border button-circle">
+    <i class="icon-circle-arrow-up"></i>
+    </button>
+    <button type="button" id="pageDownCircos" class="button button-normal button-border button-circle">
+    <i class="icon-circle-arrow-down"></i>
+    </button>
+  </form>
+    <p class="name_fig" style="font-size: 12px">图4.14 Circos展示图</p>
+      <button onclick="hiddenShow(this)">显示注释</button>
+      <div class="comment">
+       <ul style="font-size: 12px;font-family: '黑体-简';line-height: 20px">
+         <li>注：有CNV分析的时候才会做Circos图。该Circos图由外到内，共7环</li>
+         <li>第1环，是染色体信息，数字为染色体号，对应的染色体长度和核型</li>
+         <li>第2环，测序覆盖度图（蓝色），每 0.5Mbp 为一个单位，计算其平均覆盖度</li>
+         <li>第3环，黑色圆点表示 InDel 的密度，高低表示密度大小，以每 1Mbp为一个单位。计算方式 ：1M bp 范围内的 indel数目 /1 Mbp</li>
+         <li>第4环，绿色圆点表示SNP的密度，高低表示大小，以每1Mbp为一个单位。计算方式 ：1M bp 范围内的 snp数目 /1 Mbp</li>
+         <li>第5环，以每1Mbp为一个单位，计算其内的纯合 SNP（橙色）和杂合SNP（灰色）的比例</li>
+         <li>第6环，Control-FREEC分析结果，红色为CNV扩增，绿色为CNV缺失</li>
+         
+         <li>第7环，由于结果较多 ，只显示外显子和剪切位点区域上的SV 数据，其中染色体间易位CTX（橙色 ）、重复DUP（绿色）、删除DEL（灰色 ）、染色体内易位ITX（粉红色）和倒位 INV（蓝色 ）</li>
+         
+       </ul>
+      </div>
+  <p class="paragraph">结果目录：<a href="../../../result/Mutation/Circos" title="点击打开" target="_blank">03.Result_X202XXXXXX-Z01-F001_disease/result/Mutation/Circos</a></p>
+  <script type="text/javascript">
+    function circosPlot(title) {
+      dd = document.getElementById("Circos_plot")
+      dd.src = "pictures/circos/"+title+".circos.png"
+      return 0
+    }
+    $(function() {
+        $("#pageUpCircos").click(function(){
+            let downNode = this.nextElementSibling;
+            let selectNode = this.parentNode.firstElementChild.firstElementChild;
+            if (selectNode.selectedIndex == 0){
+                this.style.visibility = 'hidden';
+            }else{
+                selectNode.selectedIndex = selectNode.selectedIndex - 1;
+                circosPlot(selectNode.options[selectNode.selectedIndex].innerHTML);
+                downNode.style.visibility = 'visible';
+            };
+        });
+        $("#pageDownCircos").click(function(){
+            let upNode = this.previousElementSibling;
+            let selectNode = this.parentNode.firstElementChild.firstElementChild;
+            if ( selectNode.selectedIndex == selectNode.options.length - 1){
+                this.style.visibility = 'hidden';
+            }else{
+                selectNode.selectedIndex = selectNode.selectedIndex + 1;
+                circosPlot(selectNode.options[selectNode.selectedIndex].innerHTML);
+                upNode.style.visibility = 'visible';
+            }
+        });
+        $("#selectPointOfCircos").change(function(){
+            let upNode = this.parentNode.nextElementSibling;
+            let downNode = upNode.nextElementSibling;
+            upNode.style.visibility = 'visible';
+            downNode.style.visibility = 'visible';
+        });
+    });
+  </script>
+</div>
+
+
+
+
+<p class="paragraph">分析点解读视频：<a href="https://magic.novogene.com/customer/main#/video-info-new/9e4d2640eede71ed806b0764a0fd0102?rId=23">https://magic.novogene.com/customer/main#/video-info-new/9e4d2640eede71ed806b0764a0fd0102?rId=23</a></p>
+
+
+
+<!-- 添加 1 -->
+
+        
+        
+        
+        
+            
+                
+                
+                
+                    
+                    
+                    
+                    
+                    <!------------------------------------------------------------------ Pathway-------------------------------------------------------------------- -->
+                        
+
+
+                        <!--------------------------------------------------------------- phenolyzer ------------------------------------------------------------------------------>
+                        
+
+
+                        <!------------------------------------------------------------- Genemania protein-protein interaction  -------------------------------------------------------->
+                        
+                            <!------------------------------------------------------------- Asso_site-------------------------------------------------------->
+                            
+                                <!-- 关联分析图 -->
+                                
+                                <!-------------------------------------------------------------GeneAs-------------------------------------------------->
+                                
+                                        
+                                        <!----------------------------------------------------------------------------------------------------------------------------------------->
+                                        <!-----------------------------------------------------------------------个性化分析------------------------------------------------------------------>
+                                        
+                                        <!-----------------------------------------------------------------------个性化分析------------------------------------------------------------------>
+                                            
+</div>
+</div>
+<!-- 添加 2 -->
+
+<!-- ----------------------------------- 软件列表 -------------------------------------------- -->
+<div id="page">
+  <p class="head">
+    <a href="#home" title = "返回首页"></a>
+    <a name="软件列表"></a><hr />
+  </p><br />
+  <h2 id="goto_soft">5 附录</h2>
+  <h3 id="goto_soft_list">5.1 分析软件列表</h3>
+  <p class="center">
+  <p class="name_fig" style="font-size: 12px">表5.1 全基因组测序分析软件列表</p>
+  <div id="tb">
+  <table class="gy">
+  <tr class="tb3"><th class="tb3">分析内容</th><th class="tb3">软件</th><th class="tb3">版本</th><th class="tb3">参数</th><th class="tb3">备注</th></tr>
+  
+  <tr class="tb3"><td class="tb3" rowspan=1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;质控</td><td class="tb3">fastp</td><td class="tb3">0.23.1</td><td class="tb3">-n 15 -q 5 -u 50 -l 150</td><td class="tb3">对原始下机数据进行质控，获得高质量的数据进行后续分析</td></tr>
+  
+  <tr class="tb3"><td class="tb3" rowspan=2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;比对</td><td class="tb3">BWA</td><td class="tb3">0.7.17</td><td class="tb3">-t 5 -M</td><td class="tb3">测序结果与参考基因组进行比对，得到bam结果</td></tr>
+  
+  <tr class="tb3"><td class="tb3">Sambamba</td><td class="tb3">v0.6.8</td><td class="tb3">-t 4</td><td class="tb3">标记重复read</td></tr>
+  
+  
+  <tr class="tb3"><td class="tb3">&nbsp;&nbsp;SNP/InDel检测</td><td class="tb3">bcftools</td><td class="tb3">v1.16</td><td class="tb3">mpileup -q 1 -C 50 -m 2 -F 0.002 -L 9999</td><td class="tb3">检测、过滤SNP及InDel变异</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  <tr class="tb3"><td class="tb3">&nbsp;&nbsp;CNV检测</td><td class="tb3"><a href="http://bioinfo-out.curie.fr/projects/freec/"  target=_blank>Control-FREEC</a></td><td class="tb3">v11.4</td><td class="tb3">default</td><td class="tb3">检测样本CNV</td></tr>
+  
+  
+  
+  
+  <tr class="tb3"><td class="tb3">&nbsp;&nbsp;SV检测</td><td class="tb3"><a href="https://github.com/arq5x/lumpy-sv"  target=_blank>lumpy</a></td><td class="tb3">v0.2.13</td><td class="tb3">default</td><td class="tb3">检测成对样本SV</td></tr>
+  
+  
+  
+  
+  <tr class="tb3"><td class="tb3">&nbsp;&nbsp;变异功能注释</td><td class="tb3"><a href="http://www.openbioinformatics.org/annovar/"  target=_blank>ANNOVAR</a></td><td class="tb3">2023Feb1</td><td class="tb3">default</td><td class="tb3">对检测到的变异进行结构和功能注释</td></tr>
+  
+  
+  <tr class="tb3"><td class="tb3">&nbsp;&nbsp;基因组变异Circos展示</td><td class="tb3"><a href="http://circos.ca/" target=_blank>circos</a></td><td class="tb3">0.67</td><td class="tb3">default</td><td class="tb3">circos图展示基因组上的变异</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </table>
+  </div>
+  </p>
+<!-- ------------------------------------- Methods ---------------------------------------- -->
+  <p class="head">
+      <a href="#home" title = "返回首页"></a><a name="附录"><br />
+          <a name="5.2 Methods"></a>
+            </p><br />
+              
+                  
+                  <h3 id="goto_method_list">5.2 Methods：<a href="method/疾病WGS标准分析A-中文method.pdf" title="点击打开" target="_blank">中文版methods</a>   <a href="method/疾病WGS标准分析A-英文method.pdf" title="点击打开" target="_blank">英文版methods</a></h3>
+                  
+              
+<!-- ------------------------------------- 结果文件使用说明 ---------------------------------------- -->
+ <!--<div id="page">-->
+  <p class="head">
+    <a href="#home" title = "返回首页"></a>
+    <a name="结果文件使用说明"></a><hr />
+  </p><br />
+  <h3 id="goto_result_file_note">5.3 结果文件解压方法及结果文件格式说明</h3>
+  <table class="gy" width=95% align="center" cellspacing="0" cellpadding="5">
+      <tr class="tb2"><th class="tb2">压缩格式</th><th class="tb2">用户类型</th><th class="tb2">解压方法</th></tr>
+      <tr class="tb3"><td class="tb3" rowspan="2">*.tar形式的压缩文件：</td><td class="tb3">Unix/Linux/Mac用户</td><td class="tb3">使用tar -zxvf *.tar命令</td></tr>
+      <tr class="tb3"><td class="tb3">Windows用户</td><td class="tb3">使用解压缩软件如WinRAR、7-Zip等</td></tr>
+      <tr class="tb3"><td class="tb3" rowspan="2">*.gz形式的压缩文件：</td><td class="tb3">Unix/Linux/Mac用户</td><td class="tb3">使用命令gzip –d  *.gz命令</td></tr>
+      <tr class="tb3"><td class="tb3">Windows用户</td><td class="tb3">使用解压缩软件如WinRAR、7-Zip等</td></tr>
+      <tr class="tb3"><td class="tb3" rowspan="2">*.zip形式的压缩文件：</td><td class="tb3">Unix/Linux/Mac用户</td><td class="tb3">使用命令unzip *.zip命令</td></tr>
+      <tr class="tb3"><td class="tb3">Windows用户</td><td class="tb3">使用解压缩软件如WinRAR、7-Zip等</td></tr>
+  </table>
+  <br/>
+  <table class="tb3" width=95% align="center"  cellspacing="0" cellpadding="4">
+      <tr ><th class= "tb2" >文件类型</th><th class= "tb2" >文件描述</th><th class= "tb2" >打开方式</th></tr>
+      <tr class="tb3"><td class="tb3" rowspan="2">file.fq/fastq</td><td  class="tb3" rowspan="2">序列文件，fastq格式，一般为reads序列。【因文件一般较大，打开较为困难。为您提供了sampled*.fastq文件(部分*.fastq中的序列)，方便您查看文件格式。】</td><td class="tb3">unix/Linux/Mac用户使用 less 或 more 命令查看；</td></tr>
+      <tr class="tb3"><td class="tb3">windows用户使用高级文本编辑器Editplus/Notepad++等查看。</td></tr>
+      <tr class="tb3"><td class="tb3" rowspan="2">file.txt/xls</td><td  class="tb3" rowspan="2">结果数据表格文件，文件以制表符(Tab)分隔。</td><td class="tb3">unix/Linux/Mac用户使用 less 或 more 命令查看；</td></tr>
+      <tr class="tb3"><td class="tb3">windows用户使用高级文本编辑器Editplus/Notepad++ 等，也可以用Microsoft Excel打开。</td></tr>
+      <tr class="tb3"><td class="tb3" rowspan="2">file.png</td><td class="tb3" rowspan="2">结果图像文件，位图，无损压缩。</td><td>unix/Linux/Mac用户使用display命令打开。</td></tr>
+      <tr class="tb3"><td class="tb3">windows用户可以使用图片浏览器打开，如photoshop等。</td></tr>
+      <tr class="tb3"><td class="tb3" rowspan="2">file.pdf/svg</td><td  class="tb3" rowspan="2">结果图像文件，矢量图，可以放大和缩小而不失真，方便用户查看和编辑处理，可使用Adobe Illustrator进行图片编辑，用于文章发表等。</td><td class="tb3">unix/Linux用户使用evince命令打开。</td></tr>
+      <tr class="tb3"><td class="tb3">windows/Mac用户可以使用Adobe Reader/福昕阅读器/网页浏览器等打开。</td></tr>
+  </table>
+  <br/>
+ <!--</div>-->
+<!-- ------------------------------------- 结果文件使用说明 ends ---------------------------------------- -->
+
+
+<!-- ------------------------------------- 测序结果验证方法简介 ---------------------------------------- -->
+  <p class="head">
+    <a href="#home" title = "返回首页"></a>
+    <a name="测序结果验证方法简介"></a><hr />
+  </p><br />
+  
+  <h3 id="appendix-B">5.4 测序结果验证方法简介</h3>
+  <h4><a id="SNV/InDel验证方法">5.4.1 SNV/InDel的验证方法</a></h4>
+  
+ <h5>5.4.1.1 Sanger测序</h5>
+ <p class="tremark"><b>技术特点：</b>疾病研究中应用最为广泛的验证二代测序结果的方法；验证精准度高；试验周期短，一个测序反应从引物设计合成到测序结果获得只需5d左右。通量小，不能批量验证；对于位于重复序列和GC含量高的序列上的变异，Sanger测序进行验证的成功率不高。</p>
+ <p class="tremark"><b><u>技术适用范围：变异位点集中，小规模的验证项目。</u></b></p>
+ <p class="tremark"><b>参考文献</b></p>
+ <p class="tremark">Mutations in HFM1 in recessive primary ovarian insufficiency.The New England Journal of Medicine. 2014,370(10):972-974 </p>
+ <p class="tremark">Whole-genoma sequencing of quartet families with autism spectrum disorder. Nature Medicine.2015,21:185-191</p>
+ <p class="premark">&nbsp</p>
+
+ <h5>5.4.1.2 SNaPshot</h5>
+ <p class="tremark"><b>技术特点：</b>引物探针合成周期短：可以通过检查分型峰谱是否偏离正常分布推测样本是否污染；灵敏度高于标准测序；位点成功率和准确率>95%；多重SNaPshot提高了通量，但是多重SNaPshot技术（多引物多模板）对引物Tm值要求很高。需要预实验确定PCR延伸条件，耗时比较长；样本量需求较高，与二代测序所需样本量一样。</p>
+ <p class="tremark"><b><u>技术适用范围：样本数多，位点数最好8个以上的项目。</u></b>（样本量较低的情况下，试剂盒花费较大）。</p>
+ <p class="tremark"><b>参考文献</b></p>
+ <p class="tremark">Whole exome sequencing in an India family links Coats plus syndrome and dextrocardia with a homozygous novel CTC1 and a rare HES7 variation. BMC MedicalGenetics.2015,16:5. DOI 10.1186/s12881-015-0151-8</p>
+ <p class="premark">&nbsp</p>
+
+ <h5>5.4.1.3 MassArray</h5>
+ <p class="tremark"><b>技术特点：</b>通量高，几秒检测完一个反应孔，每个反应孔可实现多达40重反应，一张芯片完成384个样品的多重iPLEX GOLD实验；引物总长80bp，无需荧光标记，对于位点数和样本数较多的验证项目，此方法比较便宜。条件摸索，尤其是每个反应孔引物浓度的确定比较耗时；单次实验试剂盒较贵。</p>
+ <p class="tremark"><b><u>技术适用范围：样本数500以上，SNV位点数约为25倍数的验证项目。</u></b></p>
+ <p class="tremark"><b>参考文献</b></p>
+ <p class="tremark">A large-scale screen for coading variants predisposing to psoriasis.Nature Genetics.2014,46(1):45-50</p>
+ <p class="tremark">Rare Variants in FBN1 are associated with severe adolescent idiopathic scoliosis.Human Molecular Genetics.2014,23(19):5271-5282.</p>
+ <p class="premark">&nbsp</p>
+ 
+ <h4><a id="CNV验证方法">5.4.2 CNV的验证方法</a></h4>
+ <h5>5.4.2.1 微滴式数字PCR（Droplet Digital PCR）</h5>
+ 
+ <p class="tremark"><b>技术特点：</b>灵敏度高，可以检测样本中低至 0.001% 的突变，高特异性检测复杂背景下的靶目标序列；可以实现绝对定量，而不需要准曲线;所需样品量少，能解决稀有样本中的核酸精确检测问题。不能批量检测；引物设计要避免重复序列和GC含量高的片段；PCR反应条件需要摸索；TaqMan探针需要定制，价格贵且订制周期长；市面上仅有少数公司承接相关实验
+</p>
+ <p class="tremark"><b><u>技术适用范围：样本数不多，位点少的验证项目。</u></b></p>
+ <p class="tremark"><b>参考文献</b></p>
+ <p class="tremark">Structural forms of the human amylase locus and their relationships to SNPs，haplotypes and obesity.Natural Genetics.2015,doi:10.1038/ng.3340</p>
+<p class="premark">&nbsp</p>
+
+
+<!--</div>-->
+
+<!-- ------------------------------------- Bed 文件 ---------------------------------------- -->
+
+
+<!-- -------------------------------------  Q&A ---------------------------------------- -->
+
+
+<p class="head">
+  <a href="#home" title = "返回首页"></a>
+  <a name="Bed 文件"></a><hr />
+</p>
+  
+  <h3 id="appendix-B">5.5 人重疾病常见问题Q&A</h3>
+  
+  <p class="paragraph">链接：<a href="https://magic.novogene.com/customer/main#/info-download-new">https://magic.novogene.com/customer/main#/info-download-new</a></p>
+
+
+
+
+  <h3 id="appendix-B">5.6 参考基因组链接</h3>
+
+
+   
+    <p class="paragraph"> 参考基因组 B37：<a href="https://pan.baidu.com/s/1sCNRGaaw5en57l22S0Ft4A?pwd=5q38">https://pan.baidu.com/s/1sCNRGaaw5en57l22S0Ft4A?pwd=5q38 提取码：5q38</a></p>
+
+
+
+
+
+
+</div>
+
+<!-- ------------------------------------------ 参考文献 ---------------------------------------- -->
+<div id="page">
+  <p class="head">
+    <a href="#home" title = "返回首页"></a>
+    <a name="参考文献"></a><hr />
+  </p><br />
+  <h2 id="goto_reference">6 参考文献</h2>
+  <p style="font-size: 19px; font-weight: bold;">基本分析参考文献</p>
+  <p class="ref">
+  
+  1000 Genomes Project Consortium, Abecasis GR, Auton A, et al. An integrated map of genetic variation from 1,092 human genomes. Nature. 2012;491(7422):56-65. doi:10.1038/nature11632 (1000 Genomes)</br></br>
+  Adzhubei I, Jordan DM, Sunyaev SR. Predicting functional effect of human missense mutations using PolyPhen-2. Curr Protoc Hum Genet. 2013;Chapter 7:Unit7.20. doi:10.1002/0471142905.hg0720s76 (PolyPhen-2)</br></br>
+  
+  
+  Boeva V, Popova T, Bleakley K, et al. Control-FREEC: a tool for assessing copy number and allelic content using next-generation sequencing data. Bioinformatics. 2012;28(3):423-425. doi:10.1093/bioinformatics/btr670 (Control-FREEC)</br></br>
+  
+  
+  Hamosh A, Scott AF, Amberger JS, Bocchini CA, McKusick VA. Online Mendelian Inheritance in Man (OMIM), a knowledgebase of human genes and genetic disorders. Nucleic Acids Res. 2005;33(Database issue):D514-D517. doi:10.1093/nar/gki033 (OMIM)</br></br>
+  Harris MA, Clark J, Ireland A, et al. The Gene Ontology (GO) database and informatics resource. Nucleic Acids Res. 2004;32(Database issue):D258-D261. doi:10.1093/nar/gkh036 (GO)</br></br>
+  Kanehisa M, Goto S. KEGG: kyoto encyclopedia of genes and genomes. Nucleic Acids Res. 2000;28(1):27-30. doi:10.1093/nar/28.1.27 (KEGG PATHWAY)</br></br>
+  
+  Kent WJ, Sugnet CW, Furey TS, et al. The human genome browser at UCSC. Genome Res. 2002;12(6):996-1006. doi:10.1101/gr.229102 (UCSC)</br></br>
+  
+  
+  Layer RM, Chiang C, Quinlan AR, Hall IM. LUMPY: a probabilistic framework for structural variant discovery. Genome Biol. 2014;15(6):R84. Published 2014 Jun 26. doi:10.1186/gb-2014-15-6-r84 (Lumpy)</br></br>
+  
+  Li H, Durbin R. Fast and accurate long-read alignment with Burrows-Wheeler transform. Bioinformatics. 2010;26(5):589-595. doi:10.1093/bioinformatics/btp698 (BWA_MEM)</br></br>
+  
+  Li H, Handsaker B, Wysoker A, et al. The Sequence Alignment/Map format and SAMtools. Bioinformatics. 2009;25(16):2078-2079. doi:10.1093/bioinformatics/btp352 (SAMtools)</br></br>
+  Danecek P, Bonfield JK, Liddle J, et al. Twelve years of SAMtools and BCFtools. Gigascience. 2021;10(2):giab008. doi: 10.1093/gigascience/giab008.</br></br>
+  
+  
+  Ng PC, Henikoff S. SIFT: Predicting amino acid changes that affect protein function. Nucleic Acids Res. 2003;31(13):3812-3814. doi:10.1093/nar/gkg509 (SIFT)</br></br>
+  
+  Tarasov A, Vilella AJ, Cuppen E, Nijman IJ, Prins P. Sambamba: fast processing of NGS alignment formats. Bioinformatics. 2015;31(12):2032-2034. doi:10.1093/bioinformatics/btv098 (Sambamba)</br></br>
+  
+  Sherry ST, Ward MH, Kholodov M, et al. dbSNP: the NCBI database of genetic variation. Nucleic Acids Res. 2001;29(1):308-311. doi:10.1093/nar/29.1.308 (dbSNP)</br></br>
+  Wang K, Li M, Hakonarson H. ANNOVAR: functional annotation of genetic variants from high-throughput sequencing data. Nucleic Acids Res. 2010;38(16):e164. doi:10.1093/nar/gkq603 (ANNOVAR)</br></br>
+  
+  </p>
+  
+</div>
+
+
+</div>
+</div>
+</div>
+</body>
+</html>

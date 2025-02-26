@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg height="650" width="800" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<g transform="rotate(0 330,300)">
+		<ellipse cx="330" cy="200" fill="blue" fill-opacity="0.5" rx="37.68" ry="100" />
+	</g>
+	<text font-family="Arial" font-size="15" text-anchor="middle" x="330" y="100">B1</text>
+	<text font-family="Arial" font-size="15" text-anchor="middle" x="330" y="160">0</text>
+	<g transform="rotate(36 330,300)">
+		<ellipse cx="330" cy="200" fill="lightseagreen" fill-opacity="0.5" rx="37.68" ry="100" />
+	</g>
+	<text font-family="Arial" font-size="15" text-anchor="start" x="447.557050342326" y="138.196601040609">B2</text>
+	<text font-family="Arial" font-size="15" text-anchor="middle" x="412.289935239629" y="186.737620728427">0</text>
+	<g transform="rotate(72 330,300)">
+		<ellipse cx="330" cy="200" fill="orange" fill-opacity="0.5" rx="37.68" ry="100" />
+	</g>
+	<text font-family="Arial" font-size="15" text-anchor="start" x="520.211303170286" y="238.196600851883">B3</text>
+	<text font-family="Arial" font-size="15" text-anchor="middle" x="463.1479122192" y="256.737620596318">3</text>
+	<g transform="rotate(108 330,300)">
+		<ellipse cx="330" cy="200" fill="mediumpurple" fill-opacity="0.5" rx="37.68" ry="100" />
+	</g>
+	<text font-family="Arial" font-size="15" text-anchor="start" x="520.211303392148" y="376.803398465298">B4</text>
+	<text font-family="Arial" font-size="15" text-anchor="middle" x="463.147912374503" y="343.262378925709">2</text>
+	<g transform="rotate(144 330,300)">
+		<ellipse cx="330" cy="200" fill="palegreen" fill-opacity="0.5" rx="37.68" ry="100" />
+	</g>
+	<text font-family="Arial" font-size="15" text-anchor="start" x="447.557050923167" y="476.803398537385">B5</text>
+	<text font-family="Arial" font-size="15" text-anchor="middle" x="412.289935646217" y="413.26237897617">0</text>
+	<g transform="rotate(180 330,300)">
+		<ellipse cx="330" cy="200" fill="lightcoral" fill-opacity="0.5" rx="37.68" ry="100" />
+	</g>
+	<text font-family="Arial" font-size="15" text-anchor="middle" x="330.000000717959" y="515">B6</text>
+	<text font-family="Arial" font-size="15" text-anchor="middle" x="330.000000502571" y="440">1</text>
+	<g transform="rotate(216 330,300)">
+		<ellipse cx="330" cy="200" fill="dodgerblue" fill-opacity="0.5" rx="37.68" ry="100" />
+	</g>
+	<text font-family="Arial" font-size="15" text-anchor="end" x="212.442950238514" y="476.803399381396">B7</text>
+	<text font-family="Arial" font-size="15" text-anchor="middle" x="247.71006516696" y="413.262379566977">0</text>
+	<g transform="rotate(252 330,300)">
+		<ellipse cx="330" cy="200" fill="lawngreen" fill-opacity="0.5" rx="37.68" ry="100" />
+	</g>
+	<text font-family="Arial" font-size="15" text-anchor="end" x="139.788697051575" y="376.803399830936">B8</text>
+	<text font-family="Arial" font-size="15" text-anchor="middle" x="196.852087936103" y="343.262379881656">0</text>
+	<g transform="rotate(288 330,300)">
+		<ellipse cx="330" cy="200" fill="olive" fill-opacity="0.5" rx="37.68" ry="100" />
+	</g>
+	<text font-family="Arial" font-size="15" text-anchor="end" x="139.788696385991" y="238.196602217521">B9</text>
+	<text font-family="Arial" font-size="15" text-anchor="middle" x="196.852087470194" y="256.737621552265">4</text>
+	<g transform="rotate(324 330,300)">
+		<ellipse cx="330" cy="200" fill="yellow" fill-opacity="0.5" rx="37.68" ry="100" />
+	</g>
+	<text font-family="Arial" font-size="15" text-anchor="end" x="212.442948495992" y="138.19660188462">B10</text>
+	<text font-family="Arial" font-size="15" text-anchor="middle" x="247.710063947194" y="186.737621319234">0</text>
+	<circle cx="330" cy="300" fill="white" r="35" />
+	<text font-family="Arial" font-size="15" text-anchor="middle" x="330" y="300">core</text>
+	<text font-family="Arial" font-size="15" text-anchor="middle" x="330" y="315">12</text>
+	<rect fill="yellow" fill-opacity="0.5" height="20" stroke="black" width="50" x="650" y="450" />
+	<text font-family="Arial" font-size="15" text-anchor="start" x="707.5" y="467.5">B10</text>
+	<rect fill="olive" fill-opacity="0.5" height="20" stroke="black" width="50" x="650" y="430" />
+	<text font-family="Arial" font-size="15" text-anchor="start" x="707.5" y="447.5">B9</text>
+	<rect fill="lawngreen" fill-opacity="0.5" height="20" stroke="black" width="50" x="650" y="410" />
+	<text font-family="Arial" font-size="15" text-anchor="start" x="707.5" y="427.5">B8</text>
+	<rect fill="dodgerblue" fill-opacity="0.5" height="20" stroke="black" width="50" x="650" y="390" />
+	<text font-family="Arial" font-size="15" text-anchor="start" x="707.5" y="407.5">B7</text>
+	<rect fill="lightcoral" fill-opacity="0.5" height="20" stroke="black" width="50" x="650" y="370" />
+	<text font-family="Arial" font-size="15" text-anchor="start" x="707.5" y="387.5">B6</text>
+	<rect fill="palegreen" fill-opacity="0.5" height="20" stroke="black" width="50" x="650" y="350" />
+	<text font-family="Arial" font-size="15" text-anchor="start" x="707.5" y="367.5">B5</text>
+	<rect fill="mediumpurple" fill-opacity="0.5" height="20" stroke="black" width="50" x="650" y="330" />
+	<text font-family="Arial" font-size="15" text-anchor="start" x="707.5" y="347.5">B4</text>
+	<rect fill="orange" fill-opacity="0.5" height="20" stroke="black" width="50" x="650" y="310" />
+	<text font-family="Arial" font-size="15" text-anchor="start" x="707.5" y="327.5">B3</text>
+	<rect fill="lightseagreen" fill-opacity="0.5" height="20" stroke="black" width="50" x="650" y="290" />
+	<text font-family="Arial" font-size="15" text-anchor="start" x="707.5" y="307.5">B2</text>
+	<rect fill="blue" fill-opacity="0.5" height="20" stroke="black" width="50" x="650" y="270" />
+	<text font-family="Arial" font-size="15" text-anchor="start" x="707.5" y="287.5">B1</text>
+	<!--
+	Generated using the Perl SVG Module V2.84
+	by Ronan Oger
+	Info: http://www.roitsystems.com/
+	-->
+</svg>

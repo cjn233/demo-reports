@@ -1,0 +1,24 @@
+Analysis	Software	Version	Parameter	Remarks
+Data quality	fastp	0.23.1	-g -q 5 -u 50 -n 10 -l 150 --min_trim_length 10 --overlap_diff_limit 1	-
+Host trimming	bowtie2	2.5.4	  --end-to-end --sensitive --no-hd --no-sq -I 200 -X 400 --threads 8	-
+Taxonomy annotation	MetaPHlAn4	4.1.1	--input_type fastq --nproc 5	ChocoPhlAn(Version: 2024)
+MetaCyc annotation	HUMAnN3	3.9	--minpath off --gap-fill on --threads 5 --protein-database	KEGG(Version: 2023)
+KEGG PATHWAY annotation	HUMAnN3	3.9	--minpath off --gap-fill on --threads 5 --protein-database	KEGG(Version: 2023)
+KEGG MODULE annotation	HUMAnN3	3.9	--minpath off --gap-fill on --threads 5 --protein-database	KEGG(Version: 2023)
+KEGG Orthology annotation	HUMAnN3	3.9	--minpath off --gap-fill on --threads 5 --protein-database	KEGG(Version: 2023)
+KEGG ENZYME annotation	HUMAnN3	3.9	--minpath off --gap-fill on --threads 5 --protein-database	KEGG(Version: 2023)
+GO annotation	HUMAnN3	3.9	--minpath off --gap-fill on --threads 5 --protein-database	GO(Version: 2023.03)
+eggNOG annotation	HUMAnN3	3.9	--minpath off --gap-fill on --threads 5 --protein-database	eggNOG(Version: 2023.03)
+Pfam annotation	HUMAnN3	3.9	--minpath off --gap-fill on --threads 5 --protein-database	Pfam(Version: 2023.03)
+Barplot	perl	5.18.2	use SVG	-
+Cluster heatmap	R	3.1.0	R package = pheatmap	-
+Alpha diversity	R	2.15.3	R package = vegan	-
+Cluster tree	perl	5.18.2	use SVG	-
+PCA	R	3.0.3	R package = FactoMineR， ggplot2，grid	-
+NMDS	R	2.15.3	R package = vegan,permute,lattice	-
+PCoA	R	2.15.3	R package = extrafont,ggplot2,grid	-
+Anosim	R	2.15.3	R package = vegan,permute,lattice	-
+MetaGenomeSeq	R	2.15.3	q value (Benjamini and Hochberg FDR) < 0.05	-
+MetaGenomeSeq heatmap	R	3.1.0	R package = pheatmap	-
+MetaGenomeSeq combined	R	2.15.3	R package = ggplot2	-
+LEfSe	LEfSe	1	MetaPHlAn LDA Score>4，function LDA Score>2	-

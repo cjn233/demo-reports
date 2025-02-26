@@ -1,0 +1,35 @@
+分析内容	软件	版本	参数	备注
+数据质控	fastp	0.23.1	-g -q 5 -u 50 -n 10 -l 150 --min_trim_length 10 --overlap_diff_limit 1	
+过滤宿主	bowtie2	2.2.4	  --end-to-end --sensitive --no-hd --no-sq -I 200 -X 400 --threads 8 	
+组装	megahit	1.2.9	--presets meta-large -m 180000000000 -t 2	
+基因预测	GeneMark.hmm	2.1	 -a  -d -f G -p 1  	
+基因去冗余	CD-HIT	4.5.8	  -T 6 -G 0 -aS 0.9 -g 1 -d 0  -c 0.95 -n 5 -M 8000	
+reads mapping	bowtie2	2.2.4	  --end-to-end --sensitive --no-hd --no-sq -I 200 -X 400 --threads 8 	
+相关性热图	R软件	2.15.3	R package = corrplot	
+corepan	R软件	2.15.3	R package = ggplot2	
+venn图、花瓣图	R软件	v3.0.3	R package = VennDiagram	
+基因数目差异分析	R软件	2.15.3	R package = ggplot2	
+基于基因数目的样品间相关性分析	R软件	2.15.3	R package = corrplot	
+Micro_NR比对注释	diamond	2.1.6	-p 4 -e 1e-5 -k 50	Micro_NR(Version: 2023.03)
+KEGG比对注释	diamond	2.1.6	-p 4 -e 1e-5 -k 50 --id 30 --sensitive	KEGG(Version: 2023.02)
+eggNOG比对注释	diamond	2.1.6	-p 4 -e 1e-5 -k 50 --id 30 --sensitive	eggNOG(Version: 5.0)
+CAZy比对注释	diamond	2.1.6	-p 4 -e 1e-5 -k 50 --id 30 --sensitive	CAZy(Version: 2023.03)
+VFDB比对注释	diamond	2.1.6	-p 4 -e 1e-5 -k 50 --id 30 --sensitive	VFDB(Version: 2023.03)
+PHI比对注释	diamond	2.1.6	-p 4 -e 1e-5 -k 50 --id 30 --sensitive	PHI(Version: 2023.03)
+CARD比对注释	RGI	6.0.2	-d wgs --clean	CARD(Version:3.2.6)
+MGEs比对注释	blastn	2.12.0	-num_threads 6 -outfmt 6 -evalue 1e-5	Integrall(Version: 2021.09),Isfinder(Version: 2023.10),Plasmid(Version: 2021.06)
+PCA分析	R软件	3.0.3	R package = FactoMineR， ggplot2，grid	
+NMDS	R软件	2.15.3	R package = vegan,permute,lattice	
+Anosim	R软件	2.15.3	R package = vegan,permute,lattice	
+PCoA	R软件	2.15.3	R package = extrafont,ggplot2,grid	
+聚类热图	R软件	3.1.0	R package = pheatmap	
+MetaGenomeSeq	R软件	2.15.3	q value (Benjamini and Hochberg FDR) < 0.05	
+MetaGenomeSeq热图	R软件	3.1.0	R package = pheatmap	
+MetaGenomeSeq combined	R软件	2.15.3	R package = ggplot2	
+LEfSe	LEfSe软件	1.0	物种LDA Score>4，功能LDA Score>3
+Krona	perl	5.18.2	use KronaTools	
+相对丰度柱形图	perl	5.18.2	use SVG	
+聚类树	perl	5.18.2	use SVG	
+circos单圈图	circos	v0.64	　	
+功能相对丰度柱形图	perl	5.18.2	use SVG	
+代谢通路比较分析	perl	5.18.2	use SVG	

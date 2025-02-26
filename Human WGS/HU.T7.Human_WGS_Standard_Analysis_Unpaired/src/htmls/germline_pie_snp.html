@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>raw data pie</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+        <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="../css/buttons.css">
+</head>
+<body>
+    <div id="germline_pie" style="width: 840px; height: 350px; text-align: center; margin: auto"></div>
+    <form style="text-align: center;">
+        <label id='lblSelect'>
+        <select id="selectPointOfInterest" style="margin: 0; padding: 1%" onchange="glmpieShow(this.options[this.options.selectedIndex].innerHTML);">
+            <option>tian</option>
+				<option>songshu</option>
+				<option>tianshu</option>
+				<option>tianzi</option>
+        </select>
+        </label>&nbsp;&nbsp;
+        <button type="button" id="pageUp" class="button button-normal button-border button-circle">
+            <i class="icon-circle-arrow-up"></i>
+        </button>
+        <button type="button" id="pageDown" class="button button-normal button-border button-circle">
+            <i class="icon-circle-arrow-down"></i>
+        </button>
+    </form>
+        <script type="text/javascript" src="../js/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="../js/echarts.min.js"></script>
+    <script type="text/javascript" src="../js/macarons.js"></script>
+    <script type="text/javascript">
+        // change view function
+        var glmpieShow = function(title1) {
+            data_dict = {'tian': {'splicing': 600, 'downstream': 23875, 'UTR5': 6056, 'ncRNA_exonic': 14510, 'intergenic': 1936498, 'ncRNA_UTR5': 0, 'intronic': 1264883, 'ncRNA_UTR3': 0, 'UTR3': 32766, 'startloss': 24, 'ncRNA_splicing': 180, 'CDS': 22043, 'upstream': 22300, 'ncRNA_intronic': 236206}, 'songshu': {'splicing': 625, 'downstream': 24260, 'UTR5': 6168, 'ncRNA_exonic': 14680, 'intergenic': 1965529, 'ncRNA_UTR5': 0, 'intronic': 1272708, 'ncRNA_UTR3': 0, 'UTR3': 32970, 'startloss': 29, 'ncRNA_splicing': 170, 'CDS': 22137, 'upstream': 22507, 'ncRNA_intronic': 238669}, 'tianshu': {'splicing': 623, 'downstream': 24201, 'UTR5': 6268, 'ncRNA_exonic': 14580, 'intergenic': 1946474, 'ncRNA_UTR5': 0, 'intronic': 1276859, 'ncRNA_UTR3': 0, 'UTR3': 33216, 'startloss': 23, 'ncRNA_splicing': 184, 'CDS': 22221, 'upstream': 22767, 'ncRNA_intronic': 237394}, 'tianzi': {'splicing': 628, 'downstream': 24542, 'UTR5': 6272, 'ncRNA_exonic': 14721, 'intergenic': 1969246, 'ncRNA_UTR5': 0, 'intronic': 1278903, 'ncRNA_UTR3': 0, 'UTR3': 33704, 'startloss': 21, 'ncRNA_splicing': 178, 'CDS': 22472, 'upstream': 23025, 'ncRNA_intronic': 239988}};
+            data_dict1 = {'tian': {'synonymous_SNP': 11219, 'missense_SNP': 10202, 'unknown': 506, 'stoploss': 10, 'stopgain': 82}, 'songshu': {'synonymous_SNP': 11280, 'missense_SNP': 10254, 'unknown': 489, 'stoploss': 7, 'stopgain': 78}, 'tianshu': {'synonymous_SNP': 11326, 'missense_SNP': 10290, 'unknown': 494, 'stoploss': 10, 'stopgain': 78}, 'tianzi': {'synonymous_SNP': 11472, 'missense_SNP': 10372, 'unknown': 513, 'stoploss': 9, 'stopgain': 85}};
+            var classif = new Array();
+            var data_if = new Array();
+            var data_if2 = new Array();
+            for (var key in data_dict[title1]){
+                classif.push(key);
+                data_if.push({"value": data_dict[title1][key], "name": key});
+            };
+            for (var key in data_dict1[title1]){
+                classif.push(key);
+                data_if2.push({"value": data_dict1[title1][key], "name": key});
+            };
+            var myChart = echarts.init(document.getElementById('germline_pie'), 'macarons');
+            var plot_option = {
+                title : {
+                    text: title1,
+                    x:'center'
+                },
+                tooltip : {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b} : {c} ({d}%)"
+                },
+                legend: {
+                    orient : 'vertical',
+                    x : 'left',
+                    data: classif,
+                    type : 'scroll'
+                },
+                toolbox: {
+                    show : true,
+                    x : 700,
+                    feature : {
+                        mark : {show: true},
+                        dataView : {show: true, readOnly: false},
+                        magicType : {
+                            show: true,
+                            type: ['pie', 'funnel'],
+                            option: {
+                                funnel: {
+                                    x: '25%',
+                                    width: '50%',
+                                    funnelAlign: 'left',
+                                    max: 1548
+                                }
+                            }
+                        },
+                        restore : {show: true},
+                        saveAsImage : {show: true}
+                    }
+                },
+                calculable : true,
+                series : [
+                    {
+                        name:'基因组不同区域上SNP数目',
+                        type:'pie',
+                        radius : '50%',
+                        center: ['40%', '55%'],
+                        data: data_if
+                    },
+                    {
+                        name:'编码区不同类型SNP数目',
+                        type:'pie',
+                        radius : '20%',
+                        center: ['80%', '65%'],
+                        data: data_if2
+                    }
+                ]
+            };
+            myChart.setOption(plot_option);
+        };
+        glmpieShow("tian");
+        $(function() {
+            $("#pageUp").click(function(){
+                let downNode = this.nextElementSibling;
+                let selectNode = this.parentNode.firstElementChild.firstElementChild;
+                if (selectNode.selectedIndex == 0){
+                    this.style.visibility = 'hidden';
+                }else{
+                    selectNode.selectedIndex = selectNode.selectedIndex - 1;
+                    glmpieShow(selectNode.options[selectNode.selectedIndex].innerHTML);
+                    downNode.style.visibility = 'visible';
+                };
+            });
+            $("#pageDown").click(function(){
+                let upNode = this.previousElementSibling;
+                let selectNode = this.parentNode.firstElementChild.firstElementChild;
+                if ( selectNode.selectedIndex == selectNode.options.length - 1){
+                    this.style.visibility = 'hidden';
+                }else{
+                    selectNode.selectedIndex = selectNode.selectedIndex + 1;
+                    glmpieShow(selectNode.options[selectNode.selectedIndex].innerHTML);
+                    upNode.style.visibility = 'visible';
+                }
+            });
+                        $("#selectPointOfInterest").change(function(){
+                            let upNode = this.parentNode.nextElementSibling;
+                            let downNode = upNode.nextElementSibling;
+                            upNode.style.visibility = 'visible';
+                            downNode.style.visibility = 'visible';
+                        });
+        });
+    </script>
+</body>
+</html>

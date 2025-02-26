@@ -1,0 +1,5 @@
+compare	all	up	down	threshold
+tCNQXvscontrol	921	452	469	DESeq2 padj<=0.05 |log2FoldChange|>=1.0
+CNQXvsGlu	1889	1308	581	DESeq2 padj<=0.05 |log2FoldChange|>=1.0
+CNQXvscontrol	248	125	123	DESeq2 padj<=0.05 |log2FoldChange|>=1.0
+Gluvscontrol	1095	432	663	DESeq2 padj<=0.05 |log2FoldChange|>=1.0

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>data tables</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="../css/datatables.css" />
+    <link rel="stylesheet" type="text/css" href="../css/buttons.dataTables.min.css" />
+</head>
+<body>
+        <table id="nopaging_table" class="display" style="width: 100%; height: 50px; text-align: center; margin: auto;font-size: 14px;font-family: 黑体-简">
+        <thead>
+            <tr style='background-color: #036EB8;color: #FFFFFF'><th>Hugo_Symbol</th><th>Chromosome</th><th>Position</th><th>Ref_allele</th><th>Alt_allele</th><th>Variant_Classification</th><th>AAChange</th><th>CGC_Cancers</th></tr>
+        </thead>
+        <tbody>
+			<tr style'background-color: #f1f5fb'><td>PRKD1</td><td>chr14</td><td>29,636,459</td><td>T</td><td>G</td><td>Missense_Mutation</td><td>PRKD1:NM_002742:exon7:c.A1021C:p.M341L|PRKD1:NM_001330069:exon8:c.A1045C:p.M349L|PRKD1:NM_001348390: ...</td><td>cribriform adenocarcinoma of the minor salivary glands, polymorphous adenocarcinoma of the minor sal ...</td></tr>
+			<tr style'background-color: #e3eff8'><td>BLM</td><td>chr15</td><td>90,798,208</td><td>G</td><td>A</td><td>Missense_Mutation</td><td>BLM:NM_000057:exon17:c.G3229A:p.V1077M|BLM:NM_001287247:exon17:c.G3229A:p.V1077M|BLM:NM_001287248:ex ...</td><td>.</td></tr>
+			<tr style'background-color: #f1f5fb'><td>SMARCA1</td><td>chrX</td><td>129,481,079</td><td>G</td><td>T</td><td>Missense_Mutation</td><td>SMARCA1:NM_001282875:exon17:c.C2288A:p.P763Q|SMARCA1:NM_001378262:exon17:c.C2288A:p.P763Q|SMARCA1:NM ...</td><td>.</td></tr>
+			<tr style'background-color: #e3eff8'><td>AHNAK</td><td>chr11</td><td>62,530,287</td><td>T</td><td>C</td><td>Missense_Mutation</td><td>AHNAK:NM_001346445:exon5:c.A4130G:p.D1377G|AHNAK:NM_001346446:exon5:c.A4130G:p.D1377G|AHNAK:NM_00162 ...</td><td>.</td></tr>
+			<tr style'background-color: #f1f5fb'><td>RNF213</td><td>chr17</td><td>80,339,964</td><td>C</td><td>T</td><td>Missense_Mutation</td><td>RNF213:NM_001256071:exon26:c.C5597T:p.T1866I</td><td>ALCL</td></tr>
+			<tr style'background-color: #e3eff8'><td>FAT3</td><td>chr11</td><td>92,801,393</td><td>A</td><td>T</td><td>Missense_Mutation</td><td>FAT3:NM_001008781:exon10:c.A8380T:p.I2794F|FAT3:NM_001367949:exon10:c.A8380T:p.I2794F</td><td>SCC, colon adenocarcinoma, gastric adenocarcinoma</td></tr>
+			<tr style'background-color: #f1f5fb'><td>MUC16</td><td>chr19</td><td>8,975,587</td><td>A</td><td>G</td><td>Missense_Mutation</td><td>MUC16:NM_024690:exon1:c.T5552C:p.V1851A</td><td>HNSCC, melanoma</td></tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <script type="text/javascript" src="../js/datatables.js"></script>
+    <script type="text/javascript" src="../js/vfs_fonts.js"></script>
+    <script type="text/javascript" src="../js/buttons.colVis.min.js"></script>
+    <script type="text/javascript" src="../js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var table = $('#nopaging_table').DataTable( {
+                scrollX: true,
+                paging: false,
+                scrollY: 330,
+                sorting: true,
+                'order': [],
+                searching: false,
+                fixedHeader: {
+                    header: false,
+                    //footer: true
+                },
+                fixedColumns: {'leftColumns':1},
+                colReorder: true,
+                dom: 'Bfrtip',
+                buttons: [
+                    'colvis','excel'
+                ],
+                language:{
+                    'info': '',
+                    'sZeroRecords' : '没有找到数据',
+                    "oPaginate" : {
+                        "sFirst" : "第一页",
+                        "sPrevious" : "上一页",
+                        "sNext" : "下一页",
+                        "sLast" : "最后一页"
+                    }
+                }
+            } );
+        } );
+    </script>
+</body>
+</html>

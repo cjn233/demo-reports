@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>data tables</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="../css/datatables.css" />
+    <link rel="stylesheet" type="text/css" href="../css/buttons.dataTables.min.css" />
+</head>
+<body>
+        <table id="nopaging_table" class="display" style="width: 100%; height: 50px; text-align: center; margin: auto;font-size: 14px;font-family: 黑体-简">
+        <thead>
+            <tr style='background-color: #036EB8;color: #FFFFFF'><th>Gene1</th><th>Gene2</th><th>CntGene1</th><th>CntGene2</th><th>AndCnt</th><th>XorCnt</th><th>Pvalue_And</th><th>Pvalue_Xor</th></tr>
+        </thead>
+        <tbody>
+			<tr style'background-color: #f1f5fb'><td>DDX11</td><td>DGKE</td><td>2</td><td>1</td><td>1</td><td>1</td><td>0.7</td><td>1</td></tr>
+			<tr style'background-color: #e3eff8'><td>DDX11</td><td>HS6ST1</td><td>2</td><td>1</td><td>1</td><td>1</td><td>0.62</td><td>1</td></tr>
+			<tr style'background-color: #f1f5fb'><td>DDX11</td><td>KIF20B</td><td>2</td><td>1</td><td>1</td><td>1</td><td>0.52</td><td>1</td></tr>
+			<tr style'background-color: #e3eff8'><td>DDX11</td><td>KMT2C</td><td>2</td><td>2</td><td>1</td><td>2</td><td>0.98</td><td>0.68</td></tr>
+			<tr style'background-color: #f1f5fb'><td>DDX11</td><td>KRT16</td><td>2</td><td>1</td><td>1</td><td>1</td><td>0.6</td><td>1</td></tr>
+			<tr style'background-color: #e3eff8'><td>DDX11</td><td>RFPL4AL1</td><td>2</td><td>1</td><td>0</td><td>3</td><td>1</td><td>0.42</td></tr>
+			<tr style'background-color: #f1f5fb'><td>DGKE</td><td>HS6ST1</td><td>1</td><td>1</td><td>0</td><td>2</td><td>1</td><td>0.74</td></tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <script type="text/javascript" src="../js/datatables.js"></script>
+    <script type="text/javascript" src="../js/vfs_fonts.js"></script>
+    <script type="text/javascript" src="../js/buttons.colVis.min.js"></script>
+    <script type="text/javascript" src="../js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var table = $('#nopaging_table').DataTable( {
+                scrollX: true,
+                paging: false,
+                scrollY: 242,
+                sorting: true,
+                'order': [],
+                searching: false,
+                fixedHeader: {
+                    header: false,
+                    //footer: true
+                },
+                fixedColumns: {'leftColumns':1},
+                colReorder: true,
+                dom: 'Bfrtip',
+                buttons: [
+                    'colvis','excel'
+                ],
+                language:{
+                    'info': '',
+                    'sZeroRecords' : '没有找到数据',
+                    "oPaginate" : {
+                        "sFirst" : "第一页",
+                        "sPrevious" : "上一页",
+                        "sNext" : "下一页",
+                        "sLast" : "最后一页"
+                    }
+                }
+            } );
+        } );
+    </script>
+</body>
+</html>

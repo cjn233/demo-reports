@@ -1,0 +1,23 @@
+Analysis	Software	Version	Parameter	Remarks
+Data quality	fastp	0.23.1	-g -q 5 -u 50 -n 10 -l 150 --min_trim_length 10 --overlap_diff_limit 1	-
+Host trimming	bowtie2	2.5.4	--end-to-end --sensitive --no-hd --no-sq -I 200 -X 400 --threads 8	-
+Taxonomy annotation	Kraken2 && Braken	2.1.3 && v2.9	--threads 5 --quick  --classified-out classified#.fq --gzip-compressed	The database by default uses an integrated microbial database comprising four sections—bacteria, archaea, fungi, and viruses—extracted from the PlusPFP database on the official website.
+KEGG PATHWAY annotation	diamond	2.1.9	--minpath off --gap-fill on --threads 5 --protein-database	KEGG(Version: 2023)
+KEGG MODULE annotation	diamond	2.1.9	--minpath off --gap-fill on --threads 5 --protein-database	KEGG(Version: 2023)
+KEGG Orthology annotation	diamond	2.1.9	--minpath off --gap-fill on --threads 5 --protein-database	KEGG(Version: 2023)
+KEGG ENZYME annotation	diamond	2.1.9	--minpath off --gap-fill on --threads 5 --protein-database	KEGG(Version: 2023)
+GO annotation	diamond	2.1.9	--minpath off --gap-fill on --threads 5 --protein-database	GO(Version: 2023.03)
+eggNOG annotation	diamond	2.1.9	--minpath off --gap-fill on --threads 5 --protein-database	eggNOG(Version: 2023.03)
+Pfam annotation	diamond	2.1.9	--minpath off --gap-fill on --threads 5 --protein-database	Pfam(Version: 2023.03)
+Barplot	perl	5.18.2	use SVG	-
+Cluster heatmap	R	3.1.0	R package = pheatmap	-
+Alpha diversity	R	2.15.3	R package = vegan	-
+Cluster tree	perl	5.18.2	use SVG	-
+PCA	R	3.0.3	R package = FactoMineR， ggplot2，grid	-
+NMDS	R	2.15.3	R package = vegan,permute,lattice	-
+PCoA	R	2.15.3	R package = extrafont,ggplot2,grid	-
+Anosim	R	2.15.3	R package = vegan,permute,lattice	-
+MetaGenomeSeq	R	2.15.3	q value (Benjamini and Hochberg FDR) < 0.05	-
+MetaGenomeSeq heatmap	R	3.1.0	R package = pheatmap	-
+MetaGenomeSeq combined	R	2.15.3	R package = ggplot2	-
+LEfSe	LEfSe	1.0	LDA Score>4，function LDA Score>2	-

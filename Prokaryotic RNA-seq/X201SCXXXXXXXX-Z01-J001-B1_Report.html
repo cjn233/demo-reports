@@ -1,0 +1,3046 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" >
+
+<html>
+
+<head>
+
+<TITLE>Prokaryotes RNA-seq Report</TITLE>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+
+<link rel="stylesheet" href="src/css/jquery-ui.css" />
+
+<link rel="stylesheet" href="src/css/bootstrap-4.3.1.min.css" />
+
+<link rel="stylesheet" href="src/css/jquery.tocify.css" />
+
+<link rel="stylesheet" href="src/css/style.css"/>
+
+<link rel="stylesheet" href="src/css/base.css"/>
+
+<link rel="stylesheet" href="src/css/gallery.css"/>
+<link rel="stylesheet" type="text/css" href="css/buttons.css">
+
+<script src="src/js/jquery-3.3.1.min.js" type="text/javascript"></script>
+
+<script src="src/js/jquery-ui.min.js" type="text/javascript"></script>
+
+<script src="src/js/jquery.tocify.min.js" type="text/javascript"></script>
+
+<script src="src/js/bootstrap-4.3.1.min.js" type="text/javascript"></script>
+
+<script src="src/js/scrollTop.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+  /* show or hide element*/
+  function hiddenShow(btnObj){
+    ctObj = btnObj.nextElementSibling;
+    if (ctObj.style.display == 'inline'){
+      ctObj.style.display = 'none';
+      btnObj.innerHTML = "Show Annotation";
+    }else{
+      ctObj.style.display = 'inline';
+      btnObj.innerHTML = "Hide Annotation";
+    };
+    return 0;
+  }
+</script>
+
+<script type="text/javascript">
+  /* show or hide element*/
+  function hiddenQA(btnObj){
+    ctObj = btnObj.nextElementSibling;
+    if (ctObj.style.display == 'inline'){
+      ctObj.style.display = 'none';
+      btnObj.innerHTML = "Show QA";
+    }else{
+      ctObj.style.display = 'inline';
+      btnObj.innerHTML = "Hide QA";
+    };
+    return 0;
+  }
+</script>
+
+<script type="text/javascript">
+
+	$(function () {
+
+		var options = {
+
+			selectors: "h2,h3,h4,h5",
+
+			theme: "bootstrap",
+
+			scrollTo: "60"
+
+		};
+
+		var toc = $("#toc").tocify(options).data("toc-tocify");
+
+	});
+
+</script>
+
+
+
+
+
+<script type="text/javascript">
+
+function trans(img_div_id) {
+
+img_div = $("#" + img_div_id)
+
+img = $("#" + img_div_id + " img").first();
+
+if (img_div.hasClass("fullscreen-div")) {
+
+img_div.removeClass("fullscreen-div");
+
+img.removeClass("fullscreen-img");
+
+}
+
+else {
+
+img_div.addClass("fullscreen-div");
+
+img.addClass("fullscreen-img");
+
+}
+
+}
+
+
+
+function filter_display() {
+
+return $(this).css("display") != "none";
+
+}
+
+
+
+function show_default() {
+
+var list_group_id = "#" + $(this).attr("id");
+
+if ($(list_group_id + " a.active").css("display") == "none") {
+
+var list_tab = $(list_group_id + " a.active");
+
+var pan_id = list_tab.attr("href");
+
+$(pan_id).removeClass("active show");
+
+list_tab.removeClass("active");
+
+}
+
+if ($(list_group_id + " a.active").filter(filter_display).length == 0) {
+
+$(list_group_id + " a").filter(filter_display).first().tab("show");
+
+}
+
+}
+
+$.fn.show_default = show_default
+
+
+
+function next(botton_id) {
+
+var present_tab = $("#" + botton_id.replace("_button_next", "_list-tab") + " .active").first();
+
+while (present_tab.next().length == 1) {
+
+if (present_tab.next().css("display") != "none") {
+
+present_tab.next().tab("show");
+
+break;
+
+}
+
+else {
+
+present_tab = present_tab.next();
+
+}
+
+}
+
+
+
+}
+
+function prev(botton_id) {
+
+var present_tab = $("#" + botton_id.replace("_button_prev", "_list-tab") + " .active").first();
+
+while (present_tab.prev().length == 1) {
+
+if (present_tab.prev().css("display") != "none") {
+
+present_tab.prev().tab("show");
+
+break;
+
+}
+
+else {
+
+present_tab = present_tab.prev();
+
+}
+
+}
+
+
+
+
+
+}
+
+
+
+$(document).ready(function () {
+
+$(".form-control").on("keyup", function () {
+
+var value = $(this).val().toLowerCase();
+
+var input_box_id = "#" + $(this).attr("id");
+
+var list_group_id = input_box_id.replace("_InputList", "_list-tab");
+
+$(list_group_id + " a").filter(function () {
+
+$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+
+});
+
+$(list_group_id).show_default();
+
+});
+
+$(".list-group").each(show_default);
+
+});
+
+
+
+</script>
+
+
+
+
+
+
+
+</head>
+
+
+
+<body>
+
+
+
+<div id="toc" class="tocify">
+
+</div>
+
+<div id="toc" class="tocify">
+
+</div>
+
+
+
+	<div style="position:fixed; top:0; left:0; width:100%; z-index:1000;">
+
+		<table width="100%" height="50px" border="0" cellpadding="5" cellspacing="0"
+
+			style="background:#F3F3F3; border-bottom:1px solid #eee;border-top: none;background-image:-moz-linear-gradient(top,#EEEEEE,#FFFFFF); background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0,#EEEEEE), color-stop(1,#FFFFFF));filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#EEEEEE', endColorstr='#FFFFFF', GradientType='0')">
+
+			<tr height="86%">
+
+				<td width='1%'></td>
+
+				<td><img src="src/images/logo1.png"></td>
+
+				<td>
+
+					<div style="margin:5px;border-left:1px solid #DCDCDC;height:30px"></div>
+
+				</td>
+
+				<td width="20%"></td>
+
+				<td width="15%"></td>
+
+				<td width="25%"
+
+					style="text-align:right;padding:0px;margin:0px;color:black;font-size:14px;font-weight:50;">
+
+					<!-- Tel: 916-252-0068-383 -->
+
+					<br><a href="mailto:op-rna@novogene.com" target="black"
+
+						style="text-decoration:none;color:black;font-size:14px;font-weight:50;"><!-- Email: inquiry_us@novogene.com
+						 -->
+						<a></td>
+
+				<td width="1%"></td>
+
+			</tr>
+
+		</table>
+
+	</div>
+
+
+
+<!--------------------------标题---------------------------------->
+
+<div id="main"> 
+
+</br><h1>Prokaryotes RNA-seq Analysis Report</h1></br>
+
+<table class= 'gy' style="text-align:left">
+
+
+<tbody>
+
+
+
+<tr>
+<td>Contract ID</td>
+<td>H101SCXXXXXXXX</td>
+</tr>
+
+<tr>
+<td>Contract Name</td>
+<td>XXXXXXXXXXXXXXXXXXXXXX</td>
+</tr>
+
+<tr>
+<td>Batch ID</td>
+<td>X201SCXXXXXXXX-Z01-J001</td>
+</tr>
+
+<tr>
+<td>Reference Genome and Version</td>
+<td>Microbacterium_aerolatum_kehu2</td>
+</tr>
+
+
+<tr>
+<td>Report Time</td>
+<td>2023-04-20</td>
+</tr>
+
+<tr>
+<td>Reminder</td>
+<td>Partial results are presented in this report, while full results will be delivered in data release.<br>
+Hyperlink of results in this report will be only valid in data release, after statement confirmation.</td>
+</tr>
+
+</tbody></table>
+
+<br /><br />
+
+
+<!----------------------------------------建库测序流程----------------------------------------->
+<p class="head"><a href="#home" title="返回首页"></a>
+
+	<a name="part1"></a>
+
+	<hr />
+
+</p><br />
+
+<h2> 1 Introduction </h2>
+
+<p>A transcriptome is a collection of all the transcripts in one cell or one population of cells at certain status. Transcriptomic analysis helps to study on the identification of genes that are differentially expressed in distinct cell populations. 
+Researchers can also gain a deeper insight into gene boundary identification, 
+variable cleavage and transcript variation.</p>
+<p>RNA sequencing via Illumina platforms, based on mechanism of SBS (sequencing by synthesis), has a large range of benefits on high throughput and high accuracy out of low sample requirements. This technical method can be a powerful tool for researching RNA transcriptional activity.</p>
+<p>Workflow is shown as follows:</p></br>
+
+<p class="center">
+
+
+	<img  src="src/images/sequence_pipeline.png" height="850" alt="" width="750"/></p>
+<p class="premark center">Figure 1. Project workflow</p>
+
+</p>
+
+<!----------------------------------------建库流程-------------------------------------------->
+<p class="head"><a href="#home" title="返回首页"></a>
+
+        <a>Novogene Co.,Ltd.</a>
+
+        <hr />
+
+</p><br />
+
+<h2> 2 Library Construction and Sequencing </h2>
+
+<h3> 2.1 Sample Quality Control </h3>
+<p>Please refer to QC report for methods of sample quality control.</p>
+<h3> 2.2 Library Construction, Quality Control and Sequencing </h3>
+<p>Firstly, ribosomal RNA was removed from the total RNA and then precipitated with ethanol. After fragmentation, the first strand cDNA was synthesized using random hexamer primers. During the second strand cDNA synthesis, dUTPs were replaced with dTTPs in the reaction buffer. The directional library was ready after end repair, A-tailing, adapter ligation, size selection, amplification, and purification. The experimental procedures of RNA library preparation are shown in Figure 2.</p>
+
+<p class="center">
+<img class="center" height="700" alt="" width="220" src="src/images/library_construction.png" /></p>
+<p class="premark center">Figure 2 Workflow of library construction</p>
+<br />
+<p>The library was checked with Qubit and real-time PCR for quantification and bioanalyzer for size distribution detection. Quantified libraries will be pooled and sequenced on Illumina platforms, according to effective library concentration and data amount required.</p>
+<p>Method details involved in the project are available at <a href="src/Methods_prokaryote-seq.pdf" title="点击打开" target="_blank">methods</a></p>
+
+
+<!----------------------------------------生物信息分析流程----------------------------------------->
+<p class="head"><a href="#home" title="返回首页"></a>
+
+	<hr />
+
+</p><br />
+
+<h2>3 Bioinformatics Analysis Pipeline</h2>
+
+<p>The analysis workflow for data with a reference genome is as follows:</p>
+
+<p class="center">
+
+<img class="center" height="600" alt="" width="600" src="src/images/pipeline.png" /></p>
+<p class="premark center">Figure 3 Bioinformatic analysis workflow</p>
+<p class="premark center">Note: PPI (Protein-protein interaction) network analysis is only available for species with known PPI network data.</p>
+
+</p>
+<p>Method details involved in the project are available at <a href="src/Methods_prokaryote-seq.pdf" title="点击打开" target="_blank">methods</a></p>
+<br>
+
+
+
+<!-------------------------------------------- 原始序列数据 --------------------------------------->
+<p class="head"><a href="#home" title="返回首页"></a>
+
+	<hr />
+
+</p><br />
+
+<h2><a id="结果展示及说明">4 Analysis Results</a></h2>
+
+<h3 id="id_order_raw" ><a id="原始序列数据">4.1 Data Quality Control</a></h3>
+<h4 id="id_order_raw" ><a id="原始序列数据">4.1.1 Raw Data</a></h4>
+<p>Original image data file from high-throughput sequencing (like Illumina) is transformed into sequenced reads (called Raw Data or Raw Reads) by CASAVA base recognition (Base Calling). Raw data are stored in FASTQ(fq) format files, which contain sequences of reads and corresponding base quality. Each read has four descriptive lines as follow:</p>
+
+<p style="font-weight: bold;">FASTQ file:</p>
+ 
+ <div class="bs-docs-qa">
+
+<p class="seq">
+ 
+	@HWI-ST1276:71:C1162ACXX:1:1101:1208:2458 1:N:0:CGATGT&nbsp;&nbsp;&nbsp;<br />
+
+	NAAGAACACGTTCGGTCACCTCAGCACACTTGTGAATGTCATGGGATCCAT<br />
+
+	+<br />
+
+	#55???BBBBB?BA@DEEFFCFFHHFFCFFHHHHHHHFAE0ECFFD/AEHH<br />
+
+</p>
+</div >
+
+<button onclick="hiddenShow(this)">Show Annotiation</button>
+<div class='comment'>
+
+<ul>
+<br>
+<li>Line 1: the at sign (@) followed by sequence identifiers and optional description info (such as FASTA title line).</li>
+<li>Line 2: base sequences (raw read, A, G, C, and T).</li>
+<li>Line 3: the plus sign (+) optionally followed by the same Illumina sequence identifiers and description information as Line 1.</li>
+<li>Line 4: the quality values for each base, corresponding to the data in Line 2.</li>
+</ul>
+</div>
+<p style="font-weight: bold;">Illumina Sequence Identifier:</p>
+
+<table class="gy">
+	<tr>
+
+			<th>Identifier</th>
+
+			<th>Meaning</th>
+
+
+</tr>
+	<tr>
+
+			<td>HWI-ST1276</td>
+
+			<td>Instrument – unique identifier of the sequencer</td>
+</tr>
+	<tr>
+<td>71</td>
+<td>Run number – Run number on instrument</td>
+</tr>
+	<tr>
+<td>C1162ACXX</td>
+<td>Flowcell ID - ID of flowcell</td>
+</tr>
+	<tr>
+<td>1</td>
+<td>LaneNumber - positive integer</td>
+</tr>
+	<tr>
+<td>1101</td>
+<td>TileNumber - positive integer</td>
+</tr>
+	<tr>
+<td>1208</td>
+<td>X - x coordinate of the spot. Integer which can be negative </td>
+</tr>
+	<tr>
+<td>2458</td>
+<td>Y - y coordinate of the spot. Integer which can be negative </td>
+</tr>
+	<tr>
+<td>1</td>
+<td>ReadNumber - 1 for single reads, 1 or 2 for paired ends</td>
+</tr>
+	<tr>
+<td>N</td>
+<td>whether it is filtered - NB: Y if the reads is filtered out, not in the delivered fastq files, N otherwise</td>
+</tr>
+	<tr>
+<td>0</td>
+<td>control number - 0 when none of the control bits are on, otherwise it is an even number</td>
+</tr>
+	<tr>
+<td>CGATGT</td>
+<td>Illumina index sequences</td>
+</tr>
+</table>
+ 
+ <p>The details of Sequencing identifier of Illumina are as follows: </p>
+ <p class="step">(1) HWI-ST1276:71 HWI-ST1276, Instrument - unique identifier of the sequencer; 71, run number - Run number on instrument<br />
+(2) C1162ACXX:1:1101:1208:2458 means the coordinate of read on C1162ACXX (Flowcell ID) flowcell, line 1, 1101 tile is(x=1208, y=2458)<br />
+(3) 1:N:0:CGATGT the first number is 1 or 2, 1 means single reads or the first read of paired ends, 2 means the second of paired ends;
+ the second letter means whether reads is adjusted(Y means yes, N means no); the third number represent the number of Control Bits in sequence; 
+ six bases on the fourth place is Illumina index sequence.<br /></p>
+
+<p class="head"><a href="#home" title="返回首页"></a>
+
+	<a name="part1"></a>
+
+	<hr />
+
+</p><br />
+
+<h4>4.1.2 Examination of Sequencing Error Rate</h4>
+	<p>The error rate for each base can be transformed by the Phred score as in equation 1. "e" represents sequencing error rate, 
+	"Qphred" represents base quality values of Illumina platforms (equation 1: Qphred = -10log10(e)).</p>
+	<table class="gy">
+
+		<tr>
+
+			<th>Phred score</th>
+
+			<th>ASCII code</th>
+
+			<th>error rate</th>
+
+			<th>correct rate</th>
+
+			<th>Q-sorce</th>
+
+		</tr>
+
+		<tr>
+
+			<td>10</td>
+
+			<td>+ (10+33)</td>
+
+			<td>1/10</td>
+
+			<td>90%</td>
+
+			<td>Q10</td>
+
+		</tr>
+
+		<tr>
+
+			<td>20</td>
+
+			<td>5 (20+33)</td>
+
+			<td>1/100</td>
+
+			<td>99%</td>
+
+			<td>Q20</td>
+
+		</tr>
+
+		<tr>
+
+			<td>30</td>
+
+			<td>? (30+33)</td>
+
+			<td>1/1000</td>
+
+			<td>99.9%</td>
+
+			<td>Q30</td>
+
+		</tr>
+
+		<tr>
+
+			<td>40</td>
+
+			<td>I (40+33)</td>
+
+			<td>1/10000</td>
+
+			<td>99.99%</td>
+
+			<td>Q40</td>
+
+		</tr>
+
+	</table>
+
+<p>Sequencing error rate and base quality are affected by the sequencing machine, reagent and the samples. The error rate distribution has two features:</p>
+<p class="step">(1)Error rate increases as the sequencing reads are extended and sequencing reagents are consumed.</p>
+<p class="step">(2)The first six bases have relatively high error rates due to the random hexamers used in priming cDNA synthesis (Jiang et al.). In general, a single base error rate should be lower than 1%. </p>
+
+	<p class="center">
+
+<div class="row gallery-row">
+
+<div class="col-1">
+
+<div id="gallery_figure2_1_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+
+</div>
+
+<div class="col-6">
+
+<div class="tab-content" id="gallery_figure2_1_nav-tabContent">
+
+
+
+<div class="tab-pane fade" id="gallery_figure2_1_pane_sample_C2" role="tabpanel" aria-labelledby="gallery_figure2_1_list_sample_C2" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_C2.error_rate_distribution.png" /></div>
+
+
+
+<div class="tab-pane fade" id="gallery_figure2_1_pane_sample_C3" role="tabpanel" aria-labelledby="gallery_figure2_1_list_sample_C3" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_C3.error_rate_distribution.png" /></div>
+
+
+
+<div class="tab-pane fade" id="gallery_figure2_1_pane_sample_P2" role="tabpanel" aria-labelledby="gallery_figure2_1_list_sample_P2" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_P2.error_rate_distribution.png" /></div>
+
+
+
+<div class="tab-pane fade" id="gallery_figure2_1_pane_sample_P3" role="tabpanel" aria-labelledby="gallery_figure2_1_list_sample_P3" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_P3.error_rate_distribution.png" /></div>
+
+
+
+<div class="tab-pane fade" id="gallery_figure2_1_pane_sample_P1" role="tabpanel" aria-labelledby="gallery_figure2_1_list_sample_P1" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_P1.error_rate_distribution.png" /></div>
+
+
+
+<div class="tab-pane fade" id="gallery_figure2_1_pane_sample_C1" role="tabpanel" aria-labelledby="gallery_figure2_1_list_sample_C1" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_C1.error_rate_distribution.png" /></div>
+
+
+
+</div>
+
+</div>
+
+<div class="col-1">
+
+<div id="gallery_figure2_1_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+
+</div>
+
+<div class="col-4">
+
+<input class="form-control" id="gallery_figure2_1_InputList" type="text" placeholder="Search..">
+
+<div class="list-group" id="gallery_figure2_1_list-tab" role="tablist">
+
+
+
+<a class="list-group-item list-group-item-action" id="gallery_figure2_1_list_sample_C2" data-toggle="list" href="#gallery_figure2_1_pane_sample_C2" role="tab" aria-controls="sample_C2">sample_C2</a>
+
+
+
+<a class="list-group-item list-group-item-action" id="gallery_figure2_1_list_sample_C3" data-toggle="list" href="#gallery_figure2_1_pane_sample_C3" role="tab" aria-controls="sample_C3">sample_C3</a>
+
+
+
+<a class="list-group-item list-group-item-action" id="gallery_figure2_1_list_sample_P2" data-toggle="list" href="#gallery_figure2_1_pane_sample_P2" role="tab" aria-controls="sample_P2">sample_P2</a>
+
+
+
+<a class="list-group-item list-group-item-action" id="gallery_figure2_1_list_sample_P3" data-toggle="list" href="#gallery_figure2_1_pane_sample_P3" role="tab" aria-controls="sample_P3">sample_P3</a>
+
+
+
+<a class="list-group-item list-group-item-action" id="gallery_figure2_1_list_sample_P1" data-toggle="list" href="#gallery_figure2_1_pane_sample_P1" role="tab" aria-controls="sample_P1">sample_P1</a>
+
+
+
+<a class="list-group-item list-group-item-action" id="gallery_figure2_1_list_sample_C1" data-toggle="list" href="#gallery_figure2_1_pane_sample_C1" role="tab" aria-controls="sample_C1">sample_C1</a>
+
+
+
+</div>
+
+</div>
+
+</div>
+
+</p>
+
+<p class="name_fig">Figure 4.1 Error Rate Distribution</p>
+<p class="premark center">The x-axis shows the base position along each sequencing read and the y-axis shows the averaged base error rate.</p>
+
+
+<b> Result Directory: <a href="../Result_X201SCXXXXXXXX-Z01-J001-B1/1.QC/1.Error">Result/1.QC/1.Error</a></b>
+<br>
+<p class="head"><a href="#home" title="返回首页"></a>
+
+	<a name="A/T/G/C 含量分布检查"></a>
+
+	<hr />
+
+</p><br />
+
+<h4 >4.1.3 GC Content Distribution</h4>
+<p> GC content distribution is to detect potential AT/GC separation, 
+which affects subsequent gene expression quantification. In view of random fragmentation and biological law 
+of G/C-A/T content, G and C, A and T should be respectively equal, and the content should be stable throughout 
+the whole sequencing process for non-stranded library (If the library is strand-specific, AT separation or GC separation may occur). 
+A large variation of sequencing error in the first 6-7 bases is allowed considering the usage of random primer in library construction, 
+which is normal that the first few bases have certain preference in existing high-throughput sequencing technology.
+</p>
+	<p class="center">
+<div class="row gallery-row">
+<div class="col-1">
+<div id="gallery_figure2_2_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-6">
+<div class="tab-content" id="gallery_figure2_2_nav-tabContent">
+
+<div class="tab-pane fade" id="gallery_figure2_2_pane_sample_C2" role="tabpanel" aria-labelledby="gallery_figure2_2_list_sample_C2" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_C2.GC_content_distribution.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure2_2_pane_sample_C3" role="tabpanel" aria-labelledby="gallery_figure2_2_list_sample_C3" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_C3.GC_content_distribution.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure2_2_pane_sample_P2" role="tabpanel" aria-labelledby="gallery_figure2_2_list_sample_P2" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_P2.GC_content_distribution.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure2_2_pane_sample_P3" role="tabpanel" aria-labelledby="gallery_figure2_2_list_sample_P3" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_P3.GC_content_distribution.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure2_2_pane_sample_P1" role="tabpanel" aria-labelledby="gallery_figure2_2_list_sample_P1" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_P1.GC_content_distribution.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure2_2_pane_sample_C1" role="tabpanel" aria-labelledby="gallery_figure2_2_list_sample_C1" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_C1.GC_content_distribution.png" /></div>
+
+</div>
+</div>
+<div class="col-1">
+<div id="gallery_figure2_2_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-4">
+<input class="form-control" id="gallery_figure2_2_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="gallery_figure2_2_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="gallery_figure2_2_list_sample_C2" data-toggle="list" href="#gallery_figure2_2_pane_sample_C2" role="tab" aria-controls="sample_C2">sample_C2</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure2_2_list_sample_C3" data-toggle="list" href="#gallery_figure2_2_pane_sample_C3" role="tab" aria-controls="sample_C3">sample_C3</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure2_2_list_sample_P2" data-toggle="list" href="#gallery_figure2_2_pane_sample_P2" role="tab" aria-controls="sample_P2">sample_P2</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure2_2_list_sample_P3" data-toggle="list" href="#gallery_figure2_2_pane_sample_P3" role="tab" aria-controls="sample_P3">sample_P3</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure2_2_list_sample_P1" data-toggle="list" href="#gallery_figure2_2_pane_sample_P1" role="tab" aria-controls="sample_P1">sample_P1</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure2_2_list_sample_C1" data-toggle="list" href="#gallery_figure2_2_pane_sample_C1" role="tab" aria-controls="sample_C1">sample_C1</a>
+
+</div>
+</div>
+</div>
+
+	</p>
+
+<p class="name_fig">Figure 4.2 AT and GC content distributions</p>
+<p class="premark center ">The x-axis shows each base position within a read, and the y-axis shows the percentage of each base, 
+with each base represented by a different color. </p>
+<p class="premark center">The left side of the vertical dashed line is the GC-content of read 1, the right side is the GC-content of read 2.</p>
+
+
+<b> Result Directory: <a href="../Result_X201SCXXXXXXXX-Z01-J001-B1/1.QC/2.GC">Result/1.QC/2.GC</a> </b>
+<br>
+<p class="head"><a href="#home" title="返回首页"></a>
+
+	<a name="测序数据过滤"></a>
+
+	<hr />
+
+</p><br />
+
+<h4 >4.1.4 Sequencing Data Filtering</h4>
+<p> The sequenced reads/raw reads often contain low quality reads or reads with adaptors, 
+	which will affect the quality of downstream analysis. To avoid this, it's necessary to filter the raw reads and get the clean reads.</p>
+<p style="font-weight: bold;">Raw reads filtering is as follows:</p>
+<p class="paragraph">
+
+
+<p class="center">
+	<img class="center" height="550" alt="" width="680" src="src/images/data_filter.png" /></p>
+<p class="name_fig">Figure 4.3 Workflow of sequencing data filtration</p>
+</p>
+<p class="step">(1)Remove reads with adapter contamination.<br />
+(2)Remove reads when uncertain nucleotides constitute more than 10 percent of either read (N > 10%).<br />
+(3)Remove reads when low quality nucleotides (Base Quality less than 5) constitute more than 50 percent of the read. 
+</p>
+	
+
+<p style="font-weight: bold;">Sequences of adapter</p>
+<table class="gy">
+
+
+		<tr >
+
+			<td>P5 Adapter</td>
+
+			<td>P5→P7'(5'→3')<br>AATGATACGGCGACCACCGAGATCTACAC[i5]ACACTCTTTCCCTACACGACGCTCTTCCGATCT</td>
+
+		</tr>
+
+	<tr>
+
+		<td>P7 Adapter</td>
+
+		<td>P5→P7'(5'→3')<br>GATCGGAAGAGCACACGTCTGAACTCCAGTCAC[i7]ATCTCGTATGCCGTCTTCTGCTTG</td>
+
+	</tr>
+</table>
+<br/>
+<br/>
+<br/>
+	
+	<p class="center">
+<div class="row gallery-row">
+<div class="col-1">
+<div id="gallery_figure2_3_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-6">
+<div class="tab-content" id="gallery_figure2_3_nav-tabContent">
+
+<div class="tab-pane fade" id="gallery_figure2_3_pane_sample_C2" role="tabpanel" aria-labelledby="gallery_figure2_3_list_sample_C2" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_C2.raw_reads_classification.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure2_3_pane_sample_C3" role="tabpanel" aria-labelledby="gallery_figure2_3_list_sample_C3" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_C3.raw_reads_classification.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure2_3_pane_sample_P2" role="tabpanel" aria-labelledby="gallery_figure2_3_list_sample_P2" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_P2.raw_reads_classification.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure2_3_pane_sample_P3" role="tabpanel" aria-labelledby="gallery_figure2_3_list_sample_P3" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_P3.raw_reads_classification.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure2_3_pane_sample_P1" role="tabpanel" aria-labelledby="gallery_figure2_3_list_sample_P1" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_P1.raw_reads_classification.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure2_3_pane_sample_C1" role="tabpanel" aria-labelledby="gallery_figure2_3_list_sample_C1" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_C1.raw_reads_classification.png" /></div>
+
+</div>
+</div>
+<div class="col-1">
+<div id="gallery_figure2_3_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-4">
+<input class="form-control" id="gallery_figure2_3_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="gallery_figure2_3_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="gallery_figure2_3_list_sample_C2" data-toggle="list" href="#gallery_figure2_3_pane_sample_C2" role="tab" aria-controls="sample_C2">sample_C2</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure2_3_list_sample_C3" data-toggle="list" href="#gallery_figure2_3_pane_sample_C3" role="tab" aria-controls="sample_C3">sample_C3</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure2_3_list_sample_P2" data-toggle="list" href="#gallery_figure2_3_pane_sample_P2" role="tab" aria-controls="sample_P2">sample_P2</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure2_3_list_sample_P3" data-toggle="list" href="#gallery_figure2_3_pane_sample_P3" role="tab" aria-controls="sample_P3">sample_P3</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure2_3_list_sample_P1" data-toggle="list" href="#gallery_figure2_3_pane_sample_P1" role="tab" aria-controls="sample_P1">sample_P1</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure2_3_list_sample_C1" data-toggle="list" href="#gallery_figure2_3_pane_sample_C1" role="tab" aria-controls="sample_C1">sample_C1</a>
+
+</div>
+</div>
+</div>
+	</p>
+<p class="name_fig">Figure 4.4 Composition of Raw Reads</p>
+<p class="premark">Results are shown as percentage of total raw reads.</p>
+
+<button onclick="hiddenShow(this)">Show Annotiation</button>
+<div class='comment'>
+<ul>
+<br>
+<li>Adapter related: reads that had adapter contamination.</li>
+<li>Containing N: reads with more than 10 percent of uncertain nucleotides. </li>
+<li>Low quality: reads with more than 50 percent of low quality nucleotides.</li>
+<li>Clean reads: reads that passed quality control.</li>
+</ul>
+</div>
+<br><br>
+<b>Result Directory: <a href="../Result_X201SCXXXXXXXX-Z01-J001-B1/1.QC/3.Filter">Result/1.QC/3.Filter</a></b>
+<br>
+<p class="head"><a href="#home" title="返回首页"></a>
+
+	<a name="数据情况汇总"></a>
+
+	<hr />
+
+</p><br />
+
+<h4>4.1.5 Statistics of Sequencing Quality</h4>
+<p>The data is summarized in the table below. </p> 
+<p class="name_table">Table 4.1 Summary of Data Quality Control</p>
+<table class="gy">
+<tr><th>Sample name</th><th>Raw reads</th><th>Clean reads</th><th>Raw bases</th><th>Clean bases</th><th>Error rate(%)</th><th>Q20(%)</th><th>Q30(%)</th><th>GC content(%)</th></tr>
+
+	<tr>
+	<td>sample_C2</td><td>7676756</td><td>7594324</td><td>1.16G</td><td>1.14G</td><td>0.03</td><td>96.74</td><td>91.28</td><td>62.10</td>
+	</tr>
+
+	<tr>
+	<td>sample_C3</td><td>7819556</td><td>7735054</td><td>1.18G</td><td>1.17G</td><td>0.03</td><td>96.91</td><td>91.65</td><td>62.62</td>
+	</tr>
+
+	<tr>
+	<td>sample_P2</td><td>7697228</td><td>7604640</td><td>1.16G</td><td>1.15G</td><td>0.03</td><td>96.81</td><td>91.52</td><td>62.99</td>
+	</tr>
+
+	<tr>
+	<td>sample_P3</td><td>7872342</td><td>7814038</td><td>1.19G</td><td>1.18G</td><td>0.03</td><td>96.91</td><td>91.73</td><td>62.84</td>
+	</tr>
+
+	<tr>
+	<td>sample_P1</td><td>7535626</td><td>7461188</td><td>1.14G</td><td>1.12G</td><td>0.03</td><td>97.43</td><td>92.80</td><td>64.52</td>
+	</tr>
+
+	<tr>
+	<td>sample_C1</td><td>7533558</td><td>7483140</td><td>1.14G</td><td>1.13G</td><td>0.03</td><td>97.53</td><td>93.01</td><td>63.56</td>
+	</tr>
+
+</table>
+
+	<br />
+
+
+<button onclick="hiddenShow(this)">Show Annotiation</button>
+<div class='comment'>
+<ul>
+<br>
+<li>Sample name: sampleID.</li>
+<li>Raw reads: reads count from the raw data, four rows as an unit, with statistics of reads count for every sequencing.</li>
+<li>Clean reads: Clean data is reads count filtered from raw data. Statistics method is similar with raw reads.All the following analysis is based on clean data.</li>
+<li>Raw bases: Base number of raw data. (number of raw reads) * (sequence length), converting unit to G.</li>
+<li>Clean bases: Base number of raw data after filtering. (number of clean reads) * (sequence length),converting unit to G.</li>
+<li>Error rate(%): base error rate of whole sequencing.</li>
+<li>Q20(%): Phred values greater than 20 base number contain the percentage of total bases. (Base number of Phred value > 20) / (Total base number)*100.</li>
+<li>Q30(%): Phred values greater than 30 base number contain the percentage of total bases. (Base number of Phred value > 30) / (Total base number)*100.</li>
+<li>GC content(%): The percentage of G&C base numbers of total bases.(G&C base number) / (Total base number)*100.</li>
+</ul>
+</div>
+<br><br>
+<b>Result Directory: <a href='../Result_X201SCXXXXXXXX-Z01-J001-B1/1.QC/4.Stat'>Result/1.QC/4.Stat</a></b>
+<br>
+
+
+
+
+<!----------------------------------------- 参考序列比对分析 -------------------------------------->
+<p class="head"><a href="#home" title="返回首页"></a>
+
+	<a name="参考序列比对分析"></a>
+
+	<hr />
+
+</p>
+<h4 id="id_order_bowtie"><a name="参考序列比对分析">4.1.6 Mapping to Reference Genome</a></h3>
+<p>Algorithm for mapping sequences:appropriate software is chosen according to the characteristics of the reference genome. In general, Bowtie2 is chosen for the genomes of bacteria and other species with a high gene density. The mismatch parameter is set to two, and other parameters are set to default. In general, the total mapped rate should be more than 70%, and the percentage of reads that can be mapped to multiple sites in the reference genome should be less than 10%, if there is no contamination and a correct reference genome is chosen. </p>
+
+<b>Result Directory: <a href="../Result_X201SCXXXXXXXX-Z01-J001-B1/2.Mapping/2.Stat/">Result/2.Mapping/MapStat.xls</a></b>
+<br>
+<p class="head"><a href="#home" title="返回首页"></a>
+
+	<a name="参考序列比对分析"></a>
+
+	<hr />
+
+</p>
+<h4>4.1.7 Overview of Mapping Status</h4>
+<p class="name_table">Table 4.2 Overview of Mapping Status</p>
+
+<div style="overflow-x: auto">
+<table class="gy">
+<tr><th>Sample_name</th><th>sample_C1</th><th>sample_C2</th><th>sample_C3</th><th>sample_P1</th><th>sample_P2</th><th>sample_P3</th></tr>
+
+	<tr>
+	<td>Total reads</td><td>7483140</td><td>7594324</td><td>7735054</td><td>7461188</td><td>7604640</td><td>7814038
+</td>
+	</tr>
+
+	<tr>
+	<td>Total mapped</td><td>7352934 (98.26%)</td><td>7517375 (98.99%)</td><td>7631620 (98.66%)</td><td>7122966 (95.47%)</td><td>7494622 (98.55%)</td><td>7718921 (98.78%)
+</td>
+	</tr>
+
+	<tr>
+	<td>Multiple mapped</td><td>130624 (1.75%)</td><td>188931 (2.49%)</td><td>150951 (1.95%)</td><td>141944 (1.9%)</td><td>135200 (1.78%)</td><td>141643 (1.81%)
+</td>
+	</tr>
+
+	<tr>
+	<td>Uniquely mapped</td><td>7222310 (96.51%)</td><td>7328444 (96.5%)</td><td>7480669 (96.71%)</td><td>6981022 (93.56%)</td><td>7359422 (96.78%)</td><td>7577278 (96.97%)
+</td>
+	</tr>
+
+	<tr>
+	<td>Read-1</td><td>3613435 (48.29%)</td><td>3661426 (48.21%)</td><td>3736232 (48.3%)</td><td>3491420 (46.79%)</td><td>3674460 (48.32%)</td><td>3784594 (48.43%)
+</td>
+	</tr>
+
+	<tr>
+	<td>Read-2</td><td>3608875 (48.23%)</td><td>3667018 (48.29%)</td><td>3744437 (48.41%)</td><td>3489602 (46.77%)</td><td>3684962 (48.46%)</td><td>3792684 (48.54%)
+</td>
+	</tr>
+
+	<tr>
+	<td>Reads map to '+'</td><td>3608803 (48.23%)</td><td>3662480 (48.23%)</td><td>3738478 (48.33%)</td><td>3488898 (46.76%)</td><td>3678104 (48.37%)</td><td>3786809 (48.46%)
+</td>
+	</tr>
+
+	<tr>
+	<td>Reads map to '-'</td><td>3613507 (48.29%)</td><td>3665964 (48.27%)</td><td>3742191 (48.38%)</td><td>3492124 (46.8%)</td><td>3681318 (48.41%)</td><td>3790469 (48.51%)
+</td>
+	</tr>
+
+	<tr>
+	<td>Reads mapped in proper pairs</td><td>7146888 (95.51%)</td><td>7264748 (95.66%)</td><td>7411152 (95.81%)</td><td>6891812 (92.37%)</td><td>7284500 (95.79%)</td><td>7516898 (96.2%)
+</td>
+	</tr>
+
+	<tr>
+	<td>Proper-paired reads map to different chrom</td><td>0 (0%)</td><td>0 (0%)</td><td>0 (0%)</td><td>0 (0%)</td><td>0 (0%)</td><td>0 (0%)
+</td>
+	</tr>
+
+</table>
+</div>
+<br />
+<button onclick="hiddenShow(this)">Show Annotiation</button>
+<div class='comment'>
+<ul>
+<br>
+<li>Total reads: total number of filtered reads (Clean data). </li>
+<li>Total mapped reads: total number of reads mapped to the reference genome. </li>
+<li>Uniquely mapped reads: number of reads uniquely mapped to the reference genome.</li>
+<li>Multiple mapped reads: number of reads mapped to multiple sites in the reference genome.</li>
+<li>Total mapping rate: the mapping rate of total reads mapped to the reference genome. In general, this number should be larger than 70% when there is no contamination and the correct reference genome is chosen.</li>
+<li>Uniquely mapping rate: the uniquely mapping rate of mapped to the reference genome.</li>
+<li>Multiple mapping rate: the multiple mapping rate of mapped to the reference genome.</li>
+</ul>
+</div>
+
+<p class="head"><a href="#home" title="返回首页"></a>
+
+<a name="参考序列比对分析"></a>
+
+<hr />
+
+</p><br />
+
+<h4>4.1.8 Mapped Regions in Reference Genome</h4>
+<p>Mapped regions are classified base on the structural annotation of the reference genome. Exon-mapped reads should be abundant if the reference genome is well-annotated. Reads map to intergenic regions may due to weak annotation of the reference genome, noncoding RNA or background noise. </p>
+
+<p class="center">
+
+<div class="row gallery-row">
+<div class="col-1">
+<div id="gallery_figure3_2_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-6">
+<div class="tab-content" id="gallery_figure3_2_nav-tabContent">
+
+<div class="tab-pane fade" id="gallery_figure3_2_pane_sample_C2" role="tabpanel" aria-labelledby="gallery_figure3_2_list_sample_C2" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_C2.MR.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure3_2_pane_sample_C3" role="tabpanel" aria-labelledby="gallery_figure3_2_list_sample_C3" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_C3.MR.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure3_2_pane_sample_P2" role="tabpanel" aria-labelledby="gallery_figure3_2_list_sample_P2" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_P2.MR.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure3_2_pane_sample_P3" role="tabpanel" aria-labelledby="gallery_figure3_2_list_sample_P3" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_P3.MR.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure3_2_pane_sample_P1" role="tabpanel" aria-labelledby="gallery_figure3_2_list_sample_P1" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_P1.MR.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure3_2_pane_sample_C1" role="tabpanel" aria-labelledby="gallery_figure3_2_list_sample_C1" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_C1.MR.png" /></div>
+
+</div>
+</div>
+<div class="col-1">
+<div id="gallery_figure3_2_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-4">
+<input class="form-control" id="gallery_figure3_2_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="gallery_figure3_2_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="gallery_figure3_2_list_sample_C2" data-toggle="list" href="#gallery_figure3_2_pane_sample_C2" role="tab" aria-controls="sample_C2">sample_C2</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure3_2_list_sample_C3" data-toggle="list" href="#gallery_figure3_2_pane_sample_C3" role="tab" aria-controls="sample_C3">sample_C3</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure3_2_list_sample_P2" data-toggle="list" href="#gallery_figure3_2_pane_sample_P2" role="tab" aria-controls="sample_P2">sample_P2</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure3_2_list_sample_P3" data-toggle="list" href="#gallery_figure3_2_pane_sample_P3" role="tab" aria-controls="sample_P3">sample_P3</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure3_2_list_sample_P1" data-toggle="list" href="#gallery_figure3_2_pane_sample_P1" role="tab" aria-controls="sample_P1">sample_P1</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure3_2_list_sample_C1" data-toggle="list" href="#gallery_figure3_2_pane_sample_C1" role="tab" aria-controls="sample_C1">sample_C1</a>
+
+</div>
+</div>
+</div>
+</p>
+
+<p class="name_fig">Figure 4.5 Classification of Reads According to Mapped Region.</p>
+<p class="premark">&nbsp</p>
+<b>Result Directory: <a href="../Result_X201SCXXXXXXXX-Z01-J001-B1/2.Mapping/1.Region">Result/2.Mapping/1.Region</a></b>
+<br>
+<p class="head"><a href="#home" title="返回首页"></a>
+
+<a name="参考序列比对分析"></a>
+
+<hr />
+
+</p><br />
+
+<h4>4.1.9 Distribution of Mapped Reads in Chromosomes</h4>
+<p>The distribution of mapped reads in chromosomes was estimated by statistics on the genomic locations of total mapped reads. A random selected sample of total mapped reads and their genomic location distribution is displayed in below figure:  </p>
+
+<p class="center">
+
+<div class="row gallery-row">
+<div class="col-1">
+<div id="gallery_figure3_3_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-6">
+<div class="tab-content" id="gallery_figure3_3_nav-tabContent">
+
+<div class="tab-pane fade" id="gallery_figure3_3_pane_sample_C2" role="tabpanel" aria-labelledby="gallery_figure3_3_list_sample_C2" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_C2.circos.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure3_3_pane_sample_C3" role="tabpanel" aria-labelledby="gallery_figure3_3_list_sample_C3" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_C3.circos.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure3_3_pane_sample_P2" role="tabpanel" aria-labelledby="gallery_figure3_3_list_sample_P2" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_P2.circos.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure3_3_pane_sample_P3" role="tabpanel" aria-labelledby="gallery_figure3_3_list_sample_P3" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_P3.circos.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure3_3_pane_sample_P1" role="tabpanel" aria-labelledby="gallery_figure3_3_list_sample_P1" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_P1.circos.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure3_3_pane_sample_C1" role="tabpanel" aria-labelledby="gallery_figure3_3_list_sample_C1" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_C1.circos.png" /></div>
+
+</div>
+</div>
+<div class="col-1">
+<div id="gallery_figure3_3_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-4">
+<input class="form-control" id="gallery_figure3_3_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="gallery_figure3_3_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="gallery_figure3_3_list_sample_C2" data-toggle="list" href="#gallery_figure3_3_pane_sample_C2" role="tab" aria-controls="sample_C2">sample_C2</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure3_3_list_sample_C3" data-toggle="list" href="#gallery_figure3_3_pane_sample_C3" role="tab" aria-controls="sample_C3">sample_C3</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure3_3_list_sample_P2" data-toggle="list" href="#gallery_figure3_3_pane_sample_P2" role="tab" aria-controls="sample_P2">sample_P2</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure3_3_list_sample_P3" data-toggle="list" href="#gallery_figure3_3_pane_sample_P3" role="tab" aria-controls="sample_P3">sample_P3</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure3_3_list_sample_P1" data-toggle="list" href="#gallery_figure3_3_pane_sample_P1" role="tab" aria-controls="sample_P1">sample_P1</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure3_3_list_sample_C1" data-toggle="list" href="#gallery_figure3_3_pane_sample_C1" role="tab" aria-controls="sample_C1">sample_C1</a>
+
+</div>
+</div>
+</div>
+</p>
+
+<p class="name_fig">Figure 4.6 Distribution Plot of Mapped Reads in Chromosomes.</p>
+<p class="premark">The outermost circle represents the reference genome. The region with grey background shows the distribution of the random selected sample of reads, in which the reads mapped to positive and negative chains are in red and blue, respectively. The innermost circle shows the positive chain coverage distribution in orange and red negative chain coverage distribution in green, respectively. Strange dots were discarded if  from the mean of coverages more than 3 times the standard deviation.</p>
+<b>Result Directory: <a href="../Result_X201SCXXXXXXXX-Z01-J001-B1/2.Mapping/3.Distribution">Result/2.Mapping/3.Distribution</a></b>
+<br>
+<p class="head"><a href="#home" title="返回首页"></a>
+
+	<a name="参考序列比对分析"></a>
+
+	<hr />
+
+</p><br />
+<h4>4.1.10 Visualization of Mapping Status of Reads</h4>
+<p>Files are provided in BAM format, a standard file format that contains mapping results, and the corresponding reference genome and gene annotation file for some species. The Integrative Genomics Viewer (IGV) is recommended for visualizing data from BAM files. The IGV has several features: (1) it displays the positions of single or multiple reads in the reference genome, as well as read distribution between annotated exons, introns or intergenic regions, both in adjustable scale; (2) displays the read abundance of different regions to demonstrate their expression levels, in adjustable scale; (3) provides annotation information for both genes and splicing isoforms; (4) provides other related annotation information; (5) displays annotations downloaded from remote servers and/or imported from local machines. </p>
+<p class="center">
+<img class="small" src="src/images/igv.png" />
+</p>
+<p class="name_fig">Figure 4.7 IGV interface</p>
+
+
+
+
+
+<!---------------------------------------------- 新转录本预测 ----------------------------------------->
+
+<p class="head"><a href="#home" title="返回首页"></a>
+
+	<a name="新转录本预测"></a>
+
+	<hr />
+
+</p><br />
+<h3 id="id_order_novogene"><a name="新转录本预测">4.2 Novel Gene Prediction</a></h3>
+<p>The RNA-seq reads were assembled according to the reference genomes using Rockhopper(R. McClure, et al, 2013), and then compared to known gene structures, so that novel gene transcipts were predicted. The novel transcripts were aligned to sequences in NCBI NR database using Blastx (cutoff: evalue &lt 1e-5). Novel transcripts with NR annotations were considered as novel potential protein coding transcripts. </p>
+<p class="name_table">Table 4.3 Novel Gene Prediction</p>
+<div style="overflow-x: auto">
+<table class="gy">
+<tr><th>gene_id</th><th>gene_name</th><th>gene_chr</th><th>gene_start</th><th>gene_end</th><th>gene_strand</th><th>gene_length</th><th>gene_biotype</th><th>gene_description</th><th>tf_family</th><th>GO ID</th><th>GO Description</th><th>KEGG Pathway ID</th><th>KEGG Pathway Name</th></tr>
+
+	<tr>
+	<td>Novel00008</td><td>-</td><td>Chr1</td><td>181133</td><td>181834</td><td>-</td><td>702</td><td>-</td><td>PF04069:Substrate binding domain of ABC-type glycine betaine transport system</td><td>-</td><td>GO:0006810//GO:0008150//GO:0051179//GO:0051234//GO:0005215//GO:0003674</td><td>transport//biological_process//localization//establishment of localization//transporter activity//molecular_function</td><td>maur02010</td><td>ABC transporters
+</td>
+	</tr>
+
+	<tr>
+	<td>Novel00009</td><td>-</td><td>Chr1</td><td>185570</td><td>185773</td><td>+</td><td>204</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-
+</td>
+	</tr>
+
+	<tr>
+	<td>Novel00001</td><td>-</td><td>Chr1</td><td>2337</td><td>2832</td><td>-</td><td>496</td><td>-</td><td>PF02768:DNA polymerase III beta subunit, C-terminal domain|PF02767:DNA polymerase III beta subunit, central domain</td><td>DNA_pol3_beta_2</td><td>GO:0006260//GO:0008152//GO:0006139//GO:0006259//GO:0006725//GO:0006807//GO:0008150//GO:0009058//GO:0009059//GO:0009987//GO:0034641//GO:0034645//GO:0043170//GO:0044237//GO:0044238//GO:0044249//GO:0044260//GO:0046483//GO:0071704//GO:0090304//GO:1901360//GO:1901576//GO:0009360//GO:0005622//GO:0005575//GO:0005623//GO:0032991//GO:0042575//GO:0044424//GO:0044464//GO:0061695//GO:1902494//GO:1990234//GO:0003677//GO:0003887//GO:0008408//GO:0003674//GO:0003676//GO:0005488//GO:0097159//GO:1901363//GO:0003824//GO:0016740//GO:0016772//GO:0016779//GO:0034061//GO:0140097//GO:0004518//GO:0004527//GO:0016787//GO:0016788</td><td>DNA replication//metabolic process//nucleobase-containing compound metabolic process//DNA metabolic process//cellular aromatic compound metabolic process//nitrogen compound metabolic process//biological_process//biosynthetic process//macromolecule biosynthetic process//cellular process//cellular nitrogen compound metabolic process//cellular macromolecule biosynthetic process//macromolecule metabolic process//cellular metabolic process//primary metabolic process//cellular biosynthetic process//cellular macromolecule metabolic process//heterocycle metabolic process//organic substance metabolic process//nucleic acid metabolic process//organic cyclic compound metabolic process//organic substance biosynthetic process//DNA polymerase III complex//intracellular//cellular_component//cell//protein-containing complex//DNA polymerase complex//intracellular part//cell part//transferase complex, transferring phosphorus-containing groups//catalytic complex//transferase complex//DNA binding//DNA-directed DNA polymerase activity//3&#39;-5&#39; exonuclease activity//molecular_function//nucleic acid binding//binding//organic cyclic compound binding//heterocyclic compound binding//catalytic activity//transferase activity//transferase activity, transferring phosphorus-containing groups//nucleotidyltransferase activity//DNA polymerase activity//catalytic activity, acting on DNA//nuclease activity//exonuclease activity//hydrolase activity//hydrolase activity, acting on ester bonds</td><td>maur03440</td><td>Homologous recombination
+</td>
+	</tr>
+
+	<tr>
+	<td>Novel00002</td><td>-</td><td>Chr1</td><td>48528</td><td>48820</td><td>+</td><td>293</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-
+</td>
+	</tr>
+
+	<tr>
+	<td>Novel00003</td><td>-</td><td>Chr1</td><td>69526</td><td>69808</td><td>+</td><td>283</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-
+</td>
+	</tr>
+
+</table>
+</div>
+<br />
+
+<button onclick="hiddenShow(this)">Show Annotiation</button>
+<div class='comment'>
+<ul>
+<br>
+<li>gene_id: Gene’s ID.</li>
+<li>gene_name: The gene name from Swissprot.</li>
+<li>gene_chr:Chromosome/scaffold ID. </li>
+<li>gene_start:Start coordinate. </li>
+<li>gene_end:End coordinate. </li>
+<li>gene_strand:Strand specificity. </li>
+<li>gene_length: Novel gene length. </li>
+<li>gene_biotype:The type of novel gene. </li>
+<li>gene_description: Description from PFAM Annotation.</li>
+<li>tf_family: The TF family of novel gene. </li>
+<li>GO ID: Gene Ontology.</li>
+<li>GO Description: Description of GO.</li>
+<li>KEGG Pathway ID: ID of KEGG metabolic pathway.</li>
+<li>KEGG Pathway Name: Name of KEGG metabolic pathway.</li>
+</ul>
+</div>
+<br><br>
+<b>Result Directory: <a href="../Result_X201SCXXXXXXXX-Z01-J001-B1/3.Assemble/">Result/Assemble/novel_genes.annotation.xls</a></b>
+<br>
+
+
+
+<!----------------------------------------- 基因表达水平分析 -------------------------------------->
+<p class="head"><a href="#home" title="返回首页"></a>
+
+	<a name="参考序列比对分析"></a>
+
+	<hr />
+
+</p><br />
+<h3 id="id_order_htseq"><a name="基因表达水平分析">4.3 Expression Quantification</a></h3>
+<h4>4.3.1 Expression Quantification</h4>
+<p>Gene expression level is measured by transcript abundance. The greater the abundance, the higher is the gene expression level. In our RNA-seq analysis, the gene expression level is estimated by counting the reads that map to genes or exons. Read count is not only proportional to the actual gene expression level, but is also proportional to the gene length and the sequencing depth. In order for the gene expression levels estimated from different genes and experiments to be comparable, the FPKM is used. In RNA-seq, FPKM, short for the expected number of Fragments Per Kilobase of transcript sequence per Millions base pair-sequenced, is the commonest method of estimating gene expression levels, which takes into account the effects of both sequencing depth and gene length oncounting of fragments(Trapnell, Cole, et al., 2010).</p>
+<p>FeatureCounts software was used to analyze the gene expression levels in this experiment. The result files present the number of genes with different expression levels and the expression level of single genes. In general, an FPKM value of 0.1 or 1 is set as the threshold for determining whether the gene is expressed or not. </p>
+<p class="name_table">Table 4.4 The number of genes with different expression levels </p>
+
+<div style="overflow-x: auto">
+<table class="gy">
+<tr><th>FPKM Interval</th><th>sample_C2</th><th>sample_C3</th><th>sample_P2</th><th>sample_P3</th><th>sample_P1</th><th>sample_C1</th></tr>
+
+	<tr>
+	<td>0~1</td><td>452(11.05%)</td><td>473(11.56%)</td><td>459(11.22%)</td><td>472(11.53%)</td><td>479(11.71%)</td><td>138(3.37%)
+</td>
+	</tr>
+
+	<tr>
+	<td>1~3</td><td>338(8.26%)</td><td>295(7.21%)</td><td>328(8.02%)</td><td>309(7.55%)</td><td>311(7.6%)</td><td>127(3.1%)
+</td>
+	</tr>
+
+	<tr>
+	<td>3~15</td><td>776(18.96%)</td><td>799(19.53%)</td><td>777(18.99%)</td><td>787(19.23%)</td><td>779(19.04%)</td><td>748(18.28%)
+</td>
+	</tr>
+
+	<tr>
+	<td>15~60</td><td>1132(27.66%)</td><td>1147(28.03%)</td><td>1131(27.64%)</td><td>1138(27.81%)</td><td>1131(27.64%)</td><td>1763(43.08%)
+</td>
+	</tr>
+
+	<tr>
+	<td>>60</td><td>1394(34.07%)</td><td>1378(33.68%)</td><td>1397(34.14%)</td><td>1386(33.87%)</td><td>1392(34.02%)</td><td>1316(32.16%)
+</td>
+	</tr>
+
+</table>
+</div>
+
+<br/>
+<br/>
+<p class="name_table">Table 4.5 Gene expression levels</p>
+
+<div style="overflow-x: auto">
+<table class="gy">
+<tr><th>Gene_id</th><th>sample_C2</th><th>sample_C3</th><th>sample_C1</th><th>sample_P2</th><th>sample_P3</th><th>sample_P1</th><th>gene_name</th><th>gene_chr</th><th>gene_start</th><th>gene_end</th><th>gene_strand</th><th>gene_length</th><th>gene_biotype</th><th>gene_description</th><th>tf_family
+</th></tr>
+
+	<tr>
+	<td>Novel00060</td><td>1892472.34491118</td><td>1450964.99205507</td><td>893456.657648225</td><td>1225231.71305405</td><td>1332855.36442869</td><td>473913.196937418</td><td>-</td><td>Chr1</td><td>1596716</td><td>1597080</td><td>+</td><td>365</td><td>-</td><td>-</td><td>-
+</td>
+	</tr>
+
+	<tr>
+	<td>WP27_GM001485</td><td>286571.527505377</td><td>283777.087098173</td><td>189998.153749752</td><td>245847.744266812</td><td>218220.892949108</td><td>104570.106190216</td><td>--</td><td>Chr1</td><td>1556660</td><td>1556929</td><td>+</td><td>270</td><td>protein_coding</td><td>gnl|BL_ORD_ID|404523 sp|B0RGW6|RS15_CLAMS 30S ribosomal protein S15 OS=Clavibacter michiganensis subsp. sepedonicus (strain ATCC 33113 / DSM 20744 / JCM 9667 / LMG 2889 / C-1) OX=31964 GN=rpsO PE=3 SV=1//1.24926e-50 && -</td><td>-
+</td>
+	</tr>
+
+	<tr>
+	<td>Novel00088</td><td>32346.8145215605</td><td>29626.8717364796</td><td>29580.1113450401</td><td>30933.7626238588</td><td>30435.5741609706</td><td>15619.9280619894</td><td>-</td><td>Chr1</td><td>1878326</td><td>1878814</td><td>+</td><td>489</td><td>-</td><td>-</td><td>-
+</td>
+	</tr>
+
+	<tr>
+	<td>Novel00061</td><td>23031.3250252269</td><td>17483.9718280894</td><td>16470.7831709851</td><td>19243.1400588491</td><td>19293.5971820378</td><td>9692.53673216257</td><td>-</td><td>Chr1</td><td>1596712</td><td>1597705</td><td>-</td><td>994</td><td>-</td><td>PF00126:Bacterial regulatory helix-turn-helix protein, lysR family</td><td>HTH_1
+</td>
+	</tr>
+
+	<tr>
+	<td>WP27_GM000961</td><td>20461.6868692929</td><td>19719.1763866046</td><td>15607.9369255671</td><td>18327.9370891606</td><td>18196.3511665618</td><td>9340.66326138654</td><td>--</td><td>Chr1</td><td>990820</td><td>991092</td><td>-</td><td>273</td><td>protein_coding</td><td>-//- && -</td><td>-
+</td>
+	</tr>
+
+</table>
+</div>
+<br>
+<button onclick="hiddenShow(this)">Show Annotiation</button>
+<div class='comment'>
+<ul>
+<br>
+<li>gene_id: Gene ID.</li>
+<li>Sample1: The FPKM of genes of sample1.</li>
+<li>Sample2: The FPKM of genes of sample2.</li>
+<li>gene_name: Gene symbol.</li>
+<li>gene_chr: Chromosome/scaffold ID.</li>
+<li>gene_start: Start coordinate.</li>
+<li>gene_end: End coordinate.</li>
+<li>gene_strand: Strand specificity.</li>
+<li>gene_length: Novel gene length.</li>
+<li>gene_biotype: The type of novel gene.</li>
+<li>gene_description: Description from PFAM Annotation.</li>
+<li>tf_family: The TF family of novel gene.</li>
+</ul>
+</div>
+<br><br>
+<b> Result Directory: <a href="../Result_X201SCXXXXXXXX-Z01-J001-B1/4.Quant/1.Count/">Result/Quant/1.Count/gene_fpkm.xls</a></b>
+<br>
+<p class="head"><a href="#home" title="返回首页"></a>
+
+	<a name="参考序列比对分析"></a>
+
+	<hr />
+
+</p><br />
+
+<h4>4.3.2 Distributions of gene expression levels</h4>
+<p>To compare gene expression levels under different conditions, 
+	gene expression level and FPKM distribution among different samples are displayed. 
+	For biological replicates, the final FPKM would be the mean value.  
+	</p>
+<p class="center">
+
+<div class="row gallery-row">
+<div class="col-1">
+<div id="gallery_figure4_3_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-6">
+<div class="tab-content" id="gallery_figure4_3_nav-tabContent">
+
+<div class="tab-pane fade" id="gallery_figure4_3_pane_density" role="tabpanel" aria-labelledby="gallery_figure4_3_list_density" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/density.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure4_3_pane_violin" role="tabpanel" aria-labelledby="gallery_figure4_3_list_violin" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/violin.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure4_3_pane_boxplot" role="tabpanel" aria-labelledby="gallery_figure4_3_list_boxplot" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/boxplot.png" /></div>
+
+</div>
+</div>
+<div class="col-1">
+<div id="gallery_figure4_3_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-4">
+<input class="form-control" id="gallery_figure4_3_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="gallery_figure4_3_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="gallery_figure4_3_list_density" data-toggle="list" href="#gallery_figure4_3_pane_density" role="tab" aria-controls="density">density</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure4_3_list_violin" data-toggle="list" href="#gallery_figure4_3_pane_violin" role="tab" aria-controls="violin">violin</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure4_3_list_boxplot" data-toggle="list" href="#gallery_figure4_3_pane_boxplot" role="tab" aria-controls="boxplot">boxplot</a>
+
+</div>
+</div>
+</div>
+</p>
+<p class="name_fig">Figure 4.8 Distributions of gene expression levels</p>
+<p class="premark">Upper panel: FPKM distribution, the x-axis shows the log<sub>2</sub>(FPKM+1) and the y-axis shows gene density. Lower panel: FPKM violin Plot, the x-axis shows the sample names and the y-axis shows the log<sub>2</sub>(FPKM+1). Each violin has five statistical magnitudes (max value, upper quartile, median, lower quartile and min value). Lower panel: FPKM box Plot, the x-axis shows the sample names and the y-axis shows the log<sub>2</sub>(FPKM+1).</p>
+<b>Result Directory:<a href="../Result_X201SCXXXXXXXX-Z01-J001-B1/4.Quant/3.Distribution"> Result/Quant/3.Distribution/</a></b>
+<br>
+
+
+
+<!---------------------------------------- RNA-seq整体质量评估 ------------------------------------>
+<p class="head"><a href="#home" title="返回首页"></a>
+
+	<a name="RNA-seq整体质量评估"></a>
+
+	<hr />
+
+</p><br />
+
+<h3 id="id_order_rnaseqqc"><a name="RNA-seq整体质量评估">4.4 RNA-seq Advanced QC</a></h3>
+<h4>4.4.1 Correlation of RNA-seq samples</h4>
+
+<p>Biological replicates are necessary for any biological experiment, including those involving RNA-seq technology (Hansen et al.). In RNA-seq, replicates have a two-fold purpose. First, they demonstrate whether the experiment is repeatable, and secondly, they can reveal differences in gene expression between samples. The correlation between samples is an important indicator for testing the reliability of the experiment. The closer the correlation coefficient is to 1, the greater the similarity of the samples. ENCODE suggests that the square of the Pearson correlation coefficient should be larger than 0.92, under ideal experimental conditions（ENCODE Project Consortium,2004）. In this project, the R<sup>2</sup> should be larger that 0.8. </p>
+<p class="center">
+
+	<img class="small" src="src/pictures/cor_pearson.png" />
+
+</p>
+<p class="name_fig">Figure 4.9 Correlation of RNA-seq samples</p>
+<p class="premark">Heat map: The heat map of correlation coefficient between samples; Scatter Diagram(If the samples are more than 4 groups, then only present the scatter diagrams between biological replicates):The scatter diagrams of correlation coefficient between samples; R2:The square of Pearson coefficient</p>
+
+<b>Result Directory:<a href="../Result_X201SCXXXXXXXX-Z01-J001-B1/4.Quant/2.Correlation/correlation.png">Result/Quant/2.Correlation/correlation.png</a></b>
+<br>
+
+
+
+<!---------------------------------------- 基因差异表达分析 --------------------------------------->
+<p class="head"><a href="#home" title="返回首页"></a>
+
+	<a name="基因差异表达分析"></a>
+
+	<hr />
+
+</p><br />
+<h3 id="id_order_diffexp"><a name="基因差异表达分析">4.5 Differential Expression Analysis</a></h3>
+<h4>4.5.1 List of differentially expressed genes</h4>
+<p>The input data for differential gene expression analysis are readcounts from the gene expression level analytsis. The differental gene expression analysis contains three steps:</p>
+<p>1)Readcounts Normalization;</p>
+<p>2)Model dependent p-value estimation;</p>
+<p>3)FDR value estimation based on multiple hypothesis testing.</p>
+<p>Different softwares and parameter sets are applied in different situations. The analysis methods are listed below: </p>
+
+
+<div style="overflow-x: auto">
+<table class="gy">
+<tr><th>Type</th><th>Software</th><th>Normalzation method</th><th>p-value estimation model</th><th>FDR estimation method</th><th>Difference analysis threshold</th></tr>
+<tr><td>With biological duplicates</td><td>DESeq2(Anders et al, 2014)</td><td>DESeq</td><td>Negative binomial distribution</td><td>BH</td><td>|log<sub>2</sub>(FoldChange)| > 0&padj &lt; 0.05</td></tr>
+<tr><td>Without biological duplicate</td><td>edgeR(Robinson et al, 2010)</td><td>TMM</td><td>Poisson distribution</td><td>BH</td><td>|log<sub>2</sub>(FoldChange)| > 1&padj &lt; 0.005</td></tr>
+</table>
+</div>
+
+<p class="paragraph">The readcount value of the ith gene in the jth sample is K<sub>ij</sub>, then</p>
+<p class="center">Negative binomial distribution: K<sub>ij</sub> ～ NB(μ<sub>ij</sub>,σ<sub>ij</sub><sup>2</sup>)</p>
+<p class="center">Poisson distribution: K<sub>ij</sub> ～ P(μ<sub>ij</sub>)</p>
+<p class="center"></p>
+
+<p class="name_table">Table 4.6 List of differentially expressed genes</p>
+<div style="overflow-x: auto">
+<table class="gy">
+
+	
+		<tr><th>gene_id</th><th>sample_P2</th><th>sample_P3</th><th>sample_P1</th><th>sample_C2</th><th>sample_C3</th><th>sample_C1</th><th>sample_P</th><th>sample_C</th><th>log2FoldChange</th><th>pvalue</th><th>padj</th><th>gene_name</th><th>gene_chr</th><th>gene_start</th><th>gene_end</th><th>gene_strand</th><th>gene_length</th><th>gene_biotype</th><th>gene_description</th><th>tf_family
+</th></tr>
+	
+
+	
+		<tr><td>WP27_GM002021</td><td>2361.95795541387</td><td>2217.3070664734</td><td>2085.10602064405</td><td>768.709863369619</td><td>790.685747380763</td><td>775.99810998654</td><td>2221.45701417711</td><td>778.464573578974</td><td>1.51213669097689</td><td>9.29087643803307e-45</td><td>3.32706285245964e-41</td><td>--</td><td>Chr1</td><td>2069479</td><td>2071206</td><td>-</td><td>1728</td><td>protein_coding</td><td>gnl|BL_ORD_ID|213612 sp|Q6AED3|LEU1_LEIXX 2-isopropylmalate synthase OS=Leifsonia xyli subsp. xyli (strain CTCB07) OX=281090 GN=leuA PE=3 SV=1//0 && PF08502:LeuA allosteric (dimerisation) domain|PF00682:HMGL-like</td><td>HMGL-like
+</td></tr>
+	
+
+	
+		<tr><td>WP27_GM002746</td><td>16863.9490494443</td><td>17590.430468935</td><td>14881.0724420702</td><td>5354.41820949069</td><td>5311.84207731451</td><td>6441.95415928525</td><td>16445.1506534832</td><td>5702.73814869681</td><td>1.5276764608147</td><td>3.56085559955316e-33</td><td>6.37571195099993e-30</td><td>--</td><td>Chr1</td><td>2783063</td><td>2784682</td><td>-</td><td>1620</td><td>protein_coding</td><td>gnl|BL_ORD_ID|61350 sp|B0RAY1|CH60_CLAMS 60 kDa chaperonin OS=Clavibacter michiganensis subsp. sepedonicus (strain ATCC 33113 / DSM 20744 / JCM 9667 / LMG 2889 / C-1) OX=31964 GN=groL PE=3 SV=1//0 && PF00118:TCP-1/cpn60 chaperonin family</td><td>-
+</td></tr>
+	
+
+	
+		<tr><td>Novel00153</td><td>1965.05056125618</td><td>2104.23160179465</td><td>1840.84062943108</td><td>582.854024693083</td><td>610.144022394234</td><td>739.92784608013</td><td>1970.0409308273</td><td>644.308631055816</td><td>1.61039322736263</td><td>1.31182850435899e-29</td><td>1.56588595803651e-26</td><td>-</td><td>Chr1</td><td>2783034</td><td>2784724</td><td>+</td><td>1691</td><td>-</td><td>PF00118:TCP-1/cpn60 chaperonin family</td><td>-
+</td></tr>
+	
+
+	
+		<tr><td>WP27_GM000061</td><td>521.005054863328</td><td>478.000827960191</td><td>509.771251227068</td><td>1121.45665922509</td><td>1208.32443650623</td><td>1208.84127686345</td><td>502.925711350196</td><td>1179.54079086492</td><td>-1.22988238097707</td><td>1.20052555825772e-25</td><td>1.07477050603022e-22</td><td>--</td><td>Chr1</td><td>51203</td><td>52846</td><td>+</td><td>1644</td><td>protein_coding</td><td>gnl|BL_ORD_ID|228469 sp|Q9ZH77|MASY_STRC2 Malate synthase OS=Streptomyces clavuligerus (strain ATCC 27064 / DSM 738 / JCM 4710 / NBRC 13307 / NCIMB 12785 / NRRL 3585 / VKM Ac-602) OX=443255 GN=aceB PE=3 SV=1//0 && PF01274:Malate synthase</td><td>-
+</td></tr>
+	
+
+</table>
+</div>
+<br />
+<button onclick="hiddenShow(this)">Show Annotiation</button>
+<div class='comment'>
+<ul>
+<br>
+<li>gene_id: id of differentially expressed gene.</li>
+<li>samples from group A: normalized readcounts of all samples from group A.</li>
+<li>samples from group B: normalized readcounts of all samples from group B.</li>
+<li>log2FoldChange: log2(Sample1/Sample2).</li>
+<li>pvalue: p-value of statistical hypothesis testing.</li>
+<li>padj: adjusted p-value. The lower the qvalue is, the more significant the gene differentially expressed.</li>
+<li>gene_name: gene name.</li>
+<li>gene_chr: name of chromosome in which the gene is located.</li>
+<li>gene_start: start position of the gene at the chromosome.</li>
+<li>gene_end: end position of the gene at the chromosome.</li>
+<li>gene_strand: chain information of the gene.</li>
+<li>gene_length: gene length.</li>
+<li>gene_biotype: gene type.</li>
+<li>gene_description: gene function description.</li>
+<li>tf_family: tf family annotation.</li>
+</ul>
+</div>
+<br><br>
+<b>Result Directory: <a href="../Result_X201SCXXXXXXXX-Z01-J001-B1/5.Differential/1.deglist/">Result/Differential/1.deglist</a></b>
+<br>
+<p class="head"><a href="#home" title="返回首页"></a>
+
+	<a name="基因差异表达分析"></a>
+
+	<hr />
+
+</p><br />
+<h4>4.5.2 Screening of differentially expressed genes</h4>
+<p>Volcano plots are used to infer the overall distribution of differentially expressed genes. For the
+
+    samples with biological replicates, the threshold of differential expression genes is: padj < 0.05. For the samples
+
+        without biological replicates, the threshold of differential expression genes is: |log<sub>2</sub>(FoldChange)|
+
+        > 1 and qvalue < 0.005.  </p>
+<p class="center">
+
+<div class="row gallery-row">
+<div class="col-1">
+<div id="gallery_figure6_2_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-6">
+<div class="tab-content" id="gallery_figure6_2_nav-tabContent">
+
+<div class="tab-pane fade" id="gallery_figure6_2_pane_sample_Pvssample_C" role="tabpanel" aria-labelledby="gallery_figure6_2_list_sample_Pvssample_C" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_Pvssample_C.Volcanoplot.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure6_2_pane_sample_P1vssample_C1" role="tabpanel" aria-labelledby="gallery_figure6_2_list_sample_P1vssample_C1" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_P1vssample_C1.Volcanoplot.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure6_2_pane_sample_P2vssample_C2" role="tabpanel" aria-labelledby="gallery_figure6_2_list_sample_P2vssample_C2" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_P2vssample_C2.Volcanoplot.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure6_2_pane_sample_P3vssample_C3" role="tabpanel" aria-labelledby="gallery_figure6_2_list_sample_P3vssample_C3" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_P3vssample_C3.Volcanoplot.png" /></div>
+
+</div>
+</div>
+<div class="col-1">
+<div id="gallery_figure6_2_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-4">
+<input class="form-control" id="gallery_figure6_2_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="gallery_figure6_2_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="gallery_figure6_2_list_sample_Pvssample_C" data-toggle="list" href="#gallery_figure6_2_pane_sample_Pvssample_C" role="tab" aria-controls="sample_Pvssample_C">sample_Pvssample_C</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure6_2_list_sample_P1vssample_C1" data-toggle="list" href="#gallery_figure6_2_pane_sample_P1vssample_C1" role="tab" aria-controls="sample_P1vssample_C1">sample_P1vssample_C1</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure6_2_list_sample_P2vssample_C2" data-toggle="list" href="#gallery_figure6_2_pane_sample_P2vssample_C2" role="tab" aria-controls="sample_P2vssample_C2">sample_P2vssample_C2</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure6_2_list_sample_P3vssample_C3" data-toggle="list" href="#gallery_figure6_2_pane_sample_P3vssample_C3" role="tab" aria-controls="sample_P3vssample_C3">sample_P3vssample_C3</a>
+
+</div>
+</div>
+</div>
+</p>
+
+<p class="name_fig">Figure 4.10 Volcano plot for differentially expressed genes</p>
+<p class="premark">Horizontal axis for the fold change of genes in different samples. Vertical axis for statistically
+
+    significant degree of changes in gene expression levels, the smaller the corrected pvalue, the bigger
+
+    -log10(corrected pvalue), the more significant the difference. The point represents gene, blue dots indicate no
+
+    significant difference in genes, red dots indicate upregulated differential expression genes, green dots indicate
+
+    downregulated differential expression genes.</p>
+<br>
+<b>Result Directory: <a href="../Result_X201SCXXXXXXXX-Z01-J001-B1/5.Differential/1.deglist/">Result/Differential/1.deglist/*/*_volcano.png</a></b>
+<br>
+<p class="head"><a href="#home" title="返回首页"></a>
+
+	<a name="基因差异表达分析"></a>
+
+	<hr />
+
+</p><br />
+
+<h4>4.5.3 Cluster Analysis of Gene Expression Differences</h4>
+<p> Cluster analysis is used to find genes with similar expression patterns under various experimental conditions. By clustering genes with similar expression patterns, it may be possible to discern unknown functions of previously characterized genes or the function of unknown genes. In hierarchical clustering, areas of different colors denote different groups (clusters) of genes, and genes within each cluster may have similar functions or take part in the same biological process.  </p>
+
+<p class="center">
+
+<div class="row gallery-row">
+<div class="col-1">
+<div id="gallery_figure6_3_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-6">
+<div class="tab-content" id="gallery_figure6_3_nav-tabContent">
+
+<div class="tab-pane fade" id="gallery_figure6_3_pane_heatCluster" role="tabpanel" aria-labelledby="gallery_figure6_3_list_heatCluster" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/heatCluster.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure6_3_pane_h_show_plots" role="tabpanel" aria-labelledby="gallery_figure6_3_list_h_show_plots" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/h_show_plots.png" /></div>
+
+</div>
+</div>
+<div class="col-1">
+<div id="gallery_figure6_3_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-4">
+<input class="form-control" id="gallery_figure6_3_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="gallery_figure6_3_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="gallery_figure6_3_list_heatCluster" data-toggle="list" href="#gallery_figure6_3_pane_heatCluster" role="tab" aria-controls="heatCluster">heatCluster</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure6_3_list_h_show_plots" data-toggle="list" href="#gallery_figure6_3_pane_h_show_plots" role="tab" aria-controls="h_show_plots">h_show_plots</a>
+
+</div>
+</div>
+</div>
+</p>
+<p class="name_fig">Figure 4.11 Cluster analysis.</p>
+
+<p class="premark">Upper panel: the overall results of FPKM cluster analysis, clustered using the log<sub>2</sub>(FPKM+1) value. Red denotes genes with high expression levels, and blue denotes genes with low expression levels. The color range from red to blue represents the log<sub>2</sub>(FPKM+1) value from large to small. Lower panel: log<sub>2</sub>(fpkm+1) line chart. Each grey line in a subline chart represents the relative expression value of a gene cluster under different experimental conditions, and the blue line represents the mean value. The x-axis shows the experimental condition and the y-axis shows the relative expression level.</p>
+<br>
+<b>Result Directory: <a href="../Result_X201SCXXXXXXXX-Z01-J001-B1/5.Differential/3.cluster/">Result/Differential/3.cluster</a></b>
+<br>
+
+
+
+<p class="head"><a href="#home" title="返回首页"></a>
+
+	<a name="基因差异表达分析"></a>
+
+	<hr />
+
+</p><br />
+
+<h4>4.5.4 The Venn Diagram of Gene Expression</h4>
+<p>When there is only 1 compare group, the gene expression venn diagram will be presented. FPKM>1 is the expression threshold. The diagram presents the number of expressed genes between each group and the overlaps between groups. </p>
+<p class="center">
+
+<div class="row gallery-row">
+<div class="col-1">
+<div id="gallery_figure6_4_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-6">
+<div class="tab-content" id="gallery_figure6_4_nav-tabContent">
+
+<div class="tab-pane fade" id="gallery_figure6_4_pane_sample_P1vssample_C1_sample_P2vssample_C2_sample_P3vssample_C3" role="tabpanel" aria-labelledby="gallery_figure6_4_list_sample_P1vssample_C1_sample_P2vssample_C2_sample_P3vssample_C3" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_P1vssample_C1_sample_P2vssample_C2_sample_P3vssample_C3.DEG_Venn_diagram.png" /></div>
+
+</div>
+</div>
+<div class="col-1">
+<div id="gallery_figure6_4_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-4">
+<input class="form-control" id="gallery_figure6_4_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="gallery_figure6_4_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="gallery_figure6_4_list_sample_P1vssample_C1_sample_P2vssample_C2_sample_P3vssample_C3" data-toggle="list" href="#gallery_figure6_4_pane_sample_P1vssample_C1_sample_P2vssample_C2_sample_P3vssample_C3" role="tab" aria-controls="sample_P1vssample_C1_sample_P2vssample_C2_sample_P3vssample_C3">sample_P1vssample_C1_sample_P2vssample_C2_sample_P3vssample_C3</a>
+
+</div>
+</div>
+</div>
+</p>
+
+<p class="name_fig">Figure 4.12 The Venn Diagram of Gene Expression</p>
+<p class="premark">The sum of numbers in each circle is the counts of differentially expressed genes of the certain compare, and the numbers in the intersetions are the counts of genes differentially expressed in all overlapped compares.</p>
+
+<b>Result Directory: <a href="../Result_X201SCXXXXXXXX-Z01-J001-B1/5.Differential/2.venn/">Result/Differential/2.Venn</a></b>
+<br>
+
+
+
+
+
+
+<!---------------------------------------- 差异基因GO富集分析 ------------------------------------->
+<p class="head"><a href="#home" title="返回首页"></a>
+
+	<a name="差异基因GO富集分析"></a>
+
+	<hr />
+
+</p><br />
+
+<h3 id="id_order_go"><a name="差异基因GO富集分析">4.6 Enrichment Analysis</a></h3>
+
+<p>
+
+	Through the enrichment analysis of the differential expressed genes, we can find out which biological functions or
+
+	pathways are significantly associated with differential expressed genes. Novogene uses the clusterProfiler(Yu G,
+
+	2012) software for enrichment analysis, including GO Enrichment and KEGG Enrichment.
+
+</p>
+
+<p style="font-weight: bold;"> Histogram: </p>
+<p>
+
+	The horizontal axis is customized as -log10 (padj) of significantly enriched term and the Vertical axis 
+	is customized as the number of significantly enriched term. 
+</p>
+<p style="font-weight: bold;">	Scatter plot: </p>
+
+<p> The horizontal axis is customized as GeneRatio and the Vertical axis is customized as the Term's Description. 
+ The size of every spot represents the number of the differential expression genes and the color of every spot represents the range of Qvalue.
+
+</p>
+
+
+
+
+<h4>4.6.1 GO Enrichment Analysis</h4>
+<br>
+
+<p>GO is the abbreviation of Gene Ontology (http://www.geneontology.org/), 
+which is a major bioinformatics classification system to unify the presentation of gene properties across all species. 
+It includes three main branches: cellular component, molecular function and biological process. GO terms with padj < 0.05 are significant enrichment.
+</p>
+ <br/>
+
+<p class="name_table">Table 4.7 Significantly Enriched GO Terms in DEGs</p>
+<p class="center">
+
+<div style="overflow-x: auto">
+<table class="gy">
+<tr><th>Category</th><th>GOID</th><th>Description</th><th>GeneRatio</th><th>BgRatio</th><th>pvalue</th><th>padj</th><th>geneID</th><th>geneName</th><th>Count</th><th>Up</th><th>Up_Gene_id</th><th>Down</th><th>Down_Gene_id</th></tr>
+
+
+	<tr>
+	<td>BP</td><td>GO:0044262</td><td>cellular carbohydrate metabolic process</td><td>4/66</td><td>11/1519</td><td>0.000853210506709193</td><td>0.108357734352068</td><td>WP27_GM000061/WP27_GM000883/WP27_GM000884/WP27_GM002889</td><td>--/--/--/--</td><td>4</td><td>1</td><td>WP27_GM002889</td><td>3</td><td>WP27_GM000061/WP27_GM000883/WP27_GM000884
+</td>
+	</tr>
+
+	<tr>
+	<td>BP</td><td>GO:0032787</td><td>monocarboxylic acid metabolic process</td><td>5/66</td><td>22/1519</td><td>0.0019714863553562</td><td>0.125189383565119</td><td>WP27_GM000061/WP27_GM001814/WP27_GM002889/WP27_GM001765/WP27_GM003419</td><td>--/--/--/--/--</td><td>5</td><td>1</td><td>WP27_GM002889</td><td>4</td><td>WP27_GM000061/WP27_GM001814/WP27_GM001765/WP27_GM003419
+</td>
+	</tr>
+
+	<tr>
+	<td>BP</td><td>GO:0044255</td><td>cellular lipid metabolic process</td><td>4/66</td><td>24/1519</td><td>0.0179206009833215</td><td>0.452543047199308</td><td>WP27_GM001814/WP27_GM001765/WP27_GM002764/WP27_GM002434</td><td>--/--/--/--</td><td>4</td><td>1</td><td>WP27_GM002764</td><td>3</td><td>WP27_GM001814/WP27_GM001765/WP27_GM002434
+</td>
+	</tr>
+
+	<tr>
+	<td>BP</td><td>GO:0044281</td><td>small molecule metabolic process</td><td>14/66</td><td>181/1519</td><td>0.0195793395954978</td><td>0.452543047199308</td><td>WP27_GM002021/WP27_GM000061/WP27_GM000883/WP27_GM000884/WP27_GM001434/WP27_GM001814/WP27_GM003173/WP27_GM002889/WP27_GM001110/WP27_GM001765/WP27_GM003419/WP27_GM000101/WP27_GM001927/WP27_GM001683</td><td>--/--/--/--/--/--/--/--/--/--/--/--/--/--</td><td>14</td><td>4</td><td>WP27_GM002021/WP27_GM002889/WP27_GM001110/WP27_GM001683</td><td>10</td><td>WP27_GM000061/WP27_GM000883/WP27_GM000884/WP27_GM001434/WP27_GM001814/WP27_GM003173/WP27_GM001765/WP27_GM003419/WP27_GM000101/WP27_GM001927
+</td>
+	</tr>
+
+	<tr>
+	<td>BP</td><td>GO:0006082</td><td>organic acid metabolic process</td><td>9/66</td><td>98/1519</td><td>0.0226902124701166</td><td>0.452543047199308</td><td>WP27_GM002021/WP27_GM000061/WP27_GM001814/WP27_GM003173/WP27_GM002889/WP27_GM001110/WP27_GM001765/WP27_GM003419/WP27_GM001683</td><td>--/--/--/--/--/--/--/--/--</td><td>9</td><td>4</td><td>WP27_GM002021/WP27_GM002889/WP27_GM001110/WP27_GM001683</td><td>5</td><td>WP27_GM000061/WP27_GM001814/WP27_GM003173/WP27_GM001765/WP27_GM003419
+</td>
+	</tr>
+
+</table>
+</div>
+<br />
+<button onclick="hiddenShow(this)">Show Annotiation</button>
+<div class='comment'>
+<ul>
+<br>
+<li>Category: different class of GO id. CC, BP and MF are the abbreviation of cellular_component, biological_process and molecular_function respectively.</li>
+<li>GOID: the uniq identification id of Gene Ontology database.</li>
+<li>Description: function description of Gene Ontology.</li>
+<li>GeneRatio: the ratio between the number of differentially expressed genes in each GO term and all differentially expressed genes that can be found in GO database.</li>
+<li>BgRatio: in background GO database, the ratio of all genes concerning this GO term to all genes.</li>
+<li>pvalue: statistics category term; abbreviation of probablity value.</li>
+<li>padj: adjusted p-value. Generally, GO terms with Corrected_pValue < 0.05 are significant enrichment.</li>
+<li>geneID: gene id annotated in this GO term.</li>
+<li>geneName: the names of differentially expressed genes in this term.</li>
+<li>Count: the number of differentially expressed genes concerning this GO term.</li>
+<li>Up: the number of up-regulated differentially expressed genes concerning this GO term.</li>
+<li>Up_Gene_id: the IDs of up-regulated differentially expressed genes concerning this GO term.</li>
+<li>Down: the number of down-regulated differentially expressed genes concerning this GO term.</li>
+<li>Down_Gene_id: the IDs of down-regulated differentially expressed genes concerning this GO term.</li>
+</ul>
+</div>
+<br><br>
+<b>Result Directory: <a href="../Result_X201SCXXXXXXXX-Z01-J001-B1/6.Enrichment/1.GO/">Result/Enrichment/1.GO </a></b>
+<br>
+<p class="head"><a href="#home" title="返回首页"></a>
+
+	<a name="差异基因GO富集分析"></a>
+
+	<hr />
+
+</p><br />
+<!-- <h4>2.6.2 GO Enrichment Bar Chart of DEGs</h4> -->
+<p>Here display the top 20 significantly enriched terms in the GO enrichment analysis. 
+If the enriched pathway is less than 20, all the terms will be shown. 
+</P>
+
+<p class="center">
+
+<div class="row gallery-row">
+<div class="col-1">
+<div id="gallery_figure7_2_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-6">
+<div class="tab-content" id="gallery_figure7_2_nav-tabContent">
+
+<div class="tab-pane fade" id="gallery_figure7_2_pane_sample_Pvssample_C_dot" role="tabpanel" aria-labelledby="gallery_figure7_2_list_sample_Pvssample_C_dot" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_Pvssample_C.DEG_Enriched_GO_all.dot.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure7_2_pane_sample_Pvssample_C_bar" role="tabpanel" aria-labelledby="gallery_figure7_2_list_sample_Pvssample_C_bar" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_Pvssample_C.DEG_Enriched_GO_all.bar.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure7_2_pane_sample_P1vssample_C1_dot" role="tabpanel" aria-labelledby="gallery_figure7_2_list_sample_P1vssample_C1_dot" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_P1vssample_C1.DEG_Enriched_GO_all.dot.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure7_2_pane_sample_P1vssample_C1_bar" role="tabpanel" aria-labelledby="gallery_figure7_2_list_sample_P1vssample_C1_bar" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_P1vssample_C1.DEG_Enriched_GO_all.bar.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure7_2_pane_sample_P2vssample_C2_dot" role="tabpanel" aria-labelledby="gallery_figure7_2_list_sample_P2vssample_C2_dot" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_P2vssample_C2.DEG_Enriched_GO_all.dot.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure7_2_pane_sample_P2vssample_C2_bar" role="tabpanel" aria-labelledby="gallery_figure7_2_list_sample_P2vssample_C2_bar" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_P2vssample_C2.DEG_Enriched_GO_all.bar.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure7_2_pane_sample_P3vssample_C3_dot" role="tabpanel" aria-labelledby="gallery_figure7_2_list_sample_P3vssample_C3_dot" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_P3vssample_C3.DEG_Enriched_GO_all.dot.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure7_2_pane_sample_P3vssample_C3_bar" role="tabpanel" aria-labelledby="gallery_figure7_2_list_sample_P3vssample_C3_bar" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_P3vssample_C3.DEG_Enriched_GO_all.bar.png" /></div>
+
+</div>
+</div>
+<div class="col-1">
+<div id="gallery_figure7_2_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-4">
+<input class="form-control" id="gallery_figure7_2_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="gallery_figure7_2_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_2_list_sample_Pvssample_C_dot" data-toggle="list" href="#gallery_figure7_2_pane_sample_Pvssample_C_dot" role="tab" aria-controls="sample_Pvssample_C_dot">sample_Pvssample_C_dot</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_2_list_sample_Pvssample_C_bar" data-toggle="list" href="#gallery_figure7_2_pane_sample_Pvssample_C_bar" role="tab" aria-controls="sample_Pvssample_C_bar">sample_Pvssample_C_bar</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_2_list_sample_P1vssample_C1_dot" data-toggle="list" href="#gallery_figure7_2_pane_sample_P1vssample_C1_dot" role="tab" aria-controls="sample_P1vssample_C1_dot">sample_P1vssample_C1_dot</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_2_list_sample_P1vssample_C1_bar" data-toggle="list" href="#gallery_figure7_2_pane_sample_P1vssample_C1_bar" role="tab" aria-controls="sample_P1vssample_C1_bar">sample_P1vssample_C1_bar</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_2_list_sample_P2vssample_C2_dot" data-toggle="list" href="#gallery_figure7_2_pane_sample_P2vssample_C2_dot" role="tab" aria-controls="sample_P2vssample_C2_dot">sample_P2vssample_C2_dot</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_2_list_sample_P2vssample_C2_bar" data-toggle="list" href="#gallery_figure7_2_pane_sample_P2vssample_C2_bar" role="tab" aria-controls="sample_P2vssample_C2_bar">sample_P2vssample_C2_bar</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_2_list_sample_P3vssample_C3_dot" data-toggle="list" href="#gallery_figure7_2_pane_sample_P3vssample_C3_dot" role="tab" aria-controls="sample_P3vssample_C3_dot">sample_P3vssample_C3_dot</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_2_list_sample_P3vssample_C3_bar" data-toggle="list" href="#gallery_figure7_2_pane_sample_P3vssample_C3_bar" role="tab" aria-controls="sample_P3vssample_C3_bar">sample_P3vssample_C3_bar</a>
+
+</div>
+</div>
+</div>
+</p>
+
+<p class="name_fig">Figure 4.13 GO Enrichment Scatter Plot</p>
+<!-- <p class="premark">There are two graphs in each group. Fig 1:The x- axis is GO terms enriched and the y-axis is the number of differential expression genes. Different colors are used to distinct biological process, cellular component and molecular function, in which the enriched GO terms are marked by "*". Fig 2: The GO terms in the figure 1, which are drawn in subsets of graph based on biological process, cellular component, molecular function and differential expression genes. </p> -->
+<b>Result Directory: <a href="../Result_X201SCXXXXXXXX-Z01-J001-B1/6.Enrichment/1.GO/">Result/Enrichment/1.GO</a></b>
+<br>
+<p class="head"><a href="#home" title="返回首页"></a>
+
+	<a name="差异基因GO富集分析"></a>
+
+	<hr />
+
+</p><br />
+<!-- <h4>2.6.3 GO Enrichment DAG Figure</h4> -->
+<p>Directed Acyclic Graph (DAG) is a way to show the results of GO enrichment of DEGs.  The branches represent the containment relationships, and the range of functions gets smaller and smaller from top to bottom. Generally, the top ten of GO enrichment results are selected as the master nodes in directed acyclic graph, showing the associated GO terms together via the containment relationship, and the degree of colors represent the extent of enrichment. In the project, DAG figures of biological process, molecular function and cellular component are drawn, respectively. </p>
+
+<p class="center">
+
+<div class="row gallery-row">
+<div class="col-1">
+<div id="gallery_figure7_3_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-6">
+<div class="tab-content" id="gallery_figure7_3_nav-tabContent">
+
+<div class="tab-pane fade" id="gallery_figure7_3_pane_sample_Pvssample_C_bp" role="tabpanel" aria-labelledby="gallery_figure7_3_list_sample_Pvssample_C_bp" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_Pvssample_C.DEG_Enriched_GO_bp_DAG.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure7_3_pane_sample_Pvssample_C_cc" role="tabpanel" aria-labelledby="gallery_figure7_3_list_sample_Pvssample_C_cc" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_Pvssample_C.DEG_Enriched_GO_cc_DAG.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure7_3_pane_sample_Pvssample_C_mf" role="tabpanel" aria-labelledby="gallery_figure7_3_list_sample_Pvssample_C_mf" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_Pvssample_C.DEG_Enriched_GO_mf_DAG.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure7_3_pane_sample_P1vssample_C1_bp" role="tabpanel" aria-labelledby="gallery_figure7_3_list_sample_P1vssample_C1_bp" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_P1vssample_C1.DEG_Enriched_GO_bp_DAG.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure7_3_pane_sample_P1vssample_C1_cc" role="tabpanel" aria-labelledby="gallery_figure7_3_list_sample_P1vssample_C1_cc" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_P1vssample_C1.DEG_Enriched_GO_cc_DAG.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure7_3_pane_sample_P1vssample_C1_mf" role="tabpanel" aria-labelledby="gallery_figure7_3_list_sample_P1vssample_C1_mf" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_P1vssample_C1.DEG_Enriched_GO_mf_DAG.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure7_3_pane_sample_P2vssample_C2_bp" role="tabpanel" aria-labelledby="gallery_figure7_3_list_sample_P2vssample_C2_bp" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_P2vssample_C2.DEG_Enriched_GO_bp_DAG.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure7_3_pane_sample_P2vssample_C2_cc" role="tabpanel" aria-labelledby="gallery_figure7_3_list_sample_P2vssample_C2_cc" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_P2vssample_C2.DEG_Enriched_GO_cc_DAG.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure7_3_pane_sample_P2vssample_C2_mf" role="tabpanel" aria-labelledby="gallery_figure7_3_list_sample_P2vssample_C2_mf" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_P2vssample_C2.DEG_Enriched_GO_mf_DAG.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure7_3_pane_sample_P3vssample_C3_bp" role="tabpanel" aria-labelledby="gallery_figure7_3_list_sample_P3vssample_C3_bp" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_P3vssample_C3.DEG_Enriched_GO_bp_DAG.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure7_3_pane_sample_P3vssample_C3_cc" role="tabpanel" aria-labelledby="gallery_figure7_3_list_sample_P3vssample_C3_cc" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_P3vssample_C3.DEG_Enriched_GO_cc_DAG.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure7_3_pane_sample_P3vssample_C3_mf" role="tabpanel" aria-labelledby="gallery_figure7_3_list_sample_P3vssample_C3_mf" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_P3vssample_C3.DEG_Enriched_GO_mf_DAG.png" /></div>
+
+</div>
+</div>
+<div class="col-1">
+<div id="gallery_figure7_3_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-4">
+<input class="form-control" id="gallery_figure7_3_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="gallery_figure7_3_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_3_list_sample_Pvssample_C_bp" data-toggle="list" href="#gallery_figure7_3_pane_sample_Pvssample_C_bp" role="tab" aria-controls="sample_Pvssample_C_bp">sample_Pvssample_C_bp</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_3_list_sample_Pvssample_C_cc" data-toggle="list" href="#gallery_figure7_3_pane_sample_Pvssample_C_cc" role="tab" aria-controls="sample_Pvssample_C_cc">sample_Pvssample_C_cc</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_3_list_sample_Pvssample_C_mf" data-toggle="list" href="#gallery_figure7_3_pane_sample_Pvssample_C_mf" role="tab" aria-controls="sample_Pvssample_C_mf">sample_Pvssample_C_mf</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_3_list_sample_P1vssample_C1_bp" data-toggle="list" href="#gallery_figure7_3_pane_sample_P1vssample_C1_bp" role="tab" aria-controls="sample_P1vssample_C1_bp">sample_P1vssample_C1_bp</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_3_list_sample_P1vssample_C1_cc" data-toggle="list" href="#gallery_figure7_3_pane_sample_P1vssample_C1_cc" role="tab" aria-controls="sample_P1vssample_C1_cc">sample_P1vssample_C1_cc</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_3_list_sample_P1vssample_C1_mf" data-toggle="list" href="#gallery_figure7_3_pane_sample_P1vssample_C1_mf" role="tab" aria-controls="sample_P1vssample_C1_mf">sample_P1vssample_C1_mf</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_3_list_sample_P2vssample_C2_bp" data-toggle="list" href="#gallery_figure7_3_pane_sample_P2vssample_C2_bp" role="tab" aria-controls="sample_P2vssample_C2_bp">sample_P2vssample_C2_bp</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_3_list_sample_P2vssample_C2_cc" data-toggle="list" href="#gallery_figure7_3_pane_sample_P2vssample_C2_cc" role="tab" aria-controls="sample_P2vssample_C2_cc">sample_P2vssample_C2_cc</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_3_list_sample_P2vssample_C2_mf" data-toggle="list" href="#gallery_figure7_3_pane_sample_P2vssample_C2_mf" role="tab" aria-controls="sample_P2vssample_C2_mf">sample_P2vssample_C2_mf</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_3_list_sample_P3vssample_C3_bp" data-toggle="list" href="#gallery_figure7_3_pane_sample_P3vssample_C3_bp" role="tab" aria-controls="sample_P3vssample_C3_bp">sample_P3vssample_C3_bp</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_3_list_sample_P3vssample_C3_cc" data-toggle="list" href="#gallery_figure7_3_pane_sample_P3vssample_C3_cc" role="tab" aria-controls="sample_P3vssample_C3_cc">sample_P3vssample_C3_cc</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure7_3_list_sample_P3vssample_C3_mf" data-toggle="list" href="#gallery_figure7_3_pane_sample_P3vssample_C3_mf" role="tab" aria-controls="sample_P3vssample_C3_mf">sample_P3vssample_C3_mf</a>
+
+</div>
+</div>
+</div>
+</p>
+
+<p class="name_fig">Figure 4.14 Illustration of topGO DAG.</p>
+<p class="premark">Each node represents a GO term, and TOP5 GO terms are boxed. The darker the color is, the higher is the enrichment level of the term. The name and p-value of each term are present on the node.</p>
+
+<b>Result Directory: <a href="../Result_X201SCXXXXXXXX-Z01-J001-B1/6.Enrichment/1.GO">Result/6.Enrichment/GO</a></b>
+<br>
+
+
+
+<!--------------------------------------- 差异基因KEGG富集分析 ------------------------------------>
+<p class="head"><a href="#home" title="返回首页"></a>
+
+	<a name="差异基因KEGG富集分析"></a>
+
+	<hr />
+
+</p><br />
+<h4 id="id_order_go"><a name="差异基因KEGG富集分析">4.6.2 KEGG Enrichment Analysis</a></h4>
+<p>The interactions of multiple genes may be involved in certain biological functions. KEGG (Kyoto Encyclopedia of Genes and Genomes) is a collection of manually curated databases dealing with genomes, biological pathways, diseases, drugs, and chemical substances. KEGG is utilized for bioinformatics research and education, including data analysis in genomics, metagenomics, metabolomics and other omics studies. Pathway enrichment analysis identifies significantly enriched metabolic pathways or signal transduction pathways associated with differentially expressed genes compared with the whole genome background. </p>
+
+
+<p class="center">
+
+	<img class="normal" src="src/images/enrichment.png" />
+
+</p>
+
+<p>Here, N is the number of all genes with a KEGG annotation, n is the number of DEGs in N, M is the number of all genes annotated to specific pathways, and m is number of DEGs in M.  </p>
+<!-- <h4>2..1 KEGG Enrichment List</h4> -->
+<p class="center">
+<p class="name_table">Table 4.8 KEGG Enrichment List</p>
+<div style="overflow-x: auto">
+<table class="gy">
+<tr><th>KEGGID</th><th>Term</th><th>GeneRatio</th><th>BgRatio</th><th>pvalue</th><th>padj</th><th>geneID</th><th>geneName</th><th>keggID</th><th>Count</th><th>Up</th><th>Up_Gene_id</th><th>Down</th><th>Down_Gene_id</th></tr>
+
+	<tr>
+	<td>maur00280</td><td>Valine, leucine and isoleucine degradation</td><td>10/68</td><td>39/1018</td><td>0.000122396868706092</td><td>0.00510059799965821</td><td>WP27_GM001628/WP27_GM000068/WP27_GM001627/WP27_GM001626/WP27_GM003229/WP27_GM000435/WP27_GM002546/WP27_GM003231/WP27_GM003228/WP27_GM001538</td><td>--/--/--/--/--/--/--/--/--/--</td><td>maur:BOH66_10500/maur:BOH66_11180/maur:BOH66_10505/maur:BOH66_10510/maur:BOH66_11180/maur:BOH66_13025/maur:BOH66_13025/maur:BOH66_11175/maur:BOH66_02080/maur:BOH66_08120</td><td>10</td><td>1</td><td>WP27_GM000435</td><td>9</td><td>WP27_GM001628/WP27_GM000068/WP27_GM001627/WP27_GM001626/WP27_GM003229/WP27_GM002546/WP27_GM003231/WP27_GM003228/WP27_GM001538
+</td>
+	</tr>
+
+	<tr>
+	<td>maur00620</td><td>Pyruvate metabolism</td><td>9/68</td><td>35/1018</td><td>0.000271822390436592</td><td>0.00510059799965821</td><td>WP27_GM002021/WP27_GM000061/WP27_GM000435/WP27_GM002546/Novel00110/WP27_GM002889/WP27_GM002267/WP27_GM002804/WP27_GM001538</td><td>--/--/--/--/-/--/--/--/--</td><td>maur:BOH66_09465/maur:BOH66_04455/maur:BOH66_13025/maur:BOH66_13025/maur:BOH66_09465/maur:BOH66_04455/maur:BOH66_11110/maur:BOH66_05240/maur:BOH66_08120</td><td>9</td><td>4</td><td>WP27_GM002021/WP27_GM000435/Novel00110/WP27_GM002889</td><td>5</td><td>WP27_GM000061/WP27_GM002546/WP27_GM002267/WP27_GM002804/WP27_GM001538
+</td>
+	</tr>
+
+	<tr>
+	<td>maur00640</td><td>Propanoate metabolism</td><td>8/68</td><td>29/1018</td><td>0.000364328428547015</td><td>0.00510059799965821</td><td>WP27_GM001628/WP27_GM001627/WP27_GM001626/WP27_GM000435/WP27_GM002546/WP27_GM003231/WP27_GM003228/WP27_GM002804</td><td>--/--/--/--/--/--/--/--</td><td>maur:BOH66_10500/maur:BOH66_10505/maur:BOH66_10510/maur:BOH66_13025/maur:BOH66_13025/maur:BOH66_11175/maur:BOH66_02080/maur:BOH66_05240</td><td>8</td><td>1</td><td>WP27_GM000435</td><td>7</td><td>WP27_GM001628/WP27_GM001627/WP27_GM001626/WP27_GM002546/WP27_GM003231/WP27_GM003228/WP27_GM002804
+</td>
+	</tr>
+
+	<tr>
+	<td>maur01212</td><td>Fatty acid metabolism</td><td>7/68</td><td>30/1018</td><td>0.0025777481268564</td><td>0.0232485275271048</td><td>WP27_GM000435/WP27_GM002546/WP27_GM001813/WP27_GM001814/WP27_GM001816/WP27_GM003228/WP27_GM001538</td><td>--/--/--/--/--/--/--</td><td>maur:BOH66_13025/maur:BOH66_13025/maur:BOH66_09640/maur:BOH66_09635/maur:BOH66_09625/maur:BOH66_02080/maur:BOH66_08120</td><td>7</td><td>1</td><td>WP27_GM000435</td><td>6</td><td>WP27_GM002546/WP27_GM001813/WP27_GM001814/WP27_GM001816/WP27_GM003228/WP27_GM001538
+</td>
+	</tr>
+
+	<tr>
+	<td>maur00630</td><td>Glyoxylate and dicarboxylate metabolism</td><td>7/68</td><td>31/1018</td><td>0.00315440923894172</td><td>0.0232485275271048</td><td>WP27_GM000061/WP27_GM000435/WP27_GM002546/WP27_GM003173/WP27_GM002889/WP27_GM002804/WP27_GM001538</td><td>--/--/--/--/--/--/--</td><td>maur:BOH66_04455/maur:BOH66_13025/maur:BOH66_13025/maur:BOH66_02360/maur:BOH66_04455/maur:BOH66_05240/maur:BOH66_08120</td><td>7</td><td>2</td><td>WP27_GM000435/WP27_GM002889</td><td>5</td><td>WP27_GM000061/WP27_GM002546/WP27_GM003173/WP27_GM002804/WP27_GM001538
+</td>
+	</tr>
+
+</table>
+</div>
+<br/>
+<button onclick="hiddenShow(this)">Show Annotiation</button>
+<div class='comment'>
+<ul>
+<br>
+<li>KEGGID: KEGG ID.</li>
+<li>Term: description of KEGG pathways.</li>
+<li>GeneRatio: number of DEGs with pathway annotation.</li>
+<li>BgRatio: number of all reference genes with pathway annotation.</li>
+<li>pvalue: P-value in hypergeometric test.</li>
+<li>padj: Pathways with corrected p-values < 0.05 are significantly enriched in DEGs.</li>
+<li>geneID: the IDs of differentially expressed genes related to this pathway.</li>
+<li>geneName: the names of differentially expressed genes related to this pathway.</li>
+<li>keggID: the IDs of differentially expressed genes concerning in KEGG database.</li>
+<li>Count: the number of differentially expressed genes concerning in this term.</li>
+<li>Up: the number of up-regulated differentially expressed genes concerning in this term.</li>
+<li>Up_Gene_id: the IDs of up-regulated differentially expressed genes concerning in this term.</li>
+<li>Down: the number of down-regulated differentially expressed genes concerning in this term.</li>
+<li>Down_Gene_id: the IDs of down-regulated differentially expressed genes concerning in this term.</li>
+</ul>
+</div>
+<br><br>
+<b>Result Directory: <a href="../Result_X201SCXXXXXXXX-Z01-J001-B1/6.Enrichment/2.KEGG">Result/Enrichment/2.KEGG </a></b>
+<br>
+<p class="head"><a href="#home" title="返回首页"></a>
+
+	<a name="基因差异表达分析"></a>
+
+	<hr />
+
+</p><br />
+<!--<h4>2..2 KEGG Enrichment Scattered Plot</h4>-->
+<p>Scatter diagram is a graphical display way of KEGG enrichment analysis results. In this plot, enrichment degree of KEGG can be measured through Rich factor, Qvalue and genes counts enriched to this pathway. Rich factor is the ratio of DEGs counts to this pathway in the annotated genes counts. The more the Rich factor is, the higher is the degree of enrichment. Qvalue is the adjusted p-value after multiple hypothesis testing, and its range is [0,1]. The more the qvalue is close to zero, the more significant is the enrichment. Top 20 most significant enriched pathways are chosen in KEGG scatter plot, and if the enriched pathways counts is less than 20, then put all of them into the plot. KEGG enrichment scatter diagram is as follows. </p>
+
+<p class="center">
+
+<div class="row gallery-row">
+<div class="col-1">
+<div id="gallery_figure8_2_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-6">
+<div class="tab-content" id="gallery_figure8_2_nav-tabContent">
+
+<div class="tab-pane fade" id="gallery_figure8_2_pane_sample_Pvssample_C_dot" role="tabpanel" aria-labelledby="gallery_figure8_2_list_sample_Pvssample_C_dot" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_Pvssample_C.DEG_enriched_KEGG_pathway_scatterplot.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure8_2_pane_sample_Pvssample_C_bar" role="tabpanel" aria-labelledby="gallery_figure8_2_list_sample_Pvssample_C_bar" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_Pvssample_C.DEG_enriched_KEGG_pathway_barplot.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure8_2_pane_sample_P1vssample_C1_dot" role="tabpanel" aria-labelledby="gallery_figure8_2_list_sample_P1vssample_C1_dot" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_P1vssample_C1.DEG_enriched_KEGG_pathway_scatterplot.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure8_2_pane_sample_P1vssample_C1_bar" role="tabpanel" aria-labelledby="gallery_figure8_2_list_sample_P1vssample_C1_bar" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_P1vssample_C1.DEG_enriched_KEGG_pathway_barplot.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure8_2_pane_sample_P2vssample_C2_dot" role="tabpanel" aria-labelledby="gallery_figure8_2_list_sample_P2vssample_C2_dot" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_P2vssample_C2.DEG_enriched_KEGG_pathway_scatterplot.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure8_2_pane_sample_P2vssample_C2_bar" role="tabpanel" aria-labelledby="gallery_figure8_2_list_sample_P2vssample_C2_bar" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_P2vssample_C2.DEG_enriched_KEGG_pathway_barplot.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure8_2_pane_sample_P3vssample_C3_dot" role="tabpanel" aria-labelledby="gallery_figure8_2_list_sample_P3vssample_C3_dot" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_P3vssample_C3.DEG_enriched_KEGG_pathway_scatterplot.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure8_2_pane_sample_P3vssample_C3_bar" role="tabpanel" aria-labelledby="gallery_figure8_2_list_sample_P3vssample_C3_bar" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sample_P3vssample_C3.DEG_enriched_KEGG_pathway_barplot.png" /></div>
+
+</div>
+</div>
+<div class="col-1">
+<div id="gallery_figure8_2_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-4">
+<input class="form-control" id="gallery_figure8_2_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="gallery_figure8_2_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="gallery_figure8_2_list_sample_Pvssample_C_dot" data-toggle="list" href="#gallery_figure8_2_pane_sample_Pvssample_C_dot" role="tab" aria-controls="sample_Pvssample_C_dot">sample_Pvssample_C_dot</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure8_2_list_sample_Pvssample_C_bar" data-toggle="list" href="#gallery_figure8_2_pane_sample_Pvssample_C_bar" role="tab" aria-controls="sample_Pvssample_C_bar">sample_Pvssample_C_bar</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure8_2_list_sample_P1vssample_C1_dot" data-toggle="list" href="#gallery_figure8_2_pane_sample_P1vssample_C1_dot" role="tab" aria-controls="sample_P1vssample_C1_dot">sample_P1vssample_C1_dot</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure8_2_list_sample_P1vssample_C1_bar" data-toggle="list" href="#gallery_figure8_2_pane_sample_P1vssample_C1_bar" role="tab" aria-controls="sample_P1vssample_C1_bar">sample_P1vssample_C1_bar</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure8_2_list_sample_P2vssample_C2_dot" data-toggle="list" href="#gallery_figure8_2_pane_sample_P2vssample_C2_dot" role="tab" aria-controls="sample_P2vssample_C2_dot">sample_P2vssample_C2_dot</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure8_2_list_sample_P2vssample_C2_bar" data-toggle="list" href="#gallery_figure8_2_pane_sample_P2vssample_C2_bar" role="tab" aria-controls="sample_P2vssample_C2_bar">sample_P2vssample_C2_bar</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure8_2_list_sample_P3vssample_C3_dot" data-toggle="list" href="#gallery_figure8_2_pane_sample_P3vssample_C3_dot" role="tab" aria-controls="sample_P3vssample_C3_dot">sample_P3vssample_C3_dot</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure8_2_list_sample_P3vssample_C3_bar" data-toggle="list" href="#gallery_figure8_2_pane_sample_P3vssample_C3_bar" role="tab" aria-controls="sample_P3vssample_C3_bar">sample_P3vssample_C3_bar</a>
+
+</div>
+</div>
+</div>
+</p>
+
+<p class="name_fig"> Figure 4.15 KEGG enrichment scatter plot of DEGs.</p>
+<p class="premark center">The y-axis shows the name of the pathway and the x-axis shows the Rich factor. Dot size represents the number of different genes and the color indicates the q-value.</p>
+<b>Result Directory: <a href="../Result_X201SCXXXXXXXX-Z01-J001-B1/6.Enrichment/2.KEGG/">Result/Enrichment/2.KEGG</a></b>
+<br>
+<p class="head"><a href="#home" title="返回首页"></a>
+
+	<a name="富集KEGG通路"></a>
+
+	<hr />
+
+</p><br />
+<!--<h4>2..3 KEGG Enrichment Pathway</h4>-->
+<p>KEGG enrichment pathway shows the DEGs significantly enriched pathways. In the diagram, nodes containing only up-regulated genes are labeled in red; nodes containing only down-regulated genes are labeled in green; nodes containing both up and down-regulated genes are in yellow.</p>
+
+<p class="center">
+
+<div class="row gallery-row">
+<div class="col-1">
+<div id="gallery_figure8_3_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-6">
+<div class="tab-content" id="gallery_figure8_3_nav-tabContent">
+
+<div class="tab-pane fade" id="gallery_figure8_3_pane_maur00071" role="tabpanel" aria-labelledby="gallery_figure8_3_list_maur00071" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/maur00071.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure8_3_pane_maur00500" role="tabpanel" aria-labelledby="gallery_figure8_3_list_maur00500" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/maur00500.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure8_3_pane_maur00780" role="tabpanel" aria-labelledby="gallery_figure8_3_list_maur00780" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/maur00780.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure8_3_pane_maur01212" role="tabpanel" aria-labelledby="gallery_figure8_3_list_maur01212" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/maur01212.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure8_3_pane_maur00020" role="tabpanel" aria-labelledby="gallery_figure8_3_list_maur00020" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/maur00020.png" /></div>
+
+</div>
+</div>
+<div class="col-1">
+<div id="gallery_figure8_3_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-4">
+<input class="form-control" id="gallery_figure8_3_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="gallery_figure8_3_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="gallery_figure8_3_list_maur00071" data-toggle="list" href="#gallery_figure8_3_pane_maur00071" role="tab" aria-controls="maur00071">maur00071</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure8_3_list_maur00500" data-toggle="list" href="#gallery_figure8_3_pane_maur00500" role="tab" aria-controls="maur00500">maur00500</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure8_3_list_maur00780" data-toggle="list" href="#gallery_figure8_3_pane_maur00780" role="tab" aria-controls="maur00780">maur00780</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure8_3_list_maur01212" data-toggle="list" href="#gallery_figure8_3_pane_maur01212" role="tab" aria-controls="maur01212">maur01212</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure8_3_list_maur00020" data-toggle="list" href="#gallery_figure8_3_pane_maur00020" role="tab" aria-controls="maur00020">maur00020</a>
+
+</div>
+</div>
+</div>
+</p>
+
+<p class="name_fig">Figure 4.16 KEGG Enrichment Pathway</p>
+
+<b>Result Directory: <a href="../Result_X201SCXXXXXXXX-Z01-J001-B1/6.Enrichment/2.KEGG/">Result/Enrichment/2.KEGG </a></b>
+<br>
+
+
+
+<!------------------------------------- 差异基因蛋白互作网络分析 ---------------------------------->
+<p class="head"><a href="#home" title="返回首页"></a>
+
+        <a name="sRNA分析"></a>
+
+        <hr />
+
+</p><br />
+<h4 id="id_order_go"><a name="蛋白互作网络分析">4.6.3 Protein-Protein Interaction Network Analysis</a></h4>
+<p>The STRING database (http://string-db.org/) is used for the analysis of PPI (predicted protein-protein interactions). The results document can be imported into Cytoscape software, and then visualized and edited. The Cytoscape manual can be found at:http://wiki.cytoscape.org/Cytoscape_3/UserManual.</p><br>
+<p class="center">
+<img class="wid2" src="src/images/PPI.png" />
+</p>
+<p class="name_fig">Figure 4.17 Cytoscape UI</p>
+
+<b>Result Directory: <a href="../Result_X201SCXXXXXXXX-Z01-J001-B1/6.Enrichment/3.PPI">Result/Enrichment/3.PPI</a></b>
+<br>
+
+
+
+
+
+
+
+<!---------------------------------------------- 基因结构分析 ----------------------------------------->
+
+<p class="head"><a href="#home" title="返回首页"></a>
+
+	<a name="基因结构分析"></a>
+
+	<hr />
+
+</p><br />
+<h3 id="id_order_structure"><a name="基因结构分析">4.7 Structure Analysis</a></h3>
+<h4 id="id_order_structure"><a name="基因结构分析">4.7.1 Operon Analysis</a></h4>
+<p>In prokaryotic genomes, functionally related genes are usually clustered and regulated by a single upstream promoter and a single downstream terminator. Such genetic structure is called operon. The genes in the same operon are transcribed together into an mRNA strand and then translated to different proteins. A typical prokaryotic operon and  its regulation mechanism is shown below:</p>
+
+<p class="center">
+<img class="small2" src="src/images/operon.jpg" />
+</p>
+<p>According to the locations of reads in the reference genome, transcription start sites (TSS) and transcription termination sites (TTS) of operons are predicted using Rockhopper. Then promoter prediction were applied using 700-bp sequences in the upstream of TSS, by time-delay neural network (TDNN) method. </p>
+<b>Result Directory: <a href="../Result_X201SCXXXXXXXX-Z01-J001-B1/7.Structure/">Result/Structure</a></b>
+<br>
+<p class="head"><a href="#home" title="返回首页"></a>
+
+	<a name="基因结构分析"></a>
+
+	<hr />
+
+</p><br />
+<h5>4.7.1.1 Operon prediction</h5>
+<p class="name_table">Table 4.9 Results of operon prediction</p>
+<div style="overflow-x: auto">
+<table class="gy">
+<tr><th>Start</th><th>Stop</th><th>Strand</th><th>Number of Genes</th><th>Genes</th></tr>
+
+	<tr>
+	<td>3226</td><td>4883</td><td>+</td><td>2</td><td>WP27_GM000003, WP27_GM000004
+</td>
+	</tr>
+
+	<tr>
+	<td>7118</td><td>10086</td><td>+</td><td>2</td><td>WP27_GM000006, WP27_GM000007
+</td>
+	</tr>
+
+	<tr>
+	<td>10152</td><td>11453</td><td>-</td><td>2</td><td>WP27_GM000008, WP27_GM000009
+</td>
+	</tr>
+
+	<tr>
+	<td>11888</td><td>14678</td><td>+</td><td>3</td><td>WP27_GM000011, WP27_GM000012, WP27_GM000013
+</td>
+	</tr>
+
+	<tr>
+	<td>16543</td><td>17204</td><td>-</td><td>2</td><td>WP27_GM000017, WP27_GM000018
+</td>
+	</tr>
+
+</table>
+</div>
+<br />
+<button onclick="hiddenShow(this)">Show Annotiation</button>
+<div class='comment'>
+<ul>
+<br>
+<li>Start: the start position of the first gene</li>
+<li>Stop: the end position of the last gene</li>
+<li>Strand: strand specificity</li>
+<li>Number of Genes: number of genes in the operon</li>
+<li>Genes: list of gene names</li>
+</ul>
+</div>
+<br><br>
+<b>Result Directory:<a href="../Result_X201SCXXXXXXXX-Z01-J001-B1/7.Structure/2.GeneStruct/">Result/Structure/2.GeneStruct/Operons.xls</a></b>
+<br>
+<p class="head"><a href="#home" title="返回首页"></a>
+
+	<a name="基因结构分析"></a>
+
+	<hr />
+
+</p><br />
+
+<h5>4.7.1.2 TSS and TTS prediction</h5>
+<p class="name_table">Table 4.10 Results of TSS and TTS prediction</p>
+
+<table class="gy">
+<tr><th>TSS</th><th>TTS</th><th>Strand</th><th>Gene</th></tr>
+
+	<tr>
+	<td>1775</td><td>2941</td><td>+</td><td>WP27_GM000002
+</td>
+	</tr>
+
+	<tr>
+	<td>2832</td><td>2337</td><td>-</td><td>rna00001
+</td>
+	</tr>
+
+	<tr>
+	<td>5003</td><td>7048</td><td>+</td><td>WP27_GM000005
+</td>
+	</tr>
+
+	<tr>
+	<td>10892</td><td>8915</td><td>-</td><td>WP27_GM000008
+</td>
+	</tr>
+
+	<tr>
+	<td>18375</td><td>17293</td><td>-</td><td>WP27_GM000019
+</td>
+	</tr>
+
+</table>
+<br />
+<button onclick="hiddenShow(this)">Show Annotiation</button>
+<div class='comment'>
+<ul>
+<br>
+<li>TSS: position of TSS</li>
+<li>TTS: position of TTS</li>
+<li>Strand: strand specificity</li>
+<li>Gene: gene name</li>
+</ul>
+</div>
+<br><br>
+<b>Result Directory:<a href="../Result_X201SCXXXXXXXX-Z01-J001-B1/7.Structure/2.GeneStruct/">Result/Structure/2.GeneStruct/TSS_TTS.xls</a></b>
+<br>
+<p class="head"><a href="#home" title="返回首页"></a>
+
+	<a name="基因结构分析"></a>
+
+	<hr />
+
+</p><br />
+
+<h4>4.7.1.3 Promoter prediction</h4>
+<p class="name_table">Table 4.11 Results of promoter prediction</p>
+<div style="overflow-x: auto">
+<table class="gy">
+<tr><th>Sequence ID</th><th>strand</th><th>Start Position</th><th>End Position</th><th>Score</th><th>Sequence</th></tr>
+
+	<tr>
+	<td>WP27_GM000582.head</td><td>+</td><td>571</td><td>616</td><td>0.9</td><td>CTCGGAGTGACGAGCGTTGCGTTGTGCGTTATAAATCACTTCCTCT
+</td>
+	</tr>
+
+	<tr>
+	<td>WP27_GM000582.head</td><td>+</td><td>610</td><td>655</td><td>0.89</td><td>TTCCTCTTGTGTGCGTTATAAGTCACATGTAGAGTTGTGCGTTATA
+</td>
+	</tr>
+
+	<tr>
+	<td>WP27_GM000582.head</td><td>+</td><td>636</td><td>681</td><td>0.82</td><td>ATGTAGAGTTGTGCGTTATAAGTCACATGTAGAGTTGTGCGTTATA
+</td>
+	</tr>
+
+	<tr>
+	<td>WP27_GM002922.head</td><td>-</td><td>531</td><td>576</td><td>0.86</td><td>GCGATCGTGTGACCCAGCATGGCCGGGATGATCATGGACCGGCGGG
+</td>
+	</tr>
+
+	<tr>
+	<td>WP27_GM001326.head</td><td>-</td><td>76</td><td>121</td><td>0.82</td><td>GCCTTGACCTTGAACGAGAACATCACGAGCATCATCCAACCCCACA
+</td>
+	</tr>
+
+</table>
+</div>
+<br />
+<button onclick="hiddenShow(this)">Show Annotiation</button>
+<div class='comment'>
+<ul>
+<br>
+<li>Sequence ID: sequence ID from input</li>
+<li>strand: strand specificity</li>
+<li>Start Position: start position of predicted promoter</li>
+<li>End Position: end position of predicted promoter </li>
+<li>Score: score of accuracy</li>
+<li>Sequence: promoter sequence</li>
+</ul>
+</div>
+<br><br>
+<b>Result Directory:<a href="../Result_X201SCXXXXXXXX-Z01-J001-B1/7.Structure/2.GeneStruct/">Result/Structure/2.GeneStruct/Promoter_prediction.xls</a></b>
+<br>
+
+<p class="head"><a href="#home" title="返回首页"></a>
+
+	<a name="基因结构分析"></a>
+
+	<hr />
+
+</p><br />
+<h4 id="id_order_structure"><a name="基因结构分析">4.7.2 UTR Analysis</a></h4>
+<h5>4.7.2.1 UTR prediction and UTR length distribution</h5>
+<p>The 5' and 3' UTR sequences were extracted based on the start and end positions of transcription and translation. The length distributions of both 5' and 3' UTR sequences were plotted, respectively. For 5' UTR sequences, SD sequences were predicted using RBSfinder (rbs region length = 50). For 3' UTR sequences, ρ-independent terminators were predicted using TransTermHP. </p>
+
+<p class="center">
+<a id="example2" href="pictures/UTR_length_distribution.png" ><img class="small" src="src/pictures/UTR_length_distribution.png" alt="UTR_length_distribution" /></a>
+</p>
+<p class="name_fig">Figure 4.18 UTR length distributions.</p>
+<p>The x axis shows length intervals of UTRs, and y axis shows densities of UTRs in different length intervals. The red dashed line shows the averaged length.</p>
+
+<b>Result Directory: <a href="../Result_X201SCXXXXXXXX-Z01-J001-B1/7.Structure/1.UTR/">Result/Structure/1.UTR</a></b>
+<br>
+<p class="head"><a href="#home" title="返回首页"></a>
+
+	<a name="基因结构分析"></a>
+
+	<hr />
+
+</p><br />
+<h5>4.7.2.2 5' UTR SD sequence prediction</h5>
+<p class="name_table">Table 4.12 Predicted SD sequences in 5' UTR region</p>
+
+<table class="gy">
+<tr><th>Gene_ID</th><th>Start</th><th>Stop</th><th>Strand</th><th>Pattern</th><th>Position</th></tr>
+
+	<tr>
+	<td>WP27_GM000031</td><td>27488</td><td>26991</td><td>-</td><td>AGGAG</td><td>27499
+</td>
+	</tr>
+
+	<tr>
+	<td>WP27_GM000032</td><td>27646</td><td>28203</td><td>+</td><td>GAGAG</td><td>27632
+</td>
+	</tr>
+
+	<tr>
+	<td>WP27_GM000049</td><td>39929</td><td>40459</td><td>+</td><td>AGGAA</td><td>39916
+</td>
+	</tr>
+
+	<tr>
+	<td>WP27_GM000057</td><td>49749</td><td>48994</td><td>-</td><td>TGGGG</td><td>49765
+</td>
+	</tr>
+
+	<tr>
+	<td>WP27_GM000091</td><td>82377</td><td>82204</td><td>-</td><td>AGGAA</td><td>82389
+</td>
+	</tr>
+
+</table>
+<br />
+<button onclick="hiddenShow(this)">Show Annotiation</button>
+<div class='comment'>
+<ul>
+<br>
+<li>gene_id: gene id</li>
+<li>Start: start position of gene</li>
+<li>Stop: end position of gene</li>
+<li>Strand: strand specificity</li>
+<li>Pattern: SD sequence pattern</li>
+<li>Position: start position of SD sequence</li>
+</ul>
+</div>
+<br><br>
+Result Directory: <a href="../Result_X201SCXXXXXXXX-Z01-J001-B1/7.Structure/1.UTR/">Result/Structure/1.UTR/SD.xls</a></b>
+<br>
+<p class="head"><a href="#home" title="返回首页"></a>
+
+	<a name="基因结构分析"></a>
+
+	<hr />
+
+</p><br />
+<h5>4.7.2.3 3' UTR ρ-independent terminator prediction</h5>
+<p class="name_table">Table 4.13 Predicted ρ-independent terminators in 3' UTR region</p>
+
+<div style="overflow-x: auto">
+<table class="gy">
+<tr><th>Gene_ID</th><th>Term_start</th><th>Term_end</th><th>Strand</th><th>5'_tail</th><th>5'_stem</th><th>Loop</th><th>3'_stem</th><th>3'_tail</th></tr>
+
+	<tr><td>WP27_GM000029</td><td>26412</td><td>26446</td><td>+</td><td>TGGGCGTCACCCGGC</td><td>GCAGCACGTCTGAGGC</td><td>TTT</td><td>GCGTCAGTCGTGCGGC</td><td>TGTTCCGGCTGTTGC
+</td></tr>
+
+	<tr><td>WP27_GM000090</td><td>82091</td><td>82147</td><td>+</td><td>ATCCCGCACGCGAAA</td><td>CGAGGTCTGCCGCATGAGACAGGGGCT</td><td>CGCA</td><td>AGCCTG-GTCTCATGCGGCAGACCTCG</td><td>TCTCATCGTGGTGGC
+</td></tr>
+
+	<tr><td>WP27_GM000090</td><td>82147</td><td>82091</td><td>-</td><td>ATCCCGCACGCGAAA</td><td>CGAGGTCTGCCGCATGAGACAGGGGCT</td><td>CGCA</td><td>AGCCTG-GTCTCATGCGGCAGACCTCG</td><td>TCTCATCGTGGTGGC
+</td></tr>
+
+	<tr><td>WP27_GM000760</td><td>768567</td><td>768612</td><td>+</td><td>GGCTGCGGCATTCGA</td><td>GAACGGTTTCGCGGGTTCC-GA</td><td>TCA</td><td>TCAGGAGCCCGCGAAACCCTTC</td><td>TTCTACTCGCGTCGC
+</td></tr>
+
+	<tr><td>WP27_GM000760</td><td>768609</td><td>768570</td><td>-</td><td>TGCGGCATTCGAGAA</td><td>CGGTTTCGCGGGTTCC-GA</td><td>TCA</td><td>TCAGGAGCCCGCGAAACCC</td><td>TTCTTCTACTCGCGT
+</td></tr>
+
+</table>
+</div>
+<br />
+<button onclick="hiddenShow(this)">Show Annotiation</button>
+<div class='comment'>
+<ul>
+<br>
+<li> gene_id: gene id</li>
+<li> Term_start: start position of terminator</li>
+<li> Term_end: end position of terminator</li>
+<li> strand: strand specificity</li>
+<li> 5'_tail: 5' tail sequence</li>
+<li> 5'_stem: hairpin 5' stem sequence</li>
+<li> loop: hairpin loop sequence</li>
+<li> 3'_stem: hairpin 3' stem sequence</li>
+<li> 3'_tail: 3' tail sequence</li>
+</ul>
+</div>
+<br><br>
+Result Directory: <a href="../Result_X201SCXXXXXXXX-Z01-J001-B1/7.Structure/1.UTR/">Result/Structure/1.UTR</a></b>
+<br>
+<p class="head"><a href="#home" title="返回首页"></a>
+
+	<a name="基因结构分析"></a>
+
+	<hr />
+
+</p><br />
+<h4 id="id_order_structure"><a name="基因结构分析">4.7.3 Antisense Transcripts Prediction</a></h4>
+<p>Natural antisense transcripts(NATs) are a group of endogenous RNAs with sequences complementarity to other RNA transcripts. Cis-NATs are transcribed from the opposite DNA strand but the same genomic loci of their sense transcripts. Cis-NATs widely exist in both prokaryotes and eukaryotes and play important roles in gene regulation. According to orientations in the genome, Cis-NATs are classified to three types: enclosed (full overlapped by the sense transcript), convergent (3'-3' overlap) and divergent(5'-5' overlap). The genomic loci, type and numbers of cis-NATs were identified using the strand- specific RNA-seq data. </p>
+<p class="name_table">Table 4.14 Results of Antisense Transcripts Prediction</p>
+<div style="overflow-x: auto">
+<table class="gy">
+<tr><th>Plus_transcript_id</th><th>Plus_start</th><th>Plus_end</th><th>Plus_length</th><th>Plus_name(description)</th><th>Minus_gene_id</th><th>Minus_start</th><th>Minus_end</th><th>Minus_length</th><th>Minus_name(description)</th><th>Types</th><th>Overlap_start</th><th>Overlap_end</th><th>Overlap_length</th></tr>
+
+	<tr>
+	<td>Novel00002</td><td>48528</td><td>48820</td><td>293</td><td>(novelGene)</td><td>WP27_GM000056</td><td>47314</td><td>48807</td><td>1494</td><td>(-)</td><td>divergent</td><td>48528</td><td>48807</td><td>280
+</td>
+	</tr>
+
+	<tr>
+	<td>Novel00003</td><td>69526</td><td>69808</td><td>283</td><td>(novelGene)</td><td>WP27_GM000076</td><td>67913</td><td>69667</td><td>1755</td><td>(-)</td><td>divergent</td><td>69526</td><td>69667</td><td>142
+</td>
+	</tr>
+
+	<tr>
+	<td>Novel00003</td><td>69526</td><td>69808</td><td>283</td><td>(novelGene)</td><td>WP27_GM000077</td><td>69664</td><td>71118</td><td>1455</td><td>(-)</td><td>convergent</td><td>69664</td><td>69808</td><td>145
+</td>
+	</tr>
+
+	<tr>
+	<td>Novel00004</td><td>100433</td><td>101414</td><td>982</td><td>(novelGene)</td><td>WP27_GM000110</td><td>99727</td><td>100483</td><td>757</td><td>(-)</td><td>divergent</td><td>100433</td><td>100483</td><td>51
+</td>
+	</tr>
+
+</table>
+</div>
+<br />
+<button onclick="hiddenShow(this)">Show Annotiation</button>
+<div class='comment'>
+<ul>
+<br>
+<li>(1) Plus_transcript_id: id of sense transcript</li> 
+<li>(2) Plus_start: start position of sense transcript</li>
+<li>(3) Plus_end: end position of sense transcript</li>
+<li>(4) Plus_length: length of sense transcript</li>           
+<li>(5) Plus_name(description): name (description) of sense transcript</li>              
+<li>(6)~(10): The same infomation as (1)~(5) but for anti-sense transcript</li> 
+<li>(11)Types: type of anti-sense transcript (including enclosed, convergent and divergent)</li>
+<li>(12)Overlap_start: start position of overlapped region</li>       
+<li>(13)Overlap_end: end position of overlapped region</li>           
+<li>(14)Overlap_length: length of overlapped region</li>
+</ul>
+</div>
+<br><br>
+<b>Result Directory: <a href="../Result_X201SCXXXXXXXX-Z01-J001-B1/7.Structure/3.Antisense/">Result/Structure/3.Antisense</a></b>
+<br>
+
+<p class="head"><a href="#home" title="返回首页"></a>
+
+	<a name="基因结构分析"></a>
+
+	<hr />
+
+</p><br />
+<h4 id="id_order_structure"><a name="基因结构分析">4.7.4 sRNA Analysis</a></h4>
+<p>In prokaryotes, non-coding RNAs with length between 50 and 500 nt are defined as small RNA (sRNA). Novel intergenic transcripts were discovered by Rockhopper, and aligned with sequences in NCBI NR database using Blastx. Novel transcripts without NR annotation were sRNA candidates. RNAfold and IntaRNA were applied to predict the secondary structures and targeted genes of sRNAs, respectively. </p>
+<h5>4.7.4.1 sRNA prediction and length distribution</h5>
+
+<p class="center">
+<a id="example2" href="src/pictures/sRNA_length_distribution.png" ><img class="small" src="src/pictures/sRNA_length_distribution.png" alt="sRNA_length_distribution" /></a>
+</p>
+<p class="name_fig">Figure 4.19 sRNA length distribution</p>
+<p>The x axis shows length intervals of sRNAs, and y axis shows densities of sRNAs in different length intervals. The red dashed line shows the averaged length.</p>
+<b>Result Directory: <a href="../Result_X201SCXXXXXXXX-Z01-J001-B1/7.Structure/4.sRNA/">Result/Structure/4.sRNA</a></b>
+<br>
+<p class="head"><a href="#home" title="返回首页"></a>
+
+	<a name="sRNA分析"></a>
+
+	<hr />
+
+</p><br />
+<h5>4.7.4.2 sRNA secondary structure prediction</h5>
+
+<p class="center">
+
+<div class="row gallery-row">
+<div class="col-1">
+<div id="gallery_figure14_2_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-6">
+<div class="tab-content" id="gallery_figure14_2_nav-tabContent">
+
+<div class="tab-pane fade" id="gallery_figure14_2_pane_sRNA00023_ss" role="tabpanel" aria-labelledby="gallery_figure14_2_list_sRNA00023_ss" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sRNA00023_ss.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure14_2_pane_sRNA00024_ss" role="tabpanel" aria-labelledby="gallery_figure14_2_list_sRNA00024_ss" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sRNA00024_ss.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure14_2_pane_sRNA00006_ss" role="tabpanel" aria-labelledby="gallery_figure14_2_list_sRNA00006_ss" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sRNA00006_ss.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure14_2_pane_sRNA00010_ss" role="tabpanel" aria-labelledby="gallery_figure14_2_list_sRNA00010_ss" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sRNA00010_ss.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure14_2_pane_sRNA00035_ss" role="tabpanel" aria-labelledby="gallery_figure14_2_list_sRNA00035_ss" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/sRNA00035_ss.png" /></div>
+
+</div>
+</div>
+<div class="col-1">
+<div id="gallery_figure14_2_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-4">
+<input class="form-control" id="gallery_figure14_2_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="gallery_figure14_2_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="gallery_figure14_2_list_sRNA00023_ss" data-toggle="list" href="#gallery_figure14_2_pane_sRNA00023_ss" role="tab" aria-controls="sRNA00023_ss">sRNA00023_ss</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure14_2_list_sRNA00024_ss" data-toggle="list" href="#gallery_figure14_2_pane_sRNA00024_ss" role="tab" aria-controls="sRNA00024_ss">sRNA00024_ss</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure14_2_list_sRNA00006_ss" data-toggle="list" href="#gallery_figure14_2_pane_sRNA00006_ss" role="tab" aria-controls="sRNA00006_ss">sRNA00006_ss</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure14_2_list_sRNA00010_ss" data-toggle="list" href="#gallery_figure14_2_pane_sRNA00010_ss" role="tab" aria-controls="sRNA00010_ss">sRNA00010_ss</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure14_2_list_sRNA00035_ss" data-toggle="list" href="#gallery_figure14_2_pane_sRNA00035_ss" role="tab" aria-controls="sRNA00035_ss">sRNA00035_ss</a>
+
+</div>
+</div>
+</div>
+</p>
+
+<p class="name_fig">Figure 4.20 sRNA secondary structures</p>
+<br>
+<b>Result Directory: <a href="../Result_X201SCXXXXXXXX-Z01-J001-B1/7.Structure/4.sRNA/annot/">Result/Structure/4.sRNA/annot</a></b>
+<br>
+<p class="head"><a href="#home" title="返回首页"></a>
+	<a name="sRNA分析"></a>
+	<hr />
+
+</p><br />
+<h5>4.7.4.3 sRNA targeted gene prediction</h5>
+<p class="name_table">Table 4.15 Predicted sRNA targeted genes</p>
+
+<table class="gy">
+<tr><th>sRNA_id</th><th>mRNA_id</th><th>energy(kcal/mol)</th><th>sRNA_position</th><th>mRNA_position</th></tr>
+
+	<tr>
+	<td>sRNA00004</td><td>WP27_GM001581</td><td>-13.2542</td><td>64 -- 76</td><td>2158 -- 2170
+</td>
+	</tr>
+
+	<tr>
+	<td>sRNA00006</td><td>WP27_GM001581</td><td>-10.8358</td><td>2 -- 73</td><td>1274 -- 1354
+</td>
+	</tr>
+
+	<tr>
+	<td>sRNA00007</td><td>WP27_GM001581</td><td>-14.1265</td><td>51 -- 67</td><td>1979 -- 1995
+</td>
+	</tr>
+
+	<tr>
+	<td>sRNA00008</td><td>WP27_GM001581</td><td>-7.63902</td><td>4 -- 43</td><td>1657 -- 1707
+</td>
+	</tr>
+
+	<tr>
+	<td>sRNA00009</td><td>WP27_GM001581</td><td>-9.83414</td><td>4 -- 17</td><td>1277 -- 1290
+</td>
+	</tr>
+
+</table>
+<br />
+<button onclick="hiddenShow(this)">Show Annotiation</button>
+<div class='comment'>
+<ul>
+<br>
+<li>sRNA_id: sRNA id</li>
+<li>mRNA_id: target gene id</li>
+<li>energy(kcal/mol): Free energy</li>
+<li>sRNA_position: sRNA binding position</li>
+<li>mRNA_position: target gene binding position</li>
+</ul>
+</div>
+<br><br>
+<b>Result Directory: <a href="../Result_X201SCXXXXXXXX-Z01-J001-B1/7.Structure/4.sRNA/annot/">Result/Structure/4.sRNA/sRNA.Inta.xls</a></b>
+<br>
+<p class="head"><a href="#home" title="返回首页"></a>
+
+	<a name="sRNA分析"></a>
+
+	<hr />
+
+</p><br />
+<h5>4.7.4.4 sRNA Expression Quantification</h5>
+<p class="name_table">Table 4.16 Resuts of sRNA expression quantification</p>
+<div style="overflow-x: auto">
+<table class="gy">
+<tr><th>sRNA_id</th><th>sample_C2</th><th>sample_C3</th><th>sample_C1</th><th>sample_P2</th><th>sample_P3</th><th>sample_P1</th><th>gene_name</th><th>gene_chr</th><th>gene_start</th><th>gene_end</th><th>gene_strand</th><th>gene_length</th><th>gene_biotype</th><th>gene_description</th><th>tf_family
+</th></tr>
+
+<tr>
+<td>sRNA00020</td><td>6912.13081431825</td><td>7107.17490241202</td><td>6914.05312336469</td><td>6343.19004193452</td><td>6100.21606545497</td><td>4522.80865209806</td><td>-</td><td>Chr1</td><td>1990279</td><td>1990418</td><td>+</td><td>140</td><td>-</td><td>-</td><td>-
+</td>
+</tr>
+
+<tr>
+<td>sRNA00033</td><td>1369.062845395</td><td>1368.96492660845</td><td>1370.66670415935</td><td>1459.38625279198</td><td>1559.09573717007</td><td>968.921755318606</td><td>-</td><td>Chr1</td><td>2964307</td><td>2964660</td><td>-</td><td>354</td><td>-</td><td>-</td><td>-
+</td>
+</tr>
+
+<tr>
+<td>sRNA00034</td><td>419.690266571031</td><td>427.455810446807</td><td>225.230322287313</td><td>373.128825996148</td><td>488.639686624948</td><td>214.342210076566</td><td>-</td><td>Chr1</td><td>3001515</td><td>3001633</td><td>-</td><td>119</td><td>-</td><td>-</td><td>-
+</td>
+</tr>
+
+<tr>
+<td>sRNA00009</td><td>392.280676797883</td><td>324.950436737695</td><td>532.127229562817</td><td>241.605247781713</td><td>242.160795433532</td><td>309.172399989228</td><td>-</td><td>Chr1</td><td>1565016</td><td>1565070</td><td>-</td><td>55</td><td>-</td><td>-</td><td>-
+</td>
+</tr>
+
+<tr>
+<td>sRNA00018</td><td>146.891593299861</td><td>217.338173892718</td><td>289.951679266426</td><td>228.779718129025</td><td>253.191792929966</td><td>282.969321197572</td><td>-</td><td>Chr1</td><td>1989235</td><td>1989302</td><td>-</td><td>68</td><td>-</td><td>-</td><td>-
+</td>
+</tr>
+
+</table>
+</div>
+
+<button onclick="hiddenShow(this)">Show Annotiation</button>
+<div class='comment'>
+<ul>
+<br>
+<li>sRNA_id: sRNA id</li>
+<li>other columns: fpkm of sRNA in each sample</li>
+</ul>
+</div>
+<br><br>
+<b>Result Directory: <a href="../Result_X201SCXXXXXXXX-Z01-J001-B1/7.Structure/4.sRNA/annot/">Result/Structure/4.sRNA/sRNA_fpkm.xls</a></b>
+<br>
+
+
+
+
+<!---------------------------------------------- SNP分析 ----------------------------------------->
+
+<p class="head"><a href="#home" title="返回首页"></a>
+
+	<a name="SNP分析"></a>
+
+	<hr />
+
+</p><br />
+<h3 id="id_order_snp"><a name="SNP和InDel分析">4.8 SNP and InDel</a></h3>
+<h4>4.8.1 SNP and InDel</h4>
+<p>A single nucleotide polymorphism (SNP) is a DNA sequence variation occurring commonly within a population (e.g. 1%) in which a single nucleotide in the genome, or other shared sequence, differs between members of a biological species or paired chromosomes. Two types of variation occur with SNPs, namely transitions and transversions, with a probability ratio of 1:2. SNPs occur most often in CG sequences, resulting in C to T transitions, which are associated with the tendency of C to be methylated in CG sequences. In general, a canonical SNP should be present in more than 1% of the whole population. In contrast to SNPs, INDEL refers to insertions or deletions of small fragments (one or more nucleotides) comparing to the reference genome.</p>
+<p>Analysis tools, such as Samtools and Picard, are used to sort the reads according to the genome coordinates, followed by screening out repeated reads. Finally, GATK4 is used to carry out SNP calling and INDEL calling. After filtration, results such as those shown in the following table are obtained, in which INDEL and SNPs share the same columns. In addition, we used SnpSift for functional annotations and enrichment analysis. </p>
+<p class="name_table">Table 4.17 SNP analysis results (Just show one sample)</p>
+<div style="overflow-x: auto">
+<table class="gy">
+<tr><th>CHROM</th><th>POS</th><th>ID</th><th>REF</th><th>ALT</th><th>QUAL</th><th>DP</th><th>AD</th><th>GT</th></tr>
+
+	<tr>
+	<td>Chr1</td><td>82403</td><td>.</td><td>A</td><td>G</td><td>40.60000000000001</td><td>13</td><td>11,2</td><td>A/G
+</td>
+	</tr>
+
+	<tr>
+	<td>Chr1</td><td>558528</td><td>.</td><td>A</td><td>G</td><td>35.6</td><td>12</td><td>10,2</td><td>A/G
+</td>
+	</tr>
+
+	<tr>
+	<td>Chr1</td><td>558531</td><td>.</td><td>C</td><td>T</td><td>35.6</td><td>12</td><td>10,2</td><td>C/T
+</td>
+	</tr>
+
+	<tr>
+	<td>Chr1</td><td>733731</td><td>.</td><td>A</td><td>G</td><td>78.6</td><td>14</td><td>10,3</td><td>A/G
+</td>
+	</tr>
+
+	<tr>
+	<td>Chr1</td><td>886249</td><td>.</td><td>C</td><td>T</td><td>47.599999999999994</td><td>21</td><td>18,3</td><td>C/T
+</td>
+	</tr>
+
+</table>
+</div>
+<br />
+<button onclick="hiddenShow(this)">Show Annotiation</button>
+<div class='comment'>
+<ul>
+<br>
+<li>CHROM: Chromosome ID of SNPs</li>
+<li>POS: Position of SNPs on corresponding chromosome</li>
+<li>ID: The ID of this variation in dbSNP</li>
+<li>REF: Reference genotype</li>
+<li>ALT: Alternative genotype</li>
+<li>QUAL: Quality value of SNP variation</li>
+<li>DP: The sequence depth of the site (representing the number of reads to support the site)</li>
+<li>AD: Allele Depth.The number of reads supporting either the reference genotype or SNP genotype</li>
+<li>GT: The genotype of the locus</li>
+
+</ul>
+</div>
+<br><br>
+<b>Result Directory: <a href="../Result_X201SCXXXXXXXX-Z01-J001-B1/8.SNP/1.snpsite/">Result/SNP/1.snpsite</a></b>
+<br>
+<p class="head"><a href="#home" title="返回首页"></a>
+
+	<a name="SNP分析"></a>
+
+	<hr />
+
+</p><br />
+<p class="name_table">Table 4.18 SNP annotation results (Just show one sample)</p>
+<div style="overflow-x: auto">
+<table class="gy">
+<tr><th>CHROM</th><th>POS</th><th>ID</th><th>REF</th><th>ALT</th><th>QUAL</th><th>DP</th><th>FILTER</th><th>AD</th><th>GT</th><th>GeneID</th><th>GeneName</th><th>FeatureID</th><th>Biotype</th><th>HGVS_C</th><th>HGVS_P</th><th>EFFECT</th><th>IMPACT</th></tr>
+
+	<tr>
+	<td>Chr1</td><td>82403</td><td>.</td><td>A</td><td>G</td><td>40.6</td><td>13</td><td>PASS</td><td>11,2</td><td>0/1</td><td>WP27_GM000085</td><td>EXON_1_77902_78819</td><td>WP27_GM000085</td><td>pseudogene</td><td>n.-3584T&gt;C</td><td>.</td><td>upstream_gene_variant</td><td>MODIFIER
+</td>
+	</tr>
+
+	<tr>
+	<td>Chr1</td><td>82403</td><td>.</td><td>A</td><td>G</td><td>40.6</td><td>13</td><td>PASS</td><td>11,2</td><td>0/1</td><td>WP27_GM000087</td><td>EXON_1_79584_80186</td><td>WP27_GM000087</td><td>pseudogene</td><td>n.-2217T&gt;C</td><td>.</td><td>upstream_gene_variant</td><td>MODIFIER
+</td>
+	</tr>
+
+	<tr>
+	<td>Chr1</td><td>82403</td><td>.</td><td>A</td><td>G</td><td>40.6</td><td>13</td><td>PASS</td><td>11,2</td><td>0/1</td><td>WP27_GM000088</td><td>EXON_1_80183_81298</td><td>WP27_GM000088</td><td>pseudogene</td><td>n.-1105T&gt;C</td><td>.</td><td>upstream_gene_variant</td><td>MODIFIER
+</td>
+	</tr>
+
+	<tr>
+	<td>Chr1</td><td>82403</td><td>.</td><td>A</td><td>G</td><td>40.6</td><td>13</td><td>PASS</td><td>11,2</td><td>0/1</td><td>WP27_GM000091</td><td>EXON_1_82204_82377</td><td>WP27_GM000091</td><td>pseudogene</td><td>n.-26T&gt;C</td><td>.</td><td>upstream_gene_variant</td><td>MODIFIER
+</td>
+	</tr>
+
+</table>
+</div>
+<br />
+<button onclick="hiddenShow(this)">Show Annotiation</button>
+<div class='comment'>
+<ul>
+<br>
+<li> CHROM: Chromosome ID of SNPs</li>
+<li> POS: The postion of variation on chromosome</li>
+<li> ID: The ID of this variation in dbSNP</li>
+<li> REF: Genotype on reference sequence</li>
+<li> ALT: Alternative genotype</li>
+<li> QUAL: Quality value of SNP variation</li>
+<li> DP: The sequence depth of the site (representing the number of reads to support the site)</li>
+<li> FILTER: Whether or not the variant passed quality filters</li>
+<li> AD: Allele Depth.The number of reads supporting either the reference genotype or SNP genotype</li>
+<li> GT: The genotype of the locus</li>
+<li> GeneID: Gene ID</li>
+<li> GeneName: Gene Name</li>
+<li> FeatureID: Depending on the annotation, this may be: Transcript ID (preferably using version number), Motif ID, miRNA, ChipSeq peak, Histone mark, etc. Note: Some features may not have ID (e.g. histone marks from custom Chip-Seq experiments may not have a unique ID).</li>
+<li> Biotype: Gene's biotype.</li>
+<li> HGVS_C: Variant using HGVS notation (DNA level).</li>
+<li> HGVS_P: If variant is coding, this field describes the variant using HGVS notation (Protein level). Since transcript ID is already mentioned in ‘feature ID’, it may be omitted here.</li>
+<li> EFFECT: Detailed desription of the effect predicted by SnpEff.</li>
+<li> IMPACT: Effects are categorized by 'impact': {High, Moderate, Low, Modifier}. This are pre-defined categories to help users find more significant variants.</li>
+</ul>
+</div>
+<br><br>
+<b>Result Directory: <a href="../Result_X201SCXXXXXXXX-Z01-J001-B1/8.SNP/2.snpeff/">Result/SNP/2.snpeff</a></b>
+<br>
+
+
+<!-------------------------------------------- 附录 --------------------------------------------->
+<p class="head"><a href="#home" title="返回首页"></a>
+
+	<a name="附录"></a>
+
+	<hr />
+
+</p><br />
+<h2 ><a id="">5 Appendix</a></h2>
+<br>
+
+<a name="软件列表" ><h3 id="软件列表">5.1 Software</h3></a>
+<br>
+
+<!------------------------------------------软件列表网页版开始------------------------------------------------------>
+
+	<table class='gy2'>
+		<tr><th>Analysis</th><th>Software</th><th>Version</th><th>Parameters</th><th>Remarks</th></tr>
+		<tr><td>Mapping</td><td>Bowtie2</td><td>v2.5.4</td><td>default parameters of software</td><td>Mapping to a reference genome.</td></tr>
+		<tr><td rowspan="2">Expression Quantification</td><td>FeatureCounts</td><td>v2.0.6</td><td>default parameters of software</td><td>-</td></tr>
+		<tr><td>HTSeq</td><td>0.9.1</td><td>default parameters of software</td><td>-</td></tr>
+		<tr><td>Novel Gene Prediction</td><td>Rockhopper</td><td>v2.0.3</td><td>default parameters of software</td><td>-</td></tr>
+		<tr><td rowspan="2">SNP detection</td><td>GATK4</td><td>v4.6.0.0</td><td>-stand-call-conf 20 -ploidy 2</td><td>-</td></tr>
+			<tr><td>SNPEff</td><td>v4.3q</td><td>default parameters of software</td><td>-</td></tr>
+		<tr><td rowspan="2">Differential Expression Analysis</td><td>DESeq2</td><td>1.42.0</td><td rowspan="2">default parameters of software</td><td>For sample with bio-replicate using DESeq2;</td></tr>
+		<tr><td>edgeR</td><td>4.0.16</td><td>For samples without bio-replicate using EdgeR.</td></tr>
+		<tr><td>GO Enrichment</td><td>clusterProfiler</td><td>v4.8.1</td><td>default parameters of software</td><td>-</td></tr>
+		<tr><td>KEGG Enrichment</td><td>clusterProfiler</td><td>v4.8.1</td><td>default parameters of software</td><td>-</td></tr>
+		<tr><td>GSEA Analysis</td><td>gsea</td><td>v3.0</td><td>default parameters of software</td><td>-</td></tr>
+		<tr><td>Operon and TSS/TTS Prediction</td><td>Rockhopper</td><td>v2.0.3</td><td>default parameters of software</td><td>-</td></tr>
+		<tr><td>SD Sequence prediction</td><td>RBSfinder</td><td>v1.0</td><td>default parameters of software</td><td>-</td></tr>
+		<tr><td>Rho-independent terminator Sequence Prediction</td><td>TranstermHP</td><td>v2.0.9</td><td>default parameters of software</td><td>-</td></tr>
+		<tr><td>sRNA Secondary Structure Prediction</td><td>RNAfold</td><td>v2.0</td><td>default parameters of software</td><td>-</td></tr>
+		<tr><td>Targeted Gene Prediction</td><td>IntaRNA</td><td>v3.4.1</td><td>-p 7 -w 140 -L 70</td><td>-</td></tr>
+	</table>
+<br />
+
+<!------------------------------------------软件列表网页版结束------------------------------------------------------>
+
+<a name="Methods英文版" ><h3 id="Methods英文版">5.2 Methods</h3></a>
+<p>Click to open the method(pdf), and the corresponding file can be viewed directly.</p>
+<p>File catalog:<a href="src/Methods_prokaryote-seq.pdf" title="点击打开" target="_blank">PDF</a></p>
+<br>
+<a name="结果文件使用说明" ><h3 id="结果文件使用说明">5.3 Result files</h3></a>
+<br>
+<table width=95% align="center" id="result_note" cellspacing="0" cellpadding="5" class='gy2'>
+		<tr><th>Compressed File Format</th><th>Operating System</th><th>File Decompression</th></tr>
+		<tr><td rowspan="2">*.gz</td><td>Unix/Linux/Mac users</td><td>Command line: gzip –d *.gz</td></tr>
+		<tr><td>Windowsusers</td><td>Software: such as WinRAR, 7-Zip et al</td></tr>
+		<tr><td rowspan="2">*.zip</td><td>Unix/Linux/Mac users</td><td>Command line: unzip *.zip</td></tr>
+		<tr><td>Windowsusers</td><td>Software: such as WinRAR, 7-Zip et al</td></tr>
+</table>
+
+
+
+<div id="page">
+<br /><br>
+<table width=95% align="center" id="result_note" cellspacing="0" cellpadding="5" class='gy2'>
+		<tr><th>File Type</th><th>File Description</th><th>Way to Open</th></tr>
+		<tr><td rowspan="2">file.readme.pdf</td><td rowspan="2">Results' construction files that help customers to undersdand all the results files better.</td><td>Windows/Mac user use Adobe Reader/Foxit reader/web browser to open.</td></tr>
+		<tr><td>Unix/Linux user use evince command to open.</td></tr>
+		<tr><td rowspan="2">file.fq/.fastq</td><td rowspan="2">Text file that contains sequence data delivered from a sequencer. </td><td>Unix/Linux/Mac user use less or more command.</td></tr>
+		<tr><td>Windows user use editor Editplus/Notepad++ et al</td></tr>
+		<tr><td rowspan="2">file.fa/.fasta/.fna</td><td rowspan="2">Fasta format is a text-based format for representing sequences.</td><td>Unix/Linux/Mac user use less or more command.</td></tr>
+		<tr><td>Windows user use editor Editplus/Notepad++ et al.</td></tr>
+		<tr><td>file.vcf/.vcf.gz</td><td>Variant Call Format, for its bgzip-compressed format. VCF is a flexible and extendable line-oriented text format developed by the 1000 Genomes Project for releases of variants like SNVs and INDELs.</td><td>Unix/Linux/Mac user use less or more command.</td></tr>
+		<tr><td>file.bam</td><td>BAM is compressed format for SAM file which contains sequence alignment information.</td><td>Unix/Linux/Mac user use samtools software.</td></tr>
+		<tr><td>file.bai</td><td>Index file for bam.</td><td>No need to open, put it in the same directory with bam file when manipulate bam.</td></tr>
+		<tr><td rowspan="2">file.pdf/.svg</td><td rowspan="2">Figure result files; vectorgraph, can be zoomed in or out. It is very convenient for customer to view or edit with Adobe Illustrator. The figure can be used in paper for publish.</td><td>unix/Linux user use evince command to open.</td></tr>
+		<tr><td>Windows/Mac user use Adobe Reader/Foxit reader/web browser to open.</td></tr>
+		<tr><td rowspan="2">file.txt/.xls</td><td rowspan="2">Table result file; files are tab delimited.</td><td>Unix/Linux/Mac user use less or more command</td></tr>
+		<tr><td>Windows user use editor Editplus/Notepad++ et al, also can use Microsoft Excel to open.</td></tr>
+		<tr><td rowspan="2">file.gff/.gtf</td><td rowspan="2">GFF/GTF is general feature format.</td><td>Unix/Linux/Mac user use less or more command;</td></tr>
+		<tr><td>Windows user use editor Editplus/Notepad++ et al.</td></tr>
+		<tr><td rowspan="2">file.png</td><td rowspan="2">Image file, bitmap with loseless compression.</td><td>Unix/Linux/Mac user use display command.</td></tr>
+		<tr><td>Windows user use Image browser，such as photoshop et al.</td></tr>
+</table>
+<br />
+</div>
+<!-------------------------------------------- 参考文献 ------------------------------------------->
+
+
+<p class="head"><a href="#home" title="返回首页"></a>
+
+	<a name="参考文献"></a>
+
+	<hr />
+
+</p><br />
+<h2><a id="参考文献">6 References</a></h2>
+<p class="ref">
+
+Anders, Simon, and Wolfgang Huber.Differential expression of RNA-Seq data at the gene level–the DESeq package.Heidelberg, Germany: European Molecular Biology Laboratory (EMBL) 10 (2012): f1000research.<br><br>
+Anders S and Huber W. Differential expression analysis for sequence count data . Genome Biol. 2010, 11: 106-10.1186/gb-2010-11-10-r106.<br><br>
+Anders S, Huber W. Differential expression analysis for sequence count data. Genome Biol. 2010;11(10):R106. doi:10.1186/gb-2010-11-10-r106.<br><br>
+
+
+
+A. Waibel, T. Hanazawa, G. Hinton, K. Shikano and K. J. Lang, "Phoneme recognition using time-delay neural networks," in IEEE Transactions on Acoustics, Speech, and Signal Processing, vol. 37, no. 3, pp. 328-339, March 1989, doi: 10.1109/29.21701.<br><br>
+Busch A, Richter AS, Backofen R. IntaRNA: efficient prediction of bacterial sRNA targets incorporating target site accessibility and seed regions. Bioinformatics. 2008;24(24):2849-2856. doi:10.1093/bioinformatics/btn544. <br><br>
+
+
+
+ENCODE Project Consortium. The ENCODE (ENCyclopedia Of DNA Elements) Project. Science. 2004;306(5696):636-640. doi:10.1126/science.1105136. <br><br>
+
+
+
+Hofacker IL, Stadler PF. Memory efficient folding algorithms for circular RNA secondary structures. Bioinformatics. 2006;22(10):1172-1176. doi:10.1093/bioinformatics/btl023.<br><br>
+
+
+
+Kanehisa M, Araki M, Goto S, et al. KEGG for linking genomes to life and the environment. Nucleic Acids Res. 2008;36(Database issue):D480-D484. doi:10.1093/nar/gkm882.<br><br>
+
+
+
+
+Kingsford CL, Ayanbule K, Salzberg SL. Rapid, accurate, computational discovery of Rho-independent transcription terminators illuminates their relationship to DNA uptake. Genome Biol. 2007;8(2):R22. doi:10.1186/gb-2007-8-2-r22.<br><br>
+
+
+
+Langmead B, Salzberg SL. Fast gapped-read alignment with Bowtie 2. Nat Methods. 2012;9(4):357-359. Published 2012 Mar 4. doi:10.1038/nmeth.1923.<br><br>
+Langmead B, Trapnell C, Pop M, Salzberg SL. Ultrafast and memory-efficient alignment of short DNA sequences to the human genome. Genome Biol. 2009;10(3):R25. doi:10.1186/gb-2009-10-3-r25.<br><br>
+
+
+
+Mao X, Cai T, Olyarchuk JG, Wei L. Automated genome annotation and pathway identification using the KEGG Orthology (KO) as a controlled vocabulary. Bioinformatics. 2005;21(19):3787-3793. doi:10.1093/bioinformatics/bti430.<br><br>
+
+
+Marioni JC, Mason CE, Mane SM, Stephens M, Gilad Y. RNA-seq: an assessment of technical reproducibility and comparison with gene expression arrays. Genome Res. 2008;18(9):1509-1517. doi:10.1101/gr.079558.108.<br><br>
+
+
+McClure R, Balasubramanian D, Sun Y, et al. Computational analysis of bacterial RNA-Seq data. Nucleic Acids Res. 2013;41(14):e140. doi:10.1093/nar/gkt444.<br><br>
+
+
+
+McKenna A, Hanna M, Banks E, et al. The Genome Analysis Toolkit: a MapReduce framework for analyzing next-generation DNA sequencing data. Genome Res. 2010;20(9):1297-1303. doi:10.1101/gr.107524.110.<br><br>
+
+
+Mortazavi A, Williams BA, McCue K, Schaeffer L, Wold B. Mapping and quantifying mammalian transcriptomes by RNA-Seq. Nat Methods. 2008;5(7):621-628. doi:10.1038/nmeth.1226.<br><br>
+
+
+Robinson MD, McCarthy DJ, Smyth GK. edgeR: a Bioconductor package for differential expression analysis of digital gene expression data. Bioinformatics. 2010;26(1):139-140. doi:10.1093/bioinformatics/btp616.<br><br>
+
+
+
+Suzek BE, Ermolaeva MD, Schreiber M, Salzberg SL. A probabilistic method for identifying start codons in bacterial genomes. Bioinformatics. 2001;17(12):1123-1130. doi:10.1093/bioinformatics/17.12.1123.<br><br>
+
+
+
+Wang L, Feng Z, Wang X, Wang X, Zhang X. DEGseq: an R package for identifying differentially expressed genes from RNA-seq data. Bioinformatics. 2010;26(1):136-138. doi:10.1093/bioinformatics/btp612.<br><br>
+
+
+Wang Z, Gerstein M, Snyder M. RNA-Seq: a revolutionary tool for transcriptomics. Nat Rev Genet. 2009;10(1):57-63. doi:10.1038/nrg2484.<br><br>
+
+
+Young MD, Wakefield MJ, Smyth GK, Oshlack A. Gene ontology analysis for RNA-seq: accounting for selection bias. Genome Biol. 2010;11(2):R14. doi:10.1186/gb-2010-11-2-r14.<br><br>
+
+
+
+</p>
+</div>
+<!----------------------------------------------- End -------------------------------------------->
+<!----</div>---->
+</body>
+</html>

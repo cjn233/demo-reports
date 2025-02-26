@@ -1,0 +1,11 @@
+File type	Document description	Open mode
+file.fa/fasta	sequence file, in the format of fasta in genaral. Since sequence of gene or genome is large, we provide customer with sample*.fasta files(partial sequences of *.fasta). It will be more convenient to check file fomat.	unix/Linux/Mac users use less or more commands to view sequences in the format of *.fasta.
+file.fa/fasta	sequence file, in the format of fasta in genaral. Since sequence of gene or genome is large, we provide customer with sample*.fasta files(partial sequences of *.fasta). It will be more convenient to check file fomat.	windows users use editor Editplus/Notepad++ et al
+file.fq/fastq	eads sequence file, in the format of fasta. it is not easy to open since it is a large big file.	unix/Linux/Mac users use less or more commands;
+file.fq/fastq	eads sequence file, in the format of fasta. it is not easy to open since it is a large big file.	windows users use editor Editplus/Notepad++ et al
+file.txt/xls	table result file; files are separated by(Tab)	unix/Linux/Mac users use less or more commands
+file.txt/xls	table result file; files are separated by(Tab)	windows users use editor Editplus/Notepad++ et al, also can use Microsoft Excel to open.
+file.pdf/svg	Results image files and vector images can be enlarged and reduced without distortion, which is convenient for users to view and edit. Adobe Illustrator can be used to edit images and publish articles	Windows / Mac users can use adobe reader / foxin reader / Web browser to open it
+file.pdf/svg	Results image files and vector images can be enlarged and reduced without distortion, which is convenient for users to view and edit. Adobe Illustrator can be used to edit images and publish articles	Unix / Linux users use evince command to open
+file.png	Results image file; bitmap, lossless compression	Unix / Linux / Mac users use the display command to open
+file.png	Results image file; bitmap, lossless compression	windows users use picture viewer to view, for example Photoshop etc. al

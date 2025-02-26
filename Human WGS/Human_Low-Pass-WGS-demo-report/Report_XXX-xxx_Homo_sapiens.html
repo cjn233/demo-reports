@@ -1,0 +1,2383 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<html>
+<head>
+
+
+
+<title> Low Pass WGS Analysis Report </title>
+
+<META NAME="Version" CONTENT="2016.02.19"> 
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+<!-- add 20200312 -->
+<link rel="stylesheet" href="src/css/jquery.tocify.css" />
+<script src="src/js/jquery-3.3.1.min.js" type="text/javascript"></script>
+<script src="src/js/jquery-ui.min.js" type="text/javascript"></script>
+<script src="src/js/jquery.tocify.min.js" type="text/javascript"></script>
+
+<!--<script src="src/js/jquery-1.4.2.min.js"></script>-->
+<link rel="stylesheet" type="text/css" href="src/css/base_new.css">
+<link rel="StyleSheet" href="src/js/tree/tree.css" type="text/css">
+<link rel="stylesheet" type="text/css" href="src/js/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
+<link rel="stylesheet" href="src/css/style.css" />
+<script src="src/js/scrollTop.js"></script>
+<script src="src/js/common.js"></script>
+<script src="src/js/jquery.albumSlider.min.js"></script>
+<script src="src/js/tree/tree.js"></script>
+<script src="src/js/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
+<script src="src/js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+
+
+
+<style>
+.longtext{
+	line-height:16px !important;
+	padding-top:6px;
+	padding-bottom:7px;
+}
+.sublongtext{
+	line-height:16px !important;
+	padding-top:6px;
+	padding-bottom:7px;
+}
+#menu_list li{
+	height:45px; line-height:45px;
+}
+</style>
+
+
+<script>
+	$(document).ready(function() {
+		/*
+		*   Examples - images
+		*/
+
+		$("a#example1").fancybox();
+
+		$("a#example2").fancybox({
+			'overlayShow'	: false,
+			'transitionIn'	: 'elastic',
+			'transitionOut'	: 'elastic'
+		});
+		$("a#example3").fancybox({
+			'transitionIn'	: 'none',
+			'transitionOut'	: 'none'	
+		});
+
+		$("a#example4").fancybox({
+			'opacity'		: true,
+			'overlayShow'	: false,
+			'transitionIn'	: 'elastic',
+			'transitionOut'	: 'none'
+		});
+
+		$("a#example5").fancybox();
+
+		$("a#example6").fancybox({
+			'titlePosition'		: 'outside',
+			'overlayColor'		: '#000',
+			'overlayOpacity'	: 0.9
+		});
+
+		$("a#example7").fancybox({
+			'titlePosition'	: 'inside'
+		});
+
+		$("a#example8").fancybox({
+			'titlePosition'	: 'over'
+		});
+
+		$("a[rel=example_group]").fancybox({
+			'transitionIn'		: 'none',
+			'transitionOut'		: 'none',
+			'titlePosition' 	: 'over',
+			'titleFormat'		: function(title, currentArray, currentIndex, currentOpts) {
+				return '<span id="fancybox-title-over">Image ' + (currentIndex + 1) + ' / ' + currentArray.length + (title.length ? ' &nbsp; ' + title : '') + '</span>';
+			}
+		});
+
+		/*
+		*   Examples - various
+		*/
+
+		$("#various1").fancybox({
+			'titlePosition'		: 'inside',
+			'transitionIn'		: 'none',
+			'transitionOut'		: 'none'
+		});
+
+		$("#various2").fancybox();
+
+		$("#various3").fancybox({
+			'width'				: '75%',
+			'height'			: '75%',
+			'autoScale'			: false,
+			'transitionIn'		: 'none',
+			'transitionOut'		: 'none',
+			'type'				: 'iframe'
+		});
+
+		$("#various4").fancybox({
+			'padding'			: 0,
+			'autoScale'			: false,
+			'transitionIn'		: 'none',
+			'transitionOut'		: 'none'
+		});
+	});
+</script>
+
+<style media="print">
+.noprint {DISPLAY: none;}
+</style>
+
+<div class="noprint">
+<div style="display: block;" id="goTopBtn">
+<a class="backtotop" title="回顶部"><img src="src/images/goTop.jpg" width="30" height="30" class="back-tip"/></a>
+</div>
+</div>
+
+<script> 
+function displaySubMenu(li) { 
+var subMenu = li.getElementsByTagName("ul")[0]; 
+subMenu.style.display = "block"; 
+} 
+function hideSubMenu(li) { 
+var subMenu = li.getElementsByTagName("ul")[0]; 
+subMenu.style.display = "none"; 
+} 
+</script> 
+
+<script>
+	var Tree = new Array;
+	// nodeId | parentNodeId | nodeName | nodeUrl
+<{jtree}>
+</script>
+
+<script>
+$(function(){
+	//纵向,默认,移动间隔2
+    $('div.albumSlider').albumSlider();
+    //横向设置
+    $('div.albumSlider-h').albumSlider({direction:'h',step:3});
+});
+</script>	
+
+
+<!-- 20200314 -->
+<script type="text/javascript">
+	$(function () {
+		var options = {
+			selectors: "h2,h3,h4,h5",
+			theme: "bootstrap",
+			scrollTo: "60"
+		};
+		var toc = $("#toc").tocify(options).data("toc-tocify");
+	});
+</script>
+
+<!------------------------------------>
+
+
+
+</head>
+<body  id="body">
+
+<!------------------------------------顶部图片logo---------------------------------------->
+<div id="toc" class="tocify">
+</div>                
+
+
+	<div style="position:fixed; top:0; left:0; width:100%; z-index:1000;">
+
+		<table width="100%" height="40px" border="0" cellpadding="5" cellspacing="0"
+
+			style="background:#F3F3F3; border-bottom:1px solid #eee;border-top: none;background-image:-moz-linear-gradient(top,#EEEEEE,#FFFFFF); background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0,#EEEEEE), color-stop(1,#FFFFFF));filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#EEEEEE', endColorstr='#FFFFFF', GradientType='0')">
+
+			<tr height="0%">
+
+				<td width='0%'></td>
+
+				<td><img height="40px" src="src/images/logo_new.png"></td>
+
+				<td width="0%"></td>
+
+				<td width="40%"></td>
+ 
+				<td width="20%"
+
+					style="text-align:right;padding:0px;margin:0px;color:black;font-size:8px;font-weight:50;">
+
+<!--					Tel: 916-252-0068-383
+
+					<br><a href="mailto:op-rna@novogene.com" target="black"
+
+						style="text-decoration:none;color:black;font-size:8px;font-weight:50;">
+						Email: inquiry_us@novogene.com
+-->
+						<a></td>
+
+				<td width="1%"></td>
+
+			</tr>
+
+		</table>
+
+	</div>
+
+
+
+<!-- 不可删，删后是满页，不靠右  -->
+<div id="main">
+<!---------------------------------------menu overdd-------------------------------------------->
+
+
+<!---------------------------------------- 报告标题 ---------------------------------------------->
+
+
+<div id="page">
+<!--<p><a name="home"><img class="normal" src="src/images/logo_English.png" /></a></p>-->
+<p><br /><br />
+
+
+
+	<h1> <font size="6">Low Pass WGS Analysis Report </font></h1>
+
+<span style="display: block;text-align: center;font-size: 1em;font-family: Arial;color: #003f76;">20240124</span>
+
+<br /><br /></p>
+<table class="gy">
+
+        <tr>
+                
+                        <td>Contract ID</td>
+                
+                        <td>XXX</td>
+                
+        </tr>
+
+        <tr>
+                
+                        <td>Contract Name</td>
+                
+                        <td>XXX</td>
+                
+        </tr>
+
+        <tr>
+                
+                        <td>Batch ID</td>
+                
+                        <td>XXX-xxx</td>
+                
+        </tr>
+
+        <tr>
+                
+                        <td>Reference Genome and Version</td>
+                
+                        <td>hg19</td>
+                
+        </tr>
+
+        <tr>
+                
+                        <td>Report Time</td>
+                
+                        <td>20240124</td>
+                
+        </tr>
+
+        <tr>
+                
+                        <td>Reminder</td>
+                
+                        <td>Partial results are presented in this report, while full results will be delivered in data release.Hyperlink of results in this report will be only valid in data release, after statement confirmation.</td>
+                
+        </tr>
+
+        <br /><br /></p>
+</table>
+</div>
+
+<div id="page">
+<br />
+<h2>1 Introduction</h2>
+<h3>1.1 Background</h3>
+
+
+
+
+<p class="paragraph">Human whole genome sequencing enables researchers to catalog the genetic constitution of individuals and capture all the variants present in a single assay. It is applied to the study of cancer and a variety of diseases, pharmacogenomics as well as human population evolution studies.</p>
+
+<p class="paragraph">Our company is one of the first few companies in the world employing the powerful  platform, capable of sequencing up to 280,000 human genomes per year at the lowest cost per genome. We have extensive experience providing whole genome sequencing service on this powerful system, having successfully sequenced thousands of genomes with high quality results. With the throughput and capacity of the Illumina platform, our deep experience with the system, and our advanced bioinformatics capabilities, our company is able to expertly meet customer needs for executing large projects with timely turn-around and the highest quality results.</p>
+
+<br />
+<p class="paragraph">Workflow is shown as follows:</p>
+<br>
+<p class="center"> <img  class="middle" src="src/images/hWGS_Project_Workflow.png" /></p>
+<br>
+<p class="name_fig">Figure 1 Project workflow</p>
+<br>
+
+<br />
+</p>
+</div>
+
+
+<!----------------------------------------样品信息----------------------------------------->
+<div id="page">
+<h3>1.2 Sample Information</h3>
+<p class="center">
+<p class="name_fig">Table 1 Sample information</p>
+<div id="tb">
+<table class="gy">
+
+    
+	    <tr><th>PatientID</th><th>SampleID</th><th>NovoID</th><th>Type</th></tr>
+	
+
+    
+		<tr><td>a</td><td>S247P347</td><td>CKDO210000207-1A</td><td>U</td></tr>
+	
+
+    
+		<tr><td>a</td><td>S68X45R9</td><td>CKDO210000231-1A</td><td>U</td></tr>
+	
+
+    
+		<tr><td>a</td><td>S31E37I2</td><td>CKDO210000215-1A</td><td>U</td></tr>
+	
+
+    
+		<tr><td>a</td><td>S2441B4H</td><td>CKDO210000206-1A</td><td>U</td></tr>
+	
+
+    
+		<tr><td>a</td><td>S2X2YM84</td><td>CKDO210000213-1A</td><td>U</td></tr>
+	
+
+    
+		<tr><td>a</td><td>S44UHO8I</td><td>CKDO210000218-1A</td><td>U</td></tr>
+	
+
+    
+		<tr><td>a</td><td>S4C832ZV</td><td>CKDO210000219-1A</td><td>U</td></tr>
+	
+
+    
+		<tr><td>a</td><td>S31Q39P8</td><td>CKDO210000216-1A</td><td>U</td></tr>
+	
+
+    
+		<tr><td>a</td><td>S4D9T917</td><td>CKDO210000220-1A</td><td>U</td></tr>
+	
+
+    
+		<tr><td>a</td><td>S56NRSOS</td><td>CKDO210000224-1A</td><td>U</td></tr>
+	
+
+    
+		<tr><td>a</td><td>S66CRL97</td><td>CKDO210000229-1A</td><td>U</td></tr>
+	
+
+    
+		<tr><td>a</td><td>S2XMV42S</td><td>CKDO210000214-1A</td><td>U</td></tr>
+	
+
+    
+		<tr><td>a</td><td>S44958WX</td><td>CKDO210000217-1A</td><td>U</td></tr>
+	
+
+    
+		<tr><td>a</td><td>S1M3982B</td><td>CKDO210000203-1A</td><td>U</td></tr>
+	
+
+    
+		<tr><td>a</td><td>S5U61CS8</td><td>CKDO210000227-1A</td><td>U</td></tr>
+	
+
+    
+		<tr><td>a</td><td>S526QKRQ</td><td>CKDO210000222-1A</td><td>U</td></tr>
+	
+
+    
+		<tr><td>a</td><td>S564M43P</td><td>CKDO210000223-1A</td><td>U</td></tr>
+	
+
+    
+		<tr><td>a</td><td>S5FMHE58</td><td>CKDO210000225-1A</td><td>U</td></tr>
+	
+
+    
+		<tr><td>a</td><td>S676NAX5</td><td>CKDO210000230-1A</td><td>U</td></tr>
+	
+
+    
+		<tr><td>a</td><td>S5N62L54</td><td>CKDO210000226-1A</td><td>U</td></tr>
+	
+
+
+</table>
+</div>
+</p>
+</div>
+<p class="tremark" align="left">Type: sample type (N: normal; T: tumor; P: patient; U: unknown)</p>
+
+
+
+
+
+<!----------------------------------------实验流程----------------------------------------->
+<div id="page">
+
+<a name="Experimental procedure"></a>
+<hr />
+</p><br />
+
+<h2>2 Library Construction and Sequencing</h2>
+
+<a name="样品检测"></a>
+<br />
+<h3>2.1 Sample Quality Control</h3>
+<p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;Methods of sample quality control refer to QC report.</p>
+<br />
+
+<a name="建库捕获"></a>
+
+<h3>2.2 Library Construction, Quality Control and Sequencing</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+<p class="paragraph">The genomic DNA was randomly sheared into shorter fragments. The obtained fragments were then end-repaired, A-tailed, and further ligated with Illumina adapters. The resulting fragments with adapters were size selected, PCR amplified unless otherwise specified as PCR-free, before proceeding for purification.</p>
+<p class="paragraph">The experimental procedures of DNA library preparation are shown in Figure 2.</p>
+<br>
+<p class="center">
+<img height="400px" src="src/images/wgs_pipeline.png" />
+</p>
+<p class="name_fig">Figure 2 Workflow of library Construction</p>
+<p class="paragraph">The library was quantified through Qubit and qPCR, and size distribution detected with fragment analyzer. Quantified libraries were pooled and sequenced on Illumina platforms according to the effective library concentration and required data amount.</p>
+
+
+
+<a name="上机测序"></a>
+
+<!--<h3>3 库检</h3>
+<p class="paragraph">文库构建完成后,先使用Qubit2.0进行初步定量,稀释文库至1ng/μl,随后使用Agilent 2100对文库的insert size进行检测,insert size符合预期后,使用Q-PCR方法对文库的有效浓度进行准确定量(文库有效浓度>2nM),以保证文库质量.</p>-->
+</div>
+
+
+
+<!----------------------------------------生物信息分析流程----------------------------------------->
+<div id="page">
+
+<br />
+<a name="Bioinformatics analysis pipeline"></a>
+<hr />
+</p><br />
+
+
+<h2>3 Bioinformatics Analysis Pipeline</h2>
+
+
+<p class="paragraph">Bioinformatics analysis includes:</p>
+<p class="paragraph">1) Data quality control: filtering out reads containing adapters or with low quality;</p>
+<p class="paragraph">2) Alignment with reference genome, statistics of sequencing depth and coverage;</p>
+
+<p class="paragraph">3) SNP/InDel joint calling and imputation, as well as CNV calling;</p>
+<p class="paragraph">4) Annotation and statistics.</p>
+
+
+
+
+<p class="paragraph">The flowchart below depicts the pipeline of data QC and bioinformatics analysis Novogene used. Somatic analysis are performed only when tumor-normal paired samples are provided.</p>
+<p class="center">
+<img height="400px"  src="src/images/primary_workflow_for_WGS_impute_demo.png" />
+</p>
+
+
+
+
+<p class="name_fig">Figure 3 Bioinformatics analysis pipeline</p>
+
+</div>
+
+
+
+
+<!----------------------------------------------- 原始序列数据 --------------------------------------->
+<div id="page">
+
+<a name="Analysis Result"></a>
+<hr />
+</p><br />
+
+
+  
+	<h2>4 Analysis Result</h2>
+  
+
+
+
+<a name="Raw data"></a>
+<br />
+
+<h3>4.1 Raw Data</h3>
+
+<p class="paragraph">The original fluorescence image files obtained from sequencing platform are transformed to short reads (Raw data) by base calling. These short reads are recorded in FASTQ (.fq) format files, which contain sequence information (reads) and corresponding base quality.</p>
+
+<p class="paragraph">Each read in FASTQ format is stored in four lines as follows: </p>
+<p class="seq">
+
+@EAS139:136:FC706VJ:2:2104:15343:197393 1:Y:18:ATCACG         <br />
+GCTCTTTGCCCTTCTCGTCGAAAATTGTCTCCTCATTCGAAACTTCTCTGT           <br />
++                                                             <br />
+@@CFFFDEHHHHFIJJJ@FHGIIIEHIIJBHHHIJJEGIIJJIGHIGHCCF           </p>
+<p class="paragraph">Line 1 begins with a '@' character which is followed by a sequence identifier and an optional description. </p>
+<p class="paragraph">Line 2 shows the sequenced bases. </p>
+<p class="paragraph">Line 3 begins with a '+' character and is optionally followed by the same sequence identifier. </p>
+<p class="paragraph">Line 4 encodes the sequencing quality for each base in line 2, and contain the same number of characters as bases in line 2. </p>
+<p class="paragraph">Illumina sequence identifier details: </p>
+<div id="tb">
+<p class="center">
+<table class="gy">
+<tr><td>EAS139</td><td>Unique instrument name</td></tr>
+<tr><td>136</td><td>Run ID</td></tr>
+<tr><td>FC706VJ</td><td>Flowcell ID</td></tr>
+<tr><td>2</td><td>Flowcell lane</td></tr>
+<tr><td>2104</td><td>Tile number within the flowcell lane</td></tr>
+<tr><td>15343</td><td>'x'-coordinate of the cluster within the tile</td></tr>
+<tr><td>197393</td><td>'y'-coordinate of the cluster within the tile</td></tr>
+<tr><td>1</td><td>Member of a pair, 1 or 2 (paired-end or mate-pair reads only)</td></tr>
+<tr><td>Y</td><td>Y if the read fails filter (read is bad), otherwise N</td></tr>
+<tr><td>18</td><td>0 when none of the control bits are on, Otherwise it is an even number</td></tr>
+<tr><td>ATCACG</td><td>Index sequence</td></tr>
+</table>
+</p>
+</div>
+
+<p class="paragraph">The ASCII value of each character at the fourth line minus 33 equals to the phred-scaled quality value of the corresponding sequenced base in the second line. The relationship between sequencing error rate (e) and base quality value (Qphred) can be expressed by the following equation: </p>
+<p class="center">Qphred　=　-10log10(e)</p>
+<p class="paragraph">The table below shows examples of corresponding values among sequencing error rate (e), base quality value (Qphred) and characters. </p>
+<div id="tb">
+<p class="center">
+<table class="gy">
+<tr><th>Sequencing error rate</th><th>Sequencing quality value</th><th>Corresponding character</th></tr>
+<tr><td>5%</td><td>13</td><td>.</td></tr>
+<tr><td>1%</td><td>20</td><td>5</td></tr>
+<tr><td>0.1%</td><td>30</td><td>?</td></tr>
+<tr><td>0.01%</td><td>40</td><td>I</td></tr>
+</table></p>
+</div>
+
+
+<!------------------------------------------ 测序数据质量评估 -------------------------------------->
+<div id="page">
+
+<a name="Quality control"></a>
+<hr />
+</p><br />
+
+<h3>4.2 Quality Control</h3>
+
+<a name="Sequencing data filtration"></a>
+<br />
+
+<h4>4.2.1 Sequencing Data Filtration</h4>
+
+<p class="paragraph">Sequencing artifacts, including reads containing adapter contamination, low-quality nucleotides and unrecognizable nucleotides (N), apparently brings ambiguity for the subsequent bioinformatics analysis. Hence quality control is an essential step and applied to guarantee the meaningful analysis. All of downstream analysis will be based on clean reads that pass quality control.</p>
+<p class="paragraph">Novogene performed quality control according to following procedures: </p>
+<p class="tremark">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1) Discard paired-end reads if either one read contains adapter contamination (>10 nucleotides aligned to the adapter, allowing ≤ 10% mismatches);  <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2) Discard paired-end reads if more than 10% of bases are uncertain (read as N) in either one read;  <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3) Discard paired-end reads if the proportion of low-quality (Phred quality &lt; 5) bases is over 50% in either one read. </p>
+<p class="paragraph">DNA-Seq Adapter (Adapter, Oligonucleotide sequences for DNA Sample Prep Kits) information: </p>
+<p class="tremark">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5’ Adapter: <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5’-AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT(8-nt index)GTGTAGATCTCGGTGGTCGCCGTATCATT-3’<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3’ Adapter: <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5’-GATCGGAAGAGCACACGTCTGAACTCCAGTCAC(8-nt index)ATCTCGTATGCCGTCTTCTGCTTG-3’</p>
+
+<!--加原始数据过滤结果图, 路径在src_pictures_1.Class-->
+<div class="albumSlider">
+<div class="fullview"><img src='src/pictures/Pie/S247P347_CKDO210000207-1A_HKG7VDSX2_L2.pie3d.png'/></div>
+<div class="slider">
+<div class="button movebackward" title="向上滚动"></div>
+<div class="imglistwrap"><ul class="imglist">
+
+	<li><a id="example2" href='src/pictures/Pie/S247P347_CKDO210000207-1A_HKG7VDSX2_L2.pie3d.png' ><img src='src/pictures/Pie/S247P347_CKDO210000207-1A_HKG7VDSX2_L2.pie3d.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/Pie/S68X45R9_CKDO210000231-1A_HKG7NDSX2_L4.pie3d.png' ><img src='src/pictures/Pie/S68X45R9_CKDO210000231-1A_HKG7NDSX2_L4.pie3d.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/Pie/S31E37I2_CKDO210000215-1A_HKGMKDSX2_L1.pie3d.png' ><img src='src/pictures/Pie/S31E37I2_CKDO210000215-1A_HKGMKDSX2_L1.pie3d.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/Pie/S2441B4H_CKDO210000206-1A_HKG7VDSX2_L1.pie3d.png' ><img src='src/pictures/Pie/S2441B4H_CKDO210000206-1A_HKG7VDSX2_L1.pie3d.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/Pie/S2X2YM84_CKDO210000213-1A_HKGMCDSX2_L1.pie3d.png' ><img src='src/pictures/Pie/S2X2YM84_CKDO210000213-1A_HKGMCDSX2_L1.pie3d.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/Pie/S44UHO8I_CKDO210000218-1A_HKGMKDSX2_L2.pie3d.png' ><img src='src/pictures/Pie/S44UHO8I_CKDO210000218-1A_HKGMKDSX2_L2.pie3d.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/Pie/S4C832ZV_CKDO210000219-1A_HKGMKDSX2_L2.pie3d.png' ><img src='src/pictures/Pie/S4C832ZV_CKDO210000219-1A_HKGMKDSX2_L2.pie3d.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/Pie/S31Q39P8_CKDO210000216-1A_HKGMKDSX2_L2.pie3d.png' ><img src='src/pictures/Pie/S31Q39P8_CKDO210000216-1A_HKGMKDSX2_L2.pie3d.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/Pie/S4D9T917_CKDO210000220-1A_HKGMKDSX2_L2.pie3d.png' ><img src='src/pictures/Pie/S4D9T917_CKDO210000220-1A_HKGMKDSX2_L2.pie3d.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/Pie/S56NRSOS_CKDO210000224-1A_HKGMCDSX2_L2.pie3d.png' ><img src='src/pictures/Pie/S56NRSOS_CKDO210000224-1A_HKGMCDSX2_L2.pie3d.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/Pie/S66CRL97_CKDO210000229-1A_HKGGHDSX2_L1.pie3d.png' ><img src='src/pictures/Pie/S66CRL97_CKDO210000229-1A_HKGGHDSX2_L1.pie3d.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/Pie/S2XMV42S_CKDO210000214-1A_HKGMKDSX2_L1.pie3d.png' ><img src='src/pictures/Pie/S2XMV42S_CKDO210000214-1A_HKGMKDSX2_L1.pie3d.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/Pie/S44958WX_CKDO210000217-1A_HKGMKDSX2_L1.pie3d.png' ><img src='src/pictures/Pie/S44958WX_CKDO210000217-1A_HKGMKDSX2_L1.pie3d.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/Pie/S1M3982B_CKDO210000203-1A_HKG7VDSX2_L1.pie3d.png' ><img src='src/pictures/Pie/S1M3982B_CKDO210000203-1A_HKG7VDSX2_L1.pie3d.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/Pie/S5U61CS8_CKDO210000227-1A_HKGMCDSX2_L2.pie3d.png' ><img src='src/pictures/Pie/S5U61CS8_CKDO210000227-1A_HKGMCDSX2_L2.pie3d.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/Pie/S526QKRQ_CKDO210000222-1A_HKGMKDSX2_L1.pie3d.png' ><img src='src/pictures/Pie/S526QKRQ_CKDO210000222-1A_HKGMKDSX2_L1.pie3d.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/Pie/S564M43P_CKDO210000223-1A_HKGMCDSX2_L2.pie3d.png' ><img src='src/pictures/Pie/S564M43P_CKDO210000223-1A_HKGMCDSX2_L2.pie3d.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/Pie/S5FMHE58_CKDO210000225-1A_HKGMCDSX2_L2.pie3d.png' ><img src='src/pictures/Pie/S5FMHE58_CKDO210000225-1A_HKGMCDSX2_L2.pie3d.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/Pie/S676NAX5_CKDO210000230-1A_HKG7NDSX2_L3.pie3d.png' ><img src='src/pictures/Pie/S676NAX5_CKDO210000230-1A_HKG7NDSX2_L3.pie3d.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/Pie/S5N62L54_CKDO210000226-1A_HKGMCDSX2_L2.pie3d.png' ><img src='src/pictures/Pie/S5N62L54_CKDO210000226-1A_HKGMCDSX2_L2.pie3d.JPEG'/></a></li>
+
+
+</ul></div>
+<div class="button moveforward" title="向下滚动"></div>
+</div>
+</div>
+
+	
+	<p class="name_fig">Figure 4.1　Raw data filtration result</p>
+		
+
+
+<p class="tremark">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Note:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) Clean Reads: read pairs that passed quality control; <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2)	Containing N: read pairs in either one read of which more than 10% of bases are uncertain;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3)	Low Quality: read pairs in either one read of which the proportion of low-quality bases is over 50%;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(4)	Adapter Related: read pairs that contain adapter contamination in either one read.</p>
+</div>
+
+<a name="Sequencing error rate examination"></a>
+<br />
+
+<h4>4.2.2 Examination of Sequencing Error Rate </h4>
+
+<p class="paragraph">Sequencing error rate and base quality can be affected by various factors such as sequencing platform, chemical reagent and sample quality. Due to the consumption of chemical reagents, error rate is increasing with the read extension, which is a common feature of the high throughput sequencing platform.</p>
+<div class="albumSlider">
+<div class="fullview"><img src='src/pictures/Error/S247P347_CKDO210000207-1A_HKG7VDSX2_L2.Error.png'/></div>
+<div class="slider">
+<div class="button movebackward" title="向上滚动"></div>
+<div class="imglistwrap"><ul class="imglist">
+
+	<li><a id="example2" href='src/pictures/Error/S247P347_CKDO210000207-1A_HKG7VDSX2_L2.Error.png' ><img src='src/pictures/Error/S247P347_CKDO210000207-1A_HKG7VDSX2_L2.Error.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/Error/S68X45R9_CKDO210000231-1A_HKG7NDSX2_L4.Error.png' ><img src='src/pictures/Error/S68X45R9_CKDO210000231-1A_HKG7NDSX2_L4.Error.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/Error/S31E37I2_CKDO210000215-1A_HKGMKDSX2_L1.Error.png' ><img src='src/pictures/Error/S31E37I2_CKDO210000215-1A_HKGMKDSX2_L1.Error.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/Error/S2441B4H_CKDO210000206-1A_HKG7VDSX2_L1.Error.png' ><img src='src/pictures/Error/S2441B4H_CKDO210000206-1A_HKG7VDSX2_L1.Error.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/Error/S2X2YM84_CKDO210000213-1A_HKGMCDSX2_L1.Error.png' ><img src='src/pictures/Error/S2X2YM84_CKDO210000213-1A_HKGMCDSX2_L1.Error.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/Error/S44UHO8I_CKDO210000218-1A_HKGMKDSX2_L2.Error.png' ><img src='src/pictures/Error/S44UHO8I_CKDO210000218-1A_HKGMKDSX2_L2.Error.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/Error/S4C832ZV_CKDO210000219-1A_HKGMKDSX2_L2.Error.png' ><img src='src/pictures/Error/S4C832ZV_CKDO210000219-1A_HKGMKDSX2_L2.Error.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/Error/S31Q39P8_CKDO210000216-1A_HKGMKDSX2_L2.Error.png' ><img src='src/pictures/Error/S31Q39P8_CKDO210000216-1A_HKGMKDSX2_L2.Error.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/Error/S4D9T917_CKDO210000220-1A_HKGMKDSX2_L2.Error.png' ><img src='src/pictures/Error/S4D9T917_CKDO210000220-1A_HKGMKDSX2_L2.Error.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/Error/S56NRSOS_CKDO210000224-1A_HKGMCDSX2_L2.Error.png' ><img src='src/pictures/Error/S56NRSOS_CKDO210000224-1A_HKGMCDSX2_L2.Error.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/Error/S66CRL97_CKDO210000229-1A_HKGGHDSX2_L1.Error.png' ><img src='src/pictures/Error/S66CRL97_CKDO210000229-1A_HKGGHDSX2_L1.Error.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/Error/S2XMV42S_CKDO210000214-1A_HKGMKDSX2_L1.Error.png' ><img src='src/pictures/Error/S2XMV42S_CKDO210000214-1A_HKGMKDSX2_L1.Error.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/Error/S44958WX_CKDO210000217-1A_HKGMKDSX2_L1.Error.png' ><img src='src/pictures/Error/S44958WX_CKDO210000217-1A_HKGMKDSX2_L1.Error.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/Error/S1M3982B_CKDO210000203-1A_HKG7VDSX2_L1.Error.png' ><img src='src/pictures/Error/S1M3982B_CKDO210000203-1A_HKG7VDSX2_L1.Error.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/Error/S5U61CS8_CKDO210000227-1A_HKGMCDSX2_L2.Error.png' ><img src='src/pictures/Error/S5U61CS8_CKDO210000227-1A_HKGMCDSX2_L2.Error.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/Error/S526QKRQ_CKDO210000222-1A_HKGMKDSX2_L1.Error.png' ><img src='src/pictures/Error/S526QKRQ_CKDO210000222-1A_HKGMKDSX2_L1.Error.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/Error/S564M43P_CKDO210000223-1A_HKGMCDSX2_L2.Error.png' ><img src='src/pictures/Error/S564M43P_CKDO210000223-1A_HKGMCDSX2_L2.Error.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/Error/S5FMHE58_CKDO210000225-1A_HKGMCDSX2_L2.Error.png' ><img src='src/pictures/Error/S5FMHE58_CKDO210000225-1A_HKGMCDSX2_L2.Error.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/Error/S676NAX5_CKDO210000230-1A_HKG7NDSX2_L3.Error.png' ><img src='src/pictures/Error/S676NAX5_CKDO210000230-1A_HKG7NDSX2_L3.Error.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/Error/S5N62L54_CKDO210000226-1A_HKGMCDSX2_L2.Error.png' ><img src='src/pictures/Error/S5N62L54_CKDO210000226-1A_HKGMCDSX2_L2.Error.JPEG'/></a></li>
+
+
+</ul></div>
+<div class="button moveforward" title="向下滚动"></div>
+</div>
+</div>
+
+	
+	<p class="name_fig">Figure 4.2　Sequencing error rate distribution</p>
+		
+
+<p class="premark">The x-axis represents position in reads, and the y-axis represents the average error rate of bases of all reads at a position. </p>
+
+
+<div id="page">
+
+<a name="GC content distribution"></a>
+<hr />
+</p><br />
+
+<h4>4.2.3 GC Content Distribution</h4>
+
+<p class="paragraph">Evaluation of GC content distribution aims to check the potential of AT/GC separation phenomenon, which maybe resulted from sample contamination, sequencing bias or errors in library preparation. </p>
+<p class="paragraph">In theory, GC or AT content should be constant along read positions. But it is common to see that the first 6 to 7 bases in both reads (read1 & read2) fluctuate in GC content, due to primer amplification bias and some other reasons. </p>
+<div class="albumSlider">
+<div class="fullview"><img src='src/pictures/GC/S247P347_CKDO210000207-1A_HKG7VDSX2_L2.GC.png'/></div>
+<div class="slider">
+<div class="button movebackward" title="向上滚动"></div>
+<div class="imglistwrap"><ul class="imglist">
+
+	<li><a id="example2" href='src/pictures/GC/S247P347_CKDO210000207-1A_HKG7VDSX2_L2.GC.png' ><img src='src/pictures/GC/S247P347_CKDO210000207-1A_HKG7VDSX2_L2.GC.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/GC/S68X45R9_CKDO210000231-1A_HKG7NDSX2_L4.GC.png' ><img src='src/pictures/GC/S68X45R9_CKDO210000231-1A_HKG7NDSX2_L4.GC.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/GC/S31E37I2_CKDO210000215-1A_HKGMKDSX2_L1.GC.png' ><img src='src/pictures/GC/S31E37I2_CKDO210000215-1A_HKGMKDSX2_L1.GC.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/GC/S2441B4H_CKDO210000206-1A_HKG7VDSX2_L1.GC.png' ><img src='src/pictures/GC/S2441B4H_CKDO210000206-1A_HKG7VDSX2_L1.GC.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/GC/S2X2YM84_CKDO210000213-1A_HKGMCDSX2_L1.GC.png' ><img src='src/pictures/GC/S2X2YM84_CKDO210000213-1A_HKGMCDSX2_L1.GC.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/GC/S44UHO8I_CKDO210000218-1A_HKGMKDSX2_L2.GC.png' ><img src='src/pictures/GC/S44UHO8I_CKDO210000218-1A_HKGMKDSX2_L2.GC.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/GC/S4C832ZV_CKDO210000219-1A_HKGMKDSX2_L2.GC.png' ><img src='src/pictures/GC/S4C832ZV_CKDO210000219-1A_HKGMKDSX2_L2.GC.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/GC/S31Q39P8_CKDO210000216-1A_HKGMKDSX2_L2.GC.png' ><img src='src/pictures/GC/S31Q39P8_CKDO210000216-1A_HKGMKDSX2_L2.GC.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/GC/S4D9T917_CKDO210000220-1A_HKGMKDSX2_L2.GC.png' ><img src='src/pictures/GC/S4D9T917_CKDO210000220-1A_HKGMKDSX2_L2.GC.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/GC/S56NRSOS_CKDO210000224-1A_HKGMCDSX2_L2.GC.png' ><img src='src/pictures/GC/S56NRSOS_CKDO210000224-1A_HKGMCDSX2_L2.GC.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/GC/S66CRL97_CKDO210000229-1A_HKGGHDSX2_L1.GC.png' ><img src='src/pictures/GC/S66CRL97_CKDO210000229-1A_HKGGHDSX2_L1.GC.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/GC/S2XMV42S_CKDO210000214-1A_HKGMKDSX2_L1.GC.png' ><img src='src/pictures/GC/S2XMV42S_CKDO210000214-1A_HKGMKDSX2_L1.GC.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/GC/S44958WX_CKDO210000217-1A_HKGMKDSX2_L1.GC.png' ><img src='src/pictures/GC/S44958WX_CKDO210000217-1A_HKGMKDSX2_L1.GC.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/GC/S1M3982B_CKDO210000203-1A_HKG7VDSX2_L1.GC.png' ><img src='src/pictures/GC/S1M3982B_CKDO210000203-1A_HKG7VDSX2_L1.GC.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/GC/S5U61CS8_CKDO210000227-1A_HKGMCDSX2_L2.GC.png' ><img src='src/pictures/GC/S5U61CS8_CKDO210000227-1A_HKGMCDSX2_L2.GC.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/GC/S526QKRQ_CKDO210000222-1A_HKGMKDSX2_L1.GC.png' ><img src='src/pictures/GC/S526QKRQ_CKDO210000222-1A_HKGMKDSX2_L1.GC.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/GC/S564M43P_CKDO210000223-1A_HKGMCDSX2_L2.GC.png' ><img src='src/pictures/GC/S564M43P_CKDO210000223-1A_HKGMCDSX2_L2.GC.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/GC/S5FMHE58_CKDO210000225-1A_HKGMCDSX2_L2.GC.png' ><img src='src/pictures/GC/S5FMHE58_CKDO210000225-1A_HKGMCDSX2_L2.GC.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/GC/S676NAX5_CKDO210000230-1A_HKG7NDSX2_L3.GC.png' ><img src='src/pictures/GC/S676NAX5_CKDO210000230-1A_HKG7NDSX2_L3.GC.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/GC/S5N62L54_CKDO210000226-1A_HKGMCDSX2_L2.GC.png' ><img src='src/pictures/GC/S5N62L54_CKDO210000226-1A_HKGMCDSX2_L2.GC.JPEG'/></a></li>
+
+
+</ul></div>
+<div class="button moveforward" title="向下滚动"></div>
+</div>
+</div>
+
+	
+	<p class="name_fig">Figure 4.3　GC content distribution</p>
+		
+
+<p class="premark">The x-axis represents the position in reads, and the y-axis represents the percentage of each type of bases (A, T, G, C); different bases can be distinguished by different colors.</p>
+</div>
+
+<div id="page">
+
+<a name="Sequencing quality distribution"></a>
+<hr />
+</p><br />
+ 
+<h4>4.2.4 Sequencing Quality Distribution</h4>
+
+
+<p class="paragraph">The phred-scaled quality scores of most bases should be greater than 20, it is also required for downstream analysis. Base quality decreases along reads is common, which is an inherent circumstance of next generation sequencing. 
+</p>
+
+<p class="center">
+<div class="albumSlider">
+<div class="fullview"><img src='src/pictures/QM/S247P347_CKDO210000207-1A_HKG7VDSX2_L2.QM.png'/></div>
+<div class="slider">
+<div class="button movebackward" title="向上滚动"></div>
+<div class="imglistwrap"><ul class="imglist">
+
+	<li><a id="example2" href='src/pictures/QM/S247P347_CKDO210000207-1A_HKG7VDSX2_L2.QM.png' ><img src='src/pictures/QM/S247P347_CKDO210000207-1A_HKG7VDSX2_L2.QM.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/QM/S68X45R9_CKDO210000231-1A_HKG7NDSX2_L4.QM.png' ><img src='src/pictures/QM/S68X45R9_CKDO210000231-1A_HKG7NDSX2_L4.QM.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/QM/S31E37I2_CKDO210000215-1A_HKGMKDSX2_L1.QM.png' ><img src='src/pictures/QM/S31E37I2_CKDO210000215-1A_HKGMKDSX2_L1.QM.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/QM/S2441B4H_CKDO210000206-1A_HKG7VDSX2_L1.QM.png' ><img src='src/pictures/QM/S2441B4H_CKDO210000206-1A_HKG7VDSX2_L1.QM.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/QM/S2X2YM84_CKDO210000213-1A_HKGMCDSX2_L1.QM.png' ><img src='src/pictures/QM/S2X2YM84_CKDO210000213-1A_HKGMCDSX2_L1.QM.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/QM/S44UHO8I_CKDO210000218-1A_HKGMKDSX2_L2.QM.png' ><img src='src/pictures/QM/S44UHO8I_CKDO210000218-1A_HKGMKDSX2_L2.QM.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/QM/S4C832ZV_CKDO210000219-1A_HKGMKDSX2_L2.QM.png' ><img src='src/pictures/QM/S4C832ZV_CKDO210000219-1A_HKGMKDSX2_L2.QM.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/QM/S31Q39P8_CKDO210000216-1A_HKGMKDSX2_L2.QM.png' ><img src='src/pictures/QM/S31Q39P8_CKDO210000216-1A_HKGMKDSX2_L2.QM.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/QM/S4D9T917_CKDO210000220-1A_HKGMKDSX2_L2.QM.png' ><img src='src/pictures/QM/S4D9T917_CKDO210000220-1A_HKGMKDSX2_L2.QM.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/QM/S56NRSOS_CKDO210000224-1A_HKGMCDSX2_L2.QM.png' ><img src='src/pictures/QM/S56NRSOS_CKDO210000224-1A_HKGMCDSX2_L2.QM.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/QM/S66CRL97_CKDO210000229-1A_HKGGHDSX2_L1.QM.png' ><img src='src/pictures/QM/S66CRL97_CKDO210000229-1A_HKGGHDSX2_L1.QM.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/QM/S2XMV42S_CKDO210000214-1A_HKGMKDSX2_L1.QM.png' ><img src='src/pictures/QM/S2XMV42S_CKDO210000214-1A_HKGMKDSX2_L1.QM.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/QM/S44958WX_CKDO210000217-1A_HKGMKDSX2_L1.QM.png' ><img src='src/pictures/QM/S44958WX_CKDO210000217-1A_HKGMKDSX2_L1.QM.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/QM/S1M3982B_CKDO210000203-1A_HKG7VDSX2_L1.QM.png' ><img src='src/pictures/QM/S1M3982B_CKDO210000203-1A_HKG7VDSX2_L1.QM.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/QM/S5U61CS8_CKDO210000227-1A_HKGMCDSX2_L2.QM.png' ><img src='src/pictures/QM/S5U61CS8_CKDO210000227-1A_HKGMCDSX2_L2.QM.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/QM/S526QKRQ_CKDO210000222-1A_HKGMKDSX2_L1.QM.png' ><img src='src/pictures/QM/S526QKRQ_CKDO210000222-1A_HKGMKDSX2_L1.QM.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/QM/S564M43P_CKDO210000223-1A_HKGMCDSX2_L2.QM.png' ><img src='src/pictures/QM/S564M43P_CKDO210000223-1A_HKGMCDSX2_L2.QM.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/QM/S5FMHE58_CKDO210000225-1A_HKGMCDSX2_L2.QM.png' ><img src='src/pictures/QM/S5FMHE58_CKDO210000225-1A_HKGMCDSX2_L2.QM.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/QM/S676NAX5_CKDO210000230-1A_HKG7NDSX2_L3.QM.png' ><img src='src/pictures/QM/S676NAX5_CKDO210000230-1A_HKG7NDSX2_L3.QM.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/QM/S5N62L54_CKDO210000226-1A_HKGMCDSX2_L2.QM.png' ><img src='src/pictures/QM/S5N62L54_CKDO210000226-1A_HKGMCDSX2_L2.QM.JPEG'/></a></li>
+
+
+</ul></div>
+<div class="button moveforward" title="向下滚动"></div>
+</div>
+</div>
+
+	
+	<p class="name_fig">Figure 4.4　Sequencing quality distribution</p>
+		
+
+<p class="premark">The x-axis represents the position in reads, and the y-axis represents the average quality score of bases of all reads at a position.</p>
+
+<p class="premark">&nbsp</p>
+</p>
+</div>
+
+
+<div id="page">
+
+<a name="Statistics of sequencing quality"></a>
+<hr />
+</p><br />
+
+<h4>4.2.5 Statistics of Sequencing Quality</h4>
+
+
+	<P class="paragraph">According to the sequencing feature of sequencing platforms, Novogene requires the value of Q30 (the percentage of bases with phred-scaled quality scores is greater than 30) should be above 80% for paired-end sequencing data.
+
+
+
+
+
+<p class="name_fig">Table 4.1　Overview of data production quality</p>
+
+<!--<p class="name_fig">Table 2　Overview of data production quality</p>-->
+<div id="tb">
+<table class="gy">
+ <tr><th>Sample name</th><th>NovoID</th><th>Flowcell/Lane</th><th>Raw reads</th><th>Raw data(G)</th><th>Effective(%)</th><th>Error(%)</th><th>Q20(%)</th><th>Q30(%)</th><th>GC(%)</th></tr>
+
+     
+	    
+			<tr><td style="text-align:left">S247P347</td><td>CKDO210000207-1A</td><td>HKG7VDSX2_L2</td><td>10000000</td><td rowspan=1>3.0</td><td>99.77</td><td>0.03</td><td>96.09</td><td>90.15</td><td>41.11</td></tr>
+		
+	
+
+     
+	    
+			<tr><td style="text-align:left">S68X45R9</td><td>CKDO210000231-1A</td><td>HKG7NDSX2_L4</td><td>10000000</td><td rowspan=1>3.0</td><td>99.84</td><td>0.03</td><td>97.12</td><td>92.41</td><td>41.49</td></tr>
+		
+	
+
+     
+	    
+			<tr><td style="text-align:left">S31E37I2</td><td>CKDO210000215-1A</td><td>HKGMKDSX2_L1</td><td>10000000</td><td rowspan=1>3.0</td><td>99.83</td><td>0.03</td><td>97.55</td><td>93.38</td><td>41.47</td></tr>
+		
+	
+
+     
+	    
+			<tr><td style="text-align:left">S2441B4H</td><td>CKDO210000206-1A</td><td>HKG7VDSX2_L1</td><td>10000000</td><td rowspan=1>3.0</td><td>99.81</td><td>0.03</td><td>96.08</td><td>90.13</td><td>40.98</td></tr>
+		
+	
+
+     
+	    
+			<tr><td style="text-align:left">S2X2YM84</td><td>CKDO210000213-1A</td><td>HKGMCDSX2_L1</td><td>10000000</td><td rowspan=1>3.0</td><td>99.85</td><td>0.03</td><td>97.88</td><td>94.19</td><td>41.53</td></tr>
+		
+	
+
+     
+	    
+			<tr><td style="text-align:left">S44UHO8I</td><td>CKDO210000218-1A</td><td>HKGMKDSX2_L2</td><td>10000000</td><td rowspan=1>3.0</td><td>99.84</td><td>0.03</td><td>97.89</td><td>94.14</td><td>41.48</td></tr>
+		
+	
+
+     
+	    
+			<tr><td style="text-align:left">S4C832ZV</td><td>CKDO210000219-1A</td><td>HKGMKDSX2_L2</td><td>10000000</td><td rowspan=1>3.0</td><td>99.85</td><td>0.03</td><td>97.78</td><td>93.88</td><td>41.48</td></tr>
+		
+	
+
+     
+	    
+			<tr><td style="text-align:left">S31Q39P8</td><td>CKDO210000216-1A</td><td>HKGMKDSX2_L2</td><td>10000000</td><td rowspan=1>3.0</td><td>99.85</td><td>0.03</td><td>97.97</td><td>94.36</td><td>41.76</td></tr>
+		
+	
+
+     
+	    
+			<tr><td style="text-align:left">S4D9T917</td><td>CKDO210000220-1A</td><td>HKGMKDSX2_L2</td><td>10000000</td><td rowspan=1>3.0</td><td>99.83</td><td>0.03</td><td>97.82</td><td>93.98</td><td>41.52</td></tr>
+		
+	
+
+     
+	    
+			<tr><td style="text-align:left">S56NRSOS</td><td>CKDO210000224-1A</td><td>HKGMCDSX2_L2</td><td>10000000</td><td rowspan=1>3.0</td><td>99.85</td><td>0.03</td><td>97.88</td><td>94.13</td><td>41.55</td></tr>
+		
+	
+
+     
+	    
+			<tr><td style="text-align:left">S66CRL97</td><td>CKDO210000229-1A</td><td>HKGGHDSX2_L1</td><td>10000000</td><td rowspan=1>3.0</td><td>99.84</td><td>0.03</td><td>96.88</td><td>91.82</td><td>41.41</td></tr>
+		
+	
+
+     
+	    
+			<tr><td style="text-align:left">S2XMV42S</td><td>CKDO210000214-1A</td><td>HKGMKDSX2_L1</td><td>10000000</td><td rowspan=1>3.0</td><td>99.83</td><td>0.03</td><td>97.27</td><td>92.72</td><td>41.68</td></tr>
+		
+	
+
+     
+	    
+			<tr><td style="text-align:left">S44958WX</td><td>CKDO210000217-1A</td><td>HKGMKDSX2_L1</td><td>10000000</td><td rowspan=1>3.0</td><td>99.82</td><td>0.03</td><td>97.48</td><td>93.15</td><td>42.01</td></tr>
+		
+	
+
+     
+	    
+			<tr><td style="text-align:left">S1M3982B</td><td>CKDO210000203-1A</td><td>HKG7VDSX2_L1</td><td>10000000</td><td rowspan=1>3.0</td><td>99.80</td><td>0.03</td><td>96.17</td><td>90.32</td><td>41.08</td></tr>
+		
+	
+
+     
+	    
+			<tr><td style="text-align:left">S5U61CS8</td><td>CKDO210000227-1A</td><td>HKGMCDSX2_L2</td><td>10000000</td><td rowspan=1>3.0</td><td>99.86</td><td>0.03</td><td>97.62</td><td>93.40</td><td>41.49</td></tr>
+		
+	
+
+     
+	    
+			<tr><td style="text-align:left">S526QKRQ</td><td>CKDO210000222-1A</td><td>HKGMKDSX2_L1</td><td>10000000</td><td rowspan=1>3.0</td><td>99.82</td><td>0.03</td><td>97.53</td><td>93.34</td><td>41.61</td></tr>
+		
+	
+
+     
+	    
+			<tr><td style="text-align:left">S564M43P</td><td>CKDO210000223-1A</td><td>HKGMCDSX2_L2</td><td>10000000</td><td rowspan=1>3.0</td><td>99.85</td><td>0.03</td><td>97.89</td><td>94.20</td><td>41.66</td></tr>
+		
+	
+
+     
+	    
+			<tr><td style="text-align:left">S5FMHE58</td><td>CKDO210000225-1A</td><td>HKGMCDSX2_L2</td><td>10000000</td><td rowspan=1>3.0</td><td>99.84</td><td>0.03</td><td>97.84</td><td>94.04</td><td>41.44</td></tr>
+		
+	
+
+     
+	    
+			<tr><td style="text-align:left">S676NAX5</td><td>CKDO210000230-1A</td><td>HKG7NDSX2_L3</td><td>10000000</td><td rowspan=1>3.0</td><td>99.85</td><td>0.03</td><td>97.36</td><td>92.94</td><td>41.25</td></tr>
+		
+	
+
+     
+	    
+			<tr><td style="text-align:left">S5N62L54</td><td>CKDO210000226-1A</td><td>HKGMCDSX2_L2</td><td>10000000</td><td rowspan=1>3.0</td><td>99.83</td><td>0.03</td><td>97.78</td><td>93.91</td><td>41.47</td></tr>
+		
+	
+
+</table>
+</div>
+</p>
+
+<p class="tremark">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Note: <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) Sample name: Sample ID.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) NovoID: NovoID for the sample.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3) Flowcell/Lane: The flowcell ID and lane number.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(4) Raw reads: The number of sequencing reads pairs; four lines would be considered as one unit according to the format of FASTQ.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(5) Raw data: The original sequencing data.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(6) Effective: The percentage of clean reads in all raw reads.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(7) Error: The average error rate of all bases on read1 and read2; the error rate of a base is obtained from equation 1.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(8) Q20: The percent of bases with phred-scaled quality scores greater than 20.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(9) Q30: The percent of bases with phred-scaled quality scores greater than 30.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(10) GC content: The percentage of G and C in the all bases.<br /></p>
+</div>
+
+
+
+<!--
+</div>
+</div>
+-->
+
+
+<!----------------------------------------- 测序深度,覆盖度统计 -------------------------------------->
+
+<div id="page">
+
+<a name="Sequence alignment"></a>
+<hr />
+</p><br />
+<h3>4.3 Sequence Alignment</h3>
+
+
+<p class="paragraph">Burrows-Wheeler Aligner (BWA) was utilized to map the paired-end clean reads to the human reference genome (hg19, ftp://gsapubftp-anonymous@ftp.broadinstitute.org/bundle/hg19/ucsc.hg19.fasta.gz). The original mapping result can be obtained in BAM format. Sambamba is used for sorting the BAM files, and Picard is utilized to mark duplicate reads.   </p>
+<p class="paragraph">Final BAM files can be obtained after these steps. Then the coverage and depth will be computed based on BAM.</p>
+
+
+
+<br />
+<h4>4.3.1 Sequencing Depth & Coverage Distribution</h4>
+<a name="测序深度,覆盖度分布"></a>
+<p class="center">
+<img class="middle" src="src/pictures/Mapping/depth.png" />
+
+<p class="name_fig">Figure 4.5 Sequencing depth</p>
+
+<!-- <p class="name_fig">Figure 3.1 Sequencing depth</p>-->
+<p class="premark">The left figure shows sequencing depth distribution of all bases in each sample. The x-axis represents the sequencing depth, and the y-axis represents the fraction of bases with the given sequencing depth. <br /> 
+The right figure shows accumulative sequencing depth distribution of all bases in each sample. The x-axis represents the accumulative sequencing depth, and the y-axis represents the fraction of bases above the given sequencing depth.
+</p>
+<p class="center">
+<img class="middle" src="src/pictures/Mapping/covByChr0.png" />
+
+
+<p class="name_fig">Figure 4.6　Average sequencing depth (bar plot) and coverage (dot-line plot) in each chromosome</p>
+
+<!--<p class="name_fig">Figure 3.2　Average sequencing depth (bar plot) and coverage (dot-line plot) in each chromosome</p>-->
+<p class="premark">The x-axis represents the chromosome; the left y-axis represents the average depth; the right y-axis represents the coverage (proportion of covered bases). </p>
+<p class="premark">&nbsp</p>
+</div>
+
+
+
+<div id="page">
+
+<a name="覆盖度统计结果"></a>
+<hr />
+</p><br />
+<h4>4.3.2 Statistics of Mapping, Coverage and Depth</h4>
+
+<a name="覆盖度统计结果"></a>
+<p class="center">
+<p class="name_fig">Table 4.2　Statistics of mapping, coverage and depth in each sample</p>
+<!--<p class="name_fig">Table 3　Statistics of mapping, coverage and depth in each sample</p>-->
+<div id="tb">
+<table class="gy">
+
+	
+	<tr><th>Sample name</th><th>S247P347</th><th>S68X45R9</th><th>S31E37I2</th><th>S2441B4H</th><th>S2X2YM84</th><th>S44UHO8I</th><th>S4C832ZV</th><th>S31Q39P8</th><th>S4D9T917</th><th>S56NRSOS</th><th>S66CRL97</th><th>S2XMV42S</th><th>S44958WX</th><th>S1M3982B</th><th>S5U61CS8</th><th>S526QKRQ</th><th>S564M43P</th><th>S5FMHE58</th><th>S676NAX5</th><th>S5N62L54</th></tr>
+	<!--	    <tr><th>Sample</th><th>S247P347</th><th>S68X45R9</th><th>S31E37I2</th><th>S2441B4H</th><th>S2X2YM84</th><th>S44UHO8I</th><th>S4C832ZV</th><th>S31Q39P8</th><th>S4D9T917</th><th>S56NRSOS</th><th>S66CRL97</th><th>S2XMV42S</th><th>S44958WX</th><th>S1M3982B</th><th>S5U61CS8</th><th>S526QKRQ</th><th>S564M43P</th><th>S5FMHE58</th><th>S676NAX5</th><th>S5N62L54</th></tr>-->
+	
+
+	
+	    
+		    <tr><td style="text-align:left">Total</td><td>19954932 (100%)</td><td>19968186 (100%)</td><td>19966646 (100%)</td><td>19962636 (100%)</td><td>19970660 (100%)</td><td>19967110 (100%)</td><td>19970104 (100%)</td><td>19970190 (100%)</td><td>19965064 (100%)</td><td>19969328 (100%)</td><td>19967336 (100%)</td><td>19965546 (100%)</td><td>19964252 (100%)</td><td>19959512 (100%)</td><td>19971578 (100%)</td><td>19964702 (100%)</td><td>19970096 (100%)</td><td>19968594 (100%)</td><td>19969422 (100%)</td><td>19966594 (100%)</td></tr>
+		
+	
+
+	
+	    
+		    <tr><td style="text-align:left">Duplicate</td><td>122159 (0.61%)</td><td>130181 (0.65%)</td><td>100841 (0.51%)</td><td>124996 (0.63%)</td><td>105856 (0.53%)</td><td>121807 (0.61%)</td><td>118267 (0.59%)</td><td>112613 (0.57%)</td><td>109216 (0.55%)</td><td>99507 (0.50%)</td><td>125885 (0.63%)</td><td>116284 (0.58%)</td><td>103136 (0.52%)</td><td>120701 (0.61%)</td><td>109725 (0.55%)</td><td>113889 (0.57%)</td><td>108436 (0.54%)</td><td>112049 (0.56%)</td><td>130125 (0.65%)</td><td>119235 (0.60%)</td></tr>
+		
+	
+
+	
+	    
+		    <tr><td style="text-align:left">Mapped</td><td>19904392 (99.75%)</td><td>19923224 (99.77%)</td><td>19928329 (99.81%)</td><td>19915088 (99.76%)</td><td>19927017 (99.78%)</td><td>19929097 (99.81%)</td><td>19928532 (99.79%)</td><td>19931277 (99.81%)</td><td>19926140 (99.81%)</td><td>19931739 (99.81%)</td><td>19929421 (99.81%)</td><td>19923339 (99.79%)</td><td>19926445 (99.81%)</td><td>19914674 (99.78%)</td><td>19933475 (99.81%)</td><td>19924327 (99.80%)</td><td>19932773 (99.81%)</td><td>19928753 (99.80%)</td><td>19923509 (99.77%)</td><td>19925068 (99.79%)</td></tr>
+		
+	
+
+	
+	    
+		    <tr><td style="text-align:left">Properly mapped</td><td>19521406 (97.83%)</td><td>19514970 (97.73%)</td><td>19535458 (97.84%)</td><td>19511900 (97.74%)</td><td>19562522 (97.96%)</td><td>19538364 (97.85%)</td><td>19521430 (97.75%)</td><td>19579228 (98.04%)</td><td>19528134 (97.81%)</td><td>19591264 (98.11%)</td><td>19529190 (97.81%)</td><td>19520296 (97.77%)</td><td>19576170 (98.06%)</td><td>19506332 (97.73%)</td><td>19562870 (97.95%)</td><td>19533006 (97.84%)</td><td>19566024 (97.98%)</td><td>19547842 (97.89%)</td><td>19537180 (97.84%)</td><td>19538010 (97.85%)</td></tr>
+		
+	
+
+	
+	    
+		    <tr><td style="text-align:left">PE mapped</td><td>19886410 (99.66%)</td><td>19907176 (99.69%)</td><td>19914444 (99.74%)</td><td>19896990 (99.67%)</td><td>19912628 (99.71%)</td><td>19915436 (99.74%)</td><td>19913450 (99.72%)</td><td>19918012 (99.74%)</td><td>19911976 (99.73%)</td><td>19919478 (99.75%)</td><td>19913436 (99.73%)</td><td>19906538 (99.70%)</td><td>19913156 (99.74%)</td><td>19896936 (99.69%)</td><td>19920616 (99.74%)</td><td>19908708 (99.72%)</td><td>19920216 (99.75%)</td><td>19915188 (99.73%)</td><td>19908068 (99.69%)</td><td>19910798 (99.72%)</td></tr>
+		
+	
+
+	
+	    
+		    <tr><td style="text-align:left">SE mapped</td><td>35964 (0.18%)</td><td>32096 (0.16%)</td><td>27770 (0.14%)</td><td>36196 (0.18%)</td><td>28778 (0.14%)</td><td>27322 (0.14%)</td><td>30164 (0.15%)</td><td>26530 (0.13%)</td><td>28328 (0.14%)</td><td>24522 (0.12%)</td><td>31970 (0.16%)</td><td>33602 (0.17%)</td><td>26578 (0.13%)</td><td>35476 (0.18%)</td><td>25718 (0.13%)</td><td>31238 (0.16%)</td><td>25114 (0.13%)</td><td>27130 (0.14%)</td><td>30882 (0.15%)</td><td>28540 (0.14%)</td></tr>
+		
+	
+
+	
+	    
+		    <tr><td style="text-align:left">With mate mapped to a different chr</td><td>235838 (1.18%)</td><td>253186 (1.27%)</td><td>240532 (1.20%)</td><td>239002 (1.20%)</td><td>217664 (1.09%)</td><td>228126 (1.14%)</td><td>234116 (1.17%)</td><td>216652 (1.08%)</td><td>238534 (1.19%)</td><td>209848 (1.05%)</td><td>241672 (1.21%)</td><td>231094 (1.16%)</td><td>215440 (1.08%)</td><td>247146 (1.24%)</td><td>222262 (1.11%)</td><td>229854 (1.15%)</td><td>215604 (1.08%)</td><td>227716 (1.14%)</td><td>230162 (1.15%)</td><td>235540 (1.18%)</td></tr>
+		
+	
+
+	
+	    
+		    <tr><td style="text-align:left">With mate mapped to a different chr ((mapQ>=5))</td><td>113694 (0.57%)</td><td>124402 (0.62%)</td><td>113953 (0.57%)</td><td>113272 (0.57%)</td><td>101317 (0.51%)</td><td>109060 (0.55%)</td><td>107752 (0.54%)</td><td>105397 (0.53%)</td><td>118993 (0.60%)</td><td>105960 (0.53%)</td><td>116972 (0.59%)</td><td>105608 (0.53%)</td><td>103557 (0.52%)</td><td>122259 (0.61%)</td><td>104821 (0.52%)</td><td>108585 (0.54%)</td><td>103500 (0.52%)</td><td>110036 (0.55%)</td><td>110775 (0.55%)</td><td>114029 (0.57%)</td></tr>
+		
+	
+
+	
+	    
+		    <tr><td style="text-align:left">Initial_bases_on_target</td><td>60456963</td><td>60456963</td><td>60456963</td><td>60456963</td><td>60456963</td><td>60456963</td><td>60456963</td><td>60456963</td><td>60456963</td><td>60456963</td><td>60456963</td><td>60456963</td><td>60456963</td><td>60456963</td><td>60456963</td><td>60456963</td><td>60456963</td><td>60456963</td><td>60456963</td><td>60456963</td></tr>
+		
+	
+
+	
+	    
+		    <tr><td style="text-align:left">Initial_bases_on_or_near_target</td><td>136297444</td><td>136297444</td><td>136297444</td><td>136297444</td><td>136297444</td><td>136297444</td><td>136297444</td><td>136297444</td><td>136297444</td><td>136297444</td><td>136297444</td><td>136297444</td><td>136297444</td><td>136297444</td><td>136297444</td><td>136297444</td><td>136297444</td><td>136297444</td><td>136297444</td><td>136297444</td></tr>
+		
+	
+
+	
+	    
+		    <tr><td style="text-align:left">Total_effective_yield(Mb)</td><td>2940.24</td><td>2947.03</td><td>2950.24</td><td>2942.01</td><td>2954.30</td><td>2946.86</td><td>2948.92</td><td>2953.80</td><td>2949.79</td><td>2956.98</td><td>2944.58</td><td>2944.81</td><td>2951.33</td><td>2940.76</td><td>2953.62</td><td>2947.99</td><td>2953.47</td><td>2950.54</td><td>2948.61</td><td>2945.71</td></tr>
+		
+	
+
+	
+	    
+		    <tr><td style="text-align:left">Effective_yield_on_target(Mb)</td><td>62.19</td><td>65.45</td><td>64.78</td><td>61.53</td><td>65.86</td><td>65.08</td><td>64.91</td><td>66.67</td><td>65.33</td><td>65.20</td><td>64.09</td><td>66.21</td><td>68.96</td><td>61.83</td><td>65.03</td><td>66.09</td><td>66.98</td><td>64.85</td><td>63.50</td><td>65.12</td></tr>
+		
+	
+
+	
+	    
+		    <tr><td style="text-align:left">Fraction_of_effective_bases_on_target</td><td>2.1%</td><td>2.2%</td><td>2.2%</td><td>2.1%</td><td>2.2%</td><td>2.2%</td><td>2.2%</td><td>2.3%</td><td>2.2%</td><td>2.2%</td><td>2.2%</td><td>2.2%</td><td>2.3%</td><td>2.1%</td><td>2.2%</td><td>2.2%</td><td>2.3%</td><td>2.2%</td><td>2.2%</td><td>2.2%</td></tr>
+		
+	
+
+	
+	    
+		    <tr><td style="text-align:left">Fraction_of_effective_bases_on_or_near_target</td><td>4.7%</td><td>4.9%</td><td>4.8%</td><td>4.7%</td><td>4.9%</td><td>4.9%</td><td>4.9%</td><td>5.0%</td><td>4.9%</td><td>4.9%</td><td>4.8%</td><td>4.9%</td><td>5.1%</td><td>4.7%</td><td>4.9%</td><td>4.9%</td><td>5.0%</td><td>4.9%</td><td>4.8%</td><td>4.9%</td></tr>
+		
+	
+
+	
+	    
+		    <tr><td style="text-align:left">Average_sequencing_depth_on_target</td><td>1.03</td><td>1.08</td><td>1.07</td><td>1.02</td><td>1.09</td><td>1.08</td><td>1.07</td><td>1.10</td><td>1.08</td><td>1.08</td><td>1.06</td><td>1.10</td><td>1.14</td><td>1.02</td><td>1.08</td><td>1.09</td><td>1.11</td><td>1.07</td><td>1.05</td><td>1.08</td></tr>
+		
+	
+
+	
+	    
+		    <tr><td style="text-align:left">Bases_covered_on_target</td><td>36381188</td><td>37757554</td><td>37798862</td><td>36877683</td><td>37897653</td><td>37456944</td><td>37827018</td><td>37419316</td><td>38197517</td><td>37609963</td><td>37313157</td><td>38029969</td><td>38129090</td><td>37082715</td><td>37528139</td><td>38283475</td><td>38466423</td><td>37620983</td><td>37518753</td><td>37664054</td></tr>
+		
+	
+
+	
+	    
+		    <tr><td style="text-align:left">Coverage_of_target_region</td><td>60.2%</td><td>62.5%</td><td>62.5%</td><td>61.0%</td><td>62.7%</td><td>62.0%</td><td>62.6%</td><td>61.9%</td><td>63.2%</td><td>62.2%</td><td>61.7%</td><td>62.9%</td><td>63.1%</td><td>61.3%</td><td>62.1%</td><td>63.3%</td><td>63.6%</td><td>62.2%</td><td>62.1%</td><td>62.3%</td></tr>
+		
+	
+
+	
+	    
+		    <tr><td style="text-align:left">Fraction_of_target_covered_with_at_least_100x</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td></tr>
+		
+	
+
+	
+	    
+		    <tr><td style="text-align:left">Fraction_of_target_covered_with_at_least_50x</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td></tr>
+		
+	
+
+	
+	    
+		    <tr><td style="text-align:left">Fraction_of_target_covered_with_at_least_20x</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td></tr>
+		
+	
+
+	
+	    
+		    <tr><td style="text-align:left">Fraction_of_target_covered_with_at_least_10x</td><td>0.0%</td><td>0.1%</td><td>0.0%</td><td>0.0%</td><td>0.1%</td><td>0.1%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.0%</td><td>0.1%</td><td>0.1%</td><td>0.0%</td><td>0.1%</td><td>0.1%</td><td>0.1%</td><td>0.1%</td><td>0.0%</td><td>0.1%</td></tr>
+		
+	
+
+	
+	    
+		    <tr><td style="text-align:left">Fraction_of_target_covered_with_at_least_4x</td><td>3.3%</td><td>3.5%</td><td>3.3%</td><td>2.8%</td><td>3.6%</td><td>3.6%</td><td>3.4%</td><td>4.1%</td><td>3.3%</td><td>3.5%</td><td>3.4%</td><td>3.6%</td><td>4.4%</td><td>2.8%</td><td>3.5%</td><td>3.4%</td><td>3.6%</td><td>3.4%</td><td>3.1%</td><td>3.5%</td></tr>
+		
+	
+
+
+</table>
+</div>
+</p>
+
+<p class="tremark">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Note:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) Sample name: Sample ID.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) Total: The total number of clean reads. The below indexes are calculated based on the clean reads.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3) Duplicate: The number of duplicated reads (percentage: duplicated reads/clean reads).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(4) Mapped: The number of reads that mapped to the reference genome (percentage).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(5) Properly mapped: The number of reads that mapped to the reference genome and within the expected insert size (percentage). <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(6) PE mapped: The number of pair-end reads that mapped to the reference genome (percentage).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(7) SE mapped: The number of single-end reads that mapped to the reference genome (percentage).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(8) With mate mapped to a different chr: The number of reads with mate reads mapped to different chromosomes (percentage).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(9) With mate mapped to a different chr (mapQ >= 5): The number of reads with mate reads mapped to different chromosomes and the MAQ > 5.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(10) Average_sequencing_depth: The average sequencing depth in the whole genome.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(11) Coverage: The coverage in the whole genome.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(12) Coverage_at_least_4X: The coverage in the whole genome when only bases with depth > 4X are considered.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(13) Coverage_at_least_10X: The coverage in the whole genome when only bases with depth > 10X are considered.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(14) Coverage_at_least_20X: The coverage in the whole genome when only bases with depth > 20X are considered.<br /></p>
+
+</div>
+
+
+<!---------------------------------------------- snp/InDel结果 ------------------------------------------------------------->
+
+<div id="page">
+
+<a name="Variant detection"></a>
+<hr />
+</p><br />
+<h3>4.4 Germline Mutation Detection</h3>
+<br />
+
+<h4>4.4.1 SNP Detection Result</h4>
+<p class="paragraph"> Single nucleotide polymorphisms (SNPs), also known as single nucleotide variants (SNVs), constitute the largest class of genetic variants in genome. A typical human genome has about 3.6 million SNPs. Statistics of detected SNPs are shown below.</p>
+<div id="tb">
+<p class="center">
+<p class="name_fig">Table 4.3 The number of SNPs in various genomic regions </p>
+<!--<p class="name_fig">Table 4.1 The number of SNPs in various genomic regions </p>-->
+<table class="gy">
+
+    
+	<tr><th>Sample name</th><th>S247P347</th><th>S68X45R9</th><th>S31E37I2</th><th>S2441B4H</th><th>S2X2YM84</th><th>S44UHO8I</th><th>S4C832ZV</th><th>S31Q39P8</th><th>S4D9T917</th><th>S56NRSOS</th><th>S66CRL97</th><th>S2XMV42S</th><th>S44958WX</th><th>S1M3982B</th><th>S5U61CS8</th><th>S526QKRQ</th><th>S564M43P</th><th>S5FMHE58</th><th>S676NAX5</th><th>S5N62L54</th></tr>
+	<!--	<tr><th>Sample</th><th>S247P347</th><th>S68X45R9</th><th>S31E37I2</th><th>S2441B4H</th><th>S2X2YM84</th><th>S44UHO8I</th><th>S4C832ZV</th><th>S31Q39P8</th><th>S4D9T917</th><th>S56NRSOS</th><th>S66CRL97</th><th>S2XMV42S</th><th>S44958WX</th><th>S1M3982B</th><th>S5U61CS8</th><th>S526QKRQ</th><th>S564M43P</th><th>S5FMHE58</th><th>S676NAX5</th><th>S5N62L54</th></tr>-->
+	
+
+    
+		
+			<tr><td style="text-align:left">CDS</td><td>10796</td><td>13120</td><td>10262</td><td>10356</td><td>10459</td><td>11975</td><td>12600</td><td>10492</td><td>11397</td><td>10442</td><td>10374</td><td>11318</td><td>10072</td><td>10557</td><td>10620</td><td>10088</td><td>10373</td><td>11178</td><td>10497</td><td>10652</td></tr>
+		
+	
+
+    
+		
+			<tr><td style="text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;synonymous_SNP</td><td>5160</td><td>6469</td><td>4951</td><td>5031</td><td>5010</td><td>5831</td><td>6174</td><td>5069</td><td>5598</td><td>4991</td><td>5031</td><td>5445</td><td>4873</td><td>5182</td><td>5122</td><td>4868</td><td>4998</td><td>5379</td><td>5091</td><td>5106</td></tr>
+		
+	
+
+    
+		
+			<tr><td style="text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;missense_SNP</td><td>5276</td><td>6257</td><td>5032</td><td>5026</td><td>5120</td><td>5770</td><td>6113</td><td>5080</td><td>5480</td><td>5091</td><td>5037</td><td>5509</td><td>4882</td><td>5109</td><td>5173</td><td>4949</td><td>4998</td><td>5497</td><td>5035</td><td>5211</td></tr>
+		
+	
+
+    
+		
+			<tr><td style="text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;stopgain</td><td>43</td><td>48</td><td>40</td><td>48</td><td>44</td><td>53</td><td>44</td><td>39</td><td>40</td><td>42</td><td>42</td><td>54</td><td>49</td><td>40</td><td>52</td><td>36</td><td>47</td><td>44</td><td>46</td><td>39</td></tr>
+		
+	
+
+    
+		
+			<tr><td style="text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;stoploss</td><td>6</td><td>10</td><td>5</td><td>7</td><td>3</td><td>15</td><td>4</td><td>6</td><td>5</td><td>7</td><td>8</td><td>11</td><td>7</td><td>5</td><td>9</td><td>5</td><td>6</td><td>9</td><td>6</td><td>7</td></tr>
+		
+	
+
+    
+		
+			<tr><td style="text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;unknown</td><td>312</td><td>340</td><td>240</td><td>246</td><td>285</td><td>308</td><td>266</td><td>301</td><td>277</td><td>315</td><td>264</td><td>294</td><td>255</td><td>224</td><td>264</td><td>235</td><td>324</td><td>256</td><td>321</td><td>291</td></tr>
+		
+	
+
+    
+		
+			<tr><td style="text-align:left">intronic</td><td>571802</td><td>724075</td><td>572410</td><td>567319</td><td>569132</td><td>682280</td><td>705079</td><td>586025</td><td>618861</td><td>575956</td><td>572028</td><td>626826</td><td>568901</td><td>567837</td><td>587744</td><td>566705</td><td>569258</td><td>632659</td><td>573052</td><td>586164</td></tr>
+		
+	
+
+    
+		
+			<tr><td style="text-align:left">UTR3</td><td>14433</td><td>18431</td><td>14535</td><td>14668</td><td>14398</td><td>17145</td><td>17912</td><td>14650</td><td>15691</td><td>14496</td><td>14434</td><td>15932</td><td>14251</td><td>14384</td><td>15133</td><td>14039</td><td>14322</td><td>15706</td><td>14574</td><td>14379</td></tr>
+		
+	
+
+    
+		
+			<tr><td style="text-align:left">UTR5</td><td>2614</td><td>3205</td><td>2548</td><td>2641</td><td>2541</td><td>3074</td><td>3261</td><td>2541</td><td>2896</td><td>2520</td><td>2546</td><td>2731</td><td>2412</td><td>2747</td><td>2642</td><td>2518</td><td>2587</td><td>2872</td><td>2576</td><td>2669</td></tr>
+		
+	
+
+    
+		
+			<tr><td style="text-align:left">splicing</td><td>62</td><td>60</td><td>60</td><td>49</td><td>54</td><td>63</td><td>67</td><td>60</td><td>63</td><td>56</td><td>54</td><td>61</td><td>51</td><td>66</td><td>51</td><td>59</td><td>68</td><td>62</td><td>49</td><td>48</td></tr>
+		
+	
+
+    
+		
+			<tr><td style="text-align:left">ncRNA_exonic</td><td>7128</td><td>8692</td><td>7123</td><td>7218</td><td>7122</td><td>8609</td><td>8844</td><td>7335</td><td>7702</td><td>7241</td><td>6939</td><td>7889</td><td>6988</td><td>7072</td><td>7539</td><td>7215</td><td>7261</td><td>7910</td><td>7015</td><td>7232</td></tr>
+		
+	
+
+    
+		
+			<tr><td style="text-align:left">ncRNA_intronic</td><td>108175</td><td>133594</td><td>106299</td><td>106286</td><td>108210</td><td>127504</td><td>130719</td><td>110620</td><td>113814</td><td>108124</td><td>106335</td><td>117584</td><td>107661</td><td>105484</td><td>111966</td><td>107986</td><td>106105</td><td>120697</td><td>105794</td><td>110257</td></tr>
+		
+	
+
+    
+		
+			<tr><td style="text-align:left">ncRNA_splicing</td><td>35</td><td>34</td><td>44</td><td>32</td><td>43</td><td>42</td><td>39</td><td>37</td><td>40</td><td>33</td><td>39</td><td>41</td><td>42</td><td>38</td><td>46</td><td>41</td><td>41</td><td>39</td><td>42</td><td>34</td></tr>
+		
+	
+
+    
+		
+			<tr><td style="text-align:left">upstream</td><td>10450</td><td>13138</td><td>10352</td><td>10480</td><td>10631</td><td>12521</td><td>12930</td><td>10824</td><td>11184</td><td>10525</td><td>10401</td><td>11500</td><td>10314</td><td>10650</td><td>10723</td><td>10615</td><td>10313</td><td>11468</td><td>10477</td><td>10807</td></tr>
+		
+	
+
+    
+		
+			<tr><td style="text-align:left">downstream</td><td>10814</td><td>13493</td><td>10524</td><td>10711</td><td>10637</td><td>12688</td><td>13261</td><td>11024</td><td>11656</td><td>10903</td><td>10523</td><td>12050</td><td>10731</td><td>11022</td><td>11330</td><td>10646</td><td>10872</td><td>12046</td><td>10574</td><td>11213</td></tr>
+		
+	
+
+    
+		
+			<tr><td style="text-align:left">intergenic</td><td>903307</td><td>1113839</td><td>906326</td><td>896180</td><td>899733</td><td>1068705</td><td>1088497</td><td>926002</td><td>965228</td><td>910739</td><td>900818</td><td>988720</td><td>906500</td><td>902855</td><td>931124</td><td>906374</td><td>902256</td><td>1000150</td><td>899216</td><td>923962</td></tr>
+		
+	
+
+    
+		
+			<tr><td style="text-align:left">Total</td><td>2687420</td><td>3245962</td><td>2682863</td><td>2648648</td><td>2712395</td><td>3130770</td><td>3200037</td><td>2829055</td><td>2836488</td><td>2720740</td><td>2687666</td><td>2906499</td><td>2740391</td><td>2631123</td><td>2785540</td><td>2708224</td><td>2687315</td><td>2923938</td><td>2650453</td><td>2764278</td></tr>
+		
+	
+
+</table>
+</p>
+</div>
+
+
+<p class="tremark">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Note: <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) Sample name: Sample ID.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) CDS: The number of SNPs in coding region.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  synonymous_SNP: A single nucleotide change that does not cause an amino acid change.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  missense_SNP: A single nucleotide change that causes an amino acid change.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  stopgain: A nonsynonymous SNP that leads to the creation of stop codon at the variant site.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  stoploss: A nonsynonymous SNP that leads to the elimination of stop codon at the variant site.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  unknown: Unknown function (due to various errors in the gene structure definition in the database file).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3) intronic: The number of SNPs in intronic region.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(4) UTR3: The number of SNPs in 3’UTR region.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(5) UTR5: The number of SNPs in 5’UTR region.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(6) splicing: The number of SNPs within 2-bp of a splicing junction.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(7) ncRNA_exonic: The number of SNPs in exonic region of non-coding RNAs.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(8) ncRNA_intronic: The number of SNPs in intronic region of non-coding RNAs.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(9) ncRNA_splicing: The number of SNPs within 2-bp of a splicing junction of non-coding RNAs.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(10) upstream: The number of SNPs within 1kb away from the transcription start site.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(11) downstream: The number of SNPs within 1kb away from the transcription end site.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(12) intergenic: The number of SNPs in intergenic region.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(13) Total: The total number of SNPs.</p>
+<p class="premark">&nbsp</p>
+
+
+<p class="center">
+<div class="albumSlider1 albumSlider">
+<div class="fullview"><img src='src/pictures/SNP/S247P347.snp.png'/></div>
+<div class="slider">
+<div class="button movebackward" title="向上滚动"></div>
+<div class="imglistwrap"><ul class="imglist">
+
+	<li><a id="example2" href='src/pictures/SNP/S247P347.snp.png' ><img src='src/pictures/SNP/S247P347.snp.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/SNP/S68X45R9.snp.png' ><img src='src/pictures/SNP/S68X45R9.snp.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/SNP/S31E37I2.snp.png' ><img src='src/pictures/SNP/S31E37I2.snp.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/SNP/S2441B4H.snp.png' ><img src='src/pictures/SNP/S2441B4H.snp.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/SNP/S2X2YM84.snp.png' ><img src='src/pictures/SNP/S2X2YM84.snp.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/SNP/S44UHO8I.snp.png' ><img src='src/pictures/SNP/S44UHO8I.snp.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/SNP/S4C832ZV.snp.png' ><img src='src/pictures/SNP/S4C832ZV.snp.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/SNP/S31Q39P8.snp.png' ><img src='src/pictures/SNP/S31Q39P8.snp.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/SNP/S4D9T917.snp.png' ><img src='src/pictures/SNP/S4D9T917.snp.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/SNP/S56NRSOS.snp.png' ><img src='src/pictures/SNP/S56NRSOS.snp.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/SNP/S66CRL97.snp.png' ><img src='src/pictures/SNP/S66CRL97.snp.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/SNP/S2XMV42S.snp.png' ><img src='src/pictures/SNP/S2XMV42S.snp.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/SNP/S44958WX.snp.png' ><img src='src/pictures/SNP/S44958WX.snp.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/SNP/S1M3982B.snp.png' ><img src='src/pictures/SNP/S1M3982B.snp.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/SNP/S5U61CS8.snp.png' ><img src='src/pictures/SNP/S5U61CS8.snp.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/SNP/S526QKRQ.snp.png' ><img src='src/pictures/SNP/S526QKRQ.snp.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/SNP/S564M43P.snp.png' ><img src='src/pictures/SNP/S564M43P.snp.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/SNP/S5FMHE58.snp.png' ><img src='src/pictures/SNP/S5FMHE58.snp.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/SNP/S676NAX5.snp.png' ><img src='src/pictures/SNP/S676NAX5.snp.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/SNP/S5N62L54.snp.png' ><img src='src/pictures/SNP/S5N62L54.snp.JPEG'/></a></li>
+
+
+</ul></div>
+<div class="button moveforward" title="向下滚动"></div>
+</div>
+</div>
+
+<p class="name_fig">Figure 4.7　Number of SNPs in various genomic regions (left pie plot); number of different types of SNPs in coding region (right pie plot)</p>
+
+<!--<p class="name_fig">Figure 4.1　Number of SNPs in various genomic regions (left pie plot); number of different types of SNPs in coding region (right pie plot)</p>-->
+<p class="premark">&nbsp</p>
+
+<p class="center">
+<p class="name_fig">Table 4.4 Feature of SNPs</p>
+<!--<p class="name_fig">Table 4.2 Feature of SNPs</p>-->
+<div id="tb">
+<table class="gy">
+
+	
+		<tr><th>Sample name</th><th>S247P347</th><th>S68X45R9</th><th>S31E37I2</th><th>S2441B4H</th><th>S2X2YM84</th><th>S44UHO8I</th><th>S4C832ZV</th><th>S31Q39P8</th><th>S4D9T917</th><th>S56NRSOS</th><th>S66CRL97</th><th>S2XMV42S</th><th>S44958WX</th><th>S1M3982B</th><th>S5U61CS8</th><th>S526QKRQ</th><th>S564M43P</th><th>S5FMHE58</th><th>S676NAX5</th><th>S5N62L54</th></tr>
+	<!--	    <tr><th>Sample</th><th>S247P347</th><th>S68X45R9</th><th>S31E37I2</th><th>S2441B4H</th><th>S2X2YM84</th><th>S44UHO8I</th><th>S4C832ZV</th><th>S31Q39P8</th><th>S4D9T917</th><th>S56NRSOS</th><th>S66CRL97</th><th>S2XMV42S</th><th>S44958WX</th><th>S1M3982B</th><th>S5U61CS8</th><th>S526QKRQ</th><th>S564M43P</th><th>S5FMHE58</th><th>S676NAX5</th><th>S5N62L54</th></tr>-->
+	
+
+	
+		<tr><td style="text-align:left">Total</td><td>2687420</td><td>3245962</td><td>2682863</td><td>2648648</td><td>2712395</td><td>3130770</td><td>3200037</td><td>2829055</td><td>2836488</td><td>2720740</td><td>2687666</td><td>2906499</td><td>2740391</td><td>2631123</td><td>2785540</td><td>2708224</td><td>2687315</td><td>2923938</td><td>2650453</td><td>2764278</td></tr>
+	
+
+	
+		<tr><td style="text-align:left">Het</td><td>2200137</td><td>2698143</td><td>2200500</td><td>2175241</td><td>2213897</td><td>2596404</td><td>2658449</td><td>2286118</td><td>2349845</td><td>2226277</td><td>2196252</td><td>2409726</td><td>2230031</td><td>2166454</td><td>2280953</td><td>2216232</td><td>2201366</td><td>2422023</td><td>2179662</td><td>2265048</td></tr>
+	
+
+	
+		<tr><td style="text-align:left">Hom</td><td>487283</td><td>547819</td><td>482363</td><td>473407</td><td>498498</td><td>534366</td><td>541588</td><td>542937</td><td>486643</td><td>494463</td><td>491414</td><td>496773</td><td>510360</td><td>464669</td><td>504587</td><td>491992</td><td>485949</td><td>501915</td><td>470791</td><td>499230</td></tr>
+	
+
+	
+		<tr><td style="text-align:left">transition</td><td>1806787</td><td>2184083</td><td>1803428</td><td>1778769</td><td>1822437</td><td>2105613</td><td>2152952</td><td>1901001</td><td>1906134</td><td>1828448</td><td>1805236</td><td>1954875</td><td>1842645</td><td>1766199</td><td>1872076</td><td>1819809</td><td>1806392</td><td>1964161</td><td>1781024</td><td>1857737</td></tr>
+	
+
+	
+		<tr><td style="text-align:left">transvertion</td><td>880633</td><td>1061879</td><td>879435</td><td>869879</td><td>889958</td><td>1025157</td><td>1047085</td><td>928054</td><td>930354</td><td>892292</td><td>882430</td><td>951624</td><td>897746</td><td>864924</td><td>913464</td><td>888415</td><td>880923</td><td>959777</td><td>869429</td><td>906541</td></tr>
+	
+
+	
+		<tr><td style="text-align:left">ts/tv</td><td>2.05</td><td>2.06</td><td>2.05</td><td>2.04</td><td>2.05</td><td>2.05</td><td>2.06</td><td>2.05</td><td>2.05</td><td>2.05</td><td>2.05</td><td>2.05</td><td>2.05</td><td>2.04</td><td>2.05</td><td>2.05</td><td>2.05</td><td>2.05</td><td>2.05</td><td>2.05</td></tr>
+	
+
+	
+		<tr><td style="text-align:left">dbSNP percentage</td><td>2672314 (99.44%)</td><td>3230229 (99.52%)</td><td>2669304 (99.49%)</td><td>2636931 (99.56%)</td><td>2699136 (99.51%)</td><td>3115476 (99.51%)</td><td>3186861 (99.59%)</td><td>2810482 (99.34%)</td><td>2824968 (99.59%)</td><td>2706951 (99.49%)</td><td>2672332 (99.43%)</td><td>2892686 (99.52%)</td><td>2724449 (99.42%)</td><td>2619625 (99.56%)</td><td>2769616 (99.43%)</td><td>2696478 (99.57%)</td><td>2674760 (99.53%)</td><td>2909956 (99.52%)</td><td>2637798 (99.52%)</td><td>2749517 (99.47%)</td></tr>
+	
+
+	
+		<tr><td style="text-align:left">novel</td><td>15106</td><td>15733</td><td>13559</td><td>11717</td><td>13259</td><td>15294</td><td>13176</td><td>18573</td><td>11520</td><td>13789</td><td>15334</td><td>13813</td><td>15942</td><td>11498</td><td>15924</td><td>11746</td><td>12555</td><td>13982</td><td>12655</td><td>14761</td></tr>
+	
+
+	
+		<tr><td style="text-align:left">novel ts</td><td>7433</td><td>7569</td><td>6521</td><td>5093</td><td>6436</td><td>7743</td><td>6217</td><td>10156</td><td>5228</td><td>6875</td><td>7385</td><td>6517</td><td>8333</td><td>5078</td><td>8063</td><td>5330</td><td>6179</td><td>7001</td><td>5860</td><td>7392</td></tr>
+	
+
+	
+		<tr><td style="text-align:left">novel tv</td><td>7673</td><td>8164</td><td>7038</td><td>6624</td><td>6823</td><td>7551</td><td>6959</td><td>8417</td><td>6292</td><td>6914</td><td>7949</td><td>7296</td><td>7609</td><td>6420</td><td>7861</td><td>6416</td><td>6376</td><td>6981</td><td>6795</td><td>7369</td></tr>
+	
+
+	
+		<tr><td style="text-align:left">novel ts/tv</td><td>0.97</td><td>0.93</td><td>0.93</td><td>0.77</td><td>0.94</td><td>1.03</td><td>0.89</td><td>1.21</td><td>0.83</td><td>0.99</td><td>0.93</td><td>0.89</td><td>1.10</td><td>0.79</td><td>1.03</td><td>0.83</td><td>0.97</td><td>1.00</td><td>0.86</td><td>1.00</td></tr>
+	
+
+</table>
+</p>
+</div>
+
+<p class="tremark">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Note:<br /> 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) Sample name: Sample ID..<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) Total: The total number of SNPs.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3) Het: The number of heterozygotes.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(4) Hom: The number of homozygotes.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(5) transition (ts) : The number of transitions.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(6) transversion (tv) : The number of transversions.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(7) ts/tv: The number of transitions divided by the number of transversions.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(8) dbSNP percentage: The number of SNPs that have been reported in dbSNP database divided by the total number of SNPs.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(9) novel: The number of SNPs not reported in dbSNP database.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(10) novel ts: The number of transition SNPs that have not been reported in dbSNP database.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(11) novel tv: The number of transversion SNPs that have not been reported in dbSNP database.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(12) novel ts/tv: Novel ts divided by novel tv.</p>
+<p class="tremark">&nbsp</p>
+
+</p>
+</div>
+
+<div id="page">
+
+<a name="InDel检测结果"></a>
+<hr />
+</p><br />
+<h4>4.4.2 InDel Detection Result</h4>
+<p class="paragraph">Small insertions and deletions (InDels) that are less than 50 bp in length constitute another class of genetic variants in human genome. </p>
+<p class="paragraph">The InDels occurred in coding region or splicing sites may cause changes in transcripts and proteins. If the number of inserted or deleted nucleotides is not in frame of three or multiples of three, the entire reading frame would be altered. The statistics of InDels called in the samples are listed below: </p>
+</p>
+
+<div id="tb">
+	<p class="center">
+	<p class="name_fig">Table 4.5 The number of InDels in various genomic regions</p>
+	<!--<p class="name_fig">Table 4.3 The number of InDels in various genomic regions</p>-->
+<table class="gy">
+
+	
+		<tr><th>Sample name</th><th>S247P347</th><th>S68X45R9</th><th>S31E37I2</th><th>S2441B4H</th><th>S2X2YM84</th><th>S44UHO8I</th><th>S4C832ZV</th><th>S31Q39P8</th><th>S4D9T917</th><th>S56NRSOS</th><th>S66CRL97</th><th>S2XMV42S</th><th>S44958WX</th><th>S1M3982B</th><th>S5U61CS8</th><th>S526QKRQ</th><th>S564M43P</th><th>S5FMHE58</th><th>S676NAX5</th><th>S5N62L54</th></tr>
+<!--	    <tr><th>Sample</th><th>S247P347</th><th>S68X45R9</th><th>S31E37I2</th><th>S2441B4H</th><th>S2X2YM84</th><th>S44UHO8I</th><th>S4C832ZV</th><th>S31Q39P8</th><th>S4D9T917</th><th>S56NRSOS</th><th>S66CRL97</th><th>S2XMV42S</th><th>S44958WX</th><th>S1M3982B</th><th>S5U61CS8</th><th>S526QKRQ</th><th>S564M43P</th><th>S5FMHE58</th><th>S676NAX5</th><th>S5N62L54</th></tr>-->
+	
+
+	
+		
+			<tr><td style="text-align:left">CDS</td><td>261</td><td>317</td><td>258</td><td>291</td><td>267</td><td>301</td><td>283</td><td>280</td><td>262</td><td>247</td><td>282</td><td>277</td><td>277</td><td>235</td><td>297</td><td>263</td><td>258</td><td>272</td><td>236</td><td>278</td></tr>
+		
+	
+
+	
+		
+			<tr><td style="text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;frameshift_deletion</td><td>51</td><td>73</td><td>45</td><td>57</td><td>53</td><td>61</td><td>51</td><td>55</td><td>54</td><td>47</td><td>63</td><td>52</td><td>51</td><td>36</td><td>68</td><td>44</td><td>57</td><td>57</td><td>41</td><td>57</td></tr>
+		
+	
+
+	
+		
+			<tr><td style="text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;frameshift_insertion</td><td>51</td><td>52</td><td>52</td><td>58</td><td>42</td><td>50</td><td>51</td><td>37</td><td>44</td><td>34</td><td>51</td><td>42</td><td>55</td><td>57</td><td>46</td><td>46</td><td>46</td><td>48</td><td>41</td><td>45</td></tr>
+		
+	
+
+	
+		
+			<tr><td style="text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;nonframeshift_deletion</td><td>52</td><td>81</td><td>52</td><td>70</td><td>63</td><td>74</td><td>79</td><td>68</td><td>66</td><td>66</td><td>62</td><td>65</td><td>65</td><td>48</td><td>75</td><td>58</td><td>65</td><td>68</td><td>53</td><td>65</td></tr>
+		
+	
+
+	
+		
+			<tr><td style="text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;nonframeshift_insertion</td><td>59</td><td>67</td><td>60</td><td>61</td><td>57</td><td>64</td><td>57</td><td>70</td><td>50</td><td>63</td><td>60</td><td>65</td><td>60</td><td>54</td><td>56</td><td>69</td><td>57</td><td>55</td><td>63</td><td>63</td></tr>
+		
+	
+
+	
+		
+			<tr><td style="text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;stopgain</td><td>4</td><td>4</td><td>2</td><td>4</td><td>2</td><td>3</td><td>0</td><td>3</td><td>5</td><td>1</td><td>4</td><td>3</td><td>3</td><td>1</td><td>1</td><td>2</td><td>2</td><td>3</td><td>2</td><td>2</td></tr>
+		
+	
+
+	
+		
+			<tr><td style="text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;stoploss</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+		
+	
+
+	
+		
+			<tr><td style="text-align:left">&nbsp;&nbsp;&nbsp;&nbsp;unknown</td><td>67</td><td>62</td><td>66</td><td>60</td><td>71</td><td>67</td><td>67</td><td>66</td><td>63</td><td>58</td><td>58</td><td>68</td><td>58</td><td>63</td><td>69</td><td>64</td><td>55</td><td>62</td><td>60</td><td>65</td></tr>
+		
+	
+
+	
+		
+			<tr><td style="text-align:left">intronic</td><td>108308</td><td>126375</td><td>108469</td><td>107174</td><td>108757</td><td>122187</td><td>124662</td><td>113086</td><td>113524</td><td>108865</td><td>109095</td><td>114352</td><td>108745</td><td>106215</td><td>110223</td><td>107441</td><td>108377</td><td>115307</td><td>108348</td><td>110888</td></tr>
+		
+	
+
+	
+		
+			<tr><td style="text-align:left">UTR3</td><td>3227</td><td>3755</td><td>3199</td><td>3133</td><td>3234</td><td>3718</td><td>3724</td><td>3363</td><td>3425</td><td>3182</td><td>3264</td><td>3503</td><td>3217</td><td>3194</td><td>3253</td><td>3186</td><td>3233</td><td>3409</td><td>3165</td><td>3155</td></tr>
+		
+	
+
+	
+		
+			<tr><td style="text-align:left">UTR5</td><td>412</td><td>449</td><td>353</td><td>367</td><td>383</td><td>409</td><td>450</td><td>405</td><td>396</td><td>389</td><td>364</td><td>415</td><td>389</td><td>370</td><td>413</td><td>377</td><td>385</td><td>387</td><td>360</td><td>392</td></tr>
+		
+	
+
+	
+		
+			<tr><td style="text-align:left">splicing</td><td>64</td><td>62</td><td>48</td><td>56</td><td>59</td><td>72</td><td>61</td><td>48</td><td>53</td><td>54</td><td>56</td><td>55</td><td>41</td><td>56</td><td>47</td><td>43</td><td>50</td><td>56</td><td>52</td><td>55</td></tr>
+		
+	
+
+	
+		
+			<tr><td style="text-align:left">ncRNA_exonic</td><td>833</td><td>927</td><td>799</td><td>780</td><td>799</td><td>930</td><td>932</td><td>794</td><td>798</td><td>805</td><td>806</td><td>874</td><td>818</td><td>799</td><td>858</td><td>827</td><td>817</td><td>877</td><td>757</td><td>794</td></tr>
+		
+	
+
+	
+		
+			<tr><td style="text-align:left">ncRNA_intronic</td><td>18442</td><td>21360</td><td>18328</td><td>18254</td><td>18527</td><td>20704</td><td>21191</td><td>19199</td><td>19304</td><td>18624</td><td>18441</td><td>19640</td><td>18779</td><td>17959</td><td>19009</td><td>18458</td><td>18170</td><td>19914</td><td>18061</td><td>18741</td></tr>
+		
+	
+
+	
+		
+			<tr><td style="text-align:left">ncRNA_splicing</td><td>7</td><td>4</td><td>5</td><td>8</td><td>4</td><td>8</td><td>8</td><td>3</td><td>3</td><td>4</td><td>6</td><td>3</td><td>6</td><td>5</td><td>8</td><td>6</td><td>8</td><td>6</td><td>5</td><td>3</td></tr>
+		
+	
+
+	
+		
+			<tr><td style="text-align:left">upstream</td><td>2099</td><td>2391</td><td>2021</td><td>2033</td><td>2034</td><td>2315</td><td>2311</td><td>2195</td><td>2137</td><td>2016</td><td>2030</td><td>2211</td><td>1953</td><td>2043</td><td>2016</td><td>2052</td><td>2067</td><td>2210</td><td>2020</td><td>2131</td></tr>
+		
+	
+
+	
+		
+			<tr><td style="text-align:left">downstream</td><td>2123</td><td>2642</td><td>2177</td><td>2167</td><td>2264</td><td>2461</td><td>2551</td><td>2322</td><td>2358</td><td>2143</td><td>2203</td><td>2241</td><td>2190</td><td>2123</td><td>2225</td><td>2150</td><td>2163</td><td>2377</td><td>2106</td><td>2254</td></tr>
+		
+	
+
+	
+		
+			<tr><td style="text-align:left">intergenic</td><td>144891</td><td>167446</td><td>145474</td><td>144282</td><td>145643</td><td>163404</td><td>165283</td><td>150930</td><td>151124</td><td>146452</td><td>145180</td><td>153675</td><td>146143</td><td>143460</td><td>148802</td><td>145853</td><td>145235</td><td>155467</td><td>143830</td><td>148168</td></tr>
+		
+	
+
+	
+		
+			<tr><td style="text-align:left">Total</td><td>375915</td><td>430179</td><td>376115</td><td>372386</td><td>383665</td><td>421956</td><td>429401</td><td>398451</td><td>390607</td><td>381151</td><td>376421</td><td>395121</td><td>381772</td><td>369088</td><td>387707</td><td>378468</td><td>378718</td><td>401563</td><td>371923</td><td>387092</td></tr>
+		
+	
+
+</table>
+</p>
+</div>
+
+
+<p class="tremark">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Note: <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) Sample name: Sample ID.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) CDS: The number of InDels in coding region.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;frameshift_deletion: A deletion of one or more nucleotides that cause frameshift changes in protein coding sequence.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;frameshift_insertion: An insertion of one or more nucleotides that cause frameshift changes in protein coding sequence.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nonframeshift_deletion: A deletion that does not cause frameshift changes.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nonframeshift_insertion: An insertion that does not cause frameshift changes.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stopgain: An insertion or a deletion that leads to the creation of stop codon at the variant site.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stoploss: An insertion or a deletion that leads to the elimination of stop codon at the variant site.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unknown: Unknown function (due to various errors in the gene structure definition in the database file).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3) intronic: The number of InDels in intronic region.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(4) UTR3: The number of InDels in 3’UTR region.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(5) UTR5: The number of InDels in 5’UTR region.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(6) splicing: The number of InDels within 2-bp of a splicing junction.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(7) ncRNA_exonic: The number of InDels in exonic region of non-coding RNAs.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(8) ncRNA_intronic: The number of InDels in intronic region of non-coding RNAs.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(9) ncRNA_splicing: The number of InDels within 2-bp of a splicing junction of non-coding RNAs.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(10) upstream: The number of InDels within 1kb away from transcription start site.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(11) downstream: The number of InDels within 1kb away from transcription end site.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(12) intergenic: The number of InDels in intergenic region.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(13) Total: The total number of InDels.</p>
+<br />
+<br />
+<p class="center">
+<div class="albumSlider1 albumSlider">
+<div class="fullview"><img src=/></div>
+<div class="slider">
+<div class="button movebackward" title="向上滚动"></div>
+<div class="imglistwrap"><ul class="imglist">
+
+	<li><a id="example2" href='src/pictures/INDEL/S247P347.indel.png' ><img src='src/pictures/INDEL/S247P347.indel.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/INDEL/S68X45R9.indel.png' ><img src='src/pictures/INDEL/S68X45R9.indel.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/INDEL/S31E37I2.indel.png' ><img src='src/pictures/INDEL/S31E37I2.indel.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/INDEL/S2441B4H.indel.png' ><img src='src/pictures/INDEL/S2441B4H.indel.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/INDEL/S2X2YM84.indel.png' ><img src='src/pictures/INDEL/S2X2YM84.indel.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/INDEL/S44UHO8I.indel.png' ><img src='src/pictures/INDEL/S44UHO8I.indel.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/INDEL/S4C832ZV.indel.png' ><img src='src/pictures/INDEL/S4C832ZV.indel.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/INDEL/S31Q39P8.indel.png' ><img src='src/pictures/INDEL/S31Q39P8.indel.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/INDEL/S4D9T917.indel.png' ><img src='src/pictures/INDEL/S4D9T917.indel.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/INDEL/S56NRSOS.indel.png' ><img src='src/pictures/INDEL/S56NRSOS.indel.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/INDEL/S66CRL97.indel.png' ><img src='src/pictures/INDEL/S66CRL97.indel.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/INDEL/S2XMV42S.indel.png' ><img src='src/pictures/INDEL/S2XMV42S.indel.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/INDEL/S44958WX.indel.png' ><img src='src/pictures/INDEL/S44958WX.indel.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/INDEL/S1M3982B.indel.png' ><img src='src/pictures/INDEL/S1M3982B.indel.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/INDEL/S5U61CS8.indel.png' ><img src='src/pictures/INDEL/S5U61CS8.indel.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/INDEL/S526QKRQ.indel.png' ><img src='src/pictures/INDEL/S526QKRQ.indel.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/INDEL/S564M43P.indel.png' ><img src='src/pictures/INDEL/S564M43P.indel.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/INDEL/S5FMHE58.indel.png' ><img src='src/pictures/INDEL/S5FMHE58.indel.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/INDEL/S676NAX5.indel.png' ><img src='src/pictures/INDEL/S676NAX5.indel.JPEG'/></a></li>
+
+	<li><a id="example2" href='src/pictures/INDEL/S5N62L54.indel.png' ><img src='src/pictures/INDEL/S5N62L54.indel.JPEG'/></a></li>
+
+
+</ul></div>
+<div class="button moveforward" title="向下滚动"></div>
+</div>
+</div>
+
+<p class="name_fig">Figure 4.8　Number of InDels in various genomic regions (left); number ofdifferent types of InDels in coding region (right)</p>
+
+<!--<p class="name_fig">Figure 4.2　Number of InDels in various genomic regions (left); number of different types of InDels in coding region (right)</p>-->
+<p class="premark">&nbsp</p>
+</p>
+
+<div id="tb">
+	<p class="center">
+<p class="name_fig">Table 4.6 Feature of InDels in genome</p>
+<!--<p class="name_fig">Table 4.4 Feature of InDels in genome</p>-->
+<table class="gy">
+
+	
+		<tr><th>Sample name</th><th>S247P347</th><th>S68X45R9</th><th>S31E37I2</th><th>S2441B4H</th><th>S2X2YM84</th><th>S44UHO8I</th><th>S4C832ZV</th><th>S31Q39P8</th><th>S4D9T917</th><th>S56NRSOS</th><th>S66CRL97</th><th>S2XMV42S</th><th>S44958WX</th><th>S1M3982B</th><th>S5U61CS8</th><th>S526QKRQ</th><th>S564M43P</th><th>S5FMHE58</th><th>S676NAX5</th><th>S5N62L54</th></tr>
+	<!--	    <tr><th>Sample</th><th>S247P347</th><th>S68X45R9</th><th>S31E37I2</th><th>S2441B4H</th><th>S2X2YM84</th><th>S44UHO8I</th><th>S4C832ZV</th><th>S31Q39P8</th><th>S4D9T917</th><th>S56NRSOS</th><th>S66CRL97</th><th>S2XMV42S</th><th>S44958WX</th><th>S1M3982B</th><th>S5U61CS8</th><th>S526QKRQ</th><th>S564M43P</th><th>S5FMHE58</th><th>S676NAX5</th><th>S5N62L54</th></tr>-->
+	
+
+	
+		<tr><td style="text-align:left">Total</td><td>375915</td><td>430179</td><td>376115</td><td>372386</td><td>383665</td><td>421956</td><td>429401</td><td>398451</td><td>390607</td><td>381151</td><td>376421</td><td>395121</td><td>381772</td><td>369088</td><td>387707</td><td>378468</td><td>378718</td><td>401563</td><td>371923</td><td>387092</td></tr>
+	
+
+	
+		<tr><td style="text-align:left">Het</td><td>317299</td><td>366726</td><td>317556</td><td>314861</td><td>320676</td><td>357619</td><td>363909</td><td>331862</td><td>331754</td><td>320086</td><td>317949</td><td>336477</td><td>320405</td><td>312540</td><td>325818</td><td>319032</td><td>318475</td><td>340106</td><td>315087</td><td>325372</td></tr>
+	
+
+	
+		<tr><td style="text-align:left">Hom</td><td>58616</td><td>63453</td><td>58559</td><td>57525</td><td>62989</td><td>64337</td><td>65492</td><td>66589</td><td>58853</td><td>61065</td><td>58472</td><td>58644</td><td>61367</td><td>56548</td><td>61889</td><td>59436</td><td>60243</td><td>61457</td><td>56836</td><td>61720</td></tr>
+	
+
+	
+		<tr><td style="text-align:left">dbSNP percentage</td><td>369150 (98.20%)</td><td>421186 (97.91%)</td><td>369665 (98.29%)</td><td>366361 (98.38%)</td><td>376842 (98.22%)</td><td>412872 (97.85%)</td><td>420522 (97.93%)</td><td>390208 (97.93%)</td><td>383721 (98.24%)</td><td>374224 (98.18%)</td><td>369840 (98.25%)</td><td>387742 (98.13%)</td><td>374447 (98.08%)</td><td>363248 (98.42%)</td><td>380287 (98.09%)</td><td>372348 (98.38%)</td><td>372092 (98.25%)</td><td>393589 (98.01%)</td><td>365833 (98.36%)</td><td>379666 (98.08%)</td></tr>
+	
+
+	
+		<tr><td style="text-align:left">novel</td><td>6765</td><td>8993</td><td>6450</td><td>6025</td><td>6823</td><td>9084</td><td>8879</td><td>8243</td><td>6886</td><td>6927</td><td>6581</td><td>7379</td><td>7325</td><td>5840</td><td>7420</td><td>6120</td><td>6626</td><td>7974</td><td>6090</td><td>7426</td></tr>
+	
+
+</table>
+</p>
+</div>
+
+
+<p class="tremark">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Note:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) Sample name: Sample ID.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) Total: The total number of InDels.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3) Het: The number of heterozygotes.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(4) Hom: The number of homozygotes.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(5) dbSNP percentage: The number of InDels that have been reported in dbSNP database divided by the total number of InDels.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(6) novel: The number of InDels that have not been reported in dbSNP database.<br />
+<p class="premark">&nbsp</p>
+
+
+</div>
+
+
+
+
+
+<!----------------------------------------- CNV结果  --------------------------------------------------->
+<div id="page">
+
+<a name="CNV检测结果"></a>
+<hr />
+</p><br />
+<h4>4.4.3 CNV Detection Result</h4>
+<p class="paragraph">Copy number variants (CNVs) are genetic variants that lead to variation in copy number of relatively large fragment (longer than 50 bp) among individuals. There are two types of CNVs, i.e. gains and losses of copies. CNVs may form the underlying genetic basis of individual differences and cancer. The statistics of detected CNVs are listed below: </p>  
+
+<p class="center">
+
+<p class="name_fig">Table 4.8 CNV detection result</p>
+
+<!--<p class="name_fig">Table 4.5 CNV detection result</p>-->
+<div id="tb">
+<table class="gy">
+<tr><th>Sample name</th><th>gain_count</th><th>gain_size</th><th>loss_count</th><th>loss_size</th><th>total_count</th><th>total_size</th></tr>
+
+	
+    	<tr><td>S247P347</td><td>1</td><td>58000000</td><td>1</td><td>6000000</td><td>2</td><td>64000000</td></tr>
+	
+
+	
+		<tr><td>S68X45R9</td><td>2</td><td>65000000</td><td>0</td><td>0</td><td>2</td><td>65000000</td></tr>
+	
+
+	
+		<tr><td>S31E37I2</td><td>1</td><td>58000000</td><td>0</td><td>0</td><td>1</td><td>58000000</td></tr>
+	
+
+	
+		<tr><td>S2441B4H</td><td>1</td><td>58000000</td><td>1</td><td>28000000</td><td>2</td><td>86000000</td></tr>
+	
+
+	
+		<tr><td>S2X2YM84</td><td>1</td><td>58000000</td><td>0</td><td>0</td><td>1</td><td>58000000</td></tr>
+	
+
+	
+		<tr><td>S44UHO8I</td><td>1</td><td>58000000</td><td>0</td><td>0</td><td>1</td><td>58000000</td></tr>
+	
+
+	
+		<tr><td>S4C832ZV</td><td>1</td><td>58000000</td><td>0</td><td>0</td><td>1</td><td>58000000</td></tr>
+	
+
+	
+		<tr><td>S31Q39P8</td><td>1</td><td>58000000</td><td>0</td><td>0</td><td>1</td><td>58000000</td></tr>
+	
+
+	
+		<tr><td>S4D9T917</td><td>1</td><td>58000000</td><td>0</td><td>0</td><td>1</td><td>58000000</td></tr>
+	
+
+	
+		<tr><td>S56NRSOS</td><td>0</td><td>0</td><td>1</td><td>6000000</td><td>1</td><td>6000000</td></tr>
+	
+
+	
+		<tr><td>S66CRL97</td><td>1</td><td>58000000</td><td>0</td><td>0</td><td>1</td><td>58000000</td></tr>
+	
+
+	
+		<tr><td>S2XMV42S</td><td>1</td><td>58000000</td><td>0</td><td>0</td><td>1</td><td>58000000</td></tr>
+	
+
+	
+		<tr><td>S44958WX</td><td>1</td><td>58000000</td><td>1</td><td>6000000</td><td>2</td><td>64000000</td></tr>
+	
+
+	
+		<tr><td>S1M3982B</td><td>1</td><td>58000000</td><td>0</td><td>0</td><td>1</td><td>58000000</td></tr>
+	
+
+	
+		<tr><td>S5U61CS8</td><td>1</td><td>58000000</td><td>0</td><td>0</td><td>1</td><td>58000000</td></tr>
+	
+
+	
+		<tr><td>S526QKRQ</td><td>1</td><td>58000000</td><td>1</td><td>6000000</td><td>2</td><td>64000000</td></tr>
+	
+
+	
+		<tr><td>S564M43P</td><td>1</td><td>58000000</td><td>0</td><td>0</td><td>1</td><td>58000000</td></tr>
+	
+
+	
+		<tr><td>S5FMHE58</td><td>1</td><td>58000000</td><td>0</td><td>0</td><td>1</td><td>58000000</td></tr>
+	
+
+	
+		<tr><td>S676NAX5</td><td>1</td><td>58000000</td><td>0</td><td>0</td><td>1</td><td>58000000</td></tr>
+	
+
+	
+		<tr><td>S5N62L54</td><td>1</td><td>58000000</td><td>1</td><td>6000000</td><td>2</td><td>64000000</td></tr>
+	
+
+</table>
+</div>
+</p>
+<!--
+<p class="tremark">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Note:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) Sample name: Sample ID.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) varType: CNV Type.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3) total: The total number of CNV.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(4) cds: The number of CNV in CDS region.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(5) splicing: The number of CNV in splicing junction region.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(6) intron: The number of CNV in intronic region.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(7) UTR5: The number of CNV in 5’UTR region.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(8) UTR3: The number of CNV in 3’UTR region.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(9) intronic: The number of CNV in intronic region.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(10) upstream: The number of CNV within 1Kb away from transcription start site.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(11) downstream: The number of CNV within 1kb away from transcription end site.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(12) unknown: The number of CNV in region with unknown function (due to various errors in the gene structure definition in the database file).</p>
+<p class="premark">&nbsp</p>-->
+
+<p class="tremark">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Note: <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1) Sample name: Sample ID.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2) gain_count: The number of gains.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3) gain_size: The total size of gains.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(4) loss_count: The number of losses.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(5) loss_size: The total size of losses.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(6) total_count: The total number of CNVs.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(7) total_size: The total size of CNVs.</p>
+<p class="premark">&nbsp</p>
+
+<p class="center">
+<img class="normal" src="src/pictures/SV/cnv_type_stat.png" />
+
+	
+	<p class="name_fig">Figure 4.10　The size of genomic regions affected by CNVs in each sample</p>
+	
+<!--	
+
+<!--<p class="name_fig">Figure 4.3　The size of genomic regions affected by CNVs in each sample</p>-->
+<p class="premark">The x-axis represents samples name, and the y-axis represents the total size of genomic regions affected by gains or losses (Mb)</p>
+<p class="premark">&nbsp</p>
+</p>
+
+</div>
+
+
+
+
+
+
+<div id="page">
+
+<a name="SNP/InDel结果注释"></a>
+<hr />
+</p><br />
+<h4>4.4.4 Variant Annotation</h4> 
+<p class="paragraph">Following genomic variant detection, annotation of variants with the tool ANNOVAR (Wang K et al.) in multiple aspects are performed, including protein coding changes, genomic regions affected by the variants, allele frequency, deleteriousness prediction, etc. The main databases used are as follows:<br />
+<ul>
+<li style="font-size: 0.6em">RefSeq and Gencode databases were used to find genomic regions affected by the variant and possible changes in protein. </li>
+<li style="font-size: 0.6em">We annotated the features of the genomic regions affected by the variants, such as cytoband, small RNA, conserved mammalian microRNA regulatory target sites, conservative regions of vertebrates, transcription factor binding sites, repeats, etc. </li>
+<li style="font-size: 0.6em">SIFT, PolyPhen, MutationAssessor, LRT and CADD scores were used to predict the deleteriousness of mutations. GERP++ scores were used to access the conservation of mutations.</li>
+<li style="font-size: 0.6em">The established databases, such as 1000 Human Genome, Exome Aggregation Consortium (ExAC), Genome Aggregation Database (gnomAD) and exome sequencing project (ESP), were used to find alternative allele frequencies in populations that are reported.</li>
+<li style="font-size: 0.6em">Databases dbSNP, COSMIC, OMIM, GWAS Catalog and HGMD were used to find reported information of the variant, such as top SNPs in GWAS and cancer/disease associations. </li>
+<li style="font-size: 0.6em">Databases including Gene Ontology, KEGG, Reactome, Biocarta and PID were applied to provide functional or pathway annotation. </li>
+</ul></p>
+
+<p class="center">
+
+<p class="name_fig">Table 4.9　Example of annotation result</p>
+
+<!--<p class="name_fig">Table 4.6　Example of annotation result</p>-->
+<div id="tb">
+<table class="gy">
+
+    
+	    <tr><th>CHROM</th><th>POS</th><th>ID</th><th>REF</th><th>ALT</th><th>QUAL</th><th>FILTER</th><th>GeneName</th><th>Func</th><th>Gene</th><th>GeneDetail</th><th>ExonicFunc</th><th>AAChange</th><th>Gencode</th><th>cytoBand</th><th>wgRna</th><th>targetScanS</th><th>tfbsConsSites</th><th>genomicSuperDups</th><th>Repeat</th><th>avsnp150</th><th>cosmic70</th><th>CLNALLELEID</th><th>CLNDN</th><th>CLNDISDB</th><th>CLNREVSTAT</th><th>CLNSIG</th><th>gwasCatalog</th><th>1000g2015aug_eas</th><th>1000g2015aug_sas</th><th>1000g2015aug_eur</th><th>1000g2015aug_afr</th><th>1000g2015aug_amr</th><th>1000g2015aug_all</th><th>esp6500siv2_all</th><th>ExAC_ALL</th><th>ExAC_AFR</th><th>ExAC_AMR</th><th>ExAC_EAS</th><th>ExAC_FIN</th><th>ExAC_NFE</th><th>ExAC_OTH</th><th>ExAC_SAS</th><th>genomAD_exome_AF</th><th>genomAD_exome_AF_raw</th><th>genomAD_exome_AF_afr</th><th>genomAD_exome_AF_sas</th><th>genomAD_exome_AF_amr</th><th>genomAD_exome_AF_eas</th><th>genomAD_exome_AF_nfe</th><th>genomAD_exome_AF_fin</th><th>genomAD_exome_AF_asj</th><th>genomAD_exome_AF_oth</th><th>genomAD_genome_AF</th><th>genomAD_genome_AF_raw</th><th>genomAD_genome_AF_afr</th><th>genomAD_genome_AF_sas</th><th>genomAD_genome_AF_amr</th><th>genomAD_genome_AF_eas</th><th>genomAD_genome_AF_nfe</th><th>genomAD_genome_AF_fin</th><th>genomAD_genome_AF_asj</th><th>genomAD_genome_AF_oth</th><th>SIFT</th><th>Polyphen2_HDIV</th><th>Polyphen2_HVAR</th><th>LRT</th><th>MutationTaster</th><th>MutationAssessor</th><th>FATHMM</th><th>phyloP100way_vertebrate</th><th>phyloP20way_mammalian</th><th>SiPhy_29way_logOdds</th><th>gerp++gt2</th><th>CADD13</th><th>INFO</th><th>FORMAT</th><th>S5N62L54</th><th>Ori_REF</th><th>Ori_ALT</th><th>OMIM</th><th>GWAS_Pubmed_pValue</th><th>HGMD_ID_Diseasename</th><th>HGMD_mutation</th><th>GO_BP</th><th>GO_CC</th><th>GO_MF</th><th>KEGG_PATHWAY</th><th>PID_PATHWAY</th><th>BIOCARTA_PATHWAY</th><th>REACTOME_PATHWAY</th></tr>
+	
+
+    
+		<tr><td style="text-align:left">chr1</td><td>13116</td><td>rs62635286</td><td>T</td><td>G</td><td>474.35</td><td>.</td><td>DDX11L1</td><td>ncRNA_intronic;ncRNA_intronic</td><td>NR_046018,NR_148357</td><td>.</td><td>.</td><td>.</td><td>ENST00000456328.2</td><td>1p36.33</td><td>.</td><td>.</td><td>.</td><td>Score=0.993729;Name=chr9:10843</td><td>.</td><td>rs62635286</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>0.0248</td><td>0.1534</td><td>0.1869</td><td>0.0295</td><td>0.121</td><td>0.0970447</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>0.5422</td><td>0.5290</td><td>0.5050</td><td>.</td><td>0.5784</td><td>0.4577</td><td>0.5509</td><td>0.6110</td><td>0.5372</td><td>0.5333</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>AC=2;AF=0.438;AN=2;BaseQRankSum=0.674;ClippingRankSum=0;DP=32;ExcessHet=0.1809;FS=0;MLEAC=8;MLEAF=0.5;MQ=20.57;MQRankSum=-1.96;QD=31.62;ReadPosRankSum=-0.598;SOR=1.329</td><td>GT:AD:DP:GQ:PGT:PID:PL</td><td>1/1:0,4:4:12:1|1:13116_T_G:180,12,0</td><td>T</td><td>G</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td></tr>
+	
+
+    
+		<tr><td style="text-align:left">chr1</td><td>13116</td><td>rs62635286</td><td>T</td><td>G</td><td>.</td><td>PASS</td><td>DDX11L1</td><td>ncRNA_intronic;ncRNA_intronic</td><td>NR_046018,NR_148357</td><td>.</td><td>.</td><td>.</td><td>ENST00000456328.2</td><td>1p36.33</td><td>.</td><td>.</td><td>.</td><td>Score=0.993729;Name=chr9:10843</td><td>.</td><td>rs62635286</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>0.0248</td><td>0.1534</td><td>0.1869</td><td>0.0295</td><td>0.121</td><td>0.0970447</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>0.5422</td><td>0.5290</td><td>0.5050</td><td>.</td><td>0.5784</td><td>0.4577</td><td>0.5509</td><td>0.6110</td><td>0.5372</td><td>0.5333</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>AC=2;AN=2</td><td>GT</td><td>1/1:0,4:4:12:1|1:13116_T_G:180,12,0</td><td>T</td><td>G</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td></tr>
+	
+
+    
+		<tr><td style="text-align:left">chr1</td><td>13118</td><td>rs62028691</td><td>A</td><td>G</td><td>474.35</td><td>.</td><td>DDX11L1</td><td>ncRNA_intronic;ncRNA_intronic</td><td>NR_046018,NR_148357</td><td>.</td><td>.</td><td>.</td><td>ENST00000456328.2</td><td>1p36.33</td><td>.</td><td>.</td><td>.</td><td>Score=0.993729;Name=chr9:10843</td><td>.</td><td>rs62028691</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>0.0248</td><td>0.1534</td><td>0.1869</td><td>0.0295</td><td>0.121</td><td>0.0970447</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>0.5411</td><td>0.5273</td><td>0.5014</td><td>.</td><td>0.5777</td><td>0.4542</td><td>0.5507</td><td>0.6113</td><td>0.5372</td><td>0.5333</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>AC=2;AF=0.438;AN=2;BaseQRankSum=0;ClippingRankSum=0;DP=32;ExcessHet=0.1809;FS=0;MLEAC=8;MLEAF=0.5;MQ=20.57;MQRankSum=-1.96;QD=31.62;ReadPosRankSum=-1.036;SOR=1.329</td><td>GT:AD:DP:GQ:PGT:PID:PL</td><td>1/1:0,4:4:12:1|1:13116_T_G:180,12,0</td><td>A</td><td>G</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td></tr>
+	
+
+    
+		<tr><td style="text-align:left">chr1</td><td>13118</td><td>rs62028691</td><td>A</td><td>G</td><td>.</td><td>PASS</td><td>DDX11L1</td><td>ncRNA_intronic;ncRNA_intronic</td><td>NR_046018,NR_148357</td><td>.</td><td>.</td><td>.</td><td>ENST00000456328.2</td><td>1p36.33</td><td>.</td><td>.</td><td>.</td><td>Score=0.993729;Name=chr9:10843</td><td>.</td><td>rs62028691</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>0.0248</td><td>0.1534</td><td>0.1869</td><td>0.0295</td><td>0.121</td><td>0.0970447</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>0.5411</td><td>0.5273</td><td>0.5014</td><td>.</td><td>0.5777</td><td>0.4542</td><td>0.5507</td><td>0.6113</td><td>0.5372</td><td>0.5333</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>AC=2;AN=2</td><td>GT</td><td>1/1:0,4:4:12:1|1:13116_T_G:180,12,0</td><td>A</td><td>G</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td></tr>
+	
+
+</table>
+</div>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Note: </b>Annotation information includes five parts: Chromosoma regions and gene structures related to this variation (1-20), Database annotation (21-63), Functional prediction (64-75), Basic information on the variation (76-80), and Gene function and pathway annotation (81-91).<br />
+
+
+<p class="premark">&nbsp;</p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>The first item is chrosomal regions and gene structures related to this variation--The Gene where the variation sites located may be associated with certain diseases. Novogene annotates chrosomal regions and gene structures related to this variation, to help teachers understand gene structure and areas information.</b><br />
+
+<p class="premark">&nbsp;</p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(1) CHROM: </b>Chromosome ID.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(2) POS: </b>The position of the variant on chromosomes. The value refers to the position of the first base in the REF sting.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(3) ID: </b>The rs number of the variant in dbSNP.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(4) REF: </b>Reference base(s).<br />
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(5) ALT: </b>Alternate base(s). Comma separated list of alternate non-reference alleles detected in at least one of the samples.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(6) QUAL: </b>Quality value for the variant. Phred-scaled quality score for the assertion made in ALT. i.e. -10log10 prob (call in ALT is wrong).<br />
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(7) FILTER: </b>Filter status, PASS if the position has passed all filters.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(8) GeneName: </b>Names of genes in which this variant is located according to the refGene annotations.<br />
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(9) Func: </b>This field tells whether the variant hits exons or hits intergenic regions, or hits introns, or hits non-coding RNA genes. The value of this field takes the following precedence: exonic = splicing > ncRNA > UTR5/UTR3 > intronic > upstream/downstream > intergenic. Notes: 1. When a variant hits different genes or transcripts, the variant may fit multiple functional categories, and then the precedence mentioned above is used to decide what function to print out; 2. The 'exonic' here refers only to coding exonic portion, but not UTR portion, as there are two keywords (UTR5, UTR3) that are specifically reserved for UTR annotations; 3. If a variant is located in both 5'UTR and 3'UTR region (possibly for two different genes), then the 'UTR5,UTR3' will be printed as the output; 4. 'splicing' in ANNOVAR is defined as variant that is within 2bp away from an exon/intron boundary by default; 5. 'splicing' in ANNOVAR only refers to the 2bp in the intron that is close to an exon; 6. The term 'upstream' and 'downstream' is defined as 1kb away from transcription start site or transcription end site, respectively, taking in account of the strand of the mRNA. If a variant is located in both downstream and upstream region (possibly for 2 different genes), then the 'upstream, downstream' will be printed as the output.<br />
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(10) Gene: </b>The transcript name(s). If a variant has 'intergenic' in 'Func' field, this field will give two neighboring transcripts. If a variant hits multiple transcripts with different functional categories, only transcript names in accordance with the value of 'Func' field will be output. For example, rs333970 hits the exonic, splicing, intronic, exonic of the four transcripts of gene CSF1, the 'Func' value will be 'exonic; splicing' and the 'Gene' value will be 'NM_000757, NM_172210, NM_172212' (NM_172211 will be ignored).<br />
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(11) GeneDetail: </b>Description of the sequence change in UTR, splicing, ncRNA_splicing or intergenic region. If 'Func' is 'exonic; splicing' or 'splicing', this field gives the sequence change in splicing region(s); for example, NM_172210:exon6:c.1090+5C>A, NM_172210 is the transcript identifier; exon6:c.1090+5C>A is the sequence change and means that this C>A substitution is at the fifth base downstream from the 6th exon (1090 is the end position of the 6th exon of the cDNA). If 'Func' is 'intergenic', this field gives the distance to the neighboring transcripts, such as 'dist=1366; dist=22344'. If 'Func' is 'UTR*', this field gives the sequence change in UTR; for example, NM_198576:c.*19C>T means that this C>T substitution is at the 19th base downstream from stop codon on NM_198576.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(12) ExonicFunc: </b>This field tells the functional consequences of the variant (possible values included: missense SNV, synonymous SNV, frameshift insertion, frameshift deletion, nonframeshift insertion, nonframeshift deletion, frameshift block substitution, nonframshift block substitution, stopgain, stoploss, unknown).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(13) AAChange: </b>This field tells the amino acid changes as a result of the exonic variant. Only exonic variants have information in this field, i.e. when 'Func' is 'exonic' or 'exonic; splicing', this field gives the amino acid change in each related transcript. For example, AIM1L:NM_001039775:exon2:c.C2768T:p.P923L, AIM1L is gene name; NM_001039775 is the transcript identifier; exon2 means this variant is on the second exon of NM_001039775; c.C2768T is the sequence change and means that this C>T substitution is at the 2,768 position on the cDNA; p.P923L is the amino acid change and means that the 923 amino acid on protein is changed from Pro to Leu due to this variant. Another example, NADK:NM_001198995:exon10:c.1240_1241insAGG:p.G414delinsEG, c.1240_1241insAGG is the sequence change and means that there is a 3bp insertion between position 1,240 and 1,241 on the cDNA; p.G414delinsEG is the amono acid change and means that Gly at the 414th amino acid on protein is changed to Glu-Gly.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(14) Gencode: </b>The transcript name(s) in which this variant is located according to Gencode gene definitions.<br />
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(15) cytoband: </b>This field gives the Giemsa-stained chromosomes bands. When a variant spans multiple bands, they will be connected by a dash (for example, 1q21.1-q23.3).<br />
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(16) wgRna: </b>Gene names of snoRNAs and microRNAs based on the miRBase Release and snoRNABase.<br />
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(17) targetScanS: </b>The targetScanS annotation database offered by UCSC gives conserved mammalian microRNA regulatory target sites for conserved microRNA families in the 3' UTR regions of Refseq Genes, as predicted by TargetScanHuman 5.1. This field tells whether the variant disrupts predicted microRNA binding sites. The output consists of a score and a name. The score of target site ranges from 0-1000; the smaller the score, the target site is more confident. The name shows the name of microRNA acting on the target. For instance, “Score=62;Name=KRAS:miR-181:1” means that the predicted target site is within the UTR3 region of gene KRAS and that the microRNA named miR-181:1 acts on this target site.<br />
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(18) tfbsConsSites: </b>This field tells whether the variant disrupts transcription factor binding sites conserved in the human/mouse/rat alignment and gives the Score and Name annotation for the transcription factor binding sites. The score represents the normalized score. The name represents binding site motif name. For example, Score=765;Name=V$PAX5_02. Users can investigate what transcription factors may recognize this motif using many online resources, for example, MSigDB provides gene list that recognize these motifs, see for example http://www.broadinstitute.org/gsea/msigdb/cards/V$PAX5_02.<br />
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(19) genomicSuperDups: </b>This field tells whether the variant hits segmental duplications in reference genome. Variants that mapped to segmental duplications are most likely sequence alignment errors and should be treated with extreme caution. The 'Score' field in output is the sequence identity ranging from 0 to 1 between two genomic segments. The 'Name' field represents the other "matching" segments in genome. For example, 'Score=0.994828;Name=chr19:60000' means that the fragment at the position of chr19:60000 is homologous to the fragment containing this variant, and the sequence identity is 0.994828. Note, for a region to be included in the segmental duplications, at least 1 Kb of the total sequence (containing at least 500bp of non-RepeatMasked sequence) had to align and a sequence identity of at least 90% was required.<br />
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(20) Repeat: </b>This field tells whether the variant hits interspersed repeats and low complexity DNA sequences output by RepeatMasker program, such as SINE, LINE and Simple repeats. For example, 'Score=180;Name=1385:(CACCC) n(Simple_repeat)', 180 is the score of the repeat, (CACCC) n is the name of the repeat, 'Simple_repeat' is type of repeat. Note, variants mapped to repeats are likely to be false and should be treated with extreme caution.<br />
+
+<p class="premark">&nbsp;</p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>The second item is database annotataion—There are a great number of common polymorphism sites in human population, while many deleterious variants are rare or low-frequency. This part gives the allele frequency and clinical information for each variant.</b> <br />
+<p class="premark">&nbsp;</p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(21) avsnp150: </b>The RS number of the variant in dbSNP database (build 150).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(22) cosmic70: </b>The Cosmic id in Catalogue Of Somatic Mutations In Cancer (COSMIC) database.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(23) CLNALLELEID: </b>The ClinVar Allele ID.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(24) CLNDN: </b>ClinVar's preferred disease name for the concept specified by disease identifiers in CLNDISDB.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(25) CLNDISDB: </b>Tag-value pairs of disease database name and identifier, e.g. OMIM: NNNNNN.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(26) CLNREVSTAT: </b>ClinVar review status for the Variation ID.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(27) CLNSIG: </b>Clinical significance for this single variant.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(28) gwasCatalog: </b>This field tells whether this variant was previously reported to be associated with diseases or traits in genome-wide association studies. It lists the disease names related to this variation. "." means this variation has not been reported by published GWAS study.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(29) 1000g2015aug_eas: </b>This field gives the allele frequency for the allele in ALT in 1000 Genomes Project (released in August, 2015) in East Asian population.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(30) 1000g2015aug_sas: </b>This field gives the allele frequency for the allele in ALT in 1000 Genomes Project (released in August, 2015) in South Asian population.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(31) 1000g2015aug_eur: </b>This field gives the allele frequency for the allele in ALT in 1000 Genomes Project (released in August, 2015) in European population.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(32) 1000g2015aug_afr: </b>This field gives the allele frequency for the allele in ALT in 1000 Genomes Project (released in August, 2015) in African population.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(33) 1000g2015aug_amr: </b>This field gives the allele frequency for the allele in ALT in 1000 Genomes Project (released in August, 2015) in Admixed American population.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(34) 1000g2015aug_all: </b>This field gives the allele frequency for the allele in ALT in 1000 Genomes Project (released in August, 2015) in ALL population.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(35) esp6500siv2_all: </b>The ESP is a NHLBI funded exome sequencing project aiming to identify genetic variants in exonic regions from over 6000 individuals, including healthy ones as well as subjects with different diseases. This field gives alternative allele frequency for the variant in ESP.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(36) ExAC_ALL: </b>ExAC is short for Exome Aggregation Consortium. The data set spans 60,706 unrelated individuals and should serve as a useful reference set of allele frequencies for severe disease studies. Currently supported population groups include ALL, AFR (African), AMR (Admixed American), EAS (East Asian), FIN (Finnish), NFE (Non-finnish European), OTH (other) and SAS (South Asian). ExAC_ALL gives alternative allele frequency for the variation in ALL ExAC samples.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(37) ExAC_AFR: </b>The alternative allele frequency for the variation in ExAC for African population.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(38) ExAC_AMR: </b>The alternative allele frequency for the variation in ExAC for Admixed American population.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(39) ExAC_EAS: </b>The alternative allele frequency for the variation in ExAC for East Asian population.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(40) ExAC_FIN: </b>The alternative allele frequency for the variation in ExAC for Finnish population.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(41) ExAC_NFE: </b>The alternative allele frequency for the variation in ExAC for Non-Finnish European population.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(42) ExAC_OTH: </b>The alternative allele frequency for the variation in ExAC for other population.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(43) ExAC_SAS: </b>The alternative allele frequency for the variation in ExAC for South Asian population.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(44) gnomAD_exome_AF: </b>The Genome Aggregation Database (gnomAD), is a coalition of investigators seeking to aggregate and harmonize exome and genome sequencing data from a variety of large-scale sequencing projects, and to make summary data available for the wider scientific community. This release comprises two callsets: exome sequence data from 123,136 individuals and whole genome sequencing from 15,496 individuals. GenomAD 2.1.1 was used for annotation analysis of the mutation sites. gnomAD_exome_AF gives allele frequency for the variation in all exome  samples.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(45) gnomAD_exome_AF_raw: </b>The allele frequency for the variation in gnomAD_exome that is unfiltered.</br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(46) gnomAD_exome_AF_afr: </b>The allele frequency for the variation in gnomAD_exome for African population.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(47) gnomAD_exome_AF_sas: </b>The allele frequency for the variation in gnomAD_exome for South Asian population.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(48) gnomAD_exome_AF_amr: </b>The allele frequency for the variation in gnomAD_exome for Latino/Admixed American population.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(49) gnomAD_exome_AF_eas: </b>The allele frequency for the variation in gnomAD_exome for East Asian population. <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(50) gnomAD_exome_AF_nfe: </b>The allele frequency for the variation in gnomAD_exome for Non-Finnish European population. <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(51) gnomAD_exome_AF_fin: </b>The allele frequency for the variation in gnomAD_exome for  Finnish population.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(52) gnomAD_exome_AF_asj: </b>The allele frequency for the variation in gnomAD_exome for  Ashkenazi Jewish population. <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(53) gnomAD_exome_AF_oth: </b>The allele frequency for the variation in gnomAD_exome for  Other (population not assigned) population. <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(54) gnomAD_genome_AF: </b>gnomAD_genome_AF gives allele frequency for the variation in all genome samples of gnomAD. <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(55) gnomAD_genome_AF_raw: </b>The allele frequency for the variation in gnomAD_genome that is unfiltered.</br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(56) gnomAD_genome_AF_afr: </b>The allele frequency for the variation in gnomAD_genome for African population. <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(57) gnomAD_genome_AF_sas: </b>The allele frequency for the variation in gnomAD_genome for  South Asian population. <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(58) gnomAD_genome_AF_amr: </b>The allele frequency for the variation in gnomAD_genome for  Latino/Admixed American population.  <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(59) gnomAD_genome_AF_eas: </b>The allele frequency for the variation in gnomAD_genome for  East Asian population. <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(60) gnomAD_genome_AF_nfe: </b>The allele frequency for the variation in gnomAD_genome for  Non-Finnish European population.  <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(61) gnomAD_genome_AF_fin: </b>The allele frequency for the variation in gnomAD_genome for  Finnish population. <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(62) gnomAD_genome_AF_asj: </b>The allele frequency for the variation in gnomAD_genome for  Ashkenazi Jewish population. <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(63) gnomAD_genome_AF_oth: </b>The allele frequency for the variation in gnomAD_genome for  Other (population not assigned) population. <br />
+
+<p class="premark">&nbsp;</p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>The third item is functional prediction—These annotations can help to evaluate deleteriousness of a variation. Note 1: SIFT, Polyphen2, MutationTaster, LRT, MutationAssessor and FATHMM are similar and all predict whether an amino acid substitution affects protein function; only coding variants have these annotations. Note 2: phyloP, SiPhy, gerp++ and CADD are similar and predict the conservation level of the site; these types of 'conservation scores' only consider conservation level at the current base, and they do not care about the actual nucleotide identity, so synonymous and non-synonymous variants at the same site will be scored as the same; these scores are used for finding functionally important sites, so variants that confer increased susceptibility may be scored well.</b><br />
+
+<p class="premark">&nbsp;</p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(64) SIFT: </b>SIFT annotation (dbNSFP version 3.3a). The annotation consists of score and categorical prediction; the scores and predictions are separated by comma. There are two possible predictions: D (Deleterious, score&lt=0.05)); T (Tolerated, score&gt0.05).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(65) Polyphen2_HDIV: </b>PolyPhen 2 (dbNSFP version 3.3a) annotation based on HumanDiv database. This annotation should be used when evaluating rare alleles at loci potentially involved in complex phenotypes, dense mapping of regions identified by genome-wide association studies, and analysis of natural selection from sequence data. The annotation consists of score and categorical prediction. There are three possible predictions: D (Porobably damaging, score&gt=0.957), P (possibly damaging, 0.453&lt=score&lt=0.956), B (benign, score&lt=0.452).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(66) Polyphen2_HVAR: </b>PolyPhen 2 (dbNSFP version 3.3a) annotation based on HumanVar database. This annotation should be used for diagnostics of Mendelian diseases. The annotation consists of score and categorical prediction. There are three possible predictions: D (Porobably damaging, score>=0.909), P (possibly damaging, 0.447&lt=score&lt=0.909), B (benign, score&lt=0.446).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(67) LRT: </b>LRT annotation (dbNSFP version 3.3a). The annotation consists of score and categorical prediction. There are three possible predictions: D (Deleterious), N (Neutral), U (Unknown).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(68) MutationTaster: </b>MutationTaster annotation (dbNSFP version 3.3a). The annotation consists of score and categorical prediction. There are four possible predictions: 'A' (Disease_causing_automatic), 'D (Disease_causing), 'N' (Polymorphism), 'P' (Polymorphism_automatic'). D and N are categorized by only score, while A and P are categorized by score and other information (if nonsynonymous SNV leads to stop-gain, the variation will be predicted an 'A'; if all three genotypes of nonsynonymous SNV has frequency information in HapMap, the variation will be predicted a 'P'). So, both A and D should be considered deleterious.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(69) MutationAssessor: </b>MutationAssessor annotation (dbNSFP version 3.3a). The annotation consists of score and categorical prediction. There are four possible predictions: H (high), M (medium), L (low), N (neutral). H/M means functional and L/N means non-functional.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(70) FATHMM: </b>FATHMM annotation (dbNSFP version 3.3a). The annotation consists of score and categorical prediction. There are two possible predictions: D (Deleterious, score&lt=-1.5)); T (Tolerated, score&gt-1.5).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(71) phyloP100way_vertebrate: </b>PhyloP score (dbNSFP version 3.3a) based on the whole genome alignment of 100 vertebrates. Generally, the higher the score, the more conserved the site.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(72) phyloP20way_mammalian: </b>PhyloP score (dbNSFP version 3.3a) based on the whole genome alignment of 20 mammals.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(73) SiPhy_29way_logOdds: </b>SiPhy score (dbNSFP version 3.3a) based on the whole genome alignment of 29 mammals genomes. The larger the score is, the more conserved the site.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(74) gerp++gt2: </b>GERP++ scores for all mutations with GERP++>2 in human genome, as this threshold is typically regarded as evolutionarily conserved and potentially functional. Variants with '.' in this field should be considered not conserved. The larger the score is, the more conserved the site.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(75) CADD: </b>CADD (Combined Annotation Dependent Depletion) is a score that is based on SVM on multiple other scores. It assigns a score to each possible mutation in the human genome including non-coding and coding variants. In the output, the comma-delimited values are raw scores and phred-scaled scores. "." stands for CADD score&lt10. For phred-scaled scores, 10 means 10% percentile highest scores, 20 means 1% percentile highest scores, and 30% means 0.1% percentile highest scores. CADD official website suggests 15 as a cutoff; in published studies, 10 or 15 is used as a cutoff.<br />
+
+<p class="premark">&nbsp;</p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>The fourth item is basic information on the variation  —This part shows the detail information of variation sites, including allelic depths , types of DNA base before and after mutation, and genotype information, et al. these information play a critical role in pedigree analysis.</b> <br />
+
+<p class="premark">&nbsp;</p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(76) INFO: </b>Information about this variation from variant calling software. INFO fields are encoded as a semicolon-separated series of short keys with optional values in the format: &ltkey&gt=&ltdata&gt[,data].<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(77) FORMAT: </b>The FORMAT field specifies the data types and order (colon-separated alphanumeric String). This is followed by one field per sample, with the colon-separated data corresponding to the types specified in the FORMAT.<br />
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GT: genotype, encoded as allele values separated by either of / or |. The allele values are 0 for the reference allele (what is in the Ori_REF field), 1 for the first allele listed in Ori_ALT, 2 for the second allele list in Ori_ALT and so on. 0/0 and 1/1 represent homozygous. 0/1 represents heterozygous. ‘.’ means that a call cannot be made for a sample at a given locus.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AD: Allelic depths for the ref and alt alleles in the order listed (Allelic depths).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DP: Approximate read depth (reads with MQ=255 or with bad mates are filtered).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GQ: Genotype Quality.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PL: Normalized, Phred-scaled likelihoods for genotypes as defined in the VCF specification.<br />
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(78) SampleID: </b>The colon-separated data in this sample corresponding to the types specified in the FORMAT.<br />
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(79) Ori_REF: </b>The reference allele (what is in the REF field) in VCF file. According to the annotation workflow at Novogene (mentioned above), for InDel, the allele in "REF" field in this file may be different from (usually shorter than) the "REF" in VCF file.<br />
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(80) Ori_ALT: </b>The alternative allele(s) (what is in the ALT field) in VCF file. In this file, the allele in "ALT" field corresponds to one alelle in "Ori_ALT" field; according to the annotation workflow at Novogene (mentioned above), for InDel, the allele in "ALT" field may be different from (usually shorter than) the corresponding allele in the "Ori_ALT" field.<br />
+
+<p class="premark">&nbsp;</p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>The fifth item is gene function and pathway annotation: These annotations are for genes containing this variation.</b> <br />
+<p class="premark">&nbsp;</p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(81) OMIM: </b>Annotation from Online Mendelian Inheritance in Man (OMIM).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(82) GWAS_Pubmed_pValue: </b>Annotation from the NHGRI-EBI GWAS Catalog. The value is like 'pubmedID(p-value);pubmedID(p-value)'. 'pubmedID' is PubMed ID of publication of the study which reported the association between the variation and disease. 'p-value' is the corresponding p-value in the publication.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(83) HGMD_ID_Diseasename: </b>Annotation from the Human Gene Mutation Database (HGMD®). The value is like 'ID_HGMD(Disease_name);ID_HGMD(Disease_name)'. ID_HGMD is HGMD internal identifier. Disease_name is the name for the disease or condition associated with the mutation.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(84) HGMD_mutation: </b> Annotation from the Human Gene Mutation Database (HGMD®). The value is infomation about this variant.<br />
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(85-87) GO_BP, GO_CC, GO_MF:</b>Annotation from Gene Ontology. BP is Biological Process; CC is cellular component; MF is molecular function.<br />
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(88) KEGG_PATHWAY: </b>Annotation from KEGG PATHWAY Database.<br />
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(89) PID_PATHWAY: </b>Annotation from PID (Pathway Interaction Database).<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(90) BIOCARTA_PATHWAY: </b>Annotation from BioCarta.<br />
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>(91) REACTOME_PATHWAY: </b>Annotation from Reactome Pathway Database.</p>
+
+
+
+
+</div>
+
+
+
+
+
+
+<br />
+<!-------------------------------------------- 参考文献 ------------------------------------------->
+<div id="page">
+
+<a name="References"></a>
+<hr />
+</p><br />
+
+ <!-- 
+<h2>5 References</h2>
+  -->
+
+  
+<h2>5 References</h2>
+  
+
+  <p class="ref">[1] Li H, Durbin R. Fast and accurate short read alignment with Burrows–Wheeler transform[J]. Bioinformatics, 2009, 25(14): 1754-1760. (BWA_MEM)</br></br>
+
+  [2]  Kent W J, Sugnet C W, Furey T S, et al. The human genome browser at UCSC[J]. Genome research, 2002, 12(6): 996-1006. (UCSC)</br></br>
+
+[3] Picard: http://sourceforge.net/projects/picard/ . (Picard)</br></br>
+
+[4]  DePristo M A, Banks E, Poplin R, et al. A framework for variation discovery and genotyping using next-generation DNA sequencing data[J]. Nature genetics, 2011, 43(5): 491-498. (GATK)</br></br>
+
+[5]  Artem T, Vilella A J, Edwin C, et al. Sambamba: fast processing of NGS alignment formats[J]. Bioinformatics, 2015(12):2032-2034. (Sambamba)</br></br>
+
+[6]  Li H, Handsaker B, Wysoker A, et al. The sequence alignment/map format and SAMtools[J]. Bioinformatics, 2009, 25(16): 2078-2079. (Samtools)</br></br>
+
+[7] Sherry S T, Ward M H, Kholodov M, et al. dbSNP: The NCBI database of genetic variation[J]. Nucleic acids research, 2001, 29(1): 308-311. (dbSNP)</br></br>
+
+
+[8] Wang K, Li M, Hakonarson H. ANNOVAR: Functional annotation of genetic variants from high-throughput sequencing data[J]. Nucleic acids research, 2010, 38(16): e164. (ANNOVAR)</br> </br>
+
+[9] 1000 Genomes Project Consortium. An integrated map of genetic variation from 1,092 human genomes[J]. Nature, 2012, 491(7422): 56-65. (1000g)</br></br>
+
+[10] Hamosh A, Scott A F, Amberger J S, et al. Online Mendelian Inheritance in Man (OMIM), a knowledgebase of human genes and genetic disorders[J]. Nucleic acids research, 2005, 33(suppl 1): D514-D517. (OMIM)</br></br>
+
+[11] Gene Ontology Consortium. The Gene Ontology (GO) database and informatics resource[J]. Nucleic acids research, 2004, 32(suppl 1): D258-D261. (GO)</br></br>
+
+[12] Kanehisa M, Goto S. KEGG: Kyoto encyclopedia of genes and genomes[J]. Nucleic acids research, 2000, 28(1): 27-30. (KEGG PATHWAY)</br></br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</p>
+</div>
+</div>
+
+
+<!-- shan diao 3 ge div-->
+
+
+
+<div id="page">
+
+<a name="Appendix"></a>
+<hr />
+</p><br />
+<br />
+<!--   -->
+<!-- <h2>6 Appendix</h2>
+   -->
+  
+  
+<h2>6 Appendix</h2>
+  
+
+<h3>6.1 Softwares</h3>
+  
+<!--<h3>Software list </h3>-->
+<p class="paragraph">The software used in analysis are listed below: </p>
+
+<p class="center">
+
+<p class="name_fig">Main software used in the whole genome sequencing data analysis</p>
+
+<div id="tb">
+<table class="gy">
+
+<tr><th>Analytical content</th><th>Software</th><th>Comments</th><th>Version</th></tr>
+
+<tr><td rowspan=3 style="text-align:center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Alignment</td><td>BWA</td><td>Map the sequencing reads to the reference genome, and output the alignment file in the bam format</td><td>v0.7.17</td></tr>
+<tr><td>Sambamba</td><td>Sort the bam file</td><td>v0.6.7</td></tr>
+<tr><td>Picard</td><td>Merge all bam files from the same sample and mark the duplicated reads</td><td>v2.18.9</td></tr>
+
+<!--<tr><td>GATK</td><td>local realignment of reads around indels; base quality score recalibration</td><td>v3.1</td></tr>-->
+
+
+	
+		<tr><td style="text-align:center">&nbsp;&nbsp;SNP/InDel detection</td><td>GATK</td><td>Detect and filter SNPs/InDels</td><td>v4.0</td></tr>
+			
+	<tr><td style="text-align:center">&nbsp;&nbsp;Imputation</td><td>IMPUTE2</td><td>Genotype imputation and haplotype phasing</td><td>v2.3.2</td></tr>
+
+
+
+         <tr><td style="text-align:center">&nbsp;&nbsp;CNV detection</td><td>ichor-CNA</td><td>Detect CNVs</td><td>v0.2.0</td></tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<tr><td style="text-align:center">&nbsp;&nbsp;Annotation</td><td>ANNOVAR</td><td>Annotate variants</td><td>2015Dec14</td></tr>
+
+</table>
+</div>
+</p>
+
+
+
+<h3>6.2 Method</h3>
+
+<p class="paragraph">Click to open the method(pdf), and the corresponding file can be viewed directly.</p>
+
+<p class="paragraph">File catalog: <a href="src/method/low_pass_WGS_method.pdf" title="Click to open"
+        target="_blank">Method</a></p><br />
+
+
+<h3>6.3 Result File Decompression Method and Format Description</h3>
+                                                                <p class="center">
+<div id="tb">
+        <table class="gy">
+
+                <tr>
+                        <th>File Type</th>
+                        <th>File Description</th>
+                        <th>Way to Open</th>
+                </tr>
+                <tr class="tb2">
+                        <td class="tb2" rowspan=2>*.tar files</td>
+                        <td class="tb2">Unix/Linux/Mac</td>
+                        <td class="tb2">cmd: tar -xvf *.tar</td>
+
+                           </tr>
+                <tr>
+                        <td class="tb2">Windows</td>
+                        <td class="tb2">Decompress software: WinRAR, 7-Zip</td>
+                </tr>
+                <tr class="tb2">
+                        <td class="tb2" rowspan=2>*.gz files</td>
+                        <td class="tb2">Unix/Linux/Mac</td>
+                        <td class="tb2">cmd: gzip -d *.gz</td>
+                </tr>
+                <tr>
+                        <td class="tb2">Windows</td>
+                        <td class="tb2">Decompress software:WinRAR, 7-Zip</td>
+
+                                           </tr>
+                <tr class="tb2">
+                        <td class="tb2" rowspan=2>*.zip files</td>
+                        <td class="tb2">Unix/Linux/Mac</td>
+                        <td class="tb2">cmd: unzip *.zip</td>
+                </tr>
+                <tr>
+                        <td class="tb2">Windows</td>
+                        <td class="tb2">Decompress software:WinRAR, 7-Zip</td>
+                </tr>
+                <tr class="tb2">
+                        <td class="tb2" rowspan=2>file.fq/fastq</td>
+                        <td class="tb2">Unix/Linux/Mac</td>
+                        <td class="tb2">cmd: less *.fq.gz or more</td>
+                </tr>
+                <tr>
+                        <td class="tb2">Windows</td>
+                        <td class="tb2">Software:Editplus/Notepad++ <I>et al.</I></td>
+                </tr>
+                <tr class="tb2">
+                        <td class="tb2" rowspan=2>file.bam</td>
+                        <td class="tb2">Unix/Linux/Mac</td>
+                        <td class="tb2">cmd: samtools view/tview *.bam or more</td>
+                </tr>
+        </table></div>
+</p>
+                        </div>
+
+</div>
+</body>
+</html>

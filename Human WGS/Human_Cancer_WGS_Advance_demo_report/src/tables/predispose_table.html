@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>data tables</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="../css/datatables.css" />
+    <link rel="stylesheet" type="text/css" href="../css/buttons.dataTables.min.css" />
+</head>
+<body>
+        <table id="nopaging_table" class="display" style="width: 100%; height: 50px; text-align: center; margin: auto;font-size: 14px;font-family: 黑体-简">
+        <thead>
+            <tr style='background-color: #036EB8;color: #FFFFFF'><th>Hugo_Symbol</th><th>Chromosome</th><th>Position</th><th>Ref_allele</th><th>Alt_allele</th><th>Variant_Classification</th><th>AAChange</th><th>CGC_Cancers</th></tr>
+        </thead>
+        <tbody>
+			<tr style'background-color: #f1f5fb'><td>BCOR</td><td>chrX</td><td>40,073,898</td><td>G</td><td>A</td><td>Missense_Mutation</td><td>BCOR:NM_001123383:exon4:c.C1448T:p.P483L|BCOR:NM_001123384:exon4:c.C1448T:p.P483L|BCOR:NM_001123385: ...</td><td>retinoblastoma, AML, APL (translocation)</td></tr>
+			<tr style'background-color: #e3eff8'><td>ASXL2</td><td>chr2</td><td>25,742,470</td><td>G</td><td>C</td><td>Missense_Mutation</td><td>ASXL2:NM_001369347:exon10:c.C3087G:p.F1029L|ASXL2:NM_001369346:exon11:c.C3693G:p.F1231L|ASXL2:NM_018 ...</td><td>melanoma, CCRCC, AML</td></tr>
+			<tr style'background-color: #f1f5fb'><td>SERPINA1</td><td>chr14</td><td>94,379,526</td><td>C</td><td>T</td><td>Missense_Mutation</td><td>SERPINA1:NM_000295:exon4:c.G1003A:p.V335I|SERPINA1:NM_001002235:exon4:c.G1003A:p.V335I|SERPINA1:NM_0 ...</td><td>.</td></tr>
+			<tr style'background-color: #e3eff8'><td>PREX2</td><td>chr8</td><td>68,192,410</td><td>G</td><td>A</td><td>Missense_Mutation</td><td>PREX2:NM_024870:exon37:c.G4489A:p.A1497T</td><td>melanoma, pancreatic ductal adenocarcinoma</td></tr>
+			<tr style'background-color: #f1f5fb'><td>TNC</td><td>chr9</td><td>115,076,570</td><td>C</td><td>T</td><td>Missense_Mutation</td><td>TNC:NM_002160:exon8:c.G2680A:p.D894N</td><td>SCC, melanoma</td></tr>
+			<tr style'background-color: #e3eff8'><td>PRKAR1A</td><td>chr17</td><td>68,537,631</td><td>G</td><td>A</td><td>Missense_Mutation</td><td>FAM20A:NM_017565:exon11:c.C1472T:p.T491I|FAM20A:NM_001243746:exon12:c.C1058T:p.T353I</td><td>papillary thyroid</td></tr>
+			<tr style'background-color: #f1f5fb'><td>CREB3L2</td><td>chr7</td><td>137,928,191</td><td>G</td><td>A</td><td>Missense_Mutation</td><td>CREB3L2:NM_001253775:exon2:c.C278T:p.S93L|CREB3L2:NM_001318246:exon2:c.C89T:p.S30L|CREB3L2:NM_194071 ...</td><td>fibromyxoid sarcoma</td></tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <script type="text/javascript" src="../js/datatables.js"></script>
+    <script type="text/javascript" src="../js/vfs_fonts.js"></script>
+    <script type="text/javascript" src="../js/buttons.colVis.min.js"></script>
+    <script type="text/javascript" src="../js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var table = $('#nopaging_table').DataTable( {
+                scrollX: true,
+                paging: false,
+                scrollY: 330,
+                sorting: true,
+                'order': [],
+                searching: false,
+                fixedHeader: {
+                    header: false,
+                    //footer: true
+                },
+                fixedColumns: {'leftColumns':1},
+                colReorder: true,
+                dom: 'Bfrtip',
+                buttons: [
+                    'colvis','excel'
+                ],
+                language:{
+                    'info': '',
+                    'sZeroRecords' : '没有找到数据',
+                    "oPaginate" : {
+                        "sFirst" : "第一页",
+                        "sPrevious" : "上一页",
+                        "sNext" : "下一页",
+                        "sLast" : "最后一页"
+                    }
+                }
+            } );
+        } );
+    </script>
+</body>
+</html>

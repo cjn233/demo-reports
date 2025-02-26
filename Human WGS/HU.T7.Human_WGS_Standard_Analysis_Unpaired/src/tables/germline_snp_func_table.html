@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>data tables</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="../css/datatables.css" />
+    <link rel="stylesheet" type="text/css" href="../css/buttons.dataTables.min.css" />
+</head>
+<body>
+        <table id="nopaging_table" class="display" style="width: 100%; height: 50px; text-align: center; margin: auto;font-size: 14px;font-family: 黑体-简">
+        <thead>
+            <tr style='background-color: #036EB8;color: #FFFFFF'><th>Sample</th><th>tian</th><th>tianshu</th><th>songshu</th><th>tianzi</th></tr>
+        </thead>
+        <tbody>
+			<tr style'background-color: #f1f5fb'><td>CDS</td><td>22,043</td><td>22,221</td><td>22,137</td><td>22,472</td></tr>
+			<tr style'background-color: #e3eff8'><td>synonymous_SNP</td><td>11,219</td><td>11,326</td><td>11,280</td><td>11,472</td></tr>
+			<tr style'background-color: #f1f5fb'><td>missense_SNP</td><td>10,202</td><td>10,290</td><td>10,254</td><td>10,372</td></tr>
+			<tr style'background-color: #e3eff8'><td>stopgain</td><td>82</td><td>78</td><td>78</td><td>85</td></tr>
+			<tr style'background-color: #f1f5fb'><td>stoploss</td><td>10</td><td>10</td><td>7</td><td>9</td></tr>
+			<tr style'background-color: #e3eff8'><td>startloss</td><td>24</td><td>23</td><td>29</td><td>21</td></tr>
+			<tr style'background-color: #f1f5fb'><td>unknown</td><td>506</td><td>494</td><td>489</td><td>513</td></tr>
+			<tr style'background-color: #e3eff8'><td>intronic</td><td>1,264,883</td><td>1,276,859</td><td>1,272,708</td><td>1,278,903</td></tr>
+			<tr style'background-color: #f1f5fb'><td>UTR3</td><td>32,766</td><td>33,216</td><td>32,970</td><td>33,704</td></tr>
+			<tr style'background-color: #e3eff8'><td>UTR5</td><td>6,056</td><td>6,268</td><td>6,168</td><td>6,272</td></tr>
+			<tr style'background-color: #f1f5fb'><td>splicing</td><td>600</td><td>623</td><td>625</td><td>628</td></tr>
+			<tr style'background-color: #e3eff8'><td>ncRNA_exonic</td><td>14,510</td><td>14,580</td><td>14,680</td><td>14,721</td></tr>
+			<tr style'background-color: #f1f5fb'><td>ncRNA_intronic</td><td>236,206</td><td>237,394</td><td>238,669</td><td>239,988</td></tr>
+			<tr style'background-color: #e3eff8'><td>ncRNA_UTR3</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+			<tr style'background-color: #f1f5fb'><td>ncRNA_UTR5</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+			<tr style'background-color: #e3eff8'><td>ncRNA_splicing</td><td>180</td><td>184</td><td>170</td><td>178</td></tr>
+			<tr style'background-color: #f1f5fb'><td>upstream</td><td>22,300</td><td>22,767</td><td>22,507</td><td>23,025</td></tr>
+			<tr style'background-color: #e3eff8'><td>downstream</td><td>23,875</td><td>24,201</td><td>24,260</td><td>24,542</td></tr>
+			<tr style'background-color: #f1f5fb'><td>intergenic</td><td>1,936,498</td><td>1,946,474</td><td>1,965,529</td><td>1,969,246</td></tr>
+			<tr style'background-color: #e3eff8'><td>Total</td><td>3,558,997</td><td>3,583,845</td><td>3,599,551</td><td>3,612,785</td></tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <script type="text/javascript" src="../js/datatables.js"></script>
+    <script type="text/javascript" src="../js/vfs_fonts.js"></script>
+    <script type="text/javascript" src="../js/buttons.colVis.min.js"></script>
+    <script type="text/javascript" src="../js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var table = $('#nopaging_table').DataTable( {
+                scrollX: true,
+                paging: false,
+                scrollY: 420,
+                sorting: true,
+                'order': [],
+                searching: false,
+                fixedHeader: {
+                    header: false,
+                    //footer: true
+                },
+                fixedColumns: {'leftColumns':1},
+                colReorder: true,
+                dom: 'Bfrtip',
+                buttons: [
+                    'colvis','excel'
+                ],
+                language:{
+                    'info': '',
+                    'sZeroRecords' : '没有找到数据',
+                    "oPaginate" : {
+                        "sFirst" : "第一页",
+                        "sPrevious" : "上一页",
+                        "sNext" : "下一页",
+                        "sLast" : "最后一页"
+                    }
+                }
+            } );
+        } );
+    </script>
+</body>
+</html>

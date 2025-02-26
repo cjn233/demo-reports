@@ -1,0 +1,35 @@
+
+body {font-family:"Times New Roman";}
+
+div.main-container {
+  max-width: 940px;
+  margin-left: 5px;
+  margin-right: 5px;}
+
+
+h4 {font-size:1em; text-indent:1em}
+
+p.name_fig {text-align: center; line-height: 1.5; font-size: 0.9em; margin-left:2em; margin-right:2em}
+p.center {text-align: center}
+p.paragraph {text-indent: 2em; line-height: 1.5}
+p.premark {text-align: center; line-height: 1.5; font-size: 0.8em; margin-left:4em; margin-right:4em}
+p.tremark {line-height: 1.5; margin-left:2em; font-size: 0.8em}
+
+img {height: 500px; width: 60%}
+img.logo {height: 30px;width:120px;align:left;}
+img.exp {width:300px;}
+img.exp1{width:400px;}
+img.normal {height: auto;width:100%;margin:auto;}
+img.normal1 {width:600px;}
+img.normal2 {height:auto; width:200px}
+img.normal3 {width:60%}
+img.normal4 {height:auto; width:350px}
+img.small {height: 500px; width: 50%}
+img.small2 {height: auto; width: 50%}
+img.small3 {height: auto; width: 70%}
+img.small4 {height: auto; width: 65%;margin:auto;}
+img.small5 {height: auto;  width: 55%}
+img.small6 {height: auto; width: 120%}
+img.floating {height:auto; width:450px}
+img.wid {height:550px; width:90%}
+img.wid2 { width:700px}

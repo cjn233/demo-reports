@@ -1,0 +1,35 @@
+Analytical content	Software	Version	Parameter	Remarks
+Data quality	fastp	0.23.1	-g -q 5 -u 10 -n 10 -l 150 --min_trim_length 10 --overlap_diff_limit 1	
+Host trimming	bowtie2	2.2.4	  --end-to-end --sensitive --no-hd --no-sq -I 200 -X 400 --threads 8 	
+Assembly	megahit	1.2.9	--presets meta-large -m 180000000000 -t 2	
+Gene prediction	GeneMark.hmm	2.1	 -a  -d -f G -p 1  	
+ORFs dereplication	CD-HIT	4.5.8	  -T 6 -G 0 -aS 0.9 -g 1 -d 0  -c 0.95 -n 5 -M 8000	
+Reads mapping	bowtie2	2.2.4	  --end-to-end --sensitive --no-hd --no-sq -I 200 -X 400 --threads 8 	
+Correlation heatmap	R	2.15.3	R package = corrplot	
+Corepan	R	2.15.3	R package = ggplot2	
+vennplot 	R	v3.0.3	R package = VennDiagram	
+Differential analysis of gene numbers	R	2.15.3	R package = ggplot2	
+Correlation analysis based on gene nubmers	R	2.15.3	R package = corrplot	
+MicroNR	diamond	2.1.6	-p 4 -e 1e-5 -k 50 --id 30 --sensitive	MicroNR(Version: 2023.03)
+KEGG	diamond	2.1.6	-p 4 -e 1e-5 -k 50 --id 30 --sensitive	KEGG(Version: 2023.02)
+eggNOG	diamond	2.1.6	-p 4 -e 1e-5 -k 50 --id 30 --sensitive	eggNOG(Version: 5.0)
+CAZy	diamond	2.1.6	-p 4 -e 1e-5 -k 50 --id 30 --sensitive	CAZy(Version: 2023.03)
+VFDB	diamond	2.1.6	-p 4 -e 1e-5 -k 50 --id 30 --sensitive	VFDB(Version: 2023.03)
+PHI	diamond	2.1.6	-p 4 -e 1e-5 -k 50 --id 30 --sensitive	PHI(Version: 2023.03)
+CARD	RGI	6.0.2	-d wgs --clean	CARD(Version:3.2.6)
+MGEs	blastn	2.12.0	-num_threads 6 -outfmt 6 -evalue 1e-5	Integrall(Version: 2021.09),Isfinder(Version: 2023.10),Plasmid(Version: 2021.06)
+PCA analysis	R	3.0.3	R package = FactoMineR， ggplot2，grid	
+NMDS analysis	R	2.15.3	R package = vegan,permute,lattice	
+Anosim	R	2.15.3	R package = vegan,permute,lattice	
+PCoA	R	2.15.3	R package = extrafont,ggplot2,grid	
+Clustering heatmap	R	3.1.0	R package = pheatmap	
+MetaGenomeSeq	R	2.15.3	q value (Benjamini and Hochberg FDR) < 0.05	
+MetaGenomeSeq heatmap	R	3.1.0	R package = pheatmap	
+MetaGenomeSeq combined	R	2.15.3	R package = ggplot2	
+LEfSe	LEfSe	1.0	LDA Score>4	
+Krona	perl	5.18.2	use KronaTools	
+Bar plot of relative abundance	perl	5.18.2	use SVG	
+Clustering Tree	perl	5.18.2	use SVG	
+Circos plot	circos	v0.64	　	
+Bar plot of functional relative abundance	perl	5.18.2	use SVG	
+Comparison of pathways	perl	5.18.2	use SVG	

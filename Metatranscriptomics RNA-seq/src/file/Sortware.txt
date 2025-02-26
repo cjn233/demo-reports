@@ -1,0 +1,11 @@
+analysis	software	version	parameter	remarks
+QC	fastp	 0.23.1	qualified_quality_phred 5, unqualified_percent_limit 50, n_base_limit 15, min_trim_length 10, overlap_diff_limit 1, overlap_diff_percent_limit 10, Other parameters are default parameters	Sample Quality Control
+Assembly	Trinity	v2.6.6	min_kmer_cov:2, Other parameters are default parameters	-
+Cluster	CORSET	version v1.09 	default parameter	hierarchical cluster  based on the transcript's reads and expression patterns
+gene function annotation	diamond	v2.1.6	NR, CAZy, KEGG, eggNOG：e-value = 1e-5,--more-sensitive: 	NR, CAZy, KEGG, eggNOG database annotation
+GO annotation	blast2go	b2g4pipe_v2.5	e-value = 1.0E-6	GO annotation
+mapping	RSEM	v1.2.28	bowtie2 parameter mismatch 0	transcripts Assemblying by trinity align and Quantitative
+differential analysis	edgeR	3.28.0	padj<0.005	samples without bio-replicate using edgeR
+differential analysis	DESeq2	1.26.0	padj<0.05	samples with bio-relicate using DESeq2
+GO enrich	GOSeq, topGO	1.32.0, 2.32.0	Corrected P-Value<0.05	-
+KEGG enrich	KOBAS	v3.0	Corrected P-Value<0.05	-
