@@ -1,0 +1,1202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" >
+<html>
+
+<head>
+
+<TITLE> RNAseq analysis report-piRNA</TITLE>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+
+<link rel="stylesheet" href="src/css/jquery-ui.css" />
+
+<link rel="stylesheet" href="src/css/bootstrap-4.3.1.min.css" />
+
+<link rel="stylesheet" href="src/css/jquery.tocify.css" />
+
+<link rel="stylesheet" href="src/css/style.css"/>
+
+<link rel="stylesheet" href="src/css/base.css"/>
+
+<link rel="stylesheet" href="src/css/gallery.css"/>
+
+<script src="src/js/jquery-3.3.1.min.js" type="text/javascript"></script>
+
+<script src="src/js/jquery-ui.min.js" type="text/javascript"></script>
+
+<script src="src/js/jquery.tocify.min.js" type="text/javascript"></script>
+
+<script src="src/js/bootstrap-4.3.1.min.js" type="text/javascript"></script>
+
+<script src="src/js/scrollTop.js" type="text/javascript"></script>
+
+
+
+<script type="text/javascript">
+
+	$(function () {
+
+		var options = {
+
+			selectors: "h2,h3,h4",
+
+			theme: "bootstrap",
+
+			scrollTo: "60"
+
+		};
+
+		var toc = $("#toc").tocify(options).data("toc-tocify");
+
+	});
+
+</script>
+
+
+
+
+
+<script type="text/javascript">
+
+function trans(img_div_id) {
+
+img_div = $("#" + img_div_id)
+
+img = $("#" + img_div_id + " img").first();
+
+if (img_div.hasClass("fullscreen-div")) {
+
+img_div.removeClass("fullscreen-div");
+
+img.removeClass("fullscreen-img");
+
+}
+
+else {
+
+img_div.addClass("fullscreen-div");
+
+img.addClass("fullscreen-img");
+
+}
+
+}
+
+
+
+function filter_display() {
+
+return $(this).css("display") != "none";
+
+}
+
+
+
+function show_default() {
+
+var list_group_id = "#" + $(this).attr("id");
+
+if ($(list_group_id + " a.active").css("display") == "none") {
+
+var list_tab = $(list_group_id + " a.active");
+
+var pan_id = list_tab.attr("href");
+
+$(pan_id).removeClass("active show");
+
+list_tab.removeClass("active");
+
+}
+
+if ($(list_group_id + " a.active").filter(filter_display).length == 0) {
+
+$(list_group_id + " a").filter(filter_display).first().tab("show");
+
+}
+
+}
+
+$.fn.show_default = show_default
+
+
+
+function next(botton_id) {
+
+var present_tab = $("#" + botton_id.replace("_button_next", "_list-tab") + " .active").first();
+
+while (present_tab.next().length == 1) {
+
+if (present_tab.next().css("display") != "none") {
+
+present_tab.next().tab("show");
+
+break;
+
+}
+
+else {
+
+present_tab = present_tab.next();
+
+}
+
+}
+
+
+
+}
+
+function prev(botton_id) {
+
+var present_tab = $("#" + botton_id.replace("_button_prev", "_list-tab") + " .active").first();
+
+while (present_tab.prev().length == 1) {
+
+if (present_tab.prev().css("display") != "none") {
+
+present_tab.prev().tab("show");
+
+break;
+
+}
+
+else {
+
+present_tab = present_tab.prev();
+
+}
+
+}
+
+
+
+
+
+}
+
+
+
+$(document).ready(function () {
+
+$(".form-control").on("keyup", function () {
+
+var value = $(this).val().toLowerCase();
+
+var input_box_id = "#" + $(this).attr("id");
+
+var list_group_id = input_box_id.replace("_InputList", "_list-tab");
+
+$(list_group_id + " a").filter(function () {
+
+$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+
+});
+
+$(list_group_id).show_default();
+
+});
+
+$(".list-group").each(show_default);
+
+});
+
+
+
+</script>
+
+
+
+
+
+
+
+</head>
+
+
+
+<body>
+
+
+
+<div id="toc" class="tocify">
+
+</div>
+
+
+
+
+
+	<div style="position:fixed; top:0; left:0; width:100%; z-index:1000;">
+
+		<table width="100%" height="80px" border="0" cellpadding="5" cellspacing="0"
+
+			style="background:#F3F3F3; border-bottom:1px solid #eee;border-top: none;background-image:-moz-linear-gradient(top,#EEEEEE,#FFFFFF); background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0,#EEEEEE), color-stop(1,#FFFFFF));filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#EEEEEE', endColorstr='#FFFFFF', GradientType='0')">
+
+			<tr height="0%">
+
+				<td width='0%'></td>
+
+				<td><img src="src/images/logo_head.png"></td>
+
+				<td>
+
+					<div style="margin:4px;#DCDCDC;height:4px"></div>
+
+				</td>
+
+				<td width="0%"></td>
+
+				<td width="40%"></td>
+
+				<td width="20%"
+
+					style="text-align:right;padding:0px;margin:0px;color:black;font-size:14px;font-weight:50;">
+
+					
+
+					<br><a href="mailto:op-rna@novogene.com" target="black"
+
+						style="text-decoration:none;color:black;font-size:14px;font-weight:50;">
+
+						<a></td>
+
+				<td width="1%"></td>
+
+			</tr>
+
+		</table>
+
+	</div>
+
+</div>
+
+<!--------------------------标题---------------------------------->
+
+<div id="main"> 
+
+</br><h1>small RNA-seq Advanced Analysis Report (piRNA)</h1></br>
+
+<table class="gy">
+
+<thead><tr><th>Contract Information</th><th>Contract Content</th></tr></thead>
+
+<tbody>
+
+<tr>
+
+
+
+<td>Contract Name</td>
+
+
+
+<td>XXXXXXXXXXXXXXXXX</td>
+
+
+
+</tr>
+
+
+<tr>
+
+
+
+<td>Contract ID</td>
+
+
+
+<td>XXXXXXXXXXXXXXX</td>
+
+
+
+</tr>
+
+
+
+<tr>
+
+
+
+<td>Batch ID</td>
+
+
+
+<td>XXXXXXXXXXXX</td>
+
+
+
+</tr>
+
+
+
+<tr>
+
+
+
+<td>Report Time</td>
+
+
+
+<td>XXXX-XX-XX</td>
+
+
+
+</tr>
+
+
+
+</tbody></table>
+
+<br /><br />
+
+  <!----------------------------------------建库测序流程----------------------------------------->
+
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left" src="src/images/logo.png" /></a> <a name="建库测序流程">Novogene Corporation Inc.</a>
+    <hr />
+    </p>
+    <h2>Small RNA Sequencing Project Workflow</h2>
+    <p class="paragraph">Small RNA is a special kind of molecule in organisms that induces gene silencing and plays an important role in the regulation of cell growth, gene transcription, and translation. Piwi-interacting RNA (piRNA) is one class of small non-coding RNA molecules, forming RNA-protein complexes through interactions with piwi-subfamily proteins, which are mostly involved in the epigenetic and post-transcriptional silencing of transposons. Small RNA digitalization analysis, based on mechanism of SBS (sequencing by synthesis), has the benefits of small sample requirements, high throughput, high accuracy, and a simple automatic platform.
+</p>
+    <p class="paragraph">Next-generation sequencing can obtain millions of small RNA sequence tags in one shot, comprehensively identifying small RNAs of a certain species under certain status. predicting novel RNA and giving differential expression profile between samples. This expression can be a powerful tool for researching small RNA functions.
+</p>
+    <p class="paragraph">Small RNA sequencing projects are carried out as follows:</p>
+	<center>
+      <img  src="src/images/exp_library.png" />
+    </center>
+    
+<p class="paragraph">They are distinct from microRNA (miRNA) in size (26–31 nt rather than 21–24 nt), lack of sequence conservation, increased complexity, and independence of Dicer for biogenesis at least in animals. (Plant Dcl2 may play a role in rasi/piRNA biogenesis.)</p>
+
+  
+  <!----------------------------------------生物信息分析流程----------------------------------------->
+
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left" src="src/images/logo.png" /></a> <a name="生物信息分析流程">Novogene Corporation Inc.</a>
+    <hr />
+    </p>
+    <h2 id="pipline">1 Analysis Pipeline</h2>
+    <p class="paragraph">piRNAs are mostly derived from loci that function as transposon traps and provide an RNA-mediated adaptive immunity against transposon expansions and invasions. If the samples are from the reproductive system or the fragments have a significant peak at 26-32 nt, piRNA analysis will be executed for the piRNA information of the species. The piRNA bioinformatic analysis process is shown as follows:</p>
+    <p class="paragraph">
+
+
+
+            <img class="center" height="600" alt="" width="750" src="src/images/piRNA_pipeline.png" /></p>
+
+
+    </p>
+    
+  
+  <!----------------------------------------- 2.1.1piRNA数量统计 -------------------------------------->
+  
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left" src="src/images/logo.png" /></a> <a name="测序数据过滤">Novogene Corporation Inc.</a>
+    <hr />
+    </p>
+    <h2 id="pipline">2 Project Result</h2>
+    <h3>2.1 PiRNA Analysis </h3>
+    <p class="paragraph">There are 6 species annotated with known piRNA for the database (piRNABank): human, mouse, rat, fruit fly, zebrafish and platypus. Alignment to the database will be performed in advance of mapping once the species is involved above, to predict the piRNA sequences. Alignment of database and reference will be combined before the downstream analysis.
+</p>
+    <h4>2.1.1 Statistical Count of piRNA  </h4>
+    <p class="paragraph">The number of piRNA types (unique piRNA) was counted among different the samples.
+    <b> Result Directory: Results/2.QualityControl/2.3.ReadsClassification/clean_process_overview.xls</b>.</p>
+    <p class="center">Table 2.1.1 Summary of the piRNA counts</p>
+    <p class="center">
+
+    <table class="gy">
+           <tr><th>piRNA</th><th>oF1</th><th>oF2</th><th>oF3</th><th>oN1</th><th>oN2</th><th>oN3</th><th>oT1</th><th>oT2</th><th>oT3</th><th>yF1</th><th>yF2</th><th>yF3</th><th>yN1</th><th>yN2</th><th>yN3</th><th>yT1</th><th>yT2</th><th>yT3</th></tr>
+      
+                <tr><td>Count</td><td>7053</td><td>2315</td><td>1448</td><td>708</td><td>961</td><td>911</td><td>669</td><td>2916</td><td>1647</td><td>1018</td><td>1037</td><td>612</td><td>954</td><td>1059</td><td>846</td><td>1143</td><td>1048</td><td>1139</td></tr>
+      
+    </table>
+    </p>
+
+  
+  <!----------------------------------------- 2.1.2  piRNA表达情况统计-------------------------------------->
+
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left" src="src/images/logo.png" /></a> <a name="sRNA长度筛选">Novogene Corporation Inc.</a>
+    <hr />
+    </p>
+    <h4>2.1.2 Statistical Expression Level of piRNA</h4>
+    <p class="paragraph">Expression level of unique piRNAs was calculated among different the samples.
+<b> Result Directory: Results/2.QualityControl/2.4.Length_Filter/total_uniq.xls</b>.</p>
+	<br />
+<p class="center">Table 2.1.2 Summary of piRNA expression</p>
+    <p class="center">
+        <table class="gy">
+                 <tr><th>piRNA</th><th>oF1</th><th>oF2</th><th>oF3</th><th>oN1</th><th>oN2</th><th>oN3</th><th>oT1</th><th>oT2</th><th>oT3</th><th>yF1</th><th>yF2</th><th>yF3</th><th>yN1</th><th>yN2</th><th>yN3</th><th>yT1</th><th>yT2</th><th>yT3</th></tr>
+            
+                  <tr><td>uniq_29</td><td>1</td><td>2</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>2</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+            
+                  <tr><td>uniq_37</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+            
+                  <tr><td>uniq_104</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+            
+                  <tr><td>uniq_112</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+            
+                  <tr><td>uniq_139</td><td>1</td><td>1</td><td>4</td><td>1</td><td>2</td><td>0</td><td>4</td><td>4</td><td>1</td><td>4</td><td>2</td><td>2</td><td>0</td><td>0</td><td>2</td><td>0</td><td>0</td><td>2</td></tr>
+            
+        </table>
+    </p>
+	<p class="tremark"> 
+		
+      Note: </br>
+      1)The first column: the piRNA id</br>
+      2)The following columns: the number of piRNA reads for different samples.
+      </p>
+
+  
+  <!----------------------------------------- 2.1.3 piRNA染色体转录活性分析------------------------------------->
+  
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left" src="src/images/logo.png" /></a> <a name="公共及特有序列分析">Novogene Corporation Inc.</a>
+    <hr />
+    </p>
+    <br />
+    <h4>2.1.3 piRNA Base Bias Analysis</h4>
+    <p class="paragraph">The length of piRNA generally ranges between 26-32 nt. Based on the previous investigation review of piRNA structure, there can be found obvious uracil (U) base preference at the 5' end and adenine (A) base preference at base site 10.
+<b> Result Directory: Results/2.QualityControl/2.5.Common_Specific_sRNA/*</b>.</p>
+    <br />
+  <p class="center">
+      <img class="normal" src="src/pictures/firstBase.png" /></p>
+  </p>
+    <p class="name_fig">Figure 2.1.3.1 Schematic diagram of the first base preference on piRNAs of different lengths</p>
+    <p class="center">
+     <img class="normal" src="src/pictures/eachPosBase.png" /></p>
+   </p>
+  <p class="name_fig">Figure 2.1.3.2 Schematic diagram of base preference for each site on piRNAs </p>
+  <!-----------------------------------------2.1.4 piRNA染色体转录活性分析-------------------------------------->
+  
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left" src="src/images/logo.png" /></a> <a name="参考序列比对分析">Novogene Corporation Inc.</a>
+    <hr />
+    </p>
+    <br />
+    <h4>2.1.4 Transcriptional Activity Analysis of piRNA on Chromosome</h4>
+    <p class="paragraph">TThere is uneven distribution of piRNA on different chromosomes and it is not in proportion to the length of chromosomes. Distribution of piRNA on chromosomes can be illustrated as the figure follows (Only 10 chromosomes will be selected for mapping once there are over 10 chromosomes.):
+     <b> Result Directory: Results/3.Mapping_Stat/reference.mapping.stat</b>.</p>
+ <p class="center">
+        <img class="normal" src="src/pictures/dme.circos.png" /></p>
+    </p>
+    <p class="name_fig">Figure 2.1.4 Density plot of piRNA on the chromosome</p>
+  <!----------------------------------------- 2.1.5 piRNA 来源分析-------------------------------------->
+  
+   <!-- <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left" src="src/images/logo.png" /></a> <a name="已知miRNA分析">Novogene Corporation Inc.</a>
+    <hr />
+   </p>
+   <h4>2.1.5 piRNA Source Gene Analysis</h4>
+   <p class="paragraph">The obtained piRNA was aligned to the transposon sequence and the gene sequence sequentially, to investigate the distribution of piRNA on the genome. Distribution can be illustrated as the figure follows:<b> Result Directory: Results/4.Known_miRNA/known_miRNA.map.stat</b>.</p>
+   <br />
+  <p class="center">
+
+       <img class="normal" src="src/pictures/uniq_piRNA_source.png" /></p>
+
+   </p>
+   <p class="name_fig">Figure 2.1.5 Schematic diagram of piRNA source distribution</p>-->
+  <!----------------------------------------- 2.1.5 pirna 来源基因GO基因富集分析-------------------------------------->
+ 
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left" src="src/images/logo.png" /></a> <a name="差异miRNA靶基因富集分析">Novogene Corporation Inc.</a>
+    <hr />
+    </p>
+    <h4>2.1.5 Enrichment Analysis of piRNA-generating Genes</h4>
+    <p class="paragraph">
+    piRNA-generating loci are often found in large genomic clusters (called “piRNA clusters”) from which long primary transcripts are transcribed and individual piRNAs processed. GO enrichment analysis and KEGG enrichment analysis are performed on the piRNA-generating genes. </p>
+    <h5>2.1.5.1 GO Enrichment Analysis</h5>
+    <p class="paragraph">GO is the abbreviation of Gene Ontology (http://www.geneontology.org/), which is a major bioinformatics classification system to unify the presentation of gene properties across all species. The GO enrichment analysis is performed by GOSeq (Young et al, 2010), based on the Wallenius non-central hypergeometric distribution, the mechanism of which is estimate the probability of candidate gene enrichment by the preference of gene length. It includes three main branches: cellular compares, molecular function and biological process. GO terms with padj < 0.05 are significant enrichment.
+</p>
+    <p class="center">Table 2.1.5 GO enrichment results of piRNA-generating gene</p>
+    <p class="center">
+	<div style="overflow-x: scroll"> 
+    <table class="gy">
+      <tr><th>GO accession</th><th>Description</th><th>Term type</th><th>Over represented pValue</th><th>Corrected pValue</th><th>DEG item</th><th>DEG list</th><th>Bg item</th><th>Bg list</th></tr>
+      
+      <tr><td>GO:0002200</td><td>somatic diversification of immune receptors</td><td>biological_process</td><td>0.0006102</td><td>0.51305</td><td>1</td><td>15</td><td>1</td><td>11089</td></tr>
+      
+      <tr><td>GO:0002520</td><td>immune system development</td><td>biological_process</td><td>0.0006102</td><td>0.51305</td><td>1</td><td>15</td><td>1</td><td>11089</td></tr>
+      
+      <tr><td>GO:0002562</td><td>somatic diversification of immune receptors via germline recombination within a single locus</td><td>biological_process</td><td>0.0006102</td><td>0.51305</td><td>1</td><td>15</td><td>1</td><td>11089</td></tr>
+      
+      <tr><td>GO:0016444</td><td>somatic cell DNA recombination</td><td>biological_process</td><td>0.0006102</td><td>0.51305</td><td>1</td><td>15</td><td>1</td><td>11089</td></tr>
+      
+      <tr><td>GO:0033151</td><td>V(D)J recombination</td><td>biological_process</td><td>0.0006102</td><td>0.51305</td><td>1</td><td>15</td><td>1</td><td>11089</td></tr>
+      
+    </table>
+	</div>
+    </p>
+    <p class="tremark">Note:<br />
+      (1) GO accession: unique ID in the Gene Ontology database<br />
+      (2) Description: Detailed description of Gene Ontology<br />
+      (3) Term type: GO types (cellular_component, biological_process, or molecular_function)<br />
+      (4) Over-represented p Value: P-value in hypergenometric test<br />
+      (5) Corrected p Value: Corrected P-value，GO with Corrected P-value < 0.05 are significantly enriched in DEGs<br />
+      (6) CAD item: The number of target gene candidates related to this term<br />
+      (7) CAD list: The number of target gene candidates with GO Annotation<br />
+      (8) Bg item: The number of reference genes related to this term<br />
+      (9) Bg list: The number of all genes in GO<br />
+    </p>
+    <br />
+    <!--<center><img class="normal1" src="src/images/GO_enrichment.png" alt="no enriched result"/></center>-->
+    <p class="center">
+	
+    <div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_goBar_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure_goBar_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure_goBar_pane_dme" 
+	role="tabpanel" aria-labelledby="gallery_figure_goBar_list_dme"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/dme.Enriched_GO_classification.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_figure_goBar_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure_goBar_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure_goBar_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_goBar_list_dme"
+	data-toggle="list" href="#gallery_figure_goBar_pane_dme" role="tab" aria-controls="dme">dme</a>
+	
+	</div></div></div>
+    </p>
+    <p class="name_fig">Figure 2.1.5.1 The histogram of piRNA-generating gene candidates</p>
+    <p class="premark"><p class="center">The x axis includes the three main ontologies of GO term. The y axis indicates the number and percentage of target gene candidates annotation in the relevant GO term.</p></p>
+    <br />
+
+    <p class="paragraph">Directed Acyclic Graph (DAG) is a way to visualize the results of GO enrichment of differential pi-generating genes. The branches represent the containment relationships, and the range of functions gets smaller and smaller from top to bottom. Generally, the top 10 enriched GO terms are selected as the master nodes in directed acyclic graph, showing the associated GO terms together via the containment relationship, and the degree of colors represent the extent of enrichment. In the project, DAG figures of biological process, molecular function and cellular component are drawn, respectively.</p>
+    <p class="center">
+	
+    <div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_goDAG_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure_goDAG_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure_goDAG_pane_dme_bp" 
+	role="tabpanel" aria-labelledby="gallery_figure_goDAG_list_dme_bp"
+	onclick="trans(this.id)"><img class="img-gallery" src="./src/pictures/dme.Enriched_GO_bp_DAG.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_goDAG_pane_dme_cc" 
+	role="tabpanel" aria-labelledby="gallery_figure_goDAG_list_dme_cc"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/dme.Enriched_GO_cc_DAG.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_goDAG_pane_dme_mf" 
+	role="tabpanel" aria-labelledby="gallery_figure_goDAG_list_dme_mf"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/dme.Enriched_GO_mf_DAG.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_figure_goDAG_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure_goDAG_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure_goDAG_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_goDAG_list_dme_bp"
+	data-toggle="list" href="#gallery_figure_goDAG_pane_dme_bp" role="tab" aria-controls="dme_bp">dme_bp</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_goDAG_list_dme_cc"
+	data-toggle="list" href="#gallery_figure_goDAG_pane_dme_cc" role="tab" aria-controls="dme_cc">dme_cc</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_goDAG_list_dme_mf"
+	data-toggle="list" href="#gallery_figure_goDAG_pane_dme_mf" role="tab" aria-controls="dme_mf">dme_mf</a>
+	
+	</div></div></div>
+    </p>
+    <p class="name_fig">Figure 2.1.5.2 DAGs of GO enrichment</p>
+    <p class="premark"><p class="center">EEach node represents one GO term, and the top 10 GO terms are boxed. The name and the corresponding p-value of each term are shown on the node. Shade of color indicates the enrichment level.
+</p></p>
+ 
+  
+  <!----------------------------------------- 2.1.7 piRNA-generating基因KEGG富集分析-------------------------------------->
+  
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left" src="src/images/logo.png" /></a> <a name="候选靶基因KEGG富集分析">Novogene Corporation Inc.</a>
+    <hr />
+    </p>
+    <br />
+    <h5>2.1.5.2  KEGG Enrichment Analysis of piRNA-generating Genes</h5>
+    <p class="paragraph">The interactions of multiple genes may be involved in certain biological functions. KEGG (Kyoto Encyclopedia of Genes and Genomes, http://www.kegg.jp/) is a collection of manually curated databases containing resource of genomic, biological-pathway and disease information (Kanehisa, 2008). Pathway enrichment analysis identifies significantly enriched metabolic pathways or signal transduction pathways associated with differentially expressed genes, comparing to the whole genome background. The mechanism of KEGG enrichment can be:</p>
+	<br />
+    <center>
+      <img style="height:100px"  src="src/images/kegg_pvalue.png" />
+    </center>
+    <p class="paragraph">N	=	the number of all genes with KEGG annotation</p>
+	<p class="paragraph">n	=	the number of target gene candidates in N</p>
+	<p class="paragraph">M	=	the number of all genes annotated to a certain pathway</p>
+	<p class="paragraph">m	=	the number of target gene candidates in M</p>
+    <br />
+	<p class="paragraph">KEGG terms with padj < 0.05 are significant enrichment. KEGG analysis reveals the main pathways with which the target gene candidates are involved.
+<b> Result Directory: Results/14.Enrichment/*/KEGGenrichment/*</b>.</p>
+    <p class="center">Table 2.1.6 Pathway annotation results of piRNA-generating gene</p>
+    <div style="overflow-x: auto">
+    <table class="gy">
+      <tr>
+        <th>Term</th>
+        <th>ID</th>
+        <th>Sample number</th>
+        <th>Background number</th>
+        <th>P-Value</th>
+        <th>Corrected P-Value</th>
+      </tr>
+      
+      <tr>
+        <td>Dorso-ventral axis formation</td>
+        <!--<td>KEGG PATHWAY</td>-->
+        <td>dme04320</td>
+        <td>1</td>
+        <td>28</td>
+        <td>0.0316913042135</td>
+        <td>0.100662112351</td>
+      </tr>
+      
+      <tr>
+        <td>N-Glycan biosynthesis</td>
+        <!--<td>KEGG PATHWAY</td>-->
+        <td>dme00510</td>
+        <td>1</td>
+        <td>36</td>
+        <td>0.0402648449404</td>
+        <td>0.100662112351</td>
+      </tr>
+      
+      <tr>
+        <td>Protein processing in endoplasmic reticulum</td>
+        <!--<td>KEGG PATHWAY</td>-->
+        <td>dme04141</td>
+        <td>1</td>
+        <td>122</td>
+        <td>0.128001556655</td>
+        <td>0.213335927758</td>
+      </tr>
+      
+      <tr>
+        <td>Ribosome</td>
+        <!--<td>KEGG PATHWAY</td>-->
+        <td>dme03010</td>
+        <td>1</td>
+        <td>229</td>
+        <td>0.226575132784</td>
+        <td>0.28321891598</td>
+      </tr>
+      
+      <tr>
+        <td>Metabolic pathways</td>
+        <!--<td>KEGG PATHWAY</td>-->
+        <td>dme01100</td>
+        <td>1</td>
+        <td>924</td>
+        <td>0.651841751227</td>
+        <td>0.651841751227</td>
+      </tr>
+      
+    </table>
+    </div>
+    <!--
+
+	['Dorso-ventral axis formation', 'KEGG PATHWAY', 'dme04320', '1', '28', '0.0316913042135', '0.100662112351']
+
+	['N-Glycan biosynthesis', 'KEGG PATHWAY', 'dme00510', '1', '36', '0.0402648449404', '0.100662112351']
+
+	['Protein processing in endoplasmic reticulum', 'KEGG PATHWAY', 'dme04141', '1', '122', '0.128001556655', '0.213335927758']
+
+	['Ribosome', 'KEGG PATHWAY', 'dme03010', '1', '229', '0.226575132784', '0.28321891598']
+
+	['Metabolic pathways', 'KEGG PATHWAY', 'dme01100', '1', '924', '0.651841751227', '0.651841751227']
+
+</table>-->
+    
+    </p>
+    <p class="tremark">Note:<br />
+      (1) Term: Description of this KEGG pathway<br />
+      (2) ID: Unique ID of this pathway in the KEGG database<br />
+      (3) Sample number: Number of target genes of the relevant pathway<br />
+      (4) Background number: Number of reference genes of the relevant pathway<br />
+      (5) P-Value: P-Value in hypergenometric test<br />
+      (6) Corrected P-Value: Corrected P-values with value <0.05 are considered as significantly enriched terms in target candidate genes</p>
+    <br />
+    <p class="paragraph">Scatter plot of KEGG enrichment of target genes</p>
+    <br />
+    <!--<center><img class="normal1" src="src/images/pathway_scatterplot.png" /></center>-->
+    <p class="center">
+	
+    <div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_kegg_scat_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure_kegg_scat_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure_kegg_scat_pane_dme" 
+	role="tabpanel" aria-labelledby="gallery_figure_kegg_scat_list_dme"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/dme.KEGG_pathway_scatterplot.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_figure_kegg_scat_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure_kegg_scat_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure_kegg_scat_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_kegg_scat_list_dme"
+	data-toggle="list" href="#gallery_figure_kegg_scat_pane_dme" role="tab" aria-controls="dme">dme</a>
+	
+	</div></div></div>
+    </p>
+    <p class="name_fig">Figure 2.1.6.1 Scatter plot of piRNA-generating gene KEGG enrichment</p>
+    <p class="premark"><p class="center">The x axis indicates the rich factor and the y axis shows the pathway. Dot size represents the number of target gene candidates and the shade of color refers the q-value.</p></p>
+    <br />
+    <br />
+    <p class="center">
+	
+    <div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_kegg_path_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure_kegg_path_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure_kegg_path_pane_dme04320" 
+	role="tabpanel" aria-labelledby="gallery_figure_kegg_path_list_dme04320"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/dme04320.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_kegg_path_pane_dme00510" 
+	role="tabpanel" aria-labelledby="gallery_figure_kegg_path_list_dme00510"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/dme00510.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_kegg_path_pane_dme04141" 
+	role="tabpanel" aria-labelledby="gallery_figure_kegg_path_list_dme04141"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/dme04141.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_kegg_path_pane_dme03010" 
+	role="tabpanel" aria-labelledby="gallery_figure_kegg_path_list_dme03010"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/dme03010.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_kegg_path_pane_dme01100" 
+	role="tabpanel" aria-labelledby="gallery_figure_kegg_path_list_dme01100"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/dme01100.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_kegg_path_pane_" 
+	role="tabpanel" aria-labelledby="gallery_figure_kegg_path_list_"
+	onclick="trans(this.id)"><img class="img-gallery" src="" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_figure_kegg_path_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure_kegg_path_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure_kegg_path_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_kegg_path_list_dme04320"
+	data-toggle="list" href="#gallery_figure_kegg_path_pane_dme04320" role="tab" aria-controls="dme04320">dme04320</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_kegg_path_list_dme00510"
+	data-toggle="list" href="#gallery_figure_kegg_path_pane_dme00510" role="tab" aria-controls="dme00510">dme00510</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_kegg_path_list_dme04141"
+	data-toggle="list" href="#gallery_figure_kegg_path_pane_dme04141" role="tab" aria-controls="dme04141">dme04141</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_kegg_path_list_dme03010"
+	data-toggle="list" href="#gallery_figure_kegg_path_pane_dme03010" role="tab" aria-controls="dme03010">dme03010</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_kegg_path_list_dme01100"
+	data-toggle="list" href="#gallery_figure_kegg_path_pane_dme01100" role="tab" aria-controls="dme01100">dme01100</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_kegg_path_list_"
+	data-toggle="list" href="#gallery_figure_kegg_path_pane_" role="tab" aria-controls=""></a>
+	
+	</div></div></div>
+    <!--<p class="name_fig">Figure 2.1.6.2 The pathway map of piRNA-generate genes in KEGG enrichment </p>-->
+    <br/>
+     <p class="premark"><p class="center">The y-axis shows the name of the pathway and the x-axis shows the Rich factor. Dot size represents the number of target genes and the color indicates the q-value.</p></p>
+ <!----------------------------------------- 2.2 piRNA cluster分析-------------------------------------->
+ 
+   <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left" src="src/images/logo.png" /></a> <a name="候选靶基因KEGG富集分析">Novogene Corporation Inc.</a>
+   <hr />
+   </p> 
+  
+  <h3>2.2 piRNA Cluster Analysis </h3>
+  <p class="paragraph">Generally, piRNA clusters are genetic elements with length ranging from 20 to 100 kb and density ranging from 40 to 4000. The piRNA cluster is primarily transcribed forming a long single-stranded precursor, which is sequentially processed to be a mature piRNA with length of 26-32 nt.</p>
+  <h4>2.2.1 piRNA Cluster Prediction</h4>
+  <p class="paragraph">There is obvious preference of the piRNA cluster chain.</p>
+  <p class="center">
+
+  <div class="row">
+  <div class="col-1">
+  <div id="gallery_figure_piRNA_cluster_button_prev" class="button_prev" onclick="prev(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_prev">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-6">
+<div class="tab-content" id="gallery_figure_piRNA_cluster_nav-tabContent">
+
+<div class="tab-pane fade" id="gallery_figure_piRNA_cluster_pane_cluster24" 
+role="tabpanel" aria-labelledby="gallery_figure_piRNA_cluster_list_cluster24"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/cluster24.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure_piRNA_cluster_pane_cluster49" 
+role="tabpanel" aria-labelledby="gallery_figure_piRNA_cluster_list_cluster49"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/cluster49.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure_piRNA_cluster_pane_cluster74" 
+role="tabpanel" aria-labelledby="gallery_figure_piRNA_cluster_list_cluster74"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/cluster74.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure_piRNA_cluster_pane_cluster13" 
+role="tabpanel" aria-labelledby="gallery_figure_piRNA_cluster_list_cluster13"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/cluster13.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure_piRNA_cluster_pane_cluster81" 
+role="tabpanel" aria-labelledby="gallery_figure_piRNA_cluster_list_cluster81"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/cluster81.png" /></div>
+
+</div></div>
+<div class="col-1">
+<div id="gallery_figure_piRNA_cluster_button_next" class="button_next" onclick="next(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_next">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-4">
+<input class="form-control" id="gallery_figure_piRNA_cluster_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="gallery_figure_piRNA_cluster_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="gallery_figure_piRNA_cluster_list_cluster24"
+data-toggle="list" href="#gallery_figure_piRNA_cluster_pane_cluster24" role="tab" aria-controls="cluster24">cluster24</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure_piRNA_cluster_list_cluster49"
+data-toggle="list" href="#gallery_figure_piRNA_cluster_pane_cluster49" role="tab" aria-controls="cluster49">cluster49</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure_piRNA_cluster_list_cluster74"
+data-toggle="list" href="#gallery_figure_piRNA_cluster_pane_cluster74" role="tab" aria-controls="cluster74">cluster74</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure_piRNA_cluster_list_cluster13"
+data-toggle="list" href="#gallery_figure_piRNA_cluster_pane_cluster13" role="tab" aria-controls="cluster13">cluster13</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure_piRNA_cluster_list_cluster81"
+data-toggle="list" href="#gallery_figure_piRNA_cluster_pane_cluster81" role="tab" aria-controls="cluster81">cluster81</a>
+
+</div></div></div>
+  <!--<p class="name_fig">Figure 2.2.1 The schematic diagram of piRNA cluster </p>-->
+  <br/>
+ <p class="premark"><p class="center">The upper y axis (>0) shows the mapping result on sense strand of genome and the lower y axis (<0) shows the mapping result on antisense strand of genome. </p></p>
+ <!----------------------------------------- 2.2.2 piRNA_cluster染色体分布 -------------------------------------->
+ 
+ <p class="head"><a href="#home" title="返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a>
+         <a>Novogene Corporation Inc.</a>
+         <hr />
+ </p><br />
+  <h4>2.2.2 piRNA Cluster Distribution on Chromosome</h4>
+     <p class="paragraph">There is uneven distribution of piRNA cluster on different chromosomes and it is not in proportion to the length of chromosomes.</p>
+     <center>
+       <img class="formu" src="src/pictures/piRNAcluster_chr_density.png" />
+     </center>
+      <p class="name_fig">Figure 2.2.2 Density distribution of piRNA cluster on different chromosomes</p>
+
+  <!----------------------------------------- 2.2.3 piRNA cluster表达水平统计 -------------------------------------->
+      <p class="head"><a href="#home" title="返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a>
+
+              <a>Novogene Corporation Inc.</a>
+
+              <hr />
+
+      </p><br />
+
+          <h4>2.2.3 SStatistical Expression Level of piRNA Clusters </h4>
+          <p class="paragraph">Expression level of piRNA cluster was calculated among different the samples.</p>
+            <p class="center">Table 2.2.3 Statistical expression levels of piRNA cluster in each sample</p>
+          <table class="gy">
+            <tr><th>Cluster</th><th>oF1</th><th>oF2</th><th>oF3</th><th>oN1</th><th>oN2</th><th>oN3</th><th>oT1</th><th>oT2</th><th>oT3</th><th>yF1</th><th>yF2</th><th>yF3</th><th>yN1</th><th>yN2</th><th>yN3</th><th>yT1</th><th>yT2</th><th>yT3</th></tr>
+            
+            <tr><td>cluster1</td><td>4</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td><td>6</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+            
+            <tr><td>cluster2</td><td>2</td><td>2</td><td>0</td><td>0</td><td>0</td><td>0</td><td>4</td><td>7</td><td>3</td><td>1</td><td>0</td><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>4</td></tr>
+            
+            <tr><td>cluster3</td><td>8</td><td>1</td><td>0</td><td>2</td><td>0</td><td>0</td><td>20</td><td>0</td><td>0</td><td>0</td><td>0</td><td>2</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>4</td></tr>
+            
+            <tr><td>cluster4</td><td>14</td><td>4</td><td>3</td><td>7</td><td>3</td><td>4</td><td>34</td><td>20</td><td>3</td><td>13</td><td>7</td><td>3</td><td>1</td><td>6</td><td>11</td><td>7</td><td>9</td><td>23</td></tr>
+            
+            <tr><td>cluster5</td><td>59</td><td>14</td><td>9</td><td>19</td><td>18</td><td>9</td><td>85</td><td>39</td><td>14</td><td>24</td><td>11</td><td>25</td><td>39</td><td>18</td><td>24</td><td>16</td><td>19</td><td>57</td></tr>
+            
+          </table>
+	  
+<!----------------------------------------- 2.2.4 piRNA cluster差异分析 -------------------------------------->
+<p class="head"><a href="#home" title="返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a>
+
+        <a>Novogene Corporation Inc.</a>
+
+        <hr />
+
+</p><br />
+
+    <h4>2.2.4 Differential expression of piRNA cluster</h4>
+    <p class="paragraph">The differential gene expression of piRNA cluster is estimated by the the read count obtained in expression level analysis. For sample grouping with biological replicates, DESeq (Anders et al., 2010) will be used based on the negative binomial distribution; for sample grouping without biological replicates, the read count value will be normalized by TMM substantially analyzed by DEGseq (Wang et al., 2010).</p>
+    <p class="center">Table 2.2.4 Expression results of differential piRNA cluster</p>
+    <table class="gy">
+      <tr><th>piRNA</th><th>oN_readcount</th><th>yN_readcount</th><th>log2FoldChange</th><th>pval</th><th>padj</th><th>significant</th></tr>
+      
+      <tr><td>cluster1</td><td>0.95330432711524</td><td>0</td><td>0.29898</td><td>0.19202</td><td>0.98508</td><td>FALSE</td></tr>
+      
+      <tr><td>cluster10</td><td>0</td><td>0</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td></tr>
+      
+      <tr><td>cluster11</td><td>1.93827096517616</td><td>0.989021570486996</td><td>0.20614</td><td>0.56575</td><td>0.98508</td><td>FALSE</td></tr>
+      
+      <tr><td>cluster12</td><td>0.657356900464972</td><td>0.962798857488531</td><td>-0.071125</td><td>0.8145</td><td>0.98508</td><td>FALSE</td></tr>
+      
+      <tr><td>cluster13</td><td>5.83385018891093</td><td>4.85927773335591</td><td>0.163</td><td>0.68683</td><td>0.98508</td><td>FALSE</td></tr>
+      
+    </table>
+    <p class="tremark">Note：<br />
+      (1) Cluster: piRNA cluster ID.<br />
+      (2) Group1_readcount: Read count value of group1 after normalization.<br />
+      (3) Group2_readcount: Read count value of group2 after normalization.<br />
+      (4) log2.FoldChange:log2(Group1/Group2).<br />
+      (5) p.value: p value.<br />
+      (6) q.value: The corrected pvalue. The smaller the q value shows, the more significant the difference indicates in the piRNA cluster expression.<br />
+    </p>
+    <br/>
+    <br/>
+    <p class="paragraph"> Volcano plots are used to infer the overall distribution of differentially expressed piRNA clusters. FoldChange and P adjusted value (Padj/q valule) are the two significant parameter for the differential expression. For samples without biological replicates, the threshold is normally set as: |log2(FoldChange)| > 1 and q-value < 0.005. For samples with biological replicates, the threshold is normally set as: padj < 0.05.</p>
+        <br />
+     <p class="center">
+
+     <div class="row">
+     <div class="col-1">
+     <div id="gallery_figure_vol_button_prev" class="button_prev" onclick="prev(this.id)">
+   <svg viewbox="0 0 16000 16000" class="svg_prev">
+   <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+   <polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+   </polygon></svg></div></div>
+   <div class="col-6">
+   <div class="tab-content" id="gallery_figure_vol_nav-tabContent">
+   
+   <div class="tab-pane fade" id="gallery_figure_vol_pane_oNvsyN" 
+   role="tabpanel" aria-labelledby="gallery_figure_vol_list_oNvsyN"
+   onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/oNvsyN.Volcanoplot.png" /></div>
+   
+   </div></div>
+   <div class="col-1">
+   <div id="gallery_figure_vol_button_next" class="button_next" onclick="next(this.id)">
+   <svg viewbox="0 0 16000 16000" class="svg_next">
+   <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+   <polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+   </polygon></svg></div></div>
+   <div class="col-4">
+   <input class="form-control" id="gallery_figure_vol_InputList" type="text" placeholder="Search..">
+   <div class="list-group" id="gallery_figure_vol_list-tab" role="tablist">
+   
+   <a class="list-group-item list-group-item-action" id="gallery_figure_vol_list_oNvsyN"
+   data-toggle="list" href="#gallery_figure_vol_pane_oNvsyN" role="tab" aria-controls="oNvsyN">oNvsyN</a>
+   
+   </div></div></div>
+     <!--<p class="name_fig">Figure 2.2.4 Volcano plot of differentially expressed piRNA clusters </p>-->
+     <br/> 
+  <p class="premark"><p class="center">The x axis indicates the fold change of piRNA cluster expression in different experimental groups/different samples and the y axis represents the statistical significance of the change in piRNA expression. The scatter points in the graph represent individual piRNA clusters. The blue dots indicate the less significant differentiation and the red dots indicate significantly up-regulated piRNA clusters and the green dots indicate significantly down-regulated piRNA clusters in comparison group.</p></p>
+   <!----------------------------------------- 2.2.5  piRNA cluster邻近基因鉴定-------------------------------------->
+ <p class="head"><a href="#home" title="返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a>
+
+         <a>Novogene Corporation Inc.</a>
+
+         <hr />
+
+ </p><br />
+
+     <h4>2.2.5 The Identification of piRNA Cluster Adjacent Genes</h4>
+     <p class="paragraph">The genes, located in the 2000 bp upstream and downstream length of the identified piRNA cluster, were investigated and identified.</p>
+   <p class="center">Table 2.2.5 piRNA cluster adjacent genes</p>
+     <table class="gy">
+       <tr>
+         <th>piRNA cluster</th>
+         <th>Position</th>
+         <th>Gene</th>
+       </tr>
+       
+       <tr><td>cluster1</td><td>2L:771281-772051</td><td>FBgn0031276</td></tr>
+       
+       <tr><td>cluster1</td><td>2L:771281-772051</td><td>FBgn0265825</td></tr>
+       
+       <tr><td>cluster2</td><td>2L:8015108-8018109</td><td>FBgn0031975</td></tr>
+       
+       <tr><td>cluster3</td><td>2L:14804047-14808258</td><td>FBgn0250834</td></tr>
+       
+       <tr><td>cluster4</td><td>2L:20105181-20118134</td><td>FBgn0032850</td></tr>
+       
+     </table>
+     </p>
+ 
+  
+      
+  <!-------------------------------------------- 附录 --------------------------------------------->
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left" src="src/images/logo.png" /></a> <a name="附录">Novogene Corporation Inc.</a>
+    <hr />
+    </p>
+    <h2>Appendix</h2>
+    <a name="文件目录列表">
+    <h3 id="note_1">Result Directory</h3>
+    </a>
+    <p class="paragraph">Click to open the result directory(<a href="src/html/DirectoryTree.html" title="click open" target="_blank">html</a>), and the corresponding file can be viewed directly when the report and the result files are stored in the same folder.</p>
+    <a name="软件说明列表">
+    <h3 id="note_2">Software used in the analysis</h3>
+    </a>
+    <p class="paragraph">Software used in the analysis :</p>
+    <p class="center">
+    <div id="tb">
+    <table class="gy">	
+		<tr>
+          <th>Name</th>
+          <th>Version</th>
+          <th>Description</th>
+          <th>Main Parameter</th>
+        </tr>
+		
+		<tr>
+          <td>Bowtie</td>
+          <td>bowtie-0.12.9</td>
+          <td>for mapping</td>
+          <td>-v 0 -k 1</td>
+        </tr>
+		
+		<tr>
+          <td>miREvo</td>
+          <td>miREvo_v1.1</td>
+          <td rowspan="2">Modify mirdeep2 for known miRNA analysis ; IntegrationmiREvo and mirdeep2 for novel miRNA prediction ; ViennaRNA for mirdeep2 internal call</td>
+          <td>-i -r	-M	-m -k -p 10 -g 50000</td>
+        </tr>
+		
+		<tr>
+          <td>mirdeep2; ViennaRNA</td>
+          <td>mirdeep2_0_0_5  ViennaRNA-2.1.1</td>
+          <td>quantifier.pl	-p -m  -r  -y -g 0 -T 10  default</td>
+        </tr>
+		
+		<tr>
+          <td>srna-tools-cli</td>
+          <td>http://srna-tools.cm p.uea.ac.uk/</td>
+          <td>for plant TAS prediction</td>
+          <td>--tool phasing --abundance 3 --pval 0.001 --minsize 20 --maxsize 26 --trrna</td>
+        </tr>
+		
+		<tr>
+          <td>RepeatMasker</td>
+          <td>open-4.0.3</td>
+          <td>for repeat analysis, based on RepBase18.07 , using trf and irf</td>
+          <td>-species –nolow -no_is –norna –pa 8</td>
+        </tr>
+		
+		<tr>
+          <td>miRanda</td>
+          <td>miRanda-3.3a</td>
+          <td>animal target prediction</td>
+          <td>-sc 140 –en 10 –scale 4 –strict –out</td>
+        </tr>
+		
+		<tr>
+          <td>psRobot</td>
+          <td>psRobot_v1.2</td>
+          <td>plant target prediction</td>
+          <td>-s –t –o –p 5</td>
+        </tr>
+		
+		<tr>
+          <td>DEseq2</td>
+          <td>1.12.0</td>
+          <td>for Biological repeats analysis</td>
+          <td>padj<0.05</td>
+        </tr>
+		
+		<tr>
+          <td>DEGSeq</td>
+          <td>1.2.2</td>
+          <td>for no Biological repeats analysis</td>
+          <td>qvalue<0.01 |log2foldchange|>1</td>
+        </tr>
+		
+		<tr>
+          <td>EdgeR</td>
+          <td>3.2.4</td>
+          <td>for special circumstances analysis</td>
+          <td>padj<0.05 |log2foldchange|>1</td>
+        </tr>
+		
+		<tr>
+          <td>KOBAS</td>
+          <td>V3.0</td>
+          <td>KEGG enrichment</td>
+          <td>blastx 1e-10; padjust:BH</td>
+        </tr>
+		
+		<tr>
+          <td>GOSeq, topGO, hmmscan</td>
+          <td>Release2.12</td>
+          <td>enrichmentMethod:Wallenius; padjust:BH</td>
+          <td>GO Enrichment</td>
+        </tr>
+		
+		<tr>
+          <td>Blast</td>
+          <td>v2.2.28</td>
+          <td>-evalue 1e-10</td>
+          <td>protein-protein interactions</td>
+        </tr>
+    </table>
+	
+	<br />
+	<a name="Methods">
+    <h3 id="note_3">Methods</h3>
+    </a>
+    <p class="paragraph">Methods :<a href="src/pdf/sRNA.methods.pdf" title="click open" target="_blank">PDF</a></p>
+    <a name="结题报告PDF版">
+	<br />
+ <!-------------------------------------------- 参考文献 ------------------------------------------->
+
+    <p class="head"><a href="#home" title = "返回首页"><img style="height:40px"  align="left" src="src/images/logo.png" /></a> <a name="参考文献">Novogene Corporation Inc.</a>
+    <hr />
+    </p>
+    <h2 id="reference_html">Reference</h2>
+    <p class="ref"> Langmead, B., Trapnell, C., Pop, M., & Salzberg, S. L. (2009). Ultrafast and memory-efficient alignment of short DNA sequences to the human genome. Genome Biol, 10(3), R25. (Bowtie)<br />
+      Chen D., Yuan C., Zhang J., Zhang Z., Bai L., Meng Y., et al. (2011). PlantNATsDB: a comprehensive database of plant natural antisense transcripts. Nucleic Acids Research 40:D1:D1187–D1193. (PlantNATsDB)<br />
+      Cock, P.J.A., Fields, C.J., Goto, N., Heuer, M.L., and Rice, P.M. (2010). The Sanger FASTQ file format for sequences with quality scores, and the Solexa/Illumina FASTQ variants. Nucleic acids research 38, 1767-1771.<br />
+      Erlich, Y., and Mitra, P.P. (2008). Alta-Cyclic: a self-optimizing base caller for next-generation sequencing. Nature methods 5, 679-682.<br />
+      Friedlander M.R., Mackowiak S.D., Li N., Chen W., Rajewsky N. (2011). miRDeep2 accurately identifies known and hundreds of novel microRNA genes in seven animal clades. Nucleic Acids Res 40:37-52. (miRDeep2)<br />
+      Jiang, L., Schlesinger, F., Davis, C.A., Zhang, Y., Li, R., Salit, M., Gingeras, T.R., and Oliver, B.(2011). Synthetic spike-in standards for RNA-seq experiments. Genome research 21, 1543-1551.<br />
+      Mao, X., Cai, T., Olyarchuk, J.G., and Wei, L. (2005). Automated genome annotation and pathway identification using the KEGG orthology (KO) as a controlled vocabulary. Bioinformatics 21, 3787–3793. (KOBAS)<br />
+      Kanehisa M, Araki M, Goto S, Hattori M, Hirakawa M, et al. (2008). KEGG for linking genomes to life and the environment. Nucleic Acids research36:D480–484. (KEGG)<br />
+      Moxon S., Schwach F., MacLean D., Dalmay T., J Studholme D., and Moulton V. (2008). A toolkit for analysing large-scale plant small RNA datasets. Bioinformatics 24 (19): 2252-2253. (UEA sRNA tools)<br />
+      Michael I Love,Wolfgang Huber,Simon Anders.(2014).Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2.Genome Biology,DOI 10.1186/s13059-014-0550-8. (DESeq2)<br />
+      Wang L., Feng Z., Wang X., Wang X., Zhang X. (2010). DEGseq: an R package for identifying differentially expressed genes from RNA-seq data. Bioinformatics 26, 136-8. (DEGseq)<br />
+      Storey, J. D. (2003). The positive false discovery rate: A Bayesian interpretation and the q-value, Annals of Statistics. 31: 2013-2035. (qvalue)<br />
+      Wen M., Shen Y., Shi S., and Tang T. (2012). miREvo: An Integrative microRNA Evolutionary Analysis Platform for Next-generation Sequencing Experiments. BMC Bioinformatics 13:140. (miREvo)<br />
+      Wu HJ, Ma YK, Chen T, Wang M, Wang XJ (2012) PsRobot: a web-based plant small RNA meta-analysis toolbox. Nucleic Acids Res 40:W22–W28. (psRobot)<br />
+      Young, M.D., Wakefield, M.J., Smyth, G.K., and Oshlack, A. goseq: Gene Ontology testing for RNA-seq datasets.(goseq)<br />
+      Zhou L., Chen J., Li Z., Li X., Hu X., et al. (2010). Integrated profiling of microRNAs and mRNAs: microRNAs located on Xq27.3 associate with clear cell renal cell carcinoma. PLoS One 5: e15224. (TPM)<br />
+    </p>
+  
+  
+</div>
+</body>
+</html>

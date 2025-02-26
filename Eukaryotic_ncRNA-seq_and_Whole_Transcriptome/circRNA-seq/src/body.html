@@ -1,0 +1,3446 @@
+<!-- django temple created by chenshuangzhao in 2020.04.01-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<html>
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="x-ua-compatible" content="IE=11,edge" />
+
+
+
+<title> XXXXXX项目生物信息信息分析结题报告 </title>
+
+
+
+
+<!--<meta> 标签提供了 HTML 文档的元数据。元数据不会显示在客户端，但是会被浏览器解析。META元素通常用于指定网页的描述，关键词. 元数据通常以 名称/值 对出现-->
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link href="css/buttons.css" rel="stylesheet" />
+<link href="css/font-awesome.min.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="css/base.css">
+<link href="css/base_new.css" type="text/css" rel="stylesheet">
+<link href="css/cloth.css" rel="stylesheet" type="text/css" media="screen" />
+<link rel="stylesheet" type="text/css" href="js/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
+<link rel="stylesheet" href="css/bootstrap-4.3.1.min.css" />
+<link rel="stylesheet" href="css/gallery.css" />
+<link rel="stylesheet" href="css/jquery-ui.css" />
+<link rel="stylesheet" href="css/jquery.tocify.css" />
+<link rel="stylesheet" href="css/style.css" />
+<script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
+<script src="js/jquery-ui.min.js" type="text/javascript"></script>
+<script src="js/jquery.tocify.min.js" type="text/javascript"></script>
+<script src="js/bootstrap-4.3.1.min.js" type="text/javascript"></script>
+<script src="js/network.js"></script>
+<script src="js/echarts.min.js"></script>
+<script src="js/test.js"></script>
+<script src="js/scrolltop.js" type="text/javascript"></script>
+<script src="js/common.js" type="text/javascript"></script>
+<script src="js/jquery.albumSlider.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/tablecloth.js"></script>
+<script type="text/javascript" src="js/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
+<script type="text/javascript" src="js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+<script src="js/esl.js" type="text/javascript"></script>
+<script src="js/scrollTop.js" type="text/javascript"></script>
+<script type="text/javascript">
+    /* show or hide element*/
+    function hiddenShow(btnObj){
+      ctObj = btnObj.nextElementSibling;
+      if (ctObj.style.display == 'inline'){
+        ctObj.style.display = 'none';
+        btnObj.innerHTML = "Show Annotation";
+      }else{
+        ctObj.style.display = 'inline';
+        btnObj.innerHTML = "Hide Annotation";
+      };
+      return 0;
+    }
+</script>
+
+  <script type="text/javascript">
+    /* show or hide element*/
+    function hiddenQA(btnObj){
+      ctObj = btnObj.nextElementSibling;
+      if (ctObj.style.display == 'inline'){
+        ctObj.style.display = 'none';
+        btnObj.innerHTML = "Show Q&A";
+      }else{
+        ctObj.style.display = 'inline';
+        btnObj.innerHTML = "Hide Q&A";
+      };
+      return 0;
+    }
+  </script>
+
+<script type="text/javascript">
+    $(function () {
+
+      var options = {
+
+        selectors: "h2,h3,h4,h5",
+
+        theme: "bootstrap",
+
+        scrollTo: "60"
+
+      };
+
+      var toc = $("#toc").tocify(options).data("toc-tocify");
+
+    });
+
+  </script>
+
+
+
+
+
+  <script type="text/javascript">
+
+    function trans(img_div_id) {
+
+      img_div = $("#" + img_div_id)
+
+      img = $("#" + img_div_id + " img").first();
+
+      if (img_div.hasClass("fullscreen-div")) {
+
+        img_div.removeClass("fullscreen-div");
+
+        img.removeClass("fullscreen-img");
+
+      }
+
+      else {
+
+        img_div.addClass("fullscreen-div");
+
+        img.addClass("fullscreen-img");
+
+      }
+
+    }
+
+
+
+    function filter_display() {
+
+      return $(this).css("display") != "none";
+
+    }
+
+
+
+    function show_default() {
+
+      var list_group_id = "#" + $(this).attr("id");
+
+      if ($(list_group_id + " a.active").css("display") == "none") {
+
+        var list_tab = $(list_group_id + " a.active");
+
+        var pan_id = list_tab.attr("href");
+
+        $(pan_id).removeClass("active show");
+
+        list_tab.removeClass("active");
+
+      }
+
+      if ($(list_group_id + " a.active").filter(filter_display).length == 0) {
+
+        $(list_group_id + " a").filter(filter_display).first().tab("show");
+
+      }
+
+    }
+
+    $.fn.show_default = show_default
+
+
+
+    function next(botton_id) {
+
+      var present_tab = $("#" + botton_id.replace("_button_next", "_list-tab") + " .active").first();
+
+      while (present_tab.next().length == 1) {
+
+        if (present_tab.next().css("display") != "none") {
+
+          present_tab.next().tab("show");
+
+          break;
+
+        }
+
+        else {
+
+          present_tab = present_tab.next();
+
+        }
+
+      }
+
+
+
+    }
+
+    function prev(botton_id) {
+
+      var present_tab = $("#" + botton_id.replace("_button_prev", "_list-tab") + " .active").first();
+
+      while (present_tab.prev().length == 1) {
+
+        if (present_tab.prev().css("display") != "none") {
+
+          present_tab.prev().tab("show");
+
+          break;
+
+        }
+
+        else {
+
+          present_tab = present_tab.prev();
+
+        }
+
+      }
+
+
+
+
+
+    }
+
+
+
+    $(document).ready(function () {
+
+      $(".form-control").on("keyup", function () {
+
+        var value = $(this).val().toLowerCase();
+
+        var input_box_id = "#" + $(this).attr("id");
+
+        var list_group_id = input_box_id.replace("_InputList", "_list-tab");
+
+        $(list_group_id + " a").filter(function () {
+
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+
+        });
+
+        $(list_group_id).show_default();
+
+      });
+
+      $(".list-group").each(show_default);
+
+    });
+
+
+
+  </script>
+
+	
+<style media="print">
+	.noprint {DISPLAY: none;}
+	#main{width:95%;right:30px;}
+	.printmenu{display:block;}
+</style>
+<!-- class 寻找 style 定义文档样式,如需链接外部样式表，请使用 <link> 标签,如果没有使用 "scoped" 属性，则每一个 <style> 标签必须位于 head 头部区域, type 唯一可能的值是 "text/css" 规定样式表的 MIME 类型-->
+<!-- type 寻找js/css--> 
+
+	<div class="noprint">
+		<div style="display: block;" id="goTopBtn">
+			<a class="backtotop" title="回顶部"><img src="images/goTop.jpg" width="30" height="30" class="back-tip"/></a>
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+		var Tree = new Array;
+		// nodeId | parentNodeId | nodeName | nodeUrl
+	<{jtree}>
+	</script> 
+
+  <link href="css/new/base_new.css" type="text/css" rel="stylesheet">
+
+    
+  <style>
+    .countt {
+      counter-reset: slideNum;
+    }
+    .countt tr:before {
+      counter-increment: slideNum;
+      content: counter(slideNum)".";
+    }
+  </style>
+
+<script>
+var obj = document.getElementById("div_id");
+function hideOrShowEvent(){
+var obj= document.getElementById("div_id");
+if(obj.style.display=="block"){ //如果是显示则隐藏
+obj.style.display="none";
+}else{ //如果是隐藏则显示
+obj.style.display="block";
+}
+}
+</script>
+
+<script>
+var obj = document.getElementById("div_id1");
+function hideOrShowEvent1(){
+var obj= document.getElementById("div_id1");
+if(obj.style.display=="block"){ //如果是显示则隐藏
+obj.style.display="none";
+}else{ //如果是隐藏则显示
+obj.style.display="block";
+}
+}
+</script>  
+  
+</head>	
+<body>
+
+<!-- --------------------------------------------------------------- Menu bar----------------------------------------------------------------------- -->
+<!--  <div id="contentLeft" class="linear" style="overflow-y:auto">
+    <img style="margin-top:10px;margin-left:5%;width:90%"/>
+  <ul id="leftNavigation" class="nav">
+
+
+<li><a href="#circRNA-seq Workflow">circRNA-seq Workflow</a></li>
+
+<li onmouseover="displaySubMenu(this)" onmouseout="hideSubMenu(this)"><a href="#建库测序流程">实验流程</a>
+<ul>
+
+<li><a href="#RNA样品检测"> RNA样品检测</a></li>
+
+
+<li><a href="#文库构建"><i class="icon-angle-right"></i> 文库构建</a></li>
+
+<li><a href="#库检"><i class="icon-angle-right"></i> 库检</a></li>
+<li><a href="#上机测序"><i class="icon-angle-right"></i> 上机测序</a></li>
+</ul>
+</li> 
+
+<li onmouseover="displaySubMenu(this)" onmouseout="hideSubMenu(this)"><a href="#Bioinformatics Workflow">Bioinformatics Workflow</a>
+<ul>
+<li><a href="#Bioinformatics Workflow"><i class="icon-angle-right"></i>Analysis Workflow</a></li>
+<li><a href="#Project Results"><i class="icon-angle-right"></i>Project Results</a></li>
+</ul>
+</li>
+
+
+<li onmouseover="displaySubMenu(this)" onmouseout="hideSubMenu(this)"><a href="#Data Quality Control">Data Quality Control</a>
+<ul>
+<li><a href="#raw data"><i class="icon-angle-right"></i> raw data</a></li>
+<li><a href="#Data Filtering"><i class="icon-angle-right"></i> Data Filtering</a></li>
+<li><a href="#Error Rate"><i class="icon-angle-right"></i> Error Rate</a></li>
+<li><a href="#GC-content"><i class="icon-angle-right"></i> GC-content</a></li>
+<li><a href="#Data Quality Control Summary"><i class="icon-angle-right"></i>Data Quality Control Summary</a></li>
+</ul>
+</li>
+
+
+
+<li onmouseover="displaySubMenu(this)" onmouseout="hideSubMenu(this)"><a href="#Mapping To Reference Genome">Mapping and Assembly</a>
+<ul>
+<li><a href="#Overview of Mapping Status"><i class="icon-angle-right"></i> Overview of Mapping Status</a></li>
+<li><a href="#Reads Distribution in Reference Genome"><i class="icon-angle-right"></i> Reads Distribution in Reference Genome</a></li>
+<li><a href="#Visualization of Mapping Results"><i class="icon-angle-right"></i> Visualization of Mapping Results</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+</li>
+<li onmouseover="displaySubMenu(this)" onmouseout="hideSubMenu(this)"><a href="#CircRNA Identification">CircRNA Quantification and Difference</a>
+<ul>
+<li><a href="#CircRNA Identification"><i class="icon-angle-right"></i> CircRNA Identification</a></li>
+
+
+
+<li><a href="#CircRNA quantification"><i class="icon-angle-right"></i> CircRNA quantification</a></li>
+<li><a href="#CircRNA expression level distribution"><i class="icon-angle-right"></i>CircRNA expression level distribution</a></li>
+
+
+
+<li><a href="#Differential circRNA analysis results"><i class="icon-angle-right"></i>Differential circRNA analysis results</a></li>
+<li><a href="#Differential circRNA results"><i class="icon-angle-right"></i>Differential circRNA results</a></li>
+<li><a href="#Clustering of differential circRNAs"><i class="icon-angle-right"></i>Clustering of differential circRNAs</a></li>
+
+
+
+</ul>
+</li>
+<li onmouseover="displaySubMenu(this)" onmouseout="hideSubMenu(this)"><a href="#GO Enrichment Analysis">CircRNA function analysis</a>
+<ul>
+<li><a href="#GO Enrichment Analysis"><i class="icon-angle-right"></i>GO Enrichment Analysis</a></li>
+<li><a href="#KEGG Enrichment Analysis"><i class="icon-angle-right"></i>KEGG Enrichment Analysis</a></li>
+
+
+
+<li><a href="#Prediction of miRNA binding sites"><i class="icon-angle-right"></i>Prediction of miRNA binding sites</a></li>
+
+
+
+<li><a href="#Prediction of CircRNA coding potential"><i class="icon-angle-right"></i>Prediction of CircRNA coding potential</a></li>
+
+</ul>
+</li>
+
+
+<li><a href="#Appendix">Appendix</a></li>
+<li><a href="#References">References</a></li>
+< </ul> 
+ -->
+  <div id="toc" class="tocify" >
+  </div>
+<div id="main">
+
+<!-- --------------------------------------项目背景及样品信息---------------------------------------  -->
+<!-- --------------------------------------项目背景及样品信息---------------------------------------  -->
+
+ <div style="position:fixed; top:0; left:0; width:100%; z-index:1000;">
+
+                <table width="100%" height="50px" border="0" cellpadding="5" cellspacing="0"
+
+                        style="background:#F3F3F3; border-bottom:1px solid #eee;border-top: none;background-image:-moz-linear-gradient(top,#EEEEEE,#FFFFFF); background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0,#EEEEEE), color-stop(1,#FFFFFF));filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#EEEEEE', endColorstr='#FFFFFF', GradientType='0')">
+
+                        <tr height="86%">
+
+                                <td width='1%'></td>
+
+                                <td><img src="images/logo2.png"></td>
+
+                                <td>
+
+                                        <div style="margin:5px;border-left:1px solid #DCDCDC;height:30px"></div>
+
+                                </td>
+
+                                <td width="20%"></td>
+
+                                <td width="15%"></td>
+
+                                <td width="25%"
+
+                                        style="text-align:right;padding:0px;margin:0px;color:black;font-size:14px;font-weight:50;">
+
+                                        
+
+                                        <br><a href="mailto:op-rna@novogene.com" target="black"
+
+                                                style="text-decoration:none;color:black;font-size:14px;font-weight:50;">
+
+                                                <a></td>
+
+                                <td width="1%"></td>
+
+                        </tr>
+
+                </table>
+
+        </div>
+<!--
+<p class="head">
+<hr/>
+</p>
+-->
+<div id="page">
+    
+    
+    
+    <h1 align="center"><b class="bold">circRNA-seq Standard Analysis Report</b></h1>
+    
+    </br>
+    
+
+    <table class="gy" style="text-align:left">
+      <tbody>
+        <tr>
+          <td>Contract ID</td>
+          <td style="text-align:left">HXXXXX</td>
+        </tr>
+        <tr>
+          <td>Contract Name</td>
+          <td style="text-align:left">XXXXXX</td>
+        </tr>
+        <tr>
+          <td>Batch ID</td>
+          <td style="text-align:left">PXXXXXXXX</td>
+        </tr>
+        <tr>
+          <td>Reference Genome and Version</td>
+          <td style="text-align:left">Homo_sapiens_Ensemble_94</td>
+        </tr>
+        <tr>
+          <td>Report Time</td>
+          <td style="text-align:left">20250117140100</td>
+        </tr>
+        <tr>
+          <td>Reminder</td>
+          <td style="text-align:left">Partial results are presented in this report, while full results will be delivered in data release.<br/>
+          Hyperlink of results in this report will be only valid in data release, after statement confirmation. </td>
+        </tr>
+      </tbody>
+    </table>
+
+	</br>
+</div>
+
+<!----------------------------------------结果汇总----------------------------------------->
+<div id="page">
+	<p class="head">
+	<hr/>
+	</p>
+	
+    <h2>Summary of important results</h2>
+    
+
+
+  
+	  
+  
+    <p class="paragraph">1.The number of circRNA identified in this project is as follows:</p>
+    <p class="center">
+    <div style="overflow-x: auto">
+    	<table class="gy">
+        	
+          	
+          		<tr><th>Types</th><th>Total</th></tr>
+          	
+       
+          	
+          		<tr><td>circRNA</td><td>2323</td></tr>
+          	
+       
+        </table>
+     </div>
+     </p>
+  
+
+
+  
+      <p class="paragraph">2.For each difference comparison combination, the number of diifferent circRNA, and the number of up-regulated circRNA and down-regulated circRNA were as follows:</p>
+      <p class="center">
+      <div style="overflow-x: auto">
+      	 <table class="gy">
+      	   	
+      	   	
+      	   		<tr><th>compare</th><th>all</th><th>up</th><th>down</th><th>threshold</th></tr>
+      	   	
+      	 
+      	   	
+      	   		<tr><td>group1vsgroup2</td><td>35</td><td>24</td><td>11</td><td>DESeq2 pvalue<=0.05 |log2FoldChange|>=0.0</td></tr>
+      	   	
+      	 
+      	   	
+      	   		<tr><td>group2vssample1</td><td>27</td><td>23</td><td>4</td><td>DESeq2 pvalue<=0.05 |log2FoldChange|>=0.0</td></tr>
+      	   	
+      	 
+      	 </table>
+      </div>
+      </p>
+  
+  
+	</br>
+</div>
+
+<div id="page">
+	<p class="head">
+	<hr/>
+	</p>
+	<h2 id="goto_sampleinfo1">1 Introduction</h2>
+    
+    <p class="paragraph">circRNA sequencing projects are carried out as follows:</p>
+    
+    
+    <center>
+      <img class="Project_workflow" src="images/Project_workflow.png" />
+      <p class="paragraph">Figure 1 Project workflow</p>
+    </center>	
+	</br>
+
+</div>
+
+<!-- --------------------------------------实验流程--------------------------------------- -->
+<div id="page">
+
+	<p class="head">
+	<hr/>
+	</p>
+    <h2 id="goto_experiment1">2 Library Construction and Sequencing</h2>
+    <h3 id="background">2.1 Sample Quality Control</h3>
+    <p class="paragraph">Please refer to Novogene’s sample QC report. </p>
+    </br>
+    <h3 id="background">2.2 Library Construction, Quality Control and Sequencing</h3>
+	
+  
+        <p class="paragraph">Firstly, ribosomal RNA was removed from total RNA, followed by ethanol precipitation. Subsequently, the linear RNA was digested and sequencing libraries were generated. Briefly, after fragmentation, the first strand cDNA was synthesized using random hexamer primers. During the second strand cDNA synthesis, dUTPs were replaced with dTTPs in the reaction buffer. The directional library was ready after end repair, A-tailing, adapter ligation, size selection, USER enzyme digestion, amplification, and purification. The experimental procedures of RNA library preparation are shown in Figure 2.</p>
+        <p class="paragraph">The library was checked with Qubit and real-time PCR for quantification and bioanalyzer for size distribution detection. Quantified libraries will be pooled and sequenced on Illumina platforms, according to effective library concentration and data amount required.</p>
+        <p class="center"><img class="normal_library_lncRNA" style="width:17%;height:50vw;text-align:center" src="images/pipline_3.png" /></p>
+
+	
+   
+    <center> 
+    <p class="paragraph">Figure 2 Library construction workflow</p>
+    </center>
+</div>
+
+
+<!-- --------------------------------------实验流程---------------------------------------
+<div id="page">
+
+	<p class="head">
+	<hr/>
+	</p>
+
+	<h2 id="goto_experiment1">二、建库测序流程</h2>
+	<p class="paragraph">从RNA样品提取到最终数据获得，样品检测、建库、测序等每一环节都会直接影响数据的数量和质量，从而影响后续信息分析的结果。为从源头保证测序数据准确可靠，诺禾致源承诺在数据的所有生产环节都严格把关，从根源上确保高质量数据的产出。建库测序的流程图如下：</p>
+
+	
+	
+	
+	
+
+	
+	<p class="center"><img class="normal_library_lncRNA" src="images/library_circRNA.png" /></p>
+	
+	<p class="name_fig">图1 建库测序流程图</p>
+	<br />
+
+
+</div> -->
+
+<!-----------------------1 RNA提取与检测------------------------
+
+
+<div id="page">
+
+
+
+	<a name="RNA样品检测"></a>
+	<h3 id="experiment1">1 RNA样品检测</h3>
+	<p class="paragraph">从组织或细胞中提取RNA，随后对RNA样品进行严格质控，质控标准主要包括以下3个方面：</p>
+	<p class="paragraph">(1) 琼脂糖凝胶电泳：分析样品RNA完整性及是否存在DNA污染；</p>
+	<p class="paragraph">(2) Nanodrop：进行初步定量，检测RNA浓度及纯度（OD260/280及OD260/230）；</p>
+	<p class="paragraph">(3) Agilent 2100 bioanalyzer：精确检测RNA完整性。 </p>
+
+
+	<br />
+
+
+</div>-->
+
+<!----------------------2 文库构建------------------------
+
+
+<div id="page">
+        
+
+
+	<a name="文库构建"></a>
+	<h3 id="experiment2">2 文库构建</h3>
+
+
+	
+
+	
+	<p class="paragraph">诺禾致源采用去除核糖体RNA的方法（circRNA建库增加去线性RNA过程）构建链特异性文库(Parkhomchuk D et al., 2009)。
+	
+	首先，从总RNA中去除核糖体RNA，随后使用RNase R酶去除线性RNA，剩余circRNA打断成250~300 bp的短片段，以片段化的RNA为模板，随机寡核苷酸为引物合成cDNA第一条链，随后以dNTPs（dUTP、dATP、dGTP和dCTP）为原料合成cDNA第二条链。
+	纯化后的双链cDNA经过末端修复、加A尾并连接测序接头<sup>[注]</sup>，用AMPure XP beads筛选350~400 bp左右的cDNA。使用USER酶降解含U的cDNA第二链，最后进行PCR扩增并获得文库。链特异性文库具有诸多优势，如相同数据量下可获取更多有效信息；能获得更精准的基因定量、定位与注释信息等。建库原理如下图：</p>
+	
+	
+	
+	<p class="center"><img class="normal_strand_specific" src="images/strand_specific_circRNA.png" /></p>
+	
+	<p class="name_fig">图2 文库构建流程</p>
+	<p class="tremark">注：接头（Adapter），包括P5/P7、index和Rd1 SP/Rd2 SP。P5/P7，用于测序仪进行桥式PCR的过程；Index，标签序列，用来区分不同文库信息；Rd1 SP/Rd2 SP（sequence primer），测序引物结合区域，测序过程理论上由Rd1/Rd2向后开始进行。</p>
+	
+	
+
+	
+	<p class="paragraph">我们在建库过程中消化了线性RNA，之后将片段随机打断为250-300bp，通过片段长度选择，理论上只会保留circRNA片段。</p>
+	
+	
+	
+
+</br>
+
+</div>-->
+	
+	
+<!----------------------3 库检-------------------------
+	
+<div id="page">
+       
+	<a name="库检"></a>
+	<h3 id="experiment3">3 库检</h3>
+
+	<p class="paragraph">先用 Qubit 初步定量，稀释文库至 1ng/ul；再用 Agilent 2100 bioanalyzer 检测对文库的插入片段长度（insert size）进行检测，insert size 大约分布在 250~300 bp 左右符合预期。Insert size符合预期后，使用 qPCR方法对文库的有效浓度进行准确定量，文库的有效浓度为>2nM,保证了样本文库的质量</p>
+
+
+	<br />
+</div>-->
+
+
+<!-----------------------4 上机测序------------------------
+<div id="page">
+	<a name="上机测序"></a>
+	<h3 id="experiment4">4 上机测序</h3>
+
+	<p class="paragraph">库检合格后，根据文库的有效浓度及数据产出需求pooling后进行Illumina PE150测序。PE150（Pair end 150 bp）指高通量双端测序，每端各测150 bp。在构建的小片段文库中，Insert cDNA，即插入片段是直接测序的单位。双端测序是将每条插入片段的两端进行测序的方法，由于插入片段的长度分布已知，双端测序时不仅可以获得片段两端的序列，也可获得这两段序列之间的长度，从而便于后续组装和比对。</p>
+	<p class="paragraph">测序的基本原理是边合成边测序（Sequencing by Synthesis）。在测序的flow cell中加入四种荧光标记的dNTP、DNA聚合酶以及接头引物进行扩增，在每一个测序簇延伸互补链时，每加入一个被荧光标记的dNTP就能释放出相对应的荧光，测序仪通过捕获荧光信号，并通过计算机软件将光信号转化为测序峰，从而获得待测序片段的序列信息。</p>
+	<br />-->
+
+<!-- --------------------------------- 信息分析流程 -------------------------------- -->
+<!-- --------------------------------- 信息分析流程 -------------------------------- -->
+
+<div id="page">
+<hr />
+	<h2 id="pipeline1">3 Bioinformatics Analysis Pipeline</h2>
+	
+	
+
+
+	
+    <p class="paragraph">This is the standard bioinformatic analysis workflow for circRNA sequencing data with reference genome, as follows:</p>
+
+	<p class="center">
+	<img class="normal_pipline_lncRNA" src="images/pipline_circRNA.png" /></p>
+    <center>
+    <p class="paragraph">Figure 3 Bioinformatic analysis workflow</p>
+    </center>
+    <p class="paragraph"><strong>Method details involved in the project are available at <a href="circRNA.method_hw.pdf" title="点击打开" >methods</a></strong></p>	
+        
+	</br>
+</div>
+
+<!------------------------------四 标准分析结果-------------------------->
+
+<!---------------------------四 标准分析结果---------------------->
+	
+<div id="page">
+	<p class="head">
+	<hr/>
+	</p>
+
+	<h2 id="resultall">4 Analysis Results</h2>
+	
+	
+	
+    <p class="paragraph">Circular RNAs (circRNA) are a class of non-coding RNA molecules that do not have a 5' -end cap and a 3' -end poly(A) tail, and form a circular structure with covalent bonds. circRNA is formed by reverse splicing in a non-classical splicing way, which cannot encode proteins and has a low conservatism.  non-coding RNA  has been widely applied in tumor research, such as tumor occurrence, development, migration, invasion and drug resistance.</p>
+	
+		
+	<!-- <p class="paragraph">RNA-seq标准分析过程主要包括质控，比对，筛选鉴定，定量，差异显著性分析，来源基因分析和功能富集等环节。RNA-seq分析的核心是基因表达差异的显著性，使用统计学方法比较两个或多个条件下的基因表达差异（例如，处理与对照），从中找出与条件相关的差异基因，然后进一步分析这些差异基因的生物学意义。</p> -->
+
+
+</br>	
+
+<!----------------------------1.1 原始数据说明------------------------>	
+<div id="page">
+	<h3 id="31">4.1 Data Quality Control</h3>
+
+	<h4 id="result11">4.1.1 Raw Data</h4>
+	<p class="paragraph">Original image data file from high-throughput sequencing (like Illumina) is transformed into sequenced reads (called Raw Data or Raw Reads) by CASAVA base recognition (Base Calling). Raw data are stored in FASTQ(fq) format files, which contain sequences of reads and corresponding base quality. Each read has four descriptive lines in as follow:</p>
+
+	<p class="center">
+	<img class="normal" src="images/rawdata.png" /></p>
+    <p class="step">(1) Line 1: the at sign (@) followed by sequence identifiers and optional description info (such as
+      FASTA title line).<br />
+      (2) Line 2: base sequences (raw read, A, G, C, and T).<br />
+      (3) Line 3: the plus sign (+) optionally followed by the same Illumina sequence identifiers and description
+      information as Line 1.<br />
+      (4) Line 4: the quality values for each base, corresponding to the data in Line 2.</p>
+
+
+    <p class="paragraph">Illumina Sequence Identifier:</p>
+    <p class="center">
+    <table class="gy">
+    <tr>
+        <th>ID Symbol</th>
+        <th>meaning</th>
+      </tr>
+      <tr>
+        <td>HWI-ST1276</td>
+        <td>Instrument – unique identifier of the sequencer </td>
+      </tr>
+      <tr>
+        <td>71</td>
+        <td>run number – Run number on instrument</td>
+      </tr>
+      <tr>
+        <td>C1162ACXX</td>
+        <td>FlowCell ID – ID of flowcell</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>LaneNumber – positive integer</td>
+      </tr>
+      <tr>
+        <td>1101</td>
+        <td>TileNumber – positive integer</td>
+      </tr>
+      <tr>
+        <td>1208</td>
+        <td>X – x coordinate of the spot. Integer which can be negative</td>
+      </tr>
+      <tr>
+        <td>2458</td>
+        <td>Y – y coordinate of the spot. Integer which can be negative</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>ReadNumber - 1 for single reads; 1 or 2 for paired ends</td>
+      </tr>
+      <tr>
+        <td>N</td>
+        <td>whether it is filtered - NB：Y if the read is filtered out, not in the delivered fastq file, N otherwise</td>
+      </tr>
+      <tr>
+        <td>0</td>
+        <td>control number - 0 when none of the control bits are on, otherwise it is an even number</td>
+      </tr>
+      <tr>
+        <td>CGATGT</td>
+        <td>Illumina index sequences</td>
+      </tr>
+    </table>
+    </p>
+    
+    <p class="paragraph">The details of Sequencing identifier of Illumina are as follows:</p>
+    <p class="step">(1) HWI-ST1276:71 HWI-ST1276, Instrument - unique identifier of the sequencer; 71, run number - Run
+      number on instrument.<br />
+      (2) C1162ACXX:1:1101:1208:2458 means the coordinate of read on C1162ACXX (Flowcell ID) flowcell, line 1, 1101 tile
+      is(x=1208, y=2458).<br />
+      (3) 1:N:0:CGATGT the first number is 1 or 2, 1 means single reads or the first read of paired ends, 2 means the
+      second of paired ends; the second letter means whether reads is adjusted(Y means yes, N means no); the third
+      number represent the number of Control Bits in sequence; six bases on the fourth place is Illumina index sequence.
+    </p>
+
+
+	<br />
+	<br />
+
+
+<!------------------------------1.2 Data Filtering------------------------------>
+<p class="head">
+<hr/>
+</p>
+    
+	
+	<h4 id="result12">4.1.2 Sequencing Data Filtering</h4>
+	
+	<p class="paragraph">The Sequenced Reads/raw reads often contain low quality reads or reads with adaptors. As we can see in Figure 4.1, which will affect the further analysis results. In order to avoid this, it's necessary to filter the raw reads under conditions to get the clean reads. Raw reads filtering conditions are as follows:</p>
+	<p class="paragraph">(1) Remove reads containing adaptors;</p>
+	<p class="paragraph">(2) Remove reads containing N > 10% (N represents base that could not be determined);</p>
+	<p class="paragraph">(3) The Qscore (Quality value) of over 50% bases of the read is <= 5.</p>
+</p>
+
+<!--<p class="paragraph">Click to open the result directory, and the corresponding file can be viewed directly when the report and the result files are stored in the same folder.<b>Result Directory:  <a href="../../Result_PXXXXXXXX_Homo_sapiens/1.QC/3.Filter" title="点击打开" >QC_Filter</a> </b></p>-->
+
+</br>
+
+   <p class="center">
+    <div class="row">
+      <div class="col-1">
+        <div id="gallery_figure_classfi_Content_button_prev" class="button_prev" onclick="prev(this.id)">
+          <svg viewbox="0 0 16000 16000" class="svg_prev">
+            <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+            <polygon class="a"
+              points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+            </polygon>
+          </svg></div>
+      </div>
+      <div class="col-6">
+        <div class="tab-content" id="gallery_figure_classfi_Content_nav-tabContent">
+          
+          <div class="tab-pane fade" id="gallery_figure_classfi_Content_pane_sample1" role="tabpanel"
+            aria-labelledby="gallery_figure_classfi_Content_list_sample1" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/QC/Classfication/sample1.classfication.png" /></div>
+          
+          <div class="tab-pane fade" id="gallery_figure_classfi_Content_pane_sample2" role="tabpanel"
+            aria-labelledby="gallery_figure_classfi_Content_list_sample2" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/QC/Classfication/sample2.classfication.png" /></div>
+          
+          <div class="tab-pane fade" id="gallery_figure_classfi_Content_pane_sample3" role="tabpanel"
+            aria-labelledby="gallery_figure_classfi_Content_list_sample3" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/QC/Classfication/sample3.classfication.png" /></div>
+          
+          <div class="tab-pane fade" id="gallery_figure_classfi_Content_pane_sample4" role="tabpanel"
+            aria-labelledby="gallery_figure_classfi_Content_list_sample4" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/QC/Classfication/sample4.classfication.png" /></div>
+          
+          <div class="tab-pane fade" id="gallery_figure_classfi_Content_pane_sample5" role="tabpanel"
+            aria-labelledby="gallery_figure_classfi_Content_list_sample5" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/QC/Classfication/sample5.classfication.png" /></div>
+          
+          <div class="tab-pane fade" id="gallery_figure_classfi_Content_pane_sample6" role="tabpanel"
+            aria-labelledby="gallery_figure_classfi_Content_list_sample6" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/QC/Classfication/sample6.classfication.png" /></div>
+          
+          <div class="tab-pane fade" id="gallery_figure_classfi_Content_pane_sample7" role="tabpanel"
+            aria-labelledby="gallery_figure_classfi_Content_list_sample7" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/QC/Classfication/sample7.classfication.png" /></div>
+          
+        </div>
+      </div>
+      <div class="col-1">
+      <div id="gallery_figure_classfi_Content_button_next" class="button_next" onclick="next(this.id)">
+          <svg viewbox="0 0 16000 16000" class="svg_next">
+            <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+            <polygon class="a"
+              points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+            </polygon>
+          </svg></div>
+      </div>
+      <div class="col-4">
+        <input class="form-control" id="gallery_figure_classfi_Content_InputList" type="text" placeholder="Search..">
+        <div class="list-group" id="gallery_figure_classfi_Content_list-tab" role="tablist">
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_classfi_Content_list_sample1"
+            data-toggle="list" href="#gallery_figure_classfi_Content_pane_sample1" role="tab"
+            aria-controls="sample1">sample1</a>
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_classfi_Content_list_sample2"
+            data-toggle="list" href="#gallery_figure_classfi_Content_pane_sample2" role="tab"
+            aria-controls="sample2">sample2</a>
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_classfi_Content_list_sample3"
+            data-toggle="list" href="#gallery_figure_classfi_Content_pane_sample3" role="tab"
+            aria-controls="sample3">sample3</a>
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_classfi_Content_list_sample4"
+            data-toggle="list" href="#gallery_figure_classfi_Content_pane_sample4" role="tab"
+            aria-controls="sample4">sample4</a>
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_classfi_Content_list_sample5"
+            data-toggle="list" href="#gallery_figure_classfi_Content_pane_sample5" role="tab"
+            aria-controls="sample5">sample5</a>
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_classfi_Content_list_sample6"
+            data-toggle="list" href="#gallery_figure_classfi_Content_pane_sample6" role="tab"
+            aria-controls="sample6">sample6</a>
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_classfi_Content_list_sample7"
+            data-toggle="list" href="#gallery_figure_classfi_Content_pane_sample7" role="tab"
+            aria-controls="sample7">sample7</a>
+          
+        </div>
+      </div>
+    </div>
+    </p>
+
+	<p class="name_fig">Figure 4.1 Composition of raw data</p>
+    <p class="premark">Different color for different components</p>
+    <p class="premark">(1)Adaptor related: (reads containing adapter) / (total raw reads).</p>
+    <p class="premark">(2)Containing N: (reads with more than 10% N) / (total raw reads).</p>
+    <p class="premark">(3)Low quality: (reads of low quality) / (total raw reads).</p>
+    <p class="premark">(4)Clean reads: (clean reads) / (total raw reads).</p>
+    <p class="paragraph">Result Directory:  <a href="../../Result_PXXXXXXXX_Homo_sapiens/1.QC/3.Filter" title="点击打开" >QC_Filter</a> </p>
+	<br />
+	<br />
+
+	
+<!---------------------------1.3 测序错误率分布-------------------------->
+
+    
+	
+	<h4 id="result13">4.1.3 Examination of Sequencing Error Rate</h4>
+	
+     <p class="paragraph">
+      The sequencing error rate of base is calculated from Phred score (Q<sub>phred</sub>) based on Equation 1 (equation 1: Q<sub>phred</sub> = -10log<sub>10</sub><sup>e</sup>), while the Phred score is predicted from a probabilitymodel during base calling. Their relations are show below:</p>
+    <p class="paragraph">Relationship of base calling and Phred scores in Illumina Casava.</p>
+    <table class="gy">
+      <tr>
+        <th>Phred score</th>
+        <th>Error rate</th>
+        <th>Accuracy</th>
+        <th>Q-sorce</th>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td>1/10</td>
+        <td>90%</td>
+        <td>Q10</td>
+      </tr>
+      <tr>
+        <td>20</td>
+        <td>1/100</td>
+        <td>99%</td>
+        <td>Q20</td>
+      </tr>
+      <tr>
+        <td>30</td>
+        <td>1/1000</td>
+        <td>99.9%</td>
+        <td>Q30</td>
+      </tr>
+      <tr>
+        <td>40</td>
+        <td>1/10000</td>
+        <td>99.99%</td>
+        <td>Q40</td>
+      </tr>
+    </table>
+    <p class="paragraph">Sequencing error rate is related to the base quality and is affected by many factors such as the sequencer, the sequencing reagents and the samples. For RNA-Seq technology, the distribution of sequencing error rate has two features: </p>
+    <p class="step">(1) The error rate will increase when the length of sequenced reads increases. This is due to the consumption of chemical reagents during sequencing, which is common for all Illumina high-throughput sequencing platforms(Hardwick SA et al., 2016).</p>
+    <p class="step">(2) The first six bases will suffer from higher sequencing error rate, and this is also the length of random primers which are required for reverse transcription during RNA-seq library construction. Therefore, it is speculated that the higher error rate in the first six bases is due to the incomplete bindings between random primers and RNA templates (Hardwick SA et al., 2016).</p>
+	
+    
+
+ <p class="center">
+    <div class="row">
+      <div class="col-1">
+        <div id="gallery_figure_error_Content_button_prev" class="button_prev" onclick="prev(this.id)">
+          <svg viewbox="0 0 16000 16000" class="svg_prev">
+            <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+            <polygon class="a"
+              points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+            </polygon>
+          </svg></div>
+      </div>
+      <div class="col-6">
+        <div class="tab-content" id="gallery_figure_error_Content_nav-tabContent">
+          
+          <div class="tab-pane fade" id="gallery_figure_error_Content_pane_sample1" role="tabpanel"
+            aria-labelledby="gallery_figure_error_Content_list_sample1" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/QC/Errorrate/sample1.Error.png" /></div>
+          
+          <div class="tab-pane fade" id="gallery_figure_error_Content_pane_sample2" role="tabpanel"
+            aria-labelledby="gallery_figure_error_Content_list_sample2" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/QC/Errorrate/sample2.Error.png" /></div>
+          
+          <div class="tab-pane fade" id="gallery_figure_error_Content_pane_sample3" role="tabpanel"
+            aria-labelledby="gallery_figure_error_Content_list_sample3" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/QC/Errorrate/sample3.Error.png" /></div>
+          
+          <div class="tab-pane fade" id="gallery_figure_error_Content_pane_sample4" role="tabpanel"
+            aria-labelledby="gallery_figure_error_Content_list_sample4" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/QC/Errorrate/sample4.Error.png" /></div>
+          
+          <div class="tab-pane fade" id="gallery_figure_error_Content_pane_sample5" role="tabpanel"
+            aria-labelledby="gallery_figure_error_Content_list_sample5" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/QC/Errorrate/sample5.Error.png" /></div>
+          
+          <div class="tab-pane fade" id="gallery_figure_error_Content_pane_sample6" role="tabpanel"
+            aria-labelledby="gallery_figure_error_Content_list_sample6" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/QC/Errorrate/sample6.Error.png" /></div>
+          
+          <div class="tab-pane fade" id="gallery_figure_error_Content_pane_sample7" role="tabpanel"
+            aria-labelledby="gallery_figure_error_Content_list_sample7" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/QC/Errorrate/sample7.Error.png" /></div>
+          
+        </div>
+      </div>
+      <div class="col-1">
+      <div id="gallery_figure_error_Content_button_next" class="button_next" onclick="next(this.id)">
+          <svg viewbox="0 0 16000 16000" class="svg_next">
+            <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+            <polygon class="a"
+              points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+            </polygon>
+          </svg></div>
+      </div>
+      <div class="col-4">
+        <input class="form-control" id="gallery_figure_error_Content_InputList" type="text" placeholder="Search..">
+        <div class="list-group" id="gallery_figure_error_Content_list-tab" role="tablist">
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_error_Content_list_sample1"
+            data-toggle="list" href="#gallery_figure_error_Content_pane_sample1" role="tab"
+            aria-controls="sample1">sample1</a>
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_error_Content_list_sample2"
+            data-toggle="list" href="#gallery_figure_error_Content_pane_sample2" role="tab"
+            aria-controls="sample2">sample2</a>
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_error_Content_list_sample3"
+            data-toggle="list" href="#gallery_figure_error_Content_pane_sample3" role="tab"
+            aria-controls="sample3">sample3</a>
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_error_Content_list_sample4"
+            data-toggle="list" href="#gallery_figure_error_Content_pane_sample4" role="tab"
+            aria-controls="sample4">sample4</a>
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_error_Content_list_sample5"
+            data-toggle="list" href="#gallery_figure_error_Content_pane_sample5" role="tab"
+            aria-controls="sample5">sample5</a>
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_error_Content_list_sample6"
+            data-toggle="list" href="#gallery_figure_error_Content_pane_sample6" role="tab"
+            aria-controls="sample6">sample6</a>
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_error_Content_list_sample7"
+            data-toggle="list" href="#gallery_figure_error_Content_pane_sample7" role="tab"
+            aria-controls="sample7">sample7</a>
+          
+        </div>
+      </div>
+    </div>
+    </p>
+
+	<p class="name_fig">Figure 4.2 Distribution of sequencing error rate</p>
+	<p class="cenmark">The horizontal axis represents the position of reads, and the vertical axis represents the error rate. </p>
+    <p class="paragraph">Result Directory:  <a href="../../Result_PXXXXXXXX_Homo_sapiens/1.QC/1.Error" title="点击打开" >QC_Error</a> </p>
+	<br />
+
+<!---------------------------1.4 GC含量分布------------------------------>	
+	
+	
+    
+    <h4 id="result14">4.1.4 GC Content Distribution</h4>
+    
+
+	
+	
+		
+	<!-- <p class="paragraph">核苷酸序列中鸟嘌呤（G）和胞嘧啶（C）所占的比例称为GC含量。GC含量在物种间存在一定特异性，但由于反转录过程中所使用的6bp随机引物，会引起前几位碱基在核苷酸组成上有一定偏好性，产生正常波动，随后则趋于稳定。对于链特异性建库而言，由于只保留了单链信息，可能会出现AT分离或GC分离现象。如图1.3所示：</p> -->
+
+</p>
+    
+    
+
+</br>
+	
+    <p class="center">
+    <div class="row">
+      <div class="col-1">
+        <div id="gallery_figure_GC_Content_button_prev" class="button_prev" onclick="prev(this.id)">
+          <svg viewbox="0 0 16000 16000" class="svg_prev">
+            <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+            <polygon class="a"
+              points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+            </polygon>
+          </svg></div>
+      </div>
+      <div class="col-6">
+        <div class="tab-content" id="gallery_figure_GC_Content_nav-tabContent">
+          
+          <div class="tab-pane fade" id="gallery_figure_GC_Content_pane_sample1" role="tabpanel"
+            aria-labelledby="gallery_figure_GC_Content_list_sample1" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/QC/GC/sample1.GC.png" /></div>
+          
+          <div class="tab-pane fade" id="gallery_figure_GC_Content_pane_sample2" role="tabpanel"
+            aria-labelledby="gallery_figure_GC_Content_list_sample2" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/QC/GC/sample2.GC.png" /></div>
+          
+          <div class="tab-pane fade" id="gallery_figure_GC_Content_pane_sample3" role="tabpanel"
+            aria-labelledby="gallery_figure_GC_Content_list_sample3" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/QC/GC/sample3.GC.png" /></div>
+          
+          <div class="tab-pane fade" id="gallery_figure_GC_Content_pane_sample4" role="tabpanel"
+            aria-labelledby="gallery_figure_GC_Content_list_sample4" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/QC/GC/sample4.GC.png" /></div>
+          
+          <div class="tab-pane fade" id="gallery_figure_GC_Content_pane_sample5" role="tabpanel"
+            aria-labelledby="gallery_figure_GC_Content_list_sample5" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/QC/GC/sample5.GC.png" /></div>
+          
+          <div class="tab-pane fade" id="gallery_figure_GC_Content_pane_sample6" role="tabpanel"
+            aria-labelledby="gallery_figure_GC_Content_list_sample6" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/QC/GC/sample6.GC.png" /></div>
+          
+          <div class="tab-pane fade" id="gallery_figure_GC_Content_pane_sample7" role="tabpanel"
+            aria-labelledby="gallery_figure_GC_Content_list_sample7" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/QC/GC/sample7.GC.png" /></div>
+          
+        </div>
+      </div>
+      <div class="col-1">
+      <div id="gallery_figure_GC_Content_button_next" class="button_next" onclick="next(this.id)">
+          <svg viewbox="0 0 16000 16000" class="svg_next">
+            <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+            <polygon class="a"
+              points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+            </polygon>
+          </svg></div>
+      </div>
+      <div class="col-4">
+        <input class="form-control" id="gallery_figure_GC_Content_InputList" type="text" placeholder="Search..">
+        <div class="list-group" id="gallery_figure_GC_Content_list-tab" role="tablist">
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_GC_Content_list_sample1"
+            data-toggle="list" href="#gallery_figure_GC_Content_pane_sample1" role="tab"
+            aria-controls="sample1">sample1</a>
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_GC_Content_list_sample2"
+            data-toggle="list" href="#gallery_figure_GC_Content_pane_sample2" role="tab"
+            aria-controls="sample2">sample2</a>
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_GC_Content_list_sample3"
+            data-toggle="list" href="#gallery_figure_GC_Content_pane_sample3" role="tab"
+            aria-controls="sample3">sample3</a>
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_GC_Content_list_sample4"
+            data-toggle="list" href="#gallery_figure_GC_Content_pane_sample4" role="tab"
+            aria-controls="sample4">sample4</a>
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_GC_Content_list_sample5"
+            data-toggle="list" href="#gallery_figure_GC_Content_pane_sample5" role="tab"
+            aria-controls="sample5">sample5</a>
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_GC_Content_list_sample6"
+            data-toggle="list" href="#gallery_figure_GC_Content_pane_sample6" role="tab"
+            aria-controls="sample6">sample6</a>
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_GC_Content_list_sample7"
+            data-toggle="list" href="#gallery_figure_GC_Content_pane_sample7" role="tab"
+            aria-controls="sample7">sample7</a>
+          
+        </div>
+      </div>
+    </div>
+    </p>
+    <p class="name_fig">Figure 4.3 GC-content</p>
+    <p class="cenmark">Horizontal axis for reads position, vertical axis for single base percentage. Different color for different base type</p>
+    <p class="paragraph">Result Directory:  <a href="../../Result_PXXXXXXXX_Homo_sapiens/1.QC/2.GC" title="点击打开" >QC_GC</a></p>
+    <br />
+    <br />
+<!-----------------------1.5 数据质量汇总---------------------->
+
+	
+	
+	
+	<h4 id="result15">4.1.5 Statistics of Sequencing Quality</h4>
+	
+	<p class="paragraph">Clean reads for follow-up analysis were obtained after raw data filtering, sequencing error rate checking and GC content distribution checking, and the data were summarized as shown in table 4.1.</p>
+	
+</p>
+    
+	
+</br>
+
+	<p class="name_fig">Table 4.1　Summary of data production</p>
+
+	<p class="center">
+	<!--<div id="tb" style="width:1100px;height:270px;overflow-y:scroll;overflow-x:hidden;" >-->
+	<div id="tb" style="overflow-y:scroll;overflow-x:hidden;" >
+		<table class="tb1">
+			
+			
+				<tr><th>sample</th><th>library</th><th>raw_reads</th><th>raw_bases</th><th>clean_reads</th><th>clean_bases</th><th>error_rate</th><th>Q20</th><th>Q30</th><th>GC_pct</th></tr>
+			
+		  
+			
+				<tr><td>sample1</td><td>BRRL220000060-1A</td><td>1e+07</td><td>1.5G</td><td>9735746</td><td>1.46G</td><td>0.02</td><td>97.97</td><td>94.31</td><td>49.84</td></tr>
+			
+		  
+			
+				<tr><td>sample2</td><td>BRRL220000061-1A</td><td>1e+07</td><td>1.5G</td><td>9695364</td><td>1.45G</td><td>0.03</td><td>97.85</td><td>94.06</td><td>46.58</td></tr>
+			
+		  
+			
+				<tr><td>sample3</td><td>BRRL220000062-1A</td><td>1e+07</td><td>1.5G</td><td>9428286</td><td>1.41G</td><td>0.02</td><td>98.46</td><td>95.45</td><td>53.83</td></tr>
+			
+		  
+			
+				<tr><td>sample4</td><td>BRRL220000063-1A</td><td>1e+07</td><td>1.5G</td><td>9800400</td><td>1.47G</td><td>0.02</td><td>98.19</td><td>94.8</td><td>49.14</td></tr>
+			
+		  
+			
+				<tr><td>sample5</td><td>BRRL220000064-1A</td><td>1e+07</td><td>1.5G</td><td>9772582</td><td>1.47G</td><td>0.02</td><td>98.2</td><td>94.99</td><td>51.36</td></tr>
+			
+		  
+			
+				<tr><td>sample6</td><td>BRRL220000065-1A</td><td>1e+07</td><td>1.5G</td><td>9793882</td><td>1.47G</td><td>0.02</td><td>98.2</td><td>94.85</td><td>50.43</td></tr>
+			
+		  
+			
+				<tr><td>sample7</td><td>BRRL220000066-1A</td><td>1e+07</td><td>1.5G</td><td>9808088</td><td>1.47G</td><td>0.02</td><td>98.19</td><td>94.94</td><td>50.35</td></tr>
+			
+		  
+		</table>
+	</div>		
+	</p>
+	<!--<div style="width:1100px;height:115px;overflow-y:scroll;overflow-x:hidden;">-->
+<button onclick="hiddenShow(this)">Show Annotation</button>
+<div class="comment">
+<ul style="font-size: 12px;font-family:line-height: 20px">
+	(1) sample: SampleID.<br />
+    (2) library: The number of libraries.<br />
+	(3) raw_reads: Reads count from the raw data, four rows as a unit, with statistics of reads count for every sequencing.<br />
+    (4) raw_bases: Base number of raw data. (number of raw reads) * (sequence length), converting unit to G.<br />
+	(5) clean_reads: Base number of raw data after filtering. (number of clean reads) * (sequence length), converting unit to G.<br />
+	(6) clean_bases: (clean base=clean reads*150bp) number multiply read length, saved in G unit.<br />
+
+        (7) error_rate：error_rate: Average sequencing error rate, which is calculated by Qphred=-10log10(e).<br />
+        (8) Q20: The percentage of the bases whose Q Phred values is greater than 20. (Number of bases with Q Phred value > 20) / (Number of total bases) *100.<br />
+        (9) Q30: The percentage of the bases whose Q Phred values is greater than 30. (Number of bases with Q Phred value > 30) / (Number of total bases) *100.<br />
+        (10) GC_pct: The percentage of G&C base numbers of total bases.(G&C base number) / (Total base number)*100.<br />
+
+</ul>
+</div>
+  <p class="paragraph">Result Directory:  <a href="../../Result_PXXXXXXXX_Homo_sapiens/1.QC/4.Stat" title="点击打开" target="_blank">QC_Stat</a></p>
+  <br />
+<!-------------------------------Data quality assessment Q&A: ------------------------------>
+<button onclick="hiddenQA(this)">Show Q&A</button>
+<div class="comment">
+<table style="font-size:12px;font-family: 'Times New Roman' 'Montserrat'">
+    <tr style="background-color:#036EB8"><td align="left" style="background-color:#036EB8;color:#FFFFFF">Q:The error rate will increase with the higher length of sequencing, what is the acceptable range of error rate?</td></tr>
+    <tr style="background-color:#f1f5fb"><td align="left" style="background-color:#f1f5fb;color:#3E3A39">A: Novogene set a high standard of sequencing quality. Generally, the error rate of a single base should be lower than 1%. In some special cases, the maximum error rate of a single base should not be greater than 6%.</td></tr>
+    <tr style="background-color:#036EB8"><td align="left" style="background-color:#036EB8;color:#FFFFFF">Q:What is the difference between the align software of RNA data and of DNA data?</td></tr>
+    <tr style="background-color:#f1f5fb"><td align="left" style="background-color:#f1f5fb;color:#3E3A39">A:Due to the existence of splicing during transcription, a large portion of the measured reads spans different exons, and all RNA data alignment software will support the splice alignment of spliced reads.</td></tr>
+    <tr style="background-color:#036EB8"><td align="left" style="background-color:#036EB8;color:#FFFFFF">Q:Does the full length of reads will be used for mapping, or does the head or tail of reads will be processed before mapping?</td></tr>
+    <tr style="background-color:#f1f5fb"><td align="left" style="background-color:#f1f5fb;color:#3E3A39">A:In our experiment, we use the standard RNA-seq kit, whose indexes are in the middle of the adapters and the sequencing will be executed for the sequences with indexes. In this way, the sequences of read 1 and read 2 are from the samples and there is no need to process the sequences in mapping. Even if the adapters are in sequences
+  or the quality is low, the read will be removed.</td></tr>
+
+</table>
+</div>
+
+	<br />	
+
+<!-------------------------------2 比对------------------------------>
+
+
+
+<div id="page" >
+
+	<h3 id="result2">4.2 Mapping To Reference Genome</h3>
+    <p class="paragraph">Perform alignments with HISAT2 to the reference. HISAT2 uses a graph-based alignment and has succeeded HISAT and TOPHAT2. HISAT2 is a fast and sensitive alignment program for mapping next-generation sequencing reads. Besides one global GFM index, HISAT2 also includes a large set of small GFM indexes that collectively cover the whole genome. These small indexes (local indexes), combined with multiple alignment strategies, enabled effective alignment of RNA-seq reads, particularly, reads spanning multiple exons(Kim D et al., 2015).</p> 
+
+    <p class="center"><img class="normal_pipline_lncRNA" src="images/hisat2.png" /></p>
+
+</div>
+
+
+<!------------------------------2.1 比对结果说明-------------------------->
+
+<!--------------------------2.1 比对情况统计-------------------------->
+	<h4 id="result21">4.2.1 Overview of Mapping Status</h4>
+	
+
+	<p class="center">
+	
+</br>	
+	
+	<p class="name_fig">Table 4.2 Summary of reads mapped to reference genome</p>
+
+<p class="center">
+<div id="tb" style="overflow-y:scroll;overflow-x:scroll;">
+		<table class="tb1" >
+			
+			
+				<tr><th>sample</th><th>total_reads</th><th>total_map</th><th>unique_map</th><th>multi_map</th><th>read1_map</th><th>read2_map</th><th>positive_map</th><th>negative_map</th><th>splice_map</th><th>unsplice_map</th><th>proper_map</th></tr>
+			
+		  
+			
+				<tr><td>sample1</td><td>9735746</td><td>9196398(94.46%)</td><td>8684660(89.2%)</td><td>511738(5.26%)</td><td>4361418(44.8%)</td><td>4323242(44.41%)</td><td>4340096(44.58%)</td><td>4344564(44.62%)</td><td>1513332(15.54%)</td><td>7171328(73.66%)</td><td>8373154(86.0%)</td></tr>
+			
+		  
+			
+				<tr><td>sample2</td><td>9695364</td><td>9234363(95.25%)</td><td>8951094(92.32%)</td><td>283269(2.92%)</td><td>4491205(46.32%)</td><td>4459889(46.0%)</td><td>4472499(46.13%)</td><td>4478595(46.19%)</td><td>1406737(14.51%)</td><td>7544357(77.81%)</td><td>8663342(89.36%)</td></tr>
+			
+		  
+			
+				<tr><td>sample3</td><td>9428286</td><td>8602328(91.24%)</td><td>7166608(76.01%)</td><td>1435720(15.23%)</td><td>3593344(38.11%)</td><td>3573264(37.9%)</td><td>3586028(38.03%)</td><td>3580580(37.98%)</td><td>3115610(33.05%)</td><td>4050998(42.97%)</td><td>6991454(74.15%)</td></tr>
+			
+		  
+			
+				<tr><td>sample4</td><td>9800400</td><td>9464203(96.57%)</td><td>8395263(85.66%)</td><td>1068940(10.91%)</td><td>4206935(42.93%)</td><td>4188328(42.74%)</td><td>4196600(42.82%)</td><td>4198663(42.84%)</td><td>1756972(17.93%)</td><td>6638291(67.73%)</td><td>8137774(83.04%)</td></tr>
+			
+		  
+			
+				<tr><td>sample5</td><td>9772582</td><td>9317851(95.35%)</td><td>7853771(80.37%)</td><td>1464080(14.98%)</td><td>3936759(40.28%)</td><td>3917012(40.08%)</td><td>3924942(40.16%)</td><td>3928829(40.2%)</td><td>2359549(24.14%)</td><td>5494222(56.22%)</td><td>7656764(78.35%)</td></tr>
+			
+		  
+			
+				<tr><td>sample6</td><td>9793882</td><td>9388676(95.86%)</td><td>7920943(80.88%)</td><td>1467733(14.99%)</td><td>3972098(40.56%)</td><td>3948845(40.32%)</td><td>3960450(40.44%)</td><td>3960493(40.44%)</td><td>2310066(23.59%)</td><td>5610877(57.29%)</td><td>7704804(78.67%)</td></tr>
+			
+		  
+			
+				<tr><td>sample7</td><td>9808088</td><td>9379326(95.63%)</td><td>8075434(82.33%)</td><td>1303892(13.29%)</td><td>4047594(41.27%)</td><td>4027840(41.07%)</td><td>4036806(41.16%)</td><td>4038628(41.18%)</td><td>2197990(22.41%)</td><td>5877444(59.92%)</td><td>7855550(80.09%)</td></tr>
+			
+		   
+		</table>
+	</div>	
+</p>
+<button onclick="hiddenShow(this)">Show Annotation</button>
+<div class="comment">
+<ul style="font-size: 12px;font-family:line-height: 20px">
+	(1) sample: SampleID.<br />
+	(2) total_reads: Total clean reads used for analysis.<br />
+	(3) total_map: Number and percentage of reads aligned to the genome, the ratio should higher than 70%, total mapping rate: (mapped reads)/(total reads)*100.<br />
+	(4) unique_map: Number and percentage of reads aligned to the unique position of the reference genome (for subsequent quantitative data analysis), unique mapping rate: (uniquely mapped reads)/(total reads)*100.<br />
+	(5) Multi_map: number and percentage of reads aligned to multiple locations in the reference genome, multiple mapping rate: (multiple mapped reads)/(total reads)*100.<br />
+	(6) read1_map: Number and percentage of read1 aligned to the reference genome.<br />
+	(7) read2_map: Number and percentage of read2 aligned to the reference genome.<br />
+	(8) positive_map: Number and percentage of reads aligned to the positive chain of the reference genome.<br />
+	(9) negative_map: Number and percentage of reads aligned to the negative chain of the reference genome.<br />
+	(10) splice_map: Number of spliced reads on the genome and its percentage.splice_map: Number of spliced reads on the genome and its percentage.  <br />
+	(11) unsplice_map: Number of complete reads aligned to genome and its percentage.<br />
+	(12) proper_map: Number of paired read1 and read2 aligned to the genome and its percentage.<br />
+
+</ul>
+</div>
+    <p class="paragraph">Result Directory:<a href="../../Result_PXXXXXXXX_Homo_sapiens/2.Mapping/2.Stat" title="点击打开" >Mapping_Stat</a></p>
+	<br />
+
+<!------------------------------2.2 基因组区域分布------------------>
+
+
+
+<div id="page">
+
+	<h4 id="result22">4.2.2 Reads Distribution in Reference Genome</h4>
+
+    <p class="paragraph">Mapped regions can be classified as exons, introns, or intergenic regions. Exon-mapped reads should be the most abundant type of reads when the reference genome is well-annotated. Intron-reads may be derived from pre-mRNA contamination or intron-retention from alternative splicing. Reads mapped to intergenic regions may be derived from ncRNA or a small fraction of DNA contamination (Breschi A et al., 2017). The graphical representations are shown as below: 
+
+<!-------20200328添加, 除样本名修改外, 其余框架内容不做修改-->
+</p>
+	
+    
+
+</br>	
+ <p class="center">
+    <div class="row">
+      <div class="col-1">
+        <div id="gallery_figure_map_Content_button_prev" class="button_prev" onclick="prev(this.id)">
+          <svg viewbox="0 0 16000 16000" class="svg_prev">
+            <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+            <polygon class="a"
+              points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+            </polygon>
+          </svg></div>
+      </div>
+      <div class="col-6">
+        <div class="tab-content" id="gallery_figure_map_Content_nav-tabContent">
+          
+          <div class="tab-pane fade" id="gallery_figure_map_Content_pane_sample1" role="tabpanel"
+            aria-labelledby="gallery_figure_map_Content_list_sample1" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/Mapping/Mapregion/sample1.region.png" /></div>
+          
+          <div class="tab-pane fade" id="gallery_figure_map_Content_pane_sample2" role="tabpanel"
+            aria-labelledby="gallery_figure_map_Content_list_sample2" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/Mapping/Mapregion/sample2.region.png" /></div>
+          
+          <div class="tab-pane fade" id="gallery_figure_map_Content_pane_sample3" role="tabpanel"
+            aria-labelledby="gallery_figure_map_Content_list_sample3" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/Mapping/Mapregion/sample3.region.png" /></div>
+          
+          <div class="tab-pane fade" id="gallery_figure_map_Content_pane_sample4" role="tabpanel"
+            aria-labelledby="gallery_figure_map_Content_list_sample4" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/Mapping/Mapregion/sample4.region.png" /></div>
+          
+          <div class="tab-pane fade" id="gallery_figure_map_Content_pane_sample5" role="tabpanel"
+            aria-labelledby="gallery_figure_map_Content_list_sample5" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/Mapping/Mapregion/sample5.region.png" /></div>
+          
+          <div class="tab-pane fade" id="gallery_figure_map_Content_pane_sample6" role="tabpanel"
+            aria-labelledby="gallery_figure_map_Content_list_sample6" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/Mapping/Mapregion/sample6.region.png" /></div>
+          
+          <div class="tab-pane fade" id="gallery_figure_map_Content_pane_sample7" role="tabpanel"
+            aria-labelledby="gallery_figure_map_Content_list_sample7" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/Mapping/Mapregion/sample7.region.png" /></div>
+          
+        </div>
+      </div>
+      <div class="col-1">
+      <div id="gallery_figure_map_Content_button_next" class="button_next" onclick="next(this.id)">
+          <svg viewbox="0 0 16000 16000" class="svg_next">
+            <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+            <polygon class="a"
+              points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+            </polygon>
+          </svg></div>
+      </div>
+      <div class="col-4">
+        <input class="form-control" id="gallery_figure_map_Content_InputList" type="text" placeholder="Search..">
+        <div class="list-group" id="gallery_figure_map_Content_list-tab" role="tablist">
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_map_Content_list_sample1"
+            data-toggle="list" href="#gallery_figure_map_Content_pane_sample1" role="tab"
+            aria-controls="sample1">sample1</a>
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_map_Content_list_sample2"
+            data-toggle="list" href="#gallery_figure_map_Content_pane_sample2" role="tab"
+            aria-controls="sample2">sample2</a>
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_map_Content_list_sample3"
+            data-toggle="list" href="#gallery_figure_map_Content_pane_sample3" role="tab"
+            aria-controls="sample3">sample3</a>
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_map_Content_list_sample4"
+            data-toggle="list" href="#gallery_figure_map_Content_pane_sample4" role="tab"
+            aria-controls="sample4">sample4</a>
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_map_Content_list_sample5"
+            data-toggle="list" href="#gallery_figure_map_Content_pane_sample5" role="tab"
+            aria-controls="sample5">sample5</a>
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_map_Content_list_sample6"
+            data-toggle="list" href="#gallery_figure_map_Content_pane_sample6" role="tab"
+            aria-controls="sample6">sample6</a>
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_map_Content_list_sample7"
+            data-toggle="list" href="#gallery_figure_map_Content_pane_sample7" role="tab"
+            aria-controls="sample7">sample7</a>
+          
+        </div>
+      </div>
+    </div>
+    </p>
+
+	<p class="name_fig">Figure 4.4 Sequencing reads in the genomic region </p>
+    <p class="premark">(1) exon: The number of reads aligned to exon regions of the genome and its proportion in clean reads.</p>
+    <p class="premark">(2) Intron: The number of reads aligned to intron regions of the genome and its proportion in clean reads.</p>
+    <p class="premark">(3) Intergenic: The number of reads aligned to intergenic regions of the genome and its proportion in clean reads.</p>
+    <p class="paragraph">Result Directory:<a href="../../Result_PXXXXXXXX_Homo_sapiens/2.Mapping/1.Region" title="点击打开" >Mapping_Region</a></p>
+	<br />
+</div>
+
+<!------------------------------2.3 比对可视化------------------>
+
+
+
+<div id="page">
+
+    <h4 id="result23">4.2.3 Visualization of Mapping Results</h4>
+    <p class="paragraph">Files provided in BAM format--a standard file format that contains mapping results–indicating the information of the corresponding referenced genome and gene annotations for some species. The Integrative Genomics Viewer (IGV) is a recommended software for visualizing data from BAM files.</p>
+    <p class="step">(1) It displays the positions of single or multiple reads in the reference genome, as well as read
+      distribution between annotated exons, introns or intergenic regions, both in adjustable scale; <br />
+      (2) It displays the read abundance of different regions to demonstrate their expression levels, in adjustable
+      scale;
+      <br />
+      (3) It provides annotation information for both genes and splicing isoforms; <br />
+      (4) It provides other related annotation information; <br />
+      (5) It displays annotations downloaded from remote servers and/or imported from local machines;<br />
+      (6) IGV browser usage can refer to our provided documentation <a href="IGVQuickStart.pdf" title="点击打开" >IGVQuickStart</a></p>
+
+<p class="center"><img class="igv" src='images/igv.png'></p>
+<p class="name_fig">Figure 4.5  IGV Browser Comparison Visualization of Results </p>
+
+</div>
+
+<!-------------------------------2.4  比对视频链接------------------------------>
+
+
+<!---------------------------------------转录本拼接（lncRNA）---------------------------------------------->
+
+<!---------------------------------------转录本拼接（Stringtie）---------------------------------------------->
+
+
+
+
+
+
+<!---------------------------筛选-------------------------->
+
+<!------------------------------3 定量------------------------------>
+
+<!---------------------------4 差异分析-------------------------->
+
+<!---------------------------5 富集分析---------------------------------->
+
+
+
+
+
+
+
+
+    
+
+<!---------------------------lncRNA靶基因预测-------------------------->
+ 
+ 
+
+<!---------------------------------------可变剪接分析---------------------------------->
+
+
+<!---------------------------------------变异位点分析---------------------------------->
+
+
+
+<!---------------------------------------融合基因分析---------------------------------->
+
+
+<!---------------------------CircRNA 鉴定（circRNA）--------------------------->
+
+
+<div id="page">
+	<h3 id="result11">4.3 CircRNA Identification</h3>
+	<p class="paragraph">Find_circ and CIRI are the two most commonly used circRNA identification software.</p>
+    <p class="paragraph">The basic principle of find_circ(Memczak S et al., 2013) for circRNA identification is to extract 20-nt anchor sequence from both ends of reads that are not compared to the reference sequence, and then compare each pair of anchor sequence with the reference sequence again. If the 5' end of Anchor sequence is compared to the reference sequence (the start and end sites are denoted as A3 and A4 respectively), and the 3' end of anchor sequence is compared to the upstream of this site (the start and end sites are denoted as A1 and A2 respectively), If there is a splicing site (GT-AG) between A2 and A3 of the reference sequence, this read is used as a candidate circRNA. Finally, the candidate circRNA whose read count is greater than or equal to 2 is used as the identification circRNA.</p>
+	<p class="center">
+		<img class="normal3" src="images/find_circ.png"/>
+	</p>
+	<p class="name_fig">Figure 4.6 find_circ identification schematic</p>
+    <p class="paragraph">CIRI(Gao Y et al., 2015) first analyzed the CIGAR values in Sam files and scanned PCC signals (paired chiastic clipping signals) from Sam files. Junction reads filter based on PEM and GT-AG signals. Cooling junction reads are detected using a DM algorithm to further filter and block false positives caused by homologous similarities and duplicated sequences.</p>
+	<p class="center">
+		<img class="normal31" src="images/ciri_pipeline.png"/>
+	</p>
+	<p class="name_fig">Figure 4.7 CIRI identification pipline</p>
+    <p class="paragraph">By default, we will choose the two software for joint analysis to improve the accuracy of circRNA identification. However, due to the limitations of the software itself, the particularity of species or samples, there may be cases where a software cannot identify circRNA. Therefore, we will choose software according to the actual situation of the project.</p>
+
+<!----------------------10.1 cirRNA鉴定结果-------------------------------------->
+</p>
+
+<p class="paragraph">Result directory of CircRNA identification:  <a href="../../Result_PXXXXXXXX_Homo_sapiens/3.CircRNA/3.1.CircNovel/novel_circRNA_output" title="点击打开" >novel_circRNAs</a> </p>	
+
+</br>
+	<h4 id="result111">4.3.1 Identification Result</h4>
+	<p class="paragraph">Partial results of CircRNA identification are shown in the table below:</p>
+	<p class="name_fig">Table 4.3 CircRNA Identification Results Display(part)</p>
+	<p class="center">
+	<div id="tb">
+		<table class="tb1">
+			
+			
+				<tr class="tb1"><th class="tb1">circRNA_ID</th><th class="tb1">Chr</th><th class="tb1">start</th><th class="tb1">end</th><th class="tb1">strand</th><th class="tb1">full_length</th><th class="tb1">spliced_length</th><th class="tb1">gene_id</th><th class="tb1">feature</th><th class="tb1">samples</th><th class="tb1">junction_read</th><th class="tb1">non_junction_read</th><th class="tb1">source_gene_name</th></tr>
+			
+			
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">hsa_circ_0003298</td><td  class="tb1" style="text-align:center">20</td><td  class="tb1" style="text-align:center">21365420</td><td  class="tb1" style="text-align:center">21368590</td><td  class="tb1" style="text-align:center">+</td><td  class="tb1" style="text-align:center">3170</td><td  class="tb1" style="text-align:center">329</td><td  class="tb1" style="text-align:center">ENSG00000088930;</td><td  class="tb1" style="text-align:center">exon:21365421-21365489,exon:21365573-21365704,exon:21368463-21368590</td><td  class="tb1" style="text-align:center">sample7</td><td  class="tb1" style="text-align:center">2</td><td  class="tb1" style="text-align:center">20</td><td  class="tb1" style="text-align:center">XRN2</td></tr>
+			
+			
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">hsa_circ_0005265</td><td  class="tb1" style="text-align:center">20</td><td  class="tb1" style="text-align:center">2947981</td><td  class="tb1" style="text-align:center">2965202</td><td  class="tb1" style="text-align:center">+</td><td  class="tb1" style="text-align:center">17221</td><td  class="tb1" style="text-align:center">554</td><td  class="tb1" style="text-align:center">ENSG00000132670;</td><td  class="tb1" style="text-align:center">exon:2947982-2948024,exon:2964272-2964350</td><td  class="tb1" style="text-align:center">sample2,sample4,sample5,sample7</td><td  class="tb1" style="text-align:center">4,2,5,4</td><td  class="tb1" style="text-align:center">19,7,28,19</td><td  class="tb1" style="text-align:center">PTPRA</td></tr>
+			
+			
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">hsa_circ_0006117</td><td  class="tb1" style="text-align:center">20</td><td  class="tb1" style="text-align:center">2964271</td><td  class="tb1" style="text-align:center">2965202</td><td  class="tb1" style="text-align:center">+</td><td  class="tb1" style="text-align:center">931</td><td  class="tb1" style="text-align:center">421</td><td  class="tb1" style="text-align:center">ENSG00000132670;</td><td  class="tb1" style="text-align:center">exon:2964272-2964350,exon:2964861-2965202</td><td  class="tb1" style="text-align:center">sample1,sample3,sample4,sample5,sample6,sample7</td><td  class="tb1" style="text-align:center">8,31,6,24,5,31</td><td  class="tb1" style="text-align:center">15,39,24,40,24,34</td><td  class="tb1" style="text-align:center">PTPRA</td></tr>
+			
+			
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">hsa_circ_0003209</td><td  class="tb1" style="text-align:center">20</td><td  class="tb1" style="text-align:center">31782248</td><td  class="tb1" style="text-align:center">31797515</td><td  class="tb1" style="text-align:center">+</td><td  class="tb1" style="text-align:center">15267</td><td  class="tb1" style="text-align:center">891</td><td  class="tb1" style="text-align:center">ENSG00000088325;</td><td  class="tb1" style="text-align:center">exon:31782249-31782390,exon:31797404-31797515</td><td  class="tb1" style="text-align:center">sample3</td><td  class="tb1" style="text-align:center">2</td><td  class="tb1" style="text-align:center">4</td><td  class="tb1" style="text-align:center">TPX2</td></tr>
+			
+			
+		</table>
+	</div>
+	</p>
+<button onclick="hiddenShow(this)">Show Annotation</button>
+<div class="comment">
+<ul style="font-size: 12px;font-family:line-height: 20px">
+	(1) circRNA_ID: CircRNA ID<br />
+	(2) Chr: Chromosome number<br />
+	(3) start: The starting site of the full length of circRNA.<br />
+	(4) end: the End site of the full length of circRNA.<br />
+	(5) strand: Positive and negative chain information.<br />
+	(6) full_length: The full length of circRNA.<br />
+	(7) spliced_length: The spliced length of circRNA.<br />
+	(8) gene_id: CircRNA source gene id.<br />
+	(9) feature_id: CircRNA shearing information (for non-linearized RNA library construction, this shearing information may contain linear Rnas matching at this location).<br />
+	(10) samples: Samples containing the circRNA (separated by commas).<br />
+	(11) junction_read: Junction read number (order corresponding to samples).<br />
+	(12) non_junction_read: Number of non-junction reads (in order corresponding to samples).<br />
+	(13) source_gene_name: CircRNA source gene name</br>
+</ul>
+</div>
+</div>
+
+
+</br>	
+
+
+	</br>
+
+<!--------------------------10.2 CircRNA 来源统计---------------------->
+	<h4 id="result113">4.3.2 CircRNA source statistics</h4>
+    <p class="paragraph">CircRNA can be derived from exon or intron splicing, and some circRNA can also be derived from intergenic. The following figure shows the sources of circRNA in all samples:</p>
+
+<!-- 也是固定用法？ -->
+</p>
+	
+
+	<p class="center">
+    <img class="normal" src="files/CircNovel/plot_novel_genomic_feature.png"/>
+    </p>
+    <p class="name_fig">Figure 4.8 The source of the circRNA</p>
+	<p class="cenmark">Abscissa: sample name; Ordinate: circRNA source type ratio</p>
+	<p class="paragraph">Result directory of length distribution of circRNAs:  <a href="../../Result_PXXXXXXXX_Homo_sapiens/3.CircRNA/3.1.CircNovel/novel_circRNA_stat/circRNA_genomic_feature" title="点击打开" >plot_novel_genomic_feature</a> </p>
+
+
+</br>
+<!--------------------------10.3 CircRNA 染色体分布---------------------->
+	<h4 id="result114">4.3.3 Distribution of circRNA in the chromosome</h4>
+	<p class="paragraph">Density statistics were conducted for all circRNA of each sample compared to each chromosome on the genome, and circRNA distribution on each chromosome was ploted by circos.</p>
+    
+
+</p>
+	
+</br>
+
+<p class="center">
+    <div class="row">
+      <div class="col-1">
+        <div id="gallery_figure_circcircos_Content_button_prev" class="button_prev" onclick="prev(this.id)">
+          <svg viewbox="0 0 16000 16000" class="svg_prev">
+            <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+            <polygon class="a"
+              points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+            </polygon>
+          </svg></div>
+      </div>
+      <div class="col-6">
+        <div class="tab-content" id="gallery_figure_circcircos_Content_nav-tabContent">
+          
+          <div class="tab-pane fade" id="gallery_figure_circcircos_Content_pane_sample1" role="tabpanel"
+            aria-labelledby="gallery_figure_circcircos_Content_list_sample1" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/CircNovel/sample1.circos.png" /></div>
+          
+          <div class="tab-pane fade" id="gallery_figure_circcircos_Content_pane_sample2" role="tabpanel"
+            aria-labelledby="gallery_figure_circcircos_Content_list_sample2" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/CircNovel/sample2.circos.png" /></div>
+          
+          <div class="tab-pane fade" id="gallery_figure_circcircos_Content_pane_sample3" role="tabpanel"
+            aria-labelledby="gallery_figure_circcircos_Content_list_sample3" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/CircNovel/sample3.circos.png" /></div>
+          
+          <div class="tab-pane fade" id="gallery_figure_circcircos_Content_pane_sample4" role="tabpanel"
+            aria-labelledby="gallery_figure_circcircos_Content_list_sample4" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/CircNovel/sample4.circos.png" /></div>
+          
+          <div class="tab-pane fade" id="gallery_figure_circcircos_Content_pane_sample5" role="tabpanel"
+            aria-labelledby="gallery_figure_circcircos_Content_list_sample5" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/CircNovel/sample5.circos.png" /></div>
+          
+          <div class="tab-pane fade" id="gallery_figure_circcircos_Content_pane_sample6" role="tabpanel"
+            aria-labelledby="gallery_figure_circcircos_Content_list_sample6" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/CircNovel/sample6.circos.png" /></div>
+          
+          <div class="tab-pane fade" id="gallery_figure_circcircos_Content_pane_sample7" role="tabpanel"
+            aria-labelledby="gallery_figure_circcircos_Content_list_sample7" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/CircNovel/sample7.circos.png" /></div>
+          
+        </div>
+      </div>
+      <div class="col-1">
+      <div id="gallery_figure_circcircos_Content_button_next" class="button_next" onclick="next(this.id)">
+          <svg viewbox="0 0 16000 16000" class="svg_next">
+            <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+            <polygon class="a"
+              points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+            </polygon>
+          </svg></div>
+      </div>
+      <div class="col-4">
+        <input class="form-control" id="gallery_figure_circcircos_Content_InputList" type="text" placeholder="Search..">
+        <div class="list-group" id="gallery_figure_circcircos_Content_list-tab" role="tablist">
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_circcircos_Content_list_sample1"
+            data-toggle="list" href="#gallery_figure_circcircos_Content_pane_sample1" role="tab"
+            aria-controls="sample1">sample1</a>
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_circcircos_Content_list_sample2"
+            data-toggle="list" href="#gallery_figure_circcircos_Content_pane_sample2" role="tab"
+            aria-controls="sample2">sample2</a>
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_circcircos_Content_list_sample3"
+            data-toggle="list" href="#gallery_figure_circcircos_Content_pane_sample3" role="tab"
+            aria-controls="sample3">sample3</a>
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_circcircos_Content_list_sample4"
+            data-toggle="list" href="#gallery_figure_circcircos_Content_pane_sample4" role="tab"
+            aria-controls="sample4">sample4</a>
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_circcircos_Content_list_sample5"
+            data-toggle="list" href="#gallery_figure_circcircos_Content_pane_sample5" role="tab"
+            aria-controls="sample5">sample5</a>
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_circcircos_Content_list_sample6"
+            data-toggle="list" href="#gallery_figure_circcircos_Content_pane_sample6" role="tab"
+            aria-controls="sample6">sample6</a>
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_circcircos_Content_list_sample7"
+            data-toggle="list" href="#gallery_figure_circcircos_Content_pane_sample7" role="tab"
+            aria-controls="sample7">sample7</a>
+          
+        </div>
+      </div>
+    </div>
+    </p>
+
+	<p class="name_fig">Figure 4.9 Distribution of circRNA in the chromosome</p>
+    <p class="cenmark">Circos diagram of density distribution of all circrnas on chromosomes of each sample. Outer ring as the chromosome location map, outside figures for chromosome number, with different colors to distinguish different chromosomes, the scale reflects chromosome coordinates, the unit is M (millions). inner ring chromosome each reaction coordinate interval circRNA density, display is a scatter diagram.</p>
+	<p class="paragraph">Result directory of distribution of circRNA in the chromosome:  <a href="../../Result_PXXXXXXXX_Homo_sapiens/3.CircRNA/3.1.CircNovel/novel_circRNA_stat/circRNA_chr_distribution" title="点击打开" >circRNA_chr_distribution</a> </p>
+	
+</br>
+<!---------------------------10.4 circRNA 疾病数据库注释-------------------------->
+
+<h4 id="result115">4.3.4 CircRNA Disease database notes</h4>
+<p class="paragraph">In recent years, circRNA articles have emerged in an endless stream. At present, PubMed has included a large number of circRNA articles related to human disease research. We annotated all circRNA identified in this project for the convenience of teachers for reference. The annotated content is shown in the following table:</p>
+<p class="name_fig">Table 4.4 CircRNA Disease Database Notes(part)</p>
+<p class="center">
+<div id="tb">
+	<table class="tb1">
+		
+			
+				<tr class="tb1"><th class="tb1">circRNA_ID</th><th class="tb1">circRNA_Name</th><th class="tb1">Disease</th><th class="tb1">Expression_pattern</th><th class="tb1">Associator_miRNA/gene</th><th class="tb1">Host_gene</th><th class="tb1">Functional_Describution</th><th class="tb1">samples</th><th class="tb1">junction_read</th><th class="tb1">non_junction_read</th><th class="tb1">Title</th><th class="tb1">Journal</th><th class="tb1">Pub_time</th><th class="tb1">Pmid</th><th class="tb1">Method of circRNA detection</th><th class="tb1">Species</th><th class="tb1">Tissue/Cell line</th></tr>
+			
+		
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">hsa_circ_0005105</td><td  class="tb1" style="text-align:center">-</td><td  class="tb1" style="text-align:center">osteoarthritis</td><td  class="tb1" style="text-align:center">up-regulated</td><td  class="tb1" style="text-align:center">"miR-26a, NAMPT"</td><td  class="tb1" style="text-align:center">SEC24A</td><td  class="tb1" style="text-align:center">Hsa_circ_0005105 can promote extracellular matrix (ECM) degradation by regulating the expression of miR-26a target NAMPT.</td><td  class="tb1" style="text-align:center">sample3</td><td  class="tb1" style="text-align:center">8</td><td  class="tb1" style="text-align:center">20</td><td  class="tb1" style="text-align:center">CircRNA hsa_circ_0005105 upregulates NAMPT expression and promotes chondrocyte extracellular matrix degradation by sponging miR-26a</td><td  class="tb1" style="text-align:center">Cell Biol Int.</td><td  class="tb1" style="text-align:center">2017 Dec</td><td  class="tb1" style="text-align:center">28276108</td><td  class="tb1" style="text-align:center">qRT-PCR</td><td  class="tb1" style="text-align:center">human</td><td  class="tb1" style="text-align:center">cell line</td></tr>
+			
+		
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">hsa_circ_0052012</td><td  class="tb1" style="text-align:center">hsa_circRNA_102594</td><td  class="tb1" style="text-align:center">rheumatoid arthritis</td><td  class="tb1" style="text-align:center">down-regulated</td><td  class="tb1" style="text-align:center">-</td><td  class="tb1" style="text-align:center">POLD1</td><td  class="tb1" style="text-align:center">"RT-qPCR validation demonstrated that the expression levels of hsa_circRNA_104194, hsa_circRNA_104593, hsa_circRNA_103334, hsa_circRNA_101407 and hsa_circRNA_102594 were consistent with the results from the microarray analysis. The current study presented differentially expressed circRNAs and their corresponding microRNA binding sites in RA. circRNAs may exhibit a role in the regulation of expression of symbol genes that influence the occurrence and development of RA."</td><td  class="tb1" style="text-align:center">sample2,sample4</td><td  class="tb1" style="text-align:center">5,3</td><td  class="tb1" style="text-align:center">2,0</td><td  class="tb1" style="text-align:center">"Circular RNA expression profiles of peripheral blood mononuclear cells in rheumatoid arthritis patients, based on microarray chip technology"</td><td  class="tb1" style="text-align:center">Mol Med Rep.</td><td  class="tb1" style="text-align:center">2017 Dec</td><td  class="tb1" style="text-align:center">28983619</td><td  class="tb1" style="text-align:center">"qRT-PCR, microarray"</td><td  class="tb1" style="text-align:center">human</td><td  class="tb1" style="text-align:center">tissue</td></tr>
+			
+		
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">hsa_circ_0001445</td><td  class="tb1" style="text-align:center">circSMARCA5</td><td  class="tb1" style="text-align:center">prostate cancer</td><td  class="tb1" style="text-align:center">up-regulated</td><td  class="tb1" style="text-align:center">-</td><td  class="tb1" style="text-align:center">SMARCA5</td><td  class="tb1" style="text-align:center">Functional experiments showed circ-SMARCA5 acted as an oncogene in prostate cancer by promoting cell cycle and inhibiting cell apoptosis.</td><td  class="tb1" style="text-align:center">sample4,sample5,sample7</td><td  class="tb1" style="text-align:center">2,7,3</td><td  class="tb1" style="text-align:center">1,20,8</td><td  class="tb1" style="text-align:center">Androgen-responsive circular RNA circSMARCA5 is up-regulated and promotes cell proliferation in prostate cancer</td><td  class="tb1" style="text-align:center">Biochem Biophys Res Commun.</td><td  class="tb1" style="text-align:center">2017 Nov 25</td><td  class="tb1" style="text-align:center">28765045</td><td  class="tb1" style="text-align:center">qRT-PCR</td><td  class="tb1" style="text-align:center">human</td><td  class="tb1" style="text-align:center">tissue and cell line</td></tr>
+			
+		
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">hsa_circ_0001017</td><td  class="tb1" style="text-align:center">-</td><td  class="tb1" style="text-align:center">gastric cancer</td><td  class="tb1" style="text-align:center">down-regulated</td><td  class="tb1" style="text-align:center">-</td><td  class="tb1" style="text-align:center">XPO1</td><td  class="tb1" style="text-align:center">"We found that hsa_circ_0001017 and hsa_circ_0061276 both decreased in gastric cancer tissues and patients' plasma. Moreover, their levels were tightly associated with main clinicopathological features of patients with gastric cancer. As a result, hsa_circ_0001017 and hsa_circ_0061276 may be valuable blood-based biomarkers, either alone or in combination, to screen gastric cancer and estimate prognosis."</td><td  class="tb1" style="text-align:center">sample1,sample2,sample3,sample4,sample5,sample6,sample7</td><td  class="tb1" style="text-align:center">41,47,241,69,109,82,113</td><td  class="tb1" style="text-align:center">4,28,10,7,28,21,17</td><td  class="tb1" style="text-align:center">Plasma circular RNA profiling of patients with gastric cancer and their droplet digital RT-PCR detection</td><td  class="tb1" style="text-align:center">J Mol Med (Berl).</td><td  class="tb1" style="text-align:center">2017 Nov 2</td><td  class="tb1" style="text-align:center">29098316</td><td  class="tb1" style="text-align:center">"qRT-PCR, microarray"</td><td  class="tb1" style="text-align:center">human</td><td  class="tb1" style="text-align:center">tissue and cell line</td></tr>
+			
+		
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">hsa_circ_0001785</td><td  class="tb1" style="text-align:center">-</td><td  class="tb1" style="text-align:center">breast cancer</td><td  class="tb1" style="text-align:center">up-regulated</td><td  class="tb1" style="text-align:center">-</td><td  class="tb1" style="text-align:center">ELP3</td><td  class="tb1" style="text-align:center">"Our study reveals that multiple circRNAs are closely correlated with breast cancer tumorigenesis, and thoroughly investigates the diagnostic value of hsa_circ_0001785, suggesting the promising biomarker for breast cancer detection."</td><td  class="tb1" style="text-align:center">sample5</td><td  class="tb1" style="text-align:center">2</td><td  class="tb1" style="text-align:center">2</td><td  class="tb1" style="text-align:center">Circulating circular RNA hsa_circ_0001785 acts as a diagnostic biomarker for breast cancer detection</td><td  class="tb1" style="text-align:center">Clin Chim Acta.</td><td  class="tb1" style="text-align:center">2017 Oct 16</td><td  class="tb1" style="text-align:center">29045858</td><td  class="tb1" style="text-align:center">"qRT-PCR, microarray"</td><td  class="tb1" style="text-align:center">human</td><td  class="tb1" style="text-align:center">tissue</td></tr>
+			
+		
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">hsa_circ_0000745</td><td  class="tb1" style="text-align:center">-</td><td  class="tb1" style="text-align:center">gastric cancer</td><td  class="tb1" style="text-align:center">down-regulated</td><td  class="tb1" style="text-align:center">-</td><td  class="tb1" style="text-align:center">SPECC1</td><td  class="tb1" style="text-align:center">"The expression level of hsa_circ_0000745 in GC tissues correlated with tumor differentiation, while the expression level in plasma correlated with tumor-nodemetastasis stage"</td><td  class="tb1" style="text-align:center">sample1,sample4</td><td  class="tb1" style="text-align:center">65,41</td><td  class="tb1" style="text-align:center">10,18</td><td  class="tb1" style="text-align:center">Circular RNA hsa_circ_0000745 may serve as a diagnostic marker for gastric cancer</td><td  class="tb1" style="text-align:center">World J Gastroenterol.</td><td  class="tb1" style="text-align:center">2017 Sep 14</td><td  class="tb1" style="text-align:center">28974900</td><td  class="tb1" style="text-align:center">"qRT-PCR, RNA-seq"</td><td  class="tb1" style="text-align:center">human</td><td  class="tb1" style="text-align:center">tissue and cell line</td></tr>
+			
+		
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">hsa_circ_0006127</td><td  class="tb1" style="text-align:center">-</td><td  class="tb1" style="text-align:center">gastric cancer</td><td  class="tb1" style="text-align:center">down-regulated</td><td  class="tb1" style="text-align:center">-</td><td  class="tb1" style="text-align:center">SRCAP</td><td  class="tb1" style="text-align:center">Hsa_circ_0006127 (chr16:30740286-30740893) were found to be down-regulated in GC tissues compared to paired adjacent non-tumor tissues</td><td  class="tb1" style="text-align:center">sample1,sample2,sample3,sample4</td><td  class="tb1" style="text-align:center">5,3,5,5</td><td  class="tb1" style="text-align:center">5,13,3,0</td><td  class="tb1" style="text-align:center">Circular RNA hsa_circ_0000745 may serve as a diagnostic marker for gastric cancer</td><td  class="tb1" style="text-align:center">World J Gastroenterol.</td><td  class="tb1" style="text-align:center">2017 Sep 14</td><td  class="tb1" style="text-align:center">28974900</td><td  class="tb1" style="text-align:center">"qRT-PCR, RNA-seq"</td><td  class="tb1" style="text-align:center">human</td><td  class="tb1" style="text-align:center">tissue and cell line</td></tr>
+			
+		
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">hsa_circ_0006528</td><td  class="tb1" style="text-align:center">-</td><td  class="tb1" style="text-align:center">breast cancer</td><td  class="tb1" style="text-align:center">up-regulated</td><td  class="tb1" style="text-align:center">"miR-7-5p, Raf1"</td><td  class="tb1" style="text-align:center">PRELID2</td><td  class="tb1" style="text-align:center">Hsa_circ_0006528 expression is significantly associated with ADM-resistant breast cancers and demonstrate the potential function of hsa_circ_0006528 in overcoming chemotherapy resistance in breast cancer.</td><td  class="tb1" style="text-align:center">sample2,sample3</td><td  class="tb1" style="text-align:center">4,7</td><td  class="tb1" style="text-align:center">0,7</td><td  class="tb1" style="text-align:center">Screening circular RNA related to chemotherapeutic resistance in breast cancer</td><td  class="tb1" style="text-align:center">Epigenomics.</td><td  class="tb1" style="text-align:center">2017 Sep</td><td  class="tb1" style="text-align:center">28803498</td><td  class="tb1" style="text-align:center">"qRT-PCR, microarray"</td><td  class="tb1" style="text-align:center">human</td><td  class="tb1" style="text-align:center">cell line</td></tr>
+			
+		
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">hsa_circ_0002113</td><td  class="tb1" style="text-align:center">-</td><td  class="tb1" style="text-align:center">breast cancer</td><td  class="tb1" style="text-align:center">up-regulated</td><td  class="tb1" style="text-align:center">-</td><td  class="tb1" style="text-align:center">IFNGR2</td><td  class="tb1" style="text-align:center">"To confirm the results of the microarray profiling, we explored the expression levels of the 18 differentially expressed circRNAs in the MCF-7/ADM and MCF-7 cell lines using qRT-PCR. A total of seven upregulated (hsa_circ_0002113, hsa_circ_0002874, hsa_circ_0006528, hsa_circ_0001667, hsa_circ_0085495, hsa_circ_0086241 and hsa_circ_0092276) and one downregulated (hsa_circ_0003838) circRNAs were verified"</td><td  class="tb1" style="text-align:center">sample1</td><td  class="tb1" style="text-align:center">2</td><td  class="tb1" style="text-align:center">297</td><td  class="tb1" style="text-align:center">Screening circular RNA related to chemotherapeutic resistance in breast cancer</td><td  class="tb1" style="text-align:center">Epigenomics.</td><td  class="tb1" style="text-align:center">2017 Sep</td><td  class="tb1" style="text-align:center">28803498</td><td  class="tb1" style="text-align:center">"qRT-PCR, microarray"</td><td  class="tb1" style="text-align:center">human</td><td  class="tb1" style="text-align:center">cell line</td></tr>
+			
+		
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">hsa_circ_0006323</td><td  class="tb1" style="text-align:center">-</td><td  class="tb1" style="text-align:center">coronary artery disease</td><td  class="tb1" style="text-align:center">up-regulated</td><td  class="tb1" style="text-align:center">miR-130a-3p</td><td  class="tb1" style="text-align:center">DPYD</td><td  class="tb1" style="text-align:center">We have shown that 9 circRNAs promote TRPM3 expression by inhibiting hsa-miR-130a-3p in coronary artery disease (CAD) patients.</td><td  class="tb1" style="text-align:center">sample1,sample3,sample4</td><td  class="tb1" style="text-align:center">4,4,2</td><td  class="tb1" style="text-align:center">19,14,19</td><td  class="tb1" style="text-align:center">Circular RNAs promote TRPM3 expression by inhibiting hsa-miR-130a-3p in coronary artery disease patients</td><td  class="tb1" style="text-align:center">Oncotarget.</td><td  class="tb1" style="text-align:center">2017 Aug 4</td><td  class="tb1" style="text-align:center">28947970</td><td  class="tb1" style="text-align:center">"qRT-PCR, microarray"</td><td  class="tb1" style="text-align:center">human</td><td  class="tb1" style="text-align:center">tissue</td></tr>
+			
+		
+	</table>
+</div>
+</p>
+<button onclick="hiddenShow(this)">Show Annotation</button>
+<div class="comment">
+<ul style="font-size: 12px;font-family:line-height: 20px">
+(1) circRNA_ID: circRNA ID<br />
+(2) circRNA_name: circRNA name <br />
+(3) circRNA_synonyms: circRNA synonyms<br />
+(4) disease_do_id: DISEASE datebase DOID<br />
+(5) disease_do_name: DISEASE datebase DO name<br />
+(6) disease_details: DISEASE datebase details<br />
+(7) expression_pattern: CircRNA expression patterns in diseases(up or down).<br />
+(8) Describution: CircRNA function description.<br />
+(9) samples: Samples containing the circRNA (separated by commas).<br />
+(10) junction_read: Junction read number (order corresponding to samples).<br />
+(11) non_junction_read: Number of non-junction reads (in order corresponding to samples).<br />
+(12-14) The article information: Title ; Method of circRNA detection;support count</p>
+</ul>
+</div>
+	
+
+
+
+<!---------------------------12  circRNA 表达水平分布-------------------------->
+
+
+<div id="page">
+
+	<h3 id="result12">4.4 Quantitative analysis of CircRNA</h3>
+    <p class="paragraph">Quantification is the basis for significance analysis of expression differences. The expression levels of known and new circRNA in each sample were counted and normalized by TPM (Zhou et al., 2010).</p>
+    <p class="paragraph">The formula: Normalized expression level = (readCount*1,000,000)/libsize note: libsize: sum of sample circRNA readCount</p>
+	
+	
+	</br>
+
+<!---------------------------12.1  CircRNA 定量结果-------------------------->
+	<a name="CircRNA quantification"><h4 id="result121">4.4.1 CircRNA quantification</h4></a>
+
+</p>
+    
+	
+</br>
+	<p class="paragraph">The quantitative results of circRNA are as follows:</p>
+	<p class="name_fig">Table 4.5 Expression of circRNAs</p>
+	<p class="center">
+	<div id="tb">
+		<table class="tb1">
+			
+			
+				<tr class="tb1"><th class="tb1">circRNA</th><th class="tb1">sample1_readcount</th><th class="tb1">sample2_readcount</th><th class="tb1">sample3_readcount</th><th class="tb1">sample4_readcount</th><th class="tb1">sample5_readcount</th><th class="tb1">sample6_readcount</th><th class="tb1">sample7_readcount</th><th class="tb1">sample1_tpm</th><th class="tb1">sample2_tpm</th><th class="tb1">sample3_tpm</th><th class="tb1">sample4_tpm</th><th class="tb1">sample5_tpm</th><th class="tb1">sample6_tpm</th><th class="tb1">sample7_tpm</th></tr>
+			
+			
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">hsa_circ_0000014</td><td  class="tb1" style="text-align:center">3</td><td  class="tb1" style="text-align:center">2</td><td  class="tb1" style="text-align:center">10</td><td  class="tb1" style="text-align:center">2</td><td  class="tb1" style="text-align:center">3</td><td  class="tb1" style="text-align:center">3</td><td  class="tb1" style="text-align:center">7</td><td  class="tb1" style="text-align:center">642.811227769445</td><td  class="tb1" style="text-align:center">503.271263210871</td><td  class="tb1" style="text-align:center">521.784503000261</td><td  class="tb1" style="text-align:center">330.523880350355</td><td  class="tb1" style="text-align:center">391.134289439374</td><td  class="tb1" style="text-align:center">426.681837576447</td><td  class="tb1" style="text-align:center">749.30421751231</td></tr>
+			
+			
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">hsa_circ_0000018</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">2</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">214.086919289231</td></tr>
+			
+			
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">hsa_circ_0000019</td><td  class="tb1" style="text-align:center">4</td><td  class="tb1" style="text-align:center">2</td><td  class="tb1" style="text-align:center">17</td><td  class="tb1" style="text-align:center">7</td><td  class="tb1" style="text-align:center">16</td><td  class="tb1" style="text-align:center">9</td><td  class="tb1" style="text-align:center">7</td><td  class="tb1" style="text-align:center">857.081637025927</td><td  class="tb1" style="text-align:center">503.271263210871</td><td  class="tb1" style="text-align:center">887.033655100444</td><td  class="tb1" style="text-align:center">1156.83358122624</td><td  class="tb1" style="text-align:center">2086.04954367666</td><td  class="tb1" style="text-align:center">1280.04551272934</td><td  class="tb1" style="text-align:center">749.30421751231</td></tr>
+			
+			
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">hsa_circ_0000020</td><td  class="tb1" style="text-align:center">3</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">3</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">642.811227769445</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">391.134289439374</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td></tr>
+			
+			
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">hsa_circ_0000023</td><td  class="tb1" style="text-align:center">8</td><td  class="tb1" style="text-align:center">11</td><td  class="tb1" style="text-align:center">56</td><td  class="tb1" style="text-align:center">17</td><td  class="tb1" style="text-align:center">14</td><td  class="tb1" style="text-align:center">21</td><td  class="tb1" style="text-align:center">26</td><td  class="tb1" style="text-align:center">1714.16327405185</td><td  class="tb1" style="text-align:center">2767.99194765979</td><td  class="tb1" style="text-align:center">2921.99321680146</td><td  class="tb1" style="text-align:center">2809.45298297802</td><td  class="tb1" style="text-align:center">1825.29335071708</td><td  class="tb1" style="text-align:center">2986.77286303513</td><td  class="tb1" style="text-align:center">2783.12995076001</td></tr>
+			
+			
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">hsa_circ_0000024</td><td  class="tb1" style="text-align:center">27</td><td  class="tb1" style="text-align:center">20</td><td  class="tb1" style="text-align:center">65</td><td  class="tb1" style="text-align:center">24</td><td  class="tb1" style="text-align:center">42</td><td  class="tb1" style="text-align:center">30</td><td  class="tb1" style="text-align:center">52</td><td  class="tb1" style="text-align:center">5785.301049925</td><td  class="tb1" style="text-align:center">5032.71263210871</td><td  class="tb1" style="text-align:center">3391.5992695017</td><td  class="tb1" style="text-align:center">3966.28656420426</td><td  class="tb1" style="text-align:center">5475.88005215124</td><td  class="tb1" style="text-align:center">4266.81837576447</td><td  class="tb1" style="text-align:center">5566.25990152002</td></tr>
+			
+			
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">hsa_circ_0000033</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">5</td><td  class="tb1" style="text-align:center">3</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">2</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">260.89225150013</td><td  class="tb1" style="text-align:center">495.785820525533</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">214.086919289231</td></tr>
+			
+			
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">hsa_circ_0000042</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">26</td><td  class="tb1" style="text-align:center">2</td><td  class="tb1" style="text-align:center">7</td><td  class="tb1" style="text-align:center">2</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">1356.63970780068</td><td  class="tb1" style="text-align:center">330.523880350355</td><td  class="tb1" style="text-align:center">912.64667535854</td><td  class="tb1" style="text-align:center">284.454558384298</td><td  class="tb1" style="text-align:center">0</td></tr>
+			
+			
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">hsa_circ_0000048</td><td  class="tb1" style="text-align:center">7</td><td  class="tb1" style="text-align:center">10</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">3</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">2</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">1499.89286479537</td><td  class="tb1" style="text-align:center">2516.35631605435</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">495.785820525533</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">284.454558384298</td><td  class="tb1" style="text-align:center">0</td></tr>
+			
+			
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">hsa_circ_0000068</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">3</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">426.681837576447</td><td  class="tb1" style="text-align:center">0</td></tr>
+			
+					
+		</table>
+	</div>
+	</p>
+
+<button onclick="hiddenShow(this)">Show Annotation</button>
+<div class="comment">
+<ul style="font-size: 12px;font-family:line-height: 20px">
+    (1) "circRNA.readcount" (First Column): represent the circRNA_ID.<br />
+    (2) "sample_name.readcount": represent the readcount of each sample.<br />
+    (3) "sample name.TPM": represent readcount (TPM normalization) of each sample.<br />
+    (4) The readcount of this section is junction_read and non_junction_read.<br />
+</ul>
+<p class="paragraph">Result directory of CircRNA quantification:  <a href="../../Result_PXXXXXXXX_Homo_sapiens/3.CircRNA/3.3.CircDiff/0.normalized_expression" title="点击打开" >Readcount_TPM</a> </p>	
+</div>	
+
+	<br />
+<!---------------------------12.2  CircRNA 表达水平分布-------------------------->	
+<h4 id="result122">4.4.2 CircRNA expression level distribution</h4>
+    <p class="paragraph">The expression values of all circRNA in each sample were calculated as TPM, and the overall gene expression pattern of the sample was displayed through the TPM boxplot, as shown in the figure:</p>
+	
+</p>
+	
+    
+
+	<p class="center">
+		<img class="normal1" src="files/CircDiff/TPM_boxplot.png"/>
+	</p>
+	<p class="name_fig">Figure 4.11 TPM boxplot</p>
+    <p class="cenmark">X axis represents the name of the sample. Y axis indicates the log<sub>2</sub>(TPM+1). Parameters of box plots are indicated, including maximum, upper quartile, mid-value, lower quartile and minimum.</p>
+	<p class="paragraph">Result directory of TPM boxplot:  <a href="../../Result_PXXXXXXXX_Homo_sapiens/3.CircRNA/3.3.CircDiff/0.normalized_expression" title=">点击打开" >TPM_boxplot</a></p>
+	<br />
+	<br />
+</div>
+
+
+<!---------------------------13  circRNA 差异分析-------------------------->
+
+<div id="page">
+
+	<h3 id="result13">4.5 CircRNA difference analysis</h3>
+    <p class="paragraph">The input data for circRNA expression level analysis are the read count values. For samples with biological replicates, DESeq2(Love MI et al., 2014) was used to do the analysis, as this method has already eliminate the biological variation, the threshold is normally set as: padj <= 0.05. For the samples without biological replicates, TMM was used to normalize the read count values, and the edgeR(Robinson MD et al., 2010) was then used to do the following analysis, the threshold is normally set as: qvalue <= 0.05 & |log<sub>2</sub>(foldchange)|>=1. The differential expression of circRNA listed was as follows:</p>
+    <p class="paragraph">If qvalue <= 0.05 is too few, pvalue <= 0.05 is used for differential screening. See Summary of Important Results for the specific differential screening threshold</p>
+	
+	</br>
+
+<!---------------------------13.1  差异 circRNA 分析结果-------------------------->
+	<h4 id="result131">4.5.1 Differential circRNA analysis results</h4>
+    
+	
+</br>
+	<p class="name_fig">Table 4.6 Differential expression of circRNAs</p>
+	<p class="center">
+	<div id="tb">
+		<table class="tb1">
+			
+			
+				<tr><th>circRNA</th><th>group2_readcount</th><th>sample1_readcount</th><th>log2FoldChange</th><th>pvalue</th><th>padj</th><th>significant</th></tr>
+			
+			
+			
+				 <tr><td>hsa_circ_0000745</td><td>0</td><td>86.3261230808222</td><td>-9.01480452091386</td><td>5.93060571620249e-11</td><td>1.06691596834483e-07</td><td>TRUE</td></tr>
+			
+			
+			
+				 <tr><td>hsa_circ_0007352</td><td>0</td><td>25.2337898236249</td><td>-7.24035537108439</td><td>9.74652752564763e-05</td><td>0.0876700150932004</td><td>TRUE</td></tr>
+			
+			
+			
+				 <tr><td>hsa_circ_0005616</td><td>21.2340234825555</td><td>0</td><td>6.4437424402723</td><td>0.0034003962353096</td><td>0.879836633028142</td><td>TRUE</td></tr>
+			
+			
+			
+				 <tr><td>hsa_circ_0035796</td><td>17.1299152096956</td><td>0</td><td>6.12836133262559</td><td>0.00563452989443256</td><td>0.879836633028142</td><td>TRUE</td></tr>
+			
+			
+			
+				 <tr><td>novel_circ_0002702</td><td>16.2412786903246</td><td>0</td><td>6.05135393321688</td><td>0.00710432877924867</td><td>0.879836633028142</td><td>TRUE</td></tr>
+			
+			
+			
+				 <tr><td>hsa_circ_0005720</td><td>88.9705051416097</td><td>38.5147318360591</td><td>1.20954540420719</td><td>0.0102912380740784</td><td>0.879836633028142</td><td>TRUE</td></tr>
+			
+			
+			
+				 <tr><td>hsa_circ_0000396</td><td>12.5516341005718</td><td>0</td><td>5.68553710735889</td><td>0.0124905590534669</td><td>0.879836633028142</td><td>TRUE</td></tr>
+			
+			
+			
+				 <tr><td>hsa_circ_0011167</td><td>10.2264153722525</td><td>0</td><td>5.38845954784379</td><td>0.0217616534471757</td><td>0.879836633028142</td><td>TRUE</td></tr>
+			
+			
+			
+				 <tr><td>novel_circ_0002293</td><td>9.88685619622762</td><td>0</td><td>5.34061771180697</td><td>0.0232100586110661</td><td>0.879836633028142</td><td>TRUE</td></tr>
+			
+			
+			
+				 <tr><td>novel_circ_0001313</td><td>9.4990194958847</td><td>0</td><td>5.28492091053704</td><td>0.025804906624647</td><td>0.879836633028142</td><td>TRUE</td></tr>
+			
+			
+		</table>
+	</div>
+	</p>
+<button onclick="hiddenShow(this)">Show Annotation</button>
+<div class="comment">
+<ul style="font-size: 12px;font-family:line-height: 20px">
+    (1) ID: circRNA ID.<br />
+    (2) Group1: readcount values of group1 after normalized.<br />
+    (3) Group2: readcount values of group2 after normalized.<br />
+    (4) log<sub>2</sub>FoldChange：log<sub>2</sub>(Group1/Group2)。<br />
+    (5) pvalue: the pvalue in hypergeometric test.<br />
+    (6) padj: The pvalue after normalized. The smaller the qvalue is, the more significant is the difference.<br />
+</ul>
+    <p class="paragraph"><b>Result directory of Differential expression of circRNAs:  <a href="../../Result_PXXXXXXXX_Homo_sapiens/3.CircRNA/3.3.CircDiff/1.diff_expression" title="点击打开" >diff_expression</a> </b></p>
+</div>
+
+	<br />
+	<br />
+
+<!---------------------------13.2  差异 circRNA 结果展示-------------------------->
+	<h4 id="result132">4.5.2 Differential circRNA results</h4>
+   <p class="paragraph">The overall distribution of differential circRNA could be inferred by volcanic map, and the differential circRNA could be screened by the evaluation of Fold change and padj/qvalue.</p>
+    
+
+<p class="center">
+    <div class="row">
+      <div class="col-1">
+        <div id="gallery_figure_circdiff_Content_button_prev" class="button_prev" onclick="prev(this.id)">
+          <svg viewbox="0 0 16000 16000" class="svg_prev">
+            <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+            <polygon class="a"
+              points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+            </polygon>
+          </svg></div>
+      </div>
+      <div class="col-6">
+        <div class="tab-content" id="gallery_figure_circdiff_Content_nav-tabContent">
+          
+          <div class="tab-pane fade" id="gallery_figure_circdiff_Content_pane_group1vsgroup2" role="tabpanel"
+            aria-labelledby="gallery_figure_circdiff_Content_list_group1vsgroup2" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/CircDiff/group1vsgroup2.Volcanoplot.png" /></div>
+          
+          <div class="tab-pane fade" id="gallery_figure_circdiff_Content_pane_group2vssample1" role="tabpanel"
+            aria-labelledby="gallery_figure_circdiff_Content_list_group2vssample1" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/CircDiff/group2vssample1.Volcanoplot.png" /></div>
+          
+        </div>
+      </div>
+      <div class="col-1">
+      <div id="gallery_figure_circdiff_Content_button_next" class="button_next" onclick="next(this.id)">
+          <svg viewbox="0 0 16000 16000" class="svg_next">
+            <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+            <polygon class="a"
+              points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+            </polygon>
+          </svg></div>
+      </div>
+      <div class="col-4">
+        <input class="form-control" id="gallery_figure_circdiff_Content_InputList" type="text" placeholder="Search..">
+        <div class="list-group" id="gallery_figure_circdiff_Content_list-tab" role="tablist">
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_circdiff_Content_list_group1vsgroup2"
+            data-toggle="list" href="#gallery_figure_circdiff_Content_pane_group1vsgroup2" role="tab"
+            aria-controls="group1vsgroup2">group1vsgroup2</a>
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_circdiff_Content_list_group2vssample1"
+            data-toggle="list" href="#gallery_figure_circdiff_Content_pane_group2vssample1" role="tab"
+            aria-controls="group2vssample1">group2vssample1</a>
+          
+        </div>
+      </div>
+    </div>
+    </p>
+	<p class="name_fig">Figure 4.12 Volcano Plot of differential circRNAs</p>
+    <p class="cenmark">The x-axis shows the fold change in circRNA expression between different samples, and the y-axis shows the statistical significance of differences. Statistically significant differences are represented by red dots. </p>
+	<p class="paragraph">Result directory of Differential circRNA volcanoplot: <a href="../../Result_PXXXXXXXX_Homo_sapiens/3.CircRNA/3.3.CircDiff/1.diff_expression" title="点击打开" >Volcanoplot</a></p>
+		
+	<br/>
+
+<!---------------------------13.3  差异 circRNA 富集分析-------------------------->
+    <h4 id="result133">4.5.3 Clustering of differential circRNAs</h4>
+    <p class="paragraph">Differential circRNA clustering analysis was used to judge the clustering pattern of differential circRNA expression under different experimental conditions. A differential circRNA set will be obtained for each comparison combination, and the TPM value of the combination of all the differential circRNA in each experimental group/sample will be combined for hierarchical clustering analysis, K-means clustering analysis and SOM clustering analysis.</p>
+</p>
+	
+    
+	
+</br>
+    <p class="center">
+        <img class="normal" src="files/CircDiff/Hcluster_heatmap.png"/>
+    </p>
+	<p class="name_fig">Figure 4.13 Clustering of differential circRNAs</p>
+	<!-- 固定用法？热图的备注又没有改？ -->
+    <p class="cenmark">The overall results of FPKM cluster analysis, clustered using the log2(FPKM+1) value. Red color indicates genes with high expression levels, and green color indicates genes with low expression levels. The color ranging from red to blue indicates that log2(FPKM+1) values wherefrom large to small. The chromosome to which each gene belongs, gene's length, and the biological type of the gene are also added to the heatmap.</p>
+	<p class="paragraph">Result directory of Clustering of differential circRNAs: <a href="../../Result_PXXXXXXXX_Homo_sapiens/3.CircRNA/3.3.CircDiff/3.cluster" title="点击打开" >Hcluster_heatmap</a></p>
+	<br />
+	<br />
+
+<!---------------------------13.4  差异 circRNA 样本间公共及特有的 circRNA 维恩图-------------------------->
+
+<h4 id="result134">4.5.4 CircRNA Venn diagrams</h4>
+<p class="paragraph">When the number of comparison combinations is greater than or equal to 2 and less than 5, the number of different circrnas obtained in each group can be counted and drawn into a Venn diagram to visually display the common and unique number of different circRNA in each comparison combination (if there are only two samples, the Venn diagram between the two samples can be drawn).</p>
+<p class="center">
+		<img class="normal1" src="files/CircDiff/venn-0.png"/>
+			</p>
+<p class="name_fig">Figure 4.14 Difference circRNA venn diagram</p>
+<p class="cenmark">The circle represents each comparison combination, the sum of the numbers in each large circle represents the total number of different circRNA in the comparison combination, and the overlapping part of the circle represents the number of circRNA shared by the comparison combination (when there are only two samples, The number in each large circle represents the circRNA expressed in this sample, and the overlapped part of the circle represents the circRNA expressed in the sample.)</p>
+<br />
+
+
+
+<!-------------------------------CircRNA 定量差异分析视频链接------------------------------>
+</div>
+
+
+
+
+<!-----------------------------------14 差异 circRNA 来源基因富集分析---------------------------------->
+
+
+<div id="page">
+
+	<h3  id="result14">4.6 Enrichment analysis of different circRNA source genes</h3>
+    <p class="paragraph" >After obtaining the differentially expressed circRNA among the groups, the corresponding relationship between circRNA and its source genes was determined. ClusterProfiler (Yu G et al., 2012) was used to conduct GO functional enrichment analysis and KEGG pathway enrichment analysis on the source gene sets of differentially expressed circRNA. Enrichment analysis is based on hypergeometric distribution principle. The result of enrichment analysis was that all differential gene sets, up-regulated differential gene sets and down-regulated differential gene sets of each differential comparison combination were enriched. The table shown in this report shows the enrichment analysis results of a selected comparison combination, and the picture shows the enrichment analysis results of all combinations.</p>
+     <p class="center">
+        <img class="middle1" src="images/enrichment.png" />
+    </p>
+
+    <p class="name_fig">Figure 4.15 Gene Enrichment Analysis Schematic</p>
+    <p class="cenmark">Here, N is the number of all genes with a GO or KEGG annotation, n is the number of DEGs in N, M is the number of all genes annotated to specific terms, and m is number of DEGs in M</p>
+<!--------------------------14.1 GO富集---------------------->
+	<h4 id="result141">4.6.1 GO Enrichment Analysis</h4>
+   <p class="paragraph">Gene Ontology (GO) is a standardized classification system widely used for gene function, which supplies a set of controlled vocabulary to describe the property of genes and gene products comprehensively. There are 3 ontologies in GO system: molecular function, cellular component ,and biological process. The basic unit of GO is GO-term, each of which belongs to one type of ontology.</p> 
+   <p class="paragraph">GO enrichment analysis is used for genes of circRNAs. All GO terms are provided with significantly enriched in the genes of circRNAs, comparing to the reference genes in background, as well as the genes corresponding to certain biological functions. The results reveal the functions significantly related with source genes of circRNAs.</p>	
+    
+</br>
+
+	<p class="name_fig">Table 4.7 Partially displayed results of GO enrichment analysis</p>
+	<p class="center">
+	<div id="tb">
+		<table class="tb1">
+			
+			
+				<tr class="tb1"><th class="tb1">Category</th><th class="tb1">GOID</th><th class="tb1">Description</th><th class="tb1">GeneRatio</th><th class="tb1">BgRatio</th><th class="tb1">pvalue</th><th class="tb1">padj</th><th class="tb1">geneID</th><th class="tb1">geneName</th><th class="tb1">Count</th><th class="tb1">Up</th><th class="tb1">Up_Gene_id</th><th class="tb1">Down</th><th class="tb1">Down_Gene_id</th></tr>
+			
+			
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">BP</td><td  class="tb1" style="text-align:center">GO:0071345</td><td  class="tb1" style="text-align:center">cellular response to cytokine stimulus</td><td  class="tb1" style="text-align:center">6/29</td><td  class="tb1" style="text-align:center">63/1190</td><td  class="tb1" style="text-align:center">0.00315198931988499</td><td  class="tb1" style="text-align:center">0.754653848658445</td><td  class="tb1" style="text-align:center">ENSG00000100030/ENSG00000090376/ENSG00000159128/ENSG00000198223/ENSG00000023909/ENSG00000140678</td><td  class="tb1" style="text-align:center">MAPK1/IRAK3/IFNGR2/CSF2RA/GCLM/ITGAX</td><td  class="tb1" style="text-align:center">6</td><td  class="tb1" style="text-align:center">6</td><td  class="tb1" style="text-align:center">ENSG00000100030/ENSG00000090376/ENSG00000159128/ENSG00000198223/ENSG00000023909/ENSG00000140678</td><td  class="tb1" style="text-align:center">0</td></tr>
+			
+			
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">BP</td><td  class="tb1" style="text-align:center">GO:0034097</td><td  class="tb1" style="text-align:center">response to cytokine</td><td  class="tb1" style="text-align:center">6/29</td><td  class="tb1" style="text-align:center">70/1190</td><td  class="tb1" style="text-align:center">0.00539512962884202</td><td  class="tb1" style="text-align:center">0.754653848658445</td><td  class="tb1" style="text-align:center">ENSG00000100030/ENSG00000090376/ENSG00000159128/ENSG00000198223/ENSG00000023909/ENSG00000140678</td><td  class="tb1" style="text-align:center">MAPK1/IRAK3/IFNGR2/CSF2RA/GCLM/ITGAX</td><td  class="tb1" style="text-align:center">6</td><td  class="tb1" style="text-align:center">6</td><td  class="tb1" style="text-align:center">ENSG00000100030/ENSG00000090376/ENSG00000159128/ENSG00000198223/ENSG00000023909/ENSG00000140678</td><td  class="tb1" style="text-align:center">0</td></tr>
+			
+			
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">BP</td><td  class="tb1" style="text-align:center">GO:0007411</td><td  class="tb1" style="text-align:center">axon guidance</td><td  class="tb1" style="text-align:center">3/29</td><td  class="tb1" style="text-align:center">17/1190</td><td  class="tb1" style="text-align:center">0.0070385083320479</td><td  class="tb1" style="text-align:center">0.754653848658445</td><td  class="tb1" style="text-align:center">ENSG00000136040/ENSG00000100030/ENSG00000127152</td><td  class="tb1" style="text-align:center">PLXNC1/MAPK1/BCL11B</td><td  class="tb1" style="text-align:center">3</td><td  class="tb1" style="text-align:center">2</td><td  class="tb1" style="text-align:center">ENSG00000136040/ENSG00000100030</td><td  class="tb1" style="text-align:center">1</td><td  class="tb1" style="text-align:center">ENSG00000127152</td></tr>
+			
+			
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">BP</td><td  class="tb1" style="text-align:center">GO:0097485</td><td  class="tb1" style="text-align:center">neuron projection guidance</td><td  class="tb1" style="text-align:center">3/29</td><td  class="tb1" style="text-align:center">17/1190</td><td  class="tb1" style="text-align:center">0.0070385083320479</td><td  class="tb1" style="text-align:center">0.754653848658445</td><td  class="tb1" style="text-align:center">ENSG00000136040/ENSG00000100030/ENSG00000127152</td><td  class="tb1" style="text-align:center">PLXNC1/MAPK1/BCL11B</td><td  class="tb1" style="text-align:center">3</td><td  class="tb1" style="text-align:center">2</td><td  class="tb1" style="text-align:center">ENSG00000136040/ENSG00000100030</td><td  class="tb1" style="text-align:center">1</td><td  class="tb1" style="text-align:center">ENSG00000127152</td></tr>
+			
+			
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">BP</td><td  class="tb1" style="text-align:center">GO:0001775</td><td  class="tb1" style="text-align:center">cell activation</td><td  class="tb1" style="text-align:center">7/29</td><td  class="tb1" style="text-align:center">101/1190</td><td  class="tb1" style="text-align:center">0.00843267207906347</td><td  class="tb1" style="text-align:center">0.754653848658445</td><td  class="tb1" style="text-align:center">ENSG00000100030/ENSG00000127152/ENSG00000169621/ENSG00000021355/ENSG00000023909/ENSG00000140678/ENSG00000147251</td><td  class="tb1" style="text-align:center">MAPK1/BCL11B/APLF/SERPINB1/GCLM/ITGAX/DOCK11</td><td  class="tb1" style="text-align:center">7</td><td  class="tb1" style="text-align:center">5</td><td  class="tb1" style="text-align:center">ENSG00000100030/ENSG00000021355/ENSG00000023909/ENSG00000140678/ENSG00000147251</td><td  class="tb1" style="text-align:center">2</td><td  class="tb1" style="text-align:center">ENSG00000127152/ENSG00000169621</td></tr>
+			
+			
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">BP</td><td  class="tb1" style="text-align:center">GO:0002252</td><td  class="tb1" style="text-align:center">immune effector process</td><td  class="tb1" style="text-align:center">7/29</td><td  class="tb1" style="text-align:center">102/1190</td><td  class="tb1" style="text-align:center">0.00890060788369421</td><td  class="tb1" style="text-align:center">0.754653848658445</td><td  class="tb1" style="text-align:center">ENSG00000100030/ENSG00000090376/ENSG00000159128/ENSG00000169621/ENSG00000021355/ENSG00000140678/ENSG00000147251</td><td  class="tb1" style="text-align:center">MAPK1/IRAK3/IFNGR2/APLF/SERPINB1/ITGAX/DOCK11</td><td  class="tb1" style="text-align:center">7</td><td  class="tb1" style="text-align:center">6</td><td  class="tb1" style="text-align:center">ENSG00000100030/ENSG00000090376/ENSG00000159128/ENSG00000021355/ENSG00000140678/ENSG00000147251</td><td  class="tb1" style="text-align:center">1</td><td  class="tb1" style="text-align:center">ENSG00000169621</td></tr>
+			
+			
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">BP</td><td  class="tb1" style="text-align:center">GO:0019221</td><td  class="tb1" style="text-align:center">cytokine-mediated signaling pathway</td><td  class="tb1" style="text-align:center">4/29</td><td  class="tb1" style="text-align:center">37/1190</td><td  class="tb1" style="text-align:center">0.0107703968983773</td><td  class="tb1" style="text-align:center">0.754653848658445</td><td  class="tb1" style="text-align:center">ENSG00000090376/ENSG00000159128/ENSG00000198223/ENSG00000140678</td><td  class="tb1" style="text-align:center">IRAK3/IFNGR2/CSF2RA/ITGAX</td><td  class="tb1" style="text-align:center">4</td><td  class="tb1" style="text-align:center">4</td><td  class="tb1" style="text-align:center">ENSG00000090376/ENSG00000159128/ENSG00000198223/ENSG00000140678</td><td  class="tb1" style="text-align:center">0</td></tr>
+			
+			
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">BP</td><td  class="tb1" style="text-align:center">GO:0050890</td><td  class="tb1" style="text-align:center">cognition</td><td  class="tb1" style="text-align:center">3/29</td><td  class="tb1" style="text-align:center">21/1190</td><td  class="tb1" style="text-align:center">0.0128905186327837</td><td  class="tb1" style="text-align:center">0.754653848658445</td><td  class="tb1" style="text-align:center">ENSG00000100030/ENSG00000164190/ENSG00000159461</td><td  class="tb1" style="text-align:center">MAPK1/NIPBL/AMFR</td><td  class="tb1" style="text-align:center">3</td><td  class="tb1" style="text-align:center">2</td><td  class="tb1" style="text-align:center">ENSG00000100030/ENSG00000159461</td><td  class="tb1" style="text-align:center">1</td><td  class="tb1" style="text-align:center">ENSG00000164190</td></tr>
+			
+			
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">BP</td><td  class="tb1" style="text-align:center">GO:0006955</td><td  class="tb1" style="text-align:center">immune response</td><td  class="tb1" style="text-align:center">8/29</td><td  class="tb1" style="text-align:center">138/1190</td><td  class="tb1" style="text-align:center">0.0137223611457075</td><td  class="tb1" style="text-align:center">0.754653848658445</td><td  class="tb1" style="text-align:center">ENSG00000100030/ENSG00000090376/ENSG00000159128/ENSG00000169621/ENSG00000021355/ENSG00000140678/ENSG00000147251/ENSG00000116514</td><td  class="tb1" style="text-align:center">MAPK1/IRAK3/IFNGR2/APLF/SERPINB1/ITGAX/DOCK11/RNF19B</td><td  class="tb1" style="text-align:center">8</td><td  class="tb1" style="text-align:center">7</td><td  class="tb1" style="text-align:center">ENSG00000100030/ENSG00000090376/ENSG00000159128/ENSG00000021355/ENSG00000140678/ENSG00000147251/ENSG00000116514</td><td  class="tb1" style="text-align:center">1</td><td  class="tb1" style="text-align:center">ENSG00000169621</td></tr>
+			
+			
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">BP</td><td  class="tb1" style="text-align:center">GO:0002263</td><td  class="tb1" style="text-align:center">cell activation involved in immune response</td><td  class="tb1" style="text-align:center">5/29</td><td  class="tb1" style="text-align:center">62/1190</td><td  class="tb1" style="text-align:center">0.0146966243379878</td><td  class="tb1" style="text-align:center">0.754653848658445</td><td  class="tb1" style="text-align:center">ENSG00000100030/ENSG00000169621/ENSG00000021355/ENSG00000140678/ENSG00000147251</td><td  class="tb1" style="text-align:center">MAPK1/APLF/SERPINB1/ITGAX/DOCK11</td><td  class="tb1" style="text-align:center">5</td><td  class="tb1" style="text-align:center">4</td><td  class="tb1" style="text-align:center">ENSG00000100030/ENSG00000021355/ENSG00000140678/ENSG00000147251</td><td  class="tb1" style="text-align:center">1</td><td  class="tb1" style="text-align:center">ENSG00000169621</td></tr>
+			
+			
+		</table>
+	</div>
+	</p>
+<button onclick="hiddenShow(this)">Show Annotation</button>
+<div class="comment">
+<ul style="font-size: 12px;font-family:line-height: 20px">
+        (1) Category: Classification of GO databases, including biological processes(BP), cellular components(CC), molecular function(MF).<br />
+        (2) ID: Unique identification id of Gene Ontology database.<br />
+        (3) Description: Function description corresponding to the GO number.<br />
+        (4) GeneRatio: Ratio between the number of differentially expressed genes in each GO term and all differentially expressed genes that can be found in GO database.<br />
+        (5) BgRatio: In background GO database, the ratio of all genes concerning this GO term to all genes.<br />
+        (6) pvalue: Statistics category term; abbreviation for probability value.<br />
+        (7) padj: Adjusted p-value. Generally, GO Terms with Corrected_pValue < 0.05 are significant enrichment.<br />
+        (8) geneID: Differentially expressed genes in this term.<br />
+        (9) geneName: Differentially expressed genes in this term.<br />
+        (10) Count: The number of difference gene annotated to GO number.<br />
+        (11) Up: Number of up expressed genes concerning this GO term.<br />
+        (12) Up_Gene_id: Up expressed gene id concerning this GO term.<br />
+        (13) Down: Number of down expressed genes concerning this GO term.<br />
+        (14) Down_Gene_id: Down expressed gene id concerning this GO term.<br />
+</ul>
+</div>
+     <p class="paragraph">In the results of the GO enrichment analysis, the most significant 30 Terms were selected for display. If the results are less than 30, all terms would be drawn, as shown in the following figure. In this figure, the abscissa is GO Term. The ordinate is the significance level of GO Term enrichment. Higher values correspond to higher significance. The different colors represent the three GO subclasses of BP, CC,MF.</p>
+    <p class="center">
+    <div class="row">
+      <div class="col-1">
+        <div id="gallery_figure_circGObar_Content_button_prev" class="button_prev" onclick="prev(this.id)">
+          <svg viewbox="0 0 16000 16000" class="svg_prev">
+            <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+            <polygon class="a"
+              points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+            </polygon>
+          </svg></div>
+      </div>
+      <div class="col-6">
+        <div class="tab-content" id="gallery_figure_circGObar_Content_nav-tabContent">
+          
+          <div class="tab-pane fade" id="gallery_figure_circGObar_Content_pane_group1vsgroup2" role="tabpanel"
+            aria-labelledby="gallery_figure_circGObar_Content_list_group1vsgroup2" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/CircEnrich/GO/group1vsgroup2.bar.png" /></div>
+          
+          <div class="tab-pane fade" id="gallery_figure_circGObar_Content_pane_group2vssample1" role="tabpanel"
+            aria-labelledby="gallery_figure_circGObar_Content_list_group2vssample1" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/CircEnrich/GO/group2vssample1.bar.png" /></div>
+          
+        </div>
+      </div>
+      <div class="col-1">
+      <div id="gallery_figure_circGObar_Content_button_next" class="button_next" onclick="next(this.id)">
+          <svg viewbox="0 0 16000 16000" class="svg_next">
+            <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+            <polygon class="a"
+              points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+            </polygon>
+          </svg></div>
+      </div>
+      <div class="col-4">
+        <input class="form-control" id="gallery_figure_circGObar_Content_InputList" type="text" placeholder="Search..">
+        <div class="list-group" id="gallery_figure_circGObar_Content_list-tab" role="tablist">
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_circGObar_Content_list_group1vsgroup2"
+            data-toggle="list" href="#gallery_figure_circGObar_Content_pane_group1vsgroup2" role="tab"
+            aria-controls="group1vsgroup2">group1vsgroup2</a>
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_circGObar_Content_list_group2vssample1"
+            data-toggle="list" href="#gallery_figure_circGObar_Content_pane_group2vssample1" role="tab"
+            aria-controls="group2vssample1">group2vssample1</a>
+          
+        </div>
+      </div>
+    </div>
+    </p>
+
+    <p class="name_fig">Figure 4.16 Histogram of source gene GO enrichment</p>
+    <p class="cenmark">The abscissa in the figure is GO Term, and the ordinate is GO Term's level of significance of enrichment, expressed as -log10(padj). Different colors represent different functional categories</p>
+	<br />
+<p class="paragraph">From the GO enrichment analysis results, the most significant 30 GO Terms were selected for display. If the results are less than 30, all Terms would be drawn. In the figure, the abscissa is the ratio of the number of differential genes linked with the GO Term to the total number of differential genes, and the ordinate is GO Term. The size of a point represents the number of genes annotated to a specific GO Term, and the color from red to purple represents the significant level of the enrichment.</p>
+
+<p class="center">
+    <div class="row">
+      <div class="col-1">
+        <div id="gallery_figure_circGOdot_Content_button_prev" class="button_prev" onclick="prev(this.id)">
+          <svg viewbox="0 0 16000 16000" class="svg_prev">
+            <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+            <polygon class="a"
+              points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+            </polygon>
+          </svg></div>
+      </div>
+      <div class="col-6">
+        <div class="tab-content" id="gallery_figure_circGOdot_Content_nav-tabContent">
+          
+          <div class="tab-pane fade" id="gallery_figure_circGOdot_Content_pane_group1vsgroup2_all" role="tabpanel"
+            aria-labelledby="gallery_figure_circGOdot_Content_list_group1vsgroup2_all" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/CircEnrich/GO/group1vsgroup2.dot.png" /></div>
+          
+          <div class="tab-pane fade" id="gallery_figure_circGOdot_Content_pane_group2vssample1_all" role="tabpanel"
+            aria-labelledby="gallery_figure_circGOdot_Content_list_group2vssample1_all" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/CircEnrich/GO/group2vssample1.dot.png" /></div>
+          
+        </div>
+      </div>
+      <div class="col-1">
+      <div id="gallery_figure_circGOdot_Content_button_next" class="button_next" onclick="next(this.id)">
+          <svg viewbox="0 0 16000 16000" class="svg_next">
+            <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+            <polygon class="a"
+              points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+            </polygon>
+          </svg></div>
+      </div>
+      <div class="col-4">
+        <input class="form-control" id="gallery_figure_circGOdot_Content_InputList" type="text" placeholder="Search..">
+        <div class="list-group" id="gallery_figure_circGOdot_Content_list-tab" role="tablist">
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_circGOdot_Content_list_group1vsgroup2_all"
+            data-toggle="list" href="#gallery_figure_circGOdot_Content_pane_group1vsgroup2_all" role="tab"
+            aria-controls="group1vsgroup2_all">group1vsgroup2_all</a>
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_circGOdot_Content_list_group2vssample1_all"
+            data-toggle="list" href="#gallery_figure_circGOdot_Content_pane_group2vssample1_all" role="tab"
+            aria-controls="group2vssample1_all">group2vssample1_all</a>
+          
+        </div>
+      </div>
+    </div>
+    </p>
+    <p class="name_fig">Figure 4.17 GO Enrichment Analysis Scatter Plot </p>
+    <p class="premark">The abscissa in the graph is the ratio of the differential gene number to the total number of differential genes on the GO Term, and the ordinate is GO Term.</p>
+    <br />
+    <p class="paragraph">(Directed Acyclic Graph，DAG) could visualize the enriched GO Term of differential expression source genes and its hierarchy. In this graph, branch means the hierarchical relation, and the function ranges become increasingly specific from the top to bottom. In general, the top 5 results of GO enrichment analysis are chosen as the main nodes (shown by box) in directed acyclic graph, and related GO Term are shown together by hierarchical connections. The enrichment degree is illustrated by color shades, the darker the shades are, the higher the enrichment degree is. In this project, DAG of biological process, molecular function and cellular component were drawn sequentially.</p>
+
+<p class="center">
+    <div class="row">
+      <div class="col-1">
+        <div id="gallery_figure_circGODAG_Content_button_prev" class="button_prev" onclick="prev(this.id)">
+          <svg viewbox="0 0 16000 16000" class="svg_prev">
+            <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+            <polygon class="a"
+              points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+            </polygon>
+          </svg></div>
+      </div>
+      <div class="col-6">
+        <div class="tab-content" id="gallery_figure_circGODAG_Content_nav-tabContent">
+          
+          <div class="tab-pane fade" id="gallery_figure_circGODAG_Content_pane_group1vsgroup2_all_GObp" role="tabpanel"
+            aria-labelledby="gallery_figure_circGODAG_Content_list_group1vsgroup2_all_GObp" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/CircEnrich/GO/group1vsgroup2.all.GObp_DAG.png" /></div>
+          
+          <div class="tab-pane fade" id="gallery_figure_circGODAG_Content_pane_group1vsgroup2_all_GOcc" role="tabpanel"
+            aria-labelledby="gallery_figure_circGODAG_Content_list_group1vsgroup2_all_GOcc" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/CircEnrich/GO/group1vsgroup2.all.GOcc_DAG.png" /></div>
+          
+          <div class="tab-pane fade" id="gallery_figure_circGODAG_Content_pane_group1vsgroup2_all_GOmf" role="tabpanel"
+            aria-labelledby="gallery_figure_circGODAG_Content_list_group1vsgroup2_all_GOmf" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/CircEnrich/GO/group1vsgroup2.all.GOmf_DAG.png" /></div>
+          
+          <div class="tab-pane fade" id="gallery_figure_circGODAG_Content_pane_group2vssample1_all_GObp" role="tabpanel"
+            aria-labelledby="gallery_figure_circGODAG_Content_list_group2vssample1_all_GObp" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/CircEnrich/GO/group2vssample1.all.GObp_DAG.png" /></div>
+          
+          <div class="tab-pane fade" id="gallery_figure_circGODAG_Content_pane_group2vssample1_all_GOcc" role="tabpanel"
+            aria-labelledby="gallery_figure_circGODAG_Content_list_group2vssample1_all_GOcc" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/CircEnrich/GO/group2vssample1.all.GOcc_DAG.png" /></div>
+          
+          <div class="tab-pane fade" id="gallery_figure_circGODAG_Content_pane_group2vssample1_all_GOmf" role="tabpanel"
+            aria-labelledby="gallery_figure_circGODAG_Content_list_group2vssample1_all_GOmf" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/CircEnrich/GO/group2vssample1.all.GOmf_DAG.png" /></div>
+          
+        </div>
+      </div>
+      <div class="col-1">
+      <div id="gallery_figure_circGODAG_Content_button_next" class="button_next" onclick="next(this.id)">
+          <svg viewbox="0 0 16000 16000" class="svg_next">
+            <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+            <polygon class="a"
+              points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+            </polygon>
+          </svg></div>
+      </div>
+      <div class="col-4">
+        <input class="form-control" id="gallery_figure_circGODAG_Content_InputList" type="text" placeholder="Search..">
+        <div class="list-group" id="gallery_figure_circGODAG_Content_list-tab" role="tablist">
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_circGODAG_Content_list_group1vsgroup2_all_GObp"
+            data-toggle="list" href="#gallery_figure_circGODAG_Content_pane_group1vsgroup2_all_GObp" role="tab"
+            aria-controls="group1vsgroup2_all_GObp">group1vsgroup2_all_GObp</a>
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_circGODAG_Content_list_group1vsgroup2_all_GOcc"
+            data-toggle="list" href="#gallery_figure_circGODAG_Content_pane_group1vsgroup2_all_GOcc" role="tab"
+            aria-controls="group1vsgroup2_all_GOcc">group1vsgroup2_all_GOcc</a>
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_circGODAG_Content_list_group1vsgroup2_all_GOmf"
+            data-toggle="list" href="#gallery_figure_circGODAG_Content_pane_group1vsgroup2_all_GOmf" role="tab"
+            aria-controls="group1vsgroup2_all_GOmf">group1vsgroup2_all_GOmf</a>
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_circGODAG_Content_list_group2vssample1_all_GObp"
+            data-toggle="list" href="#gallery_figure_circGODAG_Content_pane_group2vssample1_all_GObp" role="tab"
+            aria-controls="group2vssample1_all_GObp">group2vssample1_all_GObp</a>
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_circGODAG_Content_list_group2vssample1_all_GOcc"
+            data-toggle="list" href="#gallery_figure_circGODAG_Content_pane_group2vssample1_all_GOcc" role="tab"
+            aria-controls="group2vssample1_all_GOcc">group2vssample1_all_GOcc</a>
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_circGODAG_Content_list_group2vssample1_all_GOmf"
+            data-toggle="list" href="#gallery_figure_circGODAG_Content_pane_group2vssample1_all_GOmf" role="tab"
+            aria-controls="group2vssample1_all_GOmf">group2vssample1_all_GOmf</a>
+          
+        </div>
+      </div>
+    </div>
+    </p>
+
+   <p class="name_fig">Figure 4.18 GO Enrichment Analysis DAG Chart</p>
+   <p class="premark">Each node represents a GO term, and the box represents the enrichment level of TOP5 GOTerms. The depth of the color represents the degree of enrichment, the darker the color is, the higherthe enrichment degree is. Each node shows the name of the term and the padj of enrichment analysis</p>
+   <p class="paragraph">Result directory of GO enrichment analysis: <a href="../../Result_PXXXXXXXX_Homo_sapiens/3.CircRNA/3.4.CircEnrich/1.GO" title="点>击打开" >GO_enrich</a></p>
+
+</div>
+
+<!---------------------------------------14.2 Pathway 富集---------------------------------------------->
+<div id="page">
+	<h4 id="result142">4.6.2 Enrichment Analysis</h4>
+    <p class="paragraph">The interactions of multiple genes may be involved in certain biological functions. KEGG (Kyoto Encyclopedia of Genes and Genomes) is a collection of manually curated databases dealing with genomes, biological pathways, diseases, drugs, and chemical substances. KEGG is utilized for bioinformatics research and education, including data analysis in genomics, metagenomics, metabolomics and other omics studies. Pathway enrichment analysis identifies significantly enriched metabolic pathways or signal transduction pathways associated with differentially expressed genes compared with the whole genome background.</p>
+
+
+	
+</br>
+	<p class="name_fig">Table 4.8 KEGG enrichment list of source genes</p>
+	<p class="center">
+	<div id="tb">
+		<table class="tb1">
+			
+				
+					<tr class="tb1"><th class="tb1">KEGGID</th><th class="tb1">Description</th><th class="tb1">GeneRatio</th><th class="tb1">BgRatio</th><th class="tb1">pvalue</th><th class="tb1">padj</th><th class="tb1">geneID</th><th class="tb1">geneName</th><th class="tb1">keggID</th><th class="tb1">Count</th><th class="tb1">Up</th><th class="tb1">Up_Gene_id</th><th class="tb1">Down</th><th class="tb1">Down_Gene_id</th></tr>
+				
+			
+				
+					<tr class="tb1"><td  class="tb1" style="text-align:center">hsa04934</td><td  class="tb1" style="text-align:center">Cushing syndrome</td><td  class="tb1" style="text-align:center">2/12</td><td  class="tb1" style="text-align:center">10/506</td><td  class="tb1" style="text-align:center">0.0208985619158095</td><td  class="tb1" style="text-align:center">0.433915489302994</td><td  class="tb1" style="text-align:center">ENSG00000100030/ENSG00000138592</td><td  class="tb1" style="text-align:center">MAPK1/USP8</td><td  class="tb1" style="text-align:center">hsa:5594/hsa:9101</td><td  class="tb1" style="text-align:center">2</td><td  class="tb1" style="text-align:center">1</td><td  class="tb1" style="text-align:center">ENSG00000100030</td><td  class="tb1" style="text-align:center">1</td><td  class="tb1" style="text-align:center">ENSG00000138592</td></tr>
+				
+			
+				
+					<tr class="tb1"><td  class="tb1" style="text-align:center">hsa04360</td><td  class="tb1" style="text-align:center">Axon guidance</td><td  class="tb1" style="text-align:center">2/12</td><td  class="tb1" style="text-align:center">12/506</td><td  class="tb1" style="text-align:center">0.0298473385004499</td><td  class="tb1" style="text-align:center">0.433915489302994</td><td  class="tb1" style="text-align:center">ENSG00000136040/ENSG00000100030</td><td  class="tb1" style="text-align:center">PLXNC1/MAPK1</td><td  class="tb1" style="text-align:center">hsa:10154/hsa:5594</td><td  class="tb1" style="text-align:center">2</td><td  class="tb1" style="text-align:center">2</td><td  class="tb1" style="text-align:center">ENSG00000136040/ENSG00000100030</td><td  class="tb1" style="text-align:center">0</td></tr>
+				
+			
+				
+					<tr class="tb1"><td  class="tb1" style="text-align:center">hsa04722</td><td  class="tb1" style="text-align:center">Neurotrophin signaling pathway</td><td  class="tb1" style="text-align:center">2/12</td><td  class="tb1" style="text-align:center">16/506</td><td  class="tb1" style="text-align:center">0.0514612479939294</td><td  class="tb1" style="text-align:center">0.433915489302994</td><td  class="tb1" style="text-align:center">ENSG00000100030/ENSG00000090376</td><td  class="tb1" style="text-align:center">MAPK1/IRAK3</td><td  class="tb1" style="text-align:center">hsa:5594/hsa:11213</td><td  class="tb1" style="text-align:center">2</td><td  class="tb1" style="text-align:center">2</td><td  class="tb1" style="text-align:center">ENSG00000100030/ENSG00000090376</td><td  class="tb1" style="text-align:center">0</td></tr>
+				
+			
+				
+					<tr class="tb1"><td  class="tb1" style="text-align:center">hsa05152</td><td  class="tb1" style="text-align:center">Tuberculosis</td><td  class="tb1" style="text-align:center">2/12</td><td  class="tb1" style="text-align:center">16/506</td><td  class="tb1" style="text-align:center">0.0514612479939294</td><td  class="tb1" style="text-align:center">0.433915489302994</td><td  class="tb1" style="text-align:center">ENSG00000100030/ENSG00000140678</td><td  class="tb1" style="text-align:center">MAPK1/ITGAX</td><td  class="tb1" style="text-align:center">hsa:5594/hsa:3687</td><td  class="tb1" style="text-align:center">2</td><td  class="tb1" style="text-align:center">2</td><td  class="tb1" style="text-align:center">ENSG00000100030/ENSG00000140678</td><td  class="tb1" style="text-align:center">0</td></tr>
+				
+			
+				
+					<tr class="tb1"><td  class="tb1" style="text-align:center">hsa04150</td><td  class="tb1" style="text-align:center">mTOR signaling pathway</td><td  class="tb1" style="text-align:center">2/12</td><td  class="tb1" style="text-align:center">17/506</td><td  class="tb1" style="text-align:center">0.0575542369663337</td><td  class="tb1" style="text-align:center">0.433915489302994</td><td  class="tb1" style="text-align:center">ENSG00000100030/ENSG00000164327</td><td  class="tb1" style="text-align:center">MAPK1/RICTOR</td><td  class="tb1" style="text-align:center">hsa:5594/hsa:253260</td><td  class="tb1" style="text-align:center">2</td><td  class="tb1" style="text-align:center">2</td><td  class="tb1" style="text-align:center">ENSG00000100030/ENSG00000164327</td><td  class="tb1" style="text-align:center">0</td></tr>
+				
+			
+				
+					<tr class="tb1"><td  class="tb1" style="text-align:center">hsa04810</td><td  class="tb1" style="text-align:center">Regulation of actin cytoskeleton</td><td  class="tb1" style="text-align:center">2/12</td><td  class="tb1" style="text-align:center">18/506</td><td  class="tb1" style="text-align:center">0.0638956491854401</td><td  class="tb1" style="text-align:center">0.433915489302994</td><td  class="tb1" style="text-align:center">ENSG00000100030/ENSG00000140678</td><td  class="tb1" style="text-align:center">MAPK1/ITGAX</td><td  class="tb1" style="text-align:center">hsa:5594/hsa:3687</td><td  class="tb1" style="text-align:center">2</td><td  class="tb1" style="text-align:center">2</td><td  class="tb1" style="text-align:center">ENSG00000100030/ENSG00000140678</td><td  class="tb1" style="text-align:center">0</td></tr>
+				
+			
+				
+					<tr class="tb1"><td  class="tb1" style="text-align:center">hsa05200</td><td  class="tb1" style="text-align:center">Pathways in cancer</td><td  class="tb1" style="text-align:center">2/12</td><td  class="tb1" style="text-align:center">34/506</td><td  class="tb1" style="text-align:center">0.189653208582256</td><td  class="tb1" style="text-align:center">0.433915489302994</td><td  class="tb1" style="text-align:center">ENSG00000100030/ENSG00000198223</td><td  class="tb1" style="text-align:center">MAPK1/CSF2RA</td><td  class="tb1" style="text-align:center">hsa:5594/hsa:1438</td><td  class="tb1" style="text-align:center">2</td><td  class="tb1" style="text-align:center">2</td><td  class="tb1" style="text-align:center">ENSG00000100030/ENSG00000198223</td><td  class="tb1" style="text-align:center">0</td></tr>
+				
+			
+				
+					<tr class="tb1"><td  class="tb1" style="text-align:center">hsa01521</td><td  class="tb1" style="text-align:center">EGFR tyrosine kinase inhibitor resistance</td><td  class="tb1" style="text-align:center">1/12</td><td  class="tb1" style="text-align:center">10/506</td><td  class="tb1" style="text-align:center">0.215100500048211</td><td  class="tb1" style="text-align:center">0.433915489302994</td><td  class="tb1" style="text-align:center">ENSG00000100030</td><td  class="tb1" style="text-align:center">MAPK1</td><td  class="tb1" style="text-align:center">hsa:5594</td><td  class="tb1" style="text-align:center">1</td><td  class="tb1" style="text-align:center">1</td><td  class="tb1" style="text-align:center">ENSG00000100030</td><td  class="tb1" style="text-align:center">0</td></tr>
+				
+			
+				
+					<tr class="tb1"><td  class="tb1" style="text-align:center">hsa01524</td><td  class="tb1" style="text-align:center">Platinum drug resistance</td><td  class="tb1" style="text-align:center">1/12</td><td  class="tb1" style="text-align:center">10/506</td><td  class="tb1" style="text-align:center">0.215100500048211</td><td  class="tb1" style="text-align:center">0.433915489302994</td><td  class="tb1" style="text-align:center">ENSG00000100030</td><td  class="tb1" style="text-align:center">MAPK1</td><td  class="tb1" style="text-align:center">hsa:5594</td><td  class="tb1" style="text-align:center">1</td><td  class="tb1" style="text-align:center">1</td><td  class="tb1" style="text-align:center">ENSG00000100030</td><td  class="tb1" style="text-align:center">0</td></tr>
+				
+			
+				
+					<tr class="tb1"><td  class="tb1" style="text-align:center">hsa04012</td><td  class="tb1" style="text-align:center">ErbB signaling pathway</td><td  class="tb1" style="text-align:center">1/12</td><td  class="tb1" style="text-align:center">10/506</td><td  class="tb1" style="text-align:center">0.215100500048211</td><td  class="tb1" style="text-align:center">0.433915489302994</td><td  class="tb1" style="text-align:center">ENSG00000100030</td><td  class="tb1" style="text-align:center">MAPK1</td><td  class="tb1" style="text-align:center">hsa:5594</td><td  class="tb1" style="text-align:center">1</td><td  class="tb1" style="text-align:center">1</td><td  class="tb1" style="text-align:center">ENSG00000100030</td><td  class="tb1" style="text-align:center">0</td></tr>
+				
+			
+		</table>
+	</div>
+	</p>
+<button onclick="hiddenShow(this)">Show Annotation</button>
+<div class="comment">
+<ul style="font-size: 12px;font-family:line-height: 20px">
+        (1) KEGGID: Unique identification id of KEGG database.<br />
+        (2) Description: Function description of this pathway.<br />
+        (3) GeneRatio: Ratio between the number of differentially expressed genes in each pathway and all differentially expressed genes that can be found in KEGG database.<br />
+        (5) BgRatio: In background KEGG database, the ratio of all genes concerning this KEGG pathway to all genes included.<br />
+        (6) pvalue: Statistics category term; abbreviation for probability value.<br />
+        (7) padj: Adjusted p-value. Generally, KEGG pathways with Corrected_pValue < 0.05 are significant enrichment.<br />
+        (8) geneID: Differentially expressed genes in this pathway.<br />
+        (9) geneName: Differentially expressed genes in this pathway.<br />
+        (10) keggID: Pathway gene id.<br />
+        (11) Count: Number of differentially expressed genes concerning this pathway.<br />
+        (12) Up: Number of up expressed genes concerning this KEGG pathway.<br />
+        (13) Up_Gene_id: Up expressed gene id concerning this KEGG pathway.<br />
+        (14) Down: Number of down expressed genes concerning this KEGG pathway.<br />
+        (15) Down_Gene_id: Down expressed gene id concerning this KEGG pathway.<br />
+</ul>
+</div>
+	<br />
+<p class="paragraph">In the KEGG enrichment results, the most significant 20 KEGG pathways were selected for display. If the results are less than 20, all pathways would be drawn, as shown in the following figure. In this figure, the abscissa is the KEGG pathway, and the ordinate is the significance level of the pathway enrichment. Higher values correspond to higher significance.</p>
+</p>
+
+<p class="center">
+    <div class="row">
+      <div class="col-1">
+        <div id="gallery_figure_circKEGGbar_Content_button_prev" class="button_prev" onclick="prev(this.id)">
+          <svg viewbox="0 0 16000 16000" class="svg_prev">
+            <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+            <polygon class="a"
+              points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+            </polygon>
+          </svg></div>
+      </div>
+      <div class="col-6">
+        <div class="tab-content" id="gallery_figure_circKEGGbar_Content_nav-tabContent">
+          
+          <div class="tab-pane fade" id="gallery_figure_circKEGGbar_Content_pane_group1vsgroup2_all" role="tabpanel"
+            aria-labelledby="gallery_figure_circKEGGbar_Content_list_group1vsgroup2_all" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/CircEnrich/KEGG/group1vsgroup2.bar.png" /></div>
+          
+          <div class="tab-pane fade" id="gallery_figure_circKEGGbar_Content_pane_group2vssample1_all" role="tabpanel"
+            aria-labelledby="gallery_figure_circKEGGbar_Content_list_group2vssample1_all" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/CircEnrich/KEGG/group2vssample1.bar.png" /></div>
+          
+        </div>
+      </div>
+      <div class="col-1">
+      <div id="gallery_figure_circKEGGbar_Content_button_next" class="button_next" onclick="next(this.id)">
+          <svg viewbox="0 0 16000 16000" class="svg_next">
+            <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+            <polygon class="a"
+              points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+            </polygon>
+          </svg></div>
+      </div>
+      <div class="col-4">
+        <input class="form-control" id="gallery_figure_circKEGGbar_Content_InputList" type="text" placeholder="Search..">
+        <div class="list-group" id="gallery_figure_circKEGGbar_Content_list-tab" role="tablist">
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_circKEGGbar_Content_list_group1vsgroup2_all"
+            data-toggle="list" href="#gallery_figure_circKEGGbar_Content_pane_group1vsgroup2_all" role="tab"
+            aria-controls="group1vsgroup2_all">group1vsgroup2_all</a>
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_circKEGGbar_Content_list_group2vssample1_all"
+            data-toggle="list" href="#gallery_figure_circKEGGbar_Content_pane_group2vssample1_all" role="tab"
+            aria-controls="group2vssample1_all">group2vssample1_all</a>
+          
+        </div>
+      </div>
+    </div>
+    </p>
+	<p class="name_fig">Figure 4.19 Histogram of KEGG enrichment of the source gene</p>
+	<p class="cenmark">The abscissa is the KEGG pathway, and the ordinate is the significance level of pathway enrichment</p>
+	<br />
+
+<p class="paragraph">From the KEGG enrichment results, the most significant 20 KEGG pathways were selected for display. If the results are less than 20, all pathways would be drawn. In this figure, the abscissa is the ratio of the number of differential genes linked with the KEGG pathway to the total number of differential genes. The ordinate is KEGG Pathway. The size of a point represents the number of genes annotated to a specific KEGG pathway. The color from red to purple represents the significant level of the enrichment.</p>
+
+<p class="center">
+    <div class="row">
+      <div class="col-1">
+        <div id="gallery_figure_circKEGGdot_Content_button_prev" class="button_prev" onclick="prev(this.id)">
+          <svg viewbox="0 0 16000 16000" class="svg_prev">
+            <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+            <polygon class="a"
+              points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+            </polygon>
+          </svg></div>
+      </div>
+      <div class="col-6">
+        <div class="tab-content" id="gallery_figure_circKEGGdot_Content_nav-tabContent">
+          
+          <div class="tab-pane fade" id="gallery_figure_circKEGGdot_Content_pane_group1vsgroup2_all" role="tabpanel"
+            aria-labelledby="gallery_figure_circKEGGdot_Content_list_group1vsgroup2_all" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/CircEnrich/KEGG/group1vsgroup2.dot.png" /></div>
+          
+          <div class="tab-pane fade" id="gallery_figure_circKEGGdot_Content_pane_group2vssample1_all" role="tabpanel"
+            aria-labelledby="gallery_figure_circKEGGdot_Content_list_group2vssample1_all" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/CircEnrich/KEGG/group2vssample1.dot.png" /></div>
+          
+        </div>
+      </div>
+      <div class="col-1">
+      <div id="gallery_figure_circKEGGdot_Content_button_next" class="button_next" onclick="next(this.id)">
+          <svg viewbox="0 0 16000 16000" class="svg_next">
+            <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+            <polygon class="a"
+              points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+            </polygon>
+          </svg></div>
+      </div>
+      <div class="col-4">
+        <input class="form-control" id="gallery_figure_circKEGGdot_Content_InputList" type="text" placeholder="Search..">
+        <div class="list-group" id="gallery_figure_circKEGGdot_Content_list-tab" role="tablist">
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_circKEGGdot_Content_list_group1vsgroup2_all"
+            data-toggle="list" href="#gallery_figure_circKEGGdot_Content_pane_group1vsgroup2_all" role="tab"
+            aria-controls="group1vsgroup2_all">group1vsgroup2_all</a>
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_circKEGGdot_Content_list_group2vssample1_all"
+            data-toggle="list" href="#gallery_figure_circKEGGdot_Content_pane_group2vssample1_all" role="tab"
+            aria-controls="group2vssample1_all">group2vssample1_all</a>
+          
+        </div>
+      </div>
+    </div>
+    </p>
+
+<p class="name_fig">Figure 4.20 KEGG enrichment scatter plot</p>
+<p class="cenmark">The abscissa in the graph is the ratio of the number of differential genes on the KEGG pathway to the total number of differential genes, and the ordinate is KEGG pathway</p>
+
+<p class="paragraph">KEGG enrichment pathway shows the DEGs significantly enriched pathways. In the diagram, if this node contains up-regulated genes, the KO node is labeled in red. If the node contains down-regulated genes, the KO node is labeled in green. If the node contains both up and down-regulated genes, the labeled color is yellow.</p>
+
+ <p class="center">
+    <div class="row">
+      <div class="col-1">
+        <div id="gallery_figure_circKEGGpath_Content_button_prev" class="button_prev" onclick="prev(this.id)">
+          <svg viewbox="0 0 16000 16000" class="svg_prev">
+            <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+            <polygon class="a"
+              points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+            </polygon>
+          </svg></div>
+      </div>
+      <div class="col-6">
+        <div class="tab-content" id="gallery_figure_circKEGGpath_Content_nav-tabContent">
+          
+          <div class="tab-pane fade" id="gallery_figure_circKEGGpath_Content_pane_group2vssample1_hsa04141" role="tabpanel"
+            aria-labelledby="gallery_figure_circKEGGpath_Content_list_group2vssample1_hsa04141" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/CircEnrich/KEGG/group2vssample1_hsa04141.png" /></div>
+          
+          <div class="tab-pane fade" id="gallery_figure_circKEGGpath_Content_pane_group2vssample1_hsa04520" role="tabpanel"
+            aria-labelledby="gallery_figure_circKEGGpath_Content_list_group2vssample1_hsa04520" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/CircEnrich/KEGG/group2vssample1_hsa04520.png" /></div>
+          
+          <div class="tab-pane fade" id="gallery_figure_circKEGGpath_Content_pane_group2vssample1_hsa04621" role="tabpanel"
+            aria-labelledby="gallery_figure_circKEGGpath_Content_list_group2vssample1_hsa04621" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/CircEnrich/KEGG/group2vssample1_hsa04621.png" /></div>
+          
+          <div class="tab-pane fade" id="gallery_figure_circKEGGpath_Content_pane_group2vssample1_hsa04914" role="tabpanel"
+            aria-labelledby="gallery_figure_circKEGGpath_Content_list_group2vssample1_hsa04914" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/CircEnrich/KEGG/group2vssample1_hsa04914.png" /></div>
+          
+          <div class="tab-pane fade" id="gallery_figure_circKEGGpath_Content_pane_group2vssample1_hsa04068" role="tabpanel"
+            aria-labelledby="gallery_figure_circKEGGpath_Content_list_group2vssample1_hsa04068" onclick="trans(this.id)"><img
+              class="img-gallery" src="files/CircEnrich/KEGG/group2vssample1_hsa04068.png" /></div>
+          
+        </div>
+      </div>
+      <div class="col-1">
+      <div id="gallery_figure_circKEGGpath_Content_button_next" class="button_next" onclick="next(this.id)">
+          <svg viewbox="0 0 16000 16000" class="svg_next">
+            <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+            <polygon class="a"
+              points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+            </polygon>
+          </svg></div>
+      </div>
+      <div class="col-4">
+        <input class="form-control" id="gallery_figure_circKEGGpath_Content_InputList" type="text" placeholder="Search..">
+        <div class="list-group" id="gallery_figure_circKEGGpath_Content_list-tab" role="tablist">
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_circKEGGpath_Content_list_group2vssample1_hsa04141"
+            data-toggle="list" href="#gallery_figure_circKEGGpath_Content_pane_group2vssample1_hsa04141" role="tab"
+            aria-controls="group2vssample1_hsa04141">group2vssample1_hsa04141</a>
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_circKEGGpath_Content_list_group2vssample1_hsa04520"
+            data-toggle="list" href="#gallery_figure_circKEGGpath_Content_pane_group2vssample1_hsa04520" role="tab"
+            aria-controls="group2vssample1_hsa04520">group2vssample1_hsa04520</a>
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_circKEGGpath_Content_list_group2vssample1_hsa04621"
+            data-toggle="list" href="#gallery_figure_circKEGGpath_Content_pane_group2vssample1_hsa04621" role="tab"
+            aria-controls="group2vssample1_hsa04621">group2vssample1_hsa04621</a>
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_circKEGGpath_Content_list_group2vssample1_hsa04914"
+            data-toggle="list" href="#gallery_figure_circKEGGpath_Content_pane_group2vssample1_hsa04914" role="tab"
+            aria-controls="group2vssample1_hsa04914">group2vssample1_hsa04914</a>
+          
+          <a class="list-group-item list-group-item-action" id="gallery_figure_circKEGGpath_Content_list_group2vssample1_hsa04068"
+            data-toggle="list" href="#gallery_figure_circKEGGpath_Content_pane_group2vssample1_hsa04068" role="tab"
+            aria-controls="group2vssample1_hsa04068">group2vssample1_hsa04068</a>
+          
+        </div>
+      </div>
+    </div>
+    </p>
+<p class="name_fig">Figure 4.21 KEGG enrichment pathway</p>
+<p class="paragraph">Result directory of GO enrichment analysis: <a href="../../Result_PXXXXXXXX_Homo_sapiens/3.CircRNA/3.4.CircEnrich/2.KEGG" title="点>击打开" >KEGG_enrich</a></p>
+<br />
+</div>
+
+
+
+<!---------------------------15 CircRNA 靶向 miRNA 位点分析---------------------------------->
+
+
+<div id="page">
+
+
+	<h3  id="result15">4.7 Prediction of miRNA binding sites</h3>
+    <p class="paragraph">CircRNA can inhibit the function of miRNA by binding miRNA (Hansen TB et al., 2013). Therefore, miRNA binding site analysis of identified circRNA is helpful to further study the function of circRNA. For animals and plants, miRanda software was used in this procedure to predict the miRNA binding sites of circRNA after shearing.</p>
+</p>
+	
+    
+
+</br>
+	<p class="paragraph">Results of circRNA-miRNA binding sites are as follows:</p>
+	<p class="name_fig">Table 4.9 CircRNA target miRNA site statistics</p>
+	<p class="center">
+	<div id="tb">
+		<table class="tb1">
+		
+			
+				<tr class="tb2"><th class="tb2">COL_1</th><th class="tb2">COL_2</th><th class="tb2">COL_3</th><th class="tb2">COL_4</th><th class="tb2">COL_5</th><th class="tb2">COL_6</th><th class="tb2">COL_7</th><th class="tb2">COL_8</th><th class="tb2">COL_9</th><th class="tb2">COL_10</th></tr>
+			
+		
+			
+				<tr><td>>>hsa-let-7a-5p</td><td>hsa_circ_0007026_full_seq</td><td>161.00</td><td>-19.01</td><td>161.00</td><td>-19.01</td><td>41</td><td>22</td><td>623</td><td> 12</td></tr>
+			
+		
+			
+				<tr><td>>>hsa-let-7a-5p</td><td>hsa_circ_0004212_full_seq</td><td>161.00</td><td>-19.01</td><td>161.00</td><td>-19.01</td><td>43</td><td>22</td><td>732</td><td> 262</td></tr>
+			
+		
+			
+				<tr><td>>>hsa-let-7a-5p</td><td>hsa_circ_0007609_full_seq</td><td>145.00</td><td>-15.61</td><td>145.00</td><td>-15.61</td><td>69</td><td>22</td><td>504</td><td> 26</td></tr>
+			
+		
+			
+				<tr><td>>>hsa-let-7a-5p</td><td>hsa_circ_0061510_full_seq</td><td>152.00</td><td>-12.67</td><td>152.00</td><td>-12.67</td><td>83</td><td>22</td><td>470</td><td> 1</td></tr>
+			
+		
+			
+				<tr><td>>>hsa-let-7a-5p</td><td>hsa_circ_0061510_junction_seq</td><td>152.00</td><td>-14.83</td><td>152.00</td><td>-14.83</td><td>84</td><td>22</td><td>54</td><td> 25</td></tr>
+			
+		
+			
+				<tr><td>>>hsa-let-7a-5p</td><td>hsa_circ_0006062_full_seq</td><td>147.00</td><td>-16.41</td><td>147.00</td><td>-16.41</td><td>97</td><td>22</td><td>10102</td><td> 9685</td></tr>
+			
+		
+			
+				<tr><td>>>hsa-let-7a-5p</td><td>hsa_circ_0004300_full_seq</td><td>157.00</td><td>-17.97</td><td>157.00</td><td>-17.97</td><td>199</td><td>22</td><td>273</td><td> 202</td></tr>
+			
+		
+			
+				<tr><td>>>hsa-let-7a-5p</td><td>hsa_circ_0000018_full_seq</td><td>147.00</td><td>-16.81</td><td>147.00</td><td>-16.81</td><td>211</td><td>22</td><td>407</td><td> 304</td></tr>
+			
+		
+			
+				<tr><td>>>hsa-let-7a-5p</td><td>hsa_circ_0000160_full_seq</td><td>154.00</td><td>-18.31</td><td>154.00</td><td>-18.31</td><td>243</td><td>22</td><td>670</td><td> 333</td></tr>
+			
+		
+			
+				<tr><td>>>hsa-let-7a-5p</td><td>hsa_circ_0015259_full_seq</td><td>154.00</td><td>-18.31</td><td>154.00</td><td>-18.31</td><td>245</td><td>22</td><td>987</td><td> 333</td></tr>
+			
+		
+			
+				<tr><td>>>hsa-let-7a-5p</td><td>hsa_circ_0015260_full_seq</td><td>154.00</td><td>-18.31</td><td>154.00</td><td>-18.31</td><td>247</td><td>22</td><td>1436</td><td> 333</td></tr>
+			
+		
+		</table>
+	</div>
+	</p>
+
+<button onclick="hiddenShow(this)">Show Annotation</button>
+<div class="comment">
+<ul style="font-size: 12px;font-family:line-height: 20px">
+(1): miRNA ID.<br />
+(2): circRNA ID.<br />
+(3): The third column: targeting relationship, predicts the total score of all binding sites (the higher the value, the higher the probability of targeting sets).<br />
+(4): The fourth column: the total energy value (the lower the energy value is, the higher the energy required to dismantle miRNA-circRNA interaction is, and the more stable the binding is).<br />
+(5): Target binding highest score of all binding sites (higher value indicates higher likelihood of targeting set).<br />
+(6): The lowest energy value of all binding sites for targeted binding.<br />
+(7): Strand.<br />
+(8): miRNA length.<br />
+(9): circRNA length.<br />
+(10) The combination position. If multiple positions can be combined, the multiple positions are separated by Spaces.<br />
+</ul>
+</div>
+	<br />
+	<br />
+
+    <p class="paragraph">The miRNA-circRNA regulatory network was established according to the prediction results of miRNA binding sites. If the network is too large (the total number of miRNA and circRNA is more than 1000), only part of the regulatory network will be displayed; otherwise, all the regulatory networks will be displayed:</p>
+	<p class="center">
+		<img class="normal1" src="files/CircTarget/miRNA_circRNA.png"/>
+	</p>
+	<p class="name_fig">Figure 4.22 Example diagram of miRNA-circRNA regulatory network</p>
+		<p class="cenmark">The orange vertex represents miRNA, and the blue vertex represents circRNA. For the fully displayed regulatory network, the size of a vertex represents the number of regulatory pathways through that vertex.</p>
+	<p class="paragraph">Result directory: <a href="../../Result_PXXXXXXXX_Homo_sapiens/3.CircRNA/3.2.CircTarget" title="点>击打开" >CircTarget</a></p>
+		
+		
+	<br />
+</div>
+
+
+
+<!-------------------------- CircRNA 编码潜能预测------------------------------->
+
+<div id="page">
+
+
+	<h3  id="result16">4.8 Prediction of CircRNA coding potential</h3>
+    <p class="paragraph">For circRNA, in 1995, ChenCY published an article in SCIENCE demonstrating that synthetic circrnas with ribosomal entry sites (IRES) were translatable and hypothesized that circrnas could be translatable in vivo. With the rise of circRNA research in recent years, a large number of circRNA data have been accumulated for circRNA coding potential research. Since 2017, a large number of articles about circRNA encoded proteins have emerged, and the impact factor is generally above 10 points.</p>
+    <p class="paragraph">Since circRNA does not have a 5' cap structure, the current prediction of circRNA coding potential is mainly to find whether there are IRES sites and open reading frame ORF on circRNA, which can initiate translation without relying on the 5' cap structure, and then conduct coding verification and subsequent circRNA function analysis.</p>
+    <p class="paragraph">currently, IRES-prediction tools are mostly online prediction tools. IRESfinder is an IRES prediction tool developed by Professor Xiaofeng Song's team at Nanjing University of Aeronautics and Astronautics in 2018. IRESfinder analysis principle is a predictive tool based on the Logit Model. Machine learning training is performed on 583 IRES elements validated by experiments based on 19 K-mer parameters. After 10-layer cross-validation, the AUC value of ROC curve analysis can reach 0.825, with an accuracy of 80% and an accuracy of 73%(Zhao J et al., 2018).</p>
+	
+    
+	
+</br>
+	
+	<p class="paragraph">The prediction results of CircRNA coding potential are as follows:</p>
+	<p class="name_fig">Table 4.10 CircRNA coding potential prediction statistical table</p>
+	<p class="center">
+	<div id="tb">
+		<table class="tb1">
+		
+			
+				<tr class="tb2"><th class="tb2">Circ_ID</th><th class="tb2">IRES_Score</th><th class="tb2">CPC2</th><th class="tb2">CNCI</th><th class="tb2">PFAM</th></tr>
+			
+		
+			
+				<tr><td>hsa_circ_0003472</td><td>0.9508621873940262</td><td>--</td><td>--</td><td>True</td></tr>
+			
+		
+			
+				<tr><td>hsa_circ_0000495</td><td>0.950090903183698</td><td>--</td><td>--</td><td>--</td></tr>
+			
+		
+			
+				<tr><td>hsa_circ_0005616</td><td>0.9499204039946939</td><td>--</td><td>--</td><td>--</td></tr>
+			
+		
+			
+				<tr><td>hsa_circ_0004419</td><td>0.9340736132077689</td><td>--</td><td>--</td><td>--</td></tr>
+			
+		
+			
+				<tr><td>hsa_circ_0002179</td><td>0.9331486379015039</td><td>--</td><td>--</td><td>True</td></tr>
+			
+		
+			
+				<tr><td>hsa_circ_0008731</td><td>0.931962841942531</td><td>--</td><td>--</td><td>--</td></tr>
+			
+		
+			
+				<tr><td>hsa_circ_0004479</td><td>0.9312585954651265</td><td>--</td><td>--</td><td>True</td></tr>
+			
+		
+			
+				<tr><td>hsa_circ_0002118</td><td>0.9292637793180251</td><td>--</td><td>--</td><td>--</td></tr>
+			
+		
+			
+				<tr><td>hsa_circ_0004314</td><td>0.9280188520418581</td><td>True</td><td>--</td><td>True</td></tr>
+			
+		
+			
+				<tr><td>hsa_circ_0008304</td><td>0.9232824711796257</td><td>--</td><td>--</td><td>--</td></tr>
+			
+		
+		</table>
+	</div>
+	</p>
+
+<button onclick="hiddenShow(this)">Show Annotation</button>
+<div class="comment">
+<ul style="font-size: 12px;font-family:line-height: 20px">
+(1) Circ_ID : circRNA id<br />
+(2) IRES_Score: IRESfinder predicts IRES score. The score >0.5 has IRES elements. The higher the score, the higher the accuracy<br />
+(3) CPC: CPC software identified whether circRNA sequence had coding potential<br />
+(4) CNCI: CNCI software identifies whether circRNA sequence has coding potential<br />
+(5) PFAM: PFAM software identifies whether circRNA sequence has coding potential<br />
+</ul>
+<p class="paragraph">Result directory: <a href="../../Result_PXXXXXXXX_Homo_sapiens/3.CircRNA/3.5.CircCoding" title="点>击打开" >Circ_coding_stat</a></p>
+</div>
+	<br />
+</div>
+
+</div>
+</div>
+<!-------------------------------CircRNA功能研究视频链接------------------------------>
+
+
+<!-------------------------------结题报告结构介绍及辅助注释结果文件解读------------------------------>
+
+<!-------------------------------novomagic视频链接------------------------------>
+<!-------------------------------------------备注------------------------------------------>
+
+
+<div id="page">
+
+	<p class="head">
+	<hr />
+	</p>
+
+	<h2>5 Appendix</h2>
+
+        <!--<h3 id="note_2">Result Directory</h3>
+        <p class="paragraph">Click to open the result directory (html), and the corresponding file can be viewed
+          directly when the report and the result files are stored in the same folder.</p>
+        <p class="paragraph">Result Directory: <a href="../../Result_PXXXXXXXX_Homo_sapiens/result_tree.html" title="点击打开" >html</a>
+        </p>
+
+        <table width=80%  id="result_note" cellspacing="0" cellpadding="5" class="gy2">
+
+          <tr>
+            <th colspan="3">1.Explanation on result file:</th>
+          </tr>
+
+          <tr>
+            <td rowspan="2">compressed files in the fomat of *.tar.gz:</td>
+            <td>Unix/Linux/Mac user</td>
+            <td>use tar -zxvf *.tar.gz command</td>
+          </tr>
+
+          <tr>
+            <td>Windows user</td>
+            <td>use uncompressed software such as WinRAR, 7-Zip et al</td>
+          </tr>
+
+          <tr>
+            <td rowspan="2">compressed files in the fomat of *.gz:</td>
+            <td>Unix/Linux/Mac user</td>
+            <td>use gzip –d *.gz command</td>
+          </tr>
+
+          <tr>
+            <td>Windows user</td>
+            <td>use uncompressed software such as WinRAR, 7-Zip et al</td>
+          </tr>
+
+          <tr>
+            <td rowspan="2">compressed files in the fomat of *.zip:</td>
+            <td>Unix/Linux/Mac user</td>
+            <td>use unzip *.zip command</td>
+          </tr>
+
+          <tr>
+            <td>Windows user</td>
+            <td>use uncompressed software such as WinRAR, 7-Zip et al</td>
+          </tr>
+
+        </table>
+        </p>
+
+        <table width=80% id="result_note" cellspacing="0" cellpadding="5" class="gy2">
+
+          <tr>
+            <th colspan="3">2. Explanation on how to operating file:</th>
+
+          </tr>
+
+          <tr>
+            <td rowspan="2">*.fasta</td>
+            <td rowspan="2">sequence file, in the fomat of fasta. in genaral, because sequence of gene or genome is
+              large, we provide customer with sampled*.fasta file(partial sequences of *.fasta). It will be more
+              convenient to check file fomat.</td>
+            <td>unix/Linux/Mac user use less or more command can view sequences in the fomat of *.fasta.</td>
+
+          </tr>
+
+          <tr>
+            <td>windows user use editor Editplus/Notepad++ et al</td>
+
+          </tr>
+
+          <tr>
+            <td rowspan="2">*.fq/fastq</td>
+            <td rowspan="2">reads sequence file, in the fomat of fasta. it is no easy to open because of big file.</td>
+            <td>unix/Linux/Mac user use less or more command;</td>
+
+          </tr>
+
+          <tr>
+            <td>windows user use editor Editplus/Notepad++ et al</td>
+
+          </tr>
+
+          <tr>
+            <td rowspan="2">*.xls,*.txt</td>
+            <td rowspan="2">table result file; files are separated by(Tab)</td>
+            <td>unix/Linux/Mac user use less or more command</td>
+
+          </tr>
+
+          <tr>
+            <td>windows user use editor Editplus/Notepad++ et al, also can use Microsoft Excel to open.</td>
+
+          </tr>
+
+          <tr>
+            <td rowspan="2">*.png</td>
+            <td rowspan="2">figure result files; bitmap</td>
+            <td>unix/Linux/Mac user use display command to open.</td>
+
+          </tr>
+
+          <tr>
+            <td>windows user use picture viewer to view, for example photoshop et al</td>
+
+          </tr>
+
+          <tr>
+            <td>*.pdf</td>
+            <td>figure result files; vectorgraph, can be zoom in or out. it is very convenient for customer to view or
+              edit. using Adobe Illustrator to edit,the picture can be used in paper for publishing.</td>
+            <td>windows/Mac user use Adobe Reader/Foxit reader/web browser to open, unix/Linux user use evince command
+              to open.</td>
+
+          </tr>
+        </table>
+        </p>-->
+
+        <h3 id="note_2">5.1 Software</h3>
+        </a>
+        
+        <table class="gy2">
+          <tr>
+            <th>Analysis</th>
+            <th>Software</th>
+            <th>Version</th>
+            <th>Parameter</th>
+            <th>Remarks</th>
+          </tr>
+
+          <tr>
+            <td rowspan="4">Mapping</td>
+            <td>bowtie2</td>
+            <td>v2.5.4</td>
+            <td>--end-to-end --sensitive --phred33 --no-mixed -X 600</td>
+            <td>Mapping to rRNA</td>
+          </tr>
+
+          <tr>
+            <td>Hisat2</td>
+            <td>v2.2.1</td>
+            <td>--phred33 --rna-strandness RF --dta-cufflinks --un-conc-gz</td>
+            <td>Mapping to reference</td>
+          </tr>
+
+          <tr>
+            <td>samtools</td>
+            <td>v1.20</td>
+            <td>--</td>
+            <td>--</td>
+          </tr>
+
+          <tr>
+            <td>picard</td>
+            <td>v3.3.0</td>
+            <td>--</td>
+            <td>--</td>
+          </tr>
+
+          <tr>
+            <td rowspan="4">CircNovel</td>
+            <td>bwa</td>
+            <td>--</td>
+            <td>mem -t 4 -T 19</td>
+            <td>Genome Alignment (CIRI)</td>
+          </tr>
+
+          <tr>
+            <td>CIRI </td>
+            <td>v2.0.6 </td>
+            <td>-P -T 4</td>
+            <td>CircRNA identification</td>
+          </tr>
+  
+          <tr>
+            <td>CIRI_AS</td>
+            <td>v2.0.6</td>
+            <td>--</td>
+            <td>Run CIRI_AS</td>
+          </tr>
+
+          <tr>
+            <td>find_circ </td>
+            <td>--</td>
+            <td>--</td>
+            <td>CircRNA identification</td>
+          </tr>
+
+          <tr>
+            <td rowspan="2">Differential Analysis</td>
+            <td>DESeq2</td>
+            <td>v1.42.0</td>
+            <td>--foldchange 1 --padj 0.05</td>
+            <td>For sample with bio-replicate</td>
+          </tr>
+
+          <tr>
+            <td>edgeR</td>
+            <td>v4.0.16</td>
+            <td>--foldchange 2 --padj 0.05</td>
+            <td>For sample without bio-replicate</td>
+          </tr>
+
+          <tr>
+            <td>Enrichment Analysis</td>
+            <td>clusterProfiler</td>
+            <td>v4.8.1 </td>
+            <td>padj < 0.05</td>
+            <td>For GO, KEGG enrichment analysis</td>
+          </tr>
+
+          <tr>
+            <td rowspan="3">CircCoding</td>
+            <td>CNCI</td>
+            <td>v2.0</td>
+            <td>-m ve -p 1</td>
+            <td>Coding-Potential Analysis</td>
+          </tr>
+
+          <tr>
+            <td>CPC2</td>
+            <td>v3.2.0</td>
+            <td>--</td>
+            <td>Coding-Potential Analysis</td>
+          </tr>
+
+          <tr>
+            <td>Pfam-scan</td>
+            <td>v1.6</td>
+            <td>-pfamB</td>
+            <td>Detection of Known Protein Domain</td>
+          </tr>
+
+          <tr>
+            <td rowspan="2">CircTarget</td>
+            <td>miranda</td>
+            <td>miRanda-3.3a</td>
+            <td>-sc 140 -en -10 -scale 4 -strict</td>
+            <td>Prediction of targeted miRNA</td>
+          </tr>
+
+          <tr>
+            <td>IRESfinder</td>
+            <td>--</td>
+            <td>--</td>
+            <td>--</td>
+          </tr>
+
+
+        </table>
+        
+        
+               
+        </p>
+
+        <h3 id="note_3">5.2 Methods</h3>
+        </a>
+        <p class="paragraph">Click to open the method(pdf), and the corresponding file can be viewed directly.</p>
+        
+        
+        <p class="paragraph">File catalog:<a href="circRNA.method_hw.pdf" title="点击打开" >methods</a></p>
+        
+	<br />
+
+        <h3 id="note_2">5.3 Result File Decompression Method and Format Description</h3>
+        <table class="gy2">
+          <tr>
+            <th>Compressed File Format</th>
+            <th>Operating System</th>
+            <th>File Decompression</th>
+          </tr>
+
+          <tr>
+            <td rowspan="2">*.gz</td>
+            <td>Unix/Linux/Mac</td>
+            <td>Command line: gzip –d *.gz </td>
+          </tr>
+
+          <tr>
+            <td>Windows</td>
+            <td>Software: such as WinRAR, 7-Zip et al</td>
+          </tr>
+        
+          <tr>
+            <td rowspan="2">*.zip</td>
+            <td>Unix/Linux/Macr</td>
+            <td>Command line: unzip *.zip</td>
+          </tr>
+
+          <tr>
+            <td>Windows</td>
+            <td>Software: such as WinRAR, 7-Zip et al</td>
+          </tr>
+        </table>
+
+        </br>
+
+        <table class="gy2">
+          <tr>
+            <th>File Type</th>
+            <th>File Description</th>
+            <th>Way to Open</th>
+          </tr>
+
+          <tr>
+            <td rowspan="2">file.readme.pdf</td>
+            <td rowspan="2">Results' construction files that help customers to undersdand all the results files better.</td>
+            <td>Windows/Mac user use Adobe Reader/Foxit reader/web browser to open.</td>
+          </tr>
+
+          <tr>
+            <td>Unix/Linux user use evince command to open.</td>
+          </tr>
+
+          <tr>
+            <td rowspan="2">file.fa/.fasta</td>
+            <td rowspan="2">Fasta format is a text-based format for representing sequences.</td>
+            <td>Unix/Linux/Mac user use less or more command</td>
+          </tr>
+
+          <tr>
+            <td>Windows user use editor Editplus/Notepad++ et al.</td>
+          </tr>
+
+          <tr>
+            <td rowspan="2">file.fq/.fastq</td>
+            <td rowspan="2">Text file that contains sequence data delivered from a sequencer. </td>
+            <td>Unix/Linux/Mac user use less or more command</td>
+          </tr>
+
+          <tr>
+            <td>Windows user use editor Editplus/Notepad++ et al.</td>
+          </tr>
+
+          <tr>
+            <td>file.vcf</td>
+            <td>VCF is a flexible and extendable line-oriented text format developed by the 1000 Genomes Project for releases of SNVs, INDELs, copy number variants and structural variants.</td>
+            <td>Unix/Linux/Mac user use less or more command;</td>
+          </tr>
+
+          <tr>
+            <td>file.bam</td>
+            <td>BAM is compressed format for SAM file which contains sequence alignment information.</td>
+            <td>Unix/Linux/Mac user use samtools software.</td>
+          </tr>
+
+
+          <tr>
+            <td rowspan="2">file.pdf/.svg</td>
+            <td rowspan="2">Figure result files; vectorgraph, can be zoomed in or out. It is very convenient for customer to view or edit with Adobe Illustrator. The figure can be used in paper for publish.</td>
+            <td>unix/Linux user use evince command to open.</td>
+          </tr>
+
+          <tr>
+            <td>Windows/Mac user use Adobe Reader/Foxit reader/web browser to open.</td>
+          </tr>
+
+
+          <tr>
+            <td rowspan="2">file.txt/xls</td>
+            <td rowspan="2">Table result file; files are tab delimited.</td>
+            <td>Unix/Linux/Mac user use less or more command</td>
+          </tr>
+
+          <tr>
+            <td>Windows user use editor Editplus/Notepad++ et al, also can use Microsoft Excel to open.</td>
+          </tr>
+
+          <tr>
+            <td rowspan="2">file.gff/gtf</td>
+            <td rowspan="2">GFF/GTF is general feature format.</td>
+            <td>Unix/Linux/Mac user use less or more command;</td>
+          </tr>
+
+          <tr>
+            <td>Windows user use editor Editplus/Notepad++ et al.</td>
+          </tr>
+
+          <tr>
+            <td rowspan="2">file.png</td>
+            <td rowspan="2">Image file, bitmap with loseless compression.</td>
+            <td>Unix/Linux/Mac user use display command;</td>
+          </tr>
+
+          <tr>
+            <td>Windows user use Image browser，such as photoshop et al.</td>
+          </tr>
+
+          </table>
+
+</div>
+
+
+
+<!-------------------------------参考文献---------------------------------->
+
+
+<div id="page">
+
+        <p class="head">
+        <hr />
+        </p>
+
+        <h2 id="reference1">6 References</h2>
+
+        <p class="ref">
+
+        
+
+    
+
+    
+     Breschi A, Gingeras TR, Guigó R. Comparative transcriptomics in human and mouse. Nat Rev Genet. 2017;18(7):425-440. doi:10.1038/nrg.2017.19. <br /><br />
+    
+
+        
+        Gao Y, Wang J, Zhao F. CIRI: an efficient and unbiased algorithm for de novo circular RNA identification. Genome Biol. 2015;16(1):4. Published 2015 Jan 13. doi:10.1186/s13059-014-0571-3.<br /><br />
+        
+
+    
+
+    
+
+
+    
+
+        
+         Hansen TB, Jensen TI, Clausen BH, et al. Natural RNA circles function as efficient microRNA sponges. Nature. 2013;495(7441):384-388. doi:10.1038/nature11993.<br /><br />
+        
+
+    
+     Hardwick SA, Chen WY, Wong T, et al. Spliced synthetic genes as internal controls in RNA sequencing experiments. Nat Methods. 2016;13(9):792-798. doi:10.1038/nmeth.3958.<br /><br />
+    
+
+    
+
+    
+     Kim D, Langmead B, Salzberg SL. HISAT: a fast spliced aligner with low memory requirements. Nat Methods. 2015;12(4):357-360. doi:10.1038/nmeth.3317.<br /><br />
+    
+
+    
+
+        
+     Love MI, Huber W, Anders S. Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2. Genome Biol. 2014;15(12):550. doi:10.1186/s13059-014-0550-8.<br /><br />
+        
+
+    
+
+        
+         Memczak S, Jens M, Elefsinioti A, et al. Circular RNAs are a large class of animal RNAs with regulatory potency. Nature. 2013;495(7441):333-338. doi:10.1038/nature11928.<br /><br />
+        
+
+    
+
+    
+
+    
+
+    
+
+    
+    Robinson MD, McCarthy DJ, Smyth GK. edgeR: a Bioconductor package for differential expression analysis of digital gene expression data. Bioinformatics. 2010;26(1):139-140. doi:10.1093/bioinformatics/btp616.<br /><br />
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+     Yousefi H, Maheronnaghsh M, Molaei F, et al. Long noncoding RNAs and exosomal lncRNAs: classification, and mechanisms in breast cancer metastasis and drug resistance. Oncogene. 2020;39(5):953-974. doi:10.1038/s41388-019-1040-y.<br /><br />
+    
+
+        
+         Zhao J, Wu J, Xu T, Yang Q, He J, Song X. IRESfinder: Identifying RNA internal ribosome entry site in eukaryotic cell using framed k-mer features. J Genet Genomics. 2018;45(7):403-406. doi:10.1016/j.jgg.2018.07.006.<br /><br />
+        
+
+        
+    Zhou L, Chen J, Li Z, et al. Integrated profiling of microRNAs and mRNAs: microRNAs located on Xq27.3 associate with clear cell renal cell carcinoma. PLoS One. 2010;5(12):e15224. Published 2010 Dec 30. doi:10.1371/journal.pone.0015224.<br /><br />
+    
+
+        </p>
+
+
+        <br />
+        <br />
+
+
+</div>
+
+
+
+<!----------------------------------End---------------------------------->
+</div>
+
+</div>
+  <script>
+    $(document).ready(function () {
+
+      // 初始化materialScrollTop
+      $('body').materialScrollTop();
+
+      $('.flexslider').flexslider({
+        animation: "slide",
+        slideshow: false,
+        controlNav: false
+      });
+
+
+      $('#leftNavigation .step').click(function (event) {
+        $(this).children('ul').slideToggle();
+      });
+
+      // 显示隐藏按钮切换
+      $('.hide_or_show').click(function (e) {
+        $(this).parent().next().fadeToggle();
+      });
+
+    });
+
+    function displaySubMenu(li) {
+      var subMenu = li.getElementsByTagName("ul")[0];
+      subMenu.style.display = "block";
+    }
+
+    function hideSubMenu(li) {
+      var subMenu = li.getElementsByTagName("ul")[0];
+      subMenu.style.display = "none";
+    }
+  </script>
+
+</body>
+
+
+</html>
+
