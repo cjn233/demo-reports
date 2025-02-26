@@ -1,0 +1,2621 @@
+<!-- django temple created by chenshuangzhao in 2020.04.01-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<html>
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="x-ua-compatible" content="IE=11,edge" />
+
+
+
+
+<title> XXXXXX项目生物信息信息分析结题报告 </title>
+
+
+
+<!--<meta> 标签提供了 HTML 文档的元数据。元数据不会显示在客户端，但是会被浏览器解析。META元素通常用于指定网页的描述，关键词. 元数据通常以 名称/值 对出现-->
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link href="css/buttons.css" rel="stylesheet" />
+<link href="css/font-awesome.min.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="css/base.css">
+<link href="css/base_new.css" type="text/css" rel="stylesheet">
+<link href="css/cloth.css" rel="stylesheet" type="text/css" media="screen" />
+<link rel="stylesheet" type="text/css" href="js/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
+<script src='js/jquery-1.4.2.min.js'></script>
+<script src="js/network.js"></script>
+<script src="js/echarts.min.js"></script>
+<script src="js/test.js"></script>
+<script src="js/scrolltop.js" type="text/javascript"></script>
+<script src="js/common.js" type="text/javascript"></script>
+<script src="js/jquery.albumSlider.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/tablecloth.js"></script>
+<script type="text/javascript" src="js/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
+<script type="text/javascript" src="js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+<script src="js/esl.js" type="text/javascript"></script>
+<script src="js/bootstrap.js" type="text/javascript"></script>
+	
+<style media="print">
+	.noprint {DISPLAY: none;}
+	#main{width:95%;right:30px;}
+	.printmenu{display:block;}
+</style>
+<!-- class 寻找 style 定义文档样式,如需链接外部样式表，请使用 <link> 标签,如果没有使用 "scoped" 属性，则每一个 <style> 标签必须位于 head 头部区域, type 唯一可能的值是 "text/css" 规定样式表的 MIME 类型-->
+<!-- type 寻找js/css--> 
+
+	<div class="noprint">
+		<div style="display: block;" id="goTopBtn">
+			<a class="backtotop" title="回顶部"><img src="images/goTop.jpg" width="30" height="30" class="back-tip"/></a>
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+		var Tree = new Array;
+		// nodeId | parentNodeId | nodeName | nodeUrl
+	<{jtree}>
+	</script> 
+
+  <link href="css/new/base_new.css" type="text/css" rel="stylesheet">
+
+    
+  <style>
+    .countt {
+      counter-reset: slideNum;
+    }
+    .countt tr:before {
+      counter-increment: slideNum;
+      content: counter(slideNum)".";
+    }
+  </style>
+
+</head>	
+<body>
+
+<!-- --------------------------------------------------------------- Menu bar----------------------------------------------------------------------- -->
+<!-- 
+ <div id="contentLeft" class="linear" style="overflow-y:auto">
+    <img style="margin-top:10px;margin-left:5%;width:90%" src="images/logo1.png" />
+  <ul id="leftNavigation" class="nav">
+  
+<li><a href="#项目背景及样本信息">项目背景</a></li>
+<li onmouseover="displaySubMenu(this)" onmouseout="hideSubMenu(this)"><a href="#建库测序流程">实验流程</a>
+<ul>
+
+<li><a href="#RNA样品检测"> RNA样品检测</a></li>
+
+
+<li><a href="#文库构建"><i class="icon-angle-right"></i> 文库构建</a></li>
+
+<li><a href="#库检"><i class="icon-angle-right"></i> 库检</a></li>
+<li><a href="#上机测序"><i class="icon-angle-right"></i> 上机测序</a></li>
+</ul>
+</li>
+
+
+<li onmouseover="displaySubMenu(this)" onmouseout="hideSubMenu(this)"><a href="#生物信息分析流程">生物信息流程</a>
+<ul>
+<li><a href="#生物信息分析流程"><i class="icon-angle-right"></i> 生物信息分析流程</a></li>
+
+
+<li><a href="#标准分析结果"><i class="icon-angle-right"></i> 标准分析结果</a></li>
+</ul>
+</li>
+
+<li onmouseover="displaySubMenu(this)" onmouseout="hideSubMenu(this)"><a href="#数据质量控制">质控</a>
+<ul>
+<li><a href="#原始序列数据"><i class="icon-angle-right"></i> 原始序列数据</a></li>
+<li><a href="#测序数据质量评估"><i class="icon-angle-right"></i> 测序数据质量评估</a></li>
+<li><a href="#测序数据过滤"><i class="icon-angle-right"></i> 测序数据过滤</a></li>
+<li><a href="#测序错误率分布"><i class="icon-angle-right"></i> 测序错误率分布</a></li>
+
+<li><a href="#GC含量分布"><i class="icon-angle-right"></i> GC含量分布</a></li>
+
+<li><a href="#数据质量汇总"><i class="icon-angle-right"></i> 数据质量汇总</a></li>
+</ul>
+</li>
+
+
+
+<li onmouseover="displaySubMenu(this)" onmouseout="hideSubMenu(this)"><a href="#比对分析">序列比对与拼接</a>
+<ul>
+<li><a href="#比对情况统计"><i class="icon-angle-right"></i> 比对情况统计</a></li>
+<li><a href="#基因组区域分布"><i class="icon-angle-right"></i> 基因组区域分布</a></li>
+
+
+
+<li><a href="#转录本拼接"><i class="icon-angle-right"></i> 转录本拼接</a></li>
+
+
+
+<li><a href="#转录本筛选"><i class="icon-angle-right"></i> 转录本筛选</a></li>
+<li><a href="#lncRNA与mRNA特征比较"><i class="icon-angle-right"></i> lncRNA与mRNA特征比较</a></li>
+
+
+
+
+</ul>
+</li>
+<li onmouseover="displaySubMenu(this)" onmouseout="hideSubMenu(this)"><a href="#定量分析">定量与差异</a>
+<ul>
+<li><a href="#定量结果说明"><i class="icon-angle-right"></i> 定量结果说明</a></li>
+<li><a href="#表达水平分布"><i class="icon-angle-right"></i> 表达水平分布</a></li>
+
+
+
+<li><a href="#差异基因列表"><i class="icon-angle-right"></i> 差异基因列表</a></li></li>
+<li><a href="#差异基因火山图"><i class="icon-angle-right"></i> 差异基因火山图</a></li></li>
+<li><a href="#差异基因聚类"><i class="icon-angle-right"></i> 差异基因聚类</a></li>
+
+
+
+
+</ul>
+</li>
+<li onmouseover="displaySubMenu(this)" onmouseout="hideSubMenu(this)"><a href="#功能分析">功能分析</a>
+<ul>
+<li><a href="#GO功能富集"><i class="icon-angle-right"></i> GO功能富集</a></li>
+<li><a href="#通路富集结果列表"><i class="icon-angle-right"></i> KEGG通路富集</a></li>
+
+
+
+<li><a href="#lncRNA靶基因预测"><i class="icon-angle-right"></i> lncRNA靶基因预测</a></li>
+<li><a href="#差异lncRNA分析"><i class="icon-angle-right"></i> 差异lncRNA分析</a></li>
+<li><a href="#差异lncRNA靶基因富集分析"><i class="icon-angle-right"></i> 差异lncRNA靶基因富集分析</a></li>
+
+
+
+<li><a href="#差异可变剪切分析"><i class="icon-angle-right"></i> 差异可变剪切分析</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+</li>
+
+
+<li><a href="#备注">备注</a></li>
+<li><a href="#参考文献">参考文献</a></li>
+
+  </div> -->
+<div id="main">
+
+<!-- --------------------------------------项目背景及样品信息---------------------------------------  -->
+<!-- --------------------------------------项目背景及样品信息---------------------------------------  -->
+<div id="page">
+
+	<p><b class="bold"><font size="4" face="微软雅黑" style="color: #003f76 " >项目编号：PXXXXXXXX</font></b></p>
+	<p><b class="bold"><font size="4" face="微软雅黑" style="color: #003f76 ">项目名称：XXXXXX</font></b></p>
+	<p><b class="bold"><font size="4" face="微软雅黑" style="color: #003f76 ">结题编号：PXXXXXXXX_Homo_sapiens</font></b></p>
+	<p><b class="bold"><font size="4" face="微软雅黑" style="color: #003f76 ">结题日期：20250117140330</font></b></p>
+	<p><b class="bold"><font size="4" face="微软雅黑" style="color: #003f76 ">售后电话：400-658-1585先按3再按2，语音提示为：lncRNA、Small RNA、circRNA产品请按2</font></b></p>
+	<p><b class="bold"><font size="4" face="微软雅黑" style="color: #003f76 ">售后邮箱：service-nsRNA@novogene.com</font></b></p>
+	</br>
+</div>
+
+<!----------------------------------------结果汇总----------------------------------------->
+<div id="page">
+	<p class="head">
+	<a href="#home" title = "返回首页"><img class="logo" align="left" src="images/logo.png" /></a>
+	<a name="项目背景及样本信息">北京诺禾致源科技股份有限公司</a>
+	<hr/>
+	</p>
+	
+    <h2>重要结果汇总</h2>
+  
+    <p class="paragraph">1.该项目鉴定到的已知lncRNA和预测的新的lncRNA的个数分别为：</p>
+    <p class="center">
+    <div style="overflow-x: auto">
+    	<table class="gy">
+        	
+          	
+          		<tr><th>Types</th><th>Total</th></tr>
+          	
+       
+          	
+          		<tr><td>known</td><td>92159</td></tr>
+          	
+       
+          	
+          		<tr><td>novel</td><td>190</td></tr>
+          	
+       
+        </table>
+     </div>
+     </p>
+  
+
+
+  
+      <p class="paragraph">2. 每个差异比较组合差异（DIFF）lncRNA个数，以及上调（UP）、下调（DOWN）的lncRNA个数分别为：</p>
+      <p class="center">
+      <div style="overflow-x: auto">
+      	 <table class="gy">
+      	   	
+      	 </table>
+      </div>
+      </p>
+      
+
+	    
+
+
+  
+  
+	</br>
+</div>
+
+<div id="page">
+	<p class="head">
+	<a href="#home" title = "返回首页"><img class="logo" align="left" src="images/logo.png" /></a>
+	<a name="项目背景及样本信息">北京诺禾致源科技股份有限公司</a>
+	<hr/>
+	</p>
+	<h2 id="goto_sampleinfo1">一、项目背景及样本信息</h2>
+	<a name="项目背景"></a>
+	<h3 id="background">1 项目背景：转录组的研究意义</h3>
+	<p class="paragraph">LncRNA（long non-coding RNA）即长链非编码RNA，是一类长度大于200nt并且一般不编码蛋白质的RNA分子。长久以来，它们被当作无用的转录物因而被忽视<sup>[1]</sup>。然而近十年来，越来越多的研究证明，其在真核生物尤其是哺乳动物中广泛地存在，并起到重要的生物学作用。</p>
+    <p class="paragraph">与mRNA相同的是，lncRNA同样由细胞中的RNA聚合酶II转录得到；不同的是，其转录丰度和稳定性都较低，并且大都不具有poly A尾的结构。从功能上看，lncRNA的主要通过顺式和反式两种调节方式，分别作用于靶基因的转录水平、转录后水平、翻译水平及表观水平等，起到调控靶基因的表达水平的作用<sup>[2]</sup>。在生物体中，lncRNA一般具有较强的组织和细胞特异性，并且在最近的研究中也被发现与物种间差异以及发育有很强的关联性。此外，lncRNA也被发现在癌症、免疫缺陷等众多疾病的致病机制中扮演着重要角色<sup>[1]</sup>。</p>
+	<p class="paragraph">环状 RNA（circular RNA，circRNA）长度在 200nt 以上,主要由 pre-mRNA 通过可变剪切加工产生；5’端和 3’端共价结合形成闭合结构，广泛存在与动物和植物中。特殊的环状结构使其能够逃逸 RNA 酶的降解，增强体内稳定性。此外，其具有一定的保守性（低于 mRNA）和细胞或组织类型特异性。</p>
+	
+	</br>
+
+</div>
+
+
+<!-- --------------------------------------实验流程--------------------------------------- -->
+<!-- --------------------------------------实验流程--------------------------------------- -->
+<div id="page">
+
+	<p class="head">
+	<a href="#home" title = "返回首页"><img class="logo" align="left" src="images/logo.png" /></a>
+	<a name="建库测序流程">北京诺禾致源科技股份有限公司</a>
+	<hr/>
+	</p>
+
+	<h2 id="goto_experiment1">二、建库测序流程</h2>
+	<p class="paragraph">从RNA样品提取到最终数据获得，样品检测、建库、测序等每一环节都会直接影响数据的数量和质量，从而影响后续信息分析的结果。为从源头保证测序数据准确可靠，诺禾致源承诺在数据的所有生产环节都严格把关，从根源上确保高质量数据的产出。建库测序的流程图如下：</p>
+
+	
+	
+	
+	
+	<p class="center"><img class="normal_library_lncRNA" style="width:20%;height:32vw;text-align:center" src="images/library_lncRNA.png" /></p>
+	
+
+	
+	<p class="name_fig">图1 建库测序流程图</p>
+	<br />
+
+
+</div>
+
+<!-----------------------1 RNA提取与检测-------------------------->
+<div id="page">
+
+	<a name="RNA样品检测"></a>
+	<h3 id="experiment1">1 RNA样品检测</h3>
+	<p class="paragraph">从组织或细胞中提取RNA，随后对RNA样品进行严格质控，质控标准主要包括以下3个方面：</p>
+	<p class="paragraph">(1) 琼脂糖凝胶电泳：分析样品RNA完整性及是否存在DNA污染；</p>
+	<p class="paragraph">(2) Nanodrop：进行初步定量，检测RNA浓度及纯度（OD260/280及OD260/230）；</p>
+	<p class="paragraph">(3) Agilent 2100 bioanalyzer：精确检测RNA完整性。 </P>
+
+
+	<br />
+
+
+</div>
+
+<!----------------------2 文库构建-------------------------->
+<div id="page">
+        
+
+
+	<a name="文库构建"></a>
+	<h3 id="experiment2">2 文库构建</h3>
+
+
+	
+
+	
+	<p class="paragraph">诺禾致源采用去除核糖体RNA的方法（circRNA建库增加去线性RNA过程）构建链特异性文库<sup>[3]</sup>。
+	首先，从总RNA中去除核糖体RNA，随后将RNA打断成250~300 bp的短片段。以片段化的RNA为模板，随机寡核苷酸为引物合成cDNA第一条链，随后以dNTPs（dUTP、dATP、dGTP和dCTP）为原料合成cDNA第二条链。
+	
+	纯化后的双链cDNA经过末端修复、加A尾并连接测序接头<sup>[注]</sup>，用AMPure XP beads筛选350~400 bp左右的cDNA。使用USER酶降解含U的cDNA第二链，最后进行PCR扩增并获得文库。链特异性文库具有诸多优势，如相同数据量下可获取更多有效信息；能获得更精准的基因定量、定位与注释信息等。建库原理如下图：</p>
+		
+        
+        <p class="center"><img class="normal_strand_specific" src="images/strand_specific.png" /></p>
+        
+        
+	<p class="name_fig">图2 文库构建流程</p>
+	<p class="tremark">注：接头（Adapter），包括P5/P7、index和Rd1 SP/Rd2 SP。P5/P7，用于测序仪进行桥式PCR的过程；Index，标签序列，用来区分不同文库信息；Rd1 SP/Rd2 SP（sequence primer），测序引物结合区域，测序过程理论上由Rd1/Rd2向后开始进行。</p>
+	
+	<p class="paragraph">我们在建库过程中消化了核糖体RNA，之后将片段随机打断为250-300bp，通过片段长度选择，最终得到除了核糖体RNA和小片段RNA（microRNA、siRNA等）以外的所有RNA，包括lncRNA、mRNA、circRNA等。</p>
+	
+	
+	
+	
+</br>
+</div>	
+	
+	
+<!----------------------3 库检-------------------------->
+	
+<div id="page">
+       
+	<a name="库检"></a>
+	<h3 id="experiment3">3 库检</h3>
+
+	<p class="paragraph">先用 Qubit 初步定量，稀释文库至 1ng/ul；再用 Agilent 2100 bioanalyzer 检测对文库的插入片段长度（insert size）进行检测，insert size 大约分布在 250~300 bp 左右符合预期。Insert size符合预期后，使用 qPCR方法对文库的有效浓度进行准确定量，文库的有效浓度为>2nM,保证了样本文库的质量</p>
+
+
+	<br />
+</div>
+
+
+<!-----------------------4 上机测序-------------------------->
+<div id="page">
+	<a name="上机测序"></a>
+	<h3 id="experiment4">4 上机测序</h3>
+
+	<p class="paragraph">库检合格后，根据文库的有效浓度及数据产出需求pooling后进行Illumina PE150测序。PE150（Pair end 150 bp）指高通量双端测序，每端各测150 bp。在构建的小片段文库中，Insert cDNA，即插入片段是直接测序的单位。双端测序是将每条插入片段的两端进行测序的方法，由于插入片段的长度分布已知，双端测序时不仅可以获得片段两端的序列，也可获得这两段序列之间的长度，从而便于后续组装和比对。</p>
+	<p class="paragraph">测序的基本原理是边合成边测序（Sequencing by Synthesis）。在测序的flow cell中加入四种荧光标记的dNTP、DNA聚合酶以及接头引物进行扩增，在每一个测序簇延伸互补链时，每加入一个被荧光标记的dNTP就能释放出相对应的荧光，测序仪通过捕获荧光信号，并通过计算机软件将光信号转化为测序峰，从而获得待测序片段的序列信息。</p>
+	<br />
+
+
+</div>
+
+<!-- --------------------------------- 信息分析流程 -------------------------------- -->
+<!-- --------------------------------- 信息分析流程 -------------------------------- -->
+<div id="page">
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="images/logo.png" /></a><a name="生物信息分析流程">北京诺禾致源科技股份有限公司</a><hr /></p>
+	<h2 id="pipeline1">三、生物信息分析流程</h2>
+    <p class="paragraph">测序获得原始测序序列（Raw data）后进入信息分析流程，流程分为两个阶段：</p>
+	<p class="paragraph">1）测序数据质量评估：主要通过对测序错误率、数据量、比对率等进行统计，评估建库测序是否达到了标准，符合标准则进行后续的分析，否则需重新建库或加测；</p>
+   
+	
+	
+	
+		
+   <p class="paragraph">2）信息挖掘及分析：RNA-seq标准分析过程包括质控、比对、拼接、筛选、定量、差异显著性分析和功能富集等环节，以及与转录本结构变异相关的可变剪切、变异位点等分析内容。同时，对于来自人或小鼠的癌症组织样本,诺禾致源推出适合癌症研究的个性化分析内容，包括融合基因、分子分型和GSEA富集分析等。</p>
+
+	<p class="center">
+	<img class="normal_pipline_lncRNA" src="images/pipline_lncRNA.png" /></p>	
+	
+
+
+	
+	
+	
+	<p class="name_fig">图3 信息分析流程图</p>
+		
+	</br>
+</div>
+	
+<!------------------------------四 标准分析结果-------------------------->
+
+<!---------------------------四 标准分析结果---------------------->
+	
+<div id="page">
+	<p class="head">
+	<a href="#home" title="返回首页"><img class="logo" align="left" src="images/logo.png" /></a>
+	 <a name="标准分析结果">北京诺禾致源科技股份有限公司</a>
+	<hr/>
+	</p>
+
+	<h2 id="resultall">四、标准分析结果</h2>
+	
+	
+		
+	<p class="paragraph">RNA-seq标准分析过程主要包括质控，比对，拼接，筛选，定量，差异显著性分析，功能富集等环节。RNA-seq分析的核心是基因表达差异的显著性，使用统计学方法比较两个或多个条件下的基因表达差异（例如，处理与对照），从中找出与条件相关的差异基因，然后进一步分析这些差异基因的生物学意义。</p>
+	<p class="paragraph">长链非编码 RNA（lncRNA）是一类转录本长度超过 200nt 的 RNA 分子，此类 RNA 不编码蛋白，以 RNA的形式在多种层面上（表观遗传调控、转录调控以及转录后调控等）调控基因的表达。lncRNA 起初被认为是RNA 聚合酶 II 转录的副产物，不具有生物学功能。然而，近年来的研究表明， lncRNA 参与了 X 染色体沉默，基因组印记以及染色质修饰，转录激活，转录干扰，核内运输等多种重要的调控过程。</p>
+	<p class="paragraph">通过去核糖体链特异性文库得到的RNA主要包括lncRNA、mRNA、circRNA等，针对生物体内转录调控机制研究所需，我们主要分析mRNA、lncRNA及circRNA。</p>
+	
+	
+		
+	<!-- <p class="paragraph">RNA-seq标准分析过程主要包括质控，比对，筛选鉴定，定量，差异显著性分析，来源基因分析和功能富集等环节。RNA-seq分析的核心是基因表达差异的显著性，使用统计学方法比较两个或多个条件下的基因表达差异（例如，处理与对照），从中找出与条件相关的差异基因，然后进一步分析这些差异基因的生物学意义。</p> -->
+
+
+</br>	
+</div>
+
+<!----------------------------1.1 原始数据说明------------------------>	
+<div id="page">
+	<a name="测序数据质量评估"><h3 id="31">1 测序数据质量评估(结果文件夹: Results/QC)</h3></a>
+	<p class="paragraph">测序数据的产生经过了RNA提取、建库、测序多个步骤，这些步骤会产生少许低质量或者无效数据，比如建库阶段会存在建库长度的偏差，测序阶段会出现测序错误的情况。所以需要对下机得到的原始数据进行质量控制，保证后续分析的准确性。</p>
+	
+	
+	</br>
+	<a name="原始序列数据"><h4 id="result11">1.1 原始序列数据</h4></a>
+	<p class="paragraph">高通量测序（如Illumina PE150/SE50）下机得到的原始图像文件经CASAVA碱基识别转化为测序读段（Sequenced Reads），以FASTQ格式存储。FASTQ是一种存储生物序列及相应质量值的常用文本格式，每条测序读段由四行组成，如下图所示：</p>
+
+	<p class="center">
+	<img class="normal" src="images/rawdata.png" /></p>
+
+    <p class="paragraph">Illumina测序标识符详细信息如下：</p>
+    <p class="center">
+    <table class="gy">
+    <tr>
+        <th>标示符</th>
+        <th>含义</th>
+      </tr>
+      <tr>
+        <td>HWI-ST1276</td>
+        <td>Instrument – unique identifier of the sequencer </td>
+      </tr>
+      <tr>
+        <td>71</td>
+        <td>run number – Run number on instrument</td>
+      </tr>
+      <tr>
+        <td>C1162ACXX</td>
+        <td>FlowCell ID – ID of flowcell</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>LaneNumber – positive integer</td>
+      </tr>
+      <tr>
+        <td>1101</td>
+        <td>TileNumber – positive integer</td>
+      </tr>
+      <tr>
+        <td>1208</td>
+        <td>X – x coordinate of the spot. Integer which can be negative</td>
+      </tr>
+      <tr>
+        <td>2458</td>
+        <td>Y – y coordinate of the spot. Integer which can be negative</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>ReadNumber - 1 for single reads; 1 or 2 for paired ends</td>
+      </tr>
+      <tr>
+        <td>N</td>
+        <td>whether it is filtered - NB：Y if the read is filtered out, not in the delivered fastq file, N otherwise</td>
+      </tr>
+      <tr>
+        <td>0</td>
+        <td>control number - 0 when none of the control bits are on, otherwise it is an even number</td>
+      </tr>
+      <tr>
+        <td>CGATGT</td>
+        <td>Illumina index sequences</td>
+      </tr>
+    </table>
+    </p>
+
+
+	<br />
+	<br />
+
+
+</div>
+		
+<!------------------------------1.2 测序数据过滤------------------------------>
+
+<div id="page">
+
+
+	<a name="测序数据过滤"><h4 id="result12">1.2 测序数据过滤</h4></a>
+	<p class="paragraph">测序获得的原始数据中包含少量带有测序接头或测序质量较低的reads，如图1.1所示。为了保证数据分析的质量及可靠性，需要对原始数据进行过滤，过滤内容如下：</p>
+	<p class="paragraph">(1) 去除带接头（adapter）的reads；</p>
+	<p class="paragraph">(2) 去除N（N表示无法确定碱基信息）的比例大于0.002的reads；</p>
+	<p class="paragraph">(3) 当单端read中含有的低质量碱基数超过该条read长度比例的50%时，需要去除此对paired reads。</p>
+</p>
+
+<p class="paragraph">各样本的测序数据过滤情况见结果文件：1.QC/Classfication，如下图所示。</p>
+
+	
+</br>
+<p class="center">
+	<div class="albumSlider">
+				<div class="fullview">
+					<img src=isoWT/>
+				</div>
+				<div class="slider">
+					<div class="button movebackward" title="向上滚动">
+					</div>
+					<div class="imglistwrap">
+						<ul class="imglist">
+							
+							<li><a id="example2" href=isoWT ><img src=files/QC/Classfication/isoWT.classfication.png/></a></li>
+							
+							<li><a id="example2" href=TTNEx49_HET ><img src=files/QC/Classfication/TTNEx49_HET.classfication.png/></a></li>
+							
+							<li><a id="example2" href=TTNEx49_HOM ><img src=files/QC/Classfication/TTNEx49_HOM.classfication.png/></a></li>
+							
+							<li><a id="example2" href=TTNEx327_HET ><img src=files/QC/Classfication/TTNEx327_HET.classfication.png/></a></li>
+							
+							<li><a id="example2" href=TTNEx327_HOM ><img src=files/QC/Classfication/TTNEx327_HOM.classfication.png/></a></li>
+							
+						</ul>
+					</div>
+					<div class="button moveforward" title="向下滚动">
+					</div>
+				</div>
+			</div>
+		</p>
+
+	<p class="name_fig">图1.1 原始数据组成</p>
+	<p class="cenmark">不同颜色比例分别代表不同组分的比例，(1) Adapter related：带接头的reads；(2) Containing N：含有未知碱基的reads；(3) Low quality：测序质量低的reads；(4) Clean reads：通过数据过滤的reads。</p>
+
+	<br />
+	<br />
+
+</div>
+	
+<!---------------------------1.3 测序错误率分布-------------------------->
+<div id="page">
+
+
+	<a name="测序错误率分布"><h4 id="result13">1.3 测序错误率分布</h4></a>
+	<p class="paragraph">测序过程本身存在发生机器错误的可能性，测序错误率分布检查可以反映测序数据的质量，序列信息中每个碱基的测序质量值保存在FASTQ文件中，若reads的碱基质量值用Q<sub>Phred</sub>表示，则可计算测序错误率 e=10<sup>(-Q<sub>Phred</sub>/10)</sup> 或表示为 Q<sub>Phred</sub>=-10log<sub>10</sub>(e)。Illunima Casava 1.8版本碱基识别与Phred分值之间的简明对应关系如下表所示。</p>
+	
+	<p class="name_fig">表1.1　Illumina Casava 1.8版本碱基识别与Phred分值之间的简明对应关系</p>
+	<table class="tb1">
+		<p class="center">
+		<tr><th>Phred分值</th><th>不正确的碱基识别</th><th>碱基正确识别率</th><th>Q-sorce</th></tr>
+		<tr><td>10</td><td>1/10</td><td>90%</td><td>Q10</td></tr>
+		<tr><td>20</td><td>1/100</td><td>99%</td><td>Q20</td></tr>
+		<tr><td>30</td><td>1/1000</td><td>99.9%</td><td>Q30</td></tr>
+		<tr><td>40</td><td>1/10000</td><td>99.99%</td><td>Q40</td></tr>
+		</p>
+	</table>
+
+	<br />
+
+	<p class="paragraph">测序错误率与碱基质量有关，受测序仪本身、测序试剂、样品等多个因素共同影响。对于RNA-seq技术，测序错误率分布具有两个特点：</p>
+	<p class="paragraph">(1) 测序错误率会随着测序序列（Sequenced Reads）长度的增加而升高，这是由于测序过程中化学试剂的消耗而导致的，并且为Illumina高通量测序平台都具有的特征<sup>[4]</sup>。</p>
+	<p class="paragraph">(2) 前几个碱基的位置也会发生较高的测序错误率，是因为在RNA-seq建库过程中反转录需要随机引物，推测前几个碱基测序错误率较高的原因是随机引物碱基和RNA模版的不完全结合<sup>[4]</sup>。</p>
+
+</p>
+	
+	<p class="paragraph">各样本测序错误率分布见结果文件：1.QC/Errorrate，如下图所示。</p>
+
+	
+	<br />
+
+	<p class="center">
+
+		<div class="albumSlider">
+					<div class="fullview">
+						<img src=isoWT/>
+					</div>
+					<div class="slider">
+						<div class="button movebackward" title="向上滚动">
+						</div>
+						<div class="imglistwrap">
+							<ul class="imglist">
+								
+								<li><a id="example2" href=isoWT ><img src=files/QC/Errorrate/isoWT.Error.png/></a></li>
+								
+								<li><a id="example2" href=TTNEx49_HET ><img src=files/QC/Errorrate/TTNEx49_HET.Error.png/></a></li>
+								
+								<li><a id="example2" href=TTNEx49_HOM ><img src=files/QC/Errorrate/TTNEx49_HOM.Error.png/></a></li>
+								
+								<li><a id="example2" href=TTNEx327_HET ><img src=files/QC/Errorrate/TTNEx327_HET.Error.png/></a></li>
+								
+								<li><a id="example2" href=TTNEx327_HOM ><img src=files/QC/Errorrate/TTNEx327_HOM.Error.png/></a></li>
+								
+							</ul>
+						</div>
+						<div class="button moveforward" title="向下滚动">
+						</div>
+					</div>
+				</div>	
+			
+			</p>
+		
+
+	<p class="name_fig">图1.2 测序错误率分布图</p>
+	<p class="cenmark">测序片段不同碱基位置错误率分布图，其中横坐标为 reads 的碱基位置，纵坐标为单碱基错误率。</p>
+	<p class="paragraph">测序错误率分布检查用于检测在测序长度范围内，有无某些位置的碱基存在异常的高错误率，例如若Read1或Read2中间位置的碱基测序错误率显著高于其他位置，则说明可能存在异常碱基。</p>
+
+
+	<br />
+</div>	
+	
+<!---------------------------1.4 GC含量分布------------------------------>	
+<div id="page">
+ 
+	<a name="测序错误率分布"><h4 id="result14">1.4 GC含量分布</h4></a>
+
+	
+		
+	<p class="paragraph">核苷酸序列中鸟嘌呤（G）和胞嘧啶（C）所占的比例称为GC含量。GC含量在物种间存在一定特异性，但由于反转录过程中所使用的6bp随机引物，会引起前几位碱基在核苷酸组成上有一定偏好性，产生正常波动，随后则趋于稳定。对于链特异性建库而言，由于只保留了单链信息，可能会出现AT分离或GC分离现象。如图1.3所示：</p>
+	
+		
+	<!-- <p class="paragraph">核苷酸序列中鸟嘌呤（G）和胞嘧啶（C）所占的比例称为GC含量。GC含量在物种间存在一定特异性，但由于反转录过程中所使用的6bp随机引物，会引起前几位碱基在核苷酸组成上有一定偏好性，产生正常波动，随后则趋于稳定。对于链特异性建库而言，由于只保留了单链信息，可能会出现AT分离或GC分离现象。如图1.3所示：</p> -->
+</p>	
+	<p class="paragraph">各样本GC含量分布见结果文件：1.QC/GC，如下图所示。</p>
+
+	
+</br>
+	
+	<p class="center">
+
+		<div class="albumSlider">
+					<div class="fullview">
+						<img src="files/QC/GC/isoWT.GC.png"/>
+					</div>
+					<div class="slider">
+						<div class="button movebackward" title="向上滚动">
+						</div>
+						<div class="imglistwrap">
+							<ul class="imglist">
+								
+								<li><a id="example2" href="files/QC/GC/isoWT.GC.png" ><img src="files/QC/GC/isoWT.GC.png"/></a></li>
+								
+								<li><a id="example2" href="files/QC/GC/TTNEx49_HET.GC.png" ><img src="files/QC/GC/TTNEx49_HET.GC.png"/></a></li>
+								
+								<li><a id="example2" href="files/QC/GC/TTNEx49_HOM.GC.png" ><img src="files/QC/GC/TTNEx49_HOM.GC.png"/></a></li>
+								
+								<li><a id="example2" href="files/QC/GC/TTNEx327_HET.GC.png" ><img src="files/QC/GC/TTNEx327_HET.GC.png"/></a></li>
+								
+								<li><a id="example2" href="files/QC/GC/TTNEx327_HOM.GC.png" ><img src="files/QC/GC/TTNEx327_HOM.GC.png"/></a></li>
+								
+							</ul>
+						</div>
+						<div class="button moveforward" title="向下滚动">
+						</div>
+					</div>
+				</div>	
+			
+			</p>
+
+<p class="name_fig">图1.3 GC含量分布图</p>
+	<p class="cenmark">横坐标为reads的碱基位置，纵坐标为单碱基所占的比例，不同颜色代表不同的碱基类型</p>
+
+
+	<br />
+	<br />
+</div>		
+	
+<!-----------------------1.5 数据质量汇总---------------------->
+
+<div id="page">
+
+
+	<a name="数据质量汇总"><h4 id="result15">1.5 数据质量汇总</h4></a>
+	<p class="paragraph">经过原始数据过滤、测序错误率检查及GC含量分布检查，获得后续分析使用的clean reads，数据汇总如表1.2所示。</p>
+	
+</p>
+	<p class="paragraph">各样本数据质量汇总见结果文件：1.QC/Datastat，如下图所示。</p>
+</br>
+	
+</br>
+
+	<p class="name_fig">表1.2　数据质量汇总</p>
+
+	<p class="center">
+	<!--<div id="tb" style="width:1100px;height:270px;overflow-y:scroll;overflow-x:hidden;" >-->
+	<div id="tb" style="overflow-y:scroll;overflow-x:hidden;" >
+		<table class="tb1">
+			
+			
+				<tr><th>sample</th><th>library</th><th>raw_reads</th><th>raw_bases</th><th>clean_reads</th><th>clean_bases</th><th>error_rate</th><th>Q20</th><th>Q30</th><th>GC_pct</th></tr>
+			
+		  
+			
+				<tr><td>isoWT</td><td>FRRL240142184-1r</td><td>93931778</td><td>14.09G</td><td>88066944</td><td>13.21G</td><td>0.01</td><td>97.92</td><td>94.2</td><td>45.12</td></tr>
+			
+		  
+			
+				<tr><td>TTNEx49_HET</td><td>FRRL240142185-1r</td><td>86101698</td><td>12.92G</td><td>78574008</td><td>11.79G</td><td>0.01</td><td>98.75</td><td>96.7</td><td>45.48</td></tr>
+			
+		  
+			
+				<tr><td>TTNEx49_HOM</td><td>FRRL240142186-1r</td><td>96128050</td><td>14.42G</td><td>90877184</td><td>13.63G</td><td>0.01</td><td>98.65</td><td>96.53</td><td>45.96</td></tr>
+			
+		  
+			
+				<tr><td>TTNEx327_HET</td><td>FRRL240142187-1r</td><td>95652908</td><td>14.35G</td><td>89907112</td><td>13.49G</td><td>0.01</td><td>98.67</td><td>96.54</td><td>47.53</td></tr>
+			
+		  
+			
+				<tr><td>TTNEx327_HOM</td><td>FRRL240142188-1r</td><td>169844564</td><td>25.48G</td><td>159663876</td><td>23.95G</td><td>0.01</td><td>97.14</td><td>92.42</td><td>45.33</td></tr>
+			
+		  
+		</table>
+	</div>		
+	</p>
+	<div style="width:1100px;height:115px;overflow-y:scroll;overflow-x:hidden;">
+
+	<p class="tremark">
+	(1) Sample name：样品名<br />
+	(2) Raw reads：原始数据中的reads数<br />
+	(3) Clean reads：原始数据过滤后的reads数<br />
+	(4) Raw bases：原始数据中的碱基数<br />
+	(5) Clean bases：原始数据过滤后的碱基数<br />	
+	(6) Error rate：数据整体测序错误率<br />
+	(7) Q20：Phred数值大于20的碱基占总碱基的百分比<br />
+	(8) Q30：Phred数值大于30的碱基占总碱基的百分比<br />
+	(9) GC content：clean reads中G与C占四种碱基的百分比<br />
+	</p>
+</div>
+
+
+	<br />
+	<br />
+
+
+<!-------------------------------1.6  QC视频链接------------------------------>
+<a name="QC视频讲解"><h4 id="result16">1.6 数据产出及质控讲解视频</h4></a>
+
+<p class="paragraph">链接: <font face="Arial"><a href="https://pan.baidu.com/s/1mV7hLr0tMsjnEmViCPQCZw  " class="uri">https://pan.baidu.com/s/1mV7hLr0tMsjnEmViCPQCZw </a></font> 提取码: <font face="Arial">9y2t  </font></p>
+
+	<br />
+	<br />	
+</div>
+
+
+
+
+<!-------------------------------2 比对------------------------------>
+
+
+
+<div id="page" >
+
+	<a name="比对分析"><h3 id="result2">2 比对分析(结果文件夹: Results/Mapping)</h3></a>
+
+    <p class="paragraph">将有效测序数据（clean reads）比对到基因组或转录组是后续分析的基础，诺禾致源可采用Tophat2（http://tophat.cbcb.umd.edu）、Hisat2（http://ccb.jhu.edu/software/hisat2）、STAR（http://code.google.com/p/rna-star）软件对RNA-Seq测序数据进行比对分析<sup>[5]</sup>。Hisat2是经典比对软件Tophat2的作者推荐的升级类软件，mapping率高且找到 Junction reads的正确率高，因此我们默认采用Hisat2<sup>[6]</sup>。</p>
+    <p class="paragraph">比对输出结果一般为标准的SAM文件，由sanger制定，是一种以TAB为分隔符的文本格式，主要用于测序序列比对到基因组上的结果展示。BAM文件是SAM文件的二进制格式，因其占据存储资源小，运算速度快，很多比对软件均以BAM格式作为标准输出，利用samtools工具可查看BAM文件的具体内容。</p>
+
+
+</p>
+
+</div>
+
+<!------------------------------2.1 比对结果说明-------------------------->
+
+<!--------------------------2.1 比对情况统计-------------------------->
+
+
+	<a name="比对情况统计"><h4 id="result21">2.1 比对情况统计</h4></a>
+    <p class="paragraph">利用比对软件将测序得到的clean reads比对到到参考基因组上，统计其可以mapping到参考基因组的的有效数据，并进一步进行mapping率等的统计。</p>
+	
+</p>	
+	
+	<p class="paragraph">各样本比对情况见结果文件：2.Mapping/Mapstat/MapStat.xls，如下图所示。</p>
+
+	
+</br>	
+
+	<p class="name_fig">表2.1 所有样本比对情况一览表</p>
+
+<p class="center">
+<div id="tb" style="width:1100px;height:286px;overflow-y:scroll;overflow-x:scroll;">
+		<table class="tb1" >
+			
+			
+				<tr><th>sample</th><th>total_reads</th><th>total_map</th><th>unique_map</th><th>multi_map</th><th>read1_map</th><th>read2_map</th><th>positive_map</th><th>negative_map</th><th>splice_map</th><th>unsplice_map</th><th>proper_map</th></tr>
+			
+		  
+			
+				<tr><td>isoWT</td><td>88066944</td><td>83808549(95.16%)</td><td>82253109(93.4%)</td><td>1555440(1.77%)</td><td>41226122(46.81%)</td><td>41026987(46.59%)</td><td>41081659(46.65%)</td><td>41171450(46.75%)</td><td>10824728(12.29%)</td><td>71428381(81.11%)</td><td>79416040(90.18%)</td></tr>
+			
+		  
+			
+				<tr><td>TTNEx49_HET</td><td>78574008</td><td>75017029(95.47%)</td><td>73451173(93.48%)</td><td>1565856(1.99%)</td><td>36798226(46.83%)</td><td>36652947(46.65%)</td><td>36701162(46.71%)</td><td>36750011(46.77%)</td><td>10692828(13.61%)</td><td>62758345(79.87%)</td><td>70809376(90.12%)</td></tr>
+			
+		  
+			
+				<tr><td>TTNEx49_HOM</td><td>90877184</td><td>86782166(95.49%)</td><td>84970510(93.5%)</td><td>1811656(1.99%)</td><td>42574980(46.85%)</td><td>42395530(46.65%)</td><td>42452428(46.71%)</td><td>42518082(46.79%)</td><td>11601055(12.77%)</td><td>73369455(80.73%)</td><td>82214774(90.47%)</td></tr>
+			
+		  
+			
+				<tr><td>TTNEx327_HET</td><td>89907112</td><td>85407884(95.0%)</td><td>82993771(92.31%)</td><td>2414113(2.69%)</td><td>41570206(46.24%)</td><td>41423565(46.07%)</td><td>41475672(46.13%)</td><td>41518099(46.18%)</td><td>15183133(16.89%)</td><td>67810638(75.42%)</td><td>80196592(89.2%)</td></tr>
+			
+		  
+			
+				<tr><td>TTNEx327_HOM</td><td>159663876</td><td>149841438(93.85%)</td><td>147043759(92.1%)</td><td>2797679(1.75%)</td><td>73861927(46.26%)</td><td>73181832(45.83%)</td><td>73347457(45.94%)</td><td>73696302(46.16%)</td><td>19739962(12.36%)</td><td>127303797(79.73%)</td><td>141173358(88.42%)</td></tr>
+			
+		   
+		</table>
+	</div>	
+</p>
+<div style="width:1100px;height:115px;overflow-y:scroll;overflow-x:hidden;">
+	<p class="tremark">
+	(1) Sample name：样本名称。<br />
+	(2) Total reads：用于比对分析的clean reads数。<br />
+	(3) Total mapped reads：比对到基因组上的reads数。<br />
+	(4) Multiple mapped reads：比对到基因组多个位置的reads数。<br />
+	(5) Uniquely mapped reads：比对到基因组单一位置的reads数。<br />
+	(6) Read-1：read1中比对到基因组上的reads数。<br />
+	(7) Read-2：read2中比对到基因组上的reads数。<br />
+	(8) Reads map to '+'：比对到基因组上正链的reads数。<br />
+	(9) Reads map to '-'：比对到基因组上负链的reads数。<br />
+	(10) Non-splice reads：整段比对到外显子的 reads 的数。<br />
+	(11) Splice reads：分段比对到两个外显子上的 reads (也称为Junction reads）的数，Splice reads的百分比取决于测序片段的长度。<br />
+	(12) Reads mapped in proper pairs：成对比对到参考基因组上的reads占总clean reads数的百分比。<br />
+	(13) Proper-paired reads map to different chrom：比对到基因组上不同染色体的reads占总clean reads数的百分比。<br />
+	</p>
+</div>
+
+	<br />
+	<br />
+
+<!------------------------------2.2 基因组区域分布------------------>
+<div id="page">
+
+	<a name="基因组区域分布"><h4 id="result22">2.2 基因组区域分布</h4></a>
+
+	<p class="paragraph">根据比对结果，分别统计reads在基因组外显子区域，内含子区域以及基因间区所占的比例。比对到内含子区域的reads可能来源于前体mRNA或可变剪接事件滞留的内含子。比对到基因间区的reads，可能来源于ncRNA或少许DNA片段污染<sup>[7]</sup>。所有样本的测序reads在基因组区域分布情况如图2.1所示。</p>
+	</p>
+	
+	<p class="paragraph">各样本基因组区域分布图见结果文件：2.Mapping/Mapregion，如下图所示。</p>
+
+	
+</br>	
+	<p class="center">
+		<div class="albumSlider">
+					<div class="fullview">
+						<img src=isoWT/>
+					</div>
+					<div class="slider">
+						<div class="button movebackward" title="向上滚动">
+						</div>
+						<div class="imglistwrap">
+							<ul class="imglist">
+								
+								<li><a id="example2" href=isoWT ><img src=files/Mapping/Mapregion/isoWT.region.png/></a></li>
+								
+								<li><a id="example2" href=TTNEx49_HET ><img src=files/Mapping/Mapregion/TTNEx49_HET.region.png/></a></li>
+								
+								<li><a id="example2" href=TTNEx49_HOM ><img src=files/Mapping/Mapregion/TTNEx49_HOM.region.png/></a></li>
+								
+								<li><a id="example2" href=TTNEx327_HET ><img src=files/Mapping/Mapregion/TTNEx327_HET.region.png/></a></li>
+								
+								<li><a id="example2" href=TTNEx327_HOM ><img src=files/Mapping/Mapregion/TTNEx327_HOM.region.png/></a></li>
+								
+							</ul>
+						</div>
+						<div class="button moveforward" title="向下滚动">
+						</div>
+					</div>
+				</div>
+			</p>
+
+	<p class="name_fig">图2.1 reads在基因组不同区域的分布</p>
+	<p class="cenmark">reads在基因组不同区域的分布图，不同颜色代表不同的基因组区域，其中：（1）exonic：reads 在外显子区域的比例；（2）intronic：reads 在内含子区域的比例；（3）intergenic：reads 在基因间区的比例。</p>
+
+	<br />
+
+</div>
+
+
+<!-------------------------------2.3  比对视频链接------------------------------>
+<div id="page">
+
+	<a name="比对视频讲解"><h4 id="result23">2.3 参考基因组比对讲解视频</h4></a>
+
+<p class="paragraph">链接: <font face="Arial"><a href="https://pan.baidu.com/s/1siCF4YStp7ENGUhS25utqg " class="uri">https://pan.baidu.com/s/1siCF4YStp7ENGUhS25utqg </a></font> 提取码: <font face="Arial">kscp </font></p>
+
+		<br />
+
+</div>
+
+<!---------------------------------------转录本拼接（lncRNA）---------------------------------------------->
+
+<!---------------------------------------转录本拼接（Stringtie）---------------------------------------------->
+
+
+
+<div id="page">
+	
+	<h3 id="result6"><a name="转录本拼接">3 转录本拼接(结果文件夹: Results/Assembly_lncRNAFilter)</a></h3>
+	
+    <!-- <h3 id="result6"><a name="转录本拼接">3 转录本拼接(结果文件夹: Results/Assembly*)</a></h3> -->
+    
+	<h4 id="result61"><a name="转录本拼接">3.1 转录本拼接</h4></a>
+    <p class="paragraph">Stringtie针对不同的文库有特定的参数，可准确较为精准的拼接转录本以及实现转录本定量<sup>[9]</sup>。因而我们使用Stringtie软件在基于比对到基因组上的结果，将reads拼接成转录本并进行定量<sup>[8]</sup>。</p>
+<!----------------------
+    <p class="center"> <img class="normal_cufflinks-algorithm" src="images/cufflinks-algorithm.png" />
+    <p class="name_fig">图3.2 Cufflinks 拼接示意图</p>
+    </p>
+--------------------------->
+</p>
+	
+	<p class="paragraph">各样本转录本拼接gtf见结果文件：3.Assembly_lncRNAFilter，如下图所示。</p>
+
+	
+</br>	
+
+    <p class="name_fig">表3 Stringtie 拼接结果展示（部分）
+    </p>
+    <p class="center">
+    <div id="tb" style="width:1100px;height:286px;overflow-y:scroll;overflow-x:scroll;">
+    <table class="tb1">
+    <tr class="tb1"><th class="tb1">Seqname</th><th class="tb1">Source</th><th class="tb1">Feature</th><th class="tb1">Start</th><th class="tb1">End</th><th class="tb1">Score</th><th class="tb1">Strand</th><th class="tb1">Frame</th><th class="tb1">Attributes</th></tr>
+    
+    <tr class="tb1"><td  class="tb1" style="text-align:center">1</td><td  class="tb1" style="text-align:center">StringTie</td><td  class="tb1" style="text-align:center">transcript</td><td  class="tb1" style="text-align:center">868381</td><td  class="tb1" style="text-align:center">868626</td><td  class="tb1" style="text-align:center">1000</td><td  class="tb1" style="text-align:center">-</td><td  class="tb1" style="text-align:center">.</td><td  class="tb1" style="text-align:center">gene_id "STRG.1"; transcript_id "STRG.1.1"; cov "5.955285"; FPKM "0.474359"; TPM "2.978461";</td></tr>
+    
+    <tr class="tb1"><td  class="tb1" style="text-align:center">1</td><td  class="tb1" style="text-align:center">StringTie</td><td  class="tb1" style="text-align:center">exon</td><td  class="tb1" style="text-align:center">868381</td><td  class="tb1" style="text-align:center">868626</td><td  class="tb1" style="text-align:center">1000</td><td  class="tb1" style="text-align:center">-</td><td  class="tb1" style="text-align:center">.</td><td  class="tb1" style="text-align:center">gene_id "STRG.1"; transcript_id "STRG.1.1"; exon_number "1"; cov "5.955285";</td></tr>
+    
+    <tr class="tb1"><td  class="tb1" style="text-align:center">1</td><td  class="tb1" style="text-align:center">StringTie</td><td  class="tb1" style="text-align:center">transcript</td><td  class="tb1" style="text-align:center">16867</td><td  class="tb1" style="text-align:center">17497</td><td  class="tb1" style="text-align:center">1000</td><td  class="tb1" style="text-align:center">+</td><td  class="tb1" style="text-align:center">.</td><td  class="tb1" style="text-align:center">gene_id "STRG.2"; transcript_id "STRG.2.1"; cov "2.643172"; FPKM "0.210538"; TPM "1.321949";</td></tr>
+    
+    <tr class="tb1"><td  class="tb1" style="text-align:center">1</td><td  class="tb1" style="text-align:center">StringTie</td><td  class="tb1" style="text-align:center">exon</td><td  class="tb1" style="text-align:center">16867</td><td  class="tb1" style="text-align:center">17055</td><td  class="tb1" style="text-align:center">1000</td><td  class="tb1" style="text-align:center">+</td><td  class="tb1" style="text-align:center">.</td><td  class="tb1" style="text-align:center">gene_id "STRG.2"; transcript_id "STRG.2.1"; exon_number "1"; cov "2.306878";</td></tr>
+    
+    <tr class="tb1"><td  class="tb1" style="text-align:center">1</td><td  class="tb1" style="text-align:center">StringTie</td><td  class="tb1" style="text-align:center">exon</td><td  class="tb1" style="text-align:center">17233</td><td  class="tb1" style="text-align:center">17497</td><td  class="tb1" style="text-align:center">1000</td><td  class="tb1" style="text-align:center">+</td><td  class="tb1" style="text-align:center">.</td><td  class="tb1" style="text-align:center">gene_id "STRG.2"; transcript_id "STRG.2.1"; exon_number "2"; cov "2.883019";</td></tr>
+    
+    <tr class="tb1"><td  class="tb1" style="text-align:center">1</td><td  class="tb1" style="text-align:center">StringTie</td><td  class="tb1" style="text-align:center">transcript</td><td  class="tb1" style="text-align:center">14696</td><td  class="tb1" style="text-align:center">24886</td><td  class="tb1" style="text-align:center">1000</td><td  class="tb1" style="text-align:center">-</td><td  class="tb1" style="text-align:center">.</td><td  class="tb1" style="text-align:center">gene_id "STRG.3"; transcript_id "STRG.3.1"; reference_id "ENST00000488147"; ref_gene_id "ENSG00000227232"; ref_gene_name "WASH7P"; cov "1.105641"; FPKM "0.088068"; TPM "0.552972";</td></tr>
+    
+    <tr class="tb1"><td  class="tb1" style="text-align:center">1</td><td  class="tb1" style="text-align:center">StringTie</td><td  class="tb1" style="text-align:center">exon</td><td  class="tb1" style="text-align:center">14696</td><td  class="tb1" style="text-align:center">14829</td><td  class="tb1" style="text-align:center">1000</td><td  class="tb1" style="text-align:center">-</td><td  class="tb1" style="text-align:center">.</td><td  class="tb1" style="text-align:center">gene_id "STRG.3"; transcript_id "STRG.3.1"; exon_number "1"; reference_id "ENST00000488147"; ref_gene_id "ENSG00000227232"; ref_gene_name "WASH7P"; cov "0.880691";</td></tr>
+    
+    <tr class="tb1"><td  class="tb1" style="text-align:center">1</td><td  class="tb1" style="text-align:center">StringTie</td><td  class="tb1" style="text-align:center">exon</td><td  class="tb1" style="text-align:center">14970</td><td  class="tb1" style="text-align:center">15038</td><td  class="tb1" style="text-align:center">1000</td><td  class="tb1" style="text-align:center">-</td><td  class="tb1" style="text-align:center">.</td><td  class="tb1" style="text-align:center">gene_id "STRG.3"; transcript_id "STRG.3.1"; exon_number "2"; reference_id "ENST00000488147"; ref_gene_id "ENSG00000227232"; ref_gene_name "WASH7P"; cov "0.630372";</td></tr>
+    
+    <tr class="tb1"><td  class="tb1" style="text-align:center">1</td><td  class="tb1" style="text-align:center">StringTie</td><td  class="tb1" style="text-align:center">exon</td><td  class="tb1" style="text-align:center">15796</td><td  class="tb1" style="text-align:center">15947</td><td  class="tb1" style="text-align:center">1000</td><td  class="tb1" style="text-align:center">-</td><td  class="tb1" style="text-align:center">.</td><td  class="tb1" style="text-align:center">gene_id "STRG.3"; transcript_id "STRG.3.1"; exon_number "3"; reference_id "ENST00000488147"; ref_gene_id "ENSG00000227232"; ref_gene_name "WASH7P"; cov "0.322097";</td></tr>
+    
+    <tr class="tb1"><td  class="tb1" style="text-align:center">1</td><td  class="tb1" style="text-align:center">StringTie</td><td  class="tb1" style="text-align:center">exon</td><td  class="tb1" style="text-align:center">16607</td><td  class="tb1" style="text-align:center">16765</td><td  class="tb1" style="text-align:center">1000</td><td  class="tb1" style="text-align:center">-</td><td  class="tb1" style="text-align:center">.</td><td  class="tb1" style="text-align:center">gene_id "STRG.3"; transcript_id "STRG.3.1"; exon_number "4"; reference_id "ENST00000488147"; ref_gene_id "ENSG00000227232"; ref_gene_name "WASH7P"; cov "0.489758";</td></tr>
+    
+    </table>
+    </div>
+    </p>
+<div style="width:1100px;height:115px;overflow-y:scroll;overflow-x:hidden;">
+    <p class="tremark">
+    (1) Seqname：chromosome 或 scaffold 的名称;<br />
+    (2) Source：数据来源信息，为 "Stringtie"<br />
+    (3) Feature：序列类型描述，为 "transcript" 或 "exon"<br />
+    (4) Start：起始坐标<br />
+    (5) End：终止坐标<br />
+    (6) Score：每个基因表达丰度最高的转录本得分为1000，其他表达量较低的转录本（Minor isoforms）根据其表达量与丰度最高转录本表达量的比值进行打分(minor FPKM/major FPKM) <br />
+    (7) Strand：序列正负链信息<br />
+    (8) Frame：序列编码起始位点的信息，Cufflinks 不进行起始和终止密码子的预测，这>一列为'.'<br />
+    (9) Attributes：序列的其他描述信息，如基因 ID，转录本 ID 以及定量信息等</p>
+</div>
+</div>
+</br>
+
+
+
+
+<!---------------------------筛选-------------------------->
+
+<!-- 
+<option>isoWT</option>
+
+<option>TTNEx49_HET</option>
+
+<option>TTNEx49_HOM</option>
+
+<option>TTNEx327_HET</option>
+
+<option>TTNEx327_HOM</option>
+ -->
+<div id="page">
+	<a name="转录本筛选"><h4 id="result62">3.2 转录本筛选(结果文件夹: Results/Assembly_lncRNAFilter/lncRNAFilter)</h4></a>
+	<p class="paragraph">我们使用Cuffmerge软件对各样本拼接得到的转录本进行合并，去掉其中链方向不确定和转录本长度不超过200nt的转录本，接下来利用Cuffcompare软件跟已知数据库进行比较，过滤掉数据库已知的转录本， 最后对筛选到的新转录本进行编码潜能预测等，最终得到Novel_lncRNA和Novel_mRNA。</p>
+	<p class="center"> <img class="normal_lncRNA_filter_pipeline" src="images/lncRNA_filter_pipeline.png" /> </p>
+	<p class="name_fig">图3.3 Novel lncRNA和Novel mRNA筛选流程图</p>
+	<a name="基本筛选"></a>
+	<p class="tremark">
+	step1. 转录本exon个数筛选：过滤转录本拼接结果中低可信度的单外显子转录本（植物则会保留），选择exon个数≥2的转录本；<br />
+	step2. 转录本长度筛选：选择转录本长度大于200nt的转录本；<br />
+	step3. 转录本已知注释筛选：通过Cuffcompare软件，筛除与数据库注释exon区域有重叠的转录本，并将数据库中，与本次拼接转录本exon区域有重叠的lncRNA作为数据库注释lncRNA纳入到后续分析；<br />
+	step4. 编码潜能筛选：是否具有编码潜能是判断转录本是否为lncRNA的关键条件。针对上一步获得的转录本，我们综合了目前主流的编码潜能分析方法(CPC2/Pfam/CNCI)进行编码潜能预测，取这些软件结果中没有编码潜能的转录本的交集作为本次分析预测得到的候选Novel_lncRNA数据集，取这些软件结果中有编码潜能的转录本的交集作为本次分析预测得到的Novel_mRNA数据集；<br />
+	step5. 参考HGNC（The HUGO Gene Nomenclature Committee ）（Wright M W, 2014）关于long non-coding RNA的命名指导标准，对候选的Novel_lncRNA根据其与编码基因的位置关系进行最终筛选及命名，得到本次分析的Novel_lncRNA。<br />
+	</p>
+</p>
+	
+	<p class="paragraph">Novel_lncRNA类型分布图见结果文件：3.Assembly_lncRNAFilter/lncRNAFilter/FilterStat/Novel_lncRNA_classification.png，如下图所示。</p>
+
+</br>
+</div>
+<!---------------------------特征比较-------------------------->	
+	<p class="center"> <img class="normal" src="files/lncRNAFilter/lncRNA_classification.png" /> </p>
+	<p class="name_fig">图3.4 lncRNA 类型分布图</p>
+	<p class="cenmark">诺禾致源参考HGNC根据和已知的mRNA的位置关系，将新筛选出的lncRNA分为4种类型。（1）antisense：与相反链的蛋白质编码基因的一个或多个外显子相重叠，或者有已发表的证据表明反向调控编码区基因；（2）lincRNA：位于基因间区的非编码RNA；（3）sense overlapping：与相同链的蛋白质编码基因的一个或多个外显子相重叠；（4）sense intronic：在一个编码基因的内含子区且不与同链上的任何外显子相交<sup>[10]</sup>。</p>
+					
+	
+
+</br>
+<div id="page">
+
+	<a name="lncRNA与mRNA特征比较"><h4 id="result63">3.3 lncRNA与mRNA特征比较</h4></a>
+	<p class="paragraph">将lncRNA与mRNA进行转录本长度、exon个数以及ORF长度的对比，一方面得到lncRNA与mRNA的差别，另一方面可以验证我们预测得到的novel lncRNA是否符合一般特征。</p>
+</p>
+	
+	<p class="paragraph">lncRNA与mRNA特征比较见结果文件：3.Assembly_lncRNAFilter/lncRNAFilter/FeatureSignature，如下图所示。</p>
+
+</br>		
+
+	<h4 id="351">3.3.1 lncRNA 与 mRNA 的长度比较分析</h4>
+	<p class="center"> <img class="normal" src="files/lncRNAFilter/lncRNA_length_density.png" /> </p>
+	<p class="name_fig">图3.5 lncRNA 与 mRNA 的长度比较密度分布图</p>
+	<p class="cenmark">图中横坐标为转录本长度，纵坐标为密度，紫色区域为已知的lncRNA（如果有基因组包含已知的lncRNA注释），红色区域为预测得到的新的lncRNA，通过此图可以验证预测的novel lncRNA的转录本长度是否符合一般特征（转录本长度超过200nt）。青色区域为已知的mRNA，橙色区域为预测得到的新的mRNA，用以比较和lncRNA的差别。</p>
+	
+	
+	<br />
+	
+	<h4 id="351">3.3.2 lncRNA与mRNA的exon数目比较分析</h4>
+	
+	<p class="center"> <img class="normal" src="files/lncRNAFilter/lncRNA_exon_density.png" /> </p>
+	
+	<p class="name_fig">图3.6 lncRNA 与 mRNA 的 exon 数目密度分布图</p>
+	<p class="cenmark">图中横坐标为转录本的exon数目，纵坐标为密度，紫色区域为已知的lncRNA（如果有基因组包含已知的lncRNA注释），红色区域为预测得到的新的lncRNA，通过两者对比可以验证预测的novel lncRNA的exon数目是否符合一般特征（exon个数大于等于2的转录本）。青色区域为已知的mRNA，橙色区域为预测得到的新的mRNA，用以比较和lncRNA的差别。</p>
+	
+	
+	<br />
+	
+	<h4 id="351">3.3.3 lncRNA与mRNA的ORF长度比较分析</h4>
+	<p class="paragraph">开放阅读框（open reading frame，ORF）是结构基因的正常核苷酸序列，从起始密码子到终止密码子的阅读框可编码完整的多肽链，期间不存在使翻译中断的终止密码子。我们对lncRNA与mRNA的ORF进行比较分析时，annotated mRNA和annotated lncRNA的序列通过已知基因结构注释进行提取，novel lncRNA和novel mRNA的ORF序列通过EMBOSS：getorf进行预测<sup>[11]</sup>。将得到的ORF序列转化为蛋白序列，得到长度分布如下图：</p>
+	<p class="center"> <img class="normal" src="files/lncRNAFilter/lncRNA_orf_density.png" /> </p>
+	<p class="name_fig">图3.7 lncRNA 与 mRNA 的 ORF长度密度分布图</p>
+	<p class="cenmark">图中横坐标为预测ORF转化为蛋白序列后的长度，纵坐标为密度，紫色区域为已知的lncRNA（如果有基因组包含已知的lncRNA注释），红色区域为预测得到的新的lncRNA，通过两者对比可以验证预测的novel lncRNA的ORF长度是否符合一般特征。青色区域为已知的mRNA，橙色区域为预测得到的新的mRNA，用以比较和lncRNA的差别。</p>
+	
+	
+	<br />
+	</div>
+	
+<!-------------------------------3.4  转录本拼接视频链接------------------------------>
+<div id="page">
+
+	<a name="转录本拼接视频讲解"><h4 id="result64">3.4 转录本拼接讲解视频</h4></a>
+
+<p class="paragraph">链接: <font face="Arial"><a href="https://pan.baidu.com/s/1I9_SqvfOsPRWn4hWO4jeGw " class="uri">https://pan.baidu.com/s/1I9_SqvfOsPRWn4hWO4jeGw </a></font> 提取码: <font face="Arial">4t47 </font></p>
+
+	<br />
+</div>
+
+
+<!------------------------------3 定量------------------------------>
+
+<div id="page">
+
+	<a name="定量分析"><h3 id="result3">4 定量分析(结果文件夹: Results/Quantification)</h3></a>
+
+	<p class="paragraph">定量是表达差异显著性分析的基础，目前定量可分为基因水平和转录本水平定量。基因水平定量稳健可靠，在算法上容易实现，但无法精确到每个基因的不同转录本。转录本水平定量算法实现起来难度大，精准性不及基因水平定量，但近年来不断有新的算法被开发出来，精准性有显著提高<sup>[12]</sup>。诺禾致源同时提供基因水平和转录本水平的定量结果。</p>
+
+	
+
+	
+	
+
+	
+	
+	<p class="paragraph">StringTie应用网络流算法进行转录本和基因的拼接与定量，StringTie先将reads分为不同的类，然后再针对每个类的reads生成一个拼接图来确定转录本，之后每个转录本产生一个流神经网络的最大流算法来评估表达水平；分析流程如图4.1所示：
+	</p>
+	<p class="center">
+		<img class="normal" src="images/Stringtie.png" />
+	</p>
+	<p class="name_fig">图4.1 Stringtie分析流程</p>
+	
+	<p class="paragraph">
+	<br />
+	<br />
+
+
+</div>
+
+<!--------------------------3.1 定量结果说明---------------------->
+
+
+	<a name="定量结果说明"><h4 id="result31">4.1 定量结果说明</h4></a>
+	
+	<p class="paragraph">我们将上述比对、拼接、筛选后的已知转录本和预测得到的Novel_lncRNA、 Novel_mRNA以及Unclassified转录本全部进行表达水平定量。</p>
+	
+	
+	<p class="paragraph">RNA-seq的基因表达水平通常用RPKM或FPKM表示。RPKM用于单端测序，FPKM用于双端测序，在lncRNA-seq中使用FPKM表示。FPKM （Fragments Per Kilobase of transcript sequence per Millions base pairs sequenced） 是每百万 fragments 中来自某一基因/转录本每千碱基长度的 fragments 数目，其同时校正了测序深度和基因长度对 fragments 计数的影响，是目前最为常用的基因表达水平估算方法。定量结果如表4.1所示：</p>
+	</p>
+	
+	<p class="paragraph">mRNA基因水平表达量文件见结果文件：4.Quantification/mRNA_gene.FPKM.xls，如下图所示。</p>
+
+</br>	
+
+	<p class="name_fig">表4.1 各样品基因 FPKM 信息</p>
+
+	<p class="center">
+	<div id="tb">
+		<table class="tb1">
+			
+			
+				<tr><th>gene_id</th><th>gene_name</th><th>gene_description</th><th>gene_locus</th><th>isoWT</th><th>TTNEx49_HET</th><th>TTNEx49_HOM</th><th>TTNEx327_HET</th><th>TTNEx327_HOM</th></tr>
+			
+		  
+			
+				<tr><td>ENSG00000288531</td><td>ENSG00000288531</td><td>- && - && -</td><td>1:860226-868202</td><td>0.000000</td><td>0.000000</td><td>0.000000</td><td>0.039096</td><td>0.040002</td></tr>
+			
+		  
+			
+				<tr><td>ENSG00000230368</td><td>FAM41C</td><td>- && sp|Q8WP13|TBB8_PAPHA Tubulin beta-8 chain OS=Papio hamadryas OX=9557 GN=TUBB8 PE=3 SV=1 && -</td><td>1:868071-876903</td><td>0.149992</td><td>0.048768</td><td>0.000000</td><td>0.042342</td><td>0.000000</td></tr>
+			
+		  
+			
+				<tr><td>ENSG00000234711</td><td>TUBB8P11</td><td>- && sp|Q8WP13|TBB8_PAPHA Tubulin beta-8 chain OS=Papio hamadryas OX=9557 GN=TUBB8 PE=3 SV=1 && PF00091:Tubulin/FtsZ family, GTPase domain|PF03953:Tubulin C-terminal domain</td><td>1:873292-874349</td><td>0.000000</td><td>0.015901</td><td>0.000000</td><td>0.000000</td><td>0.000000</td></tr>
+			
+		  
+			
+				<tr><td>ENSG00000283040</td><td>ENSG00000283040</td><td>- && sp|Q6J272|F166A_HUMAN Protein FAM166A OS=Homo sapiens OX=9606 GN=FAM166A PE=1 SV=1 && -</td><td>1:874529-877234</td><td>0.000000</td><td>0.000000</td><td>0.000000</td><td>0.000000</td><td>0.000000</td></tr>
+			
+		  
+			
+				<tr><td>ENSG00000272438</td><td>ENSG00000272438</td><td>- && sp|Q6B4Z3|UTY_PANTR Histone demethylase UTY OS=Pan troglodytes OX=9598 GN=UTY PE=2 SV=1 && -</td><td>1:904834-915976</td><td>0.697312</td><td>1.678054</td><td>1.267128</td><td>4.626029</td><td>1.275716</td></tr>
+			
+		  
+			
+				<tr><td>ENSG00000187583</td><td>PLEKHN1</td><td>- && sp|Q494U1|PKHN1_HUMAN Pleckstrin homology domain-containing family N member 1 OS=Homo sapiens OX=9606 GN=PLEKHN1 PE=1 SV=3 && -</td><td>1:966482-975865</td><td>0.000000</td><td>0.018918</td><td>0.069458</td><td>0.000000</td><td>0.028846</td></tr>
+			
+		  
+			
+				<tr><td>ENSG00000187642</td><td>PERM1</td><td>- && sp|Q5SV97|PERM1_HUMAN PGC-1 and ERR-induced regulator in muscle protein 1 OS=Homo sapiens OX=9606 GN=PERM1 PE=2 SV=4 && -</td><td>1:975198-982117</td><td>0.000000</td><td>0.058278</td><td>0.029420</td><td>0.013933</td><td>0.027809</td></tr>
+			
+		  
+			
+				<tr><td>ENSG00000272512</td><td>ENSG00000272512</td><td>- && - && -</td><td>1:995966-998051</td><td>0.364793</td><td>1.586788</td><td>0.904506</td><td>1.133354</td><td>1.054779</td></tr>
+			
+		  
+			
+				<tr><td>ENSG00000187961</td><td>KLHL17</td><td>- && sp|Q6TDP4|KLH17_HUMAN Kelch-like protein 17 OS=Homo sapiens OX=9606 GN=KLHL17 PE=1 SV=1 && PF07707:BTB And C-terminal Kelch|PF00651:BTB/POZ domain|PF01344:Kelch motif</td><td>1:960584-965719</td><td>2.368298</td><td>2.507462</td><td>4.445615</td><td>5.840048</td><td>2.940395</td></tr>
+			
+		  
+			
+				<tr><td>ENSG00000223764</td><td>LINC02593</td><td>- && - && -</td><td>1:916865-921016</td><td>2.101432</td><td>3.821621</td><td>3.814564</td><td>11.140347</td><td>5.215989</td></tr>
+			
+		   
+		</table>
+	</div>		
+	</p>
+
+	<p class="tremark">  
+	(1) 第一列为基因/转录本ID，ENSG，G指基因；ENST，T指转录本。前三个字母（ENS），意思是“ENSEMBL”<br />
+    (2) gene_name：基因名称，若无用"--"表示 <br />
+    (3) locus: 基因在染色体上的位置 <br />
+	(4) 此后每列为每个样本的基因/转录本ID所对应的FPKM值 <br />
+	
+
+</p>
+
+
+</br>
+<!---------------------------3.2 表达水平分布-------------------------->
+<div id="page">
+
+
+	<a name="表达水平分布"><h4 id="result32">4.2 表达水平分布</h4></a>
+
+		
+	
+		
+	<p class="paragraph">计算各样本所有基因或转录本的表达值（RPKM或FPKM）后，通过盒形图展示不同样本基因或转录本表达水平的分布情况，如图4.1所示。</p>
+
+	<p class="center">
+		<img class="normal1" src="files/Quantification/boxplot.png"/>
+	</p>
+	
+	<p class="name_fig">图4.1 各样本表达水平分布</p>
+	
+	
+	<p class="cenmark">不同样本表达水平盒形图，其中横坐标为样品名称，纵坐标为log<sub>10</sub>（FPKM+1），每个区域的盒形图对应五个统计量（从上而下分别为最大值、上四分位数、中值、下四分位数和最小值）</p>
+	<br />
+	<br />
+
+
+</div>
+
+<!-------------------------------3.3  定量视频链接------------------------------>
+<div id="page">
+
+	<a name="转录本定量视频讲解"><h4 id="result33">4.3 定量讲解视频</h4></a>
+
+<p class="paragraph">链接: <font face="Arial"><a href="https://pan.baidu.com/s/11Auo6rK76_js3xytpe2q1Q  " class="uri">https://pan.baidu.com/s/11Auo6rK76_js3xytpe2q1Q  </a></font> 提取码: <font face="Arial">v3z8 </font></p>
+    
+	<br />
+	<br />
+</div>
+
+
+<!---------------------------4 差异分析-------------------------->
+
+
+<div id="page">
+
+
+
+	<a name="基因水平差异分析"><h3 id="result4">5 差异分析(结果文件夹: Results/Diff)</h3></a>
+
+
+<!---------------------------4.1 差异基因列表------------------------------>
+
+	
+	
+
+		
+	<p class="paragraph">定量分析完成后，得到所有样本的表达矩阵，便可进行基因或转录本水平的表达差异显著性分析，以便寻找与处理组相关的功能基因或转录本。诺禾致源采用edgeR软件进行表达差异显著性分析。用p value或矫正后的p value（padj）判断显著性水平。Padj是当假阳性率较高时利用BH的方法对p-value进行多重检验校正得到的值，得到的校正后的P-value 值越小代表越显著。将padj小于0.05作为差异显著性标准(若padj小于0.05筛选差异过少则使用p value小于0.05进行差异筛选，具体差异筛选条件见火山图)<sup>[13]</sup>。</p>
+	
+	
+	</br>
+	<a name="差异基因列表"><h4 id="result41">5.1 差异基因列表</h4></a>
+	<p class="paragraph">mRNA基因水平差异表达情况见结果文件：5.Diff/mRNA/Group2_vs_Group1/Group2_vs_Group1.mRNA.diffgene.xls，如下图所示。</p>
+
+</br>	
+
+	<p class="paragraph">差异分析结果如表5.1所示。</p>
+
+	<p class="name_fig">表5.1 差异基因列表</p>
+	<p class="center">
+	<div id="tb">
+		<table class="tb1">
+			
+			
+				<tr><th>gene_id</th><th>gene_name</th><th>gene_description</th><th>gene_locus</th><th>Ex49_HET</th><th>WT</th><th>log2FoldChange</th><th>pvalue</th><th>padj</th></tr>
+			
+		  
+			
+				<tr><td>ENSG00000185559</td><td>DLK1</td><td>- && sp|P80370|DLK1_HUMAN Protein delta homolog 1 OS=Homo sapiens OX=9606 GN=DLK1 PE=1 SV=3 && PF00008:EGF-like domain</td><td>14:100725705-100738224</td><td>10939.1495215251</td><td>19.6582317502862</td><td>9.11091976955698</td><td>5.55035239380692e-50</td><td>1.77394812858463e-45</td></tr>
+			
+		  
+			
+				<tr><td>ENSG00000166741</td><td>NNMT</td><td>- && sp|P40261|NNMT_HUMAN Nicotinamide N-methyltransferase OS=Homo sapiens OX=9606 GN=NNMT PE=1 SV=1 && -</td><td>11:114257787-114313536</td><td>1628.71679074435</td><td>8.84540685198268</td><td>7.50422695727679</td><td>2.30988783121518e-34</td><td>1.47652649946937e-30</td></tr>
+			
+		  
+			
+				<tr><td>ENSG00000197976</td><td>AKAP17A</td><td>- && sp|Q02040|AK17A_HUMAN A-kinase anchor protein 17A OS=Homo sapiens OX=9606 GN=AKAP17A PE=1 SV=2 && -</td><td>X:1591604-1602520</td><td>712.119337694204</td><td>1.38777878078145e-17</td><td>12.476437942647</td><td>2.69703750253605e-33</td><td>1.43666692697591e-29</td></tr>
+			
+		  
+			
+				<tr><td>ENSG00000273274</td><td>ZBTB8B</td><td>- && sp|Q8NAP8|ZBT8B_HUMAN Zinc finger and BTB domain-containing protein 8B OS=Homo sapiens OX=9606 GN=ZBTB8B PE=1 SV=2 && -</td><td>1:32465072-32496686</td><td>1.38777878078145e-17</td><td>683.171976394907</td><td>-12.4165843823624</td><td>7.23871329079996e-33</td><td>2.89195644359072e-29</td></tr>
+			
+		  
+			
+				<tr><td>ENSG00000167393</td><td>PPP2R3B</td><td>- && sp|Q9Y5P8|P2R3B_HUMAN Serine/threonine-protein phosphatase 2A regulatory subunit B'' subunit beta OS=Homo sapiens OX=9606 GN=PPP2R3B PE=1 SV=2 && -</td><td>X:333933-386955</td><td>631.751747473444</td><td>1.38777878078145e-17</td><td>12.3037084940217</td><td>4.54367278715945e-32</td><td>1.6135591772267e-28</td></tr>
+			
+		  
+			
+				<tr><td>ENSG00000280987</td><td>MATR3</td><td>- && sp|P43243|MATR3_HUMAN Matrin-3 OS=Homo sapiens OX=9606 GN=MATR3 PE=1 SV=2 && -</td><td>5:139273752-139331671</td><td>13.2265022444205</td><td>1258.21721396317</td><td>-6.55853935116561</td><td>1.02102501245711e-29</td><td>3.26329804231416e-26</td></tr>
+			
+		  
+			
+				<tr><td>ENSG00000166923</td><td>GREM1</td><td>- && sp|O60565|GREM1_HUMAN Gremlin-1 OS=Homo sapiens OX=9606 GN=GREM1 PE=1 SV=1 && PF03045:DAN domain</td><td>15:32718004-32745106</td><td>755.863722245102</td><td>3.93047537300417</td><td>7.54183508257612</td><td>1.20254851579243e-29</td><td>3.49405937393109e-26</td></tr>
+			
+		  
+			
+				<tr><td>ENSG00000179542</td><td>SLITRK4</td><td>- && sp|Q8IW52|SLIK4_HUMAN SLIT and NTRK-like protein 4 OS=Homo sapiens OX=9606 GN=SLITRK4 PE=1 SV=1 && PF13855:Leucine rich repeat</td><td>X:143622790-143636101</td><td>453.722275470911</td><td>1.38777878078145e-17</td><td>11.8262708989885</td><td>1.03887443127914e-28</td><td>2.76695547484271e-25</td></tr>
+			
+		  
+			
+				<tr><td>ENSG00000171951</td><td>SCG2</td><td>- && sp|P13521|SCG2_HUMAN Secretogranin-2 OS=Homo sapiens OX=9606 GN=SCG2 PE=1 SV=2 && PF01271:Granin (chromogranin or secretogranin)</td><td>2:223596940-223602361</td><td>676.513443292482</td><td>4.91346353018647</td><td>7.06884362694266</td><td>9.35914864102187e-28</td><td>2.13662678368357e-24</td></tr>
+			
+		  
+			
+				<tr><td>ENSG00000163017</td><td>ACTG2</td><td>- && sp|Q5E9B5|ACTH_BOVIN Actin, gamma-enteric smooth muscle OS=Bos taurus OX=9913 GN=ACTG2 PE=2 SV=1 && PF00022:Actin</td><td>2:73892314-73919865</td><td>3422.23655738948</td><td>69.7903869773006</td><td>5.61320866456763</td><td>1.39369965861618e-27</td><td>2.96960231926879e-24</td></tr>
+			
+		  
+		</table>
+	</div>				
+	</p>
+<div style="width:1100px;height:115px;overflow-y:scroll;overflow-x:hidden;">
+	<p class="tremark">
+	(1) gene_id：基因编号<br />
+	(2) gene_name：基因名称，若无用"--"表示<br />
+	(3) locus: 基因在染色体上的位置<br />
+	(4) group1：比较组合1的FPKM值<br />
+	(5) group2：比较组合2的FPKM值<br />
+	(6) log<sub>2</sub>FoldChange：两个样本或比较组合的差异倍数值，以log<sub>2</sub>（group1/group2）来表示，根据差异分析软件计算所得<br />
+	(7) pvalue：显著性检验的p值<br />
+	(8) padj：多重假设检验校正后的p值<br />
+	</p>
+</div>
+
+	<br />
+	<br />
+
+
+</div>
+
+<!-------------------------------4.2 差异基因火山图---------------------------------->
+
+<div id="page">
+
+	<a name="差异基因火山图"><h4 id="result42">5.2 差异基因火山图</h4></a>
+	<p class="paragraph">火山图可直观显示表达差异显著性基因的整体分布情况。</p>
+	
+	<p class="paragraph">mRNA基因水平差异表达火山图见结果文件：5.Diff/mRNA/Group2_vs_Group1/Group2_vs_Group1.mRNA.diffgene.Volcanoplot.png，如下图所示。</p>
+
+</br>	
+	<p class="center">
+
+		<div class="albumSlider">
+					<div class="fullview">
+						<img src=Ex49_HETvsWT/>
+					</div>
+					<div class="slider">
+						<div class="button movebackward" title="向上滚动">
+						</div>
+						<div class="imglistwrap">
+							<ul class="imglist">
+								
+								<li><a id="example2" href=Ex49_HETvsWT ><img src=files/DiffEnrich/Volcano/Ex49_HETvsWT.diffgene.Volcanoplot.png/></a></li>
+								
+								<li><a id="example2" href=Ex49_HOMvsWT ><img src=files/DiffEnrich/Volcano/Ex49_HOMvsWT.diffgene.Volcanoplot.png/></a></li>
+								
+								<li><a id="example2" href=Ex327_HETvsWT ><img src=files/DiffEnrich/Volcano/Ex327_HETvsWT.diffgene.Volcanoplot.png/></a></li>
+								
+								<li><a id="example2" href=Ex327_HOMvsWT ><img src=files/DiffEnrich/Volcano/Ex327_HOMvsWT.diffgene.Volcanoplot.png/></a></li>
+								
+								<li><a id="example2" href=Ex49vsWT ><img src=files/DiffEnrich/Volcano/Ex49vsWT.diffgene.Volcanoplot.png/></a></li>
+								
+								<li><a id="example2" href=Ex327vsWT ><img src=files/DiffEnrich/Volcano/Ex327vsWT.diffgene.Volcanoplot.png/></a></li>
+								
+								<li><a id="example2" href=Ex327vsEx49 ><img src=files/DiffEnrich/Volcano/Ex327vsEx49.diffgene.Volcanoplot.png/></a></li>
+								
+								<li><a id="example2" href=Ex49_HOMvsEx49_HET ><img src=files/DiffEnrich/Volcano/Ex49_HOMvsEx49_HET.diffgene.Volcanoplot.png/></a></li>
+								
+								<li><a id="example2" href=Ex327_HOMvsEx327_HET ><img src=files/DiffEnrich/Volcano/Ex327_HOMvsEx327_HET.diffgene.Volcanoplot.png/></a></li>
+								
+								<li><a id="example2" href=Ex327_HETvsEx49_HET ><img src=files/DiffEnrich/Volcano/Ex327_HETvsEx49_HET.diffgene.Volcanoplot.png/></a></li>
+								
+								<li><a id="example2" href=Ex327_HOMvsEx49_HOM ><img src=files/DiffEnrich/Volcano/Ex327_HOMvsEx49_HOM.diffgene.Volcanoplot.png/></a></li>
+								
+							</ul>
+						</div>
+						<div class="button moveforward" title="向下滚动">
+						</div>
+					</div>
+				</div>	
+			
+	</p>
+
+<p class="name_fig">图5.1 差异基因火山图</p>
+	<p class="cenmark">横坐标表示基因在不同样本或比较组合间的表达倍数变化（log<sub>2</sub>FoldChange），横坐标的绝对值越大表明两个比较组合之间的表达变化倍数越大; 纵坐标表示表
+达差异的显著性水平。表达上调基因用红色点表示，下调基因用绿色点表示，蓝色点为未发生显著变化的基因。</p>
+
+
+	<br />
+	<br />
+
+
+</div>
+
+
+<!---------------------------4.3 差异基因聚类-------------------------->
+
+<div id="page">
+
+        <a name="差异基因聚类"><h4 id="result43">5.3 差异基因聚类</h4></a>
+
+        <p class="paragraph">聚类图是差异表达基因的另一种展示方式，将表达模式相近的基因聚在一起，这些基因可能具有共同的功能或参与到共同的代谢途径及信号通路中。诺禾致源采用主流的层次聚类法，将log<sub>10</sub>（FPKM+1）值进行转换并进行聚类。聚类结果用热图（heatmap）表示，如图5.2所示。</p>
+ 
+</p>
+	
+	<p class="paragraph">mRNA基因水平差异表达聚类图见结果文件：5.Diff/mRNA/Cluster/Hcluster_heatmap.png，如下图所示。</p>
+
+</br>
+
+	<p class="center">
+		<img class="normal1" src="files/DiffEnrich/Cluster/Hcluster_heatmap.png"/>
+		</p>
+
+<p class="name_fig">图5.2 差异基因层次聚类热图</p>
+		<p class="cenmark">横坐标为样本，纵坐标为差异基因，左侧根据表达相似程度对基因进行聚类，上方根据表达谱的相似程度对每个样本进行聚类，由蓝至红表达量逐渐上调，数字为均一化后的相对表达量。</p>
+
+        <br />
+        <br />
+
+
+</div>
+
+<!-------------------------------4.4  差异视频链接------------------------------>
+<div id="page">
+
+	<a name="差异分析视频讲解"><h4 id="result44">5.4 差异分析讲解视频</h4></a>
+
+<p class="paragraph">链接: <font face="Arial"><a href="https://pan.baidu.com/s/1SVMsT_2IBFofLokhbSdGdg" class="uri">https://pan.baidu.com/s/1SVMsT_2IBFofLokhbSdGdg</a></font> 提取码: <font face="Arial">ww3i </font></p>
+    
+	<br />
+	<br />
+</div>
+
+<!---------------------------5 富集分析---------------------------------->
+
+
+<div id="page">
+
+
+	<a name="GO/KEGG 富集分析"><h3  id="result5">6 GO/KEGG 富集分析(结果文件夹: Results/DiffEnrich_mRNA)</h3></a>
+	
+	
+	
+	<p class="paragraph">在生物体内，不同基因相互协调行驶其生物学功能。通过pathway显著性富集可以探寻差异表达基因参与的最主要的生化代谢途径和信号转导途径。诺禾致源采用clusterProfiler（http://www.bioconductor.org/packages/release/bioc/html/clusterProfiler.html）软件，选取广泛使用的注释基因数据库GO、KEGG，对差异基因进行通路富集分析（Yu G et al., 2012）。GO（Gene Ontology）是描述基因功能的综合性数据库，可分为分子功能（Molecular Function），生物过程（biological process）和细胞组成（cellular component）三个部分。KEGG（Kyoto Encyclopedia of Genes and Genomes）是整合了基因组、化学和系统功能信息的综合性数据库。</p>
+	
+	
+	
+	<p class="paragraph">富集分析基于超几何分布原理，如下图所示，其中差异基因集为经分析所得显著差异基因列表（能够注释到ENTREZ数据库中），背景基因集为所有注释到ENTREZ数据库的进行差异显著分析的基因集。</p>
+
+	<p class="center">
+		<img class="normala2" src="images/enrichment.png" />
+	</p>
+
+	<p class="name_fig">图6.1 富集分析原理</p>
+
+
+	<br />
+	<br />
+
+</div>
+
+<!--------------------------5.1 GO富集分析-------------------------->
+<div id="page">
+
+<!-- go富集方法需要优化完善 -->
+
+	<a name="GO功能富集"><h4 id="result51">6.1 GO功能富集</h4></a>
+	<p class="paragraph">Gene Ontology（简称 GO，http://www.geneontology.org/）是基因功能国际标准分类体系。GO可分为分子功能（Molecular Function），生物过程（biological process）和细胞组成（cellular component）三个部分。GO 富集分析方法为 GOseq，此方法基于 Wallenius non-central hyper-geometric distribution，相对于普通的 Hyper-geometric distribution，此分布的特点是从某个类别中抽取个体的概率与从某个类别之外抽取一个个体的概率是不同的，这种概率的不同是通过对基因长度的偏好性进行估计得到的，从而能更为准确地计算出 GO term 被来源基因富集的概率。GO富集以padj小于0.05（默认）或pvalue小于0.05为显著富集。富集结果如表6.1所示：</p>
+
+</p>
+	
+	<p class="paragraph">mRNA基因表达水平GO富集分析见结果文件：6.DiffEnrich_mRNA/Group2_vs_Group1/GO，如下图所示。</p>
+
+</br>
+
+	<p class="name_fig">表6.1 GO富集列表</p>
+	<p class="center">
+	<div id="tb">
+		<table class="tb1">
+			
+			
+				<tr><th>Category</th><th>GOID</th><th>Description</th><th>GeneRatio</th><th>BgRatio</th><th>pvalue</th><th>padj</th><th>geneID</th><th>geneName</th><th>Count</th><th>Up</th><th>Up_Gene_id</th><th>Down</th><th>Down_Gene_id</th></tr>
+			
+		  
+			
+				<tr><td>BP</td><td>GO:0007155</td><td>cell adhesion</td><td>42/760</td><td>131/3806</td><td>0.00059574697438237</td><td>0.0965110098499439</td><td>ENSG00000186340/ENSG00000118785/ENSG00000187664/ENSG00000136099/ENSG00000039068/ENSG00000189184/ENSG00000123610/ENSG00000157766/ENSG00000240184/ENSG00000140937/ENSG00000026508/ENSG00000134762/ENSG00000156453/ENSG00000010610/ENSG00000099715/ENSG00000137801/ENSG00000204969/ENSG00000145526/ENSG00000132692/ENSG00000255408/ENSG00000086289/ENSG00000169231/ENSG00000149654/ENSG00000113361/ENSG00000102290/ENSG00000196159/ENSG00000197410/ENSG00000038427/ENSG00000124215/ENSG00000262209/ENSG00000074276/ENSG00000254221/ENSG00000254245/ENSG00000165194/ENSG00000008300/ENSG00000129910/ENSG00000253953/ENSG00000101680/ENSG00000112769/ENSG00000046604/ENSG00000035403/ENSG00000109927</td><td>THBS2/SPP1/HAPLN4/PCDH8/CDH1/PCDH18/TNFAIP6/ACAN/PCDHGC3/CDH11/CD44/DSC3/PCDH1/CD4/PCDH11Y/THBS1/PCDHA2/CDH18/BCAN/PCDHA3/EPDR1/THBS3/CDH22/CDH6/PCDH11X/FAT4/DCHS2/VCAN/CDH26/PCDHGB3/CDHR2/PCDHGB1/PCDHGA3/PCDH19/CELSR3/CDH15/PCDHGB4/LAMA1/LAMA4/DSG2/VCL/TECTA</td><td>42</td><td>32</td><td>ENSG00000186340/ENSG00000118785/ENSG00000136099/ENSG00000039068/ENSG00000189184/ENSG00000123610/ENSG00000157766/ENSG00000140937/ENSG00000026508/ENSG00000134762/ENSG00000156453/ENSG00000010610/ENSG00000099715/ENSG00000137801/ENSG00000204969/ENSG00000145526/ENSG00000132692/ENSG00000255408/ENSG00000086289/ENSG00000169231/ENSG00000149654/ENSG00000113361/ENSG00000102290/ENSG00000196159/ENSG00000197410/ENSG00000038427/ENSG00000165194/ENSG00000008300/ENSG00000129910/ENSG00000253953/ENSG00000046604/ENSG00000035403</td><td>10</td><td>ENSG00000187664/ENSG00000240184/ENSG00000124215/ENSG00000262209/ENSG00000074276/ENSG00000254221/ENSG00000254245/ENSG00000101680/ENSG00000112769/ENSG00000109927</td></tr>
+			
+		  
+			
+				<tr><td>BP</td><td>GO:0022610</td><td>biological adhesion</td><td>42/760</td><td>131/3806</td><td>0.00059574697438237</td><td>0.0965110098499439</td><td>ENSG00000186340/ENSG00000118785/ENSG00000187664/ENSG00000136099/ENSG00000039068/ENSG00000189184/ENSG00000123610/ENSG00000157766/ENSG00000240184/ENSG00000140937/ENSG00000026508/ENSG00000134762/ENSG00000156453/ENSG00000010610/ENSG00000099715/ENSG00000137801/ENSG00000204969/ENSG00000145526/ENSG00000132692/ENSG00000255408/ENSG00000086289/ENSG00000169231/ENSG00000149654/ENSG00000113361/ENSG00000102290/ENSG00000196159/ENSG00000197410/ENSG00000038427/ENSG00000124215/ENSG00000262209/ENSG00000074276/ENSG00000254221/ENSG00000254245/ENSG00000165194/ENSG00000008300/ENSG00000129910/ENSG00000253953/ENSG00000101680/ENSG00000112769/ENSG00000046604/ENSG00000035403/ENSG00000109927</td><td>THBS2/SPP1/HAPLN4/PCDH8/CDH1/PCDH18/TNFAIP6/ACAN/PCDHGC3/CDH11/CD44/DSC3/PCDH1/CD4/PCDH11Y/THBS1/PCDHA2/CDH18/BCAN/PCDHA3/EPDR1/THBS3/CDH22/CDH6/PCDH11X/FAT4/DCHS2/VCAN/CDH26/PCDHGB3/CDHR2/PCDHGB1/PCDHGA3/PCDH19/CELSR3/CDH15/PCDHGB4/LAMA1/LAMA4/DSG2/VCL/TECTA</td><td>42</td><td>32</td><td>ENSG00000186340/ENSG00000118785/ENSG00000136099/ENSG00000039068/ENSG00000189184/ENSG00000123610/ENSG00000157766/ENSG00000140937/ENSG00000026508/ENSG00000134762/ENSG00000156453/ENSG00000010610/ENSG00000099715/ENSG00000137801/ENSG00000204969/ENSG00000145526/ENSG00000132692/ENSG00000255408/ENSG00000086289/ENSG00000169231/ENSG00000149654/ENSG00000113361/ENSG00000102290/ENSG00000196159/ENSG00000197410/ENSG00000038427/ENSG00000165194/ENSG00000008300/ENSG00000129910/ENSG00000253953/ENSG00000046604/ENSG00000035403</td><td>10</td><td>ENSG00000187664/ENSG00000240184/ENSG00000124215/ENSG00000262209/ENSG00000074276/ENSG00000254221/ENSG00000254245/ENSG00000101680/ENSG00000112769/ENSG00000109927</td></tr>
+			
+		  
+			
+				<tr><td>BP</td><td>GO:0051260</td><td>protein homooligomerization</td><td>14/760</td><td>31/3806</td><td>0.00126089338883543</td><td>0.132700615818661</td><td>ENSG00000111262/ENSG00000184408/ENSG00000164794/ENSG00000178695/ENSG00000102057/ENSG00000243335/ENSG00000158445/ENSG00000162975/ENSG00000171126/ENSG00000151364/ENSG00000168301/ENSG00000168676/ENSG00000156486/ENSG00000180332</td><td>KCNA1/KCND2/KCNV1/KCTD12/KCND1/KCTD7/KCNB1/KCNF1/KCNG3/KCTD14/KCTD6/KCTD19/KCNS2/KCTD4</td><td>14</td><td>11</td><td>ENSG00000111262/ENSG00000184408/ENSG00000178695/ENSG00000102057/ENSG00000158445/ENSG00000162975/ENSG00000171126/ENSG00000151364/ENSG00000168301/ENSG00000156486/ENSG00000180332</td><td>3</td><td>ENSG00000164794/ENSG00000243335/ENSG00000168676</td></tr>
+			
+		  
+			
+				<tr><td>BP</td><td>GO:0051259</td><td>protein complex oligomerization</td><td>15/760</td><td>35/3806</td><td>0.00163827920763779</td><td>0.132700615818661</td><td>ENSG00000111262/ENSG00000184408/ENSG00000164794/ENSG00000178695/ENSG00000102057/ENSG00000083067/ENSG00000243335/ENSG00000158445/ENSG00000162975/ENSG00000171126/ENSG00000151364/ENSG00000168301/ENSG00000168676/ENSG00000156486/ENSG00000180332</td><td>KCNA1/KCND2/KCNV1/KCTD12/KCND1/TRPM3/KCTD7/KCNB1/KCNF1/KCNG3/KCTD14/KCTD6/KCTD19/KCNS2/KCTD4</td><td>15</td><td>12</td><td>ENSG00000111262/ENSG00000184408/ENSG00000178695/ENSG00000102057/ENSG00000083067/ENSG00000158445/ENSG00000162975/ENSG00000171126/ENSG00000151364/ENSG00000168301/ENSG00000156486/ENSG00000180332</td><td>3</td><td>ENSG00000164794/ENSG00000243335/ENSG00000168676</td></tr>
+			
+		  
+			
+				<tr><td>BP</td><td>GO:0006811</td><td>ion transport</td><td>58/760</td><td>210/3806</td><td>0.0037258559950415</td><td>0.222531437088866</td><td>ENSG00000152049/ENSG00000102452/ENSG00000111262/ENSG00000133107/ENSG00000102287/ENSG00000184408/ENSG00000164794/ENSG00000140015/ENSG00000107147/ENSG00000089327/ENSG00000108684/ENSG00000145864/ENSG00000102057/ENSG00000144285/ENSG00000186297/ENSG00000083067/ENSG00000158445/ENSG00000162975/ENSG00000171126/ENSG00000069849/ENSG00000163288/ENSG00000188687/ENSG00000072315/ENSG00000143603/ENSG00000153253/ENSG00000162695/ENSG00000110719/ENSG00000198216/ENSG00000166206/ENSG00000100078/ENSG00000123104/ENSG00000158296/ENSG00000181804/ENSG00000104321/ENSG00000136546/ENSG00000165995/ENSG00000150995/ENSG00000156486/ENSG00000145936/ENSG00000107819/ENSG00000022355/ENSG00000089558/ENSG00000104154/ENSG00000101892/ENSG00000136052/ENSG00000113504/ENSG00000141424/ENSG00000131100/ENSG00000001461/ENSG00000185803/ENSG00000143570/ENSG00000184908/ENSG00000137672/ENSG00000255245/ENSG00000157765/ENSG00000163285/ENSG00000187688/ENSG00000110881</td><td>KCNE4/NALCN/KCNA1/TRPC4/GABRE/KCND2/KCNV1/KCNH5/KCNT1/FXYD5/ASIC2/GABRB2/KCND1/SCN1A/GABRA5/TRPM3/KCNB1/KCNF1/KCNG3/ATP1B3/GABRB1/SLC4A5/TRPC5/KCNN3/SCN3A/SLC30A7/TCIRG1/CACNA1E/GABRB3/PLA2G3/ITPR2/SLC13A3/SLC9A9/TRPA1/SCN7A/CACNB2/ITPR1/KCNS2/KCNMB1/SFXN3/GABRA1/KCNH4/SLC30A4/ATP1B4/SLC41A2/SLC12A7/SLC39A6/ATP6V1E1/NIPAL3/SLC52A2/SLC39A1/CLCNKB/TRPC6/FXYD6-FXYD2/SLC34A2/GABRG1/TRPV2/ASIC1</td><td>58</td><td>45</td><td>ENSG00000152049/ENSG00000102452/ENSG00000111262/ENSG00000133107/ENSG00000184408/ENSG00000140015/ENSG00000089327/ENSG00000108684/ENSG00000145864/ENSG00000102057/ENSG00000186297/ENSG00000083067/ENSG00000158445/ENSG00000162975/ENSG00000171126/ENSG00000069849/ENSG00000072315/ENSG00000143603/ENSG00000153253/ENSG00000162695/ENSG00000110719/ENSG00000198216/ENSG00000166206/ENSG00000100078/ENSG00000123104/ENSG00000158296/ENSG00000181804/ENSG00000104321/ENSG00000136546/ENSG00000150995/ENSG00000156486/ENSG00000145936/ENSG00000107819/ENSG00000022355/ENSG00000089558/ENSG00000104154/ENSG00000136052/ENSG00000141424/ENSG00000185803/ENSG00000143570/ENSG00000137672/ENSG00000157765/ENSG00000163285/ENSG00000187688/ENSG00000110881</td><td>13</td><td>ENSG00000102287/ENSG00000164794/ENSG00000107147/ENSG00000144285/ENSG00000163288/ENSG00000188687/ENSG00000165995/ENSG00000101892/ENSG00000113504/ENSG00000131100/ENSG00000001461/ENSG00000184908/ENSG00000255245</td></tr>
+			
+		  
+			
+				<tr><td>BP</td><td>GO:0006814</td><td>sodium ion transport</td><td>8/760</td><td>15/3806</td><td>0.0041209525386827</td><td>0.222531437088866</td><td>ENSG00000108684/ENSG00000144285/ENSG00000069849/ENSG00000153253/ENSG00000158296/ENSG00000136546/ENSG00000101892/ENSG00000110881</td><td>ASIC2/SCN1A/ATP1B3/SCN3A/SLC13A3/SCN7A/ATP1B4/ASIC1</td><td>8</td><td>6</td><td>ENSG00000108684/ENSG00000069849/ENSG00000153253/ENSG00000158296/ENSG00000136546/ENSG00000110881</td><td>2</td><td>ENSG00000144285/ENSG00000101892</td></tr>
+			
+		  
+			
+				<tr><td>BP</td><td>GO:0006813</td><td>potassium ion transport</td><td>6/760</td><td>11/3806</td><td>0.0114489666750417</td><td>0.409865694231042</td><td>ENSG00000107147/ENSG00000158445/ENSG00000069849/ENSG00000143603/ENSG00000145936/ENSG00000101892</td><td>KCNT1/KCNB1/ATP1B3/KCNN3/KCNMB1/ATP1B4</td><td>6</td><td>4</td><td>ENSG00000158445/ENSG00000069849/ENSG00000143603/ENSG00000145936</td><td>2</td><td>ENSG00000107147/ENSG00000101892</td></tr>
+			
+		  
+			
+				<tr><td>BP</td><td>GO:0030001</td><td>metal ion transport</td><td>18/760</td><td>53/3806</td><td>0.0114733705148199</td><td>0.409865694231042</td><td>ENSG00000107147/ENSG00000108684/ENSG00000144285/ENSG00000158445/ENSG00000069849/ENSG00000143603/ENSG00000153253/ENSG00000123104/ENSG00000158296/ENSG00000136546/ENSG00000165995/ENSG00000150995/ENSG00000145936/ENSG00000101892/ENSG00000141424/ENSG00000001461/ENSG00000143570/ENSG00000110881</td><td>KCNT1/ASIC2/SCN1A/KCNB1/ATP1B3/KCNN3/SCN3A/ITPR2/SLC13A3/SCN7A/CACNB2/ITPR1/KCNMB1/ATP1B4/SLC39A6/NIPAL3/SLC39A1/ASIC1</td><td>18</td><td>13</td><td>ENSG00000108684/ENSG00000158445/ENSG00000069849/ENSG00000143603/ENSG00000153253/ENSG00000123104/ENSG00000158296/ENSG00000136546/ENSG00000150995/ENSG00000145936/ENSG00000141424/ENSG00000143570/ENSG00000110881</td><td>5</td><td>ENSG00000107147/ENSG00000144285/ENSG00000165995/ENSG00000101892/ENSG00000001461</td></tr>
+			
+		  
+			
+				<tr><td>BP</td><td>GO:0055114</td><td>oxidation-reduction process</td><td>63/760</td><td>243/3806</td><td>0.0118172793362064</td><td>0.409865694231042</td><td>ENSG00000167588/ENSG00000113083/ENSG00000171724/ENSG00000288558/ENSG00000136010/ENSG00000186684/ENSG00000134716/ENSG00000086991/ENSG00000088826/ENSG00000131471/ENSG00000184470/ENSG00000124212/ENSG00000184254/ENSG00000128918/ENSG00000186377/ENSG00000164867/ENSG00000203859/ENSG00000059573/ENSG00000134013/ENSG00000188641/ENSG00000090857/ENSG00000130508/ENSG00000109814/ENSG00000197406/ENSG00000158125/ENSG00000111012/ENSG00000131781/ENSG00000129167/ENSG00000122884/ENSG00000116745/ENSG00000079931/ENSG00000106348/ENSG00000003137/ENSG00000147576/ENSG00000211448/ENSG00000197580/ENSG00000186160/ENSG00000140263/ENSG00000140465/ENSG00000104549/ENSG00000115318/ENSG00000137857/ENSG00000002726/ENSG00000007952/ENSG00000123131/ENSG00000092621/ENSG00000072682/ENSG00000076258/ENSG00000155016/ENSG00000167600/ENSG00000007933/ENSG00000160211/ENSG00000189221/ENSG00000161905/ENSG00000157870/ENSG00000120254/ENSG00000087263/ENSG00000159348/ENSG00000138356/ENSG00000089250/ENSG00000267855/ENSG00000138061/ENSG00000104812</td><td>GPD1/LOX/VAT1L/DUS4L-BCAP29/ALDH1L2/CYP27C1/CYP2J2/NOX4/SMOX/AOC3/TXNRD2/PTGIS/ALDH1A3/ALDH1A2/CYP4X1/NOS3/HSD3B2/ALDH18A1/LOXL2/DPYD/PDPR/PXDN/UGDH/DIO3/XDH/CYP27B1/FMO5/TPH1/P4HA1/RPE65/MOXD1/IMPDH1/CYP26B1/ADHFE1/DIO2/BCO2/CYP4Z1/SORD/CYP1A1/SQLE/LOXL3/DUOX1/AOC1/NOX1/PRDX4/PHGDH/P4HA2/FMO4/CYP2U1/CYP2S1/FMO3/G6PD/MAOA/ALOX15/PRXL2B/MTHFD1L/OGFOD1/CYB5R1/AOX1/NOS1/NDUFA7/CYP1B1/GYS1</td><td>63</td><td>45</td><td>ENSG00000113083/ENSG00000171724/ENSG00000136010/ENSG00000186684/ENSG00000086991/ENSG00000088826/ENSG00000131471/ENSG00000124212/ENSG00000184254/ENSG00000128918/ENSG00000186377/ENSG00000164867/ENSG00000203859/ENSG00000059573/ENSG00000134013/ENSG00000188641/ENSG00000130508/ENSG00000109814/ENSG00000197406/ENSG00000111012/ENSG00000131781/ENSG00000122884/ENSG00000116745/ENSG00000079931/ENSG00000106348/ENSG00000003137/ENSG00000211448/ENSG00000186160/ENSG00000104549/ENSG00000115318/ENSG00000002726/ENSG00000123131/ENSG00000092621/ENSG00000072682/ENSG00000155016/ENSG00000167600/ENSG00000007933/ENSG00000160211/ENSG00000189221/ENSG00000157870/ENSG00000120254/ENSG00000087263/ENSG00000138356/ENSG00000089250/ENSG00000138061</td><td>18</td><td>ENSG00000167588/ENSG00000288558/ENSG00000134716/ENSG00000184470/ENSG00000090857/ENSG00000158125/ENSG00000129167/ENSG00000147576/ENSG00000197580/ENSG00000140263/ENSG00000140465/ENSG00000137857/ENSG00000007952/ENSG00000076258/ENSG00000161905/ENSG00000159348/ENSG00000267855/ENSG00000104812</td></tr>
+			
+		  
+			
+				<tr><td>BP</td><td>GO:0055085</td><td>transmembrane transport</td><td>68/760</td><td>266/3806</td><td>0.0126501757478717</td><td>0.409865694231042</td><td>ENSG00000102452/ENSG00000146477/ENSG00000111262/ENSG00000146411/ENSG00000133107/ENSG00000184408/ENSG00000164794/ENSG00000140015/ENSG00000117620/ENSG00000155465/ENSG00000171885/ENSG00000173262/ENSG00000100170/ENSG00000163581/ENSG00000101194/ENSG00000118160/ENSG00000213901/ENSG00000151229/ENSG00000102057/ENSG00000165272/ENSG00000160326/ENSG00000166111/ENSG00000144285/ENSG00000083067/ENSG00000001626/ENSG00000162426/ENSG00000158445/ENSG00000162975/ENSG00000099960/ENSG00000171126/ENSG00000072315/ENSG00000153253/ENSG00000162695/ENSG00000110719/ENSG00000198216/ENSG00000137571/ENSG00000121270/ENSG00000139508/ENSG00000123104/ENSG00000158296/ENSG00000100156/ENSG00000005471/ENSG00000181804/ENSG00000143595/ENSG00000104321/ENSG00000173208/ENSG00000136546/ENSG00000165995/ENSG00000150995/ENSG00000156486/ENSG00000110660/ENSG00000197496/ENSG00000107819/ENSG00000158882/ENSG00000089558/ENSG00000104154/ENSG00000113504/ENSG00000141424/ENSG00000131100/ENSG00000100678/ENSG00000143570/ENSG00000183023/ENSG00000184908/ENSG00000137672/ENSG00000157800/ENSG00000187688/ENSG00000169026/ENSG00000117394</td><td>NALCN/SLC22A3/KCNA1/SLC2A12/TRPC4/KCND2/KCNV1/KCNH5/SLC35A3/SLC7A7/AQP4/SLC2A14/SLC5A1/SLC2A2/SLC17A9/SLC8A2/SLC23A3/SLC2A13/KCND1/AQP3/SLC2A6/SVOP/SCN1A/TRPM3/CFTR/SLC45A1/KCNB1/KCNF1/SLC7A4/KCNG3/TRPC5/SCN3A/SLC30A7/TCIRG1/CACNA1E/SLCO5A1/ABCC11/SLC46A3/ITPR2/SLC13A3/SLC16A8/ABCB4/SLC9A9/AQP10/TRPA1/ABCD2/SCN7A/CACNB2/ITPR1/KCNS2/SLC35F2/SLC2A10/SFXN3/TOMM40L/KCNH4/SLC30A4/SLC12A7/SLC39A6/ATP6V1E1/SLC8A3/SLC39A1/SLC8A1/CLCNKB/TRPC6/SLC37A3/TRPV2/SLC49A3/SLC2A1</td><td>68</td><td>49</td><td>ENSG00000102452/ENSG00000146477/ENSG00000111262/ENSG00000133107/ENSG00000184408/ENSG00000140015/ENSG00000117620/ENSG00000155465/ENSG00000171885/ENSG00000101194/ENSG00000118160/ENSG00000213901/ENSG00000151229/ENSG00000102057/ENSG00000165272/ENSG00000160326/ENSG00000083067/ENSG00000162426/ENSG00000158445/ENSG00000162975/ENSG00000099960/ENSG00000171126/ENSG00000072315/ENSG00000153253/ENSG00000162695/ENSG00000110719/ENSG00000198216/ENSG00000137571/ENSG00000139508/ENSG00000123104/ENSG00000158296/ENSG00000100156/ENSG00000181804/ENSG00000104321/ENSG00000136546/ENSG00000150995/ENSG00000156486/ENSG00000110660/ENSG00000197496/ENSG00000107819/ENSG00000158882/ENSG00000089558/ENSG00000104154/ENSG00000141424/ENSG00000143570/ENSG00000137672/ENSG00000157800/ENSG00000187688/ENSG00000117394</td><td>19</td><td>ENSG00000146411/ENSG00000164794/ENSG00000173262/ENSG00000100170/ENSG00000163581/ENSG00000166111/ENSG00000144285/ENSG00000001626/ENSG00000121270/ENSG00000005471/ENSG00000143595/ENSG00000173208/ENSG00000165995/ENSG00000113504/ENSG00000131100/ENSG00000100678/ENSG00000183023/ENSG00000184908/ENSG00000169026</td></tr>
+			
+		  
+		</table>
+	</div>				
+	</p>
+<div style="width:1100px;height:115px;overflow-y:scroll;overflow-x:hidden;">
+        <p class="tremark">
+
+		
+        (1) Category：GO数据库子类<br />
+        (2) ID：GO编号<br />
+        (3) Description：GO编号对应的功能描述<br />
+        (4) GeneRatio：注释到GO编号上的差异基因数与差异基因总数的比值<br />
+        (5) BgRatio：注释到GO编号上的背景基因数与背景基因总数的比值<br />
+        (6) pvalue：显著性检验p值<br />
+        (7) padj：校正后的p值<br />
+		
+
+		
+</div>
+        </p>
+	<br />
+
+
+</div>
+
+<!------------------------------5.1 GO富集分析------------------------------>
+<div id="page">
+	
+	<p class="paragraph">根据GO富集分析结果，从BP，CC，MF3类选取前20个Term绘制柱状图进行展示，若不足20个，则绘制所有Term信息，结果如下图所示。</p>
+    
+    
+		
+	<p class="center">
+
+<div class="albumSlider">
+			<div class="fullview">
+				<img src=Ex49_HETvsWT/>
+			</div>
+			<div class="slider">
+				<div class="button movebackward" title="向上滚动">
+				</div>
+				<div class="imglistwrap">
+					<ul class="imglist">
+						
+						<li><a id="example2" href=Ex49_HETvsWT ><img src=files/DiffEnrich/GO/Ex49_HETvsWT.bar.png/></a></li>
+						
+						<li><a id="example2" href=Ex49_HOMvsWT ><img src=files/DiffEnrich/GO/Ex49_HOMvsWT.bar.png/></a></li>
+						
+						<li><a id="example2" href=Ex327_HETvsWT ><img src=files/DiffEnrich/GO/Ex327_HETvsWT.bar.png/></a></li>
+						
+						<li><a id="example2" href=Ex327_HOMvsWT ><img src=files/DiffEnrich/GO/Ex327_HOMvsWT.bar.png/></a></li>
+						
+						<li><a id="example2" href=Ex49vsWT ><img src=files/DiffEnrich/GO/Ex49vsWT.bar.png/></a></li>
+						
+						<li><a id="example2" href=Ex327vsWT ><img src=files/DiffEnrich/GO/Ex327vsWT.bar.png/></a></li>
+						
+						<li><a id="example2" href=Ex327vsEx49 ><img src=files/DiffEnrich/GO/Ex327vsEx49.bar.png/></a></li>
+						
+						<li><a id="example2" href=Ex49_HOMvsEx49_HET ><img src=files/DiffEnrich/GO/Ex49_HOMvsEx49_HET.bar.png/></a></li>
+						
+						<li><a id="example2" href=Ex327_HOMvsEx327_HET ><img src=files/DiffEnrich/GO/Ex327_HOMvsEx327_HET.bar.png/></a></li>
+						
+						<li><a id="example2" href=Ex327_HETvsEx49_HET ><img src=files/DiffEnrich/GO/Ex327_HETvsEx49_HET.bar.png/></a></li>
+						
+						<li><a id="example2" href=Ex327_HOMvsEx49_HOM ><img src=files/DiffEnrich/GO/Ex327_HOMvsEx49_HOM.bar.png/></a></li>
+						
+					</ul>
+				</div>
+				<div class="button moveforward" title="向下滚动">
+				</div>
+			</div>
+		</div>	
+	
+	</p>
+
+	<p class="name_fig">图6.2 GO富集柱状图</p>
+    
+
+	
+	<p class="cenmark">横坐标为 GO 三个大类的下一层级的 GO term，纵坐标为注释到该 term 下（包括该 term 的子 term）的差异基因个数，及其个数占被注释上的差异基因总数的比例。3 种不同分类表示 GO term 的三种基本分类（从左往右依次为生物学过程，细胞成分，分子功能）。</p>
+
+	
+	
+	<p class="paragraph">一条GO term上可能会富集到上百个基因，或者是众多基因会富集到众多通路中，影响图片整体美观感，因此本结题报告只展示示例图，该绘图文件会放置在该部分对应的结果文件夹中，您可根据自己感兴趣的GO term和差异基因去magic平台上进行绘图，KEGG富集同理。</p>
+	<p class="center">
+	
+		<img class="norma11" style="width:20%;height:18vw;text-align:center" src="files/DiffEnrich/GO/demo.rich.png" />
+
+	</p>
+	<p class="name_fig">图6.3 GO富集圈图</p>
+		<p class="cenmark">图片右侧不同颜色代表不同GO term，左侧对应富集在该GO term上的基因，表达上调基因用红色点表示，下调基因用绿色点表示。</p>
+		
+	<br />
+
+	
+	<p class="center">
+
+<div class="albumSlider">
+			<div class="fullview">
+				<img src=Ex49_HETvsWT_all/>
+			</div>
+			<div class="slider">
+				<div class="button movebackward" title="向上滚动">
+				</div>
+				<div class="imglistwrap">
+					<ul class="imglist">
+						
+						<li><a id="example2" href=Ex49_HETvsWT_all ><img src=files/DiffEnrich/GO/Ex49_HETvsWT.dot.png/></a></li>
+						
+						<li><a id="example2" href=Ex49_HOMvsWT_all ><img src=files/DiffEnrich/GO/Ex49_HOMvsWT.dot.png/></a></li>
+						
+						<li><a id="example2" href=Ex327_HETvsWT_all ><img src=files/DiffEnrich/GO/Ex327_HETvsWT.dot.png/></a></li>
+						
+						<li><a id="example2" href=Ex327_HOMvsWT_all ><img src=files/DiffEnrich/GO/Ex327_HOMvsWT.dot.png/></a></li>
+						
+						<li><a id="example2" href=Ex49vsWT_all ><img src=files/DiffEnrich/GO/Ex49vsWT.dot.png/></a></li>
+						
+						<li><a id="example2" href=Ex327vsWT_all ><img src=files/DiffEnrich/GO/Ex327vsWT.dot.png/></a></li>
+						
+						<li><a id="example2" href=Ex327vsEx49_all ><img src=files/DiffEnrich/GO/Ex327vsEx49.dot.png/></a></li>
+						
+						<li><a id="example2" href=Ex49_HOMvsEx49_HET_all ><img src=files/DiffEnrich/GO/Ex49_HOMvsEx49_HET.dot.png/></a></li>
+						
+						<li><a id="example2" href=Ex327_HOMvsEx327_HET_all ><img src=files/DiffEnrich/GO/Ex327_HOMvsEx327_HET.dot.png/></a></li>
+						
+						<li><a id="example2" href=Ex327_HETvsEx49_HET_all ><img src=files/DiffEnrich/GO/Ex327_HETvsEx49_HET.dot.png/></a></li>
+						
+						<li><a id="example2" href=Ex327_HOMvsEx49_HOM_all ><img src=files/DiffEnrich/GO/Ex327_HOMvsEx49_HOM.dot.png/></a></li>
+						
+					</ul>
+				</div>
+				<div class="button moveforward" title="向下滚动">
+				</div>
+			</div>
+		</div>	
+	
+	</p>
+	<p class="name_fig">图6.3 GO富集散点图</p>
+	<p class="cenmark">横坐标为富集到该条目中基因个数占该条目总基因个数的比例，纵坐标为GO条目，每个点表示该条目的富集程度，颜色越趋近于红色表示富集程度越高。每个点的大小表示富集到该条目的基因个数</p>
+        <br />
+	<br />
+	
+</div>
+
+<!----------------------------------5.3 KEGG富集分析---------------------------------->
+	<a name="通路富集结果列表"><h4 id="result52">6.2 KEGG通路富集分析</h4></a>
+	<p class="paragraph">在生物体内，不同基因相互协调行使其生物学功能，通过Pathway显著性富集能确定候选靶基因参与的最主要生化代谢途径和信号转导途径。KEGG（Kyoto Encyclopedia of Genes and Genomes）是有关Pathway的主要公共数据库。Pathway显著性富集分析以KEGG Pathway为单位，应用超几何检验，找出与整个基因组背景相比，在候选靶基因中显著性富集的Pathway。同样的，KEGG通路富集以p value或padj小于0.05为显著富集。</p>
+</p>
+	
+	<p class="paragraph">mRNA基因表达水平KEGG富集分析见结果文件：6.DiffEnrich_mRNA/Group2_vs_Group1/KEGG，如下图所示。</p>
+
+</br>
+	<p class="name_fig">表6.2 KEGG富集列表</p>
+	<p class="center">
+	<div id="tb">
+		<table class="tb1">
+			
+			
+				<tr><th>KEGGID</th><th>Description</th><th>GeneRatio</th><th>BgRatio</th><th>pvalue</th><th>padj</th><th>geneID</th><th>geneName</th><th>keggID</th><th>Count</th><th>Up</th><th>Up_Gene_id</th><th>Down</th><th>Down_Gene_id</th></tr>
+			
+		  
+			
+				<tr><td>hsa04974</td><td>Protein digestion and absorption</td><td>49/1365</td><td>78/6999</td><td>4.42332143236358e-17</td><td>1.47296603697707e-14</td><td>ENSG00000171812/ENSG00000163359/ENSG00000049540/ENSG00000164692/ENSG00000160963/ENSG00000108821/ENSG00000187955/ENSG00000060718/ENSG00000197635/ENSG00000080573/ENSG00000168542/ENSG00000206384/ENSG00000092758/ENSG00000049089/ENSG00000142173/ENSG00000130635/ENSG00000115474/ENSG00000112280/ENSG00000155465/ENSG00000187498/ENSG00000105281/ENSG00000118160/ENSG00000124749/ENSG00000018625/ENSG00000196739/ENSG00000142156/ENSG00000196549/ENSG00000204291/ENSG00000091704/ENSG00000069849/ENSG00000134871/ENSG00000229183/ENSG00000188517/ENSG00000082293/ENSG00000130234/ENSG00000106688/ENSG00000114270/ENSG00000168003/ENSG00000053918/ENSG00000204262/ENSG00000139219/ENSG00000204248/ENSG00000065618/ENSG00000101892/ENSG00000100678/ENSG00000183023/ENSG00000105409/ENSG00000084636/ENSG00000138079</td><td>COL8A2/COL6A3/ELN/COL1A2/COL26A1/COL1A1/COL14A1/COL11A1/DPP4/COL5A3/COL3A1/COL6A6/COL9A3/COL9A2/COL6A2/COL5A1/KCNJ13/COL9A1/SLC7A7/COL4A1/SLC1A5/SLC8A2/COL21A1/ATP1A2/COL27A1/COL6A1/MME/COL15A1/CPA1/ATP1B3/COL4A2/PGA4/COL25A1/COL19A1/ACE2/SLC1A1/COL7A1/SLC3A2/KCNQ1/COL5A2/COL2A1/COL11A2/COL17A1/ATP1B4/SLC8A3/SLC8A1/ATP1A3/COL16A1/SLC3A1</td><td>hsa:1296/hsa:1293/hsa:2006/hsa:1278/hsa:136227/hsa:1277/hsa:7373/hsa:1301/hsa:1803/hsa:50509/hsa:1281/hsa:131873/hsa:1299/hsa:1298/hsa:1292/hsa:1289/hsa:3769/hsa:1297/hsa:9056/hsa:1282/hsa:6510/hsa:6543/hsa:81578/hsa:477/hsa:85301/hsa:1291/hsa:4311/hsa:1306/hsa:1357/hsa:483/hsa:1284/hsa:643834/hsa:84570/hsa:1310/hsa:59272/hsa:6505/hsa:1294/hsa:6520/hsa:3784/hsa:1290/hsa:1280/hsa:1302/hsa:1308/hsa:23439/hsa:6547/hsa:6546/hsa:478/hsa:1307/hsa:6519</td><td>49</td><td>34</td><td>ENSG00000171812/ENSG00000163359/ENSG00000049540/ENSG00000164692/ENSG00000160963/ENSG00000108821/ENSG00000187955/ENSG00000060718/ENSG00000197635/ENSG00000080573/ENSG00000168542/ENSG00000206384/ENSG00000092758/ENSG00000049089/ENSG00000142173/ENSG00000130635/ENSG00000115474/ENSG00000155465/ENSG00000187498/ENSG00000105281/ENSG00000118160/ENSG00000196739/ENSG00000142156/ENSG00000196549/ENSG00000204291/ENSG00000069849/ENSG00000134871/ENSG00000229183/ENSG00000188517/ENSG00000106688/ENSG00000168003/ENSG00000204262/ENSG00000084636/ENSG00000138079</td><td>15</td><td>ENSG00000112280/ENSG00000124749/ENSG00000018625/ENSG00000091704/ENSG00000082293/ENSG00000130234/ENSG00000114270/ENSG00000053918/ENSG00000139219/ENSG00000204248/ENSG00000065618/ENSG00000101892/ENSG00000100678/ENSG00000183023/ENSG00000105409</td></tr>
+			
+		  
+			
+				<tr><td>hsa04060</td><td>Cytokine-cytokine receptor interaction</td><td>68/1365</td><td>176/6999</td><td>2.0166899738393e-09</td><td>3.35778880644243e-07</td><td>ENSG00000115594/ENSG00000115604/ENSG00000145623/ENSG00000137033/ENSG00000125378/ENSG00000108691/ENSG00000249624/ENSG00000064300/ENSG00000104998/ENSG00000153162/ENSG00000095752/ENSG00000143869/ENSG00000010610/ENSG00000266524/ENSG00000163083/ENSG00000115602/ENSG00000173535/ENSG00000168685/ENSG00000156466/ENSG00000163739/ENSG00000131080/ENSG00000008517/ENSG00000125965/ENSG00000106799/ENSG00000160712/ENSG00000100385/ENSG00000263761/ENSG00000016402/ENSG00000146072/ENSG00000175505/ENSG00000161921/ENSG00000111321/ENSG00000161955/ENSG00000288796/ENSG00000006210/ENSG00000122641/ENSG00000164509/ENSG00000151882/ENSG00000272980/ENSG00000113594/ENSG00000130513/ENSG00000127743/ENSG00000077238/ENSG00000276070/ENSG00000180871/ENSG00000117400/ENSG00000049249/ENSG00000105329/ENSG00000164761/ENSG00000163737/ENSG00000120949/ENSG00000125657/ENSG00000138379/ENSG00000177663/ENSG00000103522/ENSG00000115598/ENSG00000108688/ENSG00000124875/ENSG00000163734/ENSG00000163217/ENSG00000157368/ENSG00000067182/ENSG00000169429/ENSG00000138696/ENSG00000158813/ENSG00000113494/ENSG00000129048/ENSG00000104899</td><td>IL1R1/IL18R1/OSMR/IL33/BMP4/CCL2/IFNAR2-IL10RB/NGFR/IL27RA/BMP6/IL11/GDF7/CD4/GDF10/INHBB/IL1RL1/TNFRSF10C/IL7R/GDF6/CXCL1/EDA2R/IL32/GDF5/TGFBR1/IL6R/IL2RB/GDF2/IL20RA/TNFRSF21/CLCF1/CXCL16/LTBR/TNFSF13/ENSG00000288796/CX3CL1/INHBA/IL31RA/CCL28/ENSG00000272980/LIFR/GDF15/IL17B/IL4R/CCL4L2/CXCR2/MPL/TNFRSF9/TGFB1/TNFRSF11B/PF4/TNFRSF8/TNFSF9/MSTN/IL17RA/IL21R/IL1RL2/CCL7/CXCL6/CXCL3/BMP10/IL34/TNFRSF1A/CXCL8/BMPR1B/EDA/PRLR/ACKR4/AMH</td><td>hsa:3554/hsa:8809/hsa:9180/hsa:90865/hsa:652/hsa:6347/hsa:3455/hsa:4804/hsa:9466/hsa:654/hsa:3589/hsa:151449/hsa:920/hsa:2662/hsa:3625/hsa:9173/hsa:8794/hsa:3575/hsa:392255/hsa:2919/hsa:60401/hsa:9235/hsa:8200/hsa:7046/hsa:3570/hsa:3560/hsa:2658/hsa:53832/hsa:27242/hsa:23529/hsa:58191/hsa:4055/hsa:8741/hsa:5473/hsa:6376/hsa:3624/hsa:133396/hsa:56477/hsa:1235/hsa:3977/hsa:9518/hsa:27190/hsa:3566/hsa:6351/hsa:3579/hsa:4352/hsa:3604/hsa:7040/hsa:4982/hsa:5196/hsa:943/hsa:8744/hsa:2660/hsa:23765/hsa:50615/hsa:8808/hsa:6354/hsa:6372/hsa:2921/hsa:27302/hsa:146433/hsa:7132/hsa:3576/hsa:658/hsa:1896/hsa:5618/hsa:51554/hsa:268</td><td>68</td><td>59</td><td>ENSG00000115594/ENSG00000115604/ENSG00000145623/ENSG00000137033/ENSG00000125378/ENSG00000108691/ENSG00000249624/ENSG00000064300/ENSG00000104998/ENSG00000153162/ENSG00000095752/ENSG00000143869/ENSG00000010610/ENSG00000266524/ENSG00000163083/ENSG00000115602/ENSG00000168685/ENSG00000156466/ENSG00000163739/ENSG00000008517/ENSG00000125965/ENSG00000106799/ENSG00000160712/ENSG00000100385/ENSG00000146072/ENSG00000175505/ENSG00000161921/ENSG00000111321/ENSG00000161955/ENSG00000288796/ENSG00000122641/ENSG00000151882/ENSG00000272980/ENSG00000113594/ENSG00000127743/ENSG00000077238/ENSG00000276070/ENSG00000180871/ENSG00000049249/ENSG00000105329/ENSG00000164761/ENSG00000163737/ENSG00000120949/ENSG00000125657/ENSG00000138379/ENSG00000177663/ENSG00000103522/ENSG00000115598/ENSG00000108688/ENSG00000124875/ENSG00000163734/ENSG00000163217/ENSG00000157368/ENSG00000067182/ENSG00000169429/ENSG00000138696/ENSG00000113494/ENSG00000129048/ENSG00000104899</td><td>9</td><td>ENSG00000173535/ENSG00000131080/ENSG00000263761/ENSG00000016402/ENSG00000006210/ENSG00000164509/ENSG00000130513/ENSG00000117400/ENSG00000158813</td></tr>
+			
+		  
+			
+				<tr><td>hsa04514</td><td>Cell adhesion molecules</td><td>48/1365</td><td>116/6999</td><td>4.03755427894653e-08</td><td>4.48168524963065e-06</td><td>ENSG00000179542/ENSG00000165300/ENSG00000021645/ENSG00000115232/ENSG00000162706/ENSG00000039068/ENSG00000012124/ENSG00000184697/ENSG00000179915/ENSG00000077943/ENSG00000010610/ENSG00000204592/ENSG00000178235/ENSG00000162631/ENSG00000144668/ENSG00000169439/ENSG00000185985/ENSG00000197646/ENSG00000234745/ENSG00000154721/ENSG00000090339/ENSG00000110076/ENSG00000174469/ENSG00000121871/ENSG00000142949/ENSG00000169760/ENSG00000157224/ENSG00000154654/ENSG00000149564/ENSG00000197965/ENSG00000196358/ENSG00000148948/ENSG00000160223/ENSG00000018236/ENSG00000197471/ENSG00000169992/ENSG00000163531/ENSG00000038427/ENSG00000223865/ENSG00000106404/ENSG00000120217/ENSG00000076662/ENSG00000184564/ENSG00000129910/ENSG00000204642/ENSG00000234469/ENSG00000213937/ENSG00000105426</td><td>SLITRK4/SLITRK5/NRXN3/ITGA4/CADM3/CDH1/CD22/CLDN6/NRXN1/ITGA8/CD4/HLA-E/SLITRK1/NTNG1/ITGA9/SDC2/SLITRK2/PDCD1LG2/HLA-B/JAM2/ICAM1/NRXN2/CNTNAP2/SLITRK3/PTPRF/NLGN1/CLDN12/NCAM2/ESAM/MPZL1/NTNG2/LRRC4C/ICOSLG/CNTN1/SPN/NLGN2/NFASC/VCAN/HLA-DPB1/CLDN15/CD274/ICAM3/SLITRK6/CDH15/HLA-F/CLDN34/CLDN9/PTPRS</td><td>hsa:139065/hsa:26050/hsa:9379/hsa:3676/hsa:57863/hsa:999/hsa:933/hsa:9074/hsa:9379/hsa:8516/hsa:920/hsa:3133/hsa:114798/hsa:22854/hsa:3680/hsa:6383/hsa:84631/hsa:80380/hsa:3106/hsa:58494/hsa:3383/hsa:9379/hsa:26047/hsa:22865/hsa:5792/hsa:22871/hsa:9069/hsa:4685/hsa:90952/hsa:9019/hsa:84628/hsa:57689/hsa:23308/hsa:1272/hsa:6693/hsa:57555/hsa:23114/hsa:1462/hsa:3115/hsa:24146/hsa:29126/hsa:3385/hsa:84189/hsa:1013/hsa:3134/hsa:100288814/hsa:9080/hsa:5802</td><td>48</td><td>42</td><td>ENSG00000179542/ENSG00000165300/ENSG00000021645/ENSG00000115232/ENSG00000162706/ENSG00000039068/ENSG00000012124/ENSG00000184697/ENSG00000179915/ENSG00000077943/ENSG00000010610/ENSG00000204592/ENSG00000178235/ENSG00000162631/ENSG00000144668/ENSG00000169439/ENSG00000185985/ENSG00000197646/ENSG00000234745/ENSG00000154721/ENSG00000090339/ENSG00000110076/ENSG00000174469/ENSG00000121871/ENSG00000142949/ENSG00000157224/ENSG00000154654/ENSG00000149564/ENSG00000197965/ENSG00000196358/ENSG00000148948/ENSG00000169992/ENSG00000163531/ENSG00000038427/ENSG00000223865/ENSG00000106404/ENSG00000120217/ENSG00000076662/ENSG00000184564/ENSG00000129910/ENSG00000204642/ENSG00000105426</td><td>6</td><td>ENSG00000169760/ENSG00000160223/ENSG00000018236/ENSG00000197471/ENSG00000234469/ENSG00000213937</td></tr>
+			
+		  
+			
+				<tr><td>hsa04151</td><td>PI3K-Akt signaling pathway</td><td>98/1365</td><td>305/6999</td><td>5.90710088910669e-08</td><td>4.91766149018132e-06</td><td>ENSG00000167393/ENSG00000186340/ENSG00000163359/ENSG00000164692/ENSG00000198121/ENSG00000113721/ENSG00000137809/ENSG00000108821/ENSG00000017427/ENSG00000115232/ENSG00000118785/ENSG00000115414/ENSG00000157613/ENSG00000186469/ENSG00000145623/ENSG00000019991/ENSG00000181104/ENSG00000050555/ENSG00000206384/ENSG00000143590/ENSG00000118515/ENSG00000120156/ENSG00000146648/ENSG00000249624/ENSG00000092758/ENSG00000064300/ENSG00000213949/ENSG00000102755/ENSG00000105639/ENSG00000068078/ENSG00000134853/ENSG00000049089/ENSG00000113578/ENSG00000142173/ENSG00000077943/ENSG00000127920/ENSG00000041982/ENSG00000112280/ENSG00000136997/ENSG00000148053/ENSG00000144668/ENSG00000168685/ENSG00000187498/ENSG00000147145/ENSG00000164867/ENSG00000168243/ENSG00000101280/ENSG00000137462/ENSG00000166913/ENSG00000136869/ENSG00000251246/ENSG00000100889/ENSG00000176697/ENSG00000137801/ENSG00000164171/ENSG00000109072/ENSG00000160712/ENSG00000100385/ENSG00000142156/ENSG00000124762/ENSG00000064547/ENSG00000154188/ENSG00000128052/ENSG00000169231/ENSG00000134871/ENSG00000185652/ENSG00000077238/ENSG00000117020/ENSG00000157404/ENSG00000101049/ENSG00000123358/ENSG00000065361/ENSG00000100311/ENSG00000153094/ENSG00000225950/ENSG00000096968/ENSG00000114450/ENSG00000143384/ENSG00000169047/ENSG00000141510/ENSG00000109321/ENSG00000139219/ENSG00000171105/ENSG00000128245/ENSG00000165197/ENSG00000101680/ENSG00000112769/ENSG00000113494/ENSG00000182158/ENSG00000136457/ENSG00000091879/ENSG00000161638/ENSG00000168209/ENSG00000140992/ENSG00000145431/ENSG00000162409/ENSG00000118260/ENSG00000104812</td><td>PPP2R3B/THBS2/COL6A3/COL1A2/LPAR1/PDGFRB/ITGA11/COL1A1/IGF1/ITGA4/SPP1/FN1/CREB3L1/GNG2/OSMR/HGF/F2R/LAMC3/COL6A6/EFNA3/SGK1/TEK/EGFR/IFNAR2-IL10RB/COL9A3/NGFR/ITGA1/FLT1/JAK3/FGFR3/PDGFRA/COL9A2/FGF1/COL6A2/ITGA8/GNG11/TNC/COL9A1/MYC/NTRK2/ITGA9/IL7R/COL4A1/LPAR4/NOS3/GNG4/ANGPT4/TLR2/YWHAB/TLR4/EFNA4-EFNA3/PCK2/BDNF/THBS1/ITGA2/VTN/IL6R/IL2RB/COL6A1/CDKN1A/LPAR2/ANGPT1/KDR/THBS3/COL4A2/NTF3/IL4R/AKT3/KIT/SGK2/NR4A1/ERBB3/PDGFB/BCL2L11/NTF4/JAK2/GNB4/MCL1/IRS1/TP53/AREG/COL2A1/INSR/YWHAH/VEGFD/LAMA1/LAMA4/PRLR/CREB3L2/CHAD/ANGPT2/ITGA5/DDIT4/PDPK1/PDGFC/PRKAA2/CREB1/GYS1</td><td>hsa:28227/hsa:7058/hsa:1293/hsa:1278/hsa:1902/hsa:5159/hsa:22801/hsa:1277/hsa:3479/hsa:3676/hsa:6696/hsa:2335/hsa:90993/hsa:54331/hsa:9180/hsa:3082/hsa:2149/hsa:10319/hsa:131873/hsa:1944/hsa:6446/hsa:7010/hsa:1956/hsa:3455/hsa:1299/hsa:4804/hsa:3672/hsa:2321/hsa:3718/hsa:2261/hsa:5156/hsa:1298/hsa:2246/hsa:1292/hsa:8516/hsa:2791/hsa:3371/hsa:1297/hsa:4609/hsa:4915/hsa:3680/hsa:3575/hsa:1282/hsa:2846/hsa:4846/hsa:2786/hsa:51378/hsa:7097/hsa:7529/hsa:7099/hsa:1944/hsa:5106/hsa:627/hsa:7057/hsa:3673/hsa:7448/hsa:3570/hsa:3560/hsa:1291/hsa:1026/hsa:9170/hsa:284/hsa:3791/hsa:7059/hsa:1284/hsa:4908/hsa:3566/hsa:10000/hsa:3815/hsa:10110/hsa:3164/hsa:2065/hsa:5155/hsa:10018/hsa:4909/hsa:3717/hsa:59345/hsa:4170/hsa:3667/hsa:7157/hsa:374/hsa:1280/hsa:3643/hsa:7533/hsa:2277/hsa:284217/hsa:3910/hsa:5618/hsa:64764/hsa:1101/hsa:285/hsa:3678/hsa:54541/hsa:5170/hsa:56034/hsa:5563/hsa:1385/hsa:2997</td><td>98</td><td>80</td><td>ENSG00000167393/ENSG00000186340/ENSG00000163359/ENSG00000164692/ENSG00000198121/ENSG00000113721/ENSG00000137809/ENSG00000108821/ENSG00000017427/ENSG00000115232/ENSG00000118785/ENSG00000115414/ENSG00000157613/ENSG00000186469/ENSG00000145623/ENSG00000019991/ENSG00000181104/ENSG00000050555/ENSG00000206384/ENSG00000143590/ENSG00000118515/ENSG00000120156/ENSG00000146648/ENSG00000249624/ENSG00000092758/ENSG00000064300/ENSG00000213949/ENSG00000102755/ENSG00000105639/ENSG00000068078/ENSG00000134853/ENSG00000049089/ENSG00000142173/ENSG00000077943/ENSG00000127920/ENSG00000041982/ENSG00000136997/ENSG00000148053/ENSG00000144668/ENSG00000168685/ENSG00000187498/ENSG00000147145/ENSG00000164867/ENSG00000168243/ENSG00000101280/ENSG00000137462/ENSG00000166913/ENSG00000136869/ENSG00000100889/ENSG00000176697/ENSG00000137801/ENSG00000164171/ENSG00000109072/ENSG00000160712/ENSG00000100385/ENSG00000142156/ENSG00000064547/ENSG00000154188/ENSG00000169231/ENSG00000134871/ENSG00000185652/ENSG00000077238/ENSG00000117020/ENSG00000157404/ENSG00000101049/ENSG00000123358/ENSG00000100311/ENSG00000225950/ENSG00000114450/ENSG00000143384/ENSG00000169047/ENSG00000141510/ENSG00000109321/ENSG00000113494/ENSG00000182158/ENSG00000091879/ENSG00000161638/ENSG00000168209/ENSG00000145431/ENSG00000118260</td><td>18</td><td>ENSG00000113578/ENSG00000112280/ENSG00000251246/ENSG00000124762/ENSG00000128052/ENSG00000065361/ENSG00000153094/ENSG00000096968/ENSG00000139219/ENSG00000171105/ENSG00000128245/ENSG00000165197/ENSG00000101680/ENSG00000112769/ENSG00000136457/ENSG00000140992/ENSG00000162409/ENSG00000104812</td></tr>
+			
+		  
+			
+				<tr><td>hsa04512</td><td>ECM-receptor interaction</td><td>36/1365</td><td>80/6999</td><td>1.66007455703065e-07</td><td>1.10560965498241e-05</td><td>ENSG00000186340/ENSG00000163359/ENSG00000164692/ENSG00000137809/ENSG00000108821/ENSG00000115232/ENSG00000118785/ENSG00000115414/ENSG00000050555/ENSG00000206384/ENSG00000092758/ENSG00000213949/ENSG00000026508/ENSG00000049089/ENSG00000142173/ENSG00000077943/ENSG00000041982/ENSG00000112280/ENSG00000144668/ENSG00000187498/ENSG00000168743/ENSG00000135218/ENSG00000137801/ENSG00000164171/ENSG00000122012/ENSG00000109072/ENSG00000185518/ENSG00000142156/ENSG00000169231/ENSG00000134871/ENSG00000139219/ENSG00000101680/ENSG00000112769/ENSG00000136457/ENSG00000161638/ENSG00000150893</td><td>THBS2/COL6A3/COL1A2/ITGA11/COL1A1/ITGA4/SPP1/FN1/LAMC3/COL6A6/COL9A3/ITGA1/CD44/COL9A2/COL6A2/ITGA8/TNC/COL9A1/ITGA9/COL4A1/NPNT/CD36/THBS1/ITGA2/SV2C/VTN/SV2B/COL6A1/THBS3/COL4A2/COL2A1/LAMA1/LAMA4/CHAD/ITGA5/FREM2</td><td>hsa:7058/hsa:1293/hsa:1278/hsa:22801/hsa:1277/hsa:3676/hsa:6696/hsa:2335/hsa:10319/hsa:131873/hsa:1299/hsa:3672/hsa:960/hsa:1298/hsa:1292/hsa:8516/hsa:3371/hsa:1297/hsa:3680/hsa:1282/hsa:255743/hsa:948/hsa:7057/hsa:3673/hsa:22987/hsa:7448/hsa:9899/hsa:1291/hsa:7059/hsa:1284/hsa:1280/hsa:284217/hsa:3910/hsa:1101/hsa:3678/hsa:341640</td><td>36</td><td>28</td><td>ENSG00000186340/ENSG00000163359/ENSG00000164692/ENSG00000137809/ENSG00000108821/ENSG00000115232/ENSG00000118785/ENSG00000115414/ENSG00000050555/ENSG00000206384/ENSG00000092758/ENSG00000213949/ENSG00000026508/ENSG00000049089/ENSG00000142173/ENSG00000077943/ENSG00000041982/ENSG00000144668/ENSG00000187498/ENSG00000137801/ENSG00000164171/ENSG00000122012/ENSG00000109072/ENSG00000142156/ENSG00000169231/ENSG00000134871/ENSG00000161638/ENSG00000150893</td><td>8</td><td>ENSG00000112280/ENSG00000168743/ENSG00000135218/ENSG00000185518/ENSG00000139219/ENSG00000101680/ENSG00000112769/ENSG00000136457</td></tr>
+			
+		  
+			
+				<tr><td>hsa04080</td><td>Neuroactive ligand-receptor interaction</td><td>82/1365</td><td>251/6999</td><td>3.38563203837373e-07</td><td>1.87902578129742e-05</td><td>ENSG00000180739/ENSG00000164220/ENSG00000152578/ENSG00000198121/ENSG00000124205/ENSG00000171522/ENSG00000065325/ENSG00000196277/ENSG00000155511/ENSG00000181104/ENSG00000100739/ENSG00000106018/ENSG00000102468/ENSG00000128165/ENSG00000164251/ENSG00000102287/ENSG00000006128/ENSG00000112164/ENSG00000152208/ENSG00000148680/ENSG00000105464/ENSG00000160013/ENSG00000181195/ENSG00000164418/ENSG00000147437/ENSG00000179603/ENSG00000147145/ENSG00000180772/ENSG00000152822/ENSG00000145864/ENSG00000198785/ENSG00000120251/ENSG00000078549/ENSG00000122585/ENSG00000135312/ENSG00000196639/ENSG00000166863/ENSG00000175697/ENSG00000198049/ENSG00000186297/ENSG00000168830/ENSG00000157005/ENSG00000122420/ENSG00000197696/ENSG00000064547/ENSG00000166148/ENSG00000089041/ENSG00000168412/ENSG00000163288/ENSG00000163394/ENSG00000114812/ENSG00000180616/ENSG00000166206/ENSG00000188582/ENSG00000176358/ENSG00000135914/ENSG00000109255/ENSG00000198822/ENSG00000171189/ENSG00000145040/ENSG00000180720/ENSG00000183971/ENSG00000188958/ENSG00000248329/ENSG00000149295/ENSG00000022355/ENSG00000188710/ENSG00000258839/ENSG00000180155/ENSG00000134817/ENSG00000148926/ENSG00000113494/ENSG00000100300/ENSG00000187123/ENSG00000171509/ENSG00000134489/ENSG00000116032/ENSG00000171873/ENSG00000183454/ENSG00000125730/ENSG00000163285/ENSG00000170214</td><td>S1PR5/F2RL2/GRIA4/LPAR1/EDN3/PTGER4/GLP2R/GRM7/GRIA1/F2R/BDKRB1/VIPR2/HTR2A/ADM2/F2RL1/GABRE/TAC1/GLP1R/GRID2/HTR7/GRIN2D/PTGIR/PENK/GRIK2/GNRH1/GRM8/LPAR4/AGTR2/GRM1/GABRB2/GRIN3A/GRIA2/ADCYAP1R1/NPY/HTR1B/HRH1/TAC3/GPR156/AVPR1B/GABRA5/HTR1E/SST/PTGFR/NMB/LPAR2/AVPR1A/P2RX7/MTNR1A/GABRB1/CCKAR/VIPR1/SSTR2/GABRB3/PAQR9/TAC4/HTR2B/NMU/GRM3/GRIK1/UCN2/CHRM4/NPW/UTS2B/APELA/DRD2/GABRA1/QRFP/MC1R/LYNX1/APLNR/ADM/PRLR/TSPO/LYPD6/RXFP1/HRH4/GRIN3B/ADRA1D/GRIN2A/C3/GABRG1/ADRA1B</td><td>hsa:53637/hsa:2151/hsa:2893/hsa:1902/hsa:1908/hsa:5734/hsa:9340/hsa:2917/hsa:2890/hsa:2149/hsa:623/hsa:7434/hsa:3356/hsa:79924/hsa:2150/hsa:2564/hsa:6863/hsa:2740/hsa:2895/hsa:3363/hsa:2906/hsa:5739/hsa:5179/hsa:2898/hsa:2796/hsa:2918/hsa:2846/hsa:186/hsa:2911/hsa:2561/hsa:116443/hsa:2891/hsa:117/hsa:4852/hsa:3351/hsa:3269/hsa:6866/hsa:165829/hsa:553/hsa:2558/hsa:3354/hsa:6750/hsa:5737/hsa:4828/hsa:9170/hsa:552/hsa:5027/hsa:4543/hsa:2560/hsa:886/hsa:7433/hsa:6752/hsa:2562/hsa:344838/hsa:255061/hsa:3357/hsa:10874/hsa:2913/hsa:2897/hsa:90226/hsa:1132/hsa:283869/hsa:257313/hsa:100506013/hsa:1813/hsa:2554/hsa:347148/hsa:4157/hsa:66004/hsa:187/hsa:133/hsa:5618/hsa:706/hsa:130574/hsa:59350/hsa:59340/hsa:116444/hsa:146/hsa:2903/hsa:718/hsa:2565/hsa:147</td><td>82</td><td>67</td><td>ENSG00000180739/ENSG00000164220/ENSG00000152578/ENSG00000198121/ENSG00000124205/ENSG00000171522/ENSG00000065325/ENSG00000196277/ENSG00000155511/ENSG00000181104/ENSG00000100739/ENSG00000102468/ENSG00000128165/ENSG00000164251/ENSG00000006128/ENSG00000152208/ENSG00000148680/ENSG00000105464/ENSG00000160013/ENSG00000181195/ENSG00000164418/ENSG00000179603/ENSG00000147145/ENSG00000180772/ENSG00000152822/ENSG00000145864/ENSG00000198785/ENSG00000120251/ENSG00000078549/ENSG00000122585/ENSG00000135312/ENSG00000196639/ENSG00000166863/ENSG00000175697/ENSG00000198049/ENSG00000186297/ENSG00000168830/ENSG00000157005/ENSG00000122420/ENSG00000064547/ENSG00000089041/ENSG00000168412/ENSG00000163394/ENSG00000180616/ENSG00000166206/ENSG00000188582/ENSG00000135914/ENSG00000109255/ENSG00000198822/ENSG00000171189/ENSG00000180720/ENSG00000183971/ENSG00000248329/ENSG00000149295/ENSG00000022355/ENSG00000188710/ENSG00000258839/ENSG00000134817/ENSG00000113494/ENSG00000100300/ENSG00000187123/ENSG00000171509/ENSG00000134489/ENSG00000116032/ENSG00000183454/ENSG00000125730/ENSG00000163285</td><td>15</td><td>ENSG00000106018/ENSG00000102287/ENSG00000112164/ENSG00000147437/ENSG00000197696/ENSG00000166148/ENSG00000163288/ENSG00000114812/ENSG00000176358/ENSG00000145040/ENSG00000188958/ENSG00000180155/ENSG00000148926/ENSG00000171873/ENSG00000170214</td></tr>
+			
+		  
+			
+				<tr><td>hsa04610</td><td>Complement and coagulation cascades</td><td>26/1365</td><td>58/6999</td><td>9.41618743470623e-06</td><td>0.000412814427744093</td><td>ENSG00000164220/ENSG00000289697/ENSG00000181104/ENSG00000000971/ENSG00000100739/ENSG00000106366/ENSG00000104368/ENSG00000003436/ENSG00000149131/ENSG00000205403/ENSG00000175899/ENSG00000109072/ENSG00000099937/ENSG00000198734/ENSG00000159403/ENSG00000011422/ENSG00000127241/ENSG00000126218/ENSG00000101000/ENSG00000039537/ENSG00000182326/ENSG00000244731/ENSG00000178726/ENSG00000167711/ENSG00000131187/ENSG00000125730</td><td>F2RL2/ENSG00000289697/F2R/CFH/BDKRB1/SERPINE1/PLAT/TFPI/SERPING1/CFI/A2M/VTN/SERPIND1/F5/C1R/PLAUR/MASP1/F10/PROCR/C6/C1S/C4A/THBD/SERPINF2/F12/C3</td><td>hsa:2151/hsa:3075/hsa:2149/hsa:3075/hsa:623/hsa:5054/hsa:5327/hsa:7035/hsa:710/hsa:3426/hsa:2/hsa:7448/hsa:3053/hsa:2153/hsa:715/hsa:5329/hsa:5648/hsa:2159/hsa:10544/hsa:729/hsa:716/hsa:720/hsa:7056/hsa:5345/hsa:2161/hsa:718</td><td>26</td><td>22</td><td>ENSG00000164220/ENSG00000289697/ENSG00000181104/ENSG00000000971/ENSG00000100739/ENSG00000106366/ENSG00000104368/ENSG00000003436/ENSG00000149131/ENSG00000205403/ENSG00000175899/ENSG00000109072/ENSG00000159403/ENSG00000011422/ENSG00000126218/ENSG00000101000/ENSG00000039537/ENSG00000182326/ENSG00000244731/ENSG00000178726/ENSG00000131187/ENSG00000125730</td><td>4</td><td>ENSG00000099937/ENSG00000198734/ENSG00000127241/ENSG00000167711</td></tr>
+			
+		  
+			
+				<tr><td>hsa04020</td><td>Calcium signaling pathway</td><td>72/1365</td><td>230/6999</td><td>9.91746372958783e-06</td><td>0.000412814427744093</td><td>ENSG00000113721/ENSG00000019991/ENSG00000181104/ENSG00000100739/ENSG00000102468/ENSG00000146648/ENSG00000065534/ENSG00000102755/ENSG00000068078/ENSG00000134853/ENSG00000148680/ENSG00000170290/ENSG00000113578/ENSG00000105464/ENSG00000197943/ENSG00000143318/ENSG00000149782/ENSG00000148053/ENSG00000164096/ENSG00000164867/ENSG00000123360/ENSG00000198523/ENSG00000152822/ENSG00000118160/ENSG00000198785/ENSG00000129467/ENSG00000196639/ENSG00000198049/ENSG00000122420/ENSG00000166148/ENSG00000070961/ENSG00000138031/ENSG00000089041/ENSG00000176170/ENSG00000128052/ENSG00000166501/ENSG00000163394/ENSG00000096433/ENSG00000143772/ENSG00000198216/ENSG00000118729/ENSG00000135914/ENSG00000100968/ENSG00000123104/ENSG00000065361/ENSG00000100311/ENSG00000137288/ENSG00000140795/ENSG00000115252/ENSG00000151729/ENSG00000141404/ENSG00000156026/ENSG00000108179/ENSG00000152495/ENSG00000140538/ENSG00000150995/ENSG00000165197/ENSG00000145349/ENSG00000100346/ENSG00000148408/ENSG00000114026/ENSG00000100678/ENSG00000183049/ENSG00000183023/ENSG00000116032/ENSG00000171873/ENSG00000089250/ENSG00000183454/ENSG00000145431/ENSG00000156049/ENSG00000170214/ENSG00000130528</td><td>PDGFRB/HGF/F2R/BDKRB1/HTR2A/EGFR/MYLK/FLT1/FGFR3/PDGFRA/HTR7/SLN/FGF1/GRIN2D/PLCG2/CASQ1/PLCB3/NTRK2/C4orf3/NOS3/PDE1B/PLN/GRM1/SLC8A2/GRIN3A/ADCY4/HRH1/AVPR1B/PTGFR/AVPR1A/ATP2B1/ADCY3/P2RX7/SPHK1/KDR/PRKCB/CCKAR/ITPR3/ITPKB/CACNA1E/CASQ2/HTR2B/NFATC4/ITPR2/ERBB3/PDGFB/UQCC2/MYLK3/PDE1A/SLC25A4/GNAL/MCU/PPIF/CAMK4/NTRK3/ITPR1/VEGFD/CAMK2D/CACNA1I/CACNA1B/OGG1/SLC8A3/CAMK1D/SLC8A1/GRIN3B/ADRA1D/NOS1/GRIN2A/PDGFC/GNA14/ADRA1B/HRC</td><td>hsa:5159/hsa:3082/hsa:2149/hsa:623/hsa:3356/hsa:1956/hsa:4638/hsa:2321/hsa:2261/hsa:5156/hsa:3363/hsa:6588/hsa:2246/hsa:2906/hsa:5336/hsa:844/hsa:5331/hsa:4915/hsa:401152/hsa:4846/hsa:5153/hsa:5350/hsa:2911/hsa:6543/hsa:116443/hsa:196883/hsa:3269/hsa:553/hsa:5737/hsa:552/hsa:490/hsa:109/hsa:5027/hsa:8877/hsa:3791/hsa:5579/hsa:886/hsa:3710/hsa:3707/hsa:777/hsa:845/hsa:3357/hsa:4776/hsa:3709/hsa:2065/hsa:5155/hsa:3710/hsa:91807/hsa:5136/hsa:291/hsa:2774/hsa:90550/hsa:10105/hsa:814/hsa:4916/hsa:3708/hsa:2277/hsa:817/hsa:8911/hsa:774/hsa:8536/hsa:6547/hsa:57118/hsa:6546/hsa:116444/hsa:146/hsa:4842/hsa:2903/hsa:56034/hsa:9630/hsa:147/hsa:3270</td><td>72</td><td>50</td><td>ENSG00000113721/ENSG00000019991/ENSG00000181104/ENSG00000100739/ENSG00000102468/ENSG00000146648/ENSG00000065534/ENSG00000102755/ENSG00000068078/ENSG00000134853/ENSG00000148680/ENSG00000170290/ENSG00000105464/ENSG00000149782/ENSG00000148053/ENSG00000164867/ENSG00000123360/ENSG00000152822/ENSG00000118160/ENSG00000198785/ENSG00000129467/ENSG00000196639/ENSG00000198049/ENSG00000122420/ENSG00000070961/ENSG00000138031/ENSG00000089041/ENSG00000176170/ENSG00000166501/ENSG00000163394/ENSG00000096433/ENSG00000143772/ENSG00000198216/ENSG00000135914/ENSG00000100968/ENSG00000123104/ENSG00000100311/ENSG00000115252/ENSG00000141404/ENSG00000156026/ENSG00000152495/ENSG00000140538/ENSG00000150995/ENSG00000100346/ENSG00000183049/ENSG00000116032/ENSG00000089250/ENSG00000183454/ENSG00000145431/ENSG00000156049</td><td>22</td><td>ENSG00000113578/ENSG00000197943/ENSG00000143318/ENSG00000164096/ENSG00000198523/ENSG00000166148/ENSG00000128052/ENSG00000118729/ENSG00000065361/ENSG00000137288/ENSG00000140795/ENSG00000151729/ENSG00000108179/ENSG00000165197/ENSG00000145349/ENSG00000148408/ENSG00000114026/ENSG00000100678/ENSG00000183023/ENSG00000171873/ENSG00000170214/ENSG00000130528</td></tr>
+			
+		  
+			
+				<tr><td>hsa04510</td><td>Focal adhesion</td><td>61/1365</td><td>198/6999</td><td>7.89607569050807e-05</td><td>0.00292154800548799</td><td>ENSG00000186340/ENSG00000163359/ENSG00000164692/ENSG00000113721/ENSG00000137809/ENSG00000108821/ENSG00000017427/ENSG00000115232/ENSG00000118785/ENSG00000115414/ENSG00000019991/ENSG00000050555/ENSG00000111245/ENSG00000206384/ENSG00000177606/ENSG00000146648/ENSG00000065534/ENSG00000092758/ENSG00000213949/ENSG00000102755/ENSG00000134853/ENSG00000049089/ENSG00000142173/ENSG00000077943/ENSG00000041982/ENSG00000075624/ENSG00000077264/ENSG00000112280/ENSG00000144668/ENSG00000187498/ENSG00000184009/ENSG00000134531/ENSG00000137801/ENSG00000164171/ENSG00000109072/ENSG00000106631/ENSG00000142156/ENSG00000196924/ENSG00000128052/ENSG00000169231/ENSG00000134871/ENSG00000166501/ENSG00000117020/ENSG00000107242/ENSG00000136068/ENSG00000072110/ENSG00000100311/ENSG00000140795/ENSG00000160691/ENSG00000139219/ENSG00000165197/ENSG00000128340/ENSG00000125753/ENSG00000101680/ENSG00000112769/ENSG00000136457/ENSG00000161638/ENSG00000035403/ENSG00000140992/ENSG00000145431/ENSG00000127314</td><td>THBS2/COL6A3/COL1A2/PDGFRB/ITGA11/COL1A1/IGF1/ITGA4/SPP1/FN1/HGF/LAMC3/MYL2/COL6A6/JUN/EGFR/MYLK/COL9A3/ITGA1/FLT1/PDGFRA/COL9A2/COL6A2/ITGA8/TNC/ACTB/PAK3/COL9A1/ITGA9/COL4A1/ACTG1/EMP1/THBS1/ITGA2/VTN/MYL7/COL6A1/FLNA/KDR/THBS3/COL4A2/PRKCB/AKT3/PIP5K1B/FLNB/ACTN1/PDGFB/MYLK3/SHC1/COL2A1/VEGFD/RAC2/VASP/LAMA1/LAMA4/CHAD/ITGA5/VCL/PDPK1/PDGFC/RAP1B</td><td>hsa:7058/hsa:1293/hsa:1278/hsa:5159/hsa:22801/hsa:1277/hsa:3479/hsa:3676/hsa:6696/hsa:2335/hsa:3082/hsa:10319/hsa:4633/hsa:131873/hsa:3725/hsa:1956/hsa:4638/hsa:1299/hsa:3672/hsa:2321/hsa:5156/hsa:1298/hsa:1292/hsa:8516/hsa:3371/hsa:60/hsa:5063/hsa:1297/hsa:3680/hsa:1282/hsa:71/hsa:2012/hsa:7057/hsa:3673/hsa:7448/hsa:58498/hsa:1291/hsa:2316/hsa:3791/hsa:7059/hsa:1284/hsa:5579/hsa:10000/hsa:8395/hsa:2317/hsa:87/hsa:5155/hsa:91807/hsa:6464/hsa:1280/hsa:2277/hsa:5880/hsa:7408/hsa:284217/hsa:3910/hsa:1101/hsa:3678/hsa:7414/hsa:5170/hsa:56034/hsa:5908</td><td>61</td><td>49</td><td>ENSG00000186340/ENSG00000163359/ENSG00000164692/ENSG00000113721/ENSG00000137809/ENSG00000108821/ENSG00000017427/ENSG00000115232/ENSG00000118785/ENSG00000115414/ENSG00000019991/ENSG00000050555/ENSG00000206384/ENSG00000177606/ENSG00000146648/ENSG00000065534/ENSG00000092758/ENSG00000213949/ENSG00000102755/ENSG00000134853/ENSG00000049089/ENSG00000142173/ENSG00000077943/ENSG00000041982/ENSG00000075624/ENSG00000077264/ENSG00000144668/ENSG00000187498/ENSG00000184009/ENSG00000134531/ENSG00000137801/ENSG00000164171/ENSG00000109072/ENSG00000142156/ENSG00000196924/ENSG00000169231/ENSG00000134871/ENSG00000166501/ENSG00000117020/ENSG00000136068/ENSG00000072110/ENSG00000100311/ENSG00000160691/ENSG00000128340/ENSG00000125753/ENSG00000161638/ENSG00000035403/ENSG00000145431/ENSG00000127314</td><td>12</td><td>ENSG00000111245/ENSG00000112280/ENSG00000106631/ENSG00000128052/ENSG00000107242/ENSG00000140795/ENSG00000139219/ENSG00000165197/ENSG00000101680/ENSG00000112769/ENSG00000136457/ENSG00000140992</td></tr>
+			
+		  
+			
+				<tr><td>hsa04061</td><td>Viral protein interaction with cytokine and cytokine receptor</td><td>22/1365</td><td>51/6999</td><td>9.28724414898143e-05</td><td>0.00309265230161082</td><td>ENSG00000115604/ENSG00000108691/ENSG00000173535/ENSG00000163739/ENSG00000160712/ENSG00000100385/ENSG00000016402/ENSG00000111321/ENSG00000288796/ENSG00000006210/ENSG00000151882/ENSG00000272980/ENSG00000276070/ENSG00000180871/ENSG00000163737/ENSG00000108688/ENSG00000124875/ENSG00000163734/ENSG00000157368/ENSG00000067182/ENSG00000169429/ENSG00000129048</td><td>IL18R1/CCL2/TNFRSF10C/CXCL1/IL6R/IL2RB/IL20RA/LTBR/ENSG00000288796/CX3CL1/CCL28/ENSG00000272980/CCL4L2/CXCR2/PF4/CCL7/CXCL6/CXCL3/IL34/TNFRSF1A/CXCL8/ACKR4</td><td>hsa:8809/hsa:6347/hsa:8794/hsa:2919/hsa:3570/hsa:3560/hsa:53832/hsa:4055/hsa:5473/hsa:6376/hsa:56477/hsa:1235/hsa:6351/hsa:3579/hsa:5196/hsa:6354/hsa:6372/hsa:2921/hsa:146433/hsa:7132/hsa:3576/hsa:51554</td><td>22</td><td>19</td><td>ENSG00000115604/ENSG00000108691/ENSG00000163739/ENSG00000160712/ENSG00000100385/ENSG00000111321/ENSG00000288796/ENSG00000151882/ENSG00000272980/ENSG00000276070/ENSG00000180871/ENSG00000163737/ENSG00000108688/ENSG00000124875/ENSG00000163734/ENSG00000157368/ENSG00000067182/ENSG00000169429/ENSG00000129048</td><td>3</td><td>ENSG00000173535/ENSG00000016402/ENSG00000006210</td></tr>
+			
+		  
+		</table>
+	</div>			
+        </p>
+<div style="width:1100px;height:115px;overflow-y:scroll;overflow-x:hidden;">
+        <p class="tremark">
+        
+		
+		(1) Category：KEGG数据库<br />
+		(2) ID：KEGG通路编号<br />
+		(3) Description：KEGG通路编号对应的功能描述<br />
+		(4) GeneRatio：注释到KEGG通路编号上的差异基因数与差异基因总数的比值<br />
+		(5) BgRatio：注释到KEGG通路编号上的背景基因数与背景基因总数的比值<br />
+		(6) pvalue：显著性检验p值<br />
+		(7) padj：校正后的p值<br />
+		
+
+		
+        </p>
+</div>
+
+	<br />
+	<br />
+<!---------------------------5.3 KEGG富集分析---------------------->
+
+<div id="page">
+
+    <p class="paragraph">候选靶基因KEGG富集散点图是KEGG富集分析结果的图形化展示方式。在此图中，KEGG富集程度通过Rich factor、Qvalue和富集到此通路上的基因个数来衡量。其中Rich factor指差异表达的基因中位于该pathway条目的基因数目与所有有注释基因中位于该pathway条目的基因总数的比值。Rich factor越大，表示富集的程度越大。Qvalue是做过多重假设检验校正之后的Pvalue，Qvalue的取值范围为[0,1]，越接近于零，表示富集越显著。我们挑选了富集前20位的pathway条目在该图中进行展示，若富集的pathway条目不足20条，则全部展示。</p>
+
+
+<p class="center">
+
+	<div class="albumSlider">
+				<div class="fullview">
+					<img src=Ex49_HETvsWT_all/>
+				</div>
+				<div class="slider">
+					<div class="button movebackward" title="向上滚动">
+					</div>
+					<div class="imglistwrap">
+						<ul class="imglist">
+							
+							<li><a id="example2" href=Ex49_HETvsWT_all ><img src=files/DiffEnrich/KEGG/Ex49_HETvsWT.bar.png/></a></li>
+							
+							<li><a id="example2" href=Ex49_HOMvsWT_all ><img src=files/DiffEnrich/KEGG/Ex49_HOMvsWT.bar.png/></a></li>
+							
+							<li><a id="example2" href=Ex327_HETvsWT_all ><img src=files/DiffEnrich/KEGG/Ex327_HETvsWT.bar.png/></a></li>
+							
+							<li><a id="example2" href=Ex327_HOMvsWT_all ><img src=files/DiffEnrich/KEGG/Ex327_HOMvsWT.bar.png/></a></li>
+							
+							<li><a id="example2" href=Ex49vsWT_all ><img src=files/DiffEnrich/KEGG/Ex49vsWT.bar.png/></a></li>
+							
+							<li><a id="example2" href=Ex327vsWT_all ><img src=files/DiffEnrich/KEGG/Ex327vsWT.bar.png/></a></li>
+							
+							<li><a id="example2" href=Ex327vsEx49_all ><img src=files/DiffEnrich/KEGG/Ex327vsEx49.bar.png/></a></li>
+							
+							<li><a id="example2" href=Ex49_HOMvsEx49_HET_all ><img src=files/DiffEnrich/KEGG/Ex49_HOMvsEx49_HET.bar.png/></a></li>
+							
+							<li><a id="example2" href=Ex327_HOMvsEx327_HET_all ><img src=files/DiffEnrich/KEGG/Ex327_HOMvsEx327_HET.bar.png/></a></li>
+							
+							<li><a id="example2" href=Ex327_HETvsEx49_HET_all ><img src=files/DiffEnrich/KEGG/Ex327_HETvsEx49_HET.bar.png/></a></li>
+							
+							<li><a id="example2" href=Ex327_HOMvsEx49_HOM_all ><img src=files/DiffEnrich/KEGG/Ex327_HOMvsEx49_HOM.bar.png/></a></li>
+							
+						</ul>
+					</div>
+					<div class="button moveforward" title="向下滚动">
+					</div>
+				</div>
+			</div>	
+		
+		</p>
+	
+			<p class="name_fig">图6.4 KEGG富集柱状图</p>
+			<p class="cenmark">横坐标为-log<sub>10</sub>(padj)，纵坐标为KEGG条目，括号中n的数量表示富集到该KEGG的基因个数</p>
+
+
+<p class="center"></p>
+<div class="albumSlider">
+			<div class="fullview">
+				<img src=Ex49_HETvsWT_all/>
+			</div>
+			<div class="slider">
+				<div class="button movebackward" title="向上滚动">
+				</div>
+				<div class="imglistwrap">
+					<ul class="imglist">
+						
+						<li><a id="example2" href=Ex49_HETvsWT_all ><img src=files/DiffEnrich/KEGG/Ex49_HETvsWT.dot.png/></a></li>
+						
+						<li><a id="example2" href=Ex49_HOMvsWT_all ><img src=files/DiffEnrich/KEGG/Ex49_HOMvsWT.dot.png/></a></li>
+						
+						<li><a id="example2" href=Ex327_HETvsWT_all ><img src=files/DiffEnrich/KEGG/Ex327_HETvsWT.dot.png/></a></li>
+						
+						<li><a id="example2" href=Ex327_HOMvsWT_all ><img src=files/DiffEnrich/KEGG/Ex327_HOMvsWT.dot.png/></a></li>
+						
+						<li><a id="example2" href=Ex49vsWT_all ><img src=files/DiffEnrich/KEGG/Ex49vsWT.dot.png/></a></li>
+						
+						<li><a id="example2" href=Ex327vsWT_all ><img src=files/DiffEnrich/KEGG/Ex327vsWT.dot.png/></a></li>
+						
+						<li><a id="example2" href=Ex327vsEx49_all ><img src=files/DiffEnrich/KEGG/Ex327vsEx49.dot.png/></a></li>
+						
+						<li><a id="example2" href=Ex49_HOMvsEx49_HET_all ><img src=files/DiffEnrich/KEGG/Ex49_HOMvsEx49_HET.dot.png/></a></li>
+						
+						<li><a id="example2" href=Ex327_HOMvsEx327_HET_all ><img src=files/DiffEnrich/KEGG/Ex327_HOMvsEx327_HET.dot.png/></a></li>
+						
+						<li><a id="example2" href=Ex327_HETvsEx49_HET_all ><img src=files/DiffEnrich/KEGG/Ex327_HETvsEx49_HET.dot.png/></a></li>
+						
+						<li><a id="example2" href=Ex327_HOMvsEx49_HOM_all ><img src=files/DiffEnrich/KEGG/Ex327_HOMvsEx49_HOM.dot.png/></a></li>
+											
+					</ul>
+				</div>
+				<div class="button moveforward" title="向下滚动">
+				</div>
+			</div>
+		</div>	
+	
+	</p>
+
+	
+	<p class="name_fig">图6.5 KEGG富集散点图</p>
+	
+	<p class="cenmark">图中纵坐标代表不同的通路，横坐标代表相应通路显著差异表达基因占该通路所有基因的比例。圆圈大小代表富集在相应通路中的基因数目，圆圈越大，代表富集在该通路中的基因越多。颜色代表富集显著性，越接近红色，代表越显著。</p>
+
+</div>	
+	
+	
+<div id="page">
+
+    <p class="paragraph">KEGG富集通路图: KEGG富集分析结果，可通过信号通路图进行直观的展示，如下图所示：</p>
+	
+	<p class="center">	
+<div class="albumSlider">
+			<div class="fullview">
+				<img src=Ex49_HETvsWT_hsa04520/>
+			</div>
+			<div class="slider">
+				<div class="button movebackward" title="向上滚动">
+				</div>
+				<div class="imglistwrap">
+					<ul class="imglist">
+						
+						<li><a id="example2" href=Ex49_HETvsWT_hsa04520 ><img src=files/DiffEnrich/KEGG/Ex49_HETvsWT_hsa04520.png/></a></li>
+						
+						<li><a id="example2" href=Ex49_HETvsWT_hsa04662 ><img src=files/DiffEnrich/KEGG/Ex49_HETvsWT_hsa04662.png/></a></li>
+						
+						<li><a id="example2" href=Ex49_HETvsWT_hsa05320 ><img src=files/DiffEnrich/KEGG/Ex49_HETvsWT_hsa05320.png/></a></li>
+						
+						<li><a id="example2" href=Ex49_HETvsWT_hsa01240 ><img src=files/DiffEnrich/KEGG/Ex49_HETvsWT_hsa01240.png/></a></li>
+						
+						<li><a id="example2" href=Ex49_HETvsWT_hsa00514 ><img src=files/DiffEnrich/KEGG/Ex49_HETvsWT_hsa00514.png/></a></li>
+						
+						<li><a id="example2" href=Ex49_HOMvsWT_hsa04662 ><img src=files/DiffEnrich/KEGG/Ex49_HOMvsWT_hsa04662.png/></a></li>
+						
+						<li><a id="example2" href=Ex49_HOMvsWT_hsa04520 ><img src=files/DiffEnrich/KEGG/Ex49_HOMvsWT_hsa04520.png/></a></li>
+						
+						<li><a id="example2" href=Ex49_HOMvsWT_hsa05320 ><img src=files/DiffEnrich/KEGG/Ex49_HOMvsWT_hsa05320.png/></a></li>
+						
+						<li><a id="example2" href=Ex49_HOMvsWT_hsa01240 ><img src=files/DiffEnrich/KEGG/Ex49_HOMvsWT_hsa01240.png/></a></li>
+						
+						<li><a id="example2" href=Ex49_HOMvsWT_hsa00514 ><img src=files/DiffEnrich/KEGG/Ex49_HOMvsWT_hsa00514.png/></a></li>
+						
+						<li><a id="example2" href=Ex327_HETvsWT_hsa01240 ><img src=files/DiffEnrich/KEGG/Ex327_HETvsWT_hsa01240.png/></a></li>
+						
+						<li><a id="example2" href=Ex327_HETvsWT_hsa00514 ><img src=files/DiffEnrich/KEGG/Ex327_HETvsWT_hsa00514.png/></a></li>
+						
+						<li><a id="example2" href=Ex327_HETvsWT_hsa04662 ><img src=files/DiffEnrich/KEGG/Ex327_HETvsWT_hsa04662.png/></a></li>
+						
+						<li><a id="example2" href=Ex327_HETvsWT_hsa05320 ><img src=files/DiffEnrich/KEGG/Ex327_HETvsWT_hsa05320.png/></a></li>
+						
+						<li><a id="example2" href=Ex327_HETvsWT_hsa04520 ><img src=files/DiffEnrich/KEGG/Ex327_HETvsWT_hsa04520.png/></a></li>
+						
+						<li><a id="example2" href=Ex327_HOMvsWT_hsa04662 ><img src=files/DiffEnrich/KEGG/Ex327_HOMvsWT_hsa04662.png/></a></li>
+						
+						<li><a id="example2" href=Ex327_HOMvsWT_hsa04520 ><img src=files/DiffEnrich/KEGG/Ex327_HOMvsWT_hsa04520.png/></a></li>
+						
+						<li><a id="example2" href=Ex327_HOMvsWT_hsa05320 ><img src=files/DiffEnrich/KEGG/Ex327_HOMvsWT_hsa05320.png/></a></li>
+						
+						<li><a id="example2" href=Ex327_HOMvsWT_hsa00514 ><img src=files/DiffEnrich/KEGG/Ex327_HOMvsWT_hsa00514.png/></a></li>
+						
+						<li><a id="example2" href=Ex327_HOMvsWT_hsa01240 ><img src=files/DiffEnrich/KEGG/Ex327_HOMvsWT_hsa01240.png/></a></li>
+						
+						<li><a id="example2" href=Ex49vsWT_hsa05320 ><img src=files/DiffEnrich/KEGG/Ex49vsWT_hsa05320.png/></a></li>
+						
+						<li><a id="example2" href=Ex49vsWT_hsa04662 ><img src=files/DiffEnrich/KEGG/Ex49vsWT_hsa04662.png/></a></li>
+						
+						<li><a id="example2" href=Ex49vsWT_hsa00514 ><img src=files/DiffEnrich/KEGG/Ex49vsWT_hsa00514.png/></a></li>
+						
+						<li><a id="example2" href=Ex49vsWT_hsa04520 ><img src=files/DiffEnrich/KEGG/Ex49vsWT_hsa04520.png/></a></li>
+						
+						<li><a id="example2" href=Ex49vsWT_hsa01240 ><img src=files/DiffEnrich/KEGG/Ex49vsWT_hsa01240.png/></a></li>
+						
+						<li><a id="example2" href=Ex327vsWT_hsa05320 ><img src=files/DiffEnrich/KEGG/Ex327vsWT_hsa05320.png/></a></li>
+						
+						<li><a id="example2" href=Ex327vsWT_hsa01240 ><img src=files/DiffEnrich/KEGG/Ex327vsWT_hsa01240.png/></a></li>
+						
+						<li><a id="example2" href=Ex327vsWT_hsa04662 ><img src=files/DiffEnrich/KEGG/Ex327vsWT_hsa04662.png/></a></li>
+						
+						<li><a id="example2" href=Ex327vsWT_hsa04520 ><img src=files/DiffEnrich/KEGG/Ex327vsWT_hsa04520.png/></a></li>
+						
+						<li><a id="example2" href=Ex327vsWT_hsa00514 ><img src=files/DiffEnrich/KEGG/Ex327vsWT_hsa00514.png/></a></li>
+						
+						<li><a id="example2" href=Ex327vsEx49_hsa01240 ><img src=files/DiffEnrich/KEGG/Ex327vsEx49_hsa01240.png/></a></li>
+						
+						<li><a id="example2" href=Ex327vsEx49_hsa00514 ><img src=files/DiffEnrich/KEGG/Ex327vsEx49_hsa00514.png/></a></li>
+						
+						<li><a id="example2" href=Ex327vsEx49_hsa05320 ><img src=files/DiffEnrich/KEGG/Ex327vsEx49_hsa05320.png/></a></li>
+						
+						<li><a id="example2" href=Ex327vsEx49_hsa04662 ><img src=files/DiffEnrich/KEGG/Ex327vsEx49_hsa04662.png/></a></li>
+						
+						<li><a id="example2" href=Ex327vsEx49_hsa04520 ><img src=files/DiffEnrich/KEGG/Ex327vsEx49_hsa04520.png/></a></li>
+						
+						<li><a id="example2" href=Ex49_HOMvsEx49_HET_hsa05320 ><img src=files/DiffEnrich/KEGG/Ex49_HOMvsEx49_HET_hsa05320.png/></a></li>
+						
+						<li><a id="example2" href=Ex49_HOMvsEx49_HET_hsa01240 ><img src=files/DiffEnrich/KEGG/Ex49_HOMvsEx49_HET_hsa01240.png/></a></li>
+						
+						<li><a id="example2" href=Ex49_HOMvsEx49_HET_hsa04520 ><img src=files/DiffEnrich/KEGG/Ex49_HOMvsEx49_HET_hsa04520.png/></a></li>
+						
+						<li><a id="example2" href=Ex49_HOMvsEx49_HET_hsa04662 ><img src=files/DiffEnrich/KEGG/Ex49_HOMvsEx49_HET_hsa04662.png/></a></li>
+						
+						<li><a id="example2" href=Ex49_HOMvsEx49_HET_hsa00514 ><img src=files/DiffEnrich/KEGG/Ex49_HOMvsEx49_HET_hsa00514.png/></a></li>
+						
+						<li><a id="example2" href=Ex327_HOMvsEx327_HET_hsa04520 ><img src=files/DiffEnrich/KEGG/Ex327_HOMvsEx327_HET_hsa04520.png/></a></li>
+						
+						<li><a id="example2" href=Ex327_HOMvsEx327_HET_hsa01240 ><img src=files/DiffEnrich/KEGG/Ex327_HOMvsEx327_HET_hsa01240.png/></a></li>
+						
+						<li><a id="example2" href=Ex327_HOMvsEx327_HET_hsa00514 ><img src=files/DiffEnrich/KEGG/Ex327_HOMvsEx327_HET_hsa00514.png/></a></li>
+						
+						<li><a id="example2" href=Ex327_HOMvsEx327_HET_hsa04662 ><img src=files/DiffEnrich/KEGG/Ex327_HOMvsEx327_HET_hsa04662.png/></a></li>
+						
+						<li><a id="example2" href=Ex327_HOMvsEx327_HET_hsa05320 ><img src=files/DiffEnrich/KEGG/Ex327_HOMvsEx327_HET_hsa05320.png/></a></li>
+						
+						<li><a id="example2" href=Ex327_HETvsEx49_HET_hsa04520 ><img src=files/DiffEnrich/KEGG/Ex327_HETvsEx49_HET_hsa04520.png/></a></li>
+						
+						<li><a id="example2" href=Ex327_HETvsEx49_HET_hsa05320 ><img src=files/DiffEnrich/KEGG/Ex327_HETvsEx49_HET_hsa05320.png/></a></li>
+						
+						<li><a id="example2" href=Ex327_HETvsEx49_HET_hsa04662 ><img src=files/DiffEnrich/KEGG/Ex327_HETvsEx49_HET_hsa04662.png/></a></li>
+						
+						<li><a id="example2" href=Ex327_HETvsEx49_HET_hsa01240 ><img src=files/DiffEnrich/KEGG/Ex327_HETvsEx49_HET_hsa01240.png/></a></li>
+						
+						<li><a id="example2" href=Ex327_HETvsEx49_HET_hsa00514 ><img src=files/DiffEnrich/KEGG/Ex327_HETvsEx49_HET_hsa00514.png/></a></li>
+						
+						<li><a id="example2" href=Ex327_HOMvsEx49_HOM_hsa00514 ><img src=files/DiffEnrich/KEGG/Ex327_HOMvsEx49_HOM_hsa00514.png/></a></li>
+						
+						<li><a id="example2" href=Ex327_HOMvsEx49_HOM_hsa04662 ><img src=files/DiffEnrich/KEGG/Ex327_HOMvsEx49_HOM_hsa04662.png/></a></li>
+						
+						<li><a id="example2" href=Ex327_HOMvsEx49_HOM_hsa01240 ><img src=files/DiffEnrich/KEGG/Ex327_HOMvsEx49_HOM_hsa01240.png/></a></li>
+						
+						<li><a id="example2" href=Ex327_HOMvsEx49_HOM_hsa04520 ><img src=files/DiffEnrich/KEGG/Ex327_HOMvsEx49_HOM_hsa04520.png/></a></li>
+						
+						<li><a id="example2" href=Ex327_HOMvsEx49_HOM_hsa05320 ><img src=files/DiffEnrich/KEGG/Ex327_HOMvsEx49_HOM_hsa05320.png/></a></li>
+							
+					</ul>
+				</div>
+				<div class="button moveforward" title="向下滚动">
+				</div>
+			</div>
+		</div>	
+	
+	</p>
+
+        
+        <p class="name_fig">图6.6 KEGG富集通路图</p>
+        <p class="cenmark">图中颜色深浅代表样本的差异倍数，红色代表表达上调，绿色代表表达下调。颜色越深，差异倍数越大。</p>
+        
+
+	
+    <p class="paragraph">定量差异富集为转录组分析的核心内容，对于生物体转录调控机制的探索非常重要。通过链特异性建库，我们可以获得lncRNA和mRNA，我们默认分别输出lncRNA和mRNA的差异分析结果。</p>
+	
+
+</br>
+</div>
+
+
+
+<!---------------------------lncRNA靶基因预测-------------------------->
+
+
+<div id="page">
+
+	<h3 id="result7"><a name="lncRNA靶基因预测与功能分析">7 lncRNA靶基因预测与功能分析(结果文件夹: Results/Diff_lncRNATarget_Enrich)</a></h3>
+	<p class="paragraph">llncRNA生物学功能丰富，广泛参与生物体各类重要生理过程，可在转录水平和转录后水平上对靶基因的表达进行调控，并找出不同处理产生的差异功能通路<sup>[17]</sup>。lncRNA调控靶基因的机制多种多样，最常见的对靶基因的方式是co-location和co-expression靶基因调控。co-location（共位置）是指lncRNA可能对临近的蛋白编码基因存在调控作用，通过寻找lncRNA上下游100kb内的基因进行分析<sup>[18]</sup>；co-expression（共表达）是指lncRNA转录后作用于位置较远的靶基因的作用方式，通过多个样本间的表达相关性进行分析，一般在样本数大于5时进行此分析<sup>[19]</sup>。</p>
+	<p class="paragraph">诺禾致源会对所有的lncRNA进行靶基因预测，即通过lncRNA与蛋白编码基因的位置关系（co-location）和表达相关性（co-expression）预测lncRNA的靶基因。然后，对差异lncRNA的靶基因进行功能富集分析（GO/KEGG）预测lncRNA的主要功能。报告中仅展示co-location的预测结果。</p>
+	
+	</br>
+	<a name="lncRNA靶基因预测"><h4 id="result71">7.1 lncRNA靶基因预测</h4></a>
+	
+	<p class="paragraph" > 当样本数超过5个时，我们同时进行co-location和co-expression分析；若样本数小于5个则仅进行co-location分析。针对co-location调控机制，我们将co-location的阈值设定为lncRNA上下游100kb，结果如下表所示：</p>
+</p>
+	
+	<p class="paragraph">lncRNA转录本共位置靶向基因结果见结果文件：7.Diff_lncRNATarget_Enrich/lncRNA_mRNA_co_location_results.xls，如下图所示。</p>
+
+</br>	
+
+	<p class="name_fig">表7.1　lncRNA co-location protein_gene列表</p>
+	<p class="center">
+	<div id="tb" style="width:1100px;height:286px;overflow-y:scroll;overflow-x:scroll;">
+		<table class="tb1">
+			
+			
+				<tr class="tb1"><th class="tb1">Chromosome</th><th class="tb1">lncRNA_ID</th><th class="tb1">lncRNA_Gene_ID</th><th class="tb1">lncRNA_Gene_Symbol</th><th class="tb1">lncRNA_Status</th><th class="tb1">lncRNA_Start</th><th class="tb1">lncRNA_End</th><th class="tb1">lncRNA_Strand</th><th class="tb1">Gene_Id</th><th class="tb1">Gene_Symbol</th><th class="tb1">Gene_Start</th><th class="tb1">Gene_End</th><th class="tb1">Gene_Strand</th><th class="tb1">Distance</th><th class="tb1">Location</th></tr>
+			
+		  
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">1</td><td  class="tb1" style="text-align:center">ENST00000455207</td><td  class="tb1" style="text-align:center">ENSG00000290385</td><td  class="tb1" style="text-align:center">ENSG00000290385</td><td  class="tb1" style="text-align:center">Annotated_lncRNA</td><td  class="tb1" style="text-align:center">373182</td><td  class="tb1" style="text-align:center">485208</td><td  class="tb1" style="text-align:center">-</td><td  class="tb1" style="text-align:center">ENSG00000284733</td><td  class="tb1" style="text-align:center">OR4F29</td><td  class="tb1" style="text-align:center">450739</td><td  class="tb1" style="text-align:center">451678</td><td  class="tb1" style="text-align:center">-</td><td  class="tb1" style="text-align:center">(939)</td><td  class="tb1" style="text-align:center">sense</td></tr>
+			
+		  
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">1</td><td  class="tb1" style="text-align:center">ENST00000419394</td><td  class="tb1" style="text-align:center">ENSG00000293331</td><td  class="tb1" style="text-align:center">ENSG00000293331</td><td  class="tb1" style="text-align:center">Annotated_lncRNA</td><td  class="tb1" style="text-align:center">586945</td><td  class="tb1" style="text-align:center">720194</td><td  class="tb1" style="text-align:center">-</td><td  class="tb1" style="text-align:center">ENSG00000284662</td><td  class="tb1" style="text-align:center">OR4F16</td><td  class="tb1" style="text-align:center">685715</td><td  class="tb1" style="text-align:center">686654</td><td  class="tb1" style="text-align:center">-</td><td  class="tb1" style="text-align:center">(939)</td><td  class="tb1" style="text-align:center">sense</td></tr>
+			
+		  
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">1</td><td  class="tb1" style="text-align:center">ENST00000440200</td><td  class="tb1" style="text-align:center">ENSG00000293331</td><td  class="tb1" style="text-align:center">ENSG00000293331</td><td  class="tb1" style="text-align:center">Annotated_lncRNA</td><td  class="tb1" style="text-align:center">601436</td><td  class="tb1" style="text-align:center">720200</td><td  class="tb1" style="text-align:center">-</td><td  class="tb1" style="text-align:center">ENSG00000284662</td><td  class="tb1" style="text-align:center">OR4F16</td><td  class="tb1" style="text-align:center">685715</td><td  class="tb1" style="text-align:center">686654</td><td  class="tb1" style="text-align:center">-</td><td  class="tb1" style="text-align:center">(939)</td><td  class="tb1" style="text-align:center">sense</td></tr>
+			
+		  
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">1</td><td  class="tb1" style="text-align:center">ENST00000648019</td><td  class="tb1" style="text-align:center">ENSG00000293331</td><td  class="tb1" style="text-align:center">ENSG00000293331</td><td  class="tb1" style="text-align:center">Annotated_lncRNA</td><td  class="tb1" style="text-align:center">594458</td><td  class="tb1" style="text-align:center">733064</td><td  class="tb1" style="text-align:center">-</td><td  class="tb1" style="text-align:center">ENSG00000284662</td><td  class="tb1" style="text-align:center">OR4F16</td><td  class="tb1" style="text-align:center">685715</td><td  class="tb1" style="text-align:center">686654</td><td  class="tb1" style="text-align:center">-</td><td  class="tb1" style="text-align:center">(939)</td><td  class="tb1" style="text-align:center">sense</td></tr>
+			
+		  
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">1</td><td  class="tb1" style="text-align:center">ENST00000635509</td><td  class="tb1" style="text-align:center">ENSG00000293331</td><td  class="tb1" style="text-align:center">ENSG00000293331</td><td  class="tb1" style="text-align:center">Annotated_lncRNA</td><td  class="tb1" style="text-align:center">594308</td><td  class="tb1" style="text-align:center">827769</td><td  class="tb1" style="text-align:center">-</td><td  class="tb1" style="text-align:center">ENSG00000284662</td><td  class="tb1" style="text-align:center">OR4F16</td><td  class="tb1" style="text-align:center">685715</td><td  class="tb1" style="text-align:center">686654</td><td  class="tb1" style="text-align:center">-</td><td  class="tb1" style="text-align:center">(939)</td><td  class="tb1" style="text-align:center">sense</td></tr>
+			
+		  
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">1</td><td  class="tb1" style="text-align:center">ENST00000635509</td><td  class="tb1" style="text-align:center">ENSG00000293331</td><td  class="tb1" style="text-align:center">ENSG00000293331</td><td  class="tb1" style="text-align:center">Annotated_lncRNA</td><td  class="tb1" style="text-align:center">594308</td><td  class="tb1" style="text-align:center">827769</td><td  class="tb1" style="text-align:center">-</td><td  class="tb1" style="text-align:center">ENSG00000187634</td><td  class="tb1" style="text-align:center">SAMD11</td><td  class="tb1" style="text-align:center">923922</td><td  class="tb1" style="text-align:center">944575</td><td  class="tb1" style="text-align:center">+</td><td  class="tb1" style="text-align:center">96153</td><td  class="tb1" style="text-align:center">upstream</td></tr>
+			
+		  
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">1</td><td  class="tb1" style="text-align:center">ENST00000634337</td><td  class="tb1" style="text-align:center">ENSG00000293331</td><td  class="tb1" style="text-align:center">ENSG00000293331</td><td  class="tb1" style="text-align:center">Annotated_lncRNA</td><td  class="tb1" style="text-align:center">594308</td><td  class="tb1" style="text-align:center">827796</td><td  class="tb1" style="text-align:center">-</td><td  class="tb1" style="text-align:center">ENSG00000284662</td><td  class="tb1" style="text-align:center">OR4F16</td><td  class="tb1" style="text-align:center">685715</td><td  class="tb1" style="text-align:center">686654</td><td  class="tb1" style="text-align:center">-</td><td  class="tb1" style="text-align:center">(939)</td><td  class="tb1" style="text-align:center">sense</td></tr>
+			
+		  
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">1</td><td  class="tb1" style="text-align:center">ENST00000634337</td><td  class="tb1" style="text-align:center">ENSG00000293331</td><td  class="tb1" style="text-align:center">ENSG00000293331</td><td  class="tb1" style="text-align:center">Annotated_lncRNA</td><td  class="tb1" style="text-align:center">594308</td><td  class="tb1" style="text-align:center">827796</td><td  class="tb1" style="text-align:center">-</td><td  class="tb1" style="text-align:center">ENSG00000187634</td><td  class="tb1" style="text-align:center">SAMD11</td><td  class="tb1" style="text-align:center">923922</td><td  class="tb1" style="text-align:center">944575</td><td  class="tb1" style="text-align:center">+</td><td  class="tb1" style="text-align:center">96126</td><td  class="tb1" style="text-align:center">upstream</td></tr>
+			
+		  
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">1</td><td  class="tb1" style="text-align:center">ENST00000474461</td><td  class="tb1" style="text-align:center">ENSG00000187634</td><td  class="tb1" style="text-align:center">SAMD11</td><td  class="tb1" style="text-align:center">Annotated_lncRNA</td><td  class="tb1" style="text-align:center">941076</td><td  class="tb1" style="text-align:center">942994</td><td  class="tb1" style="text-align:center">+</td><td  class="tb1" style="text-align:center">ENSG00000187634</td><td  class="tb1" style="text-align:center">SAMD11</td><td  class="tb1" style="text-align:center">923922</td><td  class="tb1" style="text-align:center">944575</td><td  class="tb1" style="text-align:center">+</td><td  class="tb1" style="text-align:center">(1919)</td><td  class="tb1" style="text-align:center">sense</td></tr>
+			
+		  
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">1</td><td  class="tb1" style="text-align:center">ENST00000474461</td><td  class="tb1" style="text-align:center">ENSG00000187634</td><td  class="tb1" style="text-align:center">SAMD11</td><td  class="tb1" style="text-align:center">Annotated_lncRNA</td><td  class="tb1" style="text-align:center">941076</td><td  class="tb1" style="text-align:center">942994</td><td  class="tb1" style="text-align:center">+</td><td  class="tb1" style="text-align:center">ENSG00000188976</td><td  class="tb1" style="text-align:center">NOC2L</td><td  class="tb1" style="text-align:center">944202</td><td  class="tb1" style="text-align:center">959256</td><td  class="tb1" style="text-align:center">-</td><td  class="tb1" style="text-align:center">1208</td><td  class="tb1" style="text-align:center">downstream</td></tr>
+			
+		  
+		</table>
+	</div>		
+	</p>
+<div style="width:1100px;height:115px;overflow-y:scroll;overflow-x:hidden;">
+	<p class="tremark">
+		(1) Chromosome：染色体名称 <br />
+		(2) lncRNA ID：ENSEMBL 数据库 ID <br />
+		(3) lncRNA Gene ID：lncRNA 来源基因 ID <br />
+		(4) lncRNA Gene Symbol：lncRNA 来源基因名称，若无用"--"表示 <br />
+		(5) lncRNA Status：lncRNA属性，分为Annotated_lncRNA和Novel_lncRNA<br />
+		(6) lncRNA_Start: lncRNA起始位置 <br />
+		(7) lncRNA_End: lncRNA终止位置 <br />
+		(8) lncRNA_Strand：lncRNA链属性 <br />
+		(9) Gene ID：靶向mRNA转录本对应的基因ID or 预测编码蛋白的靶基因ID <br />
+		(10) Gene Symbol：靶基因名称，若无用“－”表示 <br />
+		(11) Gene_Start：靶基因起始位置 <br />
+		(12) Gene_End：靶基因终止位置 <br />
+		(13) Gene_Strand：靶基因链属性 <br />
+		(14) Distance：lncRNA与靶基因的距离或两者overlap的长度，overlap的长度用带括号的数字表示，单位为 bp<br />
+		(15) Location：lncRNA相对靶基因的位置关系：upstream，downstream，sense，antisense<br />
+
+</div>
+</br>
+
+<!---------------------------7.2 差异lncRNA列表------------------------------>
+
+<div id="page">
+	<a name="差异lncRNA分析"><h4 id="result72">7.2 差异lncRNA分析</h4></a>
+
+	<p class="paragraph">差异lncRNA分析，如前所述，差异lncRNA分析结果如表7.2所示。</p>
+</p>
+	
+	<p class="paragraph">lncRNA转录本水平差异表达情况见结果文件：5.Diff/lncRNA/Group2_vs_Group1/，如下图所示。</p>
+
+</br>
+
+	<p class="name_fig">表7.2 差异lncRNA列表</p>
+	<p class="center">
+	<div id="tb">
+		<table class="tb1">
+			
+				
+					<tr class="tb1"><th class="tb1">transcript_id</th><th class="tb1">transcript_name</th><th class="tb1">gene_id</th><th class="tb1">gene_name</th><th class="tb1">gene_description</th><th class="tb1">transcript_locus</th><th class="tb1">Ex49_HET</th><th class="tb1">WT</th><th class="tb1">log2FoldChange</th><th class="tb1">pvalue</th><th class="tb1">padj</th></tr>
+				
+		 	
+				
+					<tr class="tb1"><td  class="tb1" style="text-align:center">TCONS_00151073</td><td  class="tb1" style="text-align:center">ERBB4-OT2</td><td  class="tb1" style="text-align:center">ENSG00000178568</td><td  class="tb1" style="text-align:center">ERBB4</td><td  class="tb1" style="text-align:center">- && sp|Q15303|ERBB4_HUMAN Receptor tyrosine-protein kinase erbB-4 OS=Homo sapiens OX=9606 GN=ERBB4 PE=1 SV=1 && PF00757:Furin-like cysteine rich region|PF01030:Receptor L domain|PF14843:Growth factor receptor domain IV|PF07714:Protein tyrosine kinase</td><td  class="tb1" style="text-align:center">2:212382369-212446564</td><td  class="tb1" style="text-align:center">1.03546375942037</td><td  class="tb1" style="text-align:center">9446.57964724107</td><td  class="tb1" style="text-align:center">-12.9944787950015</td><td  class="tb1" style="text-align:center">1.90727327244534e-59</td><td  class="tb1" style="text-align:center">1.43825233624195e-55</td></tr>
+				
+		 	
+				
+					<tr class="tb1"><td  class="tb1" style="text-align:center">TCONS_00096229</td><td  class="tb1" style="text-align:center">CDH11-OT1</td><td  class="tb1" style="text-align:center">ENSG00000140937</td><td  class="tb1" style="text-align:center">CDH11</td><td  class="tb1" style="text-align:center">- && sp|P55287|CAD11_HUMAN Cadherin-11 OS=Homo sapiens OX=9606 GN=CDH11 PE=2 SV=2 && PF00028:Cadherin domain</td><td  class="tb1" style="text-align:center">16:65004853-65121930</td><td  class="tb1" style="text-align:center">7299.79570113724</td><td  class="tb1" style="text-align:center">1.38777878078145e-17</td><td  class="tb1" style="text-align:center">15.8344089284379</td><td  class="tb1" style="text-align:center">4.52846872270293e-58</td><td  class="tb1" style="text-align:center">2.90263523953451e-54</td></tr>
+				
+		 	
+				
+					<tr class="tb1"><td  class="tb1" style="text-align:center">TCONS_00146450</td><td  class="tb1" style="text-align:center">LRRTM4-IT3</td><td  class="tb1" style="text-align:center">ENSG00000176204</td><td  class="tb1" style="text-align:center">LRRTM4</td><td  class="tb1" style="text-align:center">- && sp|Q86VH4|LRRT4_HUMAN Leucine-rich repeat transmembrane neuronal protein 4 OS=Homo sapiens OX=9606 GN=LRRTM4 PE=2 SV=2 && -</td><td  class="tb1" style="text-align:center">2:77348693-77469715</td><td  class="tb1" style="text-align:center">4530.23215067236</td><td  class="tb1" style="text-align:center">1.38777878078145e-17</td><td  class="tb1" style="text-align:center">15.1461525878362</td><td  class="tb1" style="text-align:center">6.33384509551055e-53</td><td  class="tb1" style="text-align:center">2.5373977250593e-49</td></tr>
+				
+		 	
+				
+					<tr class="tb1"><td  class="tb1" style="text-align:center">ENST00000414790</td><td  class="tb1" style="text-align:center">H19-203</td><td  class="tb1" style="text-align:center">ENSG00000130600</td><td  class="tb1" style="text-align:center">H19</td><td  class="tb1" style="text-align:center">- && - && -</td><td  class="tb1" style="text-align:center">11:1995166-1997843</td><td  class="tb1" style="text-align:center">30481.7241664989</td><td  class="tb1" style="text-align:center">79.4048028053157</td><td  class="tb1" style="text-align:center">8.58219199734296</td><td  class="tb1" style="text-align:center">9.88649590662243e-50</td><td  class="tb1" style="text-align:center">2.75521596249883e-46</td></tr>
+				
+		 	
+				
+					<tr class="tb1"><td  class="tb1" style="text-align:center">TCONS_00193383</td><td  class="tb1" style="text-align:center">MAML3-IT1</td><td  class="tb1" style="text-align:center">ENSG00000196782</td><td  class="tb1" style="text-align:center">MAML3</td><td  class="tb1" style="text-align:center">- && sp|Q96JK9|MAML3_HUMAN Mastermind-like protein 3 OS=Homo sapiens OX=9606 GN=MAML3 PE=1 SV=4 && -</td><td  class="tb1" style="text-align:center">4:140069552-140100025</td><td  class="tb1" style="text-align:center">1.38777878078145e-17</td><td  class="tb1" style="text-align:center">2970.99832414576</td><td  class="tb1" style="text-align:center">-14.5375384329127</td><td  class="tb1" style="text-align:center">2.16528264458908e-48</td><td  class="tb1" style="text-align:center">4.55046571513273e-45</td></tr>
+				
+		 	
+				
+					<tr class="tb1"><td  class="tb1" style="text-align:center">ENST00000619021</td><td  class="tb1" style="text-align:center">ENST00000619021</td><td  class="tb1" style="text-align:center">ENSG00000291003</td><td  class="tb1" style="text-align:center">ENSG00000291003</td><td  class="tb1" style="text-align:center">- && sp|O95714|HERC2_HUMAN E3 ubiquitin-protein ligase HERC2 OS=Homo sapiens OX=9606 GN=HERC2 PE=1 SV=2 && PF11515:Mouse development and cellular proliferation protein Cullin-7|PF06701:Mib_herc2</td><td  class="tb1" style="text-align:center">15:22516909-22590815</td><td  class="tb1" style="text-align:center">2198.51160741116</td><td  class="tb1" style="text-align:center">1.38777878078145e-17</td><td  class="tb1" style="text-align:center">14.1031360271656</td><td  class="tb1" style="text-align:center">3.63536079831609e-45</td><td  class="tb1" style="text-align:center">5.35672502919691e-42</td></tr>
+				
+		 	
+				
+					<tr class="tb1"><td  class="tb1" style="text-align:center">TCONS_00235941</td><td  class="tb1" style="text-align:center">ZFPM2-IT1</td><td  class="tb1" style="text-align:center">ENSG00000169946</td><td  class="tb1" style="text-align:center">ZFPM2</td><td  class="tb1" style="text-align:center">- && sp|Q8WW38|FOG2_HUMAN Zinc finger protein ZFPM2 OS=Homo sapiens OX=9606 GN=ZFPM2 PE=1 SV=3 && -</td><td  class="tb1" style="text-align:center">8:105461098-105482436</td><td  class="tb1" style="text-align:center">2122.09561086346</td><td  class="tb1" style="text-align:center">1.38777878078145e-17</td><td  class="tb1" style="text-align:center">14.0521014233548</td><td  class="tb1" style="text-align:center">8.6332376649596e-45</td><td  class="tb1" style="text-align:center">1.16498726574684e-41</td></tr>
+				
+		 	
+				
+					<tr class="tb1"><td  class="tb1" style="text-align:center">ENST00000682159</td><td  class="tb1" style="text-align:center">CORO6-213</td><td  class="tb1" style="text-align:center">ENSG00000167549</td><td  class="tb1" style="text-align:center">CORO6</td><td  class="tb1" style="text-align:center">- && sp|Q6QEF8|CORO6_HUMAN Coronin-6 OS=Homo sapiens OX=9606 GN=CORO6 PE=1 SV=2 && -</td><td  class="tb1" style="text-align:center">17:29614763-29622797</td><td  class="tb1" style="text-align:center">1.38777878078145e-17</td><td  class="tb1" style="text-align:center">1997.77277752188</td><td  class="tb1" style="text-align:center">-13.9650133243111</td><td  class="tb1" style="text-align:center">3.78779984148666e-44</td><td  class="tb1" style="text-align:center">4.71433981242119e-41</td></tr>
+				
+		 	
+				
+					<tr class="tb1"><td  class="tb1" style="text-align:center">ENST00000707005</td><td  class="tb1" style="text-align:center">OIP5-AS1-218</td><td  class="tb1" style="text-align:center">ENSG00000247556</td><td  class="tb1" style="text-align:center">OIP5-AS1</td><td  class="tb1" style="text-align:center">- && sp|Q6B4Z3|UTY_PANTR Histone demethylase UTY OS=Pan troglodytes OX=9598 GN=UTY PE=2 SV=1 && -</td><td  class="tb1" style="text-align:center">15:41283988-41301938</td><td  class="tb1" style="text-align:center">1.38777878078145e-17</td><td  class="tb1" style="text-align:center">1625.91346415145</td><td  class="tb1" style="text-align:center">-13.6678923664416</td><td  class="tb1" style="text-align:center">5.89148855591727e-42</td><td  class="tb1" style="text-align:center">5.24485677379038e-39</td></tr>
+				
+		 	
+				
+					<tr class="tb1"><td  class="tb1" style="text-align:center">ENST00000491769</td><td  class="tb1" style="text-align:center">COL6A3-211</td><td  class="tb1" style="text-align:center">ENSG00000163359</td><td  class="tb1" style="text-align:center">COL6A3</td><td  class="tb1" style="text-align:center">- && sp|P12111|CO6A3_HUMAN Collagen alpha-3(VI) chain OS=Homo sapiens OX=9606 GN=COL6A3 PE=1 SV=5 && PF00092:von Willebrand factor type A domain|PF01391:Collagen triple helix repeat (20 copies)|PF00014:Kunitz/Bovine pancreatic trypsin inhibitor domain</td><td  class="tb1" style="text-align:center">2:237324019-237355779</td><td  class="tb1" style="text-align:center">3122.7321061867</td><td  class="tb1" style="text-align:center">7.74437770985708</td><td  class="tb1" style="text-align:center">8.63191849498383</td><td  class="tb1" style="text-align:center">7.82049949471776e-42</td><td  class="tb1" style="text-align:center">6.86677351181742e-39</td></tr>
+				
+		 			 	 
+		</table>
+	</div>		
+	</p>
+<div style="width:1100px;height:115px;overflow-y:scroll;overflow-x:hidden;">
+	<p class="tremark">
+	(1) transcript_id：转录本id<br />
+	(2) transcript_name：转录本名称 <br />
+	(3) gene_id：基因编号<br />
+	(4) gene_name：基因名称，若无用"--"表示<br />
+	(5) locus：该转录本在染色体上的位置<br />
+	(6) group1：比较组合1的FPKM值<br />
+	(7) group2：比较组合2的FPKM值<br />
+	(8) log<sub>2</sub>FoldChange：两个样本或比较组合的差异倍数值，以log<sub>2</sub>（group1/group2）来表示，根据差异分析软件计算所得<br />
+	(9) pvalue：显著性检验的p值<br />
+	(10) padj：多重假设检验校正后的p值<br />
+
+	</p>
+</div>
+
+
+	<p class="paragraph">差异lncRNA可以通过火山图和聚类图进行展示，如前所述，这里不再详述。</p>
+
+
+	<br />
+
+</div>
+
+<!-------------------------------差异lncRNA火山图---------------------------------->
+
+<!---------------------------lncRNA靶基因富集分析---------------------------------->
+
+<!-- 这部分新版报告没有，是否要保留？ -->
+
+<div id="page">
+
+	<a name="差异lncRNA靶基因富集分析"><h4  id="result73">7.3 差异lncRNA靶基因富集分析</h4></a>
+	<p class="paragraph">分别对差异lncRNA的co-location和co-expression的靶基因进行GO和KEGG富集分析，以预测lncRNA的功能，若样品数少于5个，则仅进行co-location靶基因富集分析。</p>
+	<p class="paragraph">GO 和KEGG富集分析如前所述，在此不再赘述。</p>
+</p>
+	
+	<p class="paragraph">lncRNA转录本靶向基因富集分析结果见结果文件：7.Diff_lncRNATarget_Enrich/Group2_vs_Group1/，如下图所示。</p>
+
+</br>
+</div>
+
+<!-------------------------------GO/KEGG 富集分析视频链接------------------------------>
+<div id="page">
+	<a name="GO/KEGG 富集分析视频讲解"><h4 id="result74">7.4 GO/KEGG 富集分析讲解视频</h4></a>
+
+<p class="paragraph">链接: <font face="Arial"><a href="https://pan.baidu.com/s/1vdG7hIZpnVFWNqnXHROkcw " class="uri">https://pan.baidu.com/s/1vdG7hIZpnVFWNqnXHROkcw </a></font> 提取码: <font face="Arial">i5th </font></p>
+    
+	<br />
+
+</div>
+
+ 
+ 
+
+<!---------------------------------------可变剪接分析---------------------------------->
+
+<div id="page">
+	<a name="结构性变异分析"><h3  id="result10">8 结构性变异分析(结果文件夹: Results/Structural_Variation)</h3></a>
+	
+	<a name="差异可变剪切分析"><h4 id="result101">8.1 差异可变剪切分析(结果文件夹: Results/Structural_Variation/Altersplice)</h4></a>
+	
+	<p class="paragraph">可变剪切是指同一种前体mRNA具有多种剪切程序，形成不同的mRNA，是调控基因表达和产生蛋白质多样性的重要机制。例如, 在人类癌症进程中，广泛存在着各种形式的可变剪切，许多癌症相关基因受可变剪切调控。异常剪切、剪切过程改变，都可能对肿瘤发生发展产生重要影响，癌症特异性的剪接变体具有潜在的诊断价值，因此近些年来可变剪切分析在癌症研究中逐渐成为热点<sup>[21]</sup>。</p>
+
+	<p class="center">
+		<img class="normal" src="images/AS.png">
+	</p>
+
+	<p class="name_fig">图8.1 可变剪切形成示意图</p>
+
+	<p class="paragraph">可变剪切差异分析包括可变剪切事件定量及表达差异显著性分析。诺禾致源可通过rMATS（http://rnaseq-mats.sourceforge.net/index.html）或JuncBASE（http://compbio.berkeley.edu/proj/juncbase/Home.html）两款软件进行可变剪切分析，默认使用rMATS<sup>[21]</sup>。</p>
+
+	<p class="paragraph">rMATS分析五种可变剪切事件，分别为SE（外显子跳跃）、RI（内含子滞留）、MXE（互斥外显子）、A5SS（差异5’剪切位点）、A3SS（差异3’剪切位点），如图8.2所示。</p>
+
+	<p class="center">
+		<img class="normala2" src="images/rMATS.png">
+	</p>
+
+	<p class="name_fig">图8.2 rMATS分析可变剪切的五种类型</p>
+	<br />
+	<br />
+
+
+</div>
+
+
+<!---------------------------------------可变剪接事件分析---------------------------------->
+
+
+	<p class="paragraph">rMATS检出可变剪切的原理大致介绍如下：</p>
+	
+	<p class="paragraph">每个可变剪切事件对应两个剪接体（Isoform），分别为Inclusion Isoform和Skipping Isoform，如图8.3所示（以SE事件为例）。</p>
+
+	<p class="center">
+		<img class="normala3" src="images/SE.png">
+	</p>
+
+	<p class="name_fig">图8.3 外显子跳跃事件表达量统计示例</p>
+
+	<p class="paragraph">分别对两个Isoform进行表达量统计，并除以其有效长度得到校正后表达量，然后计算Exon Inclusion Isoform在两个Isoform总表达量的比值，最后进行两组间差异显著性分析，即为差异可变剪切分析原理，结果如表8.1所示（仅展示SE事件结果）：</p>
+
+</p>
+	
+	<p class="paragraph">差异可变剪切结果见结果文件：8.Structural_Variation/Altersplice/Group2_vs_Group1，如下图所示。</p>
+
+</br>
+	
+	<p class="name_fig">表8.1 差异可变剪接分析结果</p>
+
+	<p class="center">
+	<div id="tb" style="width:1100px;height:286px;overflow-y:scroll;overflow-x:scroll;">
+		<table class="tb1" >
+			
+			
+				<tr class="tb1"><th class="tb1">GeneID</th><th class="tb1">geneSymbol</th><th class="tb1">chr</th><th class="tb1">strand</th><th class="tb1">exonStart_0base</th><th class="tb1">exonEnd</th><th class="tb1">upstreamES</th><th class="tb1">upstreamEE</th><th class="tb1">downstreamES</th><th class="tb1">downstreamEE</th><th class="tb1">IJC_SAMPLE_1</th><th class="tb1">SJC_SAMPLE_1</th><th class="tb1">IJC_SAMPLE_2</th><th class="tb1">SJC_SAMPLE_2</th><th class="tb1">IncFormLen</th><th class="tb1">SkipFormLen</th><th class="tb1">PValue</th><th class="tb1">FDR</th><th class="tb1">IncLevel1</th><th class="tb1">IncLevel2</th><th class="tb1">IncLevelDifference</th></tr>
+			
+		  
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">ENSG00000271254</td><td  class="tb1" style="text-align:center">ENSG00000271254</td><td  class="tb1" style="text-align:center">KI270711.1</td><td  class="tb1" style="text-align:center">-</td><td  class="tb1" style="text-align:center">27336</td><td  class="tb1" style="text-align:center">27439</td><td  class="tb1" style="text-align:center">20006</td><td  class="tb1" style="text-align:center">20221</td><td  class="tb1" style="text-align:center">29278</td><td  class="tb1" style="text-align:center">29488</td><td  class="tb1" style="text-align:center">4</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">1</td><td  class="tb1" style="text-align:center">1</td><td  class="tb1" style="text-align:center">252</td><td  class="tb1" style="text-align:center">149</td><td  class="tb1" style="text-align:center">0.296805988602</td><td  class="tb1" style="text-align:center">1.0</td><td  class="tb1" style="text-align:center">1.0</td><td  class="tb1" style="text-align:center">0.372</td><td  class="tb1" style="text-align:center">0.628</td></tr>
+			
+		  
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">ENSG00000276345</td><td  class="tb1" style="text-align:center">ENSG00000276345</td><td  class="tb1" style="text-align:center">KI270721.1</td><td  class="tb1" style="text-align:center">+</td><td  class="tb1" style="text-align:center">7321</td><td  class="tb1" style="text-align:center">7404</td><td  class="tb1" style="text-align:center">6093</td><td  class="tb1" style="text-align:center">6216</td><td  class="tb1" style="text-align:center">7976</td><td  class="tb1" style="text-align:center">8050</td><td  class="tb1" style="text-align:center">50</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">22</td><td  class="tb1" style="text-align:center">2</td><td  class="tb1" style="text-align:center">232</td><td  class="tb1" style="text-align:center">149</td><td  class="tb1" style="text-align:center">0.572830575083</td><td  class="tb1" style="text-align:center">1.0</td><td  class="tb1" style="text-align:center">1.0</td><td  class="tb1" style="text-align:center">0.876</td><td  class="tb1" style="text-align:center">0.124</td></tr>
+			
+		  
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">ENSG00000281903</td><td  class="tb1" style="text-align:center">ASMER1</td><td  class="tb1" style="text-align:center">21</td><td  class="tb1" style="text-align:center">-</td><td  class="tb1" style="text-align:center">14853273</td><td  class="tb1" style="text-align:center">14853431</td><td  class="tb1" style="text-align:center">14825522</td><td  class="tb1" style="text-align:center">14825624</td><td  class="tb1" style="text-align:center">14857541</td><td  class="tb1" style="text-align:center">14857708</td><td  class="tb1" style="text-align:center">3</td><td  class="tb1" style="text-align:center">2</td><td  class="tb1" style="text-align:center">1</td><td  class="tb1" style="text-align:center">1</td><td  class="tb1" style="text-align:center">307</td><td  class="tb1" style="text-align:center">149</td><td  class="tb1" style="text-align:center">0.833737811602</td><td  class="tb1" style="text-align:center">1.0</td><td  class="tb1" style="text-align:center">0.421</td><td  class="tb1" style="text-align:center">0.327</td><td  class="tb1" style="text-align:center">0.094</td></tr>
+			
+		  
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">ENSG00000142173</td><td  class="tb1" style="text-align:center">COL6A2</td><td  class="tb1" style="text-align:center">21</td><td  class="tb1" style="text-align:center">+</td><td  class="tb1" style="text-align:center">46125265</td><td  class="tb1" style="text-align:center">46125311</td><td  class="tb1" style="text-align:center">46124884</td><td  class="tb1" style="text-align:center">46124920</td><td  class="tb1" style="text-align:center">46125464</td><td  class="tb1" style="text-align:center">46125617</td><td  class="tb1" style="text-align:center">317</td><td  class="tb1" style="text-align:center">7</td><td  class="tb1" style="text-align:center">64</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">195</td><td  class="tb1" style="text-align:center">149</td><td  class="tb1" style="text-align:center">1</td><td  class="tb1" style="text-align:center">1.0</td><td  class="tb1" style="text-align:center">0.972</td><td  class="tb1" style="text-align:center">1.0</td><td  class="tb1" style="text-align:center">-0.028</td></tr>
+			
+		  
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">ENSG00000215386</td><td  class="tb1" style="text-align:center">MIR99AHG</td><td  class="tb1" style="text-align:center">21</td><td  class="tb1" style="text-align:center">+</td><td  class="tb1" style="text-align:center">16214256</td><td  class="tb1" style="text-align:center">16214378</td><td  class="tb1" style="text-align:center">16194498</td><td  class="tb1" style="text-align:center">16194633</td><td  class="tb1" style="text-align:center">16231055</td><td  class="tb1" style="text-align:center">16231115</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">11</td><td  class="tb1" style="text-align:center">3</td><td  class="tb1" style="text-align:center">24</td><td  class="tb1" style="text-align:center">271</td><td  class="tb1" style="text-align:center">149</td><td  class="tb1" style="text-align:center">0.767318357</td><td  class="tb1" style="text-align:center">1.0</td><td  class="tb1" style="text-align:center">0.0</td><td  class="tb1" style="text-align:center">0.064</td><td  class="tb1" style="text-align:center">-0.064</td></tr>
+			
+		  
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">ENSG00000215386</td><td  class="tb1" style="text-align:center">MIR99AHG</td><td  class="tb1" style="text-align:center">21</td><td  class="tb1" style="text-align:center">+</td><td  class="tb1" style="text-align:center">16309568</td><td  class="tb1" style="text-align:center">16309765</td><td  class="tb1" style="text-align:center">16231055</td><td  class="tb1" style="text-align:center">16231115</td><td  class="tb1" style="text-align:center">16391613</td><td  class="tb1" style="text-align:center">16391685</td><td  class="tb1" style="text-align:center">3</td><td  class="tb1" style="text-align:center">12</td><td  class="tb1" style="text-align:center">3</td><td  class="tb1" style="text-align:center">29</td><td  class="tb1" style="text-align:center">346</td><td  class="tb1" style="text-align:center">149</td><td  class="tb1" style="text-align:center">1</td><td  class="tb1" style="text-align:center">1.0</td><td  class="tb1" style="text-align:center">0.097</td><td  class="tb1" style="text-align:center">0.043</td><td  class="tb1" style="text-align:center">0.054</td></tr>
+			
+		  
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">ENSG00000215386</td><td  class="tb1" style="text-align:center">MIR99AHG</td><td  class="tb1" style="text-align:center">21</td><td  class="tb1" style="text-align:center">+</td><td  class="tb1" style="text-align:center">16383159</td><td  class="tb1" style="text-align:center">16383304</td><td  class="tb1" style="text-align:center">16231055</td><td  class="tb1" style="text-align:center">16231115</td><td  class="tb1" style="text-align:center">16391613</td><td  class="tb1" style="text-align:center">16391685</td><td  class="tb1" style="text-align:center">1</td><td  class="tb1" style="text-align:center">12</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">29</td><td  class="tb1" style="text-align:center">294</td><td  class="tb1" style="text-align:center">149</td><td  class="tb1" style="text-align:center">1</td><td  class="tb1" style="text-align:center">1.0</td><td  class="tb1" style="text-align:center">0.041</td><td  class="tb1" style="text-align:center">0.0</td><td  class="tb1" style="text-align:center">0.041</td></tr>
+			
+		  
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">ENSG00000215386</td><td  class="tb1" style="text-align:center">MIR99AHG</td><td  class="tb1" style="text-align:center">21</td><td  class="tb1" style="text-align:center">+</td><td  class="tb1" style="text-align:center">16477844</td><td  class="tb1" style="text-align:center">16478039</td><td  class="tb1" style="text-align:center">16391613</td><td  class="tb1" style="text-align:center">16391685</td><td  class="tb1" style="text-align:center">16487489</td><td  class="tb1" style="text-align:center">16488343</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">4</td><td  class="tb1" style="text-align:center">1</td><td  class="tb1" style="text-align:center">30</td><td  class="tb1" style="text-align:center">344</td><td  class="tb1" style="text-align:center">149</td><td  class="tb1" style="text-align:center">1</td><td  class="tb1" style="text-align:center">1.0</td><td  class="tb1" style="text-align:center">0.0</td><td  class="tb1" style="text-align:center">0.014</td><td  class="tb1" style="text-align:center">-0.014</td></tr>
+			
+		  
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">ENSG00000215386</td><td  class="tb1" style="text-align:center">MIR99AHG</td><td  class="tb1" style="text-align:center">21</td><td  class="tb1" style="text-align:center">+</td><td  class="tb1" style="text-align:center">16477844</td><td  class="tb1" style="text-align:center">16478039</td><td  class="tb1" style="text-align:center">16419398</td><td  class="tb1" style="text-align:center">16419741</td><td  class="tb1" style="text-align:center">16487489</td><td  class="tb1" style="text-align:center">16488343</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">8</td><td  class="tb1" style="text-align:center">1</td><td  class="tb1" style="text-align:center">5</td><td  class="tb1" style="text-align:center">344</td><td  class="tb1" style="text-align:center">149</td><td  class="tb1" style="text-align:center">0.524890296631</td><td  class="tb1" style="text-align:center">1.0</td><td  class="tb1" style="text-align:center">0.0</td><td  class="tb1" style="text-align:center">0.08</td><td  class="tb1" style="text-align:center">-0.08</td></tr>
+			
+		  
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">ENSG00000215386</td><td  class="tb1" style="text-align:center">MIR99AHG</td><td  class="tb1" style="text-align:center">21</td><td  class="tb1" style="text-align:center">+</td><td  class="tb1" style="text-align:center">16522259</td><td  class="tb1" style="text-align:center">16522446</td><td  class="tb1" style="text-align:center">16487489</td><td  class="tb1" style="text-align:center">16487538</td><td  class="tb1" style="text-align:center">16537378</td><td  class="tb1" style="text-align:center">16537439</td><td  class="tb1" style="text-align:center">6</td><td  class="tb1" style="text-align:center">12</td><td  class="tb1" style="text-align:center">2</td><td  class="tb1" style="text-align:center">14</td><td  class="tb1" style="text-align:center">336</td><td  class="tb1" style="text-align:center">149</td><td  class="tb1" style="text-align:center">0.337047776677</td><td  class="tb1" style="text-align:center">1.0</td><td  class="tb1" style="text-align:center">0.181</td><td  class="tb1" style="text-align:center">0.06</td><td  class="tb1" style="text-align:center">0.121</td></tr>
+			
+		  
+		</table>
+	</div>		
+	</p>
+	<div style="width:1100px;height:115px;overflow-y:scroll;overflow-x:hidden;">
+	<p class="tremark">
+	(1) ID：可变剪接事件编号<br />
+	(2) GeneID：可变剪接事件所在基因编号<br />
+	(3) geneSymbol：可变剪接事件所在基因名称<br />
+	(4) chr：可变剪接事件所在染色体<br />
+	(5) strand：可变剪接事件所在链的方向<br />
+	(6) exonStart_0base：发生该可变剪切事件的外显子起始位置<br />
+	(7) exonEnd：发生该可变剪切事件的外显子终止位置<br />
+	(8) upstreamES：发生该可变剪切事件上游exon起始位置<br />
+	(9) upstreamEE：发生该可变剪切事件上游exon终止位置<br />
+	(10) downstreamES：发生该可变剪切事件下游exon起始位置<br />
+	(11) downstreamEE：发生该可变剪切事件下游exon终止位置<br />
+	(12) IC_SAMPLE_1：可变剪接事件Exon Inclusion Isoform在SAMPLE_1（比较组合1）中的表达量<br />
+	(13) SC_SAMPLE_1：可变剪接事件Exon Skipping Isoform在SAMPLE_1（比较组合1）中的表达量<br />
+	(14) IC_SAMPLE_2：可变剪接事件Exon Inclusion Isoform在SAMPLE_2（比较组合2）中的表达量<br />
+	(15) SC_SAMPLE_2：可变剪接事件Exon Skipping Isoform在SAMPLE_2（比较组合2）中的表达量<br />
+	(16) IncFormLen：可变剪接事件Exon Inclusion Isoform的有效长度<br />
+	(17) SkipFormLen：可变剪接事件Exon Skipping Isoform的有效长度<br />
+	(18) PValue：可变剪接事件表达差异显著性p值<br />
+	(19) FDR：可变剪接事件表达差异显著性FDR值，即矫正后的p值<br />
+	(20) IncLevel1：SAMPLE_1中可变剪切事件的Exon Inclusion Isoform 与两个Isoform总表达量的比值，即比较组合1中Inclusion Isoform的占比<br />
+	(21) IncLevel2：SAMPLE_2中可变剪切事件的Exon Inclusion Isoform在两个Isoform总表达量的比值，即比较组合2中Inclusion Isoform的占比<br />
+	(22) IncLevelDifference：IncLevel1与IncLevel2的差值，即两比较组合之间Inclusion Isoform占比的差值<br />
+	</p>
+</div>
+
+</br>
+
+<!-------------------------------结构性变异分析视频链接------------------------------>
+<div id="page">
+
+	<a name="结构性变异分析视频讲解"><h4 id="result102">8.2 结构性变异分析讲解视频</h4></a>
+
+<p class="paragraph">链接: <font face="Arial"><a href="https://pan.baidu.com/s/1anwlg45eL7iPoiYVwe6yGw " class="uri">https://pan.baidu.com/s/1anwlg45eL7iPoiYVwe6yGw </a></font> 提取码: <font face="Arial">brtu  </font></p>
+    
+</div>
+
+</br>
+
+
+<!-------------------------- 融合基因分析------------------------------->
+
+
+
+<!---------------------------CircRNA 鉴定（circRNA）--------------------------->
+
+
+<!---------------------------12  circRNA 表达水平分布-------------------------->
+
+
+<!---------------------------13  circRNA 差异分析-------------------------->
+
+
+<!-----------------------------------14 差异 circRNA 来源基因富集分析---------------------------------->
+
+
+<!---------------------------15 CircRNA 靶向 miRNA 位点分析---------------------------------->
+
+
+
+
+<!-------------------------- CircRNA 编码潜能预测------------------------------->
+
+
+<!-------------------------------结题报告结构介绍及辅助注释结果文件解读------------------------------>
+<div id="page">
+
+	<a name="结题报告结构介绍及辅助注释结果文件解读"><h4 id="result17">结题报告结构介绍及辅助注释结果文件讲解视频</h4></a>
+
+<p class="paragraph">链接: <font face="Arial"><a href="https://pan.baidu.com/s/1S3AC9i7IDVLAt45vfNnW7Q " class="uri">https://pan.baidu.com/s/1S3AC9i7IDVLAt45vfNnW7Q </a></font> 提取码: <font face="Arial">q9r3  </font></p>
+	
+	<br />
+ 	<br />
+</div>
+
+
+<!-------------------------------novomagic视频链接------------------------------>
+<div id="page">
+
+	<a name="Novomagic讲解视频"><h4 id="result19">Novomagic讲解视频</h4></a>
+
+<p class="paragraph">链接: <font face="Arial"><a href="https://www.bilibili.com/video/BV1ng411G7T1?from=search&seid=10881808897661774313" class="uri">https://www.bilibili.com/video/BV1ng411G7T1?from=search&seid=10881808897661774313</font></p>
+	
+	<br />
+ 	<br />
+</div>
+
+<!-------------------------------------------备注------------------------------------------>
+
+
+<div id="page">
+
+	<p class="head">
+	<a href="#home" title = "返回首页"><img class="logo" align="left" src="images/logo.png" /></a>
+	<a name="备注">北京诺禾致源科技股份有限公司</a>
+	<hr />
+	</p>
+
+	<a name="备注"><h2  id="bei_zhu">五、备注</h2></a>
+<a name="1 结果文件解压方法" ><h3 id="20">1 结果文件解压方法</h3></a>
+	<table width=95% align="center" id="result_note" cellspacing="0" cellpadding="5" class='tf2'>
+<tr><th colspan="3">结果文件解压方法</th></tr>
+
+<tr><td rowspan="2">*.tar.gz形式的压缩文件：</td><td>Unix/Linux/Mac用户</td><td>使用tar -zxvf *.tar.gz命令</td></tr><tr><td>Windows用户</td><td>使用解压缩软件如WinRAR、7-Zip等</td></tr>
+
+<tr><td rowspan="2">*.gz形式的压缩文件：</td><td>Unix/Linux/Mac用户</td><td>使用命令gzip -d *.gz命令</td></tr><tr><td>Windows用户</td><td>使用解压缩软件如WinRAR、7-Zip等</td></tr>
+
+<tr><td rowspan="2">*.zip形式的压缩文件：</td><td>Unix/Linux/Mac用户</td><td>使用命令unzip *.zip命令</td></tr><tr><td>Windows用户</td><td>使用解压缩软件如WinRAR、7-Zip等</td></tr>
+
+	</table>
+
+<a name="2 结果文件格式说明" ><h3 id="20">2 结果文件格式说明</h3></a>
+	<table width=95% align="center" id="result_note" cellspacing="0" cellpadding="5" class='tf2'>
+<tr><th colspan="3">结果文件格式说明</th></tr>
+
+<tr><td rowspan="2">*.fasta</td><td  style="word-break:break-all" rowspan="2">序列文件，fasta格式，一般为基因序列或者基因组序列。因文件一般较大，打开较为困难，为您提供了sampled*.fasta文件（部分*.fasta中的序列），方便您查看文件格式。</td><td>unix/Linux/Mac用户使用 less 或 more 命令；</td></tr><tr><td>windows使用高级文本编辑器Editplus/Notepad++等。</td></tr>
+
+<tr><td rowspan="2">*.fq/fastq</td><td  style="word-break:break-all" rowspan="2">序列文件，fastq格式，一般为reads序列；因文件一般较大，打开较为困难。</td><td>unix/Linux/Mac用户使用 less 或 more 命令；</td></tr><tr><td>windows用户使用高级文本编辑器Editplus/Notepad++等。</td></tr>
+
+<tr><td rowspan="2">*.xls，*.txt</td><td  style="word-break:break-all" rowspan="2">结果数据表格文件；文件以制表符（Tab）分隔。</td><td>unix/Linux/Mac用户使用 less 或 more 命令；</td></tr><tr><td>windows用户使用高级文本编辑器Editplus/Notepad++ 等，也可以用Microsoft Excel打开。</td></tr>
+
+<tr><td rowspan="2">*.png</td><td  style="word-break:break-all" rowspan="2">结果图像文件；是位图，无损压缩。</td><td>unix/Linux/Mac用户使用display命令打开。</td></tr><tr><td>windows用户可以使用图片浏览器打开，如photoshop等。</td></tr>
+
+<tr><td>*.pdf</td><td style="word-break:break-all">结果图像文件；是矢量图，可以放大和缩小而不失真，方便用户查看和编辑处理，可使用Adobe Illustrator进行图片编辑，用于文章发表等。</td><td>windows/Mac用户可以使用Adobe Reader/福昕阅读器/网页>浏览器等打开，unix/Linux用户使用evince命令打开。</td></tr>
+	</table>
+
+
+<h3 id="20">3 高级个性化分析列表和说明</h3>
+	<table width=95% align="center" id="result_note" cellspacing="0" cellpadding="5" class='tf2'>
+<tr><th colspan="1.5">分析条目</th><th  style="word-break:break-all"  colspan="2">交付结果（信息）</th><th style="word-break:break-all" colspan="2">分析条件（信息）</th></tr>
+
+<tr><td colspan="1.5">WGCNA分析</td><td style="word-break:break-all"  colspan="2">模块层次聚类图，模块间相关热性图，模块基因聚类热图，模块基因表达图，样品表达模式热图</td><td style="word-break:break-all" colspan="2">建议25个以上样品（8-15也可以，基于皮尔森）</td></tr>
+
+<tr><td colspan="1.5">GSEA 分析</td><td style="word-break:break-all"  colspan="2">GSEA富集结果图、GSEA富集基因热图</td><td style="word-break:break-all"  colspan="2">差异组合超过10个（物种为人小鼠）；根据表达趋势富集；须有表达量的注释，GO和KEGG；针对所有基因，不只是差异基因</td></tr>
+
+<tr><td colspan="1.5">STEM 分析</td><td style="word-break:break-all"  colspan="2">基因表达模块图，模块内基因表达折线图</td><td style="word-break:break-all"  colspan="2">时间点在4-8个之间</td></tr>
+
+<tr><td colspan="1.5">RNA编辑分析</td><td style="word-break:break-all"  colspan="2">编辑位点在染色体上分布，RNA编辑类型分布，RNA编辑类型堆积柱状图，RNA编辑位点在不同功能域的分布，编辑位点在不同功能域的堆积柱状图</td><td style="word-break:break-all"  colspan="2">需要链特异性建库</td></tr>
+
+<tr><td colspan="1.5">个性化热图绘制</td><td style="word-break:break-all"  colspan="2">多样品差异热图分析，展示纵向标签的热图</td><td style="word-break:break-all"  colspan="2">多样品两两比较（多阶段性或者多时期样品比对分析）</td></tr>
+
+<tr><td colspan="1.5">个性化circos图绘制</td><td style="word-break:break-all"  colspan="2">差异基因在染色体上的分布，多信息数据可视化circos图</td><td style="word-break:break-all"  colspan="2">针对差异基因</td></tr>
+
+<tr><td colspan="1.5">维诺图分析</td><td style="word-break:break-all"  colspan="2">维诺图</td><td style="word-break:break-all"  colspan="2">几百个基因；针对于网站中有的物种可做；别的物种有参考基因组的需要提高参考基因组（有格式要求）以及GO和KEGG注释；无参也可准备相应的注释文件</td></tr>
+
+
+
+<tr><td colspan="1.5">节律基因分析</td><td style="word-break:break-all"  colspan="2">节律基因注释，节律基因聚类分析，节律基因GO富集分析和KEGG富集分析</td><td style="word-break:break-all"  colspan="2">需要有亲代，子代信息、需要时间在2天内点6个时间节点以上</td></tr>
+
+<tr><td colspan="1.5">等位基因偏向性表达（ASE）分析</td><td style="word-break:break-all"  colspan="2">等位基因偏向性分析表格</td><td style="word-break:break-all"  colspan="2">基于SNP/INDEL，有亲本和子代信息；涉及SNP尽量增加测序深度</td></tr>
+
+<tr><td colspan="1.5">lncRNA Rfam家族分析</td><td style="word-break:break-all"  colspan="2">LncRNA的Rfam注释结果，LncRNA与mRNA同源性关系预测</td><td style="word-break:break-all"  colspan="2"></td></tr>
+
+<tr><td colspan="1.5">内参基因分析 </td><td style="word-break:break-all"  colspan="2">NormFinder筛选出的内参基因</td><td style="word-break:break-all"  colspan="2">2个样品以上</td></tr>
+
+<tr><td colspan="1.5">疾病癌症队列分子分型</td><td style="word-break:break-all"  colspan="2">癌症队列分子分型结果</td><td style="word-break:break-all"  colspan="2">20个以上样品（多样本变化差异）；没经过人为筛选的几千个基因</td></tr>
+<tr><td colspan="1.5">疾病癌症样品病毒表达分析</td><td style="word-break:break-all"  colspan="2">病毒表达与癌症分型比较图</td><td style="word-break:break-all"  colspan="2">样品为人</td></tr>
+
+<tr><td colspan="1.5">疾病癌症样品微环境分析 </td><td style="word-break:break-all"  colspan="2">病毒表达与癌症分型比较图</td><td style="word-break:break-all"  colspan="2">样品为人</td></tr>
+
+<tr><td colspan="1.5">病毒整合位点检测</td><td style="word-break:break-all"  colspan="2">检测病毒插入circos展示图</td><td style="word-break:break-all"  colspan="2">样品为人</td></tr>
+
+<tr><td colspan="1.5">疾病癌症融合基因注释</td><td style="word-break:break-all"  colspan="2">检测融合基因的circos展示图</td><td style="word-break:break-all"  colspan="2">样品为人和小鼠</td></tr>
+
+
+	</table>
+        <a name="3 结果文件目录列表" ><h3 id="20">4 结果文件目录列表</h3></a>
+        <p class="paragraph">结果文件目录列表：<a href="../../Results/ReadMe_ncRNAseq.html" title="点击打开" target="_blank">HTML</a></p>
+		
+        
+        <a name="5 软件说明列表" ><h3 id="20">5 软件说明列表</h3></a>
+        <p class="paragraph">软件说明列表：<a href="nc_softwares.pdf" title="点击打开" target="_blank">PDF</a></p>
+        
+
+        
+        <a name="6 lncRNA常见QA" ><h3 id="20">5 lncRNA常见 Q&A</h3></a>
+        <p class="paragraph">lncRNA常见 Q&A：<a href="LncRNA_qa.pdf" title="点击打开" target="_blank">PDF</a></p>
+
+        <a name="7 Methods英文版" ><h3 id="20">6 LncRNA Methods</h3></a>
+        <p class="paragraph">Methods英文版：<a href="Methods.TransRef.pdf" title="点击打开" target="_blank">PDF</a></p>
+
+        <a name="8 Q&A" ><h3 id="20">7 lncRNA验证手段和一般研究思路 </h3></a>
+        <p class="paragraph">lncRNA验证手段和一般研究思路：<a href="lncRNA_methods.pdf" title="点击打开" target="_blank">PDF</a></p>
+        
+
+        
+
+        <a name="12 项目优惠券" ><h3 id="20">8 项目优惠券 </h3></a>
+        <p class="paragraph">项目优惠券申请：<a href="project_coupon.pdf" title="点击打开" target="_blank">PDF</a></p>
+
+	<br />
+	<br />
+
+
+</div>
+
+
+
+<!-------------------------------参考文献---------------------------------->
+
+
+
+<div id="page">
+
+	<p class="head">
+	<a href="#home" title = "返回首页"><img class="logo" align="left" src="images/logo.png" /></a>
+	<a name="参考文献">北京诺禾致源科技股份有限公司</a>
+	<hr />
+	</p>
+
+	<h2 id="reference1"><a name="参考文献">六、参考文献</a></h2>
+
+	<p class="ref">
+
+	
+	[1] Yousefi H, Maheronnaghsh M, Molaei F, et al. Long noncoding RNAs and exosomal lncRNAs: classification, and mechanisms in breast cancer metastasis and drug resistance[J].Oncogene.2019.<br /><br />
+	[2] Kopp F, Mendell JT. Functional Classification and Experimental Dissection of Long Noncoding RNAs[J]. Cell. 2018, 172(3), 393–407. doi:10.1016/j.cell.2018.01.011.<br /><br />
+	[3] Parkhomchuk D, Borodina T, Amstislavskiy V, et al. Transcriptome analysis by strand-specific sequencing of complementary DNA[J]. Nucleic Acids Research. 2009, 37(18), e123–e123. doi:10.1093/nar/gkp596.<br /><br />
+	[4] Hardwick SA, Chen WY, Wong T, et al. Spliced synthetic genes as internal controls in RNA sequencing experiments [J]. Nature Methods. 2016, 13(9), 792–798. doi:10.1038/nmeth.3958.<br /><br />
+	
+	
+	
+	[5] Vieth B, Parekh S, Ziegenhain C, et al. A systematic evaluation of single cell RNA-seq analysis pipelines [J]. Nature Communications. 2019, 10, 1–11.<br /><br />
+	[6] Kim D, Langmead B, & Salzberg SL. HISAT: a fast spliced aligner with low memory requirements [J]. Nature Methods. 12(4), 357–360. doi:10.1038/nmeth.3317. <br /><br />
+	[7] Breschi A, Gingeras TR, Guigó R. Comparative transcriptomics in human and mouse. Nature Reviews Genetics. 2017, 18(7), 425–440. doi:10.1038/nrg.2017.19. <br /><br />
+	
+	
+	
+	[8] Pertea M, Pertea GM, Antonescu CM, et al. StringTie enables improved reconstruction of a transcriptome from RNA-seq reads [J]. Nature Biotechnology. 2015, 33(3), 290–295. doi:10.1038/nbt.3122.<br /><br /> 
+	[9] Ghosh S, Chan C-K K. Analysis of RNA-Seq Data Using TopHat and Cufflinks [J]. Methods in Molecular Biology. 2016, 339–361. doi:10.1007/978-1-4939-3167-5_18.<br /><br /> 
+	[10] Mullan LJ. Short EMBOSS user guide [J]. Briefings in Bioinformatics. 2002, 3(1), 92–94. doi:10.1093/bib/3.1.92.<br /><br /> 
+	
+
+	
+	[11] Garber M, Grabherr MG, Guttman M, Trapnell C. Computational methods for transcriptome annotation and quantification using RNA-seq [J]. Nature Methods. 2011, 8(6), 469–477. doi:10.1038/nmeth.1613.<br /><br /> 
+	[12] Bray NL, Pimentel H, Melsted P, Pachter L. Near-optimal probabilistic RNA-seq quantification [J]. Nature Biotechnology. 2016, 34(5), 525–527. doi:10.1038/nbt.3519. <br /><br />
+	
+
+	
+	[13] Robinson MD, McCarthy DJ, Smyth GK. edgeR: a Bioconductor package for differential expression analysis of digital gene expression data [J]. Bioinformatics. 2019, 26(1), 139–140. doi:10.1093/bioinformatics/btp616.<br /><br />  
+	
+
+	
+	[14] Young MD, Wakefield MJ, Smyth GK, Oshlack A. Gene ontology analysis for RNA-seq: accounting for selection bias [J]. Genome Biology. 2010, 11(2), R14. doi:10.1186/gb-2010-11-2-r14.<br /><br /> 
+	[15] Kanehisa M, Araki M, Goto S, et al. KEGG for linking genomes to life and the environment [J]. Nucleic Acids Research. 2008, 36(Database), D480–D484. doi:10.1093/nar/gkm882.<br /><br /> 
+	[16] Kanehisa M, Furumichi M, Tanabe M, et al. KEGG: new perspectives on genomes, pathways, diseases and drugs [J]. Nucleic Acids Research. 2016, 45(D1), D353–D361. doi:10.1093/nar/gkw1092. <br /><br />
+	
+
+	
+	[17] Schmitt AM, Chang HY. Long Noncoding RNAs in Cancer Pathways [J]. Cancer Cell. 2016, 29(4), 452–463. doi:10.1016/j.ccell.2016.03.010.<br /><br /> 
+	[18] Bao Z, Yang Z, Huang Z, et al. LncRNADisease 2.0: an updated database of long non-coding RNA-associated diseases [J]. Nucleic Acids Research. 2018, doi:10.1093/nar/gky905. <br /><br />
+	[19] Kopp F, Mendell JT. Functional Classification and Experimental Dissection of Long Noncoding RNAs [J]. Cell. 2018, 172(3), 393–407. doi:10.1016/j.cell.2018.01.011.<br /><br /> 
+	
+
+	
+	[20] Scotti MM, and Swanson MS. RNA mis-splicing in disease [J]. Nat. Rev. Genet. 2016, 17, 19–32.<br /><br />
+	[21] Shen S, Park JW, Lu Z, et al. rMATS: Robust and flexible detection of differential alternative splicing from replicate RNA-Seq data [J]. Proceedings of the National Academy of Sciences. 2014, 111(51), E5593–E5601. doi:10.1073/pnas.1419161111.<br /><br />
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	</p>
+
+
+	<br />
+	<br />
+
+
+</div>
+
+
+<!----------------------------------End---------------------------------->
+</div>
+
+</div>
+  <script>
+    $(document).ready(function () {
+
+      // 初始化materialScrollTop
+      $('body').materialScrollTop();
+
+      $('.flexslider').flexslider({
+        animation: "slide",
+        slideshow: false,
+        controlNav: false
+      });
+
+
+      $('#leftNavigation .step').click(function (event) {
+        $(this).children('ul').slideToggle();
+      });
+
+      // 显示隐藏按钮切换
+      $('.hide_or_show').click(function (e) {
+        $(this).parent().next().fadeToggle();
+      });
+
+    });
+
+    function displaySubMenu(li) {
+      var subMenu = li.getElementsByTagName("ul")[0];
+      subMenu.style.display = "block";
+    }
+
+    function hideSubMenu(li) {
+      var subMenu = li.getElementsByTagName("ul")[0];
+      subMenu.style.display = "none";
+    }
+  </script>
+
+</body>
+
+
+</html>

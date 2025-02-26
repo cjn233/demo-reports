@@ -1,0 +1,2169 @@
+<!-- django temple created by chenshuangzhao in 2020.04.01-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<html>
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="x-ua-compatible" content="IE=11,edge" />
+
+
+
+<title> XXXXXX项目质控与覆盖度报告 </title>
+
+
+
+
+<!--<meta> 标签提供了 HTML 文档的元数据。元数据不会显示在客户端，但是会被浏览器解析。META元素通常用于指定网页的描述，关键词. 元数据通常以 名称/值 对出现-->
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link href="css/buttons.css" rel="stylesheet" />
+<link href="css/font-awesome.min.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="css/base.css">
+<link href="css/base_new.css" type="text/css" rel="stylesheet">
+<link href="css/cloth.css" rel="stylesheet" type="text/css" media="screen" />
+<link rel="stylesheet" type="text/css" href="js/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
+<script src='js/jquery-1.4.2.min.js'></script>
+<script src="js/network.js"></script>
+<script src="js/echarts.min.js"></script>
+<script src="js/test.js"></script>
+<script src="js/scrolltop.js" type="text/javascript"></script>
+<script src="js/common.js" type="text/javascript"></script>
+<script src="js/jquery.albumSlider.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/tablecloth.js"></script>
+<script type="text/javascript" src="js/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
+<script type="text/javascript" src="js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+<script src="js/esl.js" type="text/javascript"></script>
+<script src="js/bootstrap.js" type="text/javascript"></script>
+	
+<style media="print">
+	.noprint {DISPLAY: none;}
+	#main{width:95%;right:30px;}
+	.printmenu{display:block;}
+</style>
+<!-- class 寻找 style 定义文档样式,如需链接外部样式表，请使用 <link> 标签,如果没有使用 "scoped" 属性，则每一个 <style> 标签必须位于 head 头部区域, type 唯一可能的值是 "text/css" 规定样式表的 MIME 类型-->
+<!-- type 寻找js/css--> 
+
+	<div class="noprint">
+		<div style="display: block;" id="goTopBtn">
+			<a class="backtotop" title="回顶部"><img src="images/goTop.jpg" width="30" height="30" class="back-tip"/></a>
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+		var Tree = new Array;
+		// nodeId | parentNodeId | nodeName | nodeUrl
+	<{jtree}>
+	</script> 
+
+  <link href="css/new/base_new.css" type="text/css" rel="stylesheet">
+
+    
+  <style>
+    .countt {
+      counter-reset: slideNum;
+    }
+    .countt tr:before {
+      counter-increment: slideNum;
+      content: counter(slideNum)".";
+    }
+  </style>
+
+</head>	
+<body>
+
+<!-- --------------------------------------------------------------- Menu bar----------------------------------------------------------------------- -->
+<!-- 
+ <div id="contentLeft" class="linear" style="overflow-y:auto">
+    <img style="margin-top:10px;margin-left:5%;width:90%" src="images/logo1.png" />
+  <ul id="leftNavigation" class="nav">
+  
+<li><a href="#项目背景及样本信息">项目背景</a></li>
+<li onmouseover="displaySubMenu(this)" onmouseout="hideSubMenu(this)"><a href="#建库测序流程">实验流程</a>
+<ul>
+
+<li><a href="#RNA样品检测"> RNA样品检测</a></li>
+
+
+<li><a href="#文库构建"><i class="icon-angle-right"></i> 文库构建</a></li>
+
+<li><a href="#库检"><i class="icon-angle-right"></i> 库检</a></li>
+<li><a href="#上机测序"><i class="icon-angle-right"></i> 上机测序</a></li>
+</ul>
+</li>
+
+
+<li onmouseover="displaySubMenu(this)" onmouseout="hideSubMenu(this)"><a href="#生物信息分析流程">生物信息流程</a>
+<ul>
+<li><a href="#生物信息分析流程"><i class="icon-angle-right"></i> 生物信息分析流程</a></li>
+
+
+<li><a href="#标准分析结果"><i class="icon-angle-right"></i> 标准分析结果</a></li>
+</ul>
+</li>
+
+<li onmouseover="displaySubMenu(this)" onmouseout="hideSubMenu(this)"><a href="#数据质量控制">质控</a>
+<ul>
+<li><a href="#原始序列数据"><i class="icon-angle-right"></i> 原始序列数据</a></li>
+<li><a href="#测序数据质量评估"><i class="icon-angle-right"></i> 测序数据质量评估</a></li>
+<li><a href="#测序数据过滤"><i class="icon-angle-right"></i> 测序数据过滤</a></li>
+<li><a href="#测序错误率分布"><i class="icon-angle-right"></i> 测序错误率分布</a></li>
+
+<li><a href="#GC含量分布"><i class="icon-angle-right"></i> GC含量分布</a></li>
+
+<li><a href="#数据质量汇总"><i class="icon-angle-right"></i> 数据质量汇总</a></li>
+</ul>
+</li>
+
+
+
+<li onmouseover="displaySubMenu(this)" onmouseout="hideSubMenu(this)"><a href="#比对分析">序列比对与拼接</a>
+<ul>
+<li><a href="#比对情况统计"><i class="icon-angle-right"></i> 比对情况统计</a></li>
+<li><a href="#基因组区域分布"><i class="icon-angle-right"></i> 基因组区域分布</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+</li>
+<li onmouseover="displaySubMenu(this)" onmouseout="hideSubMenu(this)"><a href="#CircRNA 鉴定">CircRNA定量与差异</a>
+<ul>
+<li><a href="#CircRNA 鉴定"><i class="icon-angle-right"></i> CircRNA 鉴定</a></li>
+
+
+
+<li><a href="#CircRNA 定量结果"><i class="icon-angle-right"></i> CircRNA 定量结果</a></li>
+<li><a href="#CircRNA 表达水平分布"><i class="icon-angle-right"></i> CircRNA 表达水平分布</a></li>
+
+
+
+<li><a href="#差异 circRNA 分析结果"><i class="icon-angle-right"></i> 差异 circRNA 分析结果</a></li>
+<li><a href="#差异 circRNA 结果展示"><i class="icon-angle-right"></i> 差异 circRNA 结果展示</a></li>
+<li><a href="#差异 circRNA 聚类分析"><i class="icon-angle-right"></i> 差异 circRNA 聚类分析</a></li>
+
+
+
+</ul>
+</li>
+<li onmouseover="displaySubMenu(this)" onmouseout="hideSubMenu(this)"><a href="#CircRNA 鉴定">CircRNA功能分析</a>
+<ul>
+<li><a href="#GO 富集结果"><i class="icon-angle-right"></i> GO 富集结果</a></li>
+<li><a href="#KEGG 富集结果"><i class="icon-angle-right"></i> KEGG 富集结果</a></li>
+
+
+
+<li><a href="#CircRNA 靶向 miRNA 位点分析"><i class="icon-angle-right"></i> CircRNA 靶向 miRNA 位点分析</a></li>
+
+
+
+<li><a href="#CircRNA 编码潜能预测"><i class="icon-angle-right"></i> CircRNA 编码潜能预测</a></li>
+
+</ul>
+</li>
+
+
+<li><a href="#备注">备注</a></li>
+<li><a href="#参考文献">参考文献</a></li>
+
+  </div> -->
+<div id="main">
+
+<!-- --------------------------------------项目背景及样品信息---------------------------------------  -->
+<!-- --------------------------------------项目背景及样品信息---------------------------------------  -->
+<div id="page">
+
+	<p><b class="bold"><font size="4" face="微软雅黑" style="color: #003f76 " >项目编号：PXXXXXXXX</font></b></p>
+	<p><b class="bold"><font size="4" face="微软雅黑" style="color: #003f76 ">项目名称：XXXXXX</font></b></p>
+	<p><b class="bold"><font size="4" face="微软雅黑" style="color: #003f76 ">结题编号：PXXXXXXXX_Homo_sapiens</font></b></p>
+	<p><b class="bold"><font size="4" face="微软雅黑" style="color: #003f76 ">结题日期：20250117140330</font></b></p>
+	<p><b class="bold"><font size="4" face="微软雅黑" style="color: #003f76 ">售后电话：400-658-1585先按3再按2，语音提示为：lncRNA、Small RNA、circRNA产品请按2</font></b></p>
+	<p><b class="bold"><font size="4" face="微软雅黑" style="color: #003f76 ">售后邮箱：service-nsRNA@novogene.com</font></b></p>
+	</br>
+</div>
+
+<!----------------------------------------结果汇总----------------------------------------->
+<div id="page">
+	<p class="head">
+	<a href="#home" title = "返回首页"><img class="logo" align="left" src="images/logo.png" /></a>
+	<a name="项目背景及样本信息">北京诺禾致源科技股份有限公司</a>
+	<hr/>
+	</p>
+	
+    <h2>重要结果汇总</h2>
+  
+
+
+  
+
+	    
+    <p class="paragraph">1.该项目鉴定到的circRNA的个数为：</p>
+    <p class="center">
+    <div style="overflow-x: auto">
+    	<table class="gy">
+        	
+          	
+          		<tr><th>Types</th><th>Total</th></tr>
+          	
+       
+          	
+          		<tr><td>circRNA</td><td>36059</td></tr>
+          	
+       
+        </table>
+     </div>
+     </p>
+  
+
+
+  
+      <p class="paragraph">2. 每个差异比较组合差异（DIFF）circRNA个数，以及上调（UP）、下调（DOWN）的circRNA个数分别为：</p>
+      <p class="center">
+      <div style="overflow-x: auto">
+      	 <table class="gy">
+      	   	
+      	   	
+      	   		<tr><th>compare</th><th>all</th><th>up</th><th>down</th><th>threshold</th></tr>
+      	   	
+      	 
+      	   	
+      	   		<tr><td>Cortisol_HighvsCortisol_Low</td><td>91</td><td>4</td><td>87</td><td>DESeq2 pvalue<=0.05 |log2FoldChange|>=0.0</td></tr>
+      	   	
+      	 
+      	   	
+      	   		<tr><td>PSS_HighvsPSS_Low</td><td>11</td><td>0</td><td>11</td><td>DESeq2 pvalue<=0.05 |log2FoldChange|>=0.0</td></tr>
+      	   	
+      	 
+      	   	
+      	   		<tr><td>Z_HighvsZ_Low</td><td>10</td><td>0</td><td>10</td><td>DESeq2 pvalue<=0.05 |log2FoldChange|>=0.0</td></tr>
+      	   	
+      	 
+      	 </table>
+      </div>
+      </p>
+  
+  
+	</br>
+</div>
+
+<div id="page">
+	<p class="head">
+	<a href="#home" title = "返回首页"><img class="logo" align="left" src="images/logo.png" /></a>
+	<a name="项目背景及样本信息">北京诺禾致源科技股份有限公司</a>
+	<hr/>
+	</p>
+	<h2 id="goto_sampleinfo1">一、项目背景及样本信息</h2>
+	<a name="项目背景"></a>
+	<h3 id="background">1 项目背景：转录组的研究意义</h3>
+	<p class="paragraph">LncRNA（long non-coding RNA）即长链非编码RNA，是一类长度大于200nt并且一般不编码蛋白质的RNA分子。长久以来，它们被当作无用的转录物因而被忽视<sup>[1]</sup>。然而近十年来，越来越多的研究证明，其在真核生物尤其是哺乳动物中广泛地存在，并起到重要的生物学作用。</p>
+    <p class="paragraph">与mRNA相同的是，lncRNA同样由细胞中的RNA聚合酶II转录得到；不同的是，其转录丰度和稳定性都较低，并且大都不具有poly A尾的结构。从功能上看，lncRNA的主要通过顺式和反式两种调节方式，分别作用于靶基因的转录水平、转录后水平、翻译水平及表观水平等，起到调控靶基因的表达水平的作用<sup>[2]</sup>。在生物体中，lncRNA一般具有较强的组织和细胞特异性，并且在最近的研究中也被发现与物种间差异以及发育有很强的关联性。此外，lncRNA也被发现在癌症、免疫缺陷等众多疾病的致病机制中扮演着重要角色<sup>[1]</sup>。</p>
+	<p class="paragraph">环状 RNA（circular RNA，circRNA）长度在 200nt 以上,主要由 pre-mRNA 通过可变剪切加工产生；5’端和 3’端共价结合形成闭合结构，广泛存在与动物和植物中。特殊的环状结构使其能够逃逸 RNA 酶的降解，增强体内稳定性。此外，其具有一定的保守性（低于 mRNA）和细胞或组织类型特异性。</p>
+	
+	</br>
+
+</div>
+
+
+<!-- --------------------------------------实验流程--------------------------------------- -->
+<!-- --------------------------------------实验流程--------------------------------------- -->
+<div id="page">
+
+	<p class="head">
+	<a href="#home" title = "返回首页"><img class="logo" align="left" src="images/logo.png" /></a>
+	<a name="建库测序流程">北京诺禾致源科技股份有限公司</a>
+	<hr/>
+	</p>
+
+	<h2 id="goto_experiment1">二、建库测序流程</h2>
+	<p class="paragraph">从RNA样品提取到最终数据获得，样品检测、建库、测序等每一环节都会直接影响数据的数量和质量，从而影响后续信息分析的结果。为从源头保证测序数据准确可靠，诺禾致源承诺在数据的所有生产环节都严格把关，从根源上确保高质量数据的产出。建库测序的流程图如下：</p>
+
+	
+	
+	
+	
+
+	
+	<p class="center"><img class="normal_library_lncRNA" src="images/library_circRNA.png" /></p>
+	
+	<p class="name_fig">图1 建库测序流程图</p>
+	<br />
+
+
+</div>
+
+<!-----------------------1 RNA提取与检测-------------------------->
+<div id="page">
+
+	<a name="RNA样品检测"></a>
+	<h3 id="experiment1">1 RNA样品检测</h3>
+	<p class="paragraph">从组织或细胞中提取RNA，随后对RNA样品进行严格质控，质控标准主要包括以下3个方面：</p>
+	<p class="paragraph">(1) 琼脂糖凝胶电泳：分析样品RNA完整性及是否存在DNA污染；</p>
+	<p class="paragraph">(2) Nanodrop：进行初步定量，检测RNA浓度及纯度（OD260/280及OD260/230）；</p>
+	<p class="paragraph">(3) Agilent 2100 bioanalyzer：精确检测RNA完整性。 </P>
+
+
+	<br />
+
+
+</div>
+
+<!----------------------2 文库构建-------------------------->
+<div id="page">
+        
+
+
+	<a name="文库构建"></a>
+	<h3 id="experiment2">2 文库构建</h3>
+
+
+	
+
+	
+	<p class="paragraph">诺禾致源采用去除核糖体RNA的方法（circRNA建库增加去线性RNA过程）构建链特异性文库<sup>[3]</sup>。
+	
+	首先，从总RNA中去除核糖体RNA，随后使用RNase R酶去除线性RNA，剩余circRNA打断成250~300 bp的短片段，以片段化的RNA为模板，随机寡核苷酸为引物合成cDNA第一条链，随后以dNTPs（dUTP、dATP、dGTP和dCTP）为原料合成cDNA第二条链。
+	纯化后的双链cDNA经过末端修复、加A尾并连接测序接头<sup>[注]</sup>，用AMPure XP beads筛选350~400 bp左右的cDNA。使用USER酶降解含U的cDNA第二链，最后进行PCR扩增并获得文库。链特异性文库具有诸多优势，如相同数据量下可获取更多有效信息；能获得更精准的基因定量、定位与注释信息等。建库原理如下图：</p>
+		
+        
+        
+        <p class="center"><img class="normal_strand_specific" src="images/strand_specific_circRNA.png" /></p>
+        
+	<p class="name_fig">图2 文库构建流程</p>
+	<p class="tremark">注：接头（Adapter），包括P5/P7、index和Rd1 SP/Rd2 SP。P5/P7，用于测序仪进行桥式PCR的过程；Index，标签序列，用来区分不同文库信息；Rd1 SP/Rd2 SP（sequence primer），测序引物结合区域，测序过程理论上由Rd1/Rd2向后开始进行。</p>
+	
+	
+	<p class="paragraph">我们在建库过程中消化了线性RNA，之后将片段随机打断为250-300bp，通过片段长度选择，理论上只会保留circRNA片段。</p>
+	
+	
+	
+</br>
+</div>	
+	
+	
+<!----------------------3 库检-------------------------->
+	
+<div id="page">
+       
+	<a name="库检"></a>
+	<h3 id="experiment3">3 库检</h3>
+
+	<p class="paragraph">先用 Qubit 初步定量，稀释文库至 1ng/ul；再用 Agilent 2100 bioanalyzer 检测对文库的插入片段长度（insert size）进行检测，insert size 大约分布在 250~300 bp 左右符合预期。Insert size符合预期后，使用 qPCR方法对文库的有效浓度进行准确定量，文库的有效浓度为>2nM,保证了样本文库的质量</p>
+
+
+	<br />
+</div>
+
+
+<!-----------------------4 上机测序-------------------------->
+<div id="page">
+	<a name="上机测序"></a>
+	<h3 id="experiment4">4 上机测序</h3>
+
+	<p class="paragraph">库检合格后，根据文库的有效浓度及数据产出需求pooling后进行Illumina PE150测序。PE150（Pair end 150 bp）指高通量双端测序，每端各测150 bp。在构建的小片段文库中，Insert cDNA，即插入片段是直接测序的单位。双端测序是将每条插入片段的两端进行测序的方法，由于插入片段的长度分布已知，双端测序时不仅可以获得片段两端的序列，也可获得这两段序列之间的长度，从而便于后续组装和比对。</p>
+	<p class="paragraph">测序的基本原理是边合成边测序（Sequencing by Synthesis）。在测序的flow cell中加入四种荧光标记的dNTP、DNA聚合酶以及接头引物进行扩增，在每一个测序簇延伸互补链时，每加入一个被荧光标记的dNTP就能释放出相对应的荧光，测序仪通过捕获荧光信号，并通过计算机软件将光信号转化为测序峰，从而获得待测序片段的序列信息。</p>
+	<br />
+
+
+</div>
+
+<!-- --------------------------------- 信息分析流程 -------------------------------- -->
+<!-- --------------------------------- 信息分析流程 -------------------------------- -->
+<div id="page">
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="images/logo.png" /></a><a name="生物信息分析流程">北京诺禾致源科技股份有限公司</a><hr /></p>
+	<h2 id="pipeline1">三、生物信息分析流程</h2>
+    <p class="paragraph">测序获得原始测序序列（Raw data）后进入信息分析流程，流程分为两个阶段：</p>
+	<p class="paragraph">1）测序数据质量评估：主要通过对测序错误率、数据量、比对率等进行统计，评估建库测序是否达到了标准，符合标准则进行后续的分析，否则需重新建库或加测；</p>
+   
+	
+	
+	
+	
+
+
+	
+    <p class="paragraph">2）信息挖掘及分析：CircRNA 信息分析流程如下:</p>
+
+	<p class="center">
+	<img class="normal_pipline_lncRNA" src="images/pipline_circRNA.png" /></p>
+	
+	
+	
+	<p class="name_fig">图3 信息分析流程图</p>
+		
+	</br>
+</div>
+	
+<!------------------------------四 标准分析结果-------------------------->
+
+<!---------------------------四 标准分析结果---------------------->
+	
+<div id="page">
+	<p class="head">
+	<a href="#home" title="返回首页"><img class="logo" align="left" src="images/logo.png" /></a>
+	 <a name="标准分析结果">北京诺禾致源科技股份有限公司</a>
+	<hr/>
+	</p>
+
+	<h2 id="resultall">四、标准分析结果</h2>
+	
+	
+	
+	
+	<p class="paragraph">RNA-seq标准分析过程主要包括质控，比对，拼接，筛选，定量，差异显著性分析，功能富集等环节。RNA-seq分析的核心是基因表达差异的显著性，使用统计学方法比较两个或多个条件下的基因表达差异（例如，处理与对照），从中找出与条件相关的差异基因，然后进一步分析这些差异基因的生物学意义。</p>
+	<p class="paragraph">其中，环状RNA（Circular RNAs，circRNA）是一类不具有5' 末端帽子和3' 末端poly(A)尾巴，并以共价键形成环形结构的非编码RNA分子。circRNA是由非经典剪接方式进行反向剪接而形成,不能编码蛋白，且保守性较低。在肿瘤研究中应用广泛，比如肿瘤发生发展、迁移、侵袭、耐药等都和lncRNA相关。如前所述，通过去核糖体链特异性文库得到的RNA主要包括lncRNA、mRNA、circRNA等，针对生物体内转录调控机制研究所需，我们主要分析mRNA、lncRNA及circRNA。</p>
+	
+		
+	<!-- <p class="paragraph">RNA-seq标准分析过程主要包括质控，比对，筛选鉴定，定量，差异显著性分析，来源基因分析和功能富集等环节。RNA-seq分析的核心是基因表达差异的显著性，使用统计学方法比较两个或多个条件下的基因表达差异（例如，处理与对照），从中找出与条件相关的差异基因，然后进一步分析这些差异基因的生物学意义。</p> -->
+
+
+</br>	
+</div>
+
+<!----------------------------1.1 原始数据说明------------------------>	
+<div id="page">
+	<a name="测序数据质量评估"><h3 id="31">1 测序数据质量评估(结果文件夹: Results/QC)</h3></a>
+	<p class="paragraph">测序数据的产生经过了RNA提取、建库、测序多个步骤，这些步骤会产生少许低质量或者无效数据，比如建库阶段会存在建库长度的偏差，测序阶段会出现测序错误的情况。所以需要对下机得到的原始数据进行质量控制，保证后续分析的准确性。</p>
+	
+	
+	</br>
+	<a name="原始序列数据"><h4 id="result11">1.1 原始序列数据</h4></a>
+	<p class="paragraph">高通量测序（如Illumina PE150/SE50）下机得到的原始图像文件经CASAVA碱基识别转化为测序读段（Sequenced Reads），以FASTQ格式存储。FASTQ是一种存储生物序列及相应质量值的常用文本格式，每条测序读段由四行组成，如下图所示：</p>
+
+	<p class="center">
+	<img class="normal" src="images/rawdata.png" /></p>
+
+    <p class="paragraph">Illumina测序标识符详细信息如下：</p>
+    <p class="center">
+    <table class="gy">
+    <tr>
+        <th>标示符</th>
+        <th>含义</th>
+      </tr>
+      <tr>
+        <td>HWI-ST1276</td>
+        <td>Instrument – unique identifier of the sequencer </td>
+      </tr>
+      <tr>
+        <td>71</td>
+        <td>run number – Run number on instrument</td>
+      </tr>
+      <tr>
+        <td>C1162ACXX</td>
+        <td>FlowCell ID – ID of flowcell</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>LaneNumber – positive integer</td>
+      </tr>
+      <tr>
+        <td>1101</td>
+        <td>TileNumber – positive integer</td>
+      </tr>
+      <tr>
+        <td>1208</td>
+        <td>X – x coordinate of the spot. Integer which can be negative</td>
+      </tr>
+      <tr>
+        <td>2458</td>
+        <td>Y – y coordinate of the spot. Integer which can be negative</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>ReadNumber - 1 for single reads; 1 or 2 for paired ends</td>
+      </tr>
+      <tr>
+        <td>N</td>
+        <td>whether it is filtered - NB：Y if the read is filtered out, not in the delivered fastq file, N otherwise</td>
+      </tr>
+      <tr>
+        <td>0</td>
+        <td>control number - 0 when none of the control bits are on, otherwise it is an even number</td>
+      </tr>
+      <tr>
+        <td>CGATGT</td>
+        <td>Illumina index sequences</td>
+      </tr>
+    </table>
+    </p>
+
+
+	<br />
+	<br />
+
+
+</div>
+		
+<!------------------------------1.2 测序数据过滤------------------------------>
+
+<div id="page">
+
+
+	<a name="测序数据过滤"><h4 id="result12">1.2 测序数据过滤</h4></a>
+	<p class="paragraph">测序获得的原始数据中包含少量带有测序接头或测序质量较低的reads，如图1.1所示。为了保证数据分析的质量及可靠性，需要对原始数据进行过滤，过滤内容如下：</p>
+	<p class="paragraph">(1) 去除带接头（adapter）的reads；</p>
+	<p class="paragraph">(2) 去除N（N表示无法确定碱基信息）的比例大于0.002的reads；</p>
+	<p class="paragraph">(3) 当单端read中含有的低质量碱基数超过该条read长度比例的50%时，需要去除此对paired reads。</p>
+</p>
+
+<p class="paragraph">各样本的测序数据过滤情况见结果文件：1.QC/Classfication，如下图所示。</p>
+
+	
+</br>
+<p class="center">
+	<div class="albumSlider">
+				<div class="fullview">
+					<img src=SPMlncID21/>
+				</div>
+				<div class="slider">
+					<div class="button movebackward" title="向上滚动">
+					</div>
+					<div class="imglistwrap">
+						<ul class="imglist">
+							
+							<li><a id="example2" href=SPMlncID21 ><img src=files/QC/Classfication/SPMlncID21.classfication.png/></a></li>
+							
+							<li><a id="example2" href=SPMlncID04 ><img src=files/QC/Classfication/SPMlncID04.classfication.png/></a></li>
+							
+							<li><a id="example2" href=SPMlncID14 ><img src=files/QC/Classfication/SPMlncID14.classfication.png/></a></li>
+							
+							<li><a id="example2" href=SPMlncID15 ><img src=files/QC/Classfication/SPMlncID15.classfication.png/></a></li>
+							
+							<li><a id="example2" href=SPMlncID24 ><img src=files/QC/Classfication/SPMlncID24.classfication.png/></a></li>
+							
+							<li><a id="example2" href=SPMlncID02 ><img src=files/QC/Classfication/SPMlncID02.classfication.png/></a></li>
+							
+							<li><a id="example2" href=SPMlncID30 ><img src=files/QC/Classfication/SPMlncID30.classfication.png/></a></li>
+							
+							<li><a id="example2" href=SPMlncID19 ><img src=files/QC/Classfication/SPMlncID19.classfication.png/></a></li>
+							
+							<li><a id="example2" href=SPMlncID22 ><img src=files/QC/Classfication/SPMlncID22.classfication.png/></a></li>
+							
+						</ul>
+					</div>
+					<div class="button moveforward" title="向下滚动">
+					</div>
+				</div>
+			</div>
+		</p>
+
+	<p class="name_fig">图1.1 原始数据组成</p>
+	<p class="cenmark">不同颜色比例分别代表不同组分的比例，(1) Adapter related：带接头的reads；(2) Containing N：含有未知碱基的reads；(3) Low quality：测序质量低的reads；(4) Clean reads：通过数据过滤的reads。</p>
+
+	<br />
+	<br />
+
+</div>
+	
+<!---------------------------1.3 测序错误率分布-------------------------->
+<div id="page">
+
+
+	<a name="测序错误率分布"><h4 id="result13">1.3 测序错误率分布</h4></a>
+	<p class="paragraph">测序过程本身存在发生机器错误的可能性，测序错误率分布检查可以反映测序数据的质量，序列信息中每个碱基的测序质量值保存在FASTQ文件中，若reads的碱基质量值用Q<sub>Phred</sub>表示，则可计算测序错误率 e=10<sup>(-Q<sub>Phred</sub>/10)</sup> 或表示为 Q<sub>Phred</sub>=-10log<sub>10</sub>(e)。Illunima Casava 1.8版本碱基识别与Phred分值之间的简明对应关系如下表所示。</p>
+	
+	<p class="name_fig">表1.1　Illumina Casava 1.8版本碱基识别与Phred分值之间的简明对应关系</p>
+	<table class="tb1">
+		<p class="center">
+		<tr><th>Phred分值</th><th>不正确的碱基识别</th><th>碱基正确识别率</th><th>Q-sorce</th></tr>
+		<tr><td>10</td><td>1/10</td><td>90%</td><td>Q10</td></tr>
+		<tr><td>20</td><td>1/100</td><td>99%</td><td>Q20</td></tr>
+		<tr><td>30</td><td>1/1000</td><td>99.9%</td><td>Q30</td></tr>
+		<tr><td>40</td><td>1/10000</td><td>99.99%</td><td>Q40</td></tr>
+		</p>
+	</table>
+
+	<br />
+
+	<p class="paragraph">测序错误率与碱基质量有关，受测序仪本身、测序试剂、样品等多个因素共同影响。对于RNA-seq技术，测序错误率分布具有两个特点：</p>
+	<p class="paragraph">(1) 测序错误率会随着测序序列（Sequenced Reads）长度的增加而升高，这是由于测序过程中化学试剂的消耗而导致的，并且为Illumina高通量测序平台都具有的特征<sup>[4]</sup>。</p>
+	<p class="paragraph">(2) 前几个碱基的位置也会发生较高的测序错误率，是因为在RNA-seq建库过程中反转录需要随机引物，推测前几个碱基测序错误率较高的原因是随机引物碱基和RNA模版的不完全结合<sup>[4]</sup>。</p>
+
+</p>
+	
+	<p class="paragraph">各样本测序错误率分布见结果文件：1.QC/Errorrate，如下图所示。</p>
+
+	
+	<br />
+
+	<p class="center">
+
+		<div class="albumSlider">
+					<div class="fullview">
+						<img src=SPMlncID21/>
+					</div>
+					<div class="slider">
+						<div class="button movebackward" title="向上滚动">
+						</div>
+						<div class="imglistwrap">
+							<ul class="imglist">
+								
+								<li><a id="example2" href=SPMlncID21 ><img src=files/QC/Errorrate/SPMlncID21.Error.png/></a></li>
+								
+								<li><a id="example2" href=SPMlncID04 ><img src=files/QC/Errorrate/SPMlncID04.Error.png/></a></li>
+								
+								<li><a id="example2" href=SPMlncID14 ><img src=files/QC/Errorrate/SPMlncID14.Error.png/></a></li>
+								
+								<li><a id="example2" href=SPMlncID15 ><img src=files/QC/Errorrate/SPMlncID15.Error.png/></a></li>
+								
+								<li><a id="example2" href=SPMlncID24 ><img src=files/QC/Errorrate/SPMlncID24.Error.png/></a></li>
+								
+								<li><a id="example2" href=SPMlncID02 ><img src=files/QC/Errorrate/SPMlncID02.Error.png/></a></li>
+								
+								<li><a id="example2" href=SPMlncID30 ><img src=files/QC/Errorrate/SPMlncID30.Error.png/></a></li>
+								
+								<li><a id="example2" href=SPMlncID19 ><img src=files/QC/Errorrate/SPMlncID19.Error.png/></a></li>
+								
+								<li><a id="example2" href=SPMlncID22 ><img src=files/QC/Errorrate/SPMlncID22.Error.png/></a></li>
+								
+							</ul>
+						</div>
+						<div class="button moveforward" title="向下滚动">
+						</div>
+					</div>
+				</div>	
+			
+			</p>
+		
+
+	<p class="name_fig">图1.2 测序错误率分布图</p>
+	<p class="cenmark">测序片段不同碱基位置错误率分布图，其中横坐标为 reads 的碱基位置，纵坐标为单碱基错误率。</p>
+	<p class="paragraph">测序错误率分布检查用于检测在测序长度范围内，有无某些位置的碱基存在异常的高错误率，例如若Read1或Read2中间位置的碱基测序错误率显著高于其他位置，则说明可能存在异常碱基。</p>
+
+
+	<br />
+</div>	
+	
+<!---------------------------1.4 GC含量分布------------------------------>	
+<div id="page">
+ 
+	<a name="测序错误率分布"><h4 id="result14">1.4 GC含量分布</h4></a>
+
+	
+	
+		
+	<!-- <p class="paragraph">核苷酸序列中鸟嘌呤（G）和胞嘧啶（C）所占的比例称为GC含量。GC含量在物种间存在一定特异性，但由于反转录过程中所使用的6bp随机引物，会引起前几位碱基在核苷酸组成上有一定偏好性，产生正常波动，随后则趋于稳定。对于链特异性建库而言，由于只保留了单链信息，可能会出现AT分离或GC分离现象。如图1.3所示：</p> -->
+</p>	
+	<p class="paragraph">各样本GC含量分布见结果文件：1.QC/GC，如下图所示。</p>
+
+	
+</br>
+	
+	<p class="center">
+
+		<div class="albumSlider">
+					<div class="fullview">
+						<img src="files/QC/GC/SPMlncID21.GC.png"/>
+					</div>
+					<div class="slider">
+						<div class="button movebackward" title="向上滚动">
+						</div>
+						<div class="imglistwrap">
+							<ul class="imglist">
+								
+								<li><a id="example2" href="files/QC/GC/SPMlncID21.GC.png" ><img src="files/QC/GC/SPMlncID21.GC.png"/></a></li>
+								
+								<li><a id="example2" href="files/QC/GC/SPMlncID04.GC.png" ><img src="files/QC/GC/SPMlncID04.GC.png"/></a></li>
+								
+								<li><a id="example2" href="files/QC/GC/SPMlncID14.GC.png" ><img src="files/QC/GC/SPMlncID14.GC.png"/></a></li>
+								
+								<li><a id="example2" href="files/QC/GC/SPMlncID15.GC.png" ><img src="files/QC/GC/SPMlncID15.GC.png"/></a></li>
+								
+								<li><a id="example2" href="files/QC/GC/SPMlncID24.GC.png" ><img src="files/QC/GC/SPMlncID24.GC.png"/></a></li>
+								
+								<li><a id="example2" href="files/QC/GC/SPMlncID02.GC.png" ><img src="files/QC/GC/SPMlncID02.GC.png"/></a></li>
+								
+								<li><a id="example2" href="files/QC/GC/SPMlncID30.GC.png" ><img src="files/QC/GC/SPMlncID30.GC.png"/></a></li>
+								
+								<li><a id="example2" href="files/QC/GC/SPMlncID19.GC.png" ><img src="files/QC/GC/SPMlncID19.GC.png"/></a></li>
+								
+								<li><a id="example2" href="files/QC/GC/SPMlncID22.GC.png" ><img src="files/QC/GC/SPMlncID22.GC.png"/></a></li>
+								
+							</ul>
+						</div>
+						<div class="button moveforward" title="向下滚动">
+						</div>
+					</div>
+				</div>	
+			
+			</p>
+
+<p class="name_fig">图1.3 GC含量分布图</p>
+	<p class="cenmark">横坐标为reads的碱基位置，纵坐标为单碱基所占的比例，不同颜色代表不同的碱基类型</p>
+
+
+	<br />
+	<br />
+</div>		
+	
+<!-----------------------1.5 数据质量汇总---------------------->
+
+<div id="page">
+
+
+	<a name="数据质量汇总"><h4 id="result15">1.5 数据质量汇总</h4></a>
+	<p class="paragraph">经过原始数据过滤、测序错误率检查及GC含量分布检查，获得后续分析使用的clean reads，数据汇总如表1.2所示。</p>
+	
+</p>
+	<p class="paragraph">各样本数据质量汇总见结果文件：1.QC/Datastat，如下图所示。</p>
+</br>
+	
+</br>
+
+	<p class="name_fig">表1.2　数据质量汇总</p>
+
+	<p class="center">
+	<!--<div id="tb" style="width:1100px;height:270px;overflow-y:scroll;overflow-x:hidden;" >-->
+	<div id="tb" style="overflow-y:scroll;overflow-x:hidden;" >
+		<table class="tb1">
+			
+			
+				<tr><th>sample</th><th>library</th><th>raw_reads</th><th>raw_bases</th><th>clean_reads</th><th>clean_bases</th><th>error_rate</th><th>Q20</th><th>Q30</th><th>GC_pct</th></tr>
+			
+		  
+			
+				<tr><td>SPMlncID21</td><td>ZRRL240001846-1a</td><td>86971820</td><td>13.05G</td><td>84041364</td><td>12.61G</td><td>0.05</td><td>87.95</td><td>81.82</td><td>63.03</td></tr>
+			
+		  
+			
+				<tr><td>SPMlncID04</td><td>ZRRL230034357-1a</td><td>89266912</td><td>13.39G</td><td>82043566</td><td>12.31G</td><td>0.03</td><td>95.19</td><td>89.81</td><td>43.17</td></tr>
+			
+		  
+			
+				<tr><td>SPMlncID14</td><td>ZRRL230034358-1a</td><td>92827686</td><td>13.92G</td><td>87758384</td><td>13.16G</td><td>0.03</td><td>95.76</td><td>91.42</td><td>50.18</td></tr>
+			
+		  
+			
+				<tr><td>SPMlncID15</td><td>ZRRL230034359-1a</td><td>82516826</td><td>12.38G</td><td>80603604</td><td>12.09G</td><td>0.03</td><td>95.76</td><td>90.95</td><td>48.53</td></tr>
+			
+		  
+			
+				<tr><td>SPMlncID24</td><td>ZRRL230034360-1a</td><td>86395284</td><td>12.96G</td><td>84308076</td><td>12.65G</td><td>0.03</td><td>96.56</td><td>91.75</td><td>43.53</td></tr>
+			
+		  
+			
+				<tr><td>SPMlncID02</td><td>ZRRL230034361-1a</td><td>81863974</td><td>12.28G</td><td>77460450</td><td>11.62G</td><td>0.03</td><td>95.4</td><td>89.95</td><td>42.37</td></tr>
+			
+		  
+			
+				<tr><td>SPMlncID30</td><td>ZRRL230034362-1a</td><td>107147968</td><td>16.07G</td><td>106094374</td><td>15.91G</td><td>0.03</td><td>95.32</td><td>91</td><td>52.89</td></tr>
+			
+		  
+			
+				<tr><td>SPMlncID19</td><td>ZRRL230034363-1a</td><td>93148272</td><td>13.97G</td><td>91718050</td><td>13.76G</td><td>0.03</td><td>95.2</td><td>90.06</td><td>46.95</td></tr>
+			
+		  
+			
+				<tr><td>SPMlncID22</td><td>ZRRL240001847-1a</td><td>108014662</td><td>16.2G</td><td>97222028</td><td>14.58G</td><td>0.03</td><td>94.82</td><td>90.41</td><td>55.18</td></tr>
+			
+		  
+		</table>
+	</div>		
+	</p>
+	<div style="width:1100px;height:115px;overflow-y:scroll;overflow-x:hidden;">
+
+	<p class="tremark">
+	(1) Sample name：样品名<br />
+	(2) Raw reads：原始数据中的reads数<br />
+	(3) Clean reads：原始数据过滤后的reads数<br />
+	(4) Raw bases：原始数据中的碱基数<br />
+	(5) Clean bases：原始数据过滤后的碱基数<br />	
+	(6) Error rate：数据整体测序错误率<br />
+	(7) Q20：Phred数值大于20的碱基占总碱基的百分比<br />
+	(8) Q30：Phred数值大于30的碱基占总碱基的百分比<br />
+	(9) GC content：clean reads中G与C占四种碱基的百分比<br />
+	</p>
+</div>
+
+
+	<br />
+	<br />
+
+
+<!-------------------------------1.6  QC视频链接------------------------------>
+<a name="QC视频讲解"><h4 id="result16">1.6 数据产出及质控讲解视频</h4></a>
+
+<p class="paragraph">链接: <font face="Arial"><a href="https://pan.baidu.com/s/1mV7hLr0tMsjnEmViCPQCZw  " class="uri">https://pan.baidu.com/s/1mV7hLr0tMsjnEmViCPQCZw </a></font> 提取码: <font face="Arial">9y2t  </font></p>
+
+	<br />
+	<br />	
+</div>
+
+
+
+
+<!-------------------------------2 比对------------------------------>
+
+
+
+<div id="page" >
+
+	<a name="比对分析"><h3 id="result2">2 比对分析(结果文件夹: Results/Mapping)</h3></a>
+
+    <p class="paragraph">将有效测序数据（clean reads）比对到基因组或转录组是后续分析的基础，诺禾致源可采用Tophat2（http://tophat.cbcb.umd.edu）、Hisat2（http://ccb.jhu.edu/software/hisat2）、STAR（http://code.google.com/p/rna-star）软件对RNA-Seq测序数据进行比对分析<sup>[5]</sup>。Hisat2是经典比对软件Tophat2的作者推荐的升级类软件，mapping率高且找到 Junction reads的正确率高，因此我们默认采用Hisat2<sup>[6]</sup>。</p>
+    <p class="paragraph">比对输出结果一般为标准的SAM文件，由sanger制定，是一种以TAB为分隔符的文本格式，主要用于测序序列比对到基因组上的结果展示。BAM文件是SAM文件的二进制格式，因其占据存储资源小，运算速度快，很多比对软件均以BAM格式作为标准输出，利用samtools工具可查看BAM文件的具体内容。</p>
+
+
+</p>
+
+</div>
+
+<!------------------------------2.1 比对结果说明-------------------------->
+
+<!--------------------------2.1 比对情况统计-------------------------->
+
+
+	<a name="比对情况统计"><h4 id="result21">2.1 比对情况统计</h4></a>
+    <p class="paragraph">利用比对软件将测序得到的clean reads比对到到参考基因组上，统计其可以mapping到参考基因组的的有效数据，并进一步进行mapping率等的统计。</p>
+	
+</p>	
+	
+	<p class="paragraph">各样本比对情况见结果文件：2.Mapping/Mapstat/MapStat.xls，如下图所示。</p>
+
+	
+</br>	
+
+	<p class="name_fig">表2.1 所有样本比对情况一览表</p>
+
+<p class="center">
+<div id="tb" style="width:1100px;height:286px;overflow-y:scroll;overflow-x:scroll;">
+		<table class="tb1" >
+			
+			
+				<tr><th>sample</th><th>total_reads</th><th>total_map</th><th>unique_map</th><th>multi_map</th><th>read1_map</th><th>read2_map</th><th>positive_map</th><th>negative_map</th><th>splice_map</th><th>unsplice_map</th><th>proper_map</th></tr>
+			
+		  
+			
+				<tr><td>SPMlncID21</td><td>84041364</td><td>34534492(41.09%)</td><td>30462261(36.25%)</td><td>4072231(4.85%)</td><td>14511214(17.27%)</td><td>15951047(18.98%)</td><td>14204081(16.9%)</td><td>16258180(19.35%)</td><td>5858288(6.97%)</td><td>24603973(29.28%)</td><td>25475388(30.31%)</td></tr>
+			
+		  
+			
+				<tr><td>SPMlncID04</td><td>82043566</td><td>69936403(85.24%)</td><td>67752727(82.58%)</td><td>2183676(2.66%)</td><td>35026025(42.69%)</td><td>32726702(39.89%)</td><td>33811765(41.21%)</td><td>33940962(41.37%)</td><td>1067840(1.3%)</td><td>66684887(81.28%)</td><td>62050390(75.63%)</td></tr>
+			
+		  
+			
+				<tr><td>SPMlncID14</td><td>87758384</td><td>71420609(81.38%)</td><td>68705140(78.29%)</td><td>2715469(3.09%)</td><td>34867775(39.73%)</td><td>33837365(38.56%)</td><td>34117871(38.88%)</td><td>34587269(39.41%)</td><td>3715652(4.23%)</td><td>64989488(74.06%)</td><td>61050656(69.57%)</td></tr>
+			
+		  
+			
+				<tr><td>SPMlncID15</td><td>80603604</td><td>69378441(86.07%)</td><td>67036006(83.17%)</td><td>2342435(2.91%)</td><td>33992344(42.17%)</td><td>33043662(41.0%)</td><td>33327774(41.35%)</td><td>33708232(41.82%)</td><td>1087966(1.35%)</td><td>65948040(81.82%)</td><td>61331132(76.09%)</td></tr>
+			
+		  
+			
+				<tr><td>SPMlncID24</td><td>84308076</td><td>76127594(90.3%)</td><td>74133568(87.93%)</td><td>1994026(2.37%)</td><td>37342124(44.29%)</td><td>36791444(43.64%)</td><td>36988440(43.87%)</td><td>37145128(44.06%)</td><td>614110(0.73%)</td><td>73519458(87.2%)</td><td>71100382(84.33%)</td></tr>
+			
+		  
+			
+				<tr><td>SPMlncID02</td><td>77460450</td><td>67596117(87.27%)</td><td>65519590(84.58%)</td><td>2076527(2.68%)</td><td>33870754(43.73%)</td><td>31648836(40.86%)</td><td>32704601(42.22%)</td><td>32814989(42.36%)</td><td>402213(0.52%)</td><td>65117377(84.07%)</td><td>60564166(78.19%)</td></tr>
+			
+		  
+			
+				<tr><td>SPMlncID30</td><td>106094374</td><td>70653746(66.6%)</td><td>62900109(59.29%)</td><td>7753637(7.31%)</td><td>31327696(29.53%)</td><td>31572413(29.76%)</td><td>30959199(29.18%)</td><td>31940910(30.11%)</td><td>15198832(14.33%)</td><td>47701277(44.96%)</td><td>55786662(52.58%)</td></tr>
+			
+		  
+			
+				<tr><td>SPMlncID19</td><td>91718050</td><td>73430090(80.06%)</td><td>70333308(76.68%)</td><td>3096782(3.38%)</td><td>36482104(39.78%)</td><td>33851204(36.91%)</td><td>35047633(38.21%)</td><td>35285675(38.47%)</td><td>2778871(3.03%)</td><td>67554437(73.65%)</td><td>62675544(68.34%)</td></tr>
+			
+		  
+			
+				<tr><td>SPMlncID22</td><td>97222028</td><td>69322801(71.3%)</td><td>66146963(68.04%)</td><td>3175838(3.27%)</td><td>33058049(34.0%)</td><td>33088914(34.03%)</td><td>32879092(33.82%)</td><td>33267871(34.22%)</td><td>5481035(5.64%)</td><td>60665928(62.4%)</td><td>62978154(64.78%)</td></tr>
+			
+		   
+		</table>
+	</div>	
+</p>
+<div style="width:1100px;height:115px;overflow-y:scroll;overflow-x:hidden;">
+	<p class="tremark">
+	(1) Sample name：样本名称。<br />
+	(2) Total reads：用于比对分析的clean reads数。<br />
+	(3) Total mapped reads：比对到基因组上的reads数。<br />
+	(4) Multiple mapped reads：比对到基因组多个位置的reads数。<br />
+	(5) Uniquely mapped reads：比对到基因组单一位置的reads数。<br />
+	(6) Read-1：read1中比对到基因组上的reads数。<br />
+	(7) Read-2：read2中比对到基因组上的reads数。<br />
+	(8) Reads map to '+'：比对到基因组上正链的reads数。<br />
+	(9) Reads map to '-'：比对到基因组上负链的reads数。<br />
+	(10) Non-splice reads：整段比对到外显子的 reads 的数。<br />
+	(11) Splice reads：分段比对到两个外显子上的 reads (也称为Junction reads）的数，Splice reads的百分比取决于测序片段的长度。<br />
+	(12) Reads mapped in proper pairs：成对比对到参考基因组上的reads占总clean reads数的百分比。<br />
+	(13) Proper-paired reads map to different chrom：比对到基因组上不同染色体的reads占总clean reads数的百分比。<br />
+	</p>
+</div>
+
+	<br />
+	<br />
+
+<!------------------------------2.2 基因组区域分布------------------>
+<div id="page">
+
+	<a name="基因组区域分布"><h4 id="result22">2.2 基因组区域分布</h4></a>
+
+	<p class="paragraph">根据比对结果，分别统计reads在基因组外显子区域，内含子区域以及基因间区所占的比例。比对到内含子区域的reads可能来源于前体mRNA或可变剪接事件滞留的内含子。比对到基因间区的reads，可能来源于ncRNA或少许DNA片段污染<sup>[7]</sup>。所有样本的测序reads在基因组区域分布情况如图2.1所示。</p>
+	</p>
+	
+	<p class="paragraph">各样本基因组区域分布图见结果文件：2.Mapping/Mapregion，如下图所示。</p>
+
+	
+</br>	
+	<p class="center">
+		<div class="albumSlider">
+					<div class="fullview">
+						<img src=SPMlncID21/>
+					</div>
+					<div class="slider">
+						<div class="button movebackward" title="向上滚动">
+						</div>
+						<div class="imglistwrap">
+							<ul class="imglist">
+								
+								<li><a id="example2" href=SPMlncID21 ><img src=files/Mapping/Mapregion/SPMlncID21.region.png/></a></li>
+								
+								<li><a id="example2" href=SPMlncID04 ><img src=files/Mapping/Mapregion/SPMlncID04.region.png/></a></li>
+								
+								<li><a id="example2" href=SPMlncID14 ><img src=files/Mapping/Mapregion/SPMlncID14.region.png/></a></li>
+								
+								<li><a id="example2" href=SPMlncID15 ><img src=files/Mapping/Mapregion/SPMlncID15.region.png/></a></li>
+								
+								<li><a id="example2" href=SPMlncID24 ><img src=files/Mapping/Mapregion/SPMlncID24.region.png/></a></li>
+								
+								<li><a id="example2" href=SPMlncID02 ><img src=files/Mapping/Mapregion/SPMlncID02.region.png/></a></li>
+								
+								<li><a id="example2" href=SPMlncID30 ><img src=files/Mapping/Mapregion/SPMlncID30.region.png/></a></li>
+								
+								<li><a id="example2" href=SPMlncID19 ><img src=files/Mapping/Mapregion/SPMlncID19.region.png/></a></li>
+								
+								<li><a id="example2" href=SPMlncID22 ><img src=files/Mapping/Mapregion/SPMlncID22.region.png/></a></li>
+								
+							</ul>
+						</div>
+						<div class="button moveforward" title="向下滚动">
+						</div>
+					</div>
+				</div>
+			</p>
+
+	<p class="name_fig">图2.1 reads在基因组不同区域的分布</p>
+	<p class="cenmark">reads在基因组不同区域的分布图，不同颜色代表不同的基因组区域，其中：（1）exonic：reads 在外显子区域的比例；（2）intronic：reads 在内含子区域的比例；（3）intergenic：reads 在基因间区的比例。</p>
+
+	<br />
+
+</div>
+
+
+<!-------------------------------2.3  比对视频链接------------------------------>
+<div id="page">
+
+	<a name="比对视频讲解"><h4 id="result23">2.3 参考基因组比对讲解视频</h4></a>
+
+<p class="paragraph">链接: <font face="Arial"><a href="https://pan.baidu.com/s/1siCF4YStp7ENGUhS25utqg " class="uri">https://pan.baidu.com/s/1siCF4YStp7ENGUhS25utqg </a></font> 提取码: <font face="Arial">kscp </font></p>
+
+		<br />
+
+</div>
+
+<!---------------------------------------转录本拼接（lncRNA）---------------------------------------------->
+
+<!---------------------------------------转录本拼接（Stringtie）---------------------------------------------->
+
+
+
+
+
+
+<!---------------------------筛选-------------------------->
+
+
+<!------------------------------3 定量------------------------------>
+
+
+<!---------------------------4 差异分析-------------------------->
+
+<!---------------------------5 富集分析---------------------------------->
+
+
+
+<!---------------------------lncRNA靶基因预测-------------------------->
+ 
+ 
+
+<!---------------------------------------可变剪接分析---------------------------------->
+
+
+<!-------------------------- 融合基因分析------------------------------->
+
+
+
+<!---------------------------CircRNA 鉴定（circRNA）--------------------------->
+
+
+<div id="page">
+	<a name="CircRNA 鉴定"><h3 id="result11">3 CircRNA 鉴定(结果文件夹: Results/CircRNA/CircNovel)</h3></a>
+	<p class="paragraph">find_circ 与 CIRI 是目前两款最常用circRNA鉴定软件。</p>
+	<p class="paragraph">find_circ<sup>[22]</sup>鉴定 circRNA的基本原理是从没有比对到参考序列的 reads 的两端各提取 20-nt 的 anchor 序列，将每一对 anchor 序列再次比对参考序列，如果 anchor 序列的 5' 端比对到参考序列（起始与终止位点分别记为 A3，A4），同时该 anchor 序列的 3' 端比对到此位点的上游（起始与终止位点分别记为 A1，A2），并且在参考序列的 A2 到 A3 之间存在剪接位点（GT-AG），则将此 read 作为候选 circRNA。最后将 read count 大于等于 2 的候选 circRNA 作为鉴定的 circRNA。</p>
+	<p class="center">
+		<img class="normala4" src="images/find_circ.png"/>
+	</p>
+	<p class="name_fig">图3.1 find_circ 鉴定原理图</p>
+	<p class="paragraph">CIRI<sup>[23]</sup>首先是对sam文件中的CIGAR值进行分析的，从sam文件中扫描PCC信号（paired chiastic clipping signals），然后基于PEM和GT-AG信号过滤Junction reads,最后基于DM算法检测unbalanced junction reads,进一步过滤和阻止同源基因相似性以及重复序列造成的假阳性。</p>
+	<p class="center">
+		<img class="normala4" src="images/ciri_pipeline.png"/>
+	</p>
+	<p class="name_fig">图3.2 CIRI 鉴定流程图</p>
+	<p class="paragraph">诺禾致默认将选择两款软件联合分析，提高circRNA鉴定的准确性。但由于软件本身的局限性、物种或样品特殊性等原因，会存在一款软件无法鉴定到circRNA的情况。因此诺禾致源会依据项目的实际情况进行软件的选择。 </p>
+
+<!----------------------10.1 cirRNA鉴定结果-------------------------------------->
+</p>
+	
+	<p class="paragraph">circRNA鉴定结果见结果文件：10.CircRNA/10.1.CircNovel/novel_circRNA_output/novel_circRNAs.xls，如下图所示。</p>
+
+	<p class="center">
+	<img class="norma11" style="width:20%;height:18vw;text-align:center" src="files/CircNovel/circnovel.png" />
+	
+</br>
+
+	<a name="CircRNA 鉴定结果"><h4 id="result111">3.1 CircRNA 鉴定结果</h4></a>
+	<p class="paragraph">CircRNA 鉴定的部分结果见下表：</p>
+	<p class="name_fig">表3.1 CircRNA 鉴定结果展示（部分）</p>
+	<p class="center">
+	<div id="tb">
+		<table class="tb1">
+			
+			
+				<tr class="tb1"><th class="tb1">circRNA_ID</th><th class="tb1">Chr</th><th class="tb1">start</th><th class="tb1">end</th><th class="tb1">strand</th><th class="tb1">full_length</th><th class="tb1">spliced_length</th><th class="tb1">gene_id</th><th class="tb1">feature</th><th class="tb1">samples</th><th class="tb1">junction_read</th><th class="tb1">non_junction_read</th><th class="tb1">source_gene_name</th></tr>
+			
+			
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">hsa_circ_0059286</td><td  class="tb1" style="text-align:center">20</td><td  class="tb1" style="text-align:center">3296860</td><td  class="tb1" style="text-align:center">3298175</td><td  class="tb1" style="text-align:center">-</td><td  class="tb1" style="text-align:center">1315</td><td  class="tb1" style="text-align:center">236</td><td  class="tb1" style="text-align:center">ENSG00000088854;</td><td  class="tb1" style="text-align:center">exon:3298029-3298175</td><td  class="tb1" style="text-align:center">SPMlncID21,SPMlncID19</td><td  class="tb1" style="text-align:center">2,6</td><td  class="tb1" style="text-align:center">13,30</td><td  class="tb1" style="text-align:center">C20orf194</td></tr>
+			
+			
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">hsa_circ_0060664</td><td  class="tb1" style="text-align:center">20</td><td  class="tb1" style="text-align:center">48951322</td><td  class="tb1" style="text-align:center">48952884</td><td  class="tb1" style="text-align:center">+</td><td  class="tb1" style="text-align:center">1562</td><td  class="tb1" style="text-align:center">327</td><td  class="tb1" style="text-align:center">ENSG00000124198;</td><td  class="tb1" style="text-align:center">exon:48951323-48951469,exon:48952705-48952884</td><td  class="tb1" style="text-align:center">SPMlncID30,SPMlncID19</td><td  class="tb1" style="text-align:center">4,5</td><td  class="tb1" style="text-align:center">372,76</td><td  class="tb1" style="text-align:center">ARFGEF2</td></tr>
+			
+			
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">hsa_circ_0059660</td><td  class="tb1" style="text-align:center">20</td><td  class="tb1" style="text-align:center">25302218</td><td  class="tb1" style="text-align:center">25309575</td><td  class="tb1" style="text-align:center">-</td><td  class="tb1" style="text-align:center">7357</td><td  class="tb1" style="text-align:center">538</td><td  class="tb1" style="text-align:center">ENSG00000100997;</td><td  class="tb1" style="text-align:center">exon:25302219-25302346,exon:25303550-25303628,exon:25309446-25309575</td><td  class="tb1" style="text-align:center">SPMlncID30</td><td  class="tb1" style="text-align:center">2</td><td  class="tb1" style="text-align:center">247</td><td  class="tb1" style="text-align:center">ABHD12</td></tr>
+			
+			
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">hsa_circ_0060446</td><td  class="tb1" style="text-align:center">20</td><td  class="tb1" style="text-align:center">43635925</td><td  class="tb1" style="text-align:center">43637253</td><td  class="tb1" style="text-align:center">+</td><td  class="tb1" style="text-align:center">1328</td><td  class="tb1" style="text-align:center">197</td><td  class="tb1" style="text-align:center">ENSG00000101052;</td><td  class="tb1" style="text-align:center">exon:43635926-43636013,exon:43637145-43637253</td><td  class="tb1" style="text-align:center">SPMlncID30</td><td  class="tb1" style="text-align:center">12</td><td  class="tb1" style="text-align:center">114</td><td  class="tb1" style="text-align:center">IFT52</td></tr>
+			
+			
+		</table>
+	</div>
+	</p>
+<div style="width:1100px;height:115px;overflow-y:scroll;overflow-x:hidden;">
+	<p class="tremark">
+	(1) circRNA_ID: circRNA ID<br />
+	(2) Chr: 染色体编号 <br />
+	(3) start: circRNA 全长的起始位点<br />
+	(4) end: circRNA 全长的终止位点<br />
+	(5) strand: 正负链<br />
+	(6) full_length: circRNA 全长<br />
+	(7) spliced_length: circRNA 剪切后的长度<br />
+	(8) gene_id: circRNA 来源基因id<br />
+	(9) feature_id: circRNA 剪切信息（对于非去线性 RNA 建库，此剪切信息中可能包含匹配在此位置的线性 RNA）<br />
+	(10) samples: 含有该 circRNA 的样品（以逗号分隔）<br />
+	(11) junction_read: junction read 数量（顺序对应于 samples）<br />
+	(12) non_junction_read: 非 junction read 数量（顺序对应于 samples）<br />
+	(13) source_gene_name: circRNA 来源基因名称</br>
+	</p>
+</div>
+
+
+</br>	
+
+
+<!--------------------------10.2 cirRNA长度分布---------------------->
+	<a name="CircRNA 长度分布"><h4 id="result112">3.2 CircRNA 长度分布</h4></a>
+	<p class="paragraph">circRNA长度分布图见结果文件：10.CircRNA/10.1.CircNovel/novel_circRNA_stat/circRNA_length_distribution/length_plot_quantile_100.pdf，如下图所示。</p>
+
+	<p class="center">
+	<img class="norma11" style="width:20%;height:20vw;text-align:center" src="files/CircNovel/circlength.png" />
+	
+</br>
+
+	<p class="paragraph">所有样本的 circRNA 的长度分布见下图:</p>
+
+	<p class="center">
+		<img class="normala4" src="files/CircNovel/length_plot_quantile_100.png"/>
+	</p>
+	<p class="name_fig">图3.3 circRNA 的长度分布</p>
+<p class="cenmark">	横坐标circRNA长度；纵坐标：该长度circ的频数</p>
+	
+	
+	</br>
+
+<!--------------------------10.3 CircRNA 来源统计---------------------->
+	<a name="CircRNA 来源统计"><h4 id="result113">3.3 CircRNA 来源统计</h4></a>
+	<p class="paragraph">circRNA 可以来源于 exon 或 intron 的剪接，还有部分来源于intergenic,下图统计了所有样本的 circRNA 的来源:</p>
+</p>
+	
+	<p class="paragraph">circRNA来源分布图见结果文件：10.CircRNA/10.1.CircNovel/novel_circRNA_stat/ircRNA_genomic_feature/plot_novel_genomic_feature.pdf，如下图所示。</p>
+
+	<p class="center">
+	<img class="norma11" style="width:20%;height:20vw;text-align:center" src="files/CircNovel/circgenome.png" />
+	
+</br>
+
+	<p class="center">
+		<img class="normal" src="files/CircNovel/plot_novel_genomic_feature.png" />
+	</p>
+
+	<p class="name_fig">图3.4 circRNA 的来源</p>
+	<p class="cenmark">横坐标：样本名称；纵坐标：circRNA来源类型占比</p>
+
+
+</br>
+<!--------------------------10.4 CircRNA 染色体分布---------------------->
+	<a name="CircRNA 染色体分布"><h4 id="result114">3.4 CircRNA 染色体分布</h4></a>
+	<p class="paragraph">对各个样品所有比对到基因组上各条染色体的circRNA进行密度统计，用circos作图查看每条染色体上circRNA的分布情况</p>
+</p>
+	
+	<p class="paragraph">circRNA染色体分布图见结果文件：10.CircRNA/10.1.CircNovel/novel_circRNA_stat/circRNA_chr_distribution，如下图所示。</p>
+
+	<p class="center">
+	<img class="norma11" style="width:20%;height:18vw;text-align:center" src="files/CircNovel/circchrdistribution.png" />
+	
+</br>
+
+	<p class="center">
+
+	<div class="albumSlider">
+			<div class="fullview">
+				<img src=SPMlncID21/>
+			</div>
+			<div class="slider">
+				<div class="button movebackward" title="向上滚动">
+				</div>
+				<div class="imglistwrap">
+					<ul class="imglist">
+						
+						<li><a id="example2" href=SPMlncID21 ><img src=files/CircNovel/SPMlncID21.circos.png/></a></li>
+						
+						<li><a id="example2" href=SPMlncID04 ><img src=files/CircNovel/SPMlncID04.circos.png/></a></li>
+						
+						<li><a id="example2" href=SPMlncID14 ><img src=files/CircNovel/SPMlncID14.circos.png/></a></li>
+						
+						<li><a id="example2" href=SPMlncID15 ><img src=files/CircNovel/SPMlncID15.circos.png/></a></li>
+						
+						<li><a id="example2" href=SPMlncID24 ><img src=files/CircNovel/SPMlncID24.circos.png/></a></li>
+						
+						<li><a id="example2" href=SPMlncID02 ><img src=files/CircNovel/SPMlncID02.circos.png/></a></li>
+						
+						<li><a id="example2" href=SPMlncID30 ><img src=files/CircNovel/SPMlncID30.circos.png/></a></li>
+						
+						<li><a id="example2" href=SPMlncID19 ><img src=files/CircNovel/SPMlncID19.circos.png/></a></li>
+						
+						<li><a id="example2" href=SPMlncID22 ><img src=files/CircNovel/SPMlncID22.circos.png/></a></li>
+							
+					</ul>
+				</div>
+				<div class="button moveforward" title="向下滚动">
+				</div>
+			</div>
+		</div>
+	</p>
+	<p class="name_fig">图3.5 各染色体circRNA密度分布图 </p>
+	<p class="cenmark">每个样品所有circRNA在染色体上的密度分布circos图。外圈为染色体位置图，圈外数字为染色体编号，用不同颜色区分不同的染色体，刻度反应染色体坐标，单位是M（百万），内圈反应染色体每个坐标区间的circRNA密度，展示方式是散点图，每个点代表染色体上一个坐标区间，数值由外向内减少。</p>
+</br>
+<!---------------------------10.5 circRNA 疾病数据库注释-------------------------->
+	
+
+<!-------------------------------结构性变异分析视频链接------------------------------>
+	<a name="CircRNA 鉴定视频讲解"><h4 id="result115">3.5 CircRNA 鉴定讲解视频</h4></a>
+
+<p class="paragraph">链接: <font face="Arial"><a href="https://pan.baidu.com/s/1Fxww7S3Lr7I7ExiQvPza9w " class="uri">https://pan.baidu.com/s/1Fxww7S3Lr7I7ExiQvPza9w </a></font> 提取码: <font face="Arial">bwzv </font></p>
+</br>    
+</div>
+
+
+<!---------------------------12  circRNA 表达水平分布-------------------------->
+
+
+<div id="page">
+
+	<a name="CircRNA 定量分析结果"><h3 id="result12">4 CircRNA 定量分析(结果文件夹: Results/CircRNA/CircDiff/normalized_expression)</h3></a>
+	<p class="paragraph">定量是表达差异显著性分析的基础，对各样本中已知和新 circRNA 进行表达量的统计，并用 TPM（Zhou et al., 2010）进行表达量归一化处理。</p>
+	<p class="paragraph">公式：归一化表达量 = (readCount*1,000,000)/libsize  注：libsize：样品 circRNA readcount 之和</p>
+	
+	
+	</br>
+
+<!---------------------------12.1  CircRNA 定量结果-------------------------->
+	<a name="CircRNA 定量结果"><h4 id="result121">4.1 CircRNA 定量结果</h4></a>
+
+</p>
+	
+	<p class="paragraph">circRNA定量见结果文件：10.CircRNA/10.3.CircDiff/normalized_expression/Readcount_TPM.xls，如下图所示。</p>
+
+	<p class="center">
+	<img class="norma11" style="width:20%;height:20vw;text-align:center" src="files/CircDiff/circtpm.png" />
+	
+</br>
+
+	<p class="paragraph">CircRNA 定量结果如下：</p>
+	<p class="name_fig">表4.1 circRNA表达水平统计表（部分)</p>
+	<p class="center">
+	<div id="tb">
+		<table class="tb1">
+			
+			
+				<tr class="tb1"><th class="tb1">circRNA</th><th class="tb1">SPMlncID21_readcount</th><th class="tb1">SPMlncID04_readcount</th><th class="tb1">SPMlncID14_readcount</th><th class="tb1">SPMlncID15_readcount</th><th class="tb1">SPMlncID24_readcount</th><th class="tb1">SPMlncID02_readcount</th><th class="tb1">SPMlncID30_readcount</th><th class="tb1">SPMlncID19_readcount</th><th class="tb1">SPMlncID22_readcount</th><th class="tb1">SPMlncID21_tpm</th><th class="tb1">SPMlncID04_tpm</th><th class="tb1">SPMlncID14_tpm</th><th class="tb1">SPMlncID15_tpm</th><th class="tb1">SPMlncID24_tpm</th><th class="tb1">SPMlncID02_tpm</th><th class="tb1">SPMlncID30_tpm</th><th class="tb1">SPMlncID19_tpm</th><th class="tb1">SPMlncID22_tpm</th></tr>
+			
+			
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">hsa_circ_0000002</td><td  class="tb1" style="text-align:center">6</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">3</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">2</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">20.557026905722</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">55.8170688596573</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">3.07056936032364</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td></tr>
+			
+			
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">hsa_circ_0000007</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">3</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">16.8049339286014</td><td  class="tb1" style="text-align:center">0</td></tr>
+			
+			
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">hsa_circ_0000008</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">26</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">145.642760714546</td><td  class="tb1" style="text-align:center">0</td></tr>
+			
+			
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">hsa_circ_0000011</td><td  class="tb1" style="text-align:center">12</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">8</td><td  class="tb1" style="text-align:center">7</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">41.1140538114441</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">12.2822774412946</td><td  class="tb1" style="text-align:center">39.21151250007</td><td  class="tb1" style="text-align:center">0</td></tr>
+			
+			
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">hsa_circ_0000014</td><td  class="tb1" style="text-align:center">62</td><td  class="tb1" style="text-align:center">5</td><td  class="tb1" style="text-align:center">9</td><td  class="tb1" style="text-align:center">3</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">95</td><td  class="tb1" style="text-align:center">43</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">212.422611359128</td><td  class="tb1" style="text-align:center">289.687137891078</td><td  class="tb1" style="text-align:center">167.451206578972</td><td  class="tb1" style="text-align:center">325.662179765523</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">145.852044615373</td><td  class="tb1" style="text-align:center">240.870719643287</td><td  class="tb1" style="text-align:center">0</td></tr>
+			
+			
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">hsa_circ_0000015</td><td  class="tb1" style="text-align:center">52</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">14</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">86</td><td  class="tb1" style="text-align:center">54</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">178.160899849591</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">260.479654678401</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">132.034482493916</td><td  class="tb1" style="text-align:center">302.488810714826</td><td  class="tb1" style="text-align:center">0</td></tr>
+			
+			
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">hsa_circ_0000017</td><td  class="tb1" style="text-align:center">5</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">6</td><td  class="tb1" style="text-align:center">2</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">17.1308557547684</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">9.21170808097091</td><td  class="tb1" style="text-align:center">11.2032892857343</td><td  class="tb1" style="text-align:center">0</td></tr>
+			
+			
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">hsa_circ_0000018</td><td  class="tb1" style="text-align:center">16</td><td  class="tb1" style="text-align:center">3</td><td  class="tb1" style="text-align:center">12</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">51</td><td  class="tb1" style="text-align:center">23</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">54.8187384152588</td><td  class="tb1" style="text-align:center">173.812282734647</td><td  class="tb1" style="text-align:center">223.268275438629</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">78.2995186882528</td><td  class="tb1" style="text-align:center">128.837826785944</td><td  class="tb1" style="text-align:center">0</td></tr>
+			
+			
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">hsa_circ_0000019</td><td  class="tb1" style="text-align:center">2</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">2</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">3</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">6.85234230190735</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">37.2113792397715</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">4.60585404048546</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td></tr>
+			
+			
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">hsa_circ_0000020</td><td  class="tb1" style="text-align:center">5</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">17.1308557547684</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td><td  class="tb1" style="text-align:center">0</td></tr>
+			
+					
+		</table>
+	</div>
+	</p>
+
+	<p class="tremark">
+	(1) 第1列——“circRNA” ID <br />
+	(2) 第2到n+1列——“样本名”，分别代表样本1到n的readcount。<br />
+	(3) 第 n+2 到 2n+1 列——“样本名(TPM)”，分别代表样本 1 到 n 的 readcount 经过 TPM 标准化后的值<br />
+	</p>
+	
+
+	<br />
+	<br />
+<!---------------------------12.2  CircRNA 表达水平分布-------------------------->	
+	<a name="CircRNA 表达水平分布"><h4 id="result122">4.2 CircRNA 表达水平分布</h4></a>
+	<p class="paragraph">计算各样本所有circRNA的表达值TPM，通过TPM箱线图整体展示样品的基因表达模式，如图所示:</p>
+</p>
+	
+	<p class="paragraph">各样本所有circRNA表达TPM箱线图见结果文件：10.CircRNA/10.3.CircDiff/normalized_expression/TPM_boxplot.png，如下图所示。</p>
+
+	<p class="center">
+	<img class="norma11" style="width:20%;height:20vw;text-align:center" src="files/CircDiff/circboxplot.png" />
+	
+</br>
+	<p class="center">
+		<img class="normal1" src="files/CircDiff/TPM_boxplot.png"/>
+	</p>
+	<p class="name_fig">图4.1 TPM箱线图</p>
+	<p class="cenmark">不同样本表达水平盒形图，其中横坐标为样品名称，纵坐标为log<sub>10</sub>（TPM+1），每个区域的盒形图对应五个统计量（从上而下分别为最大值、上四分位数、中值、下四分位数和最小值）</p>
+
+	<br />
+	<br />
+</div>
+
+
+
+<!---------------------------13  circRNA 差异分析-------------------------->
+
+<div id="page">
+
+	<a name="CircRNA 差异分析"><h3 id="result13">5 CircRNA 差异分析(结果文件夹: Results/CircRNA/CircDiff/diff_expression)</h3></a>
+	<p class="paragraph">CircRNA差异表达的输入数据为CircRNA表达水平分析中得到的readcounts数据。对于有生物学重复的样品，分析我们采用基于负二项分布的DESeq2<sup>[24]</sup>进行分析；对于无生物学重复的样品，DEGseq<sup>[25]</sup>会采用TMM算法对readcount数据进行标准化处理，然后进行差异分析。</p>
+	
+	
+	</br>
+
+<!---------------------------13.1  差异 circRNA 分析结果-------------------------->
+	<a name="差异 circRNA 分析结果"><h4 id="result131">5.1 差异 circRNA 分析结果</h4></a>
+	<p class="paragraph">结题报告中只显示一组比较组合的circRNA差异表达分析部分结果，完整信息见结果文件夹：10.CircRNA/10.3.CircDiff/diff_expression/Group2_vs_Group1/Group2_vs_Group1.DE.xls，如下图所示：</p>
+	
+	<p class="center">
+	<img class="norma11" style="width:22%;height:21vw;text-align:center" src="files/CircDiff/circdiff.png" />
+	
+</br>
+	<p class="name_fig">表5.1 circRNA表达差异分析结果（部分)</p>
+	<p class="center">
+	<div id="tb">
+		<table class="tb1">
+			
+			
+				<tr><th>circRNA</th><th>Z_High_readcount</th><th>Z_Low_readcount</th><th>log2FoldChange</th><th>pvalue</th><th>padj</th><th>significant</th></tr>
+			
+			
+			
+				 <tr><td>novel_circ_0005822</td><td>0</td><td>68.3483848389454</td><td>-7.90315624375632</td><td>0.0210742713974434</td><td>0.859223387868409</td><td>TRUE</td></tr>
+			
+			
+			
+				 <tr><td>novel_circ_0059469</td><td>0</td><td>52.7017417050917</td><td>-7.51857307988875</td><td>0.0245916812160952</td><td>0.859223387868409</td><td>TRUE</td></tr>
+			
+			
+			
+				 <tr><td>hsa_circ_0003273</td><td>0</td><td>33.2958605199608</td><td>-6.95529812723741</td><td>0.0278335430319213</td><td>0.859223387868409</td><td>TRUE</td></tr>
+			
+			
+			
+				 <tr><td>novel_circ_0008289</td><td>0</td><td>31.9762129293596</td><td>-6.89521011690643</td><td>0.0299757152259605</td><td>0.859223387868409</td><td>TRUE</td></tr>
+			
+			
+			
+				 <tr><td>hsa_circ_0001206</td><td>0</td><td>27.7472944578181</td><td>-6.70020263368328</td><td>0.0339723168526369</td><td>0.859223387868409</td><td>TRUE</td></tr>
+			
+			
+			
+				 <tr><td>hsa_circ_0005017</td><td>0</td><td>25.6761139689009</td><td>-6.58843379059789</td><td>0.0377891846414831</td><td>0.859223387868409</td><td>TRUE</td></tr>
+			
+			
+			
+				 <tr><td>hsa_circ_0006729</td><td>0</td><td>38.8462171630549</td><td>-7.05425549464664</td><td>0.0409765545582009</td><td>0.859223387868409</td><td>TRUE</td></tr>
+			
+			
+			
+				 <tr><td>novel_circ_0003029</td><td>0</td><td>23.5259328418541</td><td>-6.46876565591112</td><td>0.0410238755441812</td><td>0.859223387868409</td><td>TRUE</td></tr>
+			
+			
+			
+				 <tr><td>hsa_circ_0006545</td><td>0</td><td>23.0450613625913</td><td>-6.44419137723385</td><td>0.0413776397155935</td><td>0.859223387868409</td><td>TRUE</td></tr>
+			
+			
+			
+				 <tr><td>hsa_circ_0050851</td><td>0</td><td>17.8759507374341</td><td>-5.95181281683695</td><td>0.0451308413165933</td><td>0.859223387868409</td><td>TRUE</td></tr>
+			
+			
+		</table>
+	</div>
+	</p>
+<div style="width:1100px;height:115px;overflow-y:scroll;overflow-x:hidden;">
+	<p class="tremark">
+	(1) ID: circRNA ID。<br />
+	(2) Group1：校正后样品1的read count值。<br />
+	(3) Group2：校正后样品2的read count值。<br />
+	(4) log<sub>2</sub>.Fold_change.：log<sub>2</sub>(Sample1/Sample2)。<br />
+	(5) p.value：pvalue值。<br />
+	(6) q.value：校正后的pvalue，qvalue越小，表示circRNA表达差异越显著。<br />
+	</p>
+</div>
+
+
+	<br />
+	<br />
+
+<!---------------------------13.2  差异 circRNA 结果展示-------------------------->
+	<a name="差异 circRNA 结果展示"><h4 id="result132">5.2 差异 circRNA 结果展示</h4></a>
+	<p class="paragraph">用火山图可以推断差异circRNA的整体分布情况，从差异倍数(Fold change)和校正后的显著水平（padj/qvalue）两个水平进行评估，对差异circRNA进行筛选。</p>
+	<p class="paragraph">当样品有生物学重复时，默认差异circRNA的筛选条件为：padj &lt 0.05,(若qvalue &lt 0.05筛选差异基因过少则使用pvalue &lt 0.05进行差异筛选)。</p>
+	<p class="paragraph">当样品无生物学重复时，差异circRNA数目会偏多，为了控制假阳性率，需qvalue结合foldchange来筛选，默认差异circRNA筛选条件为：qvalue<0.05 && | log<sub>2</sub>(foldchange)|>1。</p>
+</p>
+	
+	<p class="paragraph">circRNA差异表达火山图见结果文件：10.CircRNA/10.3.CircDiff/diff_expression/Group2_vs_Group1/Group2_vs_Group1.Volcanoplot.png，如下图所示。</p>
+
+	<p class="center">
+	<img class="norma11" style="width:22%;height:21vw;text-align:center" src="files/CircDiff/circvolcanoplot.png" />
+	
+</br>
+		<div class="albumSlider">
+			<div class="fullview">
+				<img src=Cortisol_HighvsCortisol_Low/>
+			</div>
+			<div class="slider">
+				<div class="button movebackward" title="向上滚动">
+				</div>
+				 <div class="imglistwrap">
+				 	<ul class="imglist">
+			 			
+			 			<li><a id="example2" href=Cortisol_HighvsCortisol_Low ><img src=files/CircDiff/Cortisol_HighvsCortisol_Low.Volcanoplot.png/></a></li>
+						
+			 			<li><a id="example2" href=PSS_HighvsPSS_Low ><img src=files/CircDiff/PSS_HighvsPSS_Low.Volcanoplot.png/></a></li>
+						
+			 			<li><a id="example2" href=Z_HighvsZ_Low ><img src=files/CircDiff/Z_HighvsZ_Low.Volcanoplot.png/></a></li>
+						
+					</ul>
+				</div>
+				<div class="button moveforward" title="向下滚动">
+				</div>
+			</div>
+		</div>
+	</p>
+
+	<p class="name_fig">图5.1 差异circRNA火山图</p>
+	<p class="cenmark">横坐标代表circRNA在不同实验组中/不同样品中表达倍数(log2FoldChange)变化，纵坐标代表circRNA表达量变化的统计学显著程度。当样品有生物学重复时，circRNA差异>筛选阈值为qvalue(默认)或pvalue，当样品为无生物学重复时，需qvalue(默认)/pvalue结合log2Foldchange(绝对值>1)来筛选。图中的散点代表各个circRNA，蓝色圆点表示无显著性差异的circRNA，红 >色圆点表示显著上调的差异circRNA，绿色圆点表示显著下调的差异circRNA。</p>
+		
+	<br/>
+
+<!---------------------------13.3  差异 circRNA 富集分析-------------------------->
+    <a name="差异 circRNA 聚类分析"><h4 id="result133">5.3 差异 circRNA 聚类分析</h4></a>
+	<p class="paragraph">差异circRNA聚类分析用于判断不同实验条件下差异circRNA表达量的聚类模式。 每个比较组合都会得到一个差异circRNA集，将所有比较组合的差异circRNA集的并集在每个实验组/样品中的的TPM值，用于层次聚类分析，K-means聚类分析和SOM聚类分析见结果文件夹：10.CircRNA/10.3.CircDiff/diff_cluster/。</p>
+</p>
+	
+	<p class="paragraph">circRNA差异表达聚类图见结果文件：10.CircRNA/10.3.CircDiff/diff_cluster/Hclust_cluster/Hcluster_heatmap.png，如下图所示。</p>
+
+	<p class="center">
+	<img class="norma11" style="width:20%;height:21vw;text-align:center" src="files/CircDiff/circhcluster.png" />
+	
+</br>
+
+	<p class="center">
+		<img class="normal1" src="files/CircDiff/Hcluster_heatmap.png"/>
+	</p>
+	<p class="cenmark">横坐标为样本，纵坐标为差异基因，左侧根据表达相似程度对基因进行聚类，上方根据表达谱的相似程度对每个样本进行聚类，由蓝至红表达量逐渐上调，数字为均一化后的相对表达量。</p>
+		
+		
+	<br />
+	<br />
+
+<!---------------------------13.4  差异 circRNA 样本间公共及特有的 circRNA 维恩图-------------------------->
+
+<h4 id="result134"><a name="差异 circRNA 样本间公共及特有的 circRNA 维恩图">5.4 差异 circRNA 样本间公共及特有的 circRNA 维恩图</a></h4>
+<p class="paragraph">当比较组合数大于等于 2 个小于 5 个时，可以将各组比较得到的差异 circRNA 个数进行统计，画成维恩图，直观展现出各个比较组合共有的及特有的差异 circRNA 数目（如果只有两个样品时，则进行两个样本之间的venn 图绘制）</p>
+<p class="center">
+		<img class="normal1" src="files/CircDiff/venn-0.png"/>
+			</p>
+<p class="name_fig">图5.3 差异circRNA维恩图</p>
+	<p class="cenmark">大圆圈代表各个比较组合，每个大圆圈中的数字之和代表该比较组合的差异circRNA总个数，圆圈交叠的部分表示组合之间共有的差异circRNA个数（只有两个样品时，每个大圆圈中的数字代表在这个样本中表达的circRNA,圆圈交叠的部分代表样本间共表达的circRNA.）</p>
+<br />
+<br />
+
+
+<!-------------------------------CircRNA 定量差异分析视频链接------------------------------>
+	<a name="CircRNA 定量差异分析视频讲解"><h4 id="result135">5.5 CircRNA 定量差异分析讲解视频</h4></a>
+
+<p class="paragraph">链接: <font face="Arial"><a href="https://pan.baidu.com/s/1hdUUSGoUnOTttaN6Prb9lg " class="uri">https://pan.baidu.com/s/1hdUUSGoUnOTttaN6Prb9lg </a></font> 提取码: <font face="Arial">jpvy </font></p>
+	
+	<br />
+	<br />    
+</div>
+
+
+
+<!-----------------------------------14 差异 circRNA 来源基因富集分析---------------------------------->
+
+
+<div id="page">
+
+	<a name="差异 circRNA 来源基因富集分析"><h3  id="result14">6 差异 circRNA 来源基因富集分析(结果文件夹: Results/CircRNA/CircEnrich)</h3></a>
+	<p class="paragraph" >  得到各组比较间的差异表达 circRNA 后，根据 circRNA 与其来源基因间的对应关系，对每组差异表达 circRNA 的来源基因的集合分别进行 Gene Ontology 和 KEGG 富集分析。结题报告中只显示部分富集分析结果，更多信息见结果文件夹：10.CircRNA/10.4.CircEnrich。</p> <br />
+<!--------------------------14.1 GO富集---------------------->
+	<a name="GO 富集结果"><h4 id="result141">6.1 GO 富集结果</h4></a>
+	<p class="paragraph">Gene Ontology（简称 GO，http://www.geneontology.org/）是基因功能国际标准分类体系。GO 富集分析方法为 GOseq <sup>[14-16]</sup>，此方法基于 Wallenius non-central hyper-geometric distribution，相对于普通的 Hyper-geometric distribution，此分布的特点是从某个类别中抽取个体的概率与从某个类别之外抽取一个个体的概率是不同的，这种概率的不同是通过对基因长度的偏好性进行估计得到的，从而能更为准确地计算出 GO term 被来源基因富集的概率。结果如下表所示：</p>
+</p>
+	
+	<p class="paragraph">circRNA来源基因GO富集结果见结果文件：10.CircRNA/10.4.CircEnrich/GO_enrichment，如下图所示。</p>
+
+	<p class="center">
+	<img class="norma11" style="width:20%;height:18vw;text-align:center" src="files/CircEnrich/circgo.png" />
+	
+</br>
+
+	<p class="name_fig">表6.1 样品中来源基因的 Gene Ontology 富集列表（部分）</p>
+	<p class="center">
+	<div id="tb">
+		<table class="tb1">
+			
+			
+				<tr class="tb1"><th class="tb1">Category</th><th class="tb1">GOID</th><th class="tb1">Description</th><th class="tb1">GeneRatio</th><th class="tb1">BgRatio</th><th class="tb1">pvalue</th><th class="tb1">padj</th><th class="tb1">geneID</th><th class="tb1">geneName</th><th class="tb1">Count</th></tr>
+			
+			
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">BP</td><td  class="tb1" style="text-align:center">GO:0006355</td><td  class="tb1" style="text-align:center">regulation of transcription, DNA-templated</td><td  class="tb1" style="text-align:center">5/17</td><td  class="tb1" style="text-align:center">231/1697</td><td  class="tb1" style="text-align:center">0.0695196079900034</td><td  class="tb1" style="text-align:center">0.428415890265888</td><td  class="tb1" style="text-align:center">ENSG00000284057/ENSG00000111596/ENSG00000095794/ENSG00000111783/ENSG00000158711</td><td  class="tb1" style="text-align:center">AP001273.2/CNOT2/CREM/RFX4/ELK4</td><td  class="tb1" style="text-align:center">5</td></tr>
+			
+			
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">BP</td><td  class="tb1" style="text-align:center">GO:0051252</td><td  class="tb1" style="text-align:center">regulation of RNA metabolic process</td><td  class="tb1" style="text-align:center">5/17</td><td  class="tb1" style="text-align:center">231/1697</td><td  class="tb1" style="text-align:center">0.0695196079900034</td><td  class="tb1" style="text-align:center">0.428415890265888</td><td  class="tb1" style="text-align:center">ENSG00000284057/ENSG00000111596/ENSG00000095794/ENSG00000111783/ENSG00000158711</td><td  class="tb1" style="text-align:center">AP001273.2/CNOT2/CREM/RFX4/ELK4</td><td  class="tb1" style="text-align:center">5</td></tr>
+			
+			
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">BP</td><td  class="tb1" style="text-align:center">GO:1903506</td><td  class="tb1" style="text-align:center">regulation of nucleic acid-templated transcription</td><td  class="tb1" style="text-align:center">5/17</td><td  class="tb1" style="text-align:center">231/1697</td><td  class="tb1" style="text-align:center">0.0695196079900034</td><td  class="tb1" style="text-align:center">0.428415890265888</td><td  class="tb1" style="text-align:center">ENSG00000284057/ENSG00000111596/ENSG00000095794/ENSG00000111783/ENSG00000158711</td><td  class="tb1" style="text-align:center">AP001273.2/CNOT2/CREM/RFX4/ELK4</td><td  class="tb1" style="text-align:center">5</td></tr>
+			
+			
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">BP</td><td  class="tb1" style="text-align:center">GO:2001141</td><td  class="tb1" style="text-align:center">regulation of RNA biosynthetic process</td><td  class="tb1" style="text-align:center">5/17</td><td  class="tb1" style="text-align:center">231/1697</td><td  class="tb1" style="text-align:center">0.0695196079900034</td><td  class="tb1" style="text-align:center">0.428415890265888</td><td  class="tb1" style="text-align:center">ENSG00000284057/ENSG00000111596/ENSG00000095794/ENSG00000111783/ENSG00000158711</td><td  class="tb1" style="text-align:center">AP001273.2/CNOT2/CREM/RFX4/ELK4</td><td  class="tb1" style="text-align:center">5</td></tr>
+			
+			
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">BP</td><td  class="tb1" style="text-align:center">GO:0019219</td><td  class="tb1" style="text-align:center">regulation of nucleobase-containing compound metabolic process</td><td  class="tb1" style="text-align:center">5/17</td><td  class="tb1" style="text-align:center">233/1697</td><td  class="tb1" style="text-align:center">0.0716943973740945</td><td  class="tb1" style="text-align:center">0.428415890265888</td><td  class="tb1" style="text-align:center">ENSG00000284057/ENSG00000111596/ENSG00000095794/ENSG00000111783/ENSG00000158711</td><td  class="tb1" style="text-align:center">AP001273.2/CNOT2/CREM/RFX4/ELK4</td><td  class="tb1" style="text-align:center">5</td></tr>
+			
+			
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">BP</td><td  class="tb1" style="text-align:center">GO:0009889</td><td  class="tb1" style="text-align:center">regulation of biosynthetic process</td><td  class="tb1" style="text-align:center">5/17</td><td  class="tb1" style="text-align:center">234/1697</td><td  class="tb1" style="text-align:center">0.072796746568371</td><td  class="tb1" style="text-align:center">0.428415890265888</td><td  class="tb1" style="text-align:center">ENSG00000284057/ENSG00000111596/ENSG00000095794/ENSG00000111783/ENSG00000158711</td><td  class="tb1" style="text-align:center">AP001273.2/CNOT2/CREM/RFX4/ELK4</td><td  class="tb1" style="text-align:center">5</td></tr>
+			
+			
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">BP</td><td  class="tb1" style="text-align:center">GO:0010556</td><td  class="tb1" style="text-align:center">regulation of macromolecule biosynthetic process</td><td  class="tb1" style="text-align:center">5/17</td><td  class="tb1" style="text-align:center">234/1697</td><td  class="tb1" style="text-align:center">0.072796746568371</td><td  class="tb1" style="text-align:center">0.428415890265888</td><td  class="tb1" style="text-align:center">ENSG00000284057/ENSG00000111596/ENSG00000095794/ENSG00000111783/ENSG00000158711</td><td  class="tb1" style="text-align:center">AP001273.2/CNOT2/CREM/RFX4/ELK4</td><td  class="tb1" style="text-align:center">5</td></tr>
+			
+			
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">BP</td><td  class="tb1" style="text-align:center">GO:0031326</td><td  class="tb1" style="text-align:center">regulation of cellular biosynthetic process</td><td  class="tb1" style="text-align:center">5/17</td><td  class="tb1" style="text-align:center">234/1697</td><td  class="tb1" style="text-align:center">0.072796746568371</td><td  class="tb1" style="text-align:center">0.428415890265888</td><td  class="tb1" style="text-align:center">ENSG00000284057/ENSG00000111596/ENSG00000095794/ENSG00000111783/ENSG00000158711</td><td  class="tb1" style="text-align:center">AP001273.2/CNOT2/CREM/RFX4/ELK4</td><td  class="tb1" style="text-align:center">5</td></tr>
+			
+			
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">BP</td><td  class="tb1" style="text-align:center">GO:2000112</td><td  class="tb1" style="text-align:center">regulation of cellular macromolecule biosynthetic process</td><td  class="tb1" style="text-align:center">5/17</td><td  class="tb1" style="text-align:center">234/1697</td><td  class="tb1" style="text-align:center">0.072796746568371</td><td  class="tb1" style="text-align:center">0.428415890265888</td><td  class="tb1" style="text-align:center">ENSG00000284057/ENSG00000111596/ENSG00000095794/ENSG00000111783/ENSG00000158711</td><td  class="tb1" style="text-align:center">AP001273.2/CNOT2/CREM/RFX4/ELK4</td><td  class="tb1" style="text-align:center">5</td></tr>
+			
+			
+			
+				<tr class="tb1"><td  class="tb1" style="text-align:center">BP</td><td  class="tb1" style="text-align:center">GO:0010468</td><td  class="tb1" style="text-align:center">regulation of gene expression</td><td  class="tb1" style="text-align:center">5/17</td><td  class="tb1" style="text-align:center">237/1697</td><td  class="tb1" style="text-align:center">0.0761636297932929</td><td  class="tb1" style="text-align:center">0.428415890265888</td><td  class="tb1" style="text-align:center">ENSG00000284057/ENSG00000111596/ENSG00000095794/ENSG00000111783/ENSG00000158711</td><td  class="tb1" style="text-align:center">AP001273.2/CNOT2/CREM/RFX4/ELK4</td><td  class="tb1" style="text-align:center">5</td></tr>
+			
+			
+		</table>
+	</div>
+	</p>
+
+<div style="width:1100px;height:115px;overflow-y:scroll;overflow-x:hidden;">
+	<p class="tremark">
+	(1) GO accession: Gene Ontology 数据库中唯一的标号信息。<br />
+	(2) Description: Gene Ontology 功能的描述信息。<br />
+	(3) Term type: 该 GO 的类别（cellular_component: 细胞组分；biological_process: 生物学过程；molecular_function: 分子功能）。<br />
+	(4) Over represented p-value: 富集分析统计学显著水平。<br />
+	(5) Corrected p-value: 校正后的 p-value，一般情况下，校正后的 p < 0.05 该功能为显著富集项。<br />
+	(6) CAD item: 来源基因中与该 Term 相关的基因数。<br />
+	(7) CAD list: GO 注释的来源基因数目。<br />
+	(8) Bg item: 背景（所有）基因中与该 Term 相关的基因数。<br />
+	(9) Bg list: GO 注释的背景（所有）基因的数目 <br />
+	(10)Gene_names: GO 注释的来源基因名称 <br />
+	</p>
+
+</div>
+	<p class="paragraph">得到上述列表后，统计被富集的各个 GO term 中的基因数，以柱状图的形式展示，如下图所示：</p>
+	<p class="center">
+	<div class="albumSlider">
+			<div class="fullview">
+				<img src=/>
+			</div>
+			<div class="slider">
+				<div class="button movebackward" title="向上滚动">
+				</div>
+				<div class="imglistwrap">
+					<ul class="imglist">
+						
+					</ul>
+				</div>
+				<div class="button moveforward" title="向下滚动">
+				</div>
+			</div>
+		</div>
+
+	</p>
+	<p class="name_fig">图6.1 来源基因 GO 富集柱状图</p>
+	<p class="cenmark">横坐标为 GO 三个大类的下一层级的 GO term，纵坐标为注释到该 term 下（包括该 term 的子 term）的来源基因个数，及其个数占被注释上的来源基因总数的比例。3 种不同分类表示 GO term 的三种基本分类（从左往右依次为生物学过程，细胞成分，分子功能）。</p>
+	<br />
+	<br />
+
+</div>
+
+<!---------------------------------------14.2 Pathway 富集---------------------------------------------->
+<div id="page">
+	<a name="KEGG 富集结果"><h4 id="result142">6.2 KEGG 富集结果</h4></a>
+	<p class="paragraph">在生物体内，不同基因相互协调行使其生物学功能，通过 Pathway 显著性富集能确定来源基因参与的最主要生化代谢途径和信号转导途径。KEGG（Kyoto Encyclopedia of Genes and Genomes）是有关 Pathway 的主要公共数据库<sup>[15]</sup>。Pathway 显著性富集分析以 KEGG Pathway 为单位，应用超几何检验，找出与整个基因组背景相比，在来源基因中显著性富集的 Pathway。该分析的计算公式如下:</p>
+	<p class="center">
+		<img class="normala3" src="images/kegg_pvalue.png"/>
+			</p>
+	<p class="paragraph">其中，N 为所有基因中具有 Pathway 注释的基因数目；n 为 N 中来源基因的数目；M 为所有基因中注释为某特定 Pathway 的基因数目；m 为注释为某特定 Pathway 的来源基因数目。用 BH 方法对 p-value 进行校正，得到的校正后的 p-value 值越小代表越显著。这里将值 &lt 0.05 的 Pathway 定义为在来源基因中显著富集的 Pathway。</p>
+
+</p>
+	
+	<p class="paragraph">circRNA来源基因KEGG富集结果见结果文件：10.CircRNA/10.4.CircEnrich/KEGG_enrichment，如下图所示。</p>
+
+	<p class="center">
+	<img class="norma11" style="width:20%;height:18vw;text-align:center" src="files/CircEnrich/circkegg.png" />
+	
+</br>
+
+	<p class="name_fig">表6.2 来源基因 KEGG 显著性富集列表</p>
+	<p class="center">
+	<div id="tb">
+		<table class="tb1">
+			
+				
+					<tr class="tb1"><th class="tb1">KEGGID</th><th class="tb1">Description</th><th class="tb1">GeneRatio</th><th class="tb1">BgRatio</th><th class="tb1">pvalue</th><th class="tb1">padj</th><th class="tb1">geneID</th><th class="tb1">geneName</th><th class="tb1">keggID</th><th class="tb1">Count</th></tr>
+				
+			
+				
+					<tr class="tb1"><td  class="tb1" style="text-align:center">hsa05202</td><td  class="tb1" style="text-align:center">Transcriptional misregulation in cancer</td><td  class="tb1" style="text-align:center">4/28</td><td  class="tb1" style="text-align:center">66/2932</td><td  class="tb1" style="text-align:center">0.00319380712464657</td><td  class="tb1" style="text-align:center">0.424776347577994</td><td  class="tb1" style="text-align:center">ENSG00000171988/ENSG00000169398/ENSG00000158711/ENSG00000104885</td><td  class="tb1" style="text-align:center">JMJD1C/PTK2/ELK4/DOT1L</td><td  class="tb1" style="text-align:center">hsa:221037/hsa:5747/hsa:2005/hsa:84444</td><td  class="tb1" style="text-align:center">4</td></tr>
+				
+			
+				
+					<tr class="tb1"><td  class="tb1" style="text-align:center">hsa04666</td><td  class="tb1" style="text-align:center">Fc gamma R-mediated phagocytosis</td><td  class="tb1" style="text-align:center">3/28</td><td  class="tb1" style="text-align:center">50/2932</td><td  class="tb1" style="text-align:center">0.011327664099601</td><td  class="tb1" style="text-align:center">0.559220690293748</td><td  class="tb1" style="text-align:center">ENSG00000153317/ENSG00000117461/ENSG00000171132</td><td  class="tb1" style="text-align:center">ASAP1/PIK3R3/PRKCE</td><td  class="tb1" style="text-align:center">hsa:50807/hsa:8503/hsa:5581</td><td  class="tb1" style="text-align:center">3</td></tr>
+				
+			
+				
+					<tr class="tb1"><td  class="tb1" style="text-align:center">hsa04370</td><td  class="tb1" style="text-align:center">VEGF signaling pathway</td><td  class="tb1" style="text-align:center">2/28</td><td  class="tb1" style="text-align:center">22/2932</td><td  class="tb1" style="text-align:center">0.0180576859256676</td><td  class="tb1" style="text-align:center">0.559220690293748</td><td  class="tb1" style="text-align:center">ENSG00000117461/ENSG00000169398</td><td  class="tb1" style="text-align:center">PIK3R3/PTK2</td><td  class="tb1" style="text-align:center">hsa:8503/hsa:5747</td><td  class="tb1" style="text-align:center">2</td></tr>
+				
+			
+				
+					<tr class="tb1"><td  class="tb1" style="text-align:center">hsa04930</td><td  class="tb1" style="text-align:center">Type II diabetes mellitus</td><td  class="tb1" style="text-align:center">2/28</td><td  class="tb1" style="text-align:center">23/2932</td><td  class="tb1" style="text-align:center">0.0196616458757057</td><td  class="tb1" style="text-align:center">0.559220690293748</td><td  class="tb1" style="text-align:center">ENSG00000117461/ENSG00000171132</td><td  class="tb1" style="text-align:center">PIK3R3/PRKCE</td><td  class="tb1" style="text-align:center">hsa:8503/hsa:5581</td><td  class="tb1" style="text-align:center">2</td></tr>
+				
+			
+				
+					<tr class="tb1"><td  class="tb1" style="text-align:center">hsa05146</td><td  class="tb1" style="text-align:center">Amoebiasis</td><td  class="tb1" style="text-align:center">2/28</td><td  class="tb1" style="text-align:center">27/2932</td><td  class="tb1" style="text-align:center">0.0266450736701654</td><td  class="tb1" style="text-align:center">0.559220690293748</td><td  class="tb1" style="text-align:center">ENSG00000117461/ENSG00000169398</td><td  class="tb1" style="text-align:center">PIK3R3/PTK2</td><td  class="tb1" style="text-align:center">hsa:8503/hsa:5747</td><td  class="tb1" style="text-align:center">2</td></tr>
+				
+			
+				
+					<tr class="tb1"><td  class="tb1" style="text-align:center">hsa00310</td><td  class="tb1" style="text-align:center">Lysine degradation</td><td  class="tb1" style="text-align:center">2/28</td><td  class="tb1" style="text-align:center">36/2932</td><td  class="tb1" style="text-align:center">0.0453736999858787</td><td  class="tb1" style="text-align:center">0.559220690293748</td><td  class="tb1" style="text-align:center">ENSG00000187172/ENSG00000104885</td><td  class="tb1" style="text-align:center">BAGE2/DOT1L</td><td  class="tb1" style="text-align:center">hsa:58508/hsa:84444</td><td  class="tb1" style="text-align:center">2</td></tr>
+				
+			
+				
+					<tr class="tb1"><td  class="tb1" style="text-align:center">hsa04933</td><td  class="tb1" style="text-align:center">AGE-RAGE signaling pathway in diabetic complications</td><td  class="tb1" style="text-align:center">2/28</td><td  class="tb1" style="text-align:center">36/2932</td><td  class="tb1" style="text-align:center">0.0453736999858787</td><td  class="tb1" style="text-align:center">0.559220690293748</td><td  class="tb1" style="text-align:center">ENSG00000117461/ENSG00000171132</td><td  class="tb1" style="text-align:center">PIK3R3/PRKCE</td><td  class="tb1" style="text-align:center">hsa:8503/hsa:5581</td><td  class="tb1" style="text-align:center">2</td></tr>
+				
+			
+				
+					<tr class="tb1"><td  class="tb1" style="text-align:center">hsa05222</td><td  class="tb1" style="text-align:center">Small cell lung cancer</td><td  class="tb1" style="text-align:center">2/28</td><td  class="tb1" style="text-align:center">36/2932</td><td  class="tb1" style="text-align:center">0.0453736999858787</td><td  class="tb1" style="text-align:center">0.559220690293748</td><td  class="tb1" style="text-align:center">ENSG00000117461/ENSG00000169398</td><td  class="tb1" style="text-align:center">PIK3R3/PTK2</td><td  class="tb1" style="text-align:center">hsa:8503/hsa:5747</td><td  class="tb1" style="text-align:center">2</td></tr>
+				
+			
+				
+					<tr class="tb1"><td  class="tb1" style="text-align:center">hsa04750</td><td  class="tb1" style="text-align:center">Inflammatory mediator regulation of TRP channels</td><td  class="tb1" style="text-align:center">2/28</td><td  class="tb1" style="text-align:center">37/2932</td><td  class="tb1" style="text-align:center">0.0476876998694875</td><td  class="tb1" style="text-align:center">0.559220690293748</td><td  class="tb1" style="text-align:center">ENSG00000117461/ENSG00000171132</td><td  class="tb1" style="text-align:center">PIK3R3/PRKCE</td><td  class="tb1" style="text-align:center">hsa:8503/hsa:5581</td><td  class="tb1" style="text-align:center">2</td></tr>
+				
+			
+				
+					<tr class="tb1"><td  class="tb1" style="text-align:center">hsa04670</td><td  class="tb1" style="text-align:center">Leukocyte transendothelial migration</td><td  class="tb1" style="text-align:center">2/28</td><td  class="tb1" style="text-align:center">41/2932</td><td  class="tb1" style="text-align:center">0.0573633000055058</td><td  class="tb1" style="text-align:center">0.559220690293748</td><td  class="tb1" style="text-align:center">ENSG00000117461/ENSG00000169398</td><td  class="tb1" style="text-align:center">PIK3R3/PTK2</td><td  class="tb1" style="text-align:center">hsa:8503/hsa:5747</td><td  class="tb1" style="text-align:center">2</td></tr>
+				
+			
+		</table>
+	</div>
+	</p>
+<div style="width:1100px;height:115px;overflow-y:scroll;overflow-x:hidden;">
+	<p class="tremark">
+	(1) Term：KEGG 通路的描述信息。<br />
+	(2) Id：KEGG 数据库中通路唯一的编号信息。<br />
+	(3) Input number：在该通路下的来源基因数。<br />
+	(4) Background number：在该通路下的背景基因数。<br />
+	(5) P-value：富集分析统计学显著水平。<br />
+	(6) Corrected P-value：校正后的统计学显著水平，一般情况下，校正后的 p-value < 0.05 该功能为显著富集项。<br />
+	</p>
+</div>
+	<br />
+	<p class="paragraph">来源基因 KEGG 富集散点图是 KEGG 富集分析结果的图形化展示方式。在此图中，KEGG 富集程度通过 Rich factor、Qvalue 和富集到此通路上的基因个数来衡量。其中 Rich factor 指差异表达的基因中位于该 pathway 条目的基因数目与所有有注释基因中位于该 pathway 条目的基因总数的比值。Rich factor 越大，表示富集的程度越大。Qvalue 是做过多重假设检验校正之后的 p-value，Qvalue 的取值范围为 [0,1]，越接近于 0 表示富集越显著。我们挑选了富集最显著的 20 条 pathway 条目在该图中进行展示，若富集的 pathway 条目不足 20 条，则全部展示。</p>
+	<p class="center">
+	<div class="albumSlider">
+			<div class="fullview">
+				<img src=/>
+			</div>
+			<div class="slider">
+				<div class="button movebackward" title="向上滚动">
+				</div>
+				<div class="imglistwrap">
+					<ul class="imglist">
+						
+					</ul>
+				</div>
+				<div class="button moveforward" title="向下滚动">
+				</div>
+			</div>
+		</div>
+	</p>
+	<p class="name_fig">图6.2 来源基因 KEGG 富集散点图</p>
+	<p class="cenmark">纵轴表示 pathway 名称，横轴表示 Rich factor，点的大小表示此 pathway中来源基因个数多少，而点的颜色对应于不同的 Qvalue 范围 。</p>
+	<br />
+	<p class="paragraph">将每条有来源基因部分富集通路的代谢图展示出来，如下图，其中的小方框代表蛋白，红色的小方框代表来源基因对应的蛋白，鼠标悬停于该节点，会弹出相应的来源基因 id。以上步骤可脱机实现，如连接互联网，点击各个节点，可以连接到 KEGG 官方数据库中各个 KO 的具体信息页。</p>
+	<p class="center">
+	<div class="albumSlider">
+			<div class="fullview">
+				<img src=/>
+			</div>
+			<div class="slider">
+				<div class="button movebackward" title="向上滚动">
+				</div>
+				<div class="imglistwrap">
+					<ul class="imglist">
+						
+					</ul>
+				</div>
+				<div class="button moveforward" title="向下滚动">
+				</div>
+			</div>
+	</div>
+	</p>
+	<p class="name_fig">图6.3 来源基因KEGG富集通路图</p>
+	<br />
+</div>
+
+
+
+
+<!---------------------------15 CircRNA 靶向 miRNA 位点分析---------------------------------->
+
+
+<div id="page">
+
+
+	<a name="CircRNA 靶向 miRNA 位点分析"><h3  id="result15">7 CircRNA 靶向 miRNA 位点分析(结果文件夹: Results/CircRNA/CircTarget)</h3></a>
+	<p class="paragraph">circRNA 可以通过与 miRNA 结合的方式抑制 miRNA 的功能<sup>[26]</sup>。因此，对鉴定的 circRNA 进行 miRNA 结合位点分析，有助于进一步研究 circRNA 的功能。对于动物和植物，本流程使用 miRanda 软件预测剪切后的 circRNA 的 miRNA 的结合位点。</p>
+
+</p>
+	
+	<p class="paragraph">circRNA靶向 miRNA 位点分析结果见结果文件：10.CircRNA/10.2.CircTarget，如下图所示。</p>
+
+	<p class="center">
+	<img class="norma11" style="width:20%;height:18vw;text-align:center" src="files/CircTarget/circtarget.png" />
+	
+</br>
+
+	<p class="paragraph">CircRNA-miRNA 结合位点结果如下：</p>
+	<p class="name_fig">表7.1 CircRNA 靶向 miRNA 位点统计表（部分）</p>
+	<p class="center">
+	<div id="tb">
+		<table class="tb1">
+		
+			
+				<tr class="tb2"><th class="tb2">COL_1</th><th class="tb2">COL_2</th><th class="tb2">COL_3</th><th class="tb2">COL_4</th><th class="tb2">COL_5</th><th class="tb2">COL_6</th><th class="tb2">COL_7</th><th class="tb2">COL_8</th><th class="tb2">COL_9</th><th class="tb2">COL_10</th></tr>
+			
+		
+			
+				<tr><td>>>hsa-let-7a-5p</td><td>novel_circ_0016455_full_seq</td><td>157.00</td><td>-17.35</td><td>157.00</td><td>-17.35</td><td>32</td><td>22</td><td>314</td><td> 86</td></tr>
+			
+		
+			
+				<tr><td>>>hsa-let-7a-5p</td><td>novel_circ_0067453_full_seq</td><td>145.00</td><td>-13.39</td><td>145.00</td><td>-13.39</td><td>136</td><td>22</td><td>424</td><td> 197</td></tr>
+			
+		
+			
+				<tr><td>>>hsa-let-7a-5p</td><td>novel_circ_0015731_full_seq</td><td>154.00</td><td>-17.21</td><td>154.00</td><td>-17.21</td><td>192</td><td>22</td><td>915</td><td> 501</td></tr>
+			
+		
+			
+				<tr><td>>>hsa-let-7a-5p</td><td>novel_circ_0041984_full_seq</td><td>324.00</td><td>-38.51</td><td>166.00</td><td>-22.23</td><td>542</td><td>22</td><td>325</td><td> 278 97</td></tr>
+			
+		
+			
+				<tr><td>>>hsa-let-7a-5p</td><td>novel_circ_0038867_full_seq</td><td>148.00</td><td>-16.46</td><td>148.00</td><td>-16.46</td><td>556</td><td>22</td><td>326</td><td> 297</td></tr>
+			
+		
+			
+				<tr><td>>>hsa-let-7a-5p</td><td>novel_circ_0038867_junction_seq</td><td>148.00</td><td>-14.25</td><td>148.00</td><td>-14.25</td><td>557</td><td>22</td><td>54</td><td> 1</td></tr>
+			
+		
+			
+				<tr><td>>>hsa-let-7a-5p</td><td>novel_circ_0054343_full_seq</td><td>159.00</td><td>-19.06</td><td>159.00</td><td>-19.06</td><td>578</td><td>22</td><td>360</td><td> 151</td></tr>
+			
+		
+			
+				<tr><td>>>hsa-let-7a-5p</td><td>novel_circ_0050036_full_seq</td><td>162.00</td><td>-21.39</td><td>162.00</td><td>-21.39</td><td>618</td><td>22</td><td>385</td><td> 46</td></tr>
+			
+		
+			
+				<tr><td>>>hsa-let-7a-5p</td><td>novel_circ_0017430_full_seq</td><td>154.00</td><td>-22.50</td><td>154.00</td><td>-22.50</td><td>670</td><td>22</td><td>309</td><td> 264</td></tr>
+			
+		
+			
+				<tr><td>>>hsa-let-7a-5p</td><td>novel_circ_0063898_full_seq</td><td>163.00</td><td>-23.16</td><td>163.00</td><td>-23.16</td><td>718</td><td>22</td><td>400</td><td> 347</td></tr>
+			
+		
+			
+				<tr><td>>>hsa-let-7a-5p</td><td>novel_circ_0061107_full_seq</td><td>149.00</td><td>-19.20</td><td>149.00</td><td>-19.20</td><td>934</td><td>22</td><td>336</td><td> 275</td></tr>
+			
+		
+		</table>
+	</div>
+	</p>
+	<div style="width:1100px;height:115px;overflow-y:scroll;overflow-x:hidden;">
+	<p class="tremark">
+	第一列为miRNA ID<br />
+	第二列为circRNA ID<br />
+	第三列为靶向关系预测所有结合位点总得分值(值越高表明靶向集合可能性更高）<br />
+	第四列为总能量值（能量值越低，表明拆解miRNA-circRNA互作所需要的能量越高，表明结合越稳定。即能量值月的靶向<br />
+	第五列为靶向结合所有结合位点中最高得分（值越高表明靶向集合可能性更高）<br />
+	第六列为靶向结合所有结合位点中最低能量值<br />
+	第七列Strand<br />
+	第八列为miRNA长度<br />
+	第九列为circRNA长度<br />
+	第十列为结合位置，若可结合多个位置，则多个位置以空格分割<br />
+	</p>
+
+</div>
+	<br />
+	<br />
+
+	<p class="paragraph">根据 miRNA 结合位点的预测结果作出 miRNA-circRNA 的调控网络。如果网络过大（miRNA 与 circRNA 的总数多于 1000 个），则只展示部分调控网络，否则全部展示：</p>
+	<p class="center">
+		<img class="normal1" src="files/CircTarget/miRNA_circRNA.png"/>
+	</p>
+	<p class="name_fig">图7.1 miRNA-circRNA 调控网络示例图</p>
+		<p class="cenmark">橙色顶点表示 miRNA，蓝色顶点表示 circRNA；对于全部展示的调控网络，顶点的大小表示通过该顶点的调控通路数量。</p>
+		
+		
+	<br />
+</div>
+
+
+
+<!-------------------------- CircRNA 编码潜能预测------------------------------->
+
+<div id="page">
+
+
+	<a name="CircRNA 编码潜能预测"><h3  id="result16">8 CircRNA 编码潜能预测(结果文件夹: Results/CircRNA/CircCoding)</h3></a>
+	<p class="paragraph">对于环状RNA，早在1995年，ChenCY在SCIENCE就发表了文章证明人工合成的带有核糖体进入位点（IRES）的环状RNA是可以翻译的，并提出了体内环状RNA可翻译的假说。近几年随着circRNA研究的兴起，目前已经积累的大量的circRNA 数据供 circRNA 编码潜能研究。2017年开始，大量关于circRNA 编码的蛋白的文章涌现，影响因子普遍在10分以上。</p>
+	<p class="paragraph">由于circRNA不存在5'帽结构，目前关circRNA编码潜能预测主要是找寻circRNA上是否有IRES位点和开放阅读框ORF，可以不依赖5'帽结构而启动翻译，然后进行编码验证和后续的circRNA 功能分析。</p>
+	<p class="paragraph">目前预测IRES的工具多为在线预测工具。IRESfinder是南京航空航天大学宋晓峰教授团队2018年研发的一款IRES最新预测工具。IRESfinder分析原理是基于logit model的预测工具，基于19种k-mer参数，通过试验验证的583个IRES元件进行机器学习训练。经过10层交叉验证，ROC曲线分析的AUC值可达到0.825，精度达到80%，准确度达到73%<sup>[27]</sup>。</p>
+
+</p>
+	
+	<p class="paragraph">circRNA编码潜能预测结果见结果文件：10.CircRNA/10.5.CircCoding/Circ_coding_stat.xls，如下图所示。</p>
+
+	<p class="center">
+	<img class="norma11" style="width:20%;height:18vw;text-align:center" src="files/CircCoding/circoding.png" />
+	
+</br>
+
+	<p class="paragraph">CircRNA 编码潜能预测结果如下：</p>
+	<p class="name_fig">表8.1 CircRNA 编码潜能预测统计表（部分）</p>
+	<p class="center">
+	<div id="tb">
+		<table class="tb1">
+		
+			
+				<tr class="tb2"><th class="tb2">Circ_ID</th><th class="tb2">IRES_Score</th><th class="tb2">CPC2</th><th class="tb2">CNCI</th><th class="tb2">PFAM</th></tr>
+			
+		
+			
+				<tr><td>hsa_circ_0003472</td><td>0.9508621873940262</td><td>--</td><td>--</td><td>True</td></tr>
+			
+		
+			
+				<tr><td>hsa_circ_0000495</td><td>0.950090903183698</td><td>--</td><td>--</td><td>--</td></tr>
+			
+		
+			
+				<tr><td>hsa_circ_0005616</td><td>0.9499204039946939</td><td>--</td><td>--</td><td>--</td></tr>
+			
+		
+			
+				<tr><td>hsa_circ_0004011</td><td>0.9494561339733832</td><td>--</td><td>--</td><td>--</td></tr>
+			
+		
+			
+				<tr><td>hsa_circ_0023770</td><td>0.9491689306610168</td><td>--</td><td>--</td><td>True</td></tr>
+			
+		
+			
+				<tr><td>hsa_circ_0005893</td><td>0.9478401886462131</td><td>--</td><td>--</td><td>True</td></tr>
+			
+		
+			
+				<tr><td>hsa_circ_0005381</td><td>0.9440283298180068</td><td>--</td><td>--</td><td>--</td></tr>
+			
+		
+			
+				<tr><td>hsa_circ_0008551</td><td>0.9379205534310698</td><td>--</td><td>--</td><td>True</td></tr>
+			
+		
+			
+				<tr><td>hsa_circ_0008377</td><td>0.9375975658813402</td><td>--</td><td>--</td><td>--</td></tr>
+			
+		
+			
+				<tr><td>hsa_circ_0083125</td><td>0.9368269356864454</td><td>--</td><td>--</td><td>True</td></tr>
+			
+		
+		</table>
+	</div>
+	</p>
+
+	<p class="tremark">
+	(1) Circ_ID : circRNA id <br />
+	(2) IRES_Score : IRESfinder 软件预测IRES分数，分数>0.5具有IRES元件，分数越高，准确度越高<br />
+	(3) CPC ：CPC 软件鉴定 circRNA 序列是否具有编码潜能<br />
+	(4) CNCI : CNCI软件鉴定 circRNA 序列是否具有编码潜能<br />
+	(5) PFAM : PFAM 软件鉴定 circRNA 序列是否具有编码潜能<br />
+	</p>
+
+
+	<br />
+	<br />
+</div>
+
+<!-------------------------------CircRNA功能研究视频链接------------------------------>
+<div id="page">
+
+	<a name="CircRNA功能研究视频讲解"><h4 id="result17">CircRNA功能研究讲解视频</h4></a>
+
+<p class="paragraph">链接: <font face="Arial"><a href="https://pan.baidu.com/s/1WRJDKm49gzdNcQaUQf23Wg" class="uri">https://pan.baidu.com/s/1WRJDKm49gzdNcQaUQf23Wg</a></font> 提取码: <font face="Arial">k3dx </font></p>
+	
+	<br />
+ 	<br />
+</div>
+
+
+<!-------------------------------结题报告结构介绍及辅助注释结果文件解读------------------------------>
+<div id="page">
+
+	<a name="结题报告结构介绍及辅助注释结果文件解读"><h4 id="result17">结题报告结构介绍及辅助注释结果文件讲解视频</h4></a>
+
+<p class="paragraph">链接: <font face="Arial"><a href="https://pan.baidu.com/s/1S3AC9i7IDVLAt45vfNnW7Q " class="uri">https://pan.baidu.com/s/1S3AC9i7IDVLAt45vfNnW7Q </a></font> 提取码: <font face="Arial">q9r3  </font></p>
+	
+	<br />
+ 	<br />
+</div>
+
+
+<!-------------------------------novomagic视频链接------------------------------>
+<div id="page">
+
+	<a name="Novomagic讲解视频"><h4 id="result19">Novomagic讲解视频</h4></a>
+
+<p class="paragraph">链接: <font face="Arial"><a href="https://www.bilibili.com/video/BV1ng411G7T1?from=search&seid=10881808897661774313" class="uri">https://www.bilibili.com/video/BV1ng411G7T1?from=search&seid=10881808897661774313</font></p>
+	
+	<br />
+ 	<br />
+</div>
+
+<!-------------------------------------------备注------------------------------------------>
+
+
+<div id="page">
+
+	<p class="head">
+	<a href="#home" title = "返回首页"><img class="logo" align="left" src="images/logo.png" /></a>
+	<a name="备注">北京诺禾致源科技股份有限公司</a>
+	<hr />
+	</p>
+
+	<a name="备注"><h2  id="bei_zhu">五、备注</h2></a>
+<a name="1 结果文件解压方法" ><h3 id="20">1 结果文件解压方法</h3></a>
+	<table width=95% align="center" id="result_note" cellspacing="0" cellpadding="5" class='tf2'>
+<tr><th colspan="3">结果文件解压方法</th></tr>
+
+<tr><td rowspan="2">*.tar.gz形式的压缩文件：</td><td>Unix/Linux/Mac用户</td><td>使用tar -zxvf *.tar.gz命令</td></tr><tr><td>Windows用户</td><td>使用解压缩软件如WinRAR、7-Zip等</td></tr>
+
+<tr><td rowspan="2">*.gz形式的压缩文件：</td><td>Unix/Linux/Mac用户</td><td>使用命令gzip -d *.gz命令</td></tr><tr><td>Windows用户</td><td>使用解压缩软件如WinRAR、7-Zip等</td></tr>
+
+<tr><td rowspan="2">*.zip形式的压缩文件：</td><td>Unix/Linux/Mac用户</td><td>使用命令unzip *.zip命令</td></tr><tr><td>Windows用户</td><td>使用解压缩软件如WinRAR、7-Zip等</td></tr>
+
+	</table>
+
+<a name="2 结果文件格式说明" ><h3 id="20">2 结果文件格式说明</h3></a>
+	<table width=95% align="center" id="result_note" cellspacing="0" cellpadding="5" class='tf2'>
+<tr><th colspan="3">结果文件格式说明</th></tr>
+
+<tr><td rowspan="2">*.fasta</td><td  style="word-break:break-all" rowspan="2">序列文件，fasta格式，一般为基因序列或者基因组序列。因文件一般较大，打开较为困难，为您提供了sampled*.fasta文件（部分*.fasta中的序列），方便您查看文件格式。</td><td>unix/Linux/Mac用户使用 less 或 more 命令；</td></tr><tr><td>windows使用高级文本编辑器Editplus/Notepad++等。</td></tr>
+
+<tr><td rowspan="2">*.fq/fastq</td><td  style="word-break:break-all" rowspan="2">序列文件，fastq格式，一般为reads序列；因文件一般较大，打开较为困难。</td><td>unix/Linux/Mac用户使用 less 或 more 命令；</td></tr><tr><td>windows用户使用高级文本编辑器Editplus/Notepad++等。</td></tr>
+
+<tr><td rowspan="2">*.xls，*.txt</td><td  style="word-break:break-all" rowspan="2">结果数据表格文件；文件以制表符（Tab）分隔。</td><td>unix/Linux/Mac用户使用 less 或 more 命令；</td></tr><tr><td>windows用户使用高级文本编辑器Editplus/Notepad++ 等，也可以用Microsoft Excel打开。</td></tr>
+
+<tr><td rowspan="2">*.png</td><td  style="word-break:break-all" rowspan="2">结果图像文件；是位图，无损压缩。</td><td>unix/Linux/Mac用户使用display命令打开。</td></tr><tr><td>windows用户可以使用图片浏览器打开，如photoshop等。</td></tr>
+
+<tr><td>*.pdf</td><td style="word-break:break-all">结果图像文件；是矢量图，可以放大和缩小而不失真，方便用户查看和编辑处理，可使用Adobe Illustrator进行图片编辑，用于文章发表等。</td><td>windows/Mac用户可以使用Adobe Reader/福昕阅读器/网页>浏览器等打开，unix/Linux用户使用evince命令打开。</td></tr>
+	</table>
+
+
+<h3 id="20">3 高级个性化分析列表和说明</h3>
+	<table width=95% align="center" id="result_note" cellspacing="0" cellpadding="5" class='tf2'>
+<tr><th colspan="1.5">分析条目</th><th  style="word-break:break-all"  colspan="2">交付结果（信息）</th><th style="word-break:break-all" colspan="2">分析条件（信息）</th></tr>
+
+<tr><td colspan="1.5">WGCNA分析</td><td style="word-break:break-all"  colspan="2">模块层次聚类图，模块间相关热性图，模块基因聚类热图，模块基因表达图，样品表达模式热图</td><td style="word-break:break-all" colspan="2">建议25个以上样品（8-15也可以，基于皮尔森）</td></tr>
+
+<tr><td colspan="1.5">GSEA 分析</td><td style="word-break:break-all"  colspan="2">GSEA富集结果图、GSEA富集基因热图</td><td style="word-break:break-all"  colspan="2">差异组合超过10个（物种为人小鼠）；根据表达趋势富集；须有表达量的注释，GO和KEGG；针对所有基因，不只是差异基因</td></tr>
+
+<tr><td colspan="1.5">STEM 分析</td><td style="word-break:break-all"  colspan="2">基因表达模块图，模块内基因表达折线图</td><td style="word-break:break-all"  colspan="2">时间点在4-8个之间</td></tr>
+
+<tr><td colspan="1.5">RNA编辑分析</td><td style="word-break:break-all"  colspan="2">编辑位点在染色体上分布，RNA编辑类型分布，RNA编辑类型堆积柱状图，RNA编辑位点在不同功能域的分布，编辑位点在不同功能域的堆积柱状图</td><td style="word-break:break-all"  colspan="2">需要链特异性建库</td></tr>
+
+<tr><td colspan="1.5">个性化热图绘制</td><td style="word-break:break-all"  colspan="2">多样品差异热图分析，展示纵向标签的热图</td><td style="word-break:break-all"  colspan="2">多样品两两比较（多阶段性或者多时期样品比对分析）</td></tr>
+
+<tr><td colspan="1.5">个性化circos图绘制</td><td style="word-break:break-all"  colspan="2">差异基因在染色体上的分布，多信息数据可视化circos图</td><td style="word-break:break-all"  colspan="2">针对差异基因</td></tr>
+
+<tr><td colspan="1.5">维诺图分析</td><td style="word-break:break-all"  colspan="2">维诺图</td><td style="word-break:break-all"  colspan="2">几百个基因；针对于网站中有的物种可做；别的物种有参考基因组的需要提高参考基因组（有格式要求）以及GO和KEGG注释；无参也可准备相应的注释文件</td></tr>
+
+
+
+<tr><td colspan="1.5">节律基因分析</td><td style="word-break:break-all"  colspan="2">节律基因注释，节律基因聚类分析，节律基因GO富集分析和KEGG富集分析</td><td style="word-break:break-all"  colspan="2">需要有亲代，子代信息、需要时间在2天内点6个时间节点以上</td></tr>
+
+<tr><td colspan="1.5">等位基因偏向性表达（ASE）分析</td><td style="word-break:break-all"  colspan="2">等位基因偏向性分析表格</td><td style="word-break:break-all"  colspan="2">基于SNP/INDEL，有亲本和子代信息；涉及SNP尽量增加测序深度</td></tr>
+
+<tr><td colspan="1.5">lncRNA Rfam家族分析</td><td style="word-break:break-all"  colspan="2">LncRNA的Rfam注释结果，LncRNA与mRNA同源性关系预测</td><td style="word-break:break-all"  colspan="2"></td></tr>
+
+<tr><td colspan="1.5">内参基因分析 </td><td style="word-break:break-all"  colspan="2">NormFinder筛选出的内参基因</td><td style="word-break:break-all"  colspan="2">2个样品以上</td></tr>
+
+<tr><td colspan="1.5">疾病癌症队列分子分型</td><td style="word-break:break-all"  colspan="2">癌症队列分子分型结果</td><td style="word-break:break-all"  colspan="2">20个以上样品（多样本变化差异）；没经过人为筛选的几千个基因</td></tr>
+<tr><td colspan="1.5">疾病癌症样品病毒表达分析</td><td style="word-break:break-all"  colspan="2">病毒表达与癌症分型比较图</td><td style="word-break:break-all"  colspan="2">样品为人</td></tr>
+
+<tr><td colspan="1.5">疾病癌症样品微环境分析 </td><td style="word-break:break-all"  colspan="2">病毒表达与癌症分型比较图</td><td style="word-break:break-all"  colspan="2">样品为人</td></tr>
+
+<tr><td colspan="1.5">病毒整合位点检测</td><td style="word-break:break-all"  colspan="2">检测病毒插入circos展示图</td><td style="word-break:break-all"  colspan="2">样品为人</td></tr>
+
+<tr><td colspan="1.5">疾病癌症融合基因注释</td><td style="word-break:break-all"  colspan="2">检测融合基因的circos展示图</td><td style="word-break:break-all"  colspan="2">样品为人和小鼠</td></tr>
+
+
+	</table>
+        <a name="3 结果文件目录列表" ><h3 id="20">4 结果文件目录列表</h3></a>
+        <p class="paragraph">结果文件目录列表：<a href="../../Results/ReadMe_ncRNAseq.html" title="点击打开" target="_blank">HTML</a></p>
+		
+        
+        <a name="5 软件说明列表" ><h3 id="20">5 软件说明列表</h3></a>
+        <p class="paragraph">软件说明列表：<a href="nc_softwares.pdf" title="点击打开" target="_blank">PDF</a></p>
+        
+
+        
+
+        
+        <a name="9 Q&A" ><h3 id="20">5 CircRNA常见 Q&A </h3></a>
+        <p class="paragraph">CircRNA Q&A：<a href="CircRNA_QA.pdf" title="点击打开" target="_blank">PDF</a></p>
+
+        <a name="10 Methods英文版" ><h3 id="20">6 CircRNA Methods</h3></a>
+        <p class="paragraph">Methods英文版：<a href="circRNA.methods.pdf" title="点击打开" target="_blank">PDF</a></p>
+
+        <a name="11 Q&A" ><h3 id="20">7 circRNA验证手段和一般研究思路 </h3></a>
+        <p class="paragraph">circRNA验证手段和一般研究思路：<a href="circRNA_methods.pdf" title="点击打开" target="_blank">PDF</a></p>
+
+        
+
+        <a name="12 项目优惠券" ><h3 id="20">8 项目优惠券 </h3></a>
+        <p class="paragraph">项目优惠券申请：<a href="project_coupon.pdf" title="点击打开" target="_blank">PDF</a></p>
+
+	<br />
+	<br />
+
+
+</div>
+
+
+
+<!-------------------------------参考文献---------------------------------->
+
+
+
+<div id="page">
+
+	<p class="head">
+	<a href="#home" title = "返回首页"><img class="logo" align="left" src="images/logo.png" /></a>
+	<a name="参考文献">北京诺禾致源科技股份有限公司</a>
+	<hr />
+	</p>
+
+	<h2 id="reference1"><a name="参考文献">六、参考文献</a></h2>
+
+	<p class="ref">
+
+	
+	[1] Yousefi H, Maheronnaghsh M, Molaei F, et al. Long noncoding RNAs and exosomal lncRNAs: classification, and mechanisms in breast cancer metastasis and drug resistance[J].Oncogene.2019.<br /><br />
+	[2] Kopp F, Mendell JT. Functional Classification and Experimental Dissection of Long Noncoding RNAs[J]. Cell. 2018, 172(3), 393–407. doi:10.1016/j.cell.2018.01.011.<br /><br />
+	[3] Parkhomchuk D, Borodina T, Amstislavskiy V, et al. Transcriptome analysis by strand-specific sequencing of complementary DNA[J]. Nucleic Acids Research. 2009, 37(18), e123–e123. doi:10.1093/nar/gkp596.<br /><br />
+	[4] Hardwick SA, Chen WY, Wong T, et al. Spliced synthetic genes as internal controls in RNA sequencing experiments [J]. Nature Methods. 2016, 13(9), 792–798. doi:10.1038/nmeth.3958.<br /><br />
+	
+	
+	
+	[5] Vieth B, Parekh S, Ziegenhain C, et al. A systematic evaluation of single cell RNA-seq analysis pipelines [J]. Nature Communications. 2019, 10, 1–11.<br /><br />
+	[6] Kim D, Langmead B, & Salzberg SL. HISAT: a fast spliced aligner with low memory requirements [J]. Nature Methods. 12(4), 357–360. doi:10.1038/nmeth.3317. <br /><br />
+	[7] Breschi A, Gingeras TR, Guigó R. Comparative transcriptomics in human and mouse. Nature Reviews Genetics. 2017, 18(7), 425–440. doi:10.1038/nrg.2017.19. <br /><br />
+	
+	
+	
+
+	
+
+	
+
+	
+
+	
+
+	
+	
+	
+	[8] Sebastian M, Marvin J, Antigoni E, et al. Circular RNAs are a large class of animal RNAs with regulatory potency [J]. Nature. 2013, 495(7441): 333-8.<br /><br />
+	[9] Gao Y, Wang J, Zhao F. CIRI: an efficient and unbiased algorithm for de novo circular RNA identification [J]. Genome Biology. 2015, 16:4.<br /><br />
+	
+	
+	
+	[10] Love, MI, Huber, W., & Anders, S. Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2 [J]. Genome Biology, 15(12). 2014, doi:10.1186/s13059-014-0550-8.<br /><br />
+	[11] Wang L, Feng Z, Wang X, et al. DEGseq: an R package for identifying differentially expressed genes from RNA-seq data [J]. Bioinformatics. 2009, 26(1), 136–138. doi:10.1093/bioinformatics/btp612.<br /><br /> 
+	
+	
+	
+	[12] Hansen TB,Jensen TI, Clausen BH, et al. Natural RNA circles function as efficient microRNA sponge [J] .Nature. 2013, 495(7441): 384-88.<br /><br />
+	
+	
+	
+	[13] Zhao J, Wu J, Xu T, et al. IRESfinder: Identifying RNA internal ribosome entry site in eukaryotic cell using framed k-mer features. Journal of Genetics and Genomics. 2018, 45(7), 403–406. doi:10.1016/j.jgg.2018.07.006.<br /><br />
+	
+
+	</p>
+
+
+	<br />
+	<br />
+
+
+</div>
+
+
+<!----------------------------------End---------------------------------->
+</div>
+
+</div>
+  <script>
+    $(document).ready(function () {
+
+      // 初始化materialScrollTop
+      $('body').materialScrollTop();
+
+      $('.flexslider').flexslider({
+        animation: "slide",
+        slideshow: false,
+        controlNav: false
+      });
+
+
+      $('#leftNavigation .step').click(function (event) {
+        $(this).children('ul').slideToggle();
+      });
+
+      // 显示隐藏按钮切换
+      $('.hide_or_show').click(function (e) {
+        $(this).parent().next().fadeToggle();
+      });
+
+    });
+
+    function displaySubMenu(li) {
+      var subMenu = li.getElementsByTagName("ul")[0];
+      subMenu.style.display = "block";
+    }
+
+    function hideSubMenu(li) {
+      var subMenu = li.getElementsByTagName("ul")[0];
+      subMenu.style.display = "none";
+    }
+  </script>
+
+</body>
+
+
+</html>

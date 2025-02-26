@@ -1,0 +1,12 @@
+compare	all	up	down	threshold
+Ex49_HETvsWT	9799	4685	5114	edgeR pvalue<=0.05 |log2FoldChange|>=0.0
+Ex49_HOMvsWT	8516	4462	4054	edgeR pvalue<=0.05 |log2FoldChange|>=0.0
+Ex327_HETvsWT	14140	7108	7032	edgeR pvalue<=0.05 |log2FoldChange|>=0.0
+Ex327_HOMvsWT	9625	5424	4201	edgeR pvalue<=0.05 |log2FoldChange|>=0.0
+Ex49vsWT	1015	331	684	edgeR pvalue<=0.05 |log2FoldChange|>=0.0
+Ex327vsWT	924	367	557	edgeR pvalue<=0.05 |log2FoldChange|>=0.0
+Ex327vsEx49	1516	971	545	edgeR pvalue<=0.05 |log2FoldChange|>=0.0
+Ex49_HOMvsEx49_HET	9613	5232	4381	edgeR pvalue<=0.05 |log2FoldChange|>=0.0
+Ex327_HOMvsEx327_HET	14425	7987	6438	edgeR pvalue<=0.05 |log2FoldChange|>=0.0
+Ex327_HETvsEx49_HET	12270	6480	5790	edgeR pvalue<=0.05 |log2FoldChange|>=0.0
+Ex327_HOMvsEx49_HOM	9647	5266	4381	edgeR pvalue<=0.05 |log2FoldChange|>=0.0
