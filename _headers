@@ -1,3 +1,6 @@
-/index.html  Basic-Auth: admin:YourStrongPassword
-/*  Basic-Auth: client:SharedClientPassword
+# Protect the index page (only admin can access)
+/index.html  Basic-Auth: admin:carolina
 
+# Protect all report HTML files (all clients use the same login)
+# This works because Netlify treats .html files as static
+/*.html  Basic-Auth: client:novogene4ngs!
