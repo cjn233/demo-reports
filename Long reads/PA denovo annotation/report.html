@@ -1,0 +1,564 @@
+
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>Novogene Genome Annotation Report</title>
+<!-- 新加的 -->
+<!-- novo图标 -->
+<link rel="icon" href="image/favicon.ico" type="image/x-icon"/>
+<!-- Bootstrap core CSS -->
+<!-- 新 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/font-awesome/css/font-awesome.min.css">
+<!-- Bootstrap CSS CDN -->
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- Our Custom CSS -->
+<link rel="stylesheet" href="css/style2.css">
+<!-- Scrollbar Custom CSS -->
+<link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+
+<link rel="StyleSheet" href="js/tree/tree.css" type="text/css">
+
+<link rel="stylesheet" type="text/css" href="js/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/base.css" />
+
+<script src="js/jquery-1.12.0.min.js"> </script>
+<script src="js/jquery-migrate-1.4.1.min.js" ></script> 
+
+
+<script src="js/jquery.albumSlider.min.js" type="text/javascript"></script>
+<script src="js/common.js" type="text/javascript"></script>
+
+<script type="text/javascript" src="js/tree/tree.js"></script>
+<script type="text/javascript" src="js/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
+<script type="text/javascript" src="js/fancybox/jquery.fancybox-1.3.4.pack.js"></script> 
+
+<style>
+.table_new{width:65%;overflow:auto;position:relative;left:20%}
+.tubiao{position:relative;left:5%}
+.project_table{position:relative;left:20%}
+ul {list-style:none;}
+h2{color:#003f76;font-size:30px;font-weight:bold;}
+h3{color:#003f76;font-size:22px;font-weight:bold;}
+h4{color:#003f76;font-size:18px;font-weight:bold;}
+</style>
+
+       
+
+
+ 
+    </head>
+    <body>
+
+
+
+        <div class="wrapper">
+            <!-- Sidebar Holder -->
+            <nav id="sidebar">
+                <div class="sidebar-header">
+                    <h3><a href="http://www.novogene.com/"><img src="image/novogene_logo.png" width="95%" style="margin-bottom: 20px"></a><br></h3>
+
+                </div>
+
+                <ul class="list-unstyled components">
+                    
+                     <li class="active">                               
+                        <a href="#project_info" class=project_table ><strong>Project Information</strong></a>
+                    </li>
+
+                    <li class="active">
+                                                           
+                        <a href=#lb data-toggle="collapse" aria-expanded="false"><img src="image/sidebar_icon_active_2.png" width="15%" >&nbsp;&nbsp; Analysis process and method</a>
+                        <ul class="collapse list-unstyled" id=lb>
+								
+							<li><a href="#abstract_pacbio">Genome Annotation Analysis Process</a></li>
+							<li><a href="#abstract_pacbio1">Genome Annotation Analysis Methods/a></li>
+	
+                        </ul>
+                    </li>
+
+					<li class="active">      
+
+						<a href=#assemby data-toggle="collapse" aria-expanded="false"><img src="image/sidebar_icon_active_4.png" width="15%" >&nbsp;&nbsp; Analysis results</a>
+						<ul class="collapse list-unstyled" id=assemby>
+
+							<li><a href="#assemby_plot">Repeat sequence annotation</a></li>
+					        <li><a href="#assemby_soft">Gene Structure Annotation</a></li>
+							<li><a href="#anno_gongnneg">Gene function annotation</a></li>
+							<li><a href="#anno_rna">Noncoding RNA Annotation</a></li>
+
+						</ul>
+					</li>
+<li class="active">
+                                                           
+                        <a href=#result data-toggle="collapse" aria-expanded="false"><img src="image/sidebar_icon_active_5.png" width="15%" >&nbsp;&nbsp; Conclusion</a>
+                        <ul class="collapse list-unstyled" id=result>
+                            
+                                                                                       								
+								<li><a href="#result1">Annotation result</a></li>
+								
+								
+                        </ul>
+                    </li>
+					
+					<li class="active">      
+
+						<a href=#fangfa data-toggle="collapse" aria-expanded="false"><img src="image/sidebar_icon_active_6.png" width="15%" >&nbsp;&nbsp; Method description</a>
+						<ul class="collapse list-unstyled" id=fangfa>
+
+							<li><a href="#assemby_plot">Method descriptio</a></li>
+					        <li><a href="#assemby_soft">Annotaion software version</a></li>
+							<li><a href="#anno_gongnneg">Deliverables Catalog</a></li>
+							<li><a href="#anno_rna">Result file description</a></li>
+
+						</ul>
+					</li>
+				    <li class="active">                               
+						<a href="#literature"><img src="image/sidebar_icon_active_9.png" width="15%" class="mCS_img_loaded">&nbsp;&nbsp; References</a>
+					</li>
+                   
+				 	
+
+						</ul>
+					</li>
+                </ul>
+				
+				
+				
+				<p  style="font-size: 13px,color:#3e3a39" class=tubiao ><i class="fa fa-phone-square fa-1x  " aria-hidden="true" ></i>&nbsp;&nbsp;TEL：400-658-1585</p>
+				<p  style="font-size: 12px" class=tubiao ><i class="fa fa-envelope-open fa-1x " aria-hidden="true"></i>&nbsp;&nbsp;E-mail：<a href="mailto:邮件地址">op-denovo@novogene.com</a></p>
+				<br/><br/><br/><br/>
+
+<!--
+                <ul class="list-unstyled CTAs">
+                    <li><a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a></li>
+                    <li><a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a></li>
+                </ul>
+-->
+            </nav>
+
+            <!-- Page Content Holder -->
+            <div id="content">
+
+                    <div class="container-fluid" title="收起/打开目录">
+
+                        <div class="navbar-header">
+                            <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn" style="position: fixed;bottom: 50px;right: 5px">
+                                <i class="fa fa-exchange" aria-hidden="true"></i>
+                               
+                            </button>
+                        </div>
+
+
+                    </div>
+
+		<h2><div align="center" text-align="center" >Novogene Genome Annotation Report</div></h2>
+		<br/><br/>
+		<h3><a name=project_info>Project information</a></h3>
+
+		<br/><p class=paragraph>Project Number：XXXX</p>
+		<p class=paragraph>Project Name：xxxx</p>
+		<p class=paragraph>Project manager：xxxx</p>
+		<p class=paragraph>Species：xxxx</p>
+		<p class=paragraph>Date：xxxx</p>
+		<br/>
+		<br/>
+
+
+	<hr style=" height:2px;width:101%;border:none;border-top:2px dotted #afb7bf;" />
+	<br/>
+	
+		
+    <h3><a name=lb>1 Analysis process and method</a></h3><br/>
+		
+			
+		<h4><a name=abstract_pacbio>&nbsp;&nbsp;1.1   Genome Annotation Analysis Process&nbsp;</a></h4>
+		<p class=paragraph> Genome annotation mainly includes three aspects: repetitive sequence annotation, gene annotation (including gene structure prediction and gene function prediction), non-coding RNA (ncRNA) annotation, as shown in Figure 1.1.1：</p>
+		<br/>
+			</br>
+			<div class="content_img"><img src="image/genome_annotation_pipline.png" width="660"><h6>Figure 1.1 Genome Annotation Flowchart</h6></div>
+			
+			<br/>			
+		<h4><a name=abstract_pacbio1>&nbsp;&nbsp;1.2   Genome Annotation Analysis Methods&nbsp;</a></h4>
+		
+		<h5>&nbsp;&nbsp;&nbsp;&nbsp;1.2.1 Repeat Sequence Annotation Method &nbsp;</h5>
+		<p class=paragraph> 1.2.1.1 Homologous sequence alignment</p>
+		<p class="paragraph"> &nbsp; &nbsp; &nbsp; &nbsp; The homologous sequence alignment method is based on the repeat sequence database, using Repeatmasker and repeatproteinmask software, to identify sequences similar to known repeat sequences.</p>
+		<p class=paragraph> 1.2.1.2 Ab initio prediction</p>
+		<p class="paragraph"> &nbsp; &nbsp; &nbsp; &nbsp; Use LTR_FINDER , RepeatScout , RepeatModeler and other software to first establish the De novo repeat sequence library, and then predict it through the Repeatmasker software. In addition, the de novo prediction method can also use TRF to find tandem repeat sequences (Tandem Repeat) in the genome.</p>
+		
+		<h5>&nbsp;&nbsp;&nbsp;&nbsp;1.2.2 Gene structure prediction methods &nbsp;</h5>
+        <p class=paragraph> 1.2.2.1 Homologous sequence alignment</p>
+		<p class="paragraph"> &nbsp; &nbsp; &nbsp; &nbsp; The method of homologous prediction is to compare the coding protein sequences of known homologous species with the genome sequences of new species (the number of homologous species is usually 5-6), and use blast, genewise and other comparison software to predict the genetic structure.</p>
+        <p class=paragraph> 1.2.2.2 De novo prediction method</p>
+		<p class="paragraph"> &nbsp; &nbsp; &nbsp; &nbsp; De novo prediction uses software that relies on the statistical characteristics of genome sequence data (such as codon frequency, exon-intron distribution) to predict gene structure. Commonly used software includes Augustus, GlimmerHMM, SNAP, etc.</p>
+        <p class=paragraph> 1.2.2.3 Other Evidence-Supported Predictive Methods</p>	
+        <p class="paragraph"> &nbsp; &nbsp; &nbsp; &nbsp; Other evidence-supported predictions use EST or cDNA data from homologous species to predict gene structure through blat alignments.</p>
+         <p class="paragraph"> &nbsp; &nbsp; &nbsp; &nbsp; Based on the above prediction results, combined with the transcriptome comparison data, the EVidenceModeler integration software was used to integrate the gene sets predicted by various methods into a non-redundant and more complete gene set. Finally, using PASA, combined with the transcriptome assembly results, the EVM annotation results were corrected, and information such as UTR and variable splicing was added to obtain the final gene set.</p>		
+			<hr style=" height:2px;width:101%;border:none;border-top:2px dotted #afb7bf;" />
+			<br/>
+		
+		
+				<div class="content_table" >
+				<table class="table table-bordered table-striped table-hover table_new" >
+
+
+</table>
+</div>
+
+
+
+<h3><a name=assemby>2 Analysis results</a></h3><br/>		
+<h4><a name=assemby_plot>&nbsp;&nbsp;2.1 Repeat sequence annotation</a></h4><br/>			
+<p class=paragraph>Repeats can be divided into two categories: tandem repeats and interspersed repeats. Tandem repeats include microsatellite sequences, small satellite sequences, etc.; scattered repeats are also called transposon elements, including DNA transposons and retrotransposons that transpose in a DNA-DNA manner. Common types of retrotransposons include LTR, LINE, and SINE. First, integrate the repeated sequence library predicted by Denovo with the homologous repeated sequence database Repbase, and then use the RepeatMasker software to perform repeat annotation on the [xxxx] genome. The results show that the [xxxx] genome contains 53.03% of the repeat sequences. For the statistics of the annotation results, see Tables 2.1.1 and 2.1.2.</p>
+
+<div class="content_img"><h6>Table 2-1.1  Repeat sequence statistics</h6></div>
+<div class="content_table">
+<table class="table table-bordered table-striped table-hover" ><thead><tr>
+<th  style="text-align :center">Type</th>
+<th  style="text-align :center">Repeat Size(bp)</th>
+<th  style="text-align :center">% of genome</th>
+</thead>
+<tbody>
+<tr><td>Trf</td><td>84,601,754,629.0</td><td>2,898,323.0</td>
+<tr><td>Repeatmasker</td><td>84,601,754,629.0</td><td>2,898,323.0</td>
+<tr><td>Proteinmask</td><td>84,601,754,629.0</td><td>2,898,323.0</td>
+<tr><td>Total</td><td>84,601,754,629.0</td><td>2,898,323.0</td>
+</tbody>
+</table>
+<p class="paragraph"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Note: Total is the result obtained by the above methods, and the non-redundant result after removing the overlapping parts between them.</p>
+
+<div class="content_img"><h6>Table 2.1.2   Repeat sequence classification results statistics</h6></div>
+
+<div class="content_table">
+<table class="table table-bordered table-striped table-hover" ><thead><tr>
+
+<tr><th style="text-align :center" width="20%" rowspan="2"></th><th style="text-align :center" colspan="2">Denovo+Repbase</th><th style="text-align :center" colspan="2">TE Proteins</th><th style="text-align :center" colspan="2">Combined TEs</th></tr>
+    <tr><th style="text-align :center">Length(bp)</th><th style="text-align :center" width="20%">% in Genome</th><th style="text-align :center">Length(bp)</th><th style="text-align :center" width="20%">% in Genome</th><th style="text-align :center">Length(bp)</th><th style="text-align :center" width="20%">% in Genome</th></tr>
+    <tbody>
+    <tr><td align="center" width="100">DNA</td><td align="center" width="100">20,926,047</td><td align="center" width="100">5.33</td><td align="center" width="100">3,181,776</td><td align="center" width="100">0.81</td><td align="center" width="100">21,988,024</td><td align="center" width="100">5.60</td></tr>
+    <tr><td align="center" width="100">LINE</td><td align="center" width="100">2,541,230</td><td align="center" width="100">0.65</td><td align="center" width="100">6,172</td><td align="center" width="100">0.00</td><td align="center" width="100">2,543,482</td><td align="center" width="100">0.65</td></tr>
+    <tr><td align="center" width="100">SINE</td><td align="center" width="100">648</td><td align="center" width="100">0.00</td><td align="center" width="100">0</td><td align="center" width="100">0</td><td align="center" width="100">648</td><td align="center" width="100">0.00</td></tr>
+    <tr><td align="center" width="100">LTR</td><td align="center" width="100">148,397,325</td><td align="center" width="100">37.81</td><td align="center" width="100">29,455,218</td><td align="center" width="100">7.50</td><td align="center" width="100">151,564,819</td><td align="center" width="100">38.61</td></tr>
+    <tr><td align="center" width="100">Unknown</td><td align="center" width="100">38,062,215</td><td align="center" width="100">9.70</td><td align="center" width="100">0</td><td align="center" width="100">0</td><td align="center" width="100">38,062,215</td><td align="center" width="100">9.70</td></tr>
+    <tr><td align="center" width="100">Total</td><td align="center" width="100">203,573,399</td><td align="center" width="100">51.86</td><td align="center" width="100">32,643,461</td><td align="center" width="100">8.32</td><td align="center" width="100">204,791,869</td><td align="center" width="100">52.18</td></tr>
+    
+    </tbody>
+    </table>
+
+<p class="paragraph"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Note: The statistical results do not include the TRF identification results. Denovo+Repbase is the transposon element obtained by using the library predicted by RepeatModeler, RepeatScout, Piler and LTR_FINDER software combined with the RepBase nucleic acid library using Uclust software according to the 80-80-80 principle, and then using the RepeatMasker software to annotate the genome; TE proteins are based on The RepBase protein library uses the RepeatProteinMask software to annotate the transposon elements obtained from the genome; Combined TEs are the result of integrating the above two methods and removing redundancy. Unknown means that the repeat sequence cannot be classified by RepeatMasker. Total is the result of the above various classifications, and the non-redundant result after removing the overlapping parts between them.</p>
+<br/>
+
+<p class="paragraph"> &nbsp; &nbsp; &nbsp; &nbsp; Taking Repbase as the library, the TE divergence distribution diagram obtained through RepeatMasker annotation is shown in Figure 2.1.1. The abscissa is the divergence degree between the TE sequence annotated in the [xxxx] genome and the corresponding sequence in Repbase; the ordinate is the divergence The percentage of TE sequences in the genome under different degrees, and different TEs are marked with different colors.</p>
+<p class="center"><img src="data/repeat.png" width="600">
+    </p>
+<p class="paragraph" align="center">Figure 2.1.1 TE sequence divergence distribution map</p>
+
+</br>
+<h4><a name=assemby_soft>&nbsp;&nbsp;2.2 Gene Structure Annotation</a></h4><br/>
+<p class="paragraph"> &nbsp; &nbsp; &nbsp; &nbsp;Gene structure Denovo prediction uses software Augustus, GlimmerHMM, SNAP, Geneid and Genscan; annotation species include xxxx(xxxx), xxxx(xxxx), xxxx(xxxx), xxxx(xxxx), xxxx(xxxx), xxxx(xxxx). A total of 21,192 genes were predicted from the [xxxx] genome. The detailed statistical information is shown in Table 2.2.1. Figure 2.2.1 shows the support of each evidence for the gene set.</p>				
+<br/>
+<p class="paragraph" align="center">Table 2.2.1 Basic statistical results of gene structure prediction</p>
+
+<div class="content_table">
+<table class="table table-bordered table-striped table-hover" ><thead><tr>
+<th  style="text-align :center">&nbsp;</th>
+<th  style="text-align :center">Gene set</th>
+<th  style="text-align :center">Number</th>
+<th  style="text-align :center">Average transcript length(bp)</th>
+<th  style="text-align :center">Average CDS length(bp)</th>
+<th  style="text-align :center">Average exons per gene</th>
+<th  style="text-align :center">Average exon length(bp)</th>
+<th  style="text-align :center">Average intron length(bp)</th>
+</thead>
+
+
+
+	<tbody>
+	<tr><td align="center" width="100" rowspan="5">De novo</td><td align="center" width="100">Augustus</td><td align="center" width="100">23,233</td><td align="center" width="100">3,134.84</td><td align="center" width="100">1,113.29</td><td align="center" width="100">4.82</td><td align="center" width="100">231.17</td><td align="center" width="100">529.76</td></tr>
+    <tr><td align="center" width="100">GlimmerHMM</td><td align="center" width="100">22,520</td><td align="center" width="100">8,402.11</td><td align="center" width="100">722.09</td><td align="center" width="100">3.41</td><td align="center" width="100">211.80</td><td align="center" width="100">3,187.74</td></tr>
+    <tr><td align="center" width="100">SNAP</td><td align="center" width="100">26,517</td><td align="center" width="100">4,933.38</td><td align="center" width="100">625.84</td><td align="center" width="100">3.92</td><td align="center" width="100">159.51</td><td align="center" width="100">1,473.39</td></tr>
+    <tr><td align="center" width="100">Geneid</td><td align="center" width="100">33,228</td><td align="center" width="100">4,720.40</td><td align="center" width="100">795.30</td><td align="center " width="100">4.19</td><td align="center" width="100">189.60</td><td align="center" width="100">1,228.66</td></tr>
+    <tr><td align="center" width="100">Genscan</td><td align="center" width="100">21,705</td><td align="center" width="100">10,020.61</td><td align="center" width="100">1,198.29</td><td align="center " width="100">5.88</td><td align="center" width="100">203.85</td><td align="center" width="100">1,808.51</td></tr>
+    
+    <tr><td align="center" width="100" rowspan="6">Homolog</td><td align="center" width="100">Clan</td><td align="center" width="100">19,190</td><td align="center" width="100">3,530.72</td><td align="center" width="100">1,170.51</td><td align="center" width="100">5.12</td><td align="center" width="100">228.75</td><td align="center" width="100">573.29</td></tr>
+    <tr><td align="center" width="100">Cmos</td><td align="center" width="100">17,479</td><td align="center" width="100">4,152.32</td><td align="center" width="100">1,219.72</td><td align="center " width="100">5.27</td><td align="center" width="100">231.63</td><td align="center" width="100">687.46</td></tr><tr><td align="center" width="100">Mcha</td><td align="center" width="100">18,016</td><td align="center" width="100">3,519.38</td><td align="center" width="100">1,185.26</td><td align="center " width="100">5.17</td><td align="center" width="100">229.43</td><td align="center" width="100">560.27</td></tr><tr><td align="center" width="100">Cmax</td><td align="center" width="100">17,657</td><td align="center" width="100">3,740.41</td><td align="center" width="100">1,235.27</td><td align="center " width="100">5.37</td><td align="center" width="100">230.17</td><td align="center" width="100">573.68</td></tr><tr><td align="center" width="100">Cmel</td><td align="center" width="100">25,638</td><td align="center" width="100">2,707.35</td><td align="center" width="100">953.01</td><td align="center " width="100">4.29</td><td align="center" width="100">222.10</td><td align="center" width="100">533.07</td></tr><tr><td align="center" width="100">Csat</td><td align="center" width="100">17,939</td><td align="center" width="100">3,778.83</td><td align="center" width="100">1,240.23</td><td align="center " width="100">5.42</td><td align="center" width="100">228.77</td><td align="center" width="100">574.17</td></tr>
+	<tr><td align="center" width="100" rowspan="2">RNAseq</td><td align="center" width="100">PASA</td><td align="center" width="100">26,666</td><td align="center" width="100">3,431.88</td><td align="center" width="100">1,111.46</td><td align="center" width="100">5.10</td><td align="center" width="100">218.10</td><td align="center" width="100">566.49</td></tr>
+    <tr><td align="center" width="100">Transcripts</td><td align="center" width="100">31,841</td><td align="center" width="100">6,223.78</td><td align="center" width="100">2,053.59</td><td align="center " width="100">6.63</td><td align="center" width="100">309.62</td><td align="center" width="100">740.36</td></tr>
+    
+	<tr><td align="center" width="100" colspan="2">EVM</td><td align="center" width="100">24,963</td><td align="center" width="100">3,574.73</td><td align="center" width="100">1,082.67</td><td align="center" width="100">4.83</td><td align="center" width="100">224.23</td><td align="center" width="100">650.93</td></tr>
+    <tr><td align="center" width="100" colspan="2">Pasa-update*</td><td align="center" width="100">24,880</td><td align="center" width="100">3,522.77</td><td align="center" width="100">1,087.98</td><td align="center" width="100">4.81</td><td align="center" width="100">226.20</td><td align="center" width="100">639.07</td></tr>
+    <tr><td align="center" width="100" colspan="2">Final set*</td><td align="center" width="100">21,192</td><td align="center" width="100">3,905.17</td><td align="center" width="100">1,199.76</td><td align="center" width="100">5.27</td><td align="center" width="100">227.63</td><td align="center" width="100">633.49</td></tr>
+    </tbody>
+</table>
+<p class="paragraph"> &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;Note: * includes the UTR area, others do not.</p>
+<p class="center"><img src="data/figure_2_2_1.svg" width="600">
+    </p>
+<p class="paragraph" align="center">Figure 2.2.1 Gene set evidence supports statistics</p>
+<p class="paragraph"> &nbsp; &nbsp; &nbsp; &nbsp; Note: De novo, genes supported by De novo prediction when EVM is integrated; Homolog, genes supported by homology prediction when EVM is integrated; RNA, genes supported by RNA-seq when EVM is integrated; each evidence support is based on the gene overlap being greater than 50% Standard; numbers indicate the number of genes.</p>
+<br/>
+<p class="paragraph"> &nbsp; &nbsp; &nbsp; &nbsp;Table 2.2.2 and Figure 2.2.2 show the proximity 1 (xxxx), proximity 2 (xxxx), proximity 3 (xxxx), proximity 4 (xxxx), proximity 5 (xxxx), proximity 6 (xxxx) and other related species gene structure statistical information and the comparative information of each element.</p>
+
+<p class="paragraph" align="center">Table 2.2.2 Basic statistical results of gene structure of related species</p>
+
+
+<div class="content_table">
+<table class="table table-bordered table-striped table-hover" ><thead><tr>
+<th  style="text-align :center">Species</th>
+<th  style="text-align :center">Number</th>
+<th  style="text-align :center">Average transcript length(bp)</th>
+<th  style="text-align :center">Average CDS length(bp)</th>
+<th  style="text-align :center">Average exons per gene</th>
+<th  style="text-align :center">Average exon length(bp)</th>
+<th  style="text-align :center">Average intron length(bp)</th>
+</thead>
+
+
+<tbody>
+</tr><tr><td style="text-align :center">xxxx</td><td style="text-align :center">21,192</td><td style="text-align :center">3,905.17</td><td style="text-align :center">1,199.76</td><td style="text-align :center">5.27</td><td style="text-align :center">227.63</td><td style="text-align :center">633.49</td></tr>
+<tr><td style="text-align :center">Homologous species1</td><td style="text-align :center">18,584</td><td style="text-align :center">3,806.43</td><td style="text-align :center">1,360.36</td><td style="text-align :center">5.83</td><td style="text-align :center">233.32</td><td style="text-align :center">506.38</td></tr>
+<tr><td style="text-align :center">Homologous species2</td><td style="text-align :center">28,590</td><td style="text-align :center">3,151.16</td><td style="text-align :center">1,016.60</td><td style="text-align :center">4.78</td><td style="text-align :center">212.51</td><td style="text-align :center">564.14</td></tr>
+<tr><td style="text-align :center">Homologous species3</td><td style="text-align :center">27,229</td><td style="text-align :center">3,327.08</td><td style="text-align :center">1,339.35</td><td style="text-align :center">5.80</td><td style="text-align :center">231.06</td><td style="text-align :center">414.41</td></tr>
+<tr><td style="text-align :center">Homologous species4</td><td style="text-align :center">29,949</td><td style="text-align :center">4,536.42</td><td style="text-align :center">1,416.74</td><td style="text-align :center">6.43</td><td style="text-align :center">220.33</td><td style="text-align :center">574.52</td></tr>
+<tr><td style="text-align :center">Homologous species5</td><td style="text-align :center">32,205</td><td style="text-align :center">3,286.17</td><td style="text-align :center">1,233.55</td><td style="text-align :center">5.68</td><td style="text-align :center">217.22</td><td style="text-align :center">438.70</td></tr>
+<tr><td style="text-align :center">Homologous species6</td><td style="text-align :center">22,596</td><td style="text-align :center">3,601.97</td><td style="text-align :center">1,166.86</td><td style="text-align :center">5.24</td><td style="text-align :center">222.53</td><td style="text-align :center">573.84</td></tr>
+</tbody>
+</table>
+<p class="center"><img src="data/homo.statis.svg" width="600">
+    </p>
+<p class="paragraph" align="center">Figure 2.2.2 Comparison chart of each component of related species</p>
+
+<h4><a name=assemby_plot>&nbsp;&nbsp;2.3 Gene function annotation</a></h4><br/>
+<p class="paragraph"> &nbsp; &nbsp; &nbsp; &nbsp;Using the protein sequence predicted by the gene structure to compare the known protein library, 97.82% of the genes can be predicted to function. The statistical results are shown in Table 2.3.1 and Figure 2.3.1.</p>
+<p class="paragraph" align="center">Table 2.3.1 Statistical results of gene function annotation</p>
+
+<div class="content_table">
+<table class="table table-bordered table-striped table-hover" ><thead><tr>
+<th  style="text-align :center">&nbsp;</th>
+<th  style="text-align :center">Number</th>
+<th  style="text-align :center">Percent(%)</th>
+</thead>
+<tbody>
+    <tr><td align="center" width="100">Total</td><td align="center" width="100">21,192</td><td align="center" width="100">-</td></tr>
+    <tr><td align="center" width="100">Swissprot</td><td align="center" width="100">16,797</td><td align="center" width="100">79.26</td></tr>
+    <tr><td align="center" width="100">Nr</td><td align="center" width="100">20,473</td><td align="center" width="100">96.61</td></tr>
+    <tr><td align="center" width="100">KEGG</td><td align="center" width="100">16,030</td><td align="center" width="100">75.64</td></tr>
+    <tr><td align="center" width="100">InterPro</td><td align="center" width="100">20,130</td><td align="center" width="100">94.99</td></tr>
+    <tr><td align="center" width="100">GO</td><td align="center" width="100">12,770</td><td align="center" width="100">60.26</td></tr>
+    <tr><td align="center" width="100">Pfam</td><td align="center" width="100">16,218</td><td align="center" width="100">76.53</td></tr>
+    <tr><td align="center" width="100">Annotated</td><td align="center" width="100">20,729</td><td align="center" width="100">97.82</td></tr>
+    <tr><td align="center" width="100">Unannotated</td><td align="center" width="100">463</td><td align="center" width="100">2.18</td></tr>
+	</tbody>
+</table>
+
+<p class="center"><img src="data/figure_2_3_1.svg" width="600">
+    </p>
+<p class="paragraph" align="center">Figure 2.3.1 Statistical results of gene function annotation</p>
+
+<h4><a name=assemby_plot>&nbsp;&nbsp;2.4 Noncoding RNA Annotation</a></h4><br/>
+<p class="paragraph"> &nbsp; &nbsp; &nbsp; &nbsp;Non-coding RNA refers to RNA that does not translate proteins, such as rRNA, tRNA, snRNA, miRNA, etc. These RNAs have important biological functions. miRNA can degrade its target gene or inhibit the translation of target gene into protein, which has the function of silencing gene. tRNA and rRNA are directly involved in protein synthesis. snRNA is mainly involved in the processing of RNA precursors and is the main component of RNA splicing bodies. By comparing with the known ncRNA library, the ncRNA information of the [melon] genome is shown in Table 2.4.1.</p>
+
+<p class="paragraph" align="center">Table 2.4.1 Non-coding RNA statistics</p>
+<div class="content_table">
+<table class="table table-bordered table-striped table-hover" ><thead><tr>
+<th  style="text-align :center">&nbsp;</th>
+<th  style="text-align :center">Type</th>
+<th  style="text-align :center">Copy number</th>
+<th  style="text-align :center">Average length(bp)</th>
+<th  style="text-align :center">Total length(bp)</th>
+<th  style="text-align :center">% of genome</th>
+</thead>
+<tbody>
+<tr><td align="center" width="100" colspan="2">miRNA</td><td align="center" width="100">447</td><td align="center" width="100">111.17</td><td align="center" width="100">49,692</td><td align="center" width="100">0.012660</td></tr>
+    <tr><td align="center" width="100" colspan="2">tRNA</td><td align="center" width="100">1,528</td><td align="center" width="100">75.58</td><td align="center" width="100">115,479</td><td align="center" width="100">0.029421</td></tr>
+    <tr><td align="center" width="100" rowspan="5">rRNA</td><td align="center" width="100">rRNA</td><td align="center" width="100">6,888</td><td align="center" width="100">386.77</td><td align="center" width="100">2,664,097</td><td align="center" width="100">0.68</td></tr>
+    <tr><td align="center" width="100">18S</td><td align="center" width="100">1,084</td><td align="center" width="100">1,708.50</td><td align="center" width="100">1,852,011</td><td align="center" width="100">0.47</td></tr>
+    <tr><td align="center" width="100">28S</td><td align="center" width="100">4,043</td><td align="center" width="100">139.40</td><td align="center" width="100">563,612</td><td align="center" width="100">0.14</td></tr>
+    <tr><td align="center" width="100">5.8S</td><td align="center" width="100">1,026</td><td align="center" width="100">158.98</td><td align="center" width="100">163,109</td><td align="center" width="100">0.041555</td></tr>
+    <tr><td align="center" width="100">5S</td><td align="center" width="100">735</td><td align="center" width="100">116.14</td><td align="center" width="100">85,365</td><td align="center" width="100">0.021749</td></tr>
+    <tr><td align="center" width="100" rowspan="6">snRNA</td><td align="center" width="100">snRNA</td><td align="center" width="100">558</td><td align="center" width="100">111.11</td><td align="center" width="100">62,001</td><td align="center" width="100">0.015796</td></tr>
+    <tr><td align="center" width="100">CD-box</td><td align="center" width="100">389</td><td align="center" width="100">103.07</td><td align="center" width="100">40,095</td><td align="center" width="100">0.010215</td></tr>
+    <tr><td align="center" width="100">HACA-box</td><td align="center" width="100">45</td><td align="center" width="100">127.62</td><td align="center" width="100">5,743</td><td align="center" width="100">0.001463</td></tr>
+    <tr><td align="center" width="100">splicing</td><td align="center" width="100">124</td><td align="center" width="100">130.35</td><td align="center" width="100">16,163</td><td align="center" width="100">0.004118</td></tr>
+    <tr><td align="center" width="100">scaRNA</td><td align="center" width="100">0</td><td align="center" width="100">0</td><td align="center" width="100">0</td><td align="center" width="100">0</td></tr>
+    <tr><td align="center" width="100">Unknown</td><td align="center" width="100">0</td><td align="center" width="100">0</td><td align="center" width="100">0</td><td align="center" width="100">0</td></tr>
+	</tbody>
+</table>
+
+
+<br/>
+<hr style=" height:2px;width:101%;border:none;border-top:2px dotted #afb7bf;" />
+<br/>	
+<h3><a name=result>3 Conclusion</a></h3><br/>
+<br/>
+<h4><a name=result1>&nbsp;&nbsp;3.1 Annotation result</a></h4>
+<p class=paragraph>Through repeated sequence annotation, gene annotation (including gene structure prediction and gene function prediction) and non-coding RNA annotation on the [xxxx] genome, the analysis results show that in the [xxxx] genome, the proportion of repetitive sequences is 53.03%, and a total of predicted 21,192 coding genes, 97.82% of which can be predicted to function.</p>
+
+
+
+<br/>
+<hr style=" height:2px;width:101%;border:none;border-top:2px dotted #afb7bf;" />
+<br/>
+
+<h3><a name=literature>4 References</a></h3>
+
+<li><a id="ref1" href="https://www.nature.com/articles/nbt.3423" title="click" target="_blank"> Deamer D, Akeson M, Branton D: Three decades of nanopore sequencing. Nat Biotechnol 2016, 34:518-524</a></li>
+<li><a id="ref2" href="https://academic.oup.com/bib/advance-article-abstract/doi/10.1093/bib/bbx062/3869205?redirectedFrom=fulltext" title="click" target="_blank"> Magi A, Semeraro R, Mingrino A, Giusti B, D'Aurizio R: Nanopore sequencing data analysis: state of the art, applications and challenges. Brief Bioinform 2017</a></li>
+<li><a id="ref3" href="https://genomebiology.biomedcentral.com/articles/10.1186/s13059-016-1103-0" title="click" target="_blank"> Jain M, Olsen HE, Paten B, Akeson M: The Oxford Nanopore MinION: delivery of nanopore sequencing to the genomics community. Genome Biol 2016, 17:239</a></li>
+<li><a id="ref4" href="https://www.nature.com/articles/s41598-018-21484-w" title="click" target="_blank"> Krishnakumar R, Sinha A, Bird SW, Jayamohan H, Edwards HS, Schoeniger JS, Patel KD, Branda SS, Bartsch MS: Systematic and stochastic influences on the performance of the MinION nanopore sequencer across a range of nucleotide bias. Sci Rep 2018, 8:3159</a></li>
+
+
+<br>
+
+<br>
+<hr style="width:100%">
+<footer text-align="center"><a href="http://www.novogene.com/"> Novogene Co., LTD www.novogene.com</a></footer>
+
+
+
+<hr style="width:100%">
+<footer align="center"> Novogene Co., LTD <a href="http://www.novogene.com/">www.novogene.com</a></footer>
+
+
+        <!-- jQuery CDN -->
+        <!--
+        <script type="text/javascript">
+			var _$ = jQuery.noConflict(true);
+		</script>
+        -->	
+        <!-- <script  src="https://code.jquery.com/jquery-1.12.0.min.js"> </script> -->
+        
+        <!-- Bootstrap Js CDN -->
+        <script src="js/bootstrap.min.js"></script>
+        <!-- jQuery Custom Scroller CDN -->
+        <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+		
+        <script type="text/javascript">
+            $(document).ready(function () {
+            	
+                $("#sidebar").mCustomScrollbar({
+                    theme: "minimal"
+                });
+
+                $('#sidebarCollapse').on('click', function () {
+                    $('#sidebar, #content').toggleClass('active');
+                    $('.collapse.in').toggleClass('in');
+                    $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+                });
+            });
+        </script>
+    </body>
+</html>
+
+
+
+<!--pie图-->
+
+       <script type="text/javascript" src="js/echarts.js"></script>
+       <script type="text/javascript">
+
+   
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+option = null;
+var weatherIcons = {
+};
+option = {
+    tooltip : {
+        trigger: 'item',
+        formatter: "{a} <br/>{b} : {c} ({d}%)"
+    },
+    legend: {
+        top: 'middle',
+		type: 'plain',          // 普通图例
+        orient: 'vertical',   // 垂直
+        right:'57%',               // 右距离，因为左侧有边框
+        top: '30%',                // 下距离
+        itemGap: 20,            // 间隔
+        data: ['A', 'T','C','G','N']
+    },
+    series : [
+        {
+            name:'碱基比例',
+            type: 'pie',
+           
+			radius :  ['20%','76%'],//内外圆的大小
+			center : [ '58%', '45%' ],//距离左右，上下距离的百分比
+            selectedMode: 'single',
+            data:[
+				{value:32.33,name: 'A',}, //通过STAT_BASE_info变量把参数传入
+				{value:32.36, name: 'T'},
+				{value:17.64, name: 'C'},
+				{value:17.68, name: 'G'},
+				{value:0.00, name: 'N'},
+
+            ],
+            itemStyle: {
+                emphasis: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ]
+};
+;
+if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+}
+
+</script>
+
+
+
+<div class="modal fade row" id="help1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="col-md-10 col-md-offset-1">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><h4 class="modal-title">普通ONT文库（SQK-LSK109连接试剂盒）</h4></div>
+<p class="paragraph">1) DNA damage repair and end repair；</p>
+<p class="paragraph">2) Connector connection；</p>
+<p class="paragraph">3) Qubit library quantification。</p>
+<p class='center'><img src='image/experiment_process.png'></p><p class='name_fig'>Nanopore flowchart of library building experiment</p>
+</div>
+</div>
+</div>
+</div>
+
+<div class="modal fade row" id="help2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="col-md-10 col-md-offset-1">
+	<div class="modal-dialog">
+	<div class="modal-content">
+	<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><h4 class="modal-title">超长ONT文库（SQK-ULK001连接试剂盒）</h4></div>
+	<p class="paragraph">1) 转座酶标记；</p>
+	<p class="paragraph">2) 接头连接；</p>
+	<p class="paragraph">3) Qubit文库定量。</p>
+	<p class='center'><img src='image/ULK_process.png' height="300" width="600"></p><p class='name_fig'>Nanopore建库实验流程图</p>
+    </div>
+	</div>
+	</div>
+	</div>
+
+<div class="modal fade row" id="help3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="col-md-10 col-md-offset-1">
+	<div class="modal-dialog">
+	<div class="modal-content">
+	<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button><h4 class="modal-title">Q20-ONT文库（SQK-Q20EA连接试剂盒）</h4></div>
+	<p class="paragraph">1) DNA损伤修复和末端修复；</p>
+	<p class="paragraph">2) 接头连接；</p>
+	<p class="paragraph">3) Qubit文库定量。</p>
+	<p class='center'><img src='image/experiment_process.png'></p><p class='name_fig'>Nanopore建库实验流程图</p>
+	</div>
+	</div>
+	</div>
+	</div>
+

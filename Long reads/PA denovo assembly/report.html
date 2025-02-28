@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <title>Novogene Assembly Evaluation Report</title>
+		<!-- 新加的 -->
+		<!-- novo图标 -->
+		<link rel="icon" href="image/favicon.ico" type="image/x-icon"/>
+		<!-- Bootstrap core CSS -->
+		<!-- 新 Bootstrap 核心 CSS 文件 -->
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/font-awesome/css/font-awesome.min.css">
+		<!-- Bootstrap CSS CDN -->
+		<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+        <!-- Our Custom CSS -->
+        <link rel="stylesheet" href="css/style2.css">
+        <!-- Scrollbar Custom CSS -->
+        <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+
+		<link rel="StyleSheet" href="js/tree/tree.css" type="text/css">
+        
+		<link rel="stylesheet" type="text/css" href="js/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/base.css" />
+
+<script src="js/jquery-1.12.0.min.js"> </script>
+<script src="js/jquery-migrate-1.4.1.min.js" ></script> 
+
+
+<script src="js/jquery.albumSlider.min.js" type="text/javascript"></script>
+<script src="js/common.js" type="text/javascript"></script>
+
+<script type="text/javascript" src="js/tree/tree.js"></script>
+<script type="text/javascript" src="js/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
+<script type="text/javascript" src="js/fancybox/jquery.fancybox-1.3.4.pack.js"></script> 
+
+<style>
+.table_new{width:65%;overflow:auto;position:relative;left:20%}
+.tubiao{position:relative;left:5%}
+.project_table{position:relative;left:20%}
+ul {list-style:none;}
+h2{color:#003f76;font-size:30px;font-weight:bold;}
+h3{color:#003f76;font-size:22px;font-weight:bold;}
+h4{color:#003f76;font-size:18px;font-weight:bold;}
+</style>
+
+       
+
+
+ 
+    </head>
+    <body>
+
+
+
+        <div class="wrapper">
+            <!-- Sidebar Holder -->
+            <nav id="sidebar">
+                <div class="sidebar-header">
+                    <h3><a href="http://www.novogene.com/"><img src="image/novogene_logo.png" width="95%" style="margin-bottom: 20px"></a><br></h3>
+
+                </div>
+
+                <ul class="list-unstyled components">
+                    
+                     <li class="active">                               
+                        <a href="#project_info" class=project_table ><strong>Project Information</strong></a>
+                    </li>
+                        
+                    <li class="active">
+                                                           
+                        <a href="#abstract"  ><img src="image/sidebar_icon_active_1.png" width="15%" >&nbsp;&nbsp; Summary</a>
+                   
+                    </li>
+                    
+                    <li class="active">
+                                                           
+                        <a href=#lb data-toggle="collapse" aria-expanded="false"><img src="image/sidebar_icon_active_2.png" width="15%" >&nbsp;&nbsp; Background Introduction</a>
+                        <ul class="collapse list-unstyled" id=lb>
+								
+							<li><a href="#abstract_pacbio">Pacbio Technical Introduction</a></li>
+							
+							
+							
+							
+                        </ul>
+                    </li>
+                   
+					<li class="active">
+                                                           
+                        <a href=#data data-toggle="collapse" aria-expanded="false"><img src="image/sidebar_icon_active_3.png" width="15%" >&nbsp;&nbsp; Sequence Data</a>
+                        <ul class="collapse list-unstyled" id=data>
+                            
+                            <li><a href="#data1">Sequence Data</a></li>
+								                                                            
+								
+                        </ul>
+                    </li>
+                   
+					<li class="active">      
+
+						<a href=#assemby data-toggle="collapse" aria-expanded="false"><img src="image/sidebar_icon_active_4.png" width="15%" >&nbsp;&nbsp; Genome Assembly</a>
+						<ul class="collapse list-unstyled" id=assemby>
+
+							<li><a href="#assemby_plot">Genome Assembly Principle</a></li>
+					
+							<li><a href="#assemby_soft">Assembly Software Introduction</a></li>
+
+						</ul>
+					</li>
+<li class="active">
+                                                           
+                        <a href=#result data-toggle="collapse" aria-expanded="false"><img src="image/sidebar_icon_active_5.png" width="15%" >&nbsp;&nbsp; Result Statistics</a>
+                        <ul class="collapse list-unstyled" id=result>
+                            
+                                
+								<li><a href="#result1">Genome Base Composition</a></li>                                                               
+
+								
+								<li><a href="#result2">Assembly Result Statistics</a></li>
+								
+								
+                        </ul>
+                    </li>
+					
+					
+					                        
+                    <li class="active">
+
+                        <a href=#evaluation data-toggle="collapse" aria-expanded="false"><img src="image/sidebar_icon_active_6.png" width="15%" >&nbsp;&nbsp;&nbsp;Assembly Result Evaluation</a>
+                        <ul class="collapse list-unstyled" id=evaluation>
+                                <li><a href="#sequence_integrity_assessment">Sequence Integrity Assessment</a></li>
+				<ul class="active" >
+				
+                                <li><a href="#eva_busco">BUSCO Evaluation</a></li>
+				
+				 
+                                <li><a href="#eva_cegma">CEGMA Evaluation</a></li>
+				
+				
+				
+				
+				
+				</ul>
+
+				
+                                <li><a href="#eva_consistence">Sequence Integrity Assessment</a></li>
+				<ul class="active" >
+				
+				</ul>
+
+
+				
+                                <li><a href="#eva_accuracy">Sequence accuracy evaluation</a></li>
+				<ul class="active" >
+				
+				</ul>
+
+				
+				</ul>
+                        </ul>
+                    </li>
+			 
+
+
+
+					<li class="active">                               
+                        <a href="#conclusion"><img src="image/sidebar_icon_active_7.png" width="15%" >&nbsp;&nbsp; Result</a>
+                    </li>
+
+
+				 	<li class="active">                               
+						<a href="#literature"><img src="image/sidebar_icon_active_9.png" width="15%" >&nbsp;&nbsp; Reference</a>
+					</li>                            
+				
+                </ul>
+				<p  style="font-size: 13px,color:#3e3a39" class=tubiao ><i class="fa fa-phone-square fa-1x  " aria-hidden="true" ></i>&nbsp;&nbsp;TEL：400-658-1585</p>
+				<p  style="font-size: 12px" class=tubiao ><i class="fa fa-envelope-open fa-1x " aria-hidden="true"></i>&nbsp;&nbsp;</a></p>
+				<br/><br/><br/><br/>
+
+<!--
+                <ul class="list-unstyled CTAs">
+                    <li><a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a></li>
+                    <li><a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Back to article</a></li>
+                </ul>
+-->
+            </nav>
+
+            <!-- Page Content Holder -->
+            <div id="content">
+
+                    <div class="container-fluid" title="收起/打开目录">
+
+                        <div class="navbar-header">
+                            <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn" style="position: fixed;bottom: 50px;right: 5px">
+                                <i class="fa fa-exchange" aria-hidden="true"></i>
+                               
+                            </button>
+                        </div>
+
+
+                    </div>
+
+		<h2><div align="center" text-align="center" >Novogene Assembly Evaluation Report</div></h2>
+		<br/><br/>
+		<h3><a name=project_info>Project Information</a></h3>
+		<br/><p class=paragraph>Project Number：xxxxx</p>
+		<p class=paragraph>Project Name：xxxx</p>
+		<p class=paragraph>Species Name：xxxxx</p>
+		<p class=paragraph>Report Time：xxxx</p>
+		<br/>
+		<br/>
+
+
+	<hr style=" height:2px;width:101%;border:none;border-top:2px dotted #afb7bf;" />
+	<br/>
+	
+		<h3><a name=abstract >1 Summary</a></h3>
+		<br/>
+		<p class=paragraph>In recent years, with the development of high-throughput sequencing technology, third-generation sequencing has gradually become an emerging tool for genome research. Third-generation sequencing technologies such as Pacbio and Nanopore effectively solve the problem of short read lengths and inability to cross high-repetitive regions of genomes in second-generation sequencing. Currently, Nanopore sequencing technology, as a newcomer in the field of third-generation sequencing, has been widely applied due to its advantages of long read lengths, high output, and low cost. This platform uses nanopores for real-time sequencing, with no read length limitation, and can directly read sequence information of ultra-long fragments, obtaining ultra-long reads. At the same time, with the continuous emergence of new sequencing technologies, third-generation sequencing technologies, combined with new technologies such as Bionano and Hi-C, enable genome assembly to reach the level of Super-Scaffold or even chromosome level.</p></br>
+		<br/>
+		<hr style=" height:2px;width:101%;border:none;border-top:2px dotted #afb7bf;" />
+		<br/> 
+    <h3><a name=lb>2 Background Introduction</a></h3><br/>
+		
+			
+		<h4><a name=abstract_pacbio>&nbsp;&nbsp;2.1 Pacbio Technical Introduction</a></h4>
+		<p class=paragraph>PacBio SMRT technology applies the concept of sequencing during synthesis and uses SMRT chips as sequencing carriers.<sup><a href="#ref1">[1]</a></sup>。</p>
+		<p class=paragraph>The basic principle is that DNA polymerase binds to the template and 4-color fluorescently labeled 4 types of nucleotides (i.e., dNTPs). During the base pairing stage, the addition of different nucleotides emits different light, and the type of entering nucleotides can be determined based on the wavelength and peak of the light. At the same time, DNA polymerase is one of the keys to achieving ultra-long read lengths. The read length is mainly related to the activity of the enzyme, which is mainly affected by the damage caused by the laser. One of the keys to PacBio SMRT technology is how to distinguish the reaction signal from the strong fluorescent background of the surrounding free nucleotides. They use the principle of ZMW (zero-mode waveguide) which is similar to the many dense small holes that can be seen on the microwave oven wall. The diameter of the small hole is carefully considered. If the diameter is greater than the microwave wavelength, the energy will penetrate the panel under the effect of diffraction and leak out, thereby interfering with the surrounding small holes. If the aperture is smaller than the wavelength, the energy will not radiate to the surroundings, but will remain in a straight line state (principle of light diffraction), thereby providing protection.</p></br>
+		<div class="content_img"><img src="image/p_pacbio.png" width="800"><h6>Figure 2-1 PacBio principle</h6></div></br>
+		
+
+		
+
+		
+		
+			
+		<br/>
+			</br>
+			<hr style=" height:2px;width:101%;border:none;border-top:2px dotted #afb7bf;" />
+			<br/>			
+		<h3><a name=data>3 Sequence Data</a></h3><br/>
+		<h4><a name=data1>&nbsp;&nbsp;3.1 Sequence Data</a></h4>
+		<div class="content_img"><h6>Table 3-1 XXXXXX Genome Sequence Data Statistics</h6></div>
+				<div class="content_table" >
+				<table class="table table-bordered table-striped table-hover table_new" >
+				<thead>
+<tr>
+<th style="text-align :center">libraries</th>
+<th style="text-align :center">Insert size</th>
+<th style="text-align :center">Total data (G)</th>
+<th style="text-align :center">Read length (bp)</th>
+<th style="text-align :center">Sequence coverage (X)</th>
+</tr>
+</thead>
+<tbody>
+
+<tr><td style="text-align :center">Illumina reads</td>
+<td style="text-align :center">350bp</td>
+<td style="text-align :center">128.22</td>
+<td style="text-align :center">150</td>
+<td style="text-align :center">53.18</td></tr>
+
+<tr><td style="text-align :center">PacBio reads</td>
+<td style="text-align :center">--</td>
+<td style="text-align :center">150.49</td>
+<td style="text-align :center">--</td>
+<td style="text-align :center">62.41</td></tr>
+
+<tr><td style="text-align :center">Total</td>
+<td style="text-align :center">--</td>
+<td style="text-align :center">278.71</td>
+<td style="text-align :center">--</td>
+<td style="text-align :center">115.59</td></tr>
+
+</tbody>
+</table>
+</div>
+
+
+<p class="paragraph">XXXXXXThe third-generation sequencing technology for genome sequencing was performed using the PacBio platform, generating a total sequencing volume of 150.49G and a coverage depth of 62.41X (calculated based on the estimated genome size of 2411.15M by survey). An Illumina short-read library was constructed and sequenced using the Illumina platform, and the data statistics results are shown in Table 3-1.</p>
+
+
+<br/>
+<hr style=" height:2px;width:101%;border:none;border-top:2px dotted #afb7bf;" />
+<br/>			
+    
+<h3><a name=assemby>4 Genome Assembly</a></h3><br/>		
+<h4><a name=assemby_plot>&nbsp;&nbsp;4.1 Genome Assembly Principle</a></h4><br/>			
+
+<div class="content_img"><img src="image/ass_1.png" width="360"><h6>Figure 4-1 PacBio Assembly Principle</h6></div>
+
+
+</br>
+<h4><a name=assemby_soft>&nbsp;&nbsp;4.2 Assembly Software Introduction</a></h4><br/>				
+
+	<h4>&nbsp;&nbsp;4.2.1 Hifiasm Genome Assembly</h4>	
+	<p class=paragraph>Hifiasm is a fast de novo assembler designed for PacBio HiFi reads. It can assemble a human genome in a matter of hours and has been used to assemble one of the most complex genomes to date, the California redwood genome. Unlike most existing assembly software, hifiasm calculates from the uncollapsed genome, allowing it to preserve haplotype information as much as possible. Hifiasm supports both primary and full phased assemblies, including trio-binning assembly.</p>
+	<div class="content_img"><img src="image/hifiasm.png" width="500"><h6>Figure 4-2 Hifiasm Assembly Principle</h6></div>
+	<div class="content_img"><img src="image/viewfile.png" width="500"><h6>Figure 4-3 Hifiasm Assembly Test Result</h6></div>
+
+
+
+
+
+
+
+
+<br/>
+<hr style=" height:2px;width:101%;border:none;border-top:2px dotted #afb7bf;" />
+<br/>	
+<h3><a name=result>5 Result Statistics</a></h3><br/>
+<br/>
+<h4><a name=result1>&nbsp;&nbsp;5.1 Genomic base content statistics</a></h4>
+<p class=paragraph>From Table 5-1 and Figure 5-1, it can be seen that the proportions of the four bases A, T, G, and C are normal, with a GC content of 34.61% and an N content of 0.00%, which falls within the acceptable range (<10%).</p>
+<div  class=content_img><h6>Table 5-1 XXXXXX Genomic base content statistics</h6></div>
+
+				<div class="content_table"  >
+				<table  class="table table-bordered table-striped table-hover table_new" >
+				<thead>
+<tr>
+<th ></th>
+<th style="text-align :center">Number (bp)</th>
+<th style="text-align :center">% of genome</th>
+
+</tr>
+</thead>
+<tbody>
+
+<tr><td style="text-align :center">A</td><td style="text-align :center">762,207,828</td><td style="text-align :center">32.70</td></tr>
+
+<tr><td style="text-align :center">T</td><td style="text-align :center">761,991,643</td><td style="text-align :center">32.69</td></tr>
+
+<tr><td style="text-align :center">C</td><td style="text-align :center">403,427,209</td><td style="text-align :center">17.31</td></tr>
+
+<tr><td style="text-align :center">G</td><td style="text-align :center">403,355,151</td><td style="text-align :center">17.30</td></tr>
+
+<tr><td style="text-align :center">N</td><td style="text-align :center">0</td><td style="text-align :center">0.00</td></tr>
+
+<tr><td style="text-align :center">total</td><td style="text-align :center">2,330,981,831</td><td style="text-align :center">--</td></tr>
+
+<tr><td style="text-align :center">GC</td><td style="text-align :center">806,782,360</td><td style="text-align :center">34.61</td></tr>
+
+</tbody>
+</table>
+</div>
+<br/>
+<div class=content_img><div id="container" style="height: 300%"></div></div>
+<div class=content_img><h6>Table 5-1 &nbsp;&nbsp;&nbsp;&nbsp;XXXXXX Genomic base content statistics</h6></div>
+<br/>
+
+<br/>
+
+<h4><a name=result2>&nbsp;&nbsp;5.2 Assembly Result Statistics</a></h4>
+<p class=paragraph>The genome contig N50 reached 89.67 Mbp, and the scaffold N50 reached 89.67 Mbp.</p>
+<div class="content_img" ><h6>Table 5-2 &nbsp;Assembly Result Statistics</h6></div>
+<div class="content_table">
+<table class="table table-bordered table-striped table-hover" ><thead><tr>
+<th  style="text-align :center">#Species</th>
+<th  style="text-align :center">Title</th>
+<th  style="text-align :center">Total_length</th>
+<th  style="text-align :center">Total_number</th>
+<th  style="text-align :center">Average_length</th>
+<th  style="text-align :center">Max_length</th>
+<th  style="text-align :center">Min_length</th>
+<th  style="text-align :center">N50_length</th>
+<th  style="text-align :center">N50_number</th>
+<th style="text-align :center" >N90_length</th>
+<th  style="text-align :center">N90_number</th></tr>
+</thead>
+<tbody>
+
+<tr><td>XXXXXX</td><td>Contig</td><td>2,330,981,831</td><td>534</td><td>4,365,134</td><td>128,094,766</td><td>1,419</td><td>89,673,246</td><td>11</td><td>45,859,170</td><td>24</td></tr>
+
+<tr><td>XXXXXX</td><td>Scaffold</td><td>2,330,981,831</td><td>534</td><td>4,365,134</td><td>128,094,766</td><td>1,419</td><td>89,673,246</td><td>11</td><td>45,859,170</td><td>24</td></tr>
+
+</tbody>
+</table>
+</div>
+<br/>
+
+
+
+	<hr style=" height:2px;width:101%;border:none;border-top:2px dotted #afb7bf;" />
+	<br/>
+	<h3><a name=result>6 Assembly Result Evaluation</a></h3><br/>
+
+		
+<h4><a name=sequence_integrity_assessment>&nbsp;&nbsp;6.1 Sequence Integrity Assessment</a></h4>
+<p class=paragraph>The so-called integrity assessment refers to evaluating the coverage of the assembled genome to the gene regions. Common methods for genome assembly evaluation include BUSCO evaluation, CEGMA evaluation, EST sequence evaluation, BAC evaluation, and RNA evaluation.</p>
+
+
+
+
+	<h4><a name=eva_busco>&nbsp;&nbsp;6.1.1 BUSCO Evaluation</a></h4>
+	<p class=paragraph> The BUSCO（Benchmarking Universal Single-Copy Orthologs：<a href="http://busco.ezlab.org/" target="_blank">http://busco.ezlab.org/</a>）evaluation uses a single-copy orthologous gene library and software such as metaeuk and hmmer to assess the assembled genome, thereby evaluating the integrity of the assembled genome.</p>
+<p class=paragraph>According to the statistical results in Table 6-1.1, the genome assembly of XXXXXX has achieved 99.5% completeness of BUSCO genes, indicating good integrity of the assembly result.</p>
+<br/>
+<div class='content_img'><h6>Table 6-1.1 &nbsp;Genome BUSCO Evaluation Result<h6/></div>
+<div class="content_table" >
+<table class="table table-bordered table-striped table-hover table_new" >
+<thead>
+<tr><th style="text-align :center">Species</th><th style="text-align :center">BUSCO notation assessment results</th></tr>
+</thead>
+<tbody>
+
+<tr><td style="text-align :center">XXXXXX</td><td style="text-align :center">C:99.5%[S:5.3%,D:94.2%],F:0.2%,M:0.3%,n:1614(embryophyta_odb10)</td></tr>
+
+</tbody>
+
+			</table>
+			</div>
+<p class=paragraph>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C：Complete BUSCOs</p>
+<p class=paragraph>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S：Complete and single-copy BUSCOs</p>
+<p class=paragraph>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D：Complete Duplicated BUSCOs</p>
+<p class=paragraph>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F：Fragmented BUSCOs</p>
+<p class=paragraph>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;M：Missing BUSCOs</p>
+<p class=paragraph>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n：Total BUSCO groups searched</p>
+
+	<div class="content_img"><img src="image/p_busco.png" width="460"><h6>Table 6-1 Busco Evalution Result </h6></div>
+
+<br/>
+		
+
+
+<h4><a name=eva_cegma>&nbsp;&nbsp;6.1.2 CEGMA Evaluation </a></h4>
+
+<p class=paragraph>The CEGMA(Core Eukaryotic Genes Mapping Approach：<a href="http://korflab.ucdavis.edu/datasets/cegma/" target="_blank">http://korflab.ucdavis.edu/datasets/cegma/</a>) evaluation involved selecting 248 conserved genes (core gene library) present in six eukaryotic model organisms, and assessing the assembled genome using software such as tblastn, genewise, and geneid. This was done to evaluate the completeness of the assembled genome.</p>
+<p class=paragraph>According to the statistical results in Table 6-1.2, 244 genes were assembled out of 248 CEGs (Core Eukaryotic Genes), with a proportion of 98.39%. This indicates that the assembly results are relatively complete.</p>
+<div class='content_img'><h6>Table 6-1.2 XXXXXX Genome CEGMA evalution results</h6></div>
+
+<div class="content_table" >
+<table class="table table-bordered table-striped table-hover" >
+<thead>
+<tr><th rowspan="2" style="text-align :center">Species</th><th colspan="2" style="text-align :center">Complete</th><th colspan="2" style="text-align :center">Complete + Partial</th></tr>
+<tr><th style="text-align :center"># Prots</th><th style="text-align :center">%Completeness</th><th style="text-align :center"># Prots</th><th style="text-align :center">%Completeness</th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align :center">XXXXXX</td><td style="text-align :center">243</td><td style="text-align :center">97.98</td><td style="text-align :center">244</td><td style="text-align :center">98.39</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br/>
+
+
+
+   
+
+	
+			
+			
+	
+			
+
+	
+
+
+
+	
+			<h4><a name=eva_consistence>&nbsp;&nbsp;6.2 Sequence Integrity Assessment</a></h4>
+			<p class=paragraph>To evaluate the accuracy of the assembly, a small fragment library of reads is selected and aligned to the assembled genome using the BWA software. The alignment rate of the reads, the degree of coverage of the genome, and the distribution of sequencing depth are calculated to assess the completeness of the assembly and the uniformity of sequencing.</p>
+			<p class=paragraph>As shown in Table 6-2.1, the small fragment reads were aligned to the genome, with an alignment rate of approximately 99.78% and a genome coverage of approximately 99.91%. This indicates a high level of consistency between the reads and the assembled genome.</p>
+			<div class=content_img><h6>Table 6-2.1 XXXXXX genome reads coverage Statistics<h6/></div>
+			<div class="content_table" >
+			<table class="table table-bordered table-striped table-hover table_new" >
+			<thead>
+			<tr><th style="text-align :center"></th><th style="text-align :center"></th><th style="text-align :center">% of Percentage</th></tr>
+			</thead>
+			<tbody>
+			<tr><td style="text-align :center">Reads</td><td style="text-align :center">Mapping rate (%)</td><td style="text-align :center">99.78</td></tr>
+			<tr>
+			<td rowspan="5" style="text-align :center"><br/><br/><br/>Genome</td>
+			<td style="text-align :center">Average sequencing depth</td>
+			<td style="text-align :center">44.24</td>
+			</tr>
+			</tr>
+			<tr>
+			<td style="text-align :center">Coverage (%)</td>
+			<td style="text-align :center">99.91</td>
+			</tr>
+			</tr>
+			<tr>
+			<td style="text-align :center">Coverage at least 4X (%)</td>
+			<td style="text-align :center">99.79</td>
+			</tr>
+			</tr>
+			<tr>
+			<td style="text-align :center">Coverage at least 10X (%)</td>
+			<td style="text-align :center">99.49</td>
+			</tr>
+			</tr>
+			<tr>
+			<td style="text-align :center">Coverage at least 20X (%)</td>
+			<td style="text-align :center">98.58</td>
+			</tr>
+			</tr>
+			</tbody>
+			</table>
+			</div>
+			
+			
+			<div class="content_img"><img src="image/p_depth.png" width="500"></div>
+			<div class=content_img><h6>Figure 6-2.1 Sequencing depth distribution map</h6></div>
+			<p align="center" text-align="center" class=paragraph>（horizontal axis：sequence depth；vertical axis：ratio of bases to genome）</p>
+			
+			
+			<p class=paragraph>Single nucleotide polymorphisms (SNPs) are genetic markers formed by single nucleotide variations in the genome, with a higher number indicating greater polymorphism. We used tools such as samtools to sort BWA alignment results by chromosome coordinates, remove duplicate reads, and perform SNP calling. We then filtered and analyzed the raw results.</p>
+			<p class=paragraph>As shown in Table 6-2.2, the heterozygous SNP rate in the genome is 0.000246%, while the homozygous SNP rate is 2e-06%. It is generally believed that the homozygous SNP rate can reflect the accuracy of genome assembly (the lower the homozygous SNP rate, the higher the accuracy of genome assembly). This result indicates that the assembly has a high single-base accuracy.</p>
+			</br>
+			<div class=content_img><h6>Table 6-2.2 XXXXXX Genome SNP Statistics</h6></div>
+			<div class="content_table" >
+			<table class="table table-bordered table-striped table-hover table_new" >
+			<thead>
+			<tr>
+			<th style="text-align :center"></th>
+			<th style="text-align :center">Number</th>
+			<th style="text-align :center">Percentage</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+			<td style="text-align :center">All SNP</td>
+			<td style="text-align :center">5,730</td>
+			<td style="text-align :center">0.000247%</td></tr>
+			<tr>
+			<td style="text-align :center">Heterozygosis SNP</td>
+			<td style="text-align :center">5,694</td>
+			<td style="text-align :center">0.000246%</td>
+			</tr>
+			
+			<tr>
+			<td style="text-align :center">Homology SNP</td>
+			<td style="text-align :center">36</td>
+			<td style="text-align :center">2e-06%</td>
+			</tr>
+			
+			</tbody>
+			</table>
+			</div>
+			</br>
+
+			
+			<p class=paragraph>The GC content and average depth of the assembled genome sequence were calculated using 10k windows and plotted. This graph can be used to analyze whether there is GC bias in the sequencing data and whether the sample is contaminated.</p>
+			<p class=paragraph>As shown in Figure 6-2.3, the GC content is concentrated around 34.61%, and there is no clear separation in the scatter plot, indicating that there is no significant contamination in the genome from external sources. If there were a clear separation, we would filter out the contamination based on the comparison results of the genome and the NT library in later stages.</p>
+			<div class="content_img"><img src="image/p_gc.png" width="500"></div>
+			<div class=content_img><h6>Figure 6-2.3 GC content and depth distribution map</h6></div>
+			<p text-align="center" align="center" class=paragraph> &nbsp;&nbsp;&nbsp;main picture：GC content distribution map; horizontal axis GC content; vertical axis: sequencing depth；</p>
+			<p text-align="center" align="center" class=paragraph> &nbsp;&nbsp;&nbsp;On the histogram: GC content distribution; on the right of the histogram: sequencing depth distribution.</p>
+			
+		
+	
+			
+			<h4><a name=eva_accuracy>&nbsp;&nbsp;6.3 Sequence Accuracy Assessment</a></h4>
+			<p class=paragraph>Merqury is a software tool that evaluates the quality of genomes using Illumina sequencing data based on K-mer analysis, without the need for a reference genome.</p>
+			<p class=paragraph>Qv represents the quality value of genome bases. The Qv value of the target genome can be evaluated using the Merqury-mash module with the formula Qv = -10 * logE, where E represents the error rate. When the accuracy is 99%, the Qv value is 20; when the accuracy is 99.9%, the Qv value is 30; and when the accuracy is 99.99%, the Qv value is 40.
+			</p>
+			<div class=content_img><h6>Table 6-3 XXXXXX Genome Accuracy Assessment Results</h6></div>
+			        <div class="content_table" >
+			            <table class="table table-bordered table-striped table-hover table_new" >
+			        <thead>
+			<tr><th style="text-align :center">Species</th><th style="text-align :center">Qv</th></tr>
+			</thead>
+			<tbody>
+			<tr><td style="text-align :center">XXXXXX</td><td style="text-align :center">48.2391</td></tr>
+			</tbody>
+			</table>
+			</div>
+			<p class="paragraph">  Note: The Illumina data used for evaluation should be from the same sample as the data used for assembly.</p>
+			
+			
+			
+			
+			
+			
+			
+			
+			</br>
+			<hr style=" height:2px;width:101%;border:none;border-top:2px dotted #afb7bf;" />
+			<br/>
+			<h3><a name=conclusion>7 Conclusion</a></h3><br/>       
+			<p class=paragraph> Using 278.71G of Illumina sequencing data for the XXXXXX genome, de novo assembly was performed, resulting in a total contig length of 2.33 Gbp and a contig N50 length of 89.67 Mbp. The total scaffold length was also 2.33 Gbp with a scaffold N50 length of 89.67 Mbp.</p>
+			<p class=paragraph>The assembly version was evaluated using multiple methods, and the results showed good genome consistency, completeness, and accuracy.</p>
+			<br/>
+			<hr style=" height:2px;width:101%;border:none;border-top:2px dotted #afb7bf;" />
+			<h3>Appendix</h3><a href=#help1 data-toggle="modal" >Genome Assembly Evaluation Software</a>
+			<hr style=" height:2px;width:101%;border:none;border-top:2px dotted #afb7bf;" />
+			<br/>
+<h3><a name=literature>8 References</a></h3>
+	<br/><a id="ref1" href="https://www.sciencedirect.com/science/article/pii/S0076687910720012" target="_blank">
+	[1].Eid, John, et al. Real-time DNA sequencing from single polymerase molecules. 2009, Science.</a>
+	<br/><a id ="ref2" href="https://www.nature.com/articles/nbt.3423" target="_blank">
+	[2].Deamer D, Akeson M, Branton D: Three decades of nanopore sequencing. Nat Biotechnol 2016, 34:518-524</a>
+	<br/><a id="ref3" href="https://pubmed.ncbi.nlm.nih.gov/28637243/" targrt="_blank">
+	[3].Magi A, Semeraro R, Mingrino A, Giusti B, D'Aurizio R: Nanopore sequencing data analysis: state of the art, applications and challenges. Brief Bioinform 2017</a>
+	<br/><a id="ref4" href="https://link.springer.com/article/10.1186/s13059-016-1103-0" target="_blank">
+	[4].Jain M, Olsen HE, Paten B, Akeson M: The Oxford Nanopore MinION: delivery of nanopore sequencing to the genomics community. Genome Biol 2016, 17:239</a>
+	<br/><a id="ref5" href="https://www.nature.com/articles/s41598-018-21484-w" target="_blank">
+	[5].Krishnakumar R, Sinha A, Bird SW, Jayamohan H, Edwards HS, Schoeniger JS, Patel KD, Branda SS, Bartsch MS: Systematic and stochastic influences on the performance of the MinION nanopore sequencer across a range of nucleotide bias. Sci Rep 2018, 8:3159</a>
+	<br/><a id="ref6" href="https://www.jove.com/t/1869/hi-c-a-method-to-study-the-three-dimensional-architecture-of-genomes" target="_blank">
+	[6].Berkum N L V, Lieberman-Aiden E, Williams L, et al. Hi-C: A Method to Study the Three-dimensional Architecture of Genomes[J]. Journal of Visualized Experiments, 2010, 39(39). </a>
+	<br/><a id="ref7" href="https://www.sciencedirect.com/science/article/pii/S1046202316304662" target="_blank">
+	[7].Belaghzal H, Dekker J, Gibcus J H. Hi-C 2.0: An optimized Hi-C procedure for high-resolution genome-wide mapping of chromosome conformation[J]. Methods, 2017, 123: 56-65.</a>
+	<br/><a id="ref8" href="https://www.nature.com/articles/s41592-019-0669-3" target="_blank">
+	[8].Ruan J, Li H. Fast and accurate long-read assembly with wtdbg2. Nat Methods 2019.</a></li>
+	<br/><a id="ref9" href="https://pubmed.ncbi.nlm.nih.gov/28298431/" target="_blank">
+	[9]. Koren S, Walenz B P , Berlin K , et al. Canu: scalable and accurate long-read assembly via adaptive\r, k\r, -mer weighting and repeat separation[J]. Genome Research, 2017: genome; gr.215087.116v2.</a>
+	<br/><a id="ref10" href="https://www.nature.com/articles/nmeth.1923" target="_blank">
+	[10].Langmead B , Salzberg S L . Fast gapped-read alignment with Bowtie 2[J]. Nature Methods, 2012, 9(4):357-359. </a></li>
+    <br/><a id="ref11" href="https://www.researchgate.net/publication/284277727" target="_blank">
+	[11].Wingett S W ,  Ewels P A ,  Furlan-Magaril M , et al. HiCUP: pipeline for mapping and processing Hi-C data.  2015. </a>
+    <br/><a id="ref12" href="https://www.nature.com/articles/nbt.2727" target="_blank">
+	[12].Burton J N, Adey A, Patwardhan R P, et al. Chromosome-scale scaffolding of de novo genome assemblies based on chromatin interactions[J]. Nature Biotechnology, 2013, 31(12): 1119.</a>
+    <br/><a id="ref13" href="https://www.nature.com/articles/s41592-020-01056-5" target="_blank">
+	[13]. Cheng H, Concepcion G T, Feng X, et al. Haplotype-resolved de novo assembly using phased assembly graphs with hifiasm[J]. Nature Methods, 2021, 18(2):1-6.</a>
+    <br/><a id="ref14" href="https://www.biorxiv.org/content/10.1101/2020.03.15.992941v1.full" target="_blank">
+	[14]. Rhie A ,  Walenz B P ,  Koren S , et al. Merqury: reference-free quality and phasing assessment for genome assemblies.  2020.</a>
+<br>
+
+<br>
+<hr style="width:100%">
+
+
+<div class="modal fade row" id="help1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="col-md-10 col-md-offset-1">
+	  <div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+<div class="content_table">
+<table class="table table-bordered table-striped table-hover table_new"  >
+<thead><tr><th style="text-align :center">Analysis Process</th><th style="text-align :center">Software</th><th style="text-align :center">Version</th></tr></thead>
+<tbody>
+
+	<tr><td style="text-align :center">Assemble</td><td style="text-align :center">Hifiasm</td><td style="text-align :center">0.16.1</td></tr>
+
+
+<tr><td rowspan="4" style="text-align :center"><br/><br/><br/>Polish</td><td style="text-align :center">pilon</td><td style="text-align :center">1.22</td></tr></tr>
+<tr><td  style="text-align :center">Racon</td><td  style="text-align :center">V1.3.1</td></tr>
+<tr><td  style="text-align :center">Arrow</td><td  style="text-align :center">Smartlink8.0</td></tr>
+<tr><td  style="text-align :center">Nextpolish</td><td  style="text-align :center">1.3.1</td></tr>		
+
+<tr><td rowspan="3" style="text-align :center"><br/><br/><br/>Auxiliary assembly</td><td style="text-align :center">Bionano Solve</td><td style="text-align :center">V3.5</td></tr></tr>
+<tr><td  style="text-align :center">LACHESIS</td><td  style="text-align :center">201701</td></tr>
+<tr><td  style="text-align :center">ALLHIC</td><td  style="text-align :center">0.9.8</td></tr>
+
+<tr><td rowspan="5" style="text-align :center"><br/><br/><br/>Evaluation</td><td style="text-align :center">BUSCO</td><td style="text-align :center">V5.2.2</td></tr></tr>
+<tr><td style="text-align :center">CGEMA</td><td style="text-align :center">V2.5</td></tr>
+<tr><td style="text-align :center">LTR_retriever</td><td style="text-align :center">V2.9.0</td></tr>
+<tr><td style="text-align :center">BWA</td><td style="text-align :center">0.7.8</td></tr>
+<tr><td style="text-align :center">Samtools</td><td style="text-align :center">0.1.19</td></tr>
+
+</tbody>				
+</table>
+</div>
+<hr style="width:100%">
+<footer align="center"> Novogene Co., LTD <a href="http://www.novogene.com/">www.novogene.com</a></footer>
+
+
+        <!-- jQuery CDN -->
+        <!--
+        <script type="text/javascript">
+			var _$ = jQuery.noConflict(true);
+		</script>
+        -->	
+        <!-- <script  src="https://code.jquery.com/jquery-1.12.0.min.js"> </script> -->
+        
+        <!-- Bootstrap Js CDN -->
+        <script src="js/bootstrap.min.js"></script>
+        <!-- jQuery Custom Scroller CDN -->
+        <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+		
+        <script type="text/javascript">
+            $(document).ready(function () {
+            	
+                $("#sidebar").mCustomScrollbar({
+                    theme: "minimal"
+                });
+
+                $('#sidebarCollapse').on('click', function () {
+                    $('#sidebar, #content').toggleClass('active');
+                    $('.collapse.in').toggleClass('in');
+                    $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+                });
+            });
+        </script>
+    </body>
+</html>
+
+
+
+<!--pie图-->
+
+       <script type="text/javascript" src="js/echarts.js"></script>
+       <script type="text/javascript">
+
+   
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+option = null;
+var weatherIcons = {
+};
+option = {
+    tooltip : {
+        trigger: 'item',
+        formatter: "{a} <br/>{b} : {c} ({d}%)"
+    },
+    legend: {
+        top: 'middle',
+		type: 'plain',          // 普通图例
+        orient: 'vertical',   // 垂直
+        right:'57%',               // 右距离，因为左侧有边框
+        top: '30%',                // 下距离
+        itemGap: 20,            // 间隔
+        data: ['A', 'T','C','G','N']
+    },
+    series : [
+        {
+            name:'碱基比例',
+            type: 'pie',
+           
+			radius :  ['20%','76%'],//内外圆的大小
+			center : [ '58%', '45%' ],//距离左右，上下距离的百分比
+            selectedMode: 'single',
+            data:[
+				{value:32.70,name: 'A',}, //通过STAT_BASE_info变量把参数传入
+				{value:32.69, name: 'T'},
+				{value:17.31, name: 'C'},
+				{value:17.30, name: 'G'},
+				{value:0.00, name: 'N'},
+
+            ],
+            itemStyle: {
+                emphasis: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ]
+};
+;
+if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+}
+
+</script>

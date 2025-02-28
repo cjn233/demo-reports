@@ -1,0 +1,2056 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" >
+<html>   
+
+<head>
+<TITLE>Novogene 16S Amplicon Analysis Report</TITLE>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="icon" href="src_en/images/bitbug_favicon.ico" type="image/x-icons">
+
+<link rel="stylesheet" href="src_en/css/jquery-ui.css" />
+<link rel="stylesheet" href="src_en/css/bootstrap-4.3.1.min.css" />
+<link rel="stylesheet" href="src_en/css/jquery.tocify.css" />
+<link rel="stylesheet" href="src_en/css/style.css"/>
+<link rel="stylesheet" href="src_en/css/base.css"/>
+<link rel="stylesheet" href="src_en/css/gallery.css"/>
+<script src="src_en/js/jquery-3.3.1.min.js" type="text/javascript"></script>
+<script src="src_en/js/jquery-ui.min.js" type="text/javascript"></script>
+<script src="src_en/js/jquery.tocify.min.js" type="text/javascript"></script>
+<script src="src_en/js/bootstrap-4.3.1.min.js" type="text/javascript"></script>
+<script src="src_en/js/scrollTop.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$(function () {
+		var options = {
+			selectors: "h2,h3,h4,h5",
+			theme: "bootstrap",
+			scrollTo: "60"
+		};
+		var toc = $("#toc").tocify(options).data("toc-tocify");
+	});
+</script>
+
+
+
+<script type="text/javascript">
+function trans(img_div_id) {
+img_div = $("#" + img_div_id)
+img = $("#" + img_div_id + " img").first();
+if (img_div.hasClass("fullscreen-div")) {
+img_div.removeClass("fullscreen-div");
+img.removeClass("fullscreen-img");
+}
+else {
+img_div.addClass("fullscreen-div");
+img.addClass("fullscreen-img");
+}
+}
+function filter_display() {
+return $(this).css("display") != "none";
+}
+function show_default() {
+var list_group_id = "#" + $(this).attr("id");
+if ($(list_group_id + " a.active").css("display") == "none") {
+var list_tab = $(list_group_id + " a.active");
+var pan_id = list_tab.attr("href");
+$(pan_id).removeClass("active show");
+list_tab.removeClass("active");
+}
+if ($(list_group_id + " a.active").filter(filter_display).length == 0) {
+$(list_group_id + " a").filter(filter_display).first().tab("show");
+}
+}
+$.fn.show_default = show_default
+function next(botton_id) {
+var present_tab = $("#" + botton_id.replace("_button_next", "_list-tab") + " .active").first();
+while (present_tab.next().length == 1) {
+if (present_tab.next().css("display") != "none") {
+present_tab.next().tab("show");
+break;
+}
+else {
+present_tab = present_tab.next();
+}
+}
+}
+function prev(botton_id) {
+var present_tab = $("#" + botton_id.replace("_button_prev", "_list-tab") + " .active").first();
+while (present_tab.prev().length == 1) {
+if (present_tab.prev().css("display") != "none") {
+present_tab.prev().tab("show");
+break;
+}
+else {
+present_tab = present_tab.prev();
+}
+}
+}
+$(document).ready(function () {
+$(".form-control").on("keyup", function () {
+var value = $(this).val().toLowerCase();
+var input_box_id = "#" + $(this).attr("id");
+var list_group_id = input_box_id.replace("_InputList", "_list-tab");
+$(list_group_id + " a").filter(function () {
+$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+});
+$(list_group_id).show_default();
+});
+$(".list-group").each(show_default);
+});
+</script>
+
+<script type="text/javascript">
+            var pageSize1 = 15;    //每页显示的记录条数
+            var curPage1=0;        //当前页
+            var lastPage1;        //最后页
+            var direct1=0;        //方向
+            var len1;            //总行数
+            var page1;           //总页数
+            var begin1;
+            var end1;
+
+            $(document).ready(function display1(){
+                len1 =$("#mytable1 tr").length - 1;    // 求这个表的总行数，剔除第一行介绍
+                page1=len1 % pageSize1==0 ? len1/pageSize1 : Math.floor(len1/pageSize1)+1;//根据记录条数，计算页数
+                // alert("page==="+page);
+                curPage1=1;    // 设置当前为第一页
+                displayPage1(1);//显示第一页
+                document.getElementById("btn01").innerHTML="Current: " + curPage1 + "/" + page1 + " page | ";    // 显示当前多少页
+                document.getElementById("sjzl1").innerHTML="Total items: " + len1 + "";        // 显示数据量
+
+                $("#btn11").click(function firstPage1(){    // 首页
+                    curPage1=1;
+                    direct1 = 0;
+                    displayPage1();
+                });
+                $("#btn21").click(function frontPage1(){    // 上一页
+                    direct1=-1;
+                    displayPage1();
+                });
+                $("#btn31").click(function nextPage1(){    // 下一页
+                    direct1=1;
+                    displayPage1();
+                });
+                $("#btn41").click(function lastPage1(){    // 尾页
+                    curPage1=page1;
+                    direct1 = 0;
+                    displayPage1();
+                });
+                $("#btn51").click(function changePage1(){    // 转页
+                    curPage1=document.getElementById("changePage1").value * 1;
+                    if (!/^[1-9]\d*$/.test(curPage1)) {
+                        alert("请输入正整数");
+                        return ;
+                    }
+                    if (curPage1 > page1) {
+                        alert("超出数据页面");
+                        return ;
+                    }
+                    direct1 = 0;
+                    displayPage1();
+                });
+
+
+                $("#pageSizeSet1").click(function setPageSize1(){    // 设置每页显示多少条记录
+                    pageSize1 = document.getElementById("pageSize1").value;    //每页显示的记录条数
+                    if (!/^[1-9]\d*$/.test(pageSize)) {
+                        alert("请输入正整数");
+                        return ;
+                    }
+                    len1 = $("#mytable1 tr").length - 1;
+                    page1 = len1 % pageSize1==0 ? len1/pageSize1 : Math.floor(len1/pageSize1)+1;//根据记录条数，计算页数
+                    curPage1=1;        //当前页
+                    direct1=0;        //方向
+                    firstPage1();
+                });
+            });
+
+            function displayPage1(){
+                if(curPage1 <=1 && direct1==-1){
+                    direct1=0;
+                    alert("Already the first page !!!");
+                    return;
+                } else if (curPage1 >= page1 && direct1==1) {
+                    direct1=0;
+                    alert("Already the last page !!!");
+                    return ;
+                }
+                lastPage1 = curPage1;
+
+                // 修复当len=1时，curPage计算得0的bug
+                if (len1 > pageSize1) {
+                    curPage1 = ((curPage1 + direct1 + len1) % len1);
+                } else {
+                    curPage1 = 1;
+                }
+                document.getElementById("btn01").innerHTML="Current: " + curPage1 + "/" + page1 + " page  | ";        // 显示当前多少页
+
+                begin1=(curPage1-1)*pageSize1 + 1;// 起始记录号
+                end1 = begin1 + 1*pageSize1 - 1;    // 末尾记录号
+
+
+                if(end1 > len1 ) end1=len1;
+                $("#mytable1 tr").hide();    // 首先，设置这行为隐藏
+                $("#mytable1 tr").each(function(i){    // 然后，通过条件判断决定本行是否恢复显示
+                    if((i>=begin1 && i<=end1) || i==0 )//显示begin<=x<=end的记录
+                        $(this).show();
+                });
+
+             }
+</script>
+
+
+<script type="text/javascript">
+            var pageSize2 = 15;    //每页显示的记录条数
+            var curPage2=0;        //当前页
+            var lastPage2;        //最后页
+            var direct2=0;        //方向
+            var len2;            //总行数
+            var page2;           //总页数
+            var begin2;
+            var end2;
+
+            $(document).ready(function display2(){
+                len2 =$("#mytable2 tr").length - 1;    // 求这个表的总行数，剔除第一行介绍
+                page2=len2 % pageSize2==0 ? len2/pageSize2 : Math.floor(len2/pageSize2)+1;//根据记录条数，计算页数
+                // alert("page==="+page);
+                curPage2=1;    // 设置当前为第一页
+                displayPage2(1);//显示第一页
+                document.getElementById("btn02").innerHTML="Current: " + curPage2 + "/" + page2 + " page | ";    // 显示当前多少页
+                document.getElementById("sjzl2").innerHTML="Total items: " + len2 + "";        // 显示数据量
+
+                $("#btn12").click(function firstPage2(){    // 首页
+                    curPage2=1;
+                    direct2 = 0;
+                    displayPage2();
+                });
+                $("#btn22").click(function frontPage2(){    // 上一页
+                    direct2=-1;
+                    displayPage2();
+                });
+                $("#btn32").click(function nextPage2(){    // 下一页
+                    direct2=1;
+                    displayPage2();
+                });
+                $("#btn42").click(function lastPage2(){    // 尾页
+                    curPage2=page2;
+                    direct2 = 0;
+                    displayPage2();
+                });
+                $("#btn52").click(function changePage2(){    // 转页
+                    curPage2=document.getElementById("changePage2").value * 1;
+                    if (!/^[1-9]\d*$/.test(curPage2)) {
+                        alert("请输入正整数");
+                        return ;
+                    }
+                    if (curPage2 > page2) {
+                        alert("超出数据页面");
+                        return ;
+                    }
+                    direct2 = 0;
+                    displayPage2();
+                });
+
+
+                $("#pageSizeSet2").click(function setPageSize2(){    // 设置每页显示多少条记录
+                    pageSize2 = document.getElementById("pageSize2").value;    //每页显示的记录条数
+                    if (!/^[1-9]\d*$/.test(pageSize)) {
+                        alert("请输入正整数");
+                        return ;
+                    }
+                    len2 = $("#mytable2 tr").length - 1;
+                    page2 = len2 % pageSize2==0 ? len2/pageSize2 : Math.floor(len2/pageSize2)+1;//根据记录条数，计算页数
+                    curPage2=1;        //当前页
+                    direct2=0;        //方向
+                    firstPage2();
+                });
+            });
+
+            function displayPage2(){
+                if(curPage2 <=1 && direct2==-1){
+                    direct2=0;
+                    alert("Already the first page !!!");
+                    return;
+                } else if (curPage2 >= page2 && direct2==1) {
+                    direct2=0;
+                    alert("Already the last page !!!");
+                    return ;
+                }
+                lastPage2 = curPage2;
+
+                // 修复当len=1时，curPage计算得0的bug
+                if (len2 > pageSize2) {
+                    curPage2 = ((curPage2 + direct2 + len2) % len2);
+                } else {
+                    curPage2 = 1;
+                }
+                document.getElementById("btn02").innerHTML="Current: " + curPage2 + "/" + page2 + " page  | ";        // 显示当前多少页
+
+                begin2=(curPage2-1)*pageSize2 + 1;// 起始记录号
+                end2 = begin2 + 1*pageSize2 - 1;    // 末尾记录号
+
+
+                if(end2 > len2 ) end2=len2;
+                $("#mytable2 tr").hide();    // 首先，设置这行为隐藏
+                $("#mytable2 tr").each(function(i){    // 然后，通过条件判断决定本行是否恢复显示
+                    if((i>=begin2 && i<=end2) || i==0 )//显示begin<=x<=end的记录
+                        $(this).show();
+                });
+
+             }
+</script>
+
+<script type="text/javascript">
+            var pageSize2 = 15;    //每页显示的记录条数
+            var curPage2=0;        //当前页
+            var lastPage2;        //最后页
+            var direct2=0;        //方向
+            var len2;            //总行数
+            var page2;           //总页数
+            var begin2;
+            var end2;
+
+            $(document).ready(function display3(){
+                len2 =$("#mytable3 tr").length - 1;    // 求这个表的总行数，剔除第一行介绍
+                page2=len2 % pageSize2==0 ? len2/pageSize2 : Math.floor(len2/pageSize2)+1;//根据记录条数，计算页数
+                // alert("page==="+page);
+                curPage2=1;    // 设置当前为第一页
+                displayPage2(1);//显示第一页
+                document.getElementById("btn02").innerHTML="Current: " + curPage2 + "/" + page2 + " page | ";    // 显示当前多少页
+                document.getElementById("sjzl2").innerHTML="Total items: " + len2 + "";        // 显示数据量
+
+                $("#btn12").click(function firstPage2(){    // 首页
+                    curPage2=1;
+                    direct2 = 0;
+                    displayPage2();
+                });
+                $("#btn22").click(function frontPage2(){    // 上一页
+                    direct2=-1;
+                    displayPage2();
+                });
+                $("#btn32").click(function nextPage2(){    // 下一页
+                    direct2=1;
+                    displayPage2();
+                });
+                $("#btn42").click(function lastPage2(){    // 尾页
+                    curPage2=page2;
+                    direct2 = 0;
+                    displayPage2();
+                });
+                $("#btn52").click(function changePage2(){    // 转页
+                    curPage2=document.getElementById("changePage2").value * 1;
+                    if (!/^[1-9]\d*$/.test(curPage2)) {
+                        alert("请输入正整数");
+                        return ;
+                    }
+                    if (curPage2 > page2) {
+                        alert("超出数据页面");
+                        return ;
+                    }
+                    direct2 = 0;
+                    displayPage3();
+                });
+
+
+                $("#pageSizeSet2").click(function setPageSize2(){    // 设置每页显示多少条记录
+                    pageSize2 = document.getElementById("pageSize2").value;    //每页显示的记录条数
+                    if (!/^[1-9]\d*$/.test(pageSize)) {
+                        alert("请输入正整数");
+                        return ;
+                    }
+                    len2 = $("#mytable3 tr").length - 1;
+                    page2 = len2 % pageSize2==0 ? len2/pageSize2 : Math.floor(len2/pageSize2)+1;//根据记录条数，计算页数
+                    curPage2=1;        //当前页
+                    direct2=0;        //方向
+                    firstPage2();
+                });
+            });
+
+            function displayPage3(){
+                if(curPage2 <=1 && direct2==-1){
+                    direct2=0;
+                    alert("Already the first page !!!");
+                    return;
+                } else if (curPage2 >= page2 && direct2==1) {
+                    direct2=0;
+                    alert("Already the last page !!!");
+                    return ;
+                }
+                lastPage2 = curPage2;
+
+                // 修复当len=1时，curPage计算得0的bug
+                if (len2 > pageSize2) {
+                    curPage2 = ((curPage2 + direct2 + len2) % len2);
+                } else {
+                    curPage2 = 1;
+                }
+                document.getElementById("btn02").innerHTML="Current: " + curPage2 + "/" + page2 + " page  | ";        // 显示当前多少页
+
+                begin2=(curPage2-1)*pageSize2 + 1;// 起始记录号
+                end2 = begin2 + 1*pageSize2 - 1;    // 末尾记录号
+
+
+                if(end2 > len2 ) end2=len2;
+                $("#mytable3 tr").hide();    // 首先，设置这行为隐藏
+                $("#mytable3 tr").each(function(i){    // 然后，通过条件判断决定本行是否恢复显示
+                    if((i>=begin2 && i<=end2) || i==0 )//显示begin<=x<=end的记录
+                        $(this).show();
+                });
+
+             }
+</script>
+
+<script type="text/javascript">
+            var pageSize2 = 15;    //每页显示的记录条数
+            var curPage2=0;        //当前页
+            var lastPage2;        //最后页
+            var direct2=0;        //方向
+            var len2;            //总行数
+            var page2;           //总页数
+            var begin2;
+            var end2;
+
+            $(document).ready(function display4(){
+                len2 =$("#mytable4 tr").length - 1;    // 求这个表的总行数，剔除第一行介绍
+                page2=len2 % pageSize2==0 ? len2/pageSize2 : Math.floor(len2/pageSize2)+1;//根据记录条数，计算页数
+                // alert("page==="+page);
+                curPage2=1;    // 设置当前为第一页
+                displayPage2(1);//显示第一页
+                document.getElementById("btn02").innerHTML="Current: " + curPage2 + "/" + page2 + " page | ";    // 显示当前多少页
+                document.getElementById("sjzl2").innerHTML="Total items: " + len2 + "";        // 显示数据量
+
+                $("#btn12").click(function firstPage2(){    // 首页
+                    curPage2=1;
+                    direct2 = 0;
+                    displayPage2();
+                });
+                $("#btn22").click(function frontPage2(){    // 上一页
+                    direct2=-1;
+                    displayPage2();
+                });
+                $("#btn32").click(function nextPage2(){    // 下一页
+                    direct2=1;
+                    displayPage2();
+                });
+                $("#btn42").click(function lastPage2(){    // 尾页
+                    curPage2=page2;
+                    direct2 = 0;
+                    displayPage2();
+                });
+                $("#btn52").click(function changePage2(){    // 转页
+                    curPage2=document.getElementById("changePage2").value * 1;
+                    if (!/^[1-9]\d*$/.test(curPage2)) {
+                        alert("请输入正整数");
+                        return ;
+                    }
+                    if (curPage2 > page2) {
+                        alert("超出数据页面");
+                        return ;
+                    }
+                    direct2 = 0;
+                    displayPage3();
+                });
+
+
+                $("#pageSizeSet2").click(function setPageSize2(){    // 设置每页显示多少条记录
+                    pageSize2 = document.getElementById("pageSize2").value;    //每页显示的记录条数
+                    if (!/^[1-9]\d*$/.test(pageSize)) {
+                        alert("请输入正整数");
+                        return ;
+                    }
+                    len2 = $("#mytable4 tr").length - 1;
+                    page2 = len2 % pageSize2==0 ? len2/pageSize2 : Math.floor(len2/pageSize2)+1;//根据记录条数，计算页数
+                    curPage2=1;        //当前页
+                    direct2=0;        //方向
+                    firstPage2();
+                });
+            });
+
+            function displayPage4(){
+                if(curPage2 <=1 && direct2==-1){
+                    direct2=0;
+                    alert("Already the first page !!!");
+                    return;
+                } else if (curPage2 >= page2 && direct2==1) {
+                    direct2=0;
+                    alert("Already the last page !!!");
+                    return ;
+                }
+                lastPage2 = curPage2;
+
+                // 修复当len=1时，curPage计算得0的bug
+                if (len2 > pageSize2) {
+                    curPage2 = ((curPage2 + direct2 + len2) % len2);
+                } else {
+                    curPage2 = 1;
+                }
+                document.getElementById("btn02").innerHTML="Current: " + curPage2 + "/" + page2 + " page  | ";        // 显示当前多少页
+
+                begin2=(curPage2-1)*pageSize2 + 1;// 起始记录号
+                end2 = begin2 + 1*pageSize2 - 1;    // 末尾记录号
+
+
+                if(end2 > len2 ) end2=len2;
+                $("#mytable4 tr").hide();    // 首先，设置这行为隐藏
+                $("#mytable4 tr").each(function(i){    // 然后，通过条件判断决定本行是否恢复显示
+                    if((i>=begin2 && i<=end2) || i==0 )//显示begin<=x<=end的记录
+                        $(this).show();
+                });
+
+             }
+</script>
+
+
+
+
+
+</head>
+
+<body>
+<div id="toc" class="tocify">
+</div>
+	<div style="position:fixed; top:0; left:0; width:100%; z-index:1000;">
+		<table width="100%" height="50px" border="0" cellpadding="5" cellspacing="0"
+			style="background:#F3F3F3; border-bottom:1px solid #eee;border-top: none;background-image:-moz-linear-gradient(top,#EEEEEE,#FFFFFF); background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0,#EEEEEE), color-stop(1,#FFFFFF));filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#EEEEEE', endColorstr='#FFFFFF', GradientType='0')">
+			<tr height="86%">
+				<td width='1%'></td>
+				<td><img src="src_en/images/logo1.png"></td>
+				<td>
+					<div style="margin:5px;border-left:1px solid #DCDCDC;height:30px"></div>
+				</td>
+				<td width="20%"></td>
+				<td width="15%"></td>
+				<td width="25%"
+					style="text-align:right;padding:0px;margin:0px;color:black;font-size:14px;font-weight:50;">
+					<br><a href="mailto:op-rna@novogene.com" target="black"
+						style="text-decoration:none;color:black;font-size:14px;font-weight:50;">
+						<a></td>
+				<td width="1%"></td>
+			</tr>
+		</table>
+	</div>
+</div>  
+    
+<!--------------------------标题---------------------------------->
+<div id="main">
+<br><h1>Novogene 16S Amplicon Analysis Report</h1></br>
+<table class="gy">
+<tr>
+<th>Contract Information</th>
+<th>Contract Content</th>
+</tr>
+<tr>
+<td>Contract_No</td>
+<td>H204SCXXXXXXXX</td>
+</tr>
+<tr>
+<td>Batch_ID</td>
+<td>X204SCXXXXXXXX-Z01-F001</td>
+</tr>
+<tr>
+<td>Report_Time</td>
+<td>20XX-XX-XX</td>
+</tr>
+<tr>
+</table>
+<br /><br />
+
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src_en/images/logo.png" /></a>
+<a name="Library Preparation and Sequencing">Novogene Co., Ltd</a>
+<hr />
+</p><br />
+
+<h2>1 Overview</h2>
+
+
+    <p class="paragraph">16S ribosomal RNA (rRNA) is a component of the prokaryotic 30S ribosomal subunit. It contains nine hypervariable regions (V1-V9) and the length of these hypervariable regions range from approximately 30 to 100 base pairs. The degree of conservation in prokaryotic 16s rRNA hypervariable region varies across bacterial species, where higher gene similarity is found between organism of closely related species. Currently, 16S rRNA gene is widely used in archaeal and bacteria phylogenetic analysis and classification<sup>[1,2,3]</sup> . </p>
+
+    <p class="paragraph">Amplicon sequencing of the 16S ribosomal RNA gene is widely recognized as a reliable and effective technique for classifying bacteria. The gene includes nine variable regions, labeled V1 to V9, interspaced with sequences that maintain high consistency across different bacterial groups. The advancement of high-throughput sequencing technology has dramatically increased the number of microbial community studies based on 16S rRNA genes. Traditional short-read sequencing platforms fail to produce reads that span the entire length of the 16S rRNA gene , leading to targeted sequencing of certain regions; this approach frequently results in taxonomic classification uncertainties. However, PacBio Revio sequencing systems have addressed these limitations, achieving long and accurate HiFi reads using the Circular Consensus Sequencing (CCS) method.Full-length 16S rRNA sequencing with PacBio technology covers the entire 1.5 kb 16S gene with high accuracy, allowing for species- and strain-level identification in microbiome studies.
+</p>
+
+        <br />
+
+        <br />
+
+<h3>1.1 Experimental Workflow</h3>
+        
+    <p class="paragraph">The quality of data from the third generation sequencing (TGS) technology is directly influenced by sample handling procedures, which include Quality Control (PCR amplification), library preparation, and sequencing. The data quality further impacts the analysis result. To ensure the accuracy and reliability of sequencing data, quality control (QC) is performed at each step of the procedure. The flowchart is as follows: </p>
+
+<p class="center">
+<img src="src_en/pictures/experiment_pipeline_pa.png" width="600" height="450" />
+<p class="name_fig"><strong>Fig 1.1 Experimental Workflow</strong></p>  
+</p>
+
+        <br />
+
+        <br />
+
+<h3>1.2 Library Construction, Quality Control and Sequencing</h3>
+
+    <p class="paragraph">To prepare Kinnex libraries from 16S rRNA amplicons. After pooling the barcoded 16S PCR amplicons, Kinnex adapters are added to facilitate the concatenation of these amplicons into longer sequences. Kinnex array formation, involves treating the Kinnex PCR products with Kinnex enzyme, ligase, and barcoded Kinnex terminal adapters to assemble the 16S segments into a linear array. Lastly, a final cleanup with SMRTbell cleanup beads is performed to ensure the library is clean and pure.The experimental procedures of DNA library preparation are shown:</p>
+	
+<p class="center">
+<img src="src_en/pictures/library_construction.png" width="600" height="450" />
+<p class="name_fig"><strong>Fig 1.2  Workflow of library construction</strong></p>  
+</p>
+	
+<h3>1.3 Analysis Workflow</h3>
+        
+    <p class="paragraph">The PacBio BAM file is demultiplexed according to barcode and filtered to get clean data. Based on clean data, we use DADA2<sup>[4,5]</sup> to reduce noise. For the obtained ASVs, on the one hand, the representative sequence of each ASV is annotated to obtain the corresponding species information and the abundance distribution based on the species. Then, analyze the abundance and calculate the alpha diversity of ASVs to obtain the species richness and uniformity information of the samples. On the other hand, multiple sequence alignment of ASVs is performed and phylogenetic trees are constructed. Through dimensionality reduction analysis (PCoA, PCA, NMDS) and sample clustering tree display, the differences in community structure between different samples or groups can be explored. In order to further explore the differences in community structure in different groups, statistical analysis methods such as T-test, MetagenomeSeq, LEfSe, etc. are used to test the significance of differences in species composition and community structure of groups. The annotation results of the amplicons can also be associated with the corresponding functional databases, and the PICRUSt2 software can be used to predict and analyze the function of the microbial community in the ecological sample. The bioinformatic analysis workflow after obtaining the sequencing data is shown as follows:</p>
+
+    <p class="paragraph">Notably, DADA2 method for ASV inference requires high-quality data and deep sequencing depth (recommend at least 10k CCS reads). For samples with high diversity, such as environmental samples, higher sequencing depth is required. If the final data does not meet the requirements for the DADA2 method, we could switch to another approach upon request, e.g. deblur or OTU (97% similarity clustering).</p>
+
+<p class="center">
+<img src="src_en/pictures/bioinformatics_pipeline_pb.png" width="600" height="450" />
+<p class="name_fig"><strong>Fig 1.3 Analysis Workflow </strong></p>  
+</p>
+<p class="premark" >Note: If the number of samples is less than 3, β-diversity cannot be carried out. If there are less than 2 groups and less than 3 biological repetitions in each group, Difference of alpha diversity indices between groups, Community differences analysis (Species variance statistice, Community variance statistice) cannot be carried out. Environmental factor correlation analysis requires the customer to provide environmental factor information.</p>
+
+        <br />
+
+        <br />
+
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src_en/images/logo.png" /></a>
+<a name="Library Preparation and Sequencing">Novogene Co., Ltd</a>
+<hr />
+</p><br />
+
+<h2>2 Data Quality Control</h2>
+
+
+        <br />
+
+        <br />
+     
+    <p class="paragraph">After filtering the data, quality control is performed on the clean reads.The statistical results are shown in the following table: </p>
+
+<p class="name_table"><p class="center"><strong>Table 2.1 Statistical results of data processing</strong></p>        
+<p class="center">
+<div style="overflow-x: auto">
+<table class="gy" id="mytable1" >
+        <thead><tr>
+<a id="btn01"></a>
+<a id="sjzl1"></a>
+<a  href="javascript:void(0)" id="btn11"> | First | </a>
+<a  href="javascript:void(0)" id="btn21"> Previous | </a>
+<a  href="javascript:void(0)" id="btn31"> Next | </a>
+<a  href="javascript:void(0)" id="btn41"> Last | </a>
+<a>Go to </a>
+<input id="changePage1" type="text" size="1" maxlength="4"/>
+<a> page </a>
+<a  href="javascript:void(0)" id="btn51"> Jump </a>
+                
+<th style="text-align :center">Sample</th><th style="text-align :center">NovoID</th><th style="text-align :center">Clean reads</th><th style="text-align :center">Clean data</th><th style="text-align :center">AvgLen(nt)</th><th style="text-align :center">Q20(%)</th><th style="text-align :center">Q30(%)</th><th style="text-align :center">GC(%)
+</th></tr></thead>
+<tbody><tr>
+<td style="text-align :center">Gi00C1</td><td style="text-align :center">FKDN240066812-1A</td><td style="text-align :center">16580</td><td style="text-align :center">23923577</td><td style="text-align :center">1443</td><td style="text-align :center">98.22</td><td style="text-align :center">95.68</td><td style="text-align :center">51.09
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi00C2</td><td style="text-align :center">FKDN240066813-1A</td><td style="text-align :center">11790</td><td style="text-align :center">17594401</td><td style="text-align :center">1493</td><td style="text-align :center">97.58</td><td style="text-align :center">94.26</td><td style="text-align :center">51.59
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi00C3</td><td style="text-align :center">FKDN240066814-1A</td><td style="text-align :center">16965</td><td style="text-align :center">25012009</td><td style="text-align :center">1475</td><td style="text-align :center">98.05</td><td style="text-align :center">95.29</td><td style="text-align :center">49.09
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi00C4</td><td style="text-align :center">FKDN240066815-1A</td><td style="text-align :center">18481</td><td style="text-align :center">27080431</td><td style="text-align :center">1466</td><td style="text-align :center">98.11</td><td style="text-align :center">95.48</td><td style="text-align :center">54.08
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi00C5</td><td style="text-align :center">FKDN240066816-1A</td><td style="text-align :center">16945</td><td style="text-align :center">25139255</td><td style="text-align :center">1484</td><td style="text-align :center">98.08</td><td style="text-align :center">95.29</td><td style="text-align :center">51.53
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi0C1</td><td style="text-align :center">FKDN240066842-1A</td><td style="text-align :center">16290</td><td style="text-align :center">23844066</td><td style="text-align :center">1464</td><td style="text-align :center">98.09</td><td style="text-align :center">95.38</td><td style="text-align :center">52.33
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi0C2</td><td style="text-align :center">FKDN240066843-1A</td><td style="text-align :center">17699</td><td style="text-align :center">25855602</td><td style="text-align :center">1461</td><td style="text-align :center">97.77</td><td style="text-align :center">94.63</td><td style="text-align :center">54.37
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi0C3</td><td style="text-align :center">FKDN240066844-1A</td><td style="text-align :center">17098</td><td style="text-align :center">24884479</td><td style="text-align :center">1456</td><td style="text-align :center">97.3</td><td style="text-align :center">93.51</td><td style="text-align :center">53.74
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi0C4</td><td style="text-align :center">FKDN240066845-1A</td><td style="text-align :center">20250</td><td style="text-align :center">29379594</td><td style="text-align :center">1451</td><td style="text-align :center">97.86</td><td style="text-align :center">94.83</td><td style="text-align :center">49.68
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi0C5</td><td style="text-align :center">FKDN240066846-1A</td><td style="text-align :center">17980</td><td style="text-align :center">26370494</td><td style="text-align :center">1467</td><td style="text-align :center">97.82</td><td style="text-align :center">94.75</td><td style="text-align :center">53.25
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi0I1</td><td style="text-align :center">FKDN240066817-1A</td><td style="text-align :center">21558</td><td style="text-align :center">31647260</td><td style="text-align :center">1469</td><td style="text-align :center">98.17</td><td style="text-align :center">95.62</td><td style="text-align :center">54.28
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi0I2</td><td style="text-align :center">FKDN240066818-1A</td><td style="text-align :center">17331</td><td style="text-align :center">25312642</td><td style="text-align :center">1461</td><td style="text-align :center">97.81</td><td style="text-align :center">94.7</td><td style="text-align :center">54.62
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi0I3</td><td style="text-align :center">FKDN240066819-1A</td><td style="text-align :center">18062</td><td style="text-align :center">26430390</td><td style="text-align :center">1464</td><td style="text-align :center">98.09</td><td style="text-align :center">95.44</td><td style="text-align :center">55.03
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi0I4</td><td style="text-align :center">FKDN240066820-1A</td><td style="text-align :center">18011</td><td style="text-align :center">26347852</td><td style="text-align :center">1463</td><td style="text-align :center">98.15</td><td style="text-align :center">95.59</td><td style="text-align :center">54.77
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi0I5</td><td style="text-align :center">FKDN240066821-1A</td><td style="text-align :center">16394</td><td style="text-align :center">23931154</td><td style="text-align :center">1460</td><td style="text-align :center">98.06</td><td style="text-align :center">95.37</td><td style="text-align :center">54.82
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi10C1</td><td style="text-align :center">FKDN240066857-1A</td><td style="text-align :center">16040</td><td style="text-align :center">23723424</td><td style="text-align :center">1480</td><td style="text-align :center">97.98</td><td style="text-align :center">95.14</td><td style="text-align :center">54.23
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi10C2</td><td style="text-align :center">FKDN240066858-1A</td><td style="text-align :center">18421</td><td style="text-align :center">26658721</td><td style="text-align :center">1448</td><td style="text-align :center">97.88</td><td style="text-align :center">94.86</td><td style="text-align :center">51.46
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi10C3</td><td style="text-align :center">FKDN240066859-1A</td><td style="text-align :center">21096</td><td style="text-align :center">30719270</td><td style="text-align :center">1457</td><td style="text-align :center">97.76</td><td style="text-align :center">94.6</td><td style="text-align :center">51.9
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi10C4</td><td style="text-align :center">FKDN240066860-1A</td><td style="text-align :center">17357</td><td style="text-align :center">25954469</td><td style="text-align :center">1496</td><td style="text-align :center">98.31</td><td style="text-align :center">96.02</td><td style="text-align :center">53.11
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi10C5</td><td style="text-align :center">FKDN240066861-1A</td><td style="text-align :center">16656</td><td style="text-align :center">24566076</td><td style="text-align :center">1475</td><td style="text-align :center">98.08</td><td style="text-align :center">95.38</td><td style="text-align :center">53.69
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi10I1</td><td style="text-align :center">FKDN240066832-1A</td><td style="text-align :center">17660</td><td style="text-align :center">25767913</td><td style="text-align :center">1460</td><td style="text-align :center">97.81</td><td style="text-align :center">94.73</td><td style="text-align :center">54.03
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi10I10</td><td style="text-align :center">FKDN240066841-1A</td><td style="text-align :center">22144</td><td style="text-align :center">32315229</td><td style="text-align :center">1460</td><td style="text-align :center">97.77</td><td style="text-align :center">94.62</td><td style="text-align :center">52.92
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi10I2</td><td style="text-align :center">FKDN240066833-1A</td><td style="text-align :center">16399</td><td style="text-align :center">23968795</td><td style="text-align :center">1462</td><td style="text-align :center">98.01</td><td style="text-align :center">95.24</td><td style="text-align :center">54.14
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi10I3</td><td style="text-align :center">FKDN240066834-1A</td><td style="text-align :center">17643</td><td style="text-align :center">25902205</td><td style="text-align :center">1469</td><td style="text-align :center">97.67</td><td style="text-align :center">94.46</td><td style="text-align :center">52.32
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi10I4</td><td style="text-align :center">FKDN240066835-1A</td><td style="text-align :center">17776</td><td style="text-align :center">26031338</td><td style="text-align :center">1465</td><td style="text-align :center">98.05</td><td style="text-align :center">95.33</td><td style="text-align :center">54.19
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi10I5</td><td style="text-align :center">FKDN240066836-1A</td><td style="text-align :center">17335</td><td style="text-align :center">25527019</td><td style="text-align :center">1473</td><td style="text-align :center">98.08</td><td style="text-align :center">95.42</td><td style="text-align :center">54.28
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi10I6</td><td style="text-align :center">FKDN240066837-1A</td><td style="text-align :center">16500</td><td style="text-align :center">24195927</td><td style="text-align :center">1467</td><td style="text-align :center">98.1</td><td style="text-align :center">95.44</td><td style="text-align :center">53.7
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi10I7</td><td style="text-align :center">FKDN240066838-1A</td><td style="text-align :center">21445</td><td style="text-align :center">31776519</td><td style="text-align :center">1482</td><td style="text-align :center">98.04</td><td style="text-align :center">95.27</td><td style="text-align :center">53.26
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi10I8</td><td style="text-align :center">FKDN240066839-1A</td><td style="text-align :center">18443</td><td style="text-align :center">27167094</td><td style="text-align :center">1474</td><td style="text-align :center">98.47</td><td style="text-align :center">96.33</td><td style="text-align :center">52.58
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi10I9</td><td style="text-align :center">FKDN240066840-1A</td><td style="text-align :center">17578</td><td style="text-align :center">26301513</td><td style="text-align :center">1497</td><td style="text-align :center">98.39</td><td style="text-align :center">96.13</td><td style="text-align :center">52.42
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi4C1</td><td style="text-align :center">FKDN240066847-1A</td><td style="text-align :center">18816</td><td style="text-align :center">27395782</td><td style="text-align :center">1456</td><td style="text-align :center">97.77</td><td style="text-align :center">94.64</td><td style="text-align :center">52.49
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi4C2</td><td style="text-align :center">FKDN240066848-1A</td><td style="text-align :center">18598</td><td style="text-align :center">27047156</td><td style="text-align :center">1455</td><td style="text-align :center">97.77</td><td style="text-align :center">94.63</td><td style="text-align :center">54.44
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi4C3</td><td style="text-align :center">FKDN240066849-1A</td><td style="text-align :center">17429</td><td style="text-align :center">25343663</td><td style="text-align :center">1455</td><td style="text-align :center">97.87</td><td style="text-align :center">94.85</td><td style="text-align :center">52.1
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi4C4</td><td style="text-align :center">FKDN240066850-1A</td><td style="text-align :center">16494</td><td style="text-align :center">24101915</td><td style="text-align :center">1462</td><td style="text-align :center">97.8</td><td style="text-align :center">94.7</td><td style="text-align :center">53.86
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi4C5</td><td style="text-align :center">FKDN240066851-1A</td><td style="text-align :center">14784</td><td style="text-align :center">21527002</td><td style="text-align :center">1457</td><td style="text-align :center">97.93</td><td style="text-align :center">94.95</td><td style="text-align :center">52.06
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi4I1</td><td style="text-align :center">FKDN240066822-1A</td><td style="text-align :center">19876</td><td style="text-align :center">28942034</td><td style="text-align :center">1457</td><td style="text-align :center">98.54</td><td style="text-align :center">96.45</td><td style="text-align :center">52.13
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi4I2</td><td style="text-align :center">FKDN240066823-1A</td><td style="text-align :center">16912</td><td style="text-align :center">24508836</td><td style="text-align :center">1450</td><td style="text-align :center">98.5</td><td style="text-align :center">96.35</td><td style="text-align :center">51.92
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi4I3</td><td style="text-align :center">FKDN240066824-1A</td><td style="text-align :center">18765</td><td style="text-align :center">27423872</td><td style="text-align :center">1462</td><td style="text-align :center">97.78</td><td style="text-align :center">94.66</td><td style="text-align :center">54.56
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi4I4</td><td style="text-align :center">FKDN240066825-1A</td><td style="text-align :center">16921</td><td style="text-align :center">24701791</td><td style="text-align :center">1460</td><td style="text-align :center">97.8</td><td style="text-align :center">94.72</td><td style="text-align :center">54.58
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi4I5</td><td style="text-align :center">FKDN240066826-1A</td><td style="text-align :center">16146</td><td style="text-align :center">23449009</td><td style="text-align :center">1453</td><td style="text-align :center">98.52</td><td style="text-align :center">96.42</td><td style="text-align :center">52.03
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi7C1</td><td style="text-align :center">FKDN240066852-1A</td><td style="text-align :center">15878</td><td style="text-align :center">23184916</td><td style="text-align :center">1461</td><td style="text-align :center">97.79</td><td style="text-align :center">94.68</td><td style="text-align :center">54.49
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi7C2</td><td style="text-align :center">FKDN240066853-1A</td><td style="text-align :center">17333</td><td style="text-align :center">25313946</td><td style="text-align :center">1461</td><td style="text-align :center">97.8</td><td style="text-align :center">94.71</td><td style="text-align :center">53.89
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi7C3</td><td style="text-align :center">FKDN240066854-1A</td><td style="text-align :center">18427</td><td style="text-align :center">26951937</td><td style="text-align :center">1463</td><td style="text-align :center">97.8</td><td style="text-align :center">94.71</td><td style="text-align :center">54.2
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi7C4</td><td style="text-align :center">FKDN240066855-1A</td><td style="text-align :center">17062</td><td style="text-align :center">24951582</td><td style="text-align :center">1463</td><td style="text-align :center">97.72</td><td style="text-align :center">94.55</td><td style="text-align :center">53.6
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi7C5</td><td style="text-align :center">FKDN240066856-1A</td><td style="text-align :center">17166</td><td style="text-align :center">24976968</td><td style="text-align :center">1456</td><td style="text-align :center">97.79</td><td style="text-align :center">94.69</td><td style="text-align :center">54.11
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi7I1</td><td style="text-align :center">FKDN240066827-1A</td><td style="text-align :center">18383</td><td style="text-align :center">26929074</td><td style="text-align :center">1465</td><td style="text-align :center">97.88</td><td style="text-align :center">94.88</td><td style="text-align :center">53.7
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi7I2</td><td style="text-align :center">FKDN240066828-1A</td><td style="text-align :center">20569</td><td style="text-align :center">30127354</td><td style="text-align :center">1465</td><td style="text-align :center">98.18</td><td style="text-align :center">95.62</td><td style="text-align :center">53.55
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi7I3</td><td style="text-align :center">FKDN240066829-1A</td><td style="text-align :center">18529</td><td style="text-align :center">26900119</td><td style="text-align :center">1452</td><td style="text-align :center">98.33</td><td style="text-align :center">95.91</td><td style="text-align :center">51.66
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi7I4</td><td style="text-align :center">FKDN240066830-1A</td><td style="text-align :center">16756</td><td style="text-align :center">24301028</td><td style="text-align :center">1451</td><td style="text-align :center">98.26</td><td style="text-align :center">95.73</td><td style="text-align :center">51.95
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi7I5</td><td style="text-align :center">FKDN240066831-1A</td><td style="text-align :center">17202</td><td style="text-align :center">25101353</td><td style="text-align :center">1460</td><td style="text-align :center">98.01</td><td style="text-align :center">95.24</td><td style="text-align :center">54.21
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M00C1</td><td style="text-align :center">FKDN240066862-1A</td><td style="text-align :center">18589</td><td style="text-align :center">27038502</td><td style="text-align :center">1455</td><td style="text-align :center">98.51</td><td style="text-align :center">96.4</td><td style="text-align :center">53.31
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M00C2</td><td style="text-align :center">FKDN240066863-1A</td><td style="text-align :center">18743</td><td style="text-align :center">27304440</td><td style="text-align :center">1457</td><td style="text-align :center">98.51</td><td style="text-align :center">96.42</td><td style="text-align :center">53.08
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M00C3</td><td style="text-align :center">FKDN240066864-1A</td><td style="text-align :center">17950</td><td style="text-align :center">26164426</td><td style="text-align :center">1458</td><td style="text-align :center">98.5</td><td style="text-align :center">96.41</td><td style="text-align :center">52.76
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M00C4</td><td style="text-align :center">FKDN240066865-1A</td><td style="text-align :center">18190</td><td style="text-align :center">26151327</td><td style="text-align :center">1438</td><td style="text-align :center">98.54</td><td style="text-align :center">96.48</td><td style="text-align :center">52.6
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M00C5</td><td style="text-align :center">FKDN240066866-1A</td><td style="text-align :center">17732</td><td style="text-align :center">25580835</td><td style="text-align :center">1443</td><td style="text-align :center">98.58</td><td style="text-align :center">96.56</td><td style="text-align :center">51.56
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M0C1</td><td style="text-align :center">FKDN240066892-1A</td><td style="text-align :center">16969</td><td style="text-align :center">24541192</td><td style="text-align :center">1447</td><td style="text-align :center">98.52</td><td style="text-align :center">96.45</td><td style="text-align :center">51.61
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M0C2</td><td style="text-align :center">FKDN240066893-1A</td><td style="text-align :center">18258</td><td style="text-align :center">26430020</td><td style="text-align :center">1448</td><td style="text-align :center">98.49</td><td style="text-align :center">96.35</td><td style="text-align :center">51.49
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M0C3</td><td style="text-align :center">FKDN240066894-1A</td><td style="text-align :center">15184</td><td style="text-align :center">22053438</td><td style="text-align :center">1453</td><td style="text-align :center">98.13</td><td style="text-align :center">95.53</td><td style="text-align :center">53.06
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M0C4</td><td style="text-align :center">FKDN240066895-1A</td><td style="text-align :center">16885</td><td style="text-align :center">24446066</td><td style="text-align :center">1448</td><td style="text-align :center">98.23</td><td style="text-align :center">95.71</td><td style="text-align :center">51.5
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M0C5</td><td style="text-align :center">FKDN240066896-1A</td><td style="text-align :center">17650</td><td style="text-align :center">25474112</td><td style="text-align :center">1444</td><td style="text-align :center">98.54</td><td style="text-align :center">96.47</td><td style="text-align :center">51.07
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M0I1</td><td style="text-align :center">FKDN240066867-1A</td><td style="text-align :center">17677</td><td style="text-align :center">25885787</td><td style="text-align :center">1465</td><td style="text-align :center">98.49</td><td style="text-align :center">96.36</td><td style="text-align :center">54.27
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M0I2</td><td style="text-align :center">FKDN240066868-1A</td><td style="text-align :center">18322</td><td style="text-align :center">26670854</td><td style="text-align :center">1456</td><td style="text-align :center">98.47</td><td style="text-align :center">96.36</td><td style="text-align :center">54.63
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M0I3</td><td style="text-align :center">FKDN240066869-1A</td><td style="text-align :center">16970</td><td style="text-align :center">24788281</td><td style="text-align :center">1461</td><td style="text-align :center">98.49</td><td style="text-align :center">96.37</td><td style="text-align :center">54.06
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M0I4</td><td style="text-align :center">FKDN240066870-1A</td><td style="text-align :center">18157</td><td style="text-align :center">26560576</td><td style="text-align :center">1463</td><td style="text-align :center">98.52</td><td style="text-align :center">96.45</td><td style="text-align :center">54.28
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M0I5</td><td style="text-align :center">FKDN240066871-1A</td><td style="text-align :center">20708</td><td style="text-align :center">30361062</td><td style="text-align :center">1467</td><td style="text-align :center">98.45</td><td style="text-align :center">96.29</td><td style="text-align :center">54.08
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M10C1</td><td style="text-align :center">FKDN240066907-1A</td><td style="text-align :center">18032</td><td style="text-align :center">25973691</td><td style="text-align :center">1441</td><td style="text-align :center">98.53</td><td style="text-align :center">96.43</td><td style="text-align :center">52.84
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M10C2</td><td style="text-align :center">FKDN240066908-1A</td><td style="text-align :center">17497</td><td style="text-align :center">25218938</td><td style="text-align :center">1442</td><td style="text-align :center">98.55</td><td style="text-align :center">96.48</td><td style="text-align :center">52.29
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M10C3</td><td style="text-align :center">FKDN240066909-1A</td><td style="text-align :center">16537</td><td style="text-align :center">23856761</td><td style="text-align :center">1443</td><td style="text-align :center">98.58</td><td style="text-align :center">96.54</td><td style="text-align :center">52.26
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M10C4</td><td style="text-align :center">FKDN240066910-1A</td><td style="text-align :center">16937</td><td style="text-align :center">24428251</td><td style="text-align :center">1443</td><td style="text-align :center">98.29</td><td style="text-align :center">95.7</td><td style="text-align :center">52.44
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M10C5</td><td style="text-align :center">FKDN240066911-1A</td><td style="text-align :center">16221</td><td style="text-align :center">23362368</td><td style="text-align :center">1441</td><td style="text-align :center">98.5</td><td style="text-align :center">96.39</td><td style="text-align :center">52.26
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M10I1</td><td style="text-align :center">FKDN240066882-1A</td><td style="text-align :center">16440</td><td style="text-align :center">23736536</td><td style="text-align :center">1444</td><td style="text-align :center">97.3</td><td style="text-align :center">93.46</td><td style="text-align :center">52.53
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M10I10</td><td style="text-align :center">FKDN240066891-1A</td><td style="text-align :center">16398</td><td style="text-align :center">23691866</td><td style="text-align :center">1445</td><td style="text-align :center">98.19</td><td style="text-align :center">95.47</td><td style="text-align :center">51.85
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M10I2</td><td style="text-align :center">FKDN240066883-1A</td><td style="text-align :center">18171</td><td style="text-align :center">26196864</td><td style="text-align :center">1442</td><td style="text-align :center">98.49</td><td style="text-align :center">96.35</td><td style="text-align :center">52.09
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M10I3</td><td style="text-align :center">FKDN240066884-1A</td><td style="text-align :center">17747</td><td style="text-align :center">25654410</td><td style="text-align :center">1446</td><td style="text-align :center">98.48</td><td style="text-align :center">96.34</td><td style="text-align :center">52.26
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M10I4</td><td style="text-align :center">FKDN240066885-1A</td><td style="text-align :center">18492</td><td style="text-align :center">26893168</td><td style="text-align :center">1455</td><td style="text-align :center">98.3</td><td style="text-align :center">95.93</td><td style="text-align :center">51.53
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M10I5</td><td style="text-align :center">FKDN240066886-1A</td><td style="text-align :center">16886</td><td style="text-align :center">24487279</td><td style="text-align :center">1451</td><td style="text-align :center">98.44</td><td style="text-align :center">96.25</td><td style="text-align :center">51.97
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M10I6</td><td style="text-align :center">FKDN240066887-1A</td><td style="text-align :center">17952</td><td style="text-align :center">26058647</td><td style="text-align :center">1452</td><td style="text-align :center">98.37</td><td style="text-align :center">96.09</td><td style="text-align :center">51.77
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M10I7</td><td style="text-align :center">FKDN240066888-1A</td><td style="text-align :center">18093</td><td style="text-align :center">26220280</td><td style="text-align :center">1450</td><td style="text-align :center">98.41</td><td style="text-align :center">96.16</td><td style="text-align :center">52.12
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M10I8</td><td style="text-align :center">FKDN240066889-1A</td><td style="text-align :center">16564</td><td style="text-align :center">24060989</td><td style="text-align :center">1453</td><td style="text-align :center">98.23</td><td style="text-align :center">95.79</td><td style="text-align :center">51.46
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M10I9</td><td style="text-align :center">FKDN240066890-1A</td><td style="text-align :center">20253</td><td style="text-align :center">29347667</td><td style="text-align :center">1450</td><td style="text-align :center">98.26</td><td style="text-align :center">95.64</td><td style="text-align :center">51.62
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M4C1</td><td style="text-align :center">FKDN240066897-1A</td><td style="text-align :center">18692</td><td style="text-align :center">26955312</td><td style="text-align :center">1443</td><td style="text-align :center">98.49</td><td style="text-align :center">96.36</td><td style="text-align :center">51.24
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M4C2</td><td style="text-align :center">FKDN240066898-1A</td><td style="text-align :center">18399</td><td style="text-align :center">26468917</td><td style="text-align :center">1439</td><td style="text-align :center">98.58</td><td style="text-align :center">96.55</td><td style="text-align :center">51.3
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M4C3</td><td style="text-align :center">FKDN240066899-1A</td><td style="text-align :center">16384</td><td style="text-align :center">23885189</td><td style="text-align :center">1458</td><td style="text-align :center">98.11</td><td style="text-align :center">95.5</td><td style="text-align :center">53.81
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M4C4</td><td style="text-align :center">FKDN240066900-1A</td><td style="text-align :center">17954</td><td style="text-align :center">25961745</td><td style="text-align :center">1447</td><td style="text-align :center">98.55</td><td style="text-align :center">96.48</td><td style="text-align :center">51.66
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M4C5</td><td style="text-align :center">FKDN240066901-1A</td><td style="text-align :center">16389</td><td style="text-align :center">23690907</td><td style="text-align :center">1446</td><td style="text-align :center">98.53</td><td style="text-align :center">96.45</td><td style="text-align :center">51.41
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M4I1</td><td style="text-align :center">FKDN240066872-1A</td><td style="text-align :center">19485</td><td style="text-align :center">29028873</td><td style="text-align :center">1490</td><td style="text-align :center">97.95</td><td style="text-align :center">95.1</td><td style="text-align :center">53.66
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M4I2</td><td style="text-align :center">FKDN240066873-1A</td><td style="text-align :center">18629</td><td style="text-align :center">26766580</td><td style="text-align :center">1437</td><td style="text-align :center">98.52</td><td style="text-align :center">96.41</td><td style="text-align :center">51.93
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M4I3</td><td style="text-align :center">FKDN240066874-1A</td><td style="text-align :center">17372</td><td style="text-align :center">25054696</td><td style="text-align :center">1443</td><td style="text-align :center">98.47</td><td style="text-align :center">96.33</td><td style="text-align :center">52.21
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M4I4</td><td style="text-align :center">FKDN240066875-1A</td><td style="text-align :center">16400</td><td style="text-align :center">23550927</td><td style="text-align :center">1437</td><td style="text-align :center">98.55</td><td style="text-align :center">96.47</td><td style="text-align :center">52.06
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M4I5</td><td style="text-align :center">FKDN240066876-1A</td><td style="text-align :center">17716</td><td style="text-align :center">25500131</td><td style="text-align :center">1440</td><td style="text-align :center">98.54</td><td style="text-align :center">96.47</td><td style="text-align :center">51.43
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M7C1</td><td style="text-align :center">FKDN240066902-1A</td><td style="text-align :center">17958</td><td style="text-align :center">25887241</td><td style="text-align :center">1442</td><td style="text-align :center">98.58</td><td style="text-align :center">96.56</td><td style="text-align :center">51.38
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M7C2</td><td style="text-align :center">FKDN240066903-1A</td><td style="text-align :center">17676</td><td style="text-align :center">25468518</td><td style="text-align :center">1441</td><td style="text-align :center">98.55</td><td style="text-align :center">96.5</td><td style="text-align :center">52.5
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M7C3</td><td style="text-align :center">FKDN240066904-1A</td><td style="text-align :center">17088</td><td style="text-align :center">24649945</td><td style="text-align :center">1443</td><td style="text-align :center">98.53</td><td style="text-align :center">96.41</td><td style="text-align :center">51.69
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M7C4</td><td style="text-align :center">FKDN240066905-1A</td><td style="text-align :center">17063</td><td style="text-align :center">24548637</td><td style="text-align :center">1439</td><td style="text-align :center">98.55</td><td style="text-align :center">96.5</td><td style="text-align :center">52.06
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M7C5</td><td style="text-align :center">FKDN240066906-1A</td><td style="text-align :center">17999</td><td style="text-align :center">26087631</td><td style="text-align :center">1450</td><td style="text-align :center">98.45</td><td style="text-align :center">96.29</td><td style="text-align :center">54.21
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M7I1</td><td style="text-align :center">FKDN240066877-1A</td><td style="text-align :center">16648</td><td style="text-align :center">24029837</td><td style="text-align :center">1444</td><td style="text-align :center">98.5</td><td style="text-align :center">96.39</td><td style="text-align :center">50.99
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M7I2</td><td style="text-align :center">FKDN240066878-1A</td><td style="text-align :center">17110</td><td style="text-align :center">24462334</td><td style="text-align :center">1430</td><td style="text-align :center">98.52</td><td style="text-align :center">96.41</td><td style="text-align :center">52.36
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M7I3</td><td style="text-align :center">FKDN240066879-1A</td><td style="text-align :center">16618</td><td style="text-align :center">23728730</td><td style="text-align :center">1428</td><td style="text-align :center">98.53</td><td style="text-align :center">96.43</td><td style="text-align :center">53.12
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M7I4</td><td style="text-align :center">FKDN240066880-1A</td><td style="text-align :center">17842</td><td style="text-align :center">26005159</td><td style="text-align :center">1458</td><td style="text-align :center">98.37</td><td style="text-align :center">96.08</td><td style="text-align :center">51.96
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M7I5</td><td style="text-align :center">FKDN240066881-1A</td><td style="text-align :center">16430</td><td style="text-align :center">24178111</td><td style="text-align :center">1472</td><td style="text-align :center">98.15</td><td style="text-align :center">95.52</td><td style="text-align :center">52.32
+</td></tr></tbody>
+
+</table>
+</div>
+</p>
+<p class="premark" >Note: Clean reads refer to the raw sequences that have been filtered for low quality, these clean reads are used for subsequent analysis. Clean data is the number of bases in the final Clean reads; AvgLen is the average length of Clean reads; Q20 and Q30 represent the percentages of bases in the clean reads that have quality values greater than 20 (sequencing error rate of less than 1%) and 30 (sequencing error rate of less than 0.1%), respectively.; GC (%) represents the content of GC bases in Clean reads; Effective (%) represents the percentage of the number of Clean reads in relation to the number of raw reads. </p>
+
+        <br />
+
+        <br />
+
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src_en/images/logo.png" /></a>
+<a name="Library Preparation and Sequencing">Novogene Co., Ltd</a>
+<hr />
+</p><br />
+
+<h2>3 ASV Analysis</h2>
+
+
+        <br />
+
+        <br />
+
+<h3>3.1 Denoise and Species Annotation</h3>
+        
+    <p class="paragraph">The DADA2 method<sup>[6]</sup> is mainly used for noise reduction, which performs dereplication or equivalent to 100% similarity clustering. Each de-duplicated sequence generated after noise reduction using DADA2 is called ASVs (Amplicon Sequence Variants), or feature sequence (corresponding to the OTU representative sequence), and the abundance table of these sequences in the sample is called the feature table (corresponds to the OTU table). The DADA2 method is more sensitive and specific than the traditional OTU method, and can detect the true biological mutations missed by the OTU method, while outputting fewer false sequences<sup>[7]</sup>. Compared with OTUs, ASVs improve the accuracy, comprehensiveness and repeatability of marker gene data analysis<sup>[8]</sup>. </p>
+
+    <p class="paragraph">By applying QIIME2's classify-sklearn algorithm<sup>[9,10]</sup>, a pre-trained Naive Bayes classifier is used for species annotation of each ASV. </p>
+
+    <p class="paragraph">According to the results of ASVs annotations and the feature tables of each sample, the species abundance tables at the level of kingdom, phyla, class, order, family, genus, and species are obtained. These abundance tables with annotation information are the core content of amplicon analysis. According to different experimental purposes, species of key concern can be selected from the species abundance table of each classification level, By combining species composition analysis, differential analysis among different samples (groups), and cluster analysis, in-depth investigations can be conducted. </p>
+
+        <br />
+
+        <br />
+
+<h3>3.2 Relative Abundance of Species</h3>
+        
+    <p class="paragraph">Based on the results of species annotations at different taxonomic levels, a histogram of species relative abundance is generated to view the species composition and proportions of each sample at different taxonomic levels. When the sample amount is large, the sample histogram will become crowded. It is recommended to display it in groups (the abundance is the average relative abundance of samples in the group) graphs. </p>
+
+<p class="center">
+<img src="src_en/pictures/taxa_bar_plot_en.png" width="600" height="450" />
+<p class="name_fig"><strong>Fig 3.2 Histogram of Relative Abundance of Species </strong></p>  
+</p>
+
+        <p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="src_en/hyperlinks/taxa-bar-plots_qzv/index.html" target="_blank"><b>To view full size picture please click here</b></a></p>
+        
+
+    <p class="paragraph">Results directory: </p>
+
+    <p class="paragraph">Representative sequences (ASVs) after denoise: result/02.ASVanalysis/ASV_table/rep_seqs_qza/ASV-dna-sequences.fasta</p>
+
+    <p class="paragraph">Frequency distribution of ASVs in each sample: result/02.ASVanalysis/ASV_table/asv_table_qza/ASV-feature-table.tsv</p>
+
+    <p class="paragraph">Annotation results of ASVs: result/02.ASVanalysis/Seq_taxonomy/seq_taxonomy_qza/taxonomy.tsv</p>
+
+    <p class="paragraph">Visualization of annotation of ASVs: result/02.ASVanalysis/Seq_taxonomy/seq_taxonomy_qzv</p>
+
+        <br />
+
+        <br />
+
+<h3>3.3 Clustering of Species Abundance</h3>
+        
+    <p class="paragraph">According to the species annotations and abundance information of all samples at the genus level, select the top 35 genera in abundance, and cluster them based on abundance information in each sample at both the species and sample levels. A heatmap is generated to visually identify the concentration of species in each sample. The results are shown below: </p>
+
+<p class="center">
+<img src="src_en/pictures/cluster_display.png" width="600" height="450" />
+<p class="name_fig"><strong>Fig 3.3 Heatmap of Clustering of Species Abundance</strong></p>  
+</p>
+
+        <p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="src_en/pictures/cluster_display.pdf" target="_blank"><b>To view full size picture please click here</b></a></p>
+        
+<p class="premark" >Note: x-axis represents the sample name and the y-axis represents the taxonomic annotation. The cluster tree on the left side is the species cluster tree; the corresponding value of the heatmap is the Z value of taxonomic relative abundance after standardization, which is, the Z value of a sample in a certain species. It is calculated as the differences between the relative abundance of the sample in that species and the average relative abundance of all samples in that species, divided by the standard deviation of all samples in that species. </p>
+
+    <p class="paragraph">Results directory: </p>
+
+    <p class="paragraph">Cluster map of species abundance at different taxonomic levels: 03.AlphaDiversity/taxa_summary/cluster*.(png,pdf)</p>
+
+    <p class="paragraph">Plotting data: 03.AlphaDiversity/taxa_summary/cluster*.txt</p>
+
+        <br />
+
+        <br />
+
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src_en/images/logo.png" /></a>
+<a name="Library Preparation and Sequencing">Novogene Co., Ltd</a>
+<hr />
+</p><br />
+
+<h2>4 Alpha Diversity</h2>
+
+
+    <p class="paragraph">Alpha Diversity is used to analyze the microbial community diversity in the sample (Within-community)<sup>[11]</sup>. Through the single-sample diversity analysis (Alpha Diversity), including the use of a series of statistical analysis indexes, species diversity curves and species accumulation box plots, the richness and diversity of the microbial community in the sample can be reflected. </p>
+
+<p class="name_table"><p class="center"><strong>Table 4.1 Statistics of Alpha Diversity Indices </strong></p>        
+<p class="center">
+<div style="overflow-x: auto">
+<table class="gy" id="mytable2" >
+        <thead><tr>
+<a id="btn02"></a>
+<a id="sjzl2"></a>
+<a  href="javascript:void(0)" id="btn12"> | First | </a>
+<a  href="javascript:void(0)" id="btn22"> Previous | </a>
+<a  href="javascript:void(0)" id="btn32"> Next | </a>
+<a  href="javascript:void(0)" id="btn42"> Last | </a>
+<a>Go to </a>
+<input id="changePage2" type="text" size="1" maxlength="4"/>
+<a> page </a>
+<a  href="javascript:void(0)" id="btn52"> Jump </a>
+                
+<th style="text-align :center">Sample_Name</th><th style="text-align :center">chao1</th><th style="text-align :center">dominance</th><th style="text-align :center">goods_coverage</th><th style="text-align :center">observed_otus</th><th style="text-align :center">pielou_e</th><th style="text-align :center">shannon</th><th style="text-align :center">simpson
+</th></tr></thead>
+<tbody><tr>
+<td style="text-align :center">Gi00C1</td><td style="text-align :center">174.640</td><td style="text-align :center">0.090</td><td style="text-align :center">0.998</td><td style="text-align :center">172</td><td style="text-align :center">0.682</td><td style="text-align :center">5.068</td><td style="text-align :center">0.910
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi00C2</td><td style="text-align :center">60.000</td><td style="text-align :center">0.213</td><td style="text-align :center">1.000</td><td style="text-align :center">60</td><td style="text-align :center">0.624</td><td style="text-align :center">3.687</td><td style="text-align :center">0.787
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi00C3</td><td style="text-align :center">159.111</td><td style="text-align :center">0.076</td><td style="text-align :center">0.998</td><td style="text-align :center">153</td><td style="text-align :center">0.697</td><td style="text-align :center">5.061</td><td style="text-align :center">0.924
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi00C4</td><td style="text-align :center">212.500</td><td style="text-align :center">0.032</td><td style="text-align :center">0.998</td><td style="text-align :center">211</td><td style="text-align :center">0.787</td><td style="text-align :center">6.078</td><td style="text-align :center">0.968
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi00C5</td><td style="text-align :center">167.400</td><td style="text-align :center">0.054</td><td style="text-align :center">0.998</td><td style="text-align :center">165</td><td style="text-align :center">0.750</td><td style="text-align :center">5.528</td><td style="text-align :center">0.946
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi0I1</td><td style="text-align :center">329.850</td><td style="text-align :center">0.018</td><td style="text-align :center">0.996</td><td style="text-align :center">327</td><td style="text-align :center">0.817</td><td style="text-align :center">6.823</td><td style="text-align :center">0.982
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi0I2</td><td style="text-align :center">206.667</td><td style="text-align :center">0.014</td><td style="text-align :center">0.999</td><td style="text-align :center">205</td><td style="text-align :center">0.891</td><td style="text-align :center">6.846</td><td style="text-align :center">0.986
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi0I3</td><td style="text-align :center">234.625</td><td style="text-align :center">0.016</td><td style="text-align :center">0.999</td><td style="text-align :center">234</td><td style="text-align :center">0.862</td><td style="text-align :center">6.783</td><td style="text-align :center">0.984
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi0I4</td><td style="text-align :center">206.143</td><td style="text-align :center">0.028</td><td style="text-align :center">0.998</td><td style="text-align :center">204</td><td style="text-align :center">0.809</td><td style="text-align :center">6.205</td><td style="text-align :center">0.972
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi0I5</td><td style="text-align :center">207.500</td><td style="text-align :center">0.012</td><td style="text-align :center">0.999</td><td style="text-align :center">207</td><td style="text-align :center">0.903</td><td style="text-align :center">6.949</td><td style="text-align :center">0.988
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi4I1</td><td style="text-align :center">201.529</td><td style="text-align :center">0.075</td><td style="text-align :center">0.995</td><td style="text-align :center">197</td><td style="text-align :center">0.638</td><td style="text-align :center">4.865</td><td style="text-align :center">0.925
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi4I2</td><td style="text-align :center">181.000</td><td style="text-align :center">0.066</td><td style="text-align :center">0.995</td><td style="text-align :center">169</td><td style="text-align :center">0.667</td><td style="text-align :center">4.934</td><td style="text-align :center">0.934
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi4I3</td><td style="text-align :center">198.333</td><td style="text-align :center">0.018</td><td style="text-align :center">0.998</td><td style="text-align :center">196</td><td style="text-align :center">0.860</td><td style="text-align :center">6.548</td><td style="text-align :center">0.982
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi4I4</td><td style="text-align :center">164.143</td><td style="text-align :center">0.018</td><td style="text-align :center">1.000</td><td style="text-align :center">164</td><td style="text-align :center">0.881</td><td style="text-align :center">6.482</td><td style="text-align :center">0.982
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi4I5</td><td style="text-align :center">114.045</td><td style="text-align :center">0.101</td><td style="text-align :center">0.998</td><td style="text-align :center">112</td><td style="text-align :center">0.602</td><td style="text-align :center">4.095</td><td style="text-align :center">0.899
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi7I1</td><td style="text-align :center">209.833</td><td style="text-align :center">0.031</td><td style="text-align :center">0.999</td><td style="text-align :center">209</td><td style="text-align :center">0.795</td><td style="text-align :center">6.130</td><td style="text-align :center">0.969
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi7I2</td><td style="text-align :center">197.120</td><td style="text-align :center">0.160</td><td style="text-align :center">0.994</td><td style="text-align :center">182</td><td style="text-align :center">0.529</td><td style="text-align :center">3.969</td><td style="text-align :center">0.840
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi7I3</td><td style="text-align :center">133.571</td><td style="text-align :center">0.069</td><td style="text-align :center">0.997</td><td style="text-align :center">128</td><td style="text-align :center">0.692</td><td style="text-align :center">4.841</td><td style="text-align :center">0.931
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi7I4</td><td style="text-align :center">77.000</td><td style="text-align :center">0.075</td><td style="text-align :center">0.999</td><td style="text-align :center">74</td><td style="text-align :center">0.701</td><td style="text-align :center">4.352</td><td style="text-align :center">0.925
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi7I5</td><td style="text-align :center">222.400</td><td style="text-align :center">0.014</td><td style="text-align :center">0.998</td><td style="text-align :center">221</td><td style="text-align :center">0.872</td><td style="text-align :center">6.795</td><td style="text-align :center">0.986
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi10I1</td><td style="text-align :center">295.938</td><td style="text-align :center">0.010</td><td style="text-align :center">0.999</td><td style="text-align :center">295</td><td style="text-align :center">0.906</td><td style="text-align :center">7.436</td><td style="text-align :center">0.990
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi10I2</td><td style="text-align :center">226.200</td><td style="text-align :center">0.016</td><td style="text-align :center">0.997</td><td style="text-align :center">221</td><td style="text-align :center">0.867</td><td style="text-align :center">6.750</td><td style="text-align :center">0.984
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi10I3</td><td style="text-align :center">118.261</td><td style="text-align :center">0.138</td><td style="text-align :center">0.999</td><td style="text-align :center">118</td><td style="text-align :center">0.602</td><td style="text-align :center">4.143</td><td style="text-align :center">0.862
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi10I4</td><td style="text-align :center">286.292</td><td style="text-align :center">0.010</td><td style="text-align :center">0.998</td><td style="text-align :center">284</td><td style="text-align :center">0.906</td><td style="text-align :center">7.380</td><td style="text-align :center">0.990
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi10I5</td><td style="text-align :center">270.000</td><td style="text-align :center">0.014</td><td style="text-align :center">0.998</td><td style="text-align :center">265</td><td style="text-align :center">0.887</td><td style="text-align :center">7.143</td><td style="text-align :center">0.986
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi10I6</td><td style="text-align :center">288.200</td><td style="text-align :center">0.016</td><td style="text-align :center">0.998</td><td style="text-align :center">286</td><td style="text-align :center">0.866</td><td style="text-align :center">7.064</td><td style="text-align :center">0.984
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi10I7</td><td style="text-align :center">198.105</td><td style="text-align :center">0.072</td><td style="text-align :center">0.997</td><td style="text-align :center">194</td><td style="text-align :center">0.707</td><td style="text-align :center">5.374</td><td style="text-align :center">0.928
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi10I10</td><td style="text-align :center">193.333</td><td style="text-align :center">0.065</td><td style="text-align :center">0.997</td><td style="text-align :center">189</td><td style="text-align :center">0.743</td><td style="text-align :center">5.616</td><td style="text-align :center">0.935
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi0C1</td><td style="text-align :center">101.143</td><td style="text-align :center">0.154</td><td style="text-align :center">0.999</td><td style="text-align :center">101</td><td style="text-align :center">0.566</td><td style="text-align :center">3.770</td><td style="text-align :center">0.846
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi0C2</td><td style="text-align :center">246.167</td><td style="text-align :center">0.014</td><td style="text-align :center">0.999</td><td style="text-align :center">245</td><td style="text-align :center">0.880</td><td style="text-align :center">6.984</td><td style="text-align :center">0.986
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi0C3</td><td style="text-align :center">305.000</td><td style="text-align :center">0.009</td><td style="text-align :center">0.999</td><td style="text-align :center">300</td><td style="text-align :center">0.921</td><td style="text-align :center">7.582</td><td style="text-align :center">0.991
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi0C4</td><td style="text-align :center">153.438</td><td style="text-align :center">0.037</td><td style="text-align :center">0.998</td><td style="text-align :center">150</td><td style="text-align :center">0.792</td><td style="text-align :center">5.726</td><td style="text-align :center">0.963
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi0C5</td><td style="text-align :center">213.143</td><td style="text-align :center">0.013</td><td style="text-align :center">0.999</td><td style="text-align :center">211</td><td style="text-align :center">0.905</td><td style="text-align :center">6.990</td><td style="text-align :center">0.987
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi4C1</td><td style="text-align :center">150.667</td><td style="text-align :center">0.039</td><td style="text-align :center">0.999</td><td style="text-align :center">149</td><td style="text-align :center">0.819</td><td style="text-align :center">5.912</td><td style="text-align :center">0.961
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi4C2</td><td style="text-align :center">229.769</td><td style="text-align :center">0.012</td><td style="text-align :center">0.998</td><td style="text-align :center">227</td><td style="text-align :center">0.906</td><td style="text-align :center">7.093</td><td style="text-align :center">0.988
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi4C3</td><td style="text-align :center">199.769</td><td style="text-align :center">0.291</td><td style="text-align :center">0.998</td><td style="text-align :center">197</td><td style="text-align :center">0.540</td><td style="text-align :center">4.114</td><td style="text-align :center">0.709
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi4C4</td><td style="text-align :center">214.857</td><td style="text-align :center">0.025</td><td style="text-align :center">0.999</td><td style="text-align :center">214</td><td style="text-align :center">0.868</td><td style="text-align :center">6.717</td><td style="text-align :center">0.975
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi4C5</td><td style="text-align :center">104.200</td><td style="text-align :center">0.362</td><td style="text-align :center">0.999</td><td style="text-align :center">100</td><td style="text-align :center">0.505</td><td style="text-align :center">3.355</td><td style="text-align :center">0.638
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi7C1</td><td style="text-align :center">220.429</td><td style="text-align :center">0.015</td><td style="text-align :center">0.999</td><td style="text-align :center">220</td><td style="text-align :center">0.882</td><td style="text-align :center">6.864</td><td style="text-align :center">0.985
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi7C2</td><td style="text-align :center">270.556</td><td style="text-align :center">0.016</td><td style="text-align :center">0.998</td><td style="text-align :center">269</td><td style="text-align :center">0.859</td><td style="text-align :center">6.933</td><td style="text-align :center">0.984
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi7C3</td><td style="text-align :center">310.217</td><td style="text-align :center">0.012</td><td style="text-align :center">0.998</td><td style="text-align :center">309</td><td style="text-align :center">0.897</td><td style="text-align :center">7.417</td><td style="text-align :center">0.988
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi7C4</td><td style="text-align :center">231.111</td><td style="text-align :center">0.010</td><td style="text-align :center">0.998</td><td style="text-align :center">228</td><td style="text-align :center">0.913</td><td style="text-align :center">7.151</td><td style="text-align :center">0.990
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi7C5</td><td style="text-align :center">348.957</td><td style="text-align :center">0.010</td><td style="text-align :center">0.997</td><td style="text-align :center">345</td><td style="text-align :center">0.897</td><td style="text-align :center">7.563</td><td style="text-align :center">0.990
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi10C1</td><td style="text-align :center">207.625</td><td style="text-align :center">0.094</td><td style="text-align :center">0.999</td><td style="text-align :center">205</td><td style="text-align :center">0.727</td><td style="text-align :center">5.585</td><td style="text-align :center">0.906
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi10C2</td><td style="text-align :center">160.909</td><td style="text-align :center">0.023</td><td style="text-align :center">0.999</td><td style="text-align :center">160</td><td style="text-align :center">0.850</td><td style="text-align :center">6.220</td><td style="text-align :center">0.977
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi10C3</td><td style="text-align :center">185.154</td><td style="text-align :center">0.014</td><td style="text-align :center">0.998</td><td style="text-align :center">183</td><td style="text-align :center">0.892</td><td style="text-align :center">6.708</td><td style="text-align :center">0.986
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi10C5</td><td style="text-align :center">306.786</td><td style="text-align :center">0.019</td><td style="text-align :center">0.996</td><td style="text-align :center">300</td><td style="text-align :center">0.858</td><td style="text-align :center">7.059</td><td style="text-align :center">0.981
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M00C1</td><td style="text-align :center">348.122</td><td style="text-align :center">0.134</td><td style="text-align :center">0.986</td><td style="text-align :center">303</td><td style="text-align :center">0.583</td><td style="text-align :center">4.806</td><td style="text-align :center">0.866
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M00C2</td><td style="text-align :center">329.200</td><td style="text-align :center">0.094</td><td style="text-align :center">0.990</td><td style="text-align :center">301</td><td style="text-align :center">0.659</td><td style="text-align :center">5.427</td><td style="text-align :center">0.906
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M00C3</td><td style="text-align :center">320.214</td><td style="text-align :center">0.097</td><td style="text-align :center">0.994</td><td style="text-align :center">314</td><td style="text-align :center">0.654</td><td style="text-align :center">5.428</td><td style="text-align :center">0.903
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M00C4</td><td style="text-align :center">418.646</td><td style="text-align :center">0.056</td><td style="text-align :center">0.988</td><td style="text-align :center">383</td><td style="text-align :center">0.741</td><td style="text-align :center">6.358</td><td style="text-align :center">0.944
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M00C5</td><td style="text-align :center">273.167</td><td style="text-align :center">0.093</td><td style="text-align :center">0.992</td><td style="text-align :center">232</td><td style="text-align :center">0.674</td><td style="text-align :center">5.296</td><td style="text-align :center">0.907
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M0I1</td><td style="text-align :center">152.349</td><td style="text-align :center">0.284</td><td style="text-align :center">0.992</td><td style="text-align :center">136</td><td style="text-align :center">0.345</td><td style="text-align :center">2.443</td><td style="text-align :center">0.716
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M0I2</td><td style="text-align :center">437.151</td><td style="text-align :center">0.012</td><td style="text-align :center">0.992</td><td style="text-align :center">427</td><td style="text-align :center">0.864</td><td style="text-align :center">7.553</td><td style="text-align :center">0.988
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M0I3</td><td style="text-align :center">317.101</td><td style="text-align :center">0.163</td><td style="text-align :center">0.990</td><td style="text-align :center">304</td><td style="text-align :center">0.509</td><td style="text-align :center">4.195</td><td style="text-align :center">0.837
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M0I4</td><td style="text-align :center">234.625</td><td style="text-align :center">0.200</td><td style="text-align :center">0.994</td><td style="text-align :center">223</td><td style="text-align :center">0.477</td><td style="text-align :center">3.724</td><td style="text-align :center">0.800
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M0I5</td><td style="text-align :center">221.231</td><td style="text-align :center">0.230</td><td style="text-align :center">0.991</td><td style="text-align :center">206</td><td style="text-align :center">0.413</td><td style="text-align :center">3.176</td><td style="text-align :center">0.770
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M4I1</td><td style="text-align :center">272.100</td><td style="text-align :center">0.015</td><td style="text-align :center">0.995</td><td style="text-align :center">249</td><td style="text-align :center">0.883</td><td style="text-align :center">7.029</td><td style="text-align :center">0.985
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M4I2</td><td style="text-align :center">270.244</td><td style="text-align :center">0.075</td><td style="text-align :center">0.990</td><td style="text-align :center">245</td><td style="text-align :center">0.682</td><td style="text-align :center">5.409</td><td style="text-align :center">0.925
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M4I3</td><td style="text-align :center">384.508</td><td style="text-align :center">0.031</td><td style="text-align :center">0.991</td><td style="text-align :center">369</td><td style="text-align :center">0.778</td><td style="text-align :center">6.637</td><td style="text-align :center">0.969
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M4I4</td><td style="text-align :center">221.118</td><td style="text-align :center">0.050</td><td style="text-align :center">0.994</td><td style="text-align :center">210</td><td style="text-align :center">0.712</td><td style="text-align :center">5.491</td><td style="text-align :center">0.950
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M4I5</td><td style="text-align :center">289.019</td><td style="text-align :center">0.080</td><td style="text-align :center">0.990</td><td style="text-align :center">269</td><td style="text-align :center">0.685</td><td style="text-align :center">5.526</td><td style="text-align :center">0.920
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M7I1</td><td style="text-align :center">285.738</td><td style="text-align :center">0.159</td><td style="text-align :center">0.992</td><td style="text-align :center">269</td><td style="text-align :center">0.623</td><td style="text-align :center">5.030</td><td style="text-align :center">0.841
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M7I2</td><td style="text-align :center">268.538</td><td style="text-align :center">0.050</td><td style="text-align :center">0.993</td><td style="text-align :center">259</td><td style="text-align :center">0.721</td><td style="text-align :center">5.780</td><td style="text-align :center">0.950
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M7I3</td><td style="text-align :center">273.250</td><td style="text-align :center">0.057</td><td style="text-align :center">0.993</td><td style="text-align :center">262</td><td style="text-align :center">0.704</td><td style="text-align :center">5.654</td><td style="text-align :center">0.943
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M7I4</td><td style="text-align :center">384.808</td><td style="text-align :center">0.019</td><td style="text-align :center">0.992</td><td style="text-align :center">372</td><td style="text-align :center">0.837</td><td style="text-align :center">7.148</td><td style="text-align :center">0.981
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M7I5</td><td style="text-align :center">265.900</td><td style="text-align :center">0.036</td><td style="text-align :center">0.994</td><td style="text-align :center">247</td><td style="text-align :center">0.792</td><td style="text-align :center">6.293</td><td style="text-align :center">0.964
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M10I1</td><td style="text-align :center">282.043</td><td style="text-align :center">0.034</td><td style="text-align :center">0.995</td><td style="text-align :center">272</td><td style="text-align :center">0.780</td><td style="text-align :center">6.312</td><td style="text-align :center">0.966
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M10I2</td><td style="text-align :center">327.118</td><td style="text-align :center">0.035</td><td style="text-align :center">0.989</td><td style="text-align :center">298</td><td style="text-align :center">0.749</td><td style="text-align :center">6.155</td><td style="text-align :center">0.965
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M10I3</td><td style="text-align :center">276.433</td><td style="text-align :center">0.039</td><td style="text-align :center">0.992</td><td style="text-align :center">253</td><td style="text-align :center">0.756</td><td style="text-align :center">6.032</td><td style="text-align :center">0.961
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M10I4</td><td style="text-align :center">332.118</td><td style="text-align :center">0.025</td><td style="text-align :center">0.989</td><td style="text-align :center">303</td><td style="text-align :center">0.774</td><td style="text-align :center">6.382</td><td style="text-align :center">0.975
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M10I5</td><td style="text-align :center">359.444</td><td style="text-align :center">0.048</td><td style="text-align :center">0.992</td><td style="text-align :center">345</td><td style="text-align :center">0.746</td><td style="text-align :center">6.292</td><td style="text-align :center">0.952
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M10I6</td><td style="text-align :center">323.630</td><td style="text-align :center">0.057</td><td style="text-align :center">0.990</td><td style="text-align :center">297</td><td style="text-align :center">0.705</td><td style="text-align :center">5.793</td><td style="text-align :center">0.943
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M10I7</td><td style="text-align :center">382.500</td><td style="text-align :center">0.034</td><td style="text-align :center">0.990</td><td style="text-align :center">358</td><td style="text-align :center">0.774</td><td style="text-align :center">6.563</td><td style="text-align :center">0.966
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M10I8</td><td style="text-align :center">328.500</td><td style="text-align :center">0.024</td><td style="text-align :center">0.991</td><td style="text-align :center">308</td><td style="text-align :center">0.796</td><td style="text-align :center">6.583</td><td style="text-align :center">0.976
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M0C1</td><td style="text-align :center">325.478</td><td style="text-align :center">0.213</td><td style="text-align :center">0.989</td><td style="text-align :center">307</td><td style="text-align :center">0.563</td><td style="text-align :center">4.655</td><td style="text-align :center">0.787
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M0C2</td><td style="text-align :center">354.515</td><td style="text-align :center">0.184</td><td style="text-align :center">0.986</td><td style="text-align :center">322</td><td style="text-align :center">0.570</td><td style="text-align :center">4.749</td><td style="text-align :center">0.816
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M0C3</td><td style="text-align :center">400.562</td><td style="text-align :center">0.035</td><td style="text-align :center">0.991</td><td style="text-align :center">371</td><td style="text-align :center">0.806</td><td style="text-align :center">6.882</td><td style="text-align :center">0.965
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M0C4</td><td style="text-align :center">285.778</td><td style="text-align :center">0.296</td><td style="text-align :center">0.990</td><td style="text-align :center">264</td><td style="text-align :center">0.497</td><td style="text-align :center">3.995</td><td style="text-align :center">0.704
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M0C5</td><td style="text-align :center">280.103</td><td style="text-align :center">0.042</td><td style="text-align :center">0.993</td><td style="text-align :center">263</td><td style="text-align :center">0.757</td><td style="text-align :center">6.089</td><td style="text-align :center">0.958
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M4C1</td><td style="text-align :center">274.120</td><td style="text-align :center">0.053</td><td style="text-align :center">0.993</td><td style="text-align :center">253</td><td style="text-align :center">0.738</td><td style="text-align :center">5.891</td><td style="text-align :center">0.947
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M4C2</td><td style="text-align :center">244.700</td><td style="text-align :center">0.076</td><td style="text-align :center">0.994</td><td style="text-align :center">233</td><td style="text-align :center">0.689</td><td style="text-align :center">5.421</td><td style="text-align :center">0.924
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M4C3</td><td style="text-align :center">441.568</td><td style="text-align :center">0.020</td><td style="text-align :center">0.990</td><td style="text-align :center">417</td><td style="text-align :center">0.856</td><td style="text-align :center">7.454</td><td style="text-align :center">0.980
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M4C4</td><td style="text-align :center">262.158</td><td style="text-align :center">0.038</td><td style="text-align :center">0.997</td><td style="text-align :center">259</td><td style="text-align :center">0.769</td><td style="text-align :center">6.168</td><td style="text-align :center">0.962
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M4C5</td><td style="text-align :center">203.000</td><td style="text-align :center">0.051</td><td style="text-align :center">0.998</td><td style="text-align :center">198</td><td style="text-align :center">0.759</td><td style="text-align :center">5.788</td><td style="text-align :center">0.949
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M7C1</td><td style="text-align :center">261.000</td><td style="text-align :center">0.054</td><td style="text-align :center">0.994</td><td style="text-align :center">252</td><td style="text-align :center">0.753</td><td style="text-align :center">6.008</td><td style="text-align :center">0.946
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M7C2</td><td style="text-align :center">292.944</td><td style="text-align :center">0.024</td><td style="text-align :center">0.994</td><td style="text-align :center">288</td><td style="text-align :center">0.781</td><td style="text-align :center">6.380</td><td style="text-align :center">0.976
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M7C3</td><td style="text-align :center">267.455</td><td style="text-align :center">0.032</td><td style="text-align :center">0.996</td><td style="text-align :center">264</td><td style="text-align :center">0.778</td><td style="text-align :center">6.261</td><td style="text-align :center">0.968
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M7C4</td><td style="text-align :center">278.118</td><td style="text-align :center">0.024</td><td style="text-align :center">0.994</td><td style="text-align :center">269</td><td style="text-align :center">0.792</td><td style="text-align :center">6.391</td><td style="text-align :center">0.976
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M7C5</td><td style="text-align :center">444.667</td><td style="text-align :center">0.013</td><td style="text-align :center">0.995</td><td style="text-align :center">441</td><td style="text-align :center">0.872</td><td style="text-align :center">7.664</td><td style="text-align :center">0.987
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M10C1</td><td style="text-align :center">376.000</td><td style="text-align :center">0.020</td><td style="text-align :center">0.992</td><td style="text-align :center">363</td><td style="text-align :center">0.819</td><td style="text-align :center">6.966</td><td style="text-align :center">0.980
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M10C2</td><td style="text-align :center">313.447</td><td style="text-align :center">0.019</td><td style="text-align :center">0.994</td><td style="text-align :center">302</td><td style="text-align :center">0.834</td><td style="text-align :center">6.873</td><td style="text-align :center">0.981
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M10C3</td><td style="text-align :center">313.182</td><td style="text-align :center">0.015</td><td style="text-align :center">0.994</td><td style="text-align :center">300</td><td style="text-align :center">0.857</td><td style="text-align :center">7.052</td><td style="text-align :center">0.985
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M10C5</td><td style="text-align :center">289.194</td><td style="text-align :center">0.019</td><td style="text-align :center">0.994</td><td style="text-align :center">277</td><td style="text-align :center">0.829</td><td style="text-align :center">6.725</td><td style="text-align :center">0.981
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi10I8</td><td style="text-align :center">150.444</td><td style="text-align :center">0.097</td><td style="text-align :center">0.998</td><td style="text-align :center">148</td><td style="text-align :center">0.640</td><td style="text-align :center">4.617</td><td style="text-align :center">0.903
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi10I9</td><td style="text-align :center">152.000</td><td style="text-align :center">0.094</td><td style="text-align :center">0.998</td><td style="text-align :center">150</td><td style="text-align :center">0.659</td><td style="text-align :center">4.765</td><td style="text-align :center">0.906
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Gi10C4</td><td style="text-align :center">235.929</td><td style="text-align :center">0.023</td><td style="text-align :center">0.998</td><td style="text-align :center">232</td><td style="text-align :center">0.825</td><td style="text-align :center">6.486</td><td style="text-align :center">0.977
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M10I9</td><td style="text-align :center">313.400</td><td style="text-align :center">0.066</td><td style="text-align :center">0.988</td><td style="text-align :center">278</td><td style="text-align :center">0.677</td><td style="text-align :center">5.500</td><td style="text-align :center">0.934
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M10I10</td><td style="text-align :center">212.667</td><td style="text-align :center">0.051</td><td style="text-align :center">0.995</td><td style="text-align :center">205</td><td style="text-align :center">0.713</td><td style="text-align :center">5.479</td><td style="text-align :center">0.949
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">M10C4</td><td style="text-align :center">305.000</td><td style="text-align :center">0.020</td><td style="text-align :center">0.996</td><td style="text-align :center">298</td><td style="text-align :center">0.846</td><td style="text-align :center">6.956</td><td style="text-align :center">0.980
+</td></tr></tbody>
+
+</table>
+</div>
+</p>
+<p class="premark" >Note: </p>
+<p class="premark" >chao1: Estimate the total number of species contained in the community sample. The more low-abundance species in the community, the greater the chao1 index;</p>
+<p class="premark" >dominance: the probability when randomly select two sequences from the same sample, the better the community species uniformity, the larger the index;</p>
+<p class="premark" >goods_coverage: coverage, the higher the sequencing coverage, the larger the index;</p>
+<p class="premark" >observed_otus: the number of species observed directly, the larger the index, the more species are observed;</p>
+<p class="premark" >pielou_e: the evenness index, the more even the species, the larger the pielou_e;</p>
+<p class="premark" >Shannon: the total number of categories in the sample and their proportions. The higher the community diversity, the more uniform species distribution, and the greater the shannon index;</p>
+<p class="premark" >simpson: characterizes the diversity and uniformity of species distribution in the community. The better the species uniformity, the greater the simpson index. </p>
+
+    <p class="paragraph">Results directory: </p>
+
+    <p class="paragraph">Analysis results: result/03.AlphaDiversity/Alpha_diversity_indices/*qza</p>
+
+    <p class="paragraph">Summary table of alpha diversity indices: result/03.AlphaDiversity/Alpha_diversity_indices/alpha_index.xls</p>
+
+        <br />
+
+        <br />
+
+<h3>4.1 Biodiversity Curves</h3>
+        
+    <p class="paragraph">Rarefaction curve is a common curve that describes the diversity of samples in a group. It randomly extracts a certain amount of sequencing data from the samples and counts their alpha diversity index values to determine the amount of sequencing data extracted and the corresponding index value to build the curve (cutoff=4834). </p>
+
+<p class="center">
+<img src="src_en/pictures/alpha_rarefaction_en.png" width="600" height="450" />
+<p class="name_fig"><strong>Fig 4.1.1 Rarefaction Curves </strong></p>  
+</p>
+
+        <p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="src_en/hyperlinks/alpha_rarefaction_qzv/index.html" target="_blank"><b>To view full size picture please click here</b></a></p>
+        
+<p class="premark" >Note: The horizontal axis represents the amount of sequencing data, and the vertical axis represents the corresponding alpha diversity index. When the curve tends to be flat, it indicates that the amount of sequencing data is gradually reasonable, and more data will not have a significant impact on the alpha diversity index. </p>
+
+    <p class="paragraph">Species accumulation boxplot is an effective tool for investigating the species composition of the sample and predicting the species abundance in the sample. It is used in biodiversity and community surveys to assess whether the sample size is sufficient and estimating species richness. </p>
+
+<p class="center">
+<img src="src_en/pictures/specaccum_test.png" width="600" height="450" />
+<p class="name_fig"><strong>Fig 4.1.2 Species Accumulation Boxplot</strong></p>  
+</p>
+
+        <p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="src_en/pictures/specaccum_test.pdf" target="_blank"><b>To view full size picture please click here</b></a></p>
+        
+<p class="premark" >Note: The horizontal axis is the sample size, and the vertical axis is the number of ASVs after sampling. The overall result reflects the rate of emergence of new ASVs under continuous sampling. Within a certain range, as the sample size increases, if the curve of the boxplot shows a sharp rise, it means that a large number of species have been discovered in the community; when the curve of the box diagram tends to be flat, it means that the species in the environment do not increase significantly as the sample size increases. The species accumulation boxplot can be used  to assess whether the sample size is sufficient. A sharp rise in the curve of the boxplot indicates that the sample size is insufficient, and the sample size needs to be increased; otherwise, it indicates that the sampling is sufficient and data analysis can be carried out. </p>
+
+    <p class="paragraph">Results directory: </p>
+
+    <p class="paragraph">Results directory of rarefaction curves: result/03.AlphaDiversity/Alpha_rarefaction/*qzv</p>
+
+    <p class="paragraph">Analysis results of species accumulation boxplot: result/03.AlphaDiversity/Species_accum_box/*.(png,pdf)</p>
+
+        <br />
+
+        <br />
+
+<h3>4.2 Differential Analysis of Alpha Diversity Indices</h3>
+        
+    <p class="paragraph">Boxplots are generated to analyze the differences in Alpha Diversity indices between groups. Boxplots can reflect the maximum, minimum, median, and abnormal value of the index from each group. At the same time, Kruskal-Wallis was used to analyze whether the differences in species diversity between groups were significant. The results are as follows: </p>
+
+<p class="center">
+<img src="src_en/pictures/alpha_group_significance_en.png" width="600" height="450" />
+<p class="name_fig"><strong>Fig 4.2 Boxplot of Differential Analysis of Alpha Diversity Indices </strong></p>  
+</p>
+<p class="premark" >Note: The horizontal axis of the boxplot represents the group, where n represents the number of samples in the group, and the vertical axis represents the corresponding alpha diversity index value. The table is the Kruskal-Wallis test results for all groups or between two groups. </p>
+
+        <p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="src_en/hyperlinks/dominance_qzv/index.html" target="_blank"><b>To view detailed results of Dominance please click here </b></a></p>
+        
+
+        <p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="src_en/hyperlinks/shannon_qzv/index.html" target="_blank"><b>To view detailed results of Shannon please click here </b></a></p>
+        
+
+        <p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="src_en/hyperlinks/chao1_qzv/index.html" target="_blank"><b>To view detailed results of Chao1 please click here </b></a></p>
+        
+
+        <p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="src_en/hyperlinks/simpson_qzv/index.html" target="_blank"><b>To view detailed results of Simpson please click here </b></a></p>
+        
+
+        <p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="src_en/hyperlinks/pielou_e_qzv/index.html" target="_blank"><b>To view detailed results of Pielou_e please click here </b></a></p>
+        
+
+        <p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="src_en/hyperlinks/observed_otus_qzv/index.html" target="_blank"><b>To view detailed results of Observed_otus please click here </b></a></p>
+        
+
+    <p class="paragraph">Results directory: </p>
+
+    <p class="paragraph">Analysis results: result/03.AlphaDiversity/Alpha_group_significance/*qzv</p>
+
+        <br />
+
+        <br />
+
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src_en/images/logo.png" /></a>
+<a name="Library Preparation and Sequencing">Novogene Co., Ltd</a>
+<hr />
+</p><br />
+
+<h2>5 Beta Diversity</h2>
+
+
+    <p class="paragraph">Beta diversity represents the explicit comparison of microbial communities based on their composition. Firstly, according to the species annotation results and the abundance information of ASVs of all samples, the species profiling table is obtained by merging the ASVs information of the same classification. The UniFrac distance (Unweighted Unifrac) is calculated by phylogenetic relationship of ASVs<sup>[12,13]</sup>. UniFrac distance is a method to calculate the distance between samples by using the evolutionary information of microbial sequences in each sample. For more than two samples, a distance matrix is obtained. Then, the Weighted UniFrac distance is obtained by modifying Unweighted Unifrac distance with abundance information of ASVs<sup>[14]</sup>. Then we analyze differences in samples (groups) with results on the differences of beta diversity index among samples (groups), Principal Component Analysis (PCA), Principal Coordinate Analysis (PCoA), and Non-Metric Multi-Dimensional Scaling (NMDS). </p>
+
+        <br />
+
+        <br />
+
+<h3>5.1 Beta Diversity Heatmap</h3>
+        
+    <p class="paragraph">In beta diversity study, Weighted UniFrac distance, Unweighted UniFrac distance, Jaccard distance and Bray distance were selected to measure the differences between samples. The smaller the value is, the smaller the differences in species diversity between the two samples are. The Heatmap by Unweighted UniFrac is as follow: </p>
+
+<p class="center">
+<img src="src_en/pictures/distance-matrix.tsv.png" width="600" height="450" />
+<p class="name_fig"><strong>Fig 5.1 Beta Diversity Indices Heatmap of Unweighted Unifrac Distance Matrix </strong></p>  
+</p>
+
+        <p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="src_en/pictures/distance-matrix.tsv.pdf" target="_blank"><b>To view full size picture please click here</b></a></p>
+        
+<p class="premark" >Note: The size and color of the circle in the square represent the differences coefficient between the two samples. The larger the circle is, the darker the corresponding color is, indicating that the differences between the two samples are greater; on the contrary, the smaller the circle is, the lighter the corresponding color is, indicating that the differences between the two samples are smaller.</p>
+
+    <p class="paragraph">Results directory: </p>
+
+    <p class="paragraph">Analysis results: result/04.BetaDiversity/Core_metrics/*(qza,qzv)</p>
+
+        <br />
+
+        <br />
+
+<h3>5.2 Principal Coordinate Analysis (PCoA)</h3>
+        
+    <p class="paragraph">Principal coordinates analysis (PCoA)<sup>[15]</sup> is an ordination technique, which picks up the main elements and structures from reduced multi-dimensional data series of eigenvalues and eigenvectors. We use Weighted UniFrac distance and Unweighted UniFrac distance to analyze PCoA, and combine the principal coordinates with the largest contribution rate for mapping. The closer the sample distance is, the more similar the species composition structure is. Therefore, the samples with high similarity of community structure tend to gather together, while the samples with large differences of community structure tend to be far away. </p>
+
+    <p class="paragraph">For PCoA, two-dimensional and three-dimensional display forms are adopted. The first and second principal coordinates are selected for two-dimensional PCoA map, while three principal coordinates are selected for three-dimensional PCoA map for interactive web page display, and the coordinates can be flexibly adjusted. The results are as follows: </p>
+
+<p class="center">
+<img src="src_en/pictures/3D_pcoa_display_en.png" width="600" height="450" />
+<p class="name_fig"><strong>Fig 5.2.1 Three-dimensional PCoA Diagram </strong></p>  
+</p>
+
+        <p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="src_en/hyperlinks/weighted_unifrac_emperor_qzv/index.html" target="_blank"><b>To view full size picture please click here</b></a></p>
+        
+
+<p class="center">
+<img src="src_en/pictures/PCoA.png" width="600" height="450" />
+<p class="name_fig"><strong>Fig 5.2.2 Two-dimensional PCoA Diagram </strong></p>  
+</p>
+
+        <p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="src_en/pictures/PCoA.pdf" target="_blank"><b>To view full size picture please click here</b></a></p>
+        
+<p class="premark" >Note: the horizon represents one principal component, the ordinate represents another principal component, and the percentage represents the contribution value of the principal component to the sample differences; each point in the graph represents a sample, and the samples of the same group are represented by the same color. </p>
+
+    <p class="paragraph">Results directory: </p>
+
+    <p class="paragraph">Analysis results: result/04.BetaDiversity/PCoA/(weighted, unweighted)_unifrac</p>
+
+        <br />
+
+        <br />
+
+<h3>5.3 Principal Component Analysis (PCA)</h3>
+        
+    <p class="paragraph">Principal component analysis (PCA)<sup>[16]</sup>, based on the relative abundance distribution of ASVs, is a statistical procedure to extract principle components and structures in data by using orthogonal transformation and reducing dimensionalities of data<sup>[17]</sup>. It extracts the first two axises reflecting the variation of samples to the most extent, which can reflect high-dimensional data’s variation in two-dimensional graph, which reveals the simple principle embedding in complex data. The more similar the composition of community among the samples are, the closer the distance of their corresponding data points on the PCA graph are. The result of PCA analysis based on ASVs is shown in figure: </p>
+
+<p class="center">
+<img src="src_en/pictures/PCA12_2.png" width="600" height="450" />
+<p class="name_fig"><strong>Fig 5.3 PCA</strong></p>  
+</p>
+
+        <p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="src_en/pictures/PCA12_2.pdf" target="_blank"><b>To view full size picture please click here</b></a></p>
+        
+<p class="premark" >Notes: The X-axis represents the first principal component, and the percentage represents the contribution value of the first principal component to the sample differences; the Y-axis represents the second principal component, and the percentage represents the contribution value of the second principal component to the sample differences; each point in the graph represents a sample, and the samples in the same group are represented by the same color. </p>
+
+    <p class="paragraph">Results directory: </p>
+
+    <p class="paragraph">Analysis results: result/04.BetaDiversity/PCA/*(pdf,png)</p>
+
+        <br />
+
+        <br />
+
+<h3>5.4 Non-Metric Multi-Dimensional Scaling (NMDS)</h3>
+        
+    <p class="paragraph">Non-metric multi-dimensional scaling analysis (NMDS) is a ranking method applicable to ecological researches<sup>[18]</sup>. NMDS is the non-linear model based on Weighted UniFrac and Unweighted Unifrac, according to the species information contained in the samples, and is reflected on the two-dimensional plane in the form of points. The design overcomes the shortcomings of linear models (including PCA and PCoA) and better reflects the nonlinear structure of ecological data<sup>[19]</sup>. By using NMDS analysis, the species information contained in the sample is reflected in the multidimensional space in the form of points, while the degree of differences between different species is reflected by the distance between points, and also reflects the inter group and intra group differences of the samples. </p>
+
+<p class="center">
+<img src="src_en/pictures/NMDS.png" width="600" height="450" />
+<p class="name_fig"><strong>Fig 5.4 NMDS</strong></p>  
+</p>
+
+        <p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="src_en/pictures/NMDS.pdf" target="_blank"><b>To view full size picture please click here</b></a></p>
+        
+<p class="premark" >Notes: each data point in the graph stands for a sample. The distance between data points reflects the extent of variation. Samples belongs to the same group are in the same color. When the value of Stress factor is less than 0.2, it’s considered that NMDS is reliable to some extent. </p>
+
+    <p class="paragraph">Results directory: </p>
+
+    <p class="paragraph">Analysis results: result/04.BetaDiversity/NMDS/*/*.(png,pdf)</p>
+
+        <br />
+
+        <br />
+
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src_en/images/logo.png" /></a>
+<a name="Library Preparation and Sequencing">Novogene Co., Ltd</a>
+<hr />
+</p><br />
+
+<h2>6 Significance Test of Community Structure Difference of Groups</h2>
+
+
+    <p class="paragraph">The Adonis and Anosim methods are used for analyzing the differences of community diversity among groups based on the Weighted Unifrac and Unweighted Unifrac distances. </p>
+
+        <br />
+
+        <br />
+
+<h3>6.1 Adonis</h3>
+        
+    <p class="paragraph">ADONIS<sup>[20]</sup> is also called permutational MANOVA or nonparametric MANOVA, which is a method of nonparametric multivariate variance test according to distance matrix. This method can analyze the explanation of grouping factor on differences of samples and estimate the significance of grouping by permutation test<sup>[21,22,23,24]</sup>. The results could be obtained by adonis function in QIIME2 software. The results are as follows: </p>
+
+        <p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="src_en/hyperlinks/weighted_unifrac_adonis_qzv/index.html" target="_blank"><b>To view detailed results of weighted_unifrac please click here</b></a></p>
+        
+
+        <p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="src_en/hyperlinks/unweighted_unifrac_adonis_qzv/index.html" target="_blank"><b>To view detailed results of unweighted_unifrac please click here</b></a></p>
+        
+<p class="premark" >Notes: Df represents degree of freedom; SumsOfSqs represents sums of squares of deviations; MeanSqs represents SumsOfSqs/Df; F.Model represents F-test value; R2 represents the explanation of grouping factor on differences of samples, calculated from the ratio of grouping variance and total variance; Pr means P-value, whose value less than 0.05 suggests statistical significance. Values in parentheses stands for Residual Error. </p>
+
+    <p class="paragraph">Results directory: </p>
+
+    <p class="paragraph">Analysis results: 04.BetaDiversity/Beta_group_significance/adonis/*qzv</p>
+
+        <br />
+
+        <br />
+
+<h3>6.2 Anosim</h3>
+        
+    <p class="paragraph">Anosim<sup>[25]</sup> analysis, based on the Unifrac distance, is a nonparametric test to evaluate whether variation among groups is significantly larger than variation within groups, which helps to evaluate the reasonability of the division of groups. The results could be obtained by anosim function in QIIME2 software. The results are as follows: </p>
+
+        <p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="src_en/hyperlinks/weighted_unifrac_significance_qzv/index.html" target="_blank"><b>To view detailed results of weighted_unifrac please click here</b></a></p>
+        
+
+        <p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="src_en/hyperlinks/unweighted_unifrac_significance_qzv/index.html" target="_blank"><b>To view detailed results of unweighted_unifrac please click here</b></a></p>
+        
+<p class="premark" >Notes: The box chart of beta diversity analysis can directly display the median, dispersion, maximum, minimum and abnormal values showing sample similarity within a group. </p>
+
+    <p class="paragraph">Results directory: </p>
+
+    <p class="paragraph">Analysis results: result/04.BetaDiversity/Beta_group_significance/anosim/*qzv</p>
+
+        <br />
+
+        <br />
+
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src_en/images/logo.png" /></a>
+<a name="Library Preparation and Sequencing">Novogene Co., Ltd</a>
+<hr />
+</p><br />
+
+<h2>7 Inter-group Variation Analysis of Species</h2>
+
+
+    <p class="paragraph">Statistical analysis of different communities can be performed especially for those projects involving multiple groups. Species with significant differences in abundance among groups were captured and their distribution among groups was obtained. </p>
+
+        <br />
+
+        <br />
+
+<h3>7.1 T-test</h3>
+        
+    <p class="paragraph">T-test is performed to determine species with significant variation between groups (p value < 0.05) at various taxon ranks including phylum, class, order, family, genus, and species. Result is displayed in phylum or genus by default: </p>
+
+<p class="center">
+<img src="src_en/pictures/t_test.png" width="600" height="450" />
+<p class="name_fig"><strong>Fig 7.1.1 T-test Analysis of Species Differences between Groups </strong></p>  
+</p>
+
+        <p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="src_en/pictures/t_test.pdf" target="_blank"><b>To view full size picture please click here</b></a></p>
+        
+<p class="premark" >Note: the left figure shows the species abundance differences between groups, and each bar in the figure represents the average abuundance of the species in different groups; the right figure shows the confidence of inter-group differences. The leftmost point of each circle in the figure represents the lower limit of 95% confidence interval, and the rightmost point of the circle represents the upper limit of 95% confidence interval. The center of the circle represents the differences of the mean value, and the color of the circle represents the P value of differences significance test between groups of the corresponding species. </p>
+
+    <p class="paragraph">The following is the volcano map. By default, the results of the same classification level as above figure are shown: </p>
+
+<p class="center">
+<img src="src_en/pictures/t_test_volcano.png" width="600" height="450" />
+<p class="name_fig"><strong>Fig 7.1.2 Volcano Map </strong></p>  
+</p>
+
+        <p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="src_en/pictures/t_test_volcano.pdf" target="_blank"><b>To view full size picture please click here</b></a></p>
+        
+<p class="premark" >Note: A volcano plot is a presentation of a scatter plot, which usually consists of several parts, including significantly up-regulated difference species and significantly down-regulated difference species. Generally, the horizontal axis is the fold difference of the difference species in the comparison group, while the vertical axis is the p-value of the significant between-group difference test for the difference species. Each point in the graph represents a differential species, where Up represents the higher abundance of that differential species in the first comparison group than in the second comparison group, while Down is the opposite. </p>
+
+    <p class="paragraph">Results directory: </p>
+
+    <p class="paragraph">Analysis results: result/04.BetaDiversity/T_test/*/*.(xls,png,pdf)</p>
+
+    <p class="paragraph">Species with significant differences: result/04.BetaDiversity/T_test/*/boxplot</p>
+
+        <br />
+
+        <br />
+
+<h3>7.2 MetaStat</h3>
+        
+    <p class="paragraph">Taxa with significant inter-group variation are detected via metastats, a strict statistical method based on their abundance. The significance of observed abundance’s differences among groups is evaluated via multiple hypothesis-test for sparsely-sampled features and false discovery rate (FDR). Result is displayed in phylum or genus by default: </p>
+
+<p class="center">
+<img src="src_en/pictures/metastat.png" width="600" height="450" />
+<p class="name_fig"><strong>Fig 7.2.1 MetaStat Analysis of Species Differences between Groups </strong></p>  
+</p>
+
+        <p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="src_en/pictures/metastat.pdf" target="_blank"><b>To view full size picture please click here</b></a></p>
+        
+<p class="premark" >Note: The horizontal axis represents the group, the vertical also represents the absolute abundance of species with significant differences in the samples, each point represents a sample, and the differently colored box charts represent different groups.  </p>
+
+<p class="center">
+<img src="src_en/pictures/metastat_volcano.png" width="600" height="450" />
+<p class="name_fig"><strong>Fig 7.2.2 Volcano Map </strong></p>  
+</p>
+
+        <p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="src_en/pictures/metastat_volcano.pdf" target="_blank"><b>To view full size picture please click here</b></a></p>
+        
+<p class="premark" >Note: volcano map is a form of scatter diagram, which is usually composed of several parts: significantly up regulating species and significantly down regulating species. Generally, the X-axis is the multiple differences of the species with differences between groups, while the Y-axis is the p value of significance test. Each point in the figure represents a species with differences, where 'Up' represents that the abundance of the species with differences in the first comparison group is higher than that in the second, while 'Down' represents the opposite. </p>
+
+    <p class="paragraph">Results directory: </p>
+
+    <p class="paragraph">Analysis results: result/04.BetaDiversity/MetaStat/*/*.(xls,png,pdf)</p>
+
+    <p class="paragraph">Species with significant differences: result/04.BetaDiversity/MetaStat/*/boxplot</p>
+
+        <br />
+
+        <br />
+
+<h3>7.3 Linear Discriminant Analysis (LDA)</h3>
+        
+    <p class="paragraph">Linear Discriminant Analysis (LDA) Effect Size)<sup>[26]</sup> is a software designed to discover high-dimensional biomarkers and reveal metagenomic characteristics (including genes, metabolites or taxa), so it can be used to distinguish two or more biological classes. It emphasizes statistical significance, biological consistency, and detects statistical significance biomarkers among groups, and allows researchers to identify characteristics of abundance and related classes. The results consist of a histogram of the LDA scores and a cladogram among groups, as follows: </p>
+
+<p class="center">
+<img src="src_en/pictures/lefse.png" width="600" height="450" />
+<p class="name_fig"><strong>Fig 7.3.1 Histogram of LDA Scores </strong></p>  
+</p>
+
+        <p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="src_en/pictures/lefse.pdf" target="_blank"><b>To view full size picture please click here</b></a></p>
+        
+<p class="premark" >Note: The histogram of the LDA scores represents species(biomarker) whose abundance shows significant differences among groups. The selecting criteria is that LDA scores are larger than the set threshold (4 set by default). </p>
+
+<p class="center">
+<img src="src_en/pictures/lefse_tree.png" width="600" height="450" />
+<p class="name_fig"><strong>Fig 7.3.2 Cladogram </strong></p>  
+</p>
+
+        <p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="src_en/pictures/lefse_tree.pdf" target="_blank"><b>To view full size picture please click here</b></a></p>
+        
+<p class="premark" >Note: In Cladogram, circles radiating from inner side to outer side represents taxonomic rank from phylum to genus (species). Each circle stands for a distinct taxon at corresponding taxonomic rank. The diameter of each circle represents proportionally the relative abundance of each taxon. Yellow stands for taxons with non-significant differences.</p>
+<p class="premark" >Taxons (biomarkers) with significant differences are colored according to corresponding group’s color. Red nodes mean these microbiota contributes a lot in the group covered by red color, so do the green nodes. Letters above the circles and corresponding species are annotated on the right side.</p>
+<p class="premark" >If a group in the figure is missing, it indicates that there is no species with significant difference in this group.</p>
+<p class="premark" >The names of species represented by English letters in the figure are shown in the legend on the right.</p>
+
+    <p class="paragraph">Results directory: </p>
+
+    <p class="paragraph">Analysis results: result/04.BetaDiversity/LEfSe/*/*.(res,png,pdf)</p>
+
+    <p class="paragraph">Species with significant differences: result/04.BetaDiversity/LEfSe/*/biomarkers_raw_images</p>
+
+        <br />
+
+        <br />
+
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src_en/images/logo.png" /></a>
+<a name="Library Preparation and Sequencing">Novogene Co., Ltd</a>
+<hr />
+</p><br />
+
+<h2>8 Function Prediction</h2>
+
+
+    <p class="paragraph">PICRUSt2 is a bioinformatics software package for metagenomic function prediction based on marker gene (such as 16S rRNA). For detailed prediction process, please refer to the description on the webpage (see details: <a href="https://github.com/picrust/picrust2/wiki">https://github.com/picrust/picrust2/wiki</a> ). At present, function prediction can be carried out according to 16S sequencing data based on KEGG, COG, PFAM, TIGRFAM, EC, KO databases.  </p>
+
+        <br />
+
+        <br />
+
+<h3>8.1 Clustering of Function Abundance</h3>
+        
+    <p class="paragraph">According to the function annotation and abundance information of samples for different databases, the top 35 abundance of functions and their abundance information in each sample are selected to draw the heatmap, and clustered at different functional levels. Here, only the prediction results of KO database are shown: </p>
+
+<p class="center">
+<img src="src_en/pictures/KO.top35.heatmap.png" width="600" height="450" />
+<p class="name_fig"><strong>Fig 8.1 Heatmap of PICRUSt2 Function Annotation</strong></p>  
+</p>
+
+        <p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="src_en/pictures/KO.top35.heatmap.pdf" target="_blank"><b>To view full size picture please click here</b></a></p>
+        
+<p class="premark" >Note: X-axis represents the sample name and the Y-axis represents the function annotation. The cluster tree on the left side of the figure is the function cluster tree; the corresponding value of the heatmap is the Z value of function relative abundance after standardization, that is, the Z value of a sample in a certain function is the differences between the relative abundance of the sample in the function and the average relative abundance of all samples in the function divided by the standard deviation of all samples in the function. </p>
+
+    <p class="paragraph">Results directory: </p>
+
+    <p class="paragraph">Analysis results: result/05.FunctionPrediction/PICRUSt2/picrust2_out_pipeline/*/Cluster_heatmap</p>
+
+    <p class="paragraph">Results directory: </p>
+
+    <p class="paragraph">Cluster map of function abundance for different databases: 03.AlphaDiversity/taxa_summary/cluster*.(png,pdf)</p>
+
+    <p class="paragraph">Plotting data: 03.AlphaDiversity/taxa_summary/cluster*.txt</p>
+
+        <br />
+
+        <br />
+
+<h3>8.2 PCA Analysis of Function Annotation</h3>
+        
+    <p class="paragraph">Principal component analysis (PCA) dimensionality reduction analysis was conducted based on the abundance statistical results of functional annotation for different databases. The more similar the composition of function among the samples are, the closer the distance of their corresponding data points on the PCA graph are. Here, only the prediction results of KO database are shown: </p>
+
+<p class="center">
+<img src="src_en/pictures/picrust_PCA12_2.png" width="600" height="450" />
+<p class="name_fig"><strong>Fig 8.2 PCA Result of PICRUSt2 Function Annotation </strong></p>  
+</p>
+
+        <p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="src_en/pictures/picrust_PCA12_2.pdf" target="_blank"><b>To view full size picture please click here</b></a></p>
+        
+<p class="premark" >Note: The X-axis represents the first principal component, and the percentage represents the contribution value of the first principal component to the function differences; the Y-axis represents the second principal component, and the percentage represents the contribution value of the second principal component to the function differences; each point in the graph represents a sample, and the samples in the same group are represented by the same color. </p>
+
+    <p class="paragraph">Results directory: </p>
+
+    <p class="paragraph">Analysis results: result/05.FunctionPrediction/PICRUSt2/picrust2_out_pipeline/*/PCA/*.(png,pdf)</p>
+
+        <br />
+
+        <br />
+
+<h3>8.3 Venn/Flower Diagram of Function Annotation</h3>
+        
+    <p class="paragraph">In order to investigate the distribution of function number among samples (groups), we analyze the common and unique functions among different samples (groups), the Venn/Flower diagram was drawn. Here, only the prediction results of KO database are shown: </p>
+
+<p class="center">
+<img src="src_en/pictures/picrust_venn_display.png" width="600" height="450" />
+<p class="name_fig"><strong>Fig 8.3.1 Venn Diagram of PICRUSt2 Results </strong></p>  
+</p>
+
+        <p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="src_en/pictures/picrust_venn_display.pdf" target="_blank"><b>To view full size picture please click here</b></a></p>
+        
+<p class="premark" >Note: each circle in the figure represents a sample (group), the number in the overlap of circles represents the number of common functions between samples (groups), and the number without overlapping parts represents the number of unique functions of the sample (group). </p>
+
+    <p class="paragraph">Results directory: </p>
+
+    <p class="paragraph">Analysis results: result/05.FunctionPrediction/PICRUSt2/picrust2_out_pipeline/*/Venn(_group)</p>
+
+    <p class="paragraph">Plotting data: result/05.FunctionPrediction/PICRUSt2/picrust2_out_pipeline/*/Venn(_group)/venndata</p>
+
+        <br />
+
+        <br />
+
+<h3>8.4 T-test of Function Annotation</h3>
+        
+    <p class="paragraph">T-test was used to test the functional differences between different groups. Here, only the prediction results of KO database are shown: </p>
+
+<p class="center">
+<img src="src_en/pictures/picrust_t_test.png" width="600" height="450" />
+<p class="name_fig"><strong>Fig 8.4.1 T-test Analysis of Functional Differences between Groups </strong></p>  
+</p>
+
+        <p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="src_en/pictures/picrust_t_test.pdf" target="_blank"><b>To view full size picture please click here</b></a></p>
+        
+<p class="premark" >Note: the left figure shows the functional abundance differences between groups, and each bar in the figure represents the average abundance of the function in different groups; the right figure shows the confidence of inter-groups differences. The leftmost point of each circle in the figure represents the lower limit of 95% confidence interval, and the rightmost point of the circle represents the upper limit of 95% confidence interval. The center of the circle represents the differences of the mean value, and the color of the circle represents the P value of differences significance test between groups of the corresponding functions. </p>
+
+    <p class="paragraph">The volcano diagram is as follows: </p>
+
+<p class="center">
+<img src="src_en/pictures/picrust_t_test_volcano.png" width="600" height="450" />
+<p class="name_fig"><strong>Fig 8.4.2 Volcano Map </strong></p>  
+</p>
+
+        <p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="src_en/pictures/picrust_t_test_volcano.pdf" target="_blank"><b>To view full size picture please click here</b></a></p>
+        
+<p class="premark" >Note: volcano map is a form of scatter diagram, which is usually composed of several parts: significantly up regulating function and significantly down regulating function. Generally, the X-axis is the multiple differences of the functions with differences between groups, while the Y-axis is the P value of significe test. Each point in the figure represents a function with differences, where 'Up' represents that the abundance of the function with differneces in the first comparison group is higher than that in the second, while 'Down' represents the opposite. </p>
+
+    <p class="paragraph">Results directory: </p>
+
+    <p class="paragraph">Analysis results: result/05.Function_prediction/PICRUSt2/picrust2_out_pipeline/*/T_test/*.(xls,pdf,png)</p>
+
+    <p class="paragraph">Species with significant differneces: result/05.Function_prediction/PICRUSt2/picrust2_out_pipeline/*/T_test/boxplot</p>
+
+        <br />
+
+        <br />
+
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src_en/images/logo.png" /></a>
+<a name="Library Preparation and Sequencing">Novogene Co., Ltd</a>
+<hr />
+</p><br />
+
+<h2>9 Methods Introduction</h2>
+
+
+        <br />
+
+        <br />
+
+<h3>9.1 Data Diming</h3>
+        
+    <p class="paragraph">16S rDNA (18S rDNA, ITS) amplicon sequencing is widely used for microbial community comparison among samples from various natural or endozoic environments such as soil, water, host intestine etc. In order to achieve these objectives, several important results need be highly concerned: </p>
+
+    <p class="paragraph">&nbsp(1) ASVs denoise and species annotation results. The representative sequence after denoise process is shown in result/02.ASVanalysis/ASV_table/rep_seqs_qza/ASV-dna-sequences.fasta, and the results of species annotation are shown in 02.ASVanalysis/Seq_taxonomy/seq_taxonomy_qza/taxonomy.tsv. </p>
+
+    <p class="paragraph">&nbsp(2) Species abundance. The species abundance of samples includes absolute abundance and relative abundance, and the downstream analysis of alpha and beta diversity is also based on the table of abundance after standardization. Through species abundance table, we can directly understand the species composition and distribution in the sample, and can also select significantly differences species or target species for further analysis based on their own project background. Taking the “relative” catalogue as an example, the relative abundance of species and the relative abundance of ASV in each sample are included in the catalogue, including seven taxonomic levels of Kingom, Phylum, Class, Order, Family, Genus and Species. For example, to see the relative abundance of Acinomycetaceae in each sample, you can search 'Actinomycetaceae' to query the corresponding relative abundance information in the file 02.ASVanalysis/Taxa_abundance/Relative/asv_table.*.relative.xls. </p>
+
+    <p class="paragraph">&nbsp(3) Alpha diversity. The richness and evenness of species in the samples can be reflected by alpha diversity index, and the file (03.AlphaDiversity/Alpha_diversity_indices/alpha_index.xls) includes seven kinds of alpha diversity indices, which are observed_otus, Shannon, simpson, chao1, goods_ coverage, dominance and pielou_e. The diversity index value can reflect the complexity of the microbial community contained in the sample; in addition, through the alpha diversity index significant differences test results between groups (result/03.AlphaDiversity/Alpha_group_significance), we can quickly find groups with significantly increased or decreased species diversity for further analysis combined with biological treatment. </p>
+
+    <p class="paragraph">&nbsp(4) Beta diversity. Beta diversity can reflect the differences of microbial community structure between samples, so we can further estimate whether the differences are consistent with the biological grouping and reasonably explain the differences combined with biological treatments. For example, the degree of community structure differences between two samples can be seen by the Unifrac distance between them; the differences of community structure can be displayed in two dimensions by PCA, PCoA, NMDS and other dimension reduction maps, so we can judge the community structure differences between groups (samples) according to the aggregation and dispersion between groups (samples). </p>
+
+    <p class="paragraph">&nbsp Furthermore, if there are biological groups, the differences of microbial communities among groups can be further studied by statistical analysis. Through LEfSe analysis, we can find the Biomarker with statistical differences among groups. T-test and MetaStat analysis are carried out at six taxonomic levels of Phylum, Class, Order, Family, Genus and Species, and the species with significant differences between the two groups at different taxonomic levels were obtained. In addition, Adonis analysis can also help to determine whether there are significant differences in community structure among groups. </p>
+
+    <p class="paragraph">&nbsp(5) Customized analysis. PICRUSt2 can be used to predict the function of microbial communities in ecological samples, which will be a great addition to the further understanding of community structure and the publication of articles. </p>
+
+        <br />
+
+        <br />
+
+<h3>9.2 Methods Description</h3>
+        
+    <p class="paragraph"><strong>9.2.1 List of analysis software</strong></p>
+
+<p class="name_table"><p class="center"><strong>Table 9.2.1 List of analysis software</strong></p>        
+<p class="center">
+<div style="overflow-x: auto">
+<table class="gy" id="mytable3" >
+        <thead><tr>
+<a id="btn01"></a>
+<a id="sjzl1"></a>
+<a  href="javascript:void(0)" id="btn11"> | First | </a>
+<a  href="javascript:void(0)" id="btn21"> Previous | </a>
+<a  href="javascript:void(0)" id="btn31"> Next | </a>
+<a  href="javascript:void(0)" id="btn41"> Last | </a>
+<a>Go to </a>
+<input id="changePage1" type="text" size="1" maxlength="4"/>
+<a> page </a>
+<a  href="javascript:void(0)" id="btn51"> Jump </a>
+                
+<th style="text-align :center">Analytical content</th><th style="text-align :center">Software</th><th style="text-align :center">Base(nt)</th><th style="text-align :center">Parameters
+</th></tr></thead>
+<tbody><tr>
+<td style="text-align :center">Sample Quality Control</td><td style="text-align :center">SMRTlink</td><td style="text-align :center">V_13.0.0</td><td style="text-align :center">ccs --min-passes 3 --min-rq 0.99
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">ASV Analysis</td><td style="text-align :center">qiime2</td><td style="text-align :center">V_2023.9</td><td style="text-align :center">default
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Alpha Diversity</td><td style="text-align :center">qiime2</td><td style="text-align :center">V_2023.9</td><td style="text-align :center">default
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Function Prediction</td><td style="text-align :center">PICRUSt2</td><td style="text-align :center">V_2.5.1</td><td style="text-align :center">default
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">UniFrac distance</td><td style="text-align :center">qiime2</td><td style="text-align :center">V_2023.9</td><td style="text-align :center">default
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">PCA, PCoA and NMDS</td><td style="text-align :center">R</td><td style="text-align :center">V_3.5.3</td><td style="text-align :center">default
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">LEfSe</td><td style="text-align :center">lefse</td><td style="text-align :center">V_1.0.8</td><td style="text-align :center">LDA score>4
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">MetaStat</td><td style="text-align :center">R</td><td style="text-align :center">V_3.5.3</td><td style="text-align :center">default
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">Anosim，MRPP and Adonis</td><td style="text-align :center">R</td><td style="text-align :center">V_3.5.3</td><td style="text-align :center">default
+</td></tr></tbody>
+</table>
+</div>
+</p>
+
+    <p class="paragraph"><strong>9.2.2 Methods</strong></p>
+
+    <p class="paragraph">Click to open the method(pdf), and the corresponding file can be viewed directly. </p>
+	<p class="paragraph">File catalog: <a href="src_en/hyperlinks/Methods_QIIME2_EN-last.pdf" target="_blank"><b>Method</b></a></p>
+
+    <p class="paragraph"><strong>9.2.3 Result File Decompression Tool and Format Description</strong></p>
+<p class="center">
+<div style="overflow-x: auto">
+<table class="gy" id="mytable4" >
+        <thead><tr>
+<a id="btn01"></a>
+<a id="sjzl1"></a>
+<a  href="javascript:void(0)" id="btn11"> | First | </a>
+<a  href="javascript:void(0)" id="btn21"> Previous | </a>
+<a  href="javascript:void(0)" id="btn31"> Next | </a>
+<a  href="javascript:void(0)" id="btn41"> Last | </a>
+<a>Go to </a>
+<input id="changePage1" type="text" size="1" maxlength="4"/>
+<a> page </a>
+<a  href="javascript:void(0)" id="btn51"> Jump </a>
+                
+<th style="text-align :center">Compressed format</th><th style="text-align :center">Customer type</th><th style="text-align :center">Decompression method
+</th></tr></thead>
+<tbody><tr>
+<td style="text-align :center">*.gz format</td><td style="text-align :center">Unix/Linux/Mac</td><td style="text-align :center">Open with gzip -d *.gz command
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">*.gz format</td><td style="text-align :center">Windows</td><td style="text-align :center">Open with decompression software such as WinRAR, 7-Zip, etc
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">*.zip format</td><td style="text-align :center">Unix/Linux/Mac</td><td style="text-align :center">Open with gzip -d *.gz command
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">*.zip format</td><td style="text-align :center">Windows</td><td style="text-align :center">Open with decompression software such as WinRAR, 7-Zip, etc
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">*.tar format</td><td style="text-align :center">Unix/Linux/Mac</td><td style="text-align :center">Open with gzip -d *.gz command
+</td></tr></tbody>
+<tbody><tr>
+<td style="text-align :center">*.tar format</td><td style="text-align :center">Windows</td><td style="text-align :center">Open with decompression software such as WinRAR, 7-Zip, etc
+</td></tr></tbody>
+</table>
+</div>
+</p>
+
+    <p class="paragraph"><strong>9.2.4 Delivery data result directory</strong></p>
+	
+	<p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="src_en/hyperlinks/ReadMe_QIIME2_pa.html" target="_blank"><b>ReadMe.html</b></a></p>
+	
+        <br />
+
+        <br />
+
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src_en/images/logo.png" /></a>
+<a name="Library Preparation and Sequencing">Novogene Co., Ltd</a>
+<hr />
+</p><br />
+
+<h2>10 Reference</h2>
+
+
+    <p class="paragraph">[1] Caporaso, J. Gregory, et al. Global patterns of 16S rRNA diversity at a depth of millions of sequences per sample. Proceedings of the National Academy of Sciences 108.Supplement 1 (2011): 4516-4522.</p>
+
+    <p class="paragraph">[2] Youssef, Noha, et al. Comparison of species richness estimates obtained using nearly complete fragments and simulated pyrosequencing-generated fragments in 16S rRNA gene-based environmental surveys. Applied and environmental microbiology 75.16 (2009): 5227-5236.</p>
+
+    <p class="paragraph">[3] Hess, Matthias, et al. Metagenomic discovery of biomass-degrading genes and genomes from cow rumen. Science 331.6016 (2011): 463-467.</p>
+
+    <p class="paragraph">[4] Li Minjuan,Shao Dantong,Zhou Jiachen et al. Signatures within esophageal microbiota with progression of esophageal squamous cell carcinoma.[J] .Chin J Cancer Res, 2020, 32: 755-767.</p>
+
+    <p class="paragraph">[5] Callahan B J, McMurdie P J, Holmes S P. Exact sequence variants should replace operational taxonomic units in marker-gene data analysis[J]. The ISME journal, 2017, 11(12): 2639-2643</p>
+
+    <p class="paragraph">[6] Callahan, Benjamin J., Paul J. McMurdie, Michael J. Rosen, Andrew W. Han, Amy Jo A. Johnson, and Susan P. Holmes. DADA2: high-resolution sample inference from Illumina amplicon data.” Nature methods 13, no. 7 (2016): 581.</p>
+
+    <p class="paragraph">[7] Callahan B J, Wong J, Heiner C, et al. High-throughput amplicon sequencing of the full-length 16S rRNA gene with single-nucleotide resolution[J]. Nucleic acids research, 2019, 47(18): e103-e103.</p>
+
+    <p class="paragraph">[8] Amir A, McDonald D, Navas-Molina J A, et al. Deblur rapidly resolves single-nucleotide community sequence patterns[J]. MSystems, 2017, 2(2).</p>
+
+    <p class="paragraph">[9] Bokulich NA, Kaehler BD, Rideout JR, et al. Optimizing taxonomic classification of marker‐gene amplicon sequences with QIIME2’s q2‐feature‐classifier plugin. Microbiome. 2018a;6:90.</p>
+
+    <p class="paragraph">[10] Bolyen, E., Rideout, J.R., Dillon, M.R. et al. Reproducible, interactive, scalable and extensible microbiome data science using QIIME 2. Nat Biotechnol 37, 852–857 (2019).</p>
+
+    <p class="paragraph">[11] Li, Bing, et al. Characterization of tetracycline resistant bacterial community in saline activated sludge using batch stress incubation with high-throughput sequencing analysis. Water research 47.13 (2013): 4207-4216.</p>
+
+    <p class="paragraph">[12] Lozupone, Catherine, and Rob Knight. UniFrac: a new phylogenetic method for comparing microbial communities. Applied and environmental microbiology 71.12 (2005): 8228-8235.</p>
+
+    <p class="paragraph">[13] Lozupone, Catherine, et al. UniFrac: an effective distance metric for microbial community comparison. The ISME journal 5.2 (2011): 169.</p>
+
+    <p class="paragraph">[14] Lozupone, Catherine A., et al. Quantitative and qualitative β diversity measures lead to different insights into factors that structure microbial communities. Applied and environmental microbiology 73.5 (2007): 1576-1585.</p>
+
+    <p class="paragraph">[15] Minchin P R. An evaluation of the relative robustness of techniques for ecological ordination[J]. Vegetatio, 1987, 69(1/3):89-107.</p>
+
+    <p class="paragraph">[16] Jolliffe I T. Principal component analysis[J]. Journal of Marketing Research, 1986, 87(100):513.</p>
+
+    <p class="paragraph">[17] Avershina, Ekaterina, Trine Frisli, and Knut Rudi. De novo Semi-alignment of 16S rRNA Gene Sequences for Deep Phylogenetic Characterization of Next Generation Sequencing Data. Microbes and Environments 28.2 (2013): 211-216.</p>
+
+    <p class="paragraph">[18] J. B. Kruskal. Nonmetric multidimensional scaling: A numerical method[J]. Psychometrika, 1964, 29(2):115-129.</p>
+
+    <p class="paragraph">[19] Magali Noval Rivas, PhD, Oliver T. Burton, et al. A microbita signature associated with experimental food allergy promotes allergic senitization and anaphylaxis. The Journal of Allergy and Clinical Immunology.Volume 131, Issue 1, Pages 201-212, January 2013.</p>
+
+    <p class="paragraph">[20] Stat M, Pochon X, Franklin E C, et al. The distribution of the thermally tolerant symbiont lineage ( Symbiodinium, clade D) in corals from Hawaii: correlations with host and the history of ocean thermal stress[J]. Ecology & Evolution, 2013, 3(5):1317-1329.</p>
+
+    <p class="paragraph">[21] Anderson, M.J. 2001. A new method for non-parametric multivariate analysis of variance. Austral Ecology, 26: 32-46.</p>
+
+    <p class="paragraph">[22] McArdle, B.H. and M.J. Anderson. 2001. Fitting multivariate models to community data: A comment on distance-based redundancy analysis. Ecology, 82: 290-297.</p>
+
+    <p class="paragraph">[23] Warton, D.I., Wright, T.W., Wang, Y. 2012. Distance-based multivariate analyses confound location and dispersion effects. Methods in Ecology and Evolution, 3, 89-101.</p>
+
+    <p class="paragraph">[24] Zapala, M.A. and N.J. Schork. 2006. Multivariate regression analysis of distance matrices for testing associations between gene expression patterns and related variables. Proceedings of the National Academy of Sciences, USA, 103:19430-19435.</p>
+
+    <p class="paragraph">[25] M. G. Chapman, A. J. Underwood. Ecological patterns in multivariate assemblages: information and interpretation of negative values in ANOSIM tests[J]. Marine Ecology Progress, 1999, 180(3):257-265.</p>
+
+    <p class="paragraph">[26] Segata, Nicola, et al. Metagenomic biomarker discovery and explanation. Genome Biol 12.6 (2011): R60.</p>
+
+    <p class="paragraph">[27] Magoč, Tanja, and Steven L. Salzberg. FLASH: fast length adjustment of short reads to improve genome assemblies. Bioinformatics 27.21 (2011): 2957-2963.</p>
+
+        <br />
+
+        <br />
+
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src_en/images/logo.png" /></a>
+<a name="Library Preparation and Sequencing">Novogene Co., Ltd</a>
+<hr />
+</p><br />
+
+
+</body> 
+    
+</html>    
+    

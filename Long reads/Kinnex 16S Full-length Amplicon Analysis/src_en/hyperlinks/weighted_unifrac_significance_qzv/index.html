@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>q2_diversity : beta_group_significance</title>
+    <link rel="stylesheet" href="./q2templateassets/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="./q2templateassets/css/normalize.css"/>
+    <link rel="stylesheet" href="./q2templateassets/css/base-template.css"/>
+    <script src="./q2templateassets/js/jquery-3.2.0.min.js" charset="utf-8"></script>
+    <script src="./q2templateassets/js/bootstrap.min.js" charset="utf-8"></script>
+    
+    
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div id="q2templatesheader" class="row">
+        <div class="col-lg-12">
+          <a href="http://qiime2.org/">
+            <img src="./q2templateassets/img/qiime2-rect-200.png"
+            alt="QIIME 2">
+          </a>
+        </div>
+      </div>
+        
+  
+
+  <div class="row">
+    <div class="col-lg-12">
+      <h2>Overview</h2>
+      <table border="0" class="dataframe table table-striped table-hover">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ANOSIM results</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>method name</th>
+      <td>ANOSIM</td>
+    </tr>
+    <tr>
+      <th>test statistic name</th>
+      <td>R</td>
+    </tr>
+    <tr>
+      <th>sample size</th>
+      <td>100</td>
+    </tr>
+    <tr>
+      <th>number of groups</th>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>test statistic</th>
+      <td>0.220315</td>
+    </tr>
+    <tr>
+      <th>p-value</th>
+      <td>0.00497512</td>
+    </tr>
+    <tr>
+      <th>number of permutations</th>
+      <td>200</td>
+    </tr>
+  </tbody>
+</table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <h2>Group significance plots</h2>
+      <a href="raw_data.tsv" target="_blank" rel="noopener noreferrer">
+        Download raw data as TSV
+      </a>
+      
+        <div class="row">
+          
+            <div class="col-lg-4 text-center">
+              <a href="GillCont-boxplots.pdf">
+                <img src="GillCont-boxplots.png">
+                <br>
+                <p>Download as PDF</p>
+              </a>
+            </div>
+          
+            <div class="col-lg-4 text-center">
+              <a href="GillInf-boxplots.pdf">
+                <img src="GillInf-boxplots.png">
+                <br>
+                <p>Download as PDF</p>
+              </a>
+            </div>
+          
+            <div class="col-lg-4 text-center">
+              <a href="GillRes-boxplots.pdf">
+                <img src="GillRes-boxplots.png">
+                <br>
+                <p>Download as PDF</p>
+              </a>
+            </div>
+          
+        </div>
+      
+        <div class="row">
+          
+            <div class="col-lg-4 text-center">
+              <a href="MucusCont-boxplots.pdf">
+                <img src="MucusCont-boxplots.png">
+                <br>
+                <p>Download as PDF</p>
+              </a>
+            </div>
+          
+            <div class="col-lg-4 text-center">
+              <a href="MucusInf-boxplots.pdf">
+                <img src="MucusInf-boxplots.png">
+                <br>
+                <p>Download as PDF</p>
+              </a>
+            </div>
+          
+            <div class="col-lg-4 text-center">
+              <a href="MucusRes-boxplots.pdf">
+                <img src="MucusRes-boxplots.png">
+                <br>
+                <p>Download as PDF</p>
+              </a>
+            </div>
+          
+        </div>
+      
+    </div>
+  </div>
+
+  
+    <div class="row">
+      <div class="col-lg-12">
+        <h2>Pairwise anosim results</h2>
+        <a href="anosim-pairwise.csv">Download CSV</a>
+        <table border="0" class="dataframe table table-striped table-hover">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>Sample size</th>
+      <th>Permutations</th>
+      <th>R</th>
+      <th>p-value</th>
+      <th>q-value</th>
+    </tr>
+    <tr>
+      <th>Group 1</th>
+      <th>Group 2</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">GillCont</th>
+      <th>GillInf</th>
+      <td>30</td>
+      <td>200</td>
+      <td>-0.197006</td>
+      <td>0.865672</td>
+      <td>0.938166</td>
+    </tr>
+    <tr>
+      <th>GillRes</th>
+      <td>43</td>
+      <td>200</td>
+      <td>-0.013971</td>
+      <td>0.547264</td>
+      <td>0.684080</td>
+    </tr>
+    <tr>
+      <th>MucusCont</th>
+      <td>50</td>
+      <td>200</td>
+      <td>0.415632</td>
+      <td>0.004975</td>
+      <td>0.014925</td>
+    </tr>
+    <tr>
+      <th>MucusInf</th>
+      <td>32</td>
+      <td>200</td>
+      <td>-0.022875</td>
+      <td>0.502488</td>
+      <td>0.684080</td>
+    </tr>
+    <tr>
+      <th>MucusRes</th>
+      <td>45</td>
+      <td>200</td>
+      <td>0.174563</td>
+      <td>0.004975</td>
+      <td>0.014925</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="top">GillInf</th>
+      <th>GillRes</th>
+      <td>23</td>
+      <td>200</td>
+      <td>-0.160464</td>
+      <td>0.960199</td>
+      <td>0.960199</td>
+    </tr>
+    <tr>
+      <th>MucusCont</th>
+      <td>30</td>
+      <td>200</td>
+      <td>0.847948</td>
+      <td>0.004975</td>
+      <td>0.014925</td>
+    </tr>
+    <tr>
+      <th>MucusInf</th>
+      <td>12</td>
+      <td>200</td>
+      <td>0.417512</td>
+      <td>0.019900</td>
+      <td>0.042644</td>
+    </tr>
+    <tr>
+      <th>MucusRes</th>
+      <td>25</td>
+      <td>200</td>
+      <td>0.112300</td>
+      <td>0.278607</td>
+      <td>0.417910</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="top">GillRes</th>
+      <th>MucusCont</th>
+      <td>43</td>
+      <td>200</td>
+      <td>0.675006</td>
+      <td>0.004975</td>
+      <td>0.014925</td>
+    </tr>
+    <tr>
+      <th>MucusInf</th>
+      <td>25</td>
+      <td>200</td>
+      <td>0.239281</td>
+      <td>0.029851</td>
+      <td>0.055970</td>
+    </tr>
+    <tr>
+      <th>MucusRes</th>
+      <td>38</td>
+      <td>200</td>
+      <td>0.245400</td>
+      <td>0.004975</td>
+      <td>0.014925</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">MucusCont</th>
+      <th>MucusInf</th>
+      <td>32</td>
+      <td>200</td>
+      <td>0.097748</td>
+      <td>0.189055</td>
+      <td>0.315091</td>
+    </tr>
+    <tr>
+      <th>MucusRes</th>
+      <td>45</td>
+      <td>200</td>
+      <td>0.176473</td>
+      <td>0.014925</td>
+      <td>0.037313</td>
+    </tr>
+    <tr>
+      <th>MucusInf</th>
+      <th>MucusRes</th>
+      <td>27</td>
+      <td>200</td>
+      <td>-0.125931</td>
+      <td>0.875622</td>
+      <td>0.938166</td>
+    </tr>
+  </tbody>
+</table>
+      </div>
+    </div>
+  
+
+
+    </div>
+    <script type="text/javascript">
+      if (window.frameElement) {
+          document.getElementById('q2templatesheader').remove();
+      }
+    </script>
+    
+    
+  </body>
+</html>
