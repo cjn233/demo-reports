@@ -12,7 +12,6 @@
         a { text-decoration: none; color: #007bff; font-size: 18px; }
         a:hover { text-decoration: underline; }
     </style>
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
     <h1>Available Demo Reports</h1>
@@ -79,13 +78,3 @@
     </ul>
 </body>
 </html>
-<button onclick="netlifyIdentity.open()">Log in</button>
-<button onclick="netlifyIdentity.logout()">Log out</button>
-<script>
-  netlifyIdentity.on("init", user => {
-    if (!user) {
-      window.location.href = "/login.html"; // Redirect if not logged in
-    }
-  });
-</script>
-
