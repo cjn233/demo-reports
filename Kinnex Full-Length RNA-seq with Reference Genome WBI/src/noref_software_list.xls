@@ -1,0 +1,18 @@
+analysis content	Software and version	parameter	Remark	software link
+Raw data processing and analysis	SMRTlink V11.0	--minLength 50; --maxLength 15000; --minPasses 1;	--min_seq_len: Minimum sequence length to output	https://www.pacb.com/support/software-downloads
+transcript correction	LoRDEC V0.7	-k 23; -s 3	Second-generation data correction	http://atgc.lirmm.fr/lordec
+CDS	ANGEL V2.4	--min_angel_aa_length 50	CDS Forecast	https://github.com/PacificBiosciences/ANGEL
+TF	Plants: iTAK: 1.7a	-f 3F	Transcription factor identification	https://github.com/kentnf/iTAK/
+Animal: AnimalTF DB: 2.0	default parameters	Transcription factor identification	http://bioinfo.life.hust.edu.cn/AnimalTFDB/
+SSR	MISA 1	definition(unit_size, min_repeats):1-10 2-6 3-5 4-5 5-5 6-5； interruptions (max_difference_ for_2_SSRs): 100	SSR identification	http://pgrc.ipk-gatersleben.de/misa/misa.html
+lncRNA analysis	CPC2 v0.1	default parameters	Coding Potential Prediction	http://cpc2.cbi.pku.edu.cn/download.php
+CNCI V2	default parameters	Coding Potential Prediction	https://github.com/www-bioinfo-org/CNCI
+PLEK v1.2	default parameters	Coding Potential Prediction	https://sourceforge.net/projects/plek/
+PfamScan V1.6	default parameters	Protein domain detection	https://www.ebi.ac.uk/seqdb/confluence/display /THD/PfamScan
+Transcript de-redundancy	cd-hit v4.6.8	-c 0.95; -T 6; -G 0; -aL 0.00; -aS 0.99; -AS 30	transcript deduplication	https://github.com/weizhongli/cdhit
+Quantitative comparison	bowtie2 V2.3.4	-q; --phred33; --sensitive; --dpad 0; --gbar 99999999; --mp 1,1; --np 1; --score-min L,0,-0.1; X 1000; --no-mixed; --no-discordant; -p 8; -k 30	transcript alignment	http://bowtie-bio.sourceforge.net/bowtie2/index.shtml
+RSEM V1.3.0	--phred33; --quals; --forward-prob 0.5; --time	Transcript Quantitative Analysis	http://deweylab.github.io/RSEM/
+Differential expression analysis	DEseq v1.10.1	qvalue < 0.05	have biological repeats	http://www.bioconductor.org/packages/release/bioc/html /DESeq.html
+DEGseq v1.12.0	|log2(FoldChange)| > 1 & qvalue < 0.005	no biological replicates	http://www.bioconductor.org/packages/release/bioc/html /DEGseq.html
+GO enrichment	GOSeq V1.10.0	Corrected P-Value<0.05	GO enrichment analysis	http://www.bioconductor.org/packages/release/bioc/html /goseq.html
+KEGG enrichment	KOBASv3.0	Corrected P-Value<0.05	KEGG enrichment analysis	http://kobas.cbi.pku.edu.cn/download.php

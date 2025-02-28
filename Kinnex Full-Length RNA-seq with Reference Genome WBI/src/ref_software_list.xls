@@ -1,0 +1,15 @@
+Analysis content	Software	Version	Parameter	Remark
+Raw data processing and analysis	SMRT-Link	V11.0	–minLength 50；–maxLength 15000；–minPasses 3；	–min_seq_len:Minimum sequence length to output
+Transcript correction	LoRDEC	V0.7	-k 23；-s 3	Second-generation data correction
+Database Function Notes	Diamond blastx	V0.8.36	–more-sensitive -k 10；-e 1e-5；-f 6；-p 4	NR, KOG/COG, Swiss-prot, KEGG
+Database Function Notes	ncbi-blast+ blastn	V2.7.1	-outfmt 6；-evalue 1e-5；-max_target_seqs 10；-num_threads 4	NT Notes
+Database Function Notes	Hmmscan	V3.1b2	–acc；–domtblout	Pfam Notes
+Gene structure analysis	GMAP	V2017-06-20	--no-chimeras; --expand-offsets 1; -B 5; -f samse; -n 1	Reference Genome Alignment
+Gene structure analysis	Tapis	V1.2.1	default parameters	New genes, new transcripts, APA identification
+Gene structure analysis	SUPPA	V2.3	default parameters	Alternative splicing identification
+Transcription factor identification	Plants: iTAK	iTAK: V1.7a	-f 3F	Transcription factor identification
+Transcription factor identification	Animal: AnimalTFDB	AnimalTFDB：V2.0		Transcription factor identification
+LncRNA analysis	CPC2	V0.1	default parameters	Coding Potential Prediction
+LncRNA analysis	CNCI	V2	default parameters	Coding Potential Prediction
+LncRNA analysis	PLEK	V1.2	default parameters	Coding Potential Prediction
+LncRNA analysis	PfamScan	V1.6	default parameters	Protein domain detection

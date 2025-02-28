@@ -1,0 +1,3846 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<html>
+<head>
+	<title> Novogene 10X Single Cell VDJ Conclusion Report </title>
+	<META NAME="Version" CONTENT="20200410"> 
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+<link rel="stylesheet" href="src/css/jquery-ui.css" />
+<link rel="stylesheet" href="src/css/bootstrap-4.3.1.min.css" />
+<link rel="stylesheet" href="src/css/jquery.tocify.css" />
+<link rel="stylesheet" href="src/css/style.css"/>
+<link rel="stylesheet" href="src/css/base.css"/>
+<link rel="stylesheet" href="src/css/gallery.css"/>
+<script src="src/js/jquery-3.3.1.min.js" type="text/javascript"></script>
+<script src="src/js/jquery-ui.min.js" type="text/javascript"></script>
+<script src="src/js/jquery.tocify.min.js" type="text/javascript"></script>
+<script src="src/js/bootstrap-4.3.1.min.js" type="text/javascript"></script>
+<script src="src/js/scrollTop.js" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+
+	$(function () {
+
+		var options = {
+
+			selectors: "h2,h3,h4,h5",
+
+			theme: "bootstrap",
+
+			scrollTo: "60"
+
+		};
+
+		var toc = $("#toc").tocify(options).data("toc-tocify");
+
+	});
+
+</script>
+
+
+
+
+
+<script type="text/javascript">
+
+function trans(img_div_id) {
+
+img_div = $("#" + img_div_id)
+
+img = $("#" + img_div_id + " img").first();
+
+if (img_div.hasClass("fullscreen-div")) {
+
+img_div.removeClass("fullscreen-div");
+
+img.removeClass("fullscreen-img");
+
+}
+
+else {
+
+img_div.addClass("fullscreen-div");
+
+img.addClass("fullscreen-img");
+
+}
+
+}
+
+
+
+function filter_display() {
+
+return $(this).css("display") != "none";
+
+}
+
+
+
+function show_default() {
+
+var list_group_id = "#" + $(this).attr("id");
+
+if ($(list_group_id + " a.active").css("display") == "none") {
+
+var list_tab = $(list_group_id + " a.active");
+
+var pan_id = list_tab.attr("href");
+
+$(pan_id).removeClass("active show");
+
+list_tab.removeClass("active");
+
+}
+
+if ($(list_group_id + " a.active").filter(filter_display).length == 0) {
+
+$(list_group_id + " a").filter(filter_display).first().tab("show");
+
+}
+
+}
+
+$.fn.show_default = show_default
+
+
+
+function next(botton_id) {
+
+var present_tab = $("#" + botton_id.replace("_button_next", "_list-tab") + " .active").first();
+
+while (present_tab.next().length == 1) {
+
+if (present_tab.next().css("display") != "none") {
+
+present_tab.next().tab("show");
+
+break;
+
+}
+
+else {
+
+present_tab = present_tab.next();
+
+}
+
+}
+
+
+
+}
+
+function prev(botton_id) {
+
+var present_tab = $("#" + botton_id.replace("_button_prev", "_list-tab") + " .active").first();
+
+while (present_tab.prev().length == 1) {
+
+if (present_tab.prev().css("display") != "none") {
+
+present_tab.prev().tab("show");
+
+break;
+
+}
+
+else {
+
+present_tab = present_tab.prev();
+
+}
+
+}
+
+
+
+
+
+}
+
+
+
+$(document).ready(function () {
+
+$(".form-control").on("keyup", function () {
+
+var value = $(this).val().toLowerCase();
+
+var input_box_id = "#" + $(this).attr("id");
+
+var list_group_id = input_box_id.replace("_InputList", "_list-tab");
+
+$(list_group_id + " a").filter(function () {
+
+$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+
+});
+
+$(list_group_id).show_default();
+
+});
+
+$(".list-group").each(show_default);
+
+});
+
+
+
+</script>
+
+</head>
+
+
+<body>
+
+<div id="toc" class="tocify">
+</div>
+<div id="toc" class="tocify">
+</div>
+	<div style="position:fixed; top:0; left:0; width:100%; z-index:1000;">
+		<table width="100%" height="50px" border="0" cellpadding="5" cellspacing="0"
+			style="background:#F3F3F3; border-bottom:1px solid #eee;border-top: none;background-image:-moz-linear-gradient(top,#EEEEEE,#FFFFFF); background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0,#EEEEEE), color-stop(1,#FFFFFF));filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#EEEEEE', endColorstr='#FFFFFF', GradientType='0')">
+			<tr height="86%">
+				<td width='1%'></td>
+				<td><img src="src/images/logo1-GN.png"></td>
+				<td>
+					<div style="margin:5px;border-left:1px solid #DCDCDC;height:30px"></div>
+				</td>
+				<td width="70%"></td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+
+
+<!--------------------------标题---------------------------------->
+
+<div id="main">
+</br><h1>Novogene 10X Single Cell VDJ Conclusion Report</h1></br>
+
+
+<table class="gy">
+
+<tbody>
+<tr>
+<td>Project No.</td>
+<td>XxxxSCxxxxxxxx</td>
+</tr>
+<tr>
+<td>Project Name</td>
+<td>10X Single Cell VDJ</td>
+</tr>
+<tr>
+<td>Phase No.</td>
+<td>XxxxSCxxxxxxxx-Zxx-Fxxx</td>
+</tr>
+<tr>
+<td>Report Date</td>
+<td>2024-10-01</td>
+</tr>
+</tbody></table>
+<br/><br/>
+
+<!----------------------------------------实验流程----------------------------------------->
+
+<!------- 加一行大横线------------->
+<hr />
+<h2>1 Overview</h2>
+
+<p class="paragraph">10x Genomics Chromium™ single cell V(D)J product can display adaptive immune responses and immune repertoire information, revealing the diversity of T or B cell populations in humans or mice at the single-cell level. The 10x platform also provides analysis software Cell Ranger and visualization software Loupe V(D)J Browser for analyzing immune products. The overall flowchart of the 10x Genomics Chromium™ single cell V(D)J product is as follows:</p>
+<img class="normal" src="src/images/gaishu.png" width="30" height="30">
+<p class="paragraph">First, after the single cell suspension prepared by the customer passes the quality inspection, samples are loaded onto the 10x Genomics Chromium instrument to form GEMs. GEMs are then collected for reverse transcription and cDNA amplification, V(D)J enrichment amplification, library construction, and finally high-throughput sequencing. Finally, the sequencing data is used for bioinformatics analysis to obtain the results of single cell V(D)J analysis.</p>
+
+
+<!------- 加一行大横线------------->
+<hr />
+<h3>1.1 Library Construction Process</h3>
+<p class="paragraph">Novogene constructed and sequenced the library based on the official standards of 10x Genomics. From capturing immune cells to obtaining sequencing data, every step such as sample quality inspection, library construction and sequencing will directly affect the quantity and quality of data, thereby affecting the final results of bioinformatics analysis. To ensure the accuracy and reliability of sequencing data from the source, Novogene promises to strictly control all production processes of the data, ensuring the output of high-quality data from the root. The experimental flowchart of the 10x Genomics Chromium™ single cell V(D)J product is as follows:</p>
+<img class="normal" src="src/images/jiankuliucheng1.png" width="30" height="30">
+
+<p class="paragraph">The key technology of the 10x Genomics Chromium™ system is to label different samples (long DNA molecules/single cells) with millions of unique barcodes. First, Gel beads containing barcode information are mixed with a mixture of samples and enzymes, and then combined with oil surfactants located in the microfluidic "double cross" crossing system to form GEMs (Gel Bead-In-Emulsions, meaning oil droplets that encapsulate the mixture of Gel beads, samples, and enzymes). Afterwards, GEMs flow into the reservoir and are collected, which is the most critical step. Next, Gel beads dissolve and release the barcode sequence, starting to label the cells. The standard sequencing library is constructed by mixing the products containing barcode information in each droplet. The Gel beads diagram of the 10x Genomics Chromium™ single cell V(D)J product is shown below:</p>
+<img class="normal" src="src/images/jiankuliucheng2.png" width="30" height="30">
+
+<p class="paragraph">The steps after passing the "double cross" crossing system are as follows:</p>
+<p class="paragraph">Step 1: GEMs formation and barcode labeling. The barcode sequence of V(D)J library is connected to the switch oligo TSO sequence. mRNA is first reverse transcribed using ploy (T) primers to the mRNA 5' end, and the sequence CCC is added at the end to complement and pair with the GGG sequence of TSO, achieving cDNA capture. Transcription continues to add barcode sequence to the 5'-end cDNA sequence.</p>
+<p class="paragraph">Step 2: V(D)J area enrichment. Nested PCR is performed using universal primers with 5' connector and continuous nested primers in the TCR constant area. The sequencing connector P5 is added in this process to realize V(D)J area enrichment of TCR/BCR.</p>
+<p class="paragraph">Step 3: Library construction. The V(D)J cDNA is randomly broken in the way of enzymatic digestion, and the sequence obtained by controlling the broken length can cover the entire V(D)J segment cDNA sequence. The end is repaired and added with A and sequencing connector P7, and PCR is amplified for library construction.</p>
+<img class="normal" src="src/images/jiankuliucheng3.png" width="30" height="30">
+
+
+
+<!------- 加一行大横线------------->
+
+
+
+<!------- 加一行大横线------------->
+<hr />
+<h2>2 Information Analysis Process</h2>
+<img class="normal" src="src/images/xinxifenlixliucheng.png" style="width: 50%; height: auto;">
+<p class="paragraph">The 10x Genomics Chromium™ single cell V(D)J product is specifically enriched with RNA in the area TCR of T cells and the area BCR of B cells. The immune repertoire is constructed through comparison, splicing, screening, annotation, etc., and clonotype typing is performed for obtained TCR/BCR to conduct immunoassay. After obtaining the raw sequenced reads through high-throughput sequencing of TCR/BCR, the main analysis content of single cell V(D)J is as follows:</p>
+<p class="paragraph">Part 1: Quality control. The quality control of raw data is carried out through fastp.</p>
+<p class="paragraph">Part 2: Analysis of TCR/BCR clone subtypes. Novogene uses the Cell Ranger software provided by 10x Genomics to perform various screening steps, Contig splicing, and sample clonotype typing and abundance analysis.</p>
+<p class="paragraph">Part 3: Advanced analysis. In the second part of the analysis, the TCR/BCR clone subtypes of each sample are completely analyzed, and based on this, immunarch and scRepertoire are used to conduct comprehensive analysis of each sample.</p>
+
+
+
+<!-------------------------------------------- 原始序列数据 --------------------------------------->
+<!------- 加一行大横线------------->
+<hr />
+
+<h2>3 Quality Control Analysis</h2>
+<h3>3.1 Description of Raw Sequencing Data</h3>
+<p class="paragraph">The raw image files obtained from high-throughput sequencing (such as Illumina NovaSeq PE150) are converted into sequenced reads through CASAVA base calling and stored in FASTQ format. FASTQ is a common text format for storing biological sequences and corresponding quality values. Taking sequencing data from Illumina NovaSeq PE150 as an example, both ends are 150bp long. The first 28bp of 10X3' transcriptome library read1 is the cell barcode and UMI information (or the first 26bp of 10X5' transcriptome), which is an important basis for distinguishing which cell read2 comes from. The bases after 28bp are non-valid data, while read2 is valid data.
+</p>
+<p class="paragraph">
+Each read in the fastq format file consists of four lines of descriptive information, as shown below:
+</p>
+
+<div class="bs-docs-qa">
+<p class="seq">
+@ST-E00310:278:HF3GJALXX:5:1101:6745:1924 1:N:0:ACGCTCGA<br />
+TNTAGATCTTAGGCGGTTGGTGTAGGTATCGACACAGGTCTTCATTTTGGCTAATAATGTACCAACGGAAGTCTGACATTCTGACTGTTCTTCTTCCTCTTCTTCCCCATTCTCTGTAGAAAGAGGCAACAACAGCGGCACCATAGATGT<br />
++<br />
+F#FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF:FFFFF:FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF:FFFFFFFFFFFFFFFFFFFFFFFFFFF:FFFF:FFFFF:FFFFFFFFFFFFFFFFFFFFF,FFFFFFF<br />
+</div>
+<p class="paragraph">The first line in the above file begins with "@", followed by Illumina sequence identifiers and descriptive text. The second line is the base sequence of the sequencing fragment. The third line begins with a "+" followed by Illumina sequence identifiers (which can also be empty). The fourth line is the sequencing quality value corresponding to each base in the sequencing fragment, and the ASCII value corresponding to each character in this line is subtracted by 33 to obtain the sequencing quality value for that base.
+</p>
+
+
+
+
+
+<!----------------------------------------- 测序数据质量评估 -------------------------------------->
+
+
+<!------- 加一行大横线------------->
+<hr />
+<h3>3.2 Quality Evaluation of Sequencing Data</h3>
+<p class="paragraph">
+Massive data information can be obtained through sequencing, and how to obtain qualified data from the obtained data is the basis of information analysis. Therefore, quality control (QC) of offline data is the first step in data analysis. fastp is currently a common data quality evaluation software. Basic quality statistics are carried out for raw reads using fastp. In a uniform way, the primary raw reads are named sample name-1,2,3,4... as per the index, lane, or sequencing time. R1 and R2 are read1 and read2 of samples. The data quality will directly affect the results of subsequent information analysis. The quality and output of the raw data are summarized in the following table:
+</p>
+	<p class="center">
+	<div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_QC_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure_QC_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure_QC_pane_AHF26_TCR-1_Reads-1_raw_base_Content_Rito" 
+	role="tabpanel" aria-labelledby="gallery_figure_QC_list_AHF26_TCR-1_Reads-1_raw_base_Content_Rito"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/file/QC/AHF26_TCR-1_Reads-1_raw_base_Content_Rito.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_QC_pane_AHF26_TCR-1_Reads-1_raw_base_quality_distribution" 
+	role="tabpanel" aria-labelledby="gallery_figure_QC_list_AHF26_TCR-1_Reads-1_raw_base_quality_distribution"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/file/QC/AHF26_TCR-1_Reads-1_raw_base_quality_distribution.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_QC_pane_AHF26_TCR-1_Reads-2_raw_base_Content_Rito" 
+	role="tabpanel" aria-labelledby="gallery_figure_QC_list_AHF26_TCR-1_Reads-2_raw_base_Content_Rito"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/file/QC/AHF26_TCR-1_Reads-2_raw_base_Content_Rito.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_QC_pane_AHF26_TCR-1_Reads-2_raw_base_quality_distribution" 
+	role="tabpanel" aria-labelledby="gallery_figure_QC_list_AHF26_TCR-1_Reads-2_raw_base_quality_distribution"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/file/QC/AHF26_TCR-1_Reads-2_raw_base_quality_distribution.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_QC_pane_AHF35_TCR-1_Reads-1_raw_base_Content_Rito" 
+	role="tabpanel" aria-labelledby="gallery_figure_QC_list_AHF35_TCR-1_Reads-1_raw_base_Content_Rito"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/file/QC/AHF35_TCR-1_Reads-1_raw_base_Content_Rito.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_QC_pane_AHF35_TCR-1_Reads-1_raw_base_quality_distribution" 
+	role="tabpanel" aria-labelledby="gallery_figure_QC_list_AHF35_TCR-1_Reads-1_raw_base_quality_distribution"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/file/QC/AHF35_TCR-1_Reads-1_raw_base_quality_distribution.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_QC_pane_AHF35_TCR-1_Reads-2_raw_base_Content_Rito" 
+	role="tabpanel" aria-labelledby="gallery_figure_QC_list_AHF35_TCR-1_Reads-2_raw_base_Content_Rito"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/file/QC/AHF35_TCR-1_Reads-2_raw_base_Content_Rito.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_QC_pane_AHF35_TCR-1_Reads-2_raw_base_quality_distribution" 
+	role="tabpanel" aria-labelledby="gallery_figure_QC_list_AHF35_TCR-1_Reads-2_raw_base_quality_distribution"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/file/QC/AHF35_TCR-1_Reads-2_raw_base_quality_distribution.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_QC_pane_AHF36_TCR-1_Reads-1_raw_base_Content_Rito" 
+	role="tabpanel" aria-labelledby="gallery_figure_QC_list_AHF36_TCR-1_Reads-1_raw_base_Content_Rito"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/file/QC/AHF36_TCR-1_Reads-1_raw_base_Content_Rito.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_QC_pane_AHF36_TCR-1_Reads-1_raw_base_quality_distribution" 
+	role="tabpanel" aria-labelledby="gallery_figure_QC_list_AHF36_TCR-1_Reads-1_raw_base_quality_distribution"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/file/QC/AHF36_TCR-1_Reads-1_raw_base_quality_distribution.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_QC_pane_AHF36_TCR-1_Reads-2_raw_base_Content_Rito" 
+	role="tabpanel" aria-labelledby="gallery_figure_QC_list_AHF36_TCR-1_Reads-2_raw_base_Content_Rito"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/file/QC/AHF36_TCR-1_Reads-2_raw_base_Content_Rito.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_QC_pane_AHF36_TCR-1_Reads-2_raw_base_quality_distribution" 
+	role="tabpanel" aria-labelledby="gallery_figure_QC_list_AHF36_TCR-1_Reads-2_raw_base_quality_distribution"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/file/QC/AHF36_TCR-1_Reads-2_raw_base_quality_distribution.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_QC_pane_AHF37_TCR-1_Reads-1_raw_base_Content_Rito" 
+	role="tabpanel" aria-labelledby="gallery_figure_QC_list_AHF37_TCR-1_Reads-1_raw_base_Content_Rito"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/file/QC/AHF37_TCR-1_Reads-1_raw_base_Content_Rito.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_QC_pane_AHF37_TCR-1_Reads-1_raw_base_quality_distribution" 
+	role="tabpanel" aria-labelledby="gallery_figure_QC_list_AHF37_TCR-1_Reads-1_raw_base_quality_distribution"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/file/QC/AHF37_TCR-1_Reads-1_raw_base_quality_distribution.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_QC_pane_AHF37_TCR-1_Reads-2_raw_base_Content_Rito" 
+	role="tabpanel" aria-labelledby="gallery_figure_QC_list_AHF37_TCR-1_Reads-2_raw_base_Content_Rito"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/file/QC/AHF37_TCR-1_Reads-2_raw_base_Content_Rito.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_QC_pane_AHF37_TCR-1_Reads-2_raw_base_quality_distribution" 
+	role="tabpanel" aria-labelledby="gallery_figure_QC_list_AHF37_TCR-1_Reads-2_raw_base_quality_distribution"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/file/QC/AHF37_TCR-1_Reads-2_raw_base_quality_distribution.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_QC_pane_AHF38_TCR-1_Reads-1_raw_base_Content_Rito" 
+	role="tabpanel" aria-labelledby="gallery_figure_QC_list_AHF38_TCR-1_Reads-1_raw_base_Content_Rito"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/file/QC/AHF38_TCR-1_Reads-1_raw_base_Content_Rito.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_QC_pane_AHF38_TCR-1_Reads-1_raw_base_quality_distribution" 
+	role="tabpanel" aria-labelledby="gallery_figure_QC_list_AHF38_TCR-1_Reads-1_raw_base_quality_distribution"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/file/QC/AHF38_TCR-1_Reads-1_raw_base_quality_distribution.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_QC_pane_AHF38_TCR-1_Reads-2_raw_base_Content_Rito" 
+	role="tabpanel" aria-labelledby="gallery_figure_QC_list_AHF38_TCR-1_Reads-2_raw_base_Content_Rito"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/file/QC/AHF38_TCR-1_Reads-2_raw_base_Content_Rito.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_QC_pane_AHF38_TCR-1_Reads-2_raw_base_quality_distribution" 
+	role="tabpanel" aria-labelledby="gallery_figure_QC_list_AHF38_TCR-1_Reads-2_raw_base_quality_distribution"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/file/QC/AHF38_TCR-1_Reads-2_raw_base_quality_distribution.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_figure_QC_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure_QC_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure_QC_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_QC_list_AHF26_TCR-1_Reads-1_raw_base_Content_Rito"
+	data-toggle="list" href="#gallery_figure_QC_pane_AHF26_TCR-1_Reads-1_raw_base_Content_Rito" role="tab" aria-controls="AHF26_TCR-1_Reads-1_raw_base_Content_Rito">AHF26_TCR-1_Reads-1_raw_base_Content_Rito</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_QC_list_AHF26_TCR-1_Reads-1_raw_base_quality_distribution"
+	data-toggle="list" href="#gallery_figure_QC_pane_AHF26_TCR-1_Reads-1_raw_base_quality_distribution" role="tab" aria-controls="AHF26_TCR-1_Reads-1_raw_base_quality_distribution">AHF26_TCR-1_Reads-1_raw_base_quality_distribution</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_QC_list_AHF26_TCR-1_Reads-2_raw_base_Content_Rito"
+	data-toggle="list" href="#gallery_figure_QC_pane_AHF26_TCR-1_Reads-2_raw_base_Content_Rito" role="tab" aria-controls="AHF26_TCR-1_Reads-2_raw_base_Content_Rito">AHF26_TCR-1_Reads-2_raw_base_Content_Rito</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_QC_list_AHF26_TCR-1_Reads-2_raw_base_quality_distribution"
+	data-toggle="list" href="#gallery_figure_QC_pane_AHF26_TCR-1_Reads-2_raw_base_quality_distribution" role="tab" aria-controls="AHF26_TCR-1_Reads-2_raw_base_quality_distribution">AHF26_TCR-1_Reads-2_raw_base_quality_distribution</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_QC_list_AHF35_TCR-1_Reads-1_raw_base_Content_Rito"
+	data-toggle="list" href="#gallery_figure_QC_pane_AHF35_TCR-1_Reads-1_raw_base_Content_Rito" role="tab" aria-controls="AHF35_TCR-1_Reads-1_raw_base_Content_Rito">AHF35_TCR-1_Reads-1_raw_base_Content_Rito</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_QC_list_AHF35_TCR-1_Reads-1_raw_base_quality_distribution"
+	data-toggle="list" href="#gallery_figure_QC_pane_AHF35_TCR-1_Reads-1_raw_base_quality_distribution" role="tab" aria-controls="AHF35_TCR-1_Reads-1_raw_base_quality_distribution">AHF35_TCR-1_Reads-1_raw_base_quality_distribution</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_QC_list_AHF35_TCR-1_Reads-2_raw_base_Content_Rito"
+	data-toggle="list" href="#gallery_figure_QC_pane_AHF35_TCR-1_Reads-2_raw_base_Content_Rito" role="tab" aria-controls="AHF35_TCR-1_Reads-2_raw_base_Content_Rito">AHF35_TCR-1_Reads-2_raw_base_Content_Rito</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_QC_list_AHF35_TCR-1_Reads-2_raw_base_quality_distribution"
+	data-toggle="list" href="#gallery_figure_QC_pane_AHF35_TCR-1_Reads-2_raw_base_quality_distribution" role="tab" aria-controls="AHF35_TCR-1_Reads-2_raw_base_quality_distribution">AHF35_TCR-1_Reads-2_raw_base_quality_distribution</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_QC_list_AHF36_TCR-1_Reads-1_raw_base_Content_Rito"
+	data-toggle="list" href="#gallery_figure_QC_pane_AHF36_TCR-1_Reads-1_raw_base_Content_Rito" role="tab" aria-controls="AHF36_TCR-1_Reads-1_raw_base_Content_Rito">AHF36_TCR-1_Reads-1_raw_base_Content_Rito</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_QC_list_AHF36_TCR-1_Reads-1_raw_base_quality_distribution"
+	data-toggle="list" href="#gallery_figure_QC_pane_AHF36_TCR-1_Reads-1_raw_base_quality_distribution" role="tab" aria-controls="AHF36_TCR-1_Reads-1_raw_base_quality_distribution">AHF36_TCR-1_Reads-1_raw_base_quality_distribution</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_QC_list_AHF36_TCR-1_Reads-2_raw_base_Content_Rito"
+	data-toggle="list" href="#gallery_figure_QC_pane_AHF36_TCR-1_Reads-2_raw_base_Content_Rito" role="tab" aria-controls="AHF36_TCR-1_Reads-2_raw_base_Content_Rito">AHF36_TCR-1_Reads-2_raw_base_Content_Rito</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_QC_list_AHF36_TCR-1_Reads-2_raw_base_quality_distribution"
+	data-toggle="list" href="#gallery_figure_QC_pane_AHF36_TCR-1_Reads-2_raw_base_quality_distribution" role="tab" aria-controls="AHF36_TCR-1_Reads-2_raw_base_quality_distribution">AHF36_TCR-1_Reads-2_raw_base_quality_distribution</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_QC_list_AHF37_TCR-1_Reads-1_raw_base_Content_Rito"
+	data-toggle="list" href="#gallery_figure_QC_pane_AHF37_TCR-1_Reads-1_raw_base_Content_Rito" role="tab" aria-controls="AHF37_TCR-1_Reads-1_raw_base_Content_Rito">AHF37_TCR-1_Reads-1_raw_base_Content_Rito</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_QC_list_AHF37_TCR-1_Reads-1_raw_base_quality_distribution"
+	data-toggle="list" href="#gallery_figure_QC_pane_AHF37_TCR-1_Reads-1_raw_base_quality_distribution" role="tab" aria-controls="AHF37_TCR-1_Reads-1_raw_base_quality_distribution">AHF37_TCR-1_Reads-1_raw_base_quality_distribution</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_QC_list_AHF37_TCR-1_Reads-2_raw_base_Content_Rito"
+	data-toggle="list" href="#gallery_figure_QC_pane_AHF37_TCR-1_Reads-2_raw_base_Content_Rito" role="tab" aria-controls="AHF37_TCR-1_Reads-2_raw_base_Content_Rito">AHF37_TCR-1_Reads-2_raw_base_Content_Rito</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_QC_list_AHF37_TCR-1_Reads-2_raw_base_quality_distribution"
+	data-toggle="list" href="#gallery_figure_QC_pane_AHF37_TCR-1_Reads-2_raw_base_quality_distribution" role="tab" aria-controls="AHF37_TCR-1_Reads-2_raw_base_quality_distribution">AHF37_TCR-1_Reads-2_raw_base_quality_distribution</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_QC_list_AHF38_TCR-1_Reads-1_raw_base_Content_Rito"
+	data-toggle="list" href="#gallery_figure_QC_pane_AHF38_TCR-1_Reads-1_raw_base_Content_Rito" role="tab" aria-controls="AHF38_TCR-1_Reads-1_raw_base_Content_Rito">AHF38_TCR-1_Reads-1_raw_base_Content_Rito</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_QC_list_AHF38_TCR-1_Reads-1_raw_base_quality_distribution"
+	data-toggle="list" href="#gallery_figure_QC_pane_AHF38_TCR-1_Reads-1_raw_base_quality_distribution" role="tab" aria-controls="AHF38_TCR-1_Reads-1_raw_base_quality_distribution">AHF38_TCR-1_Reads-1_raw_base_quality_distribution</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_QC_list_AHF38_TCR-1_Reads-2_raw_base_Content_Rito"
+	data-toggle="list" href="#gallery_figure_QC_pane_AHF38_TCR-1_Reads-2_raw_base_Content_Rito" role="tab" aria-controls="AHF38_TCR-1_Reads-2_raw_base_Content_Rito">AHF38_TCR-1_Reads-2_raw_base_Content_Rito</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_QC_list_AHF38_TCR-1_Reads-2_raw_base_quality_distribution"
+	data-toggle="list" href="#gallery_figure_QC_pane_AHF38_TCR-1_Reads-2_raw_base_quality_distribution" role="tab" aria-controls="AHF38_TCR-1_Reads-2_raw_base_quality_distribution">AHF38_TCR-1_Reads-2_raw_base_quality_distribution</a>
+	
+	</div>
+	</div>
+	</div>
+	</p>
+
+
+<p class="tremark">The results can be found in the result file: 1. QC/3.QCfigs</p>
+<p class="tremark">Reads-1: Related images of reads1; Reads-2: Related images of reads2;</p>
+<p class="tremark">(1)	cleanbase_quality_distribution.png: Distribution map of base quality</p>
+<p class="tremark">(2)	Content_Rito.png: Distribution map of base content</p>
+
+<hr />
+</p>
+<h3><a>3.3 Sequencing Data Summary</a></h3>
+<p class="paragraph">The data quality will directly affect the results of subsequent information analysis. The quality and output of the raw data are summarized in the following table:</p>
+
+<div style="display: block; overflow-y: scroll;overflow-x: scroll">
+<table class="gy">
+<tr>
+<th>LibraryID</th>
+<th>Sample name</th>
+<th>Raw reads</th>
+<th>Raw Bases(G)</th>
+<th>Q20 (%)</th>
+<th>Q30 (%)</th>
+<th>GC (%)</th>
+</tr>
+
+    
+	
+    		<tr>
+			<td>EKDL240000369-1a</td>
+			<td>AHF26_TCR</td>
+			<td>16658813</td>
+			<td>5.00</td>
+			<td>96.92</td>
+			<td>92.37</td>
+			<td>53.83</td>
+			</tr>
+	
+    
+	
+   		 <tr>
+		 <td>EKDL240000370-1a</td>
+		 <td>AHF35_TCR</td>
+		 <td>35896825</td>
+		 <td>10.77</td>
+		 <td>97.69</td>
+		 <td>94.07</td>
+		 <td>53.39</td>
+		 </tr>
+	
+    
+	
+   		 <tr>
+		 <td>EKDL240000371-1a</td>
+		 <td>AHF36_TCR</td>
+		 <td>19893689</td>
+		 <td>5.97</td>
+		 <td>97.60</td>
+		 <td>93.84</td>
+		 <td>53.31</td>
+		 </tr>
+	
+    
+	
+   		 <tr>
+		 <td>EKDL240000372-1a</td>
+		 <td>AHF37_TCR</td>
+		 <td>34003610</td>
+		 <td>10.20</td>
+		 <td>97.60</td>
+		 <td>93.90</td>
+		 <td>52.97</td>
+		 </tr>
+	
+    
+	
+   		 <tr>
+		 <td>EKDL240000373-1a</td>
+		 <td>AHF38_TCR</td>
+		 <td>41465916</td>
+		 <td>12.44</td>
+		 <td>97.23</td>
+		 <td>93.09</td>
+		 <td>54.59</td>
+		 </tr>
+	
+    
+
+
+</table>
+</div>
+</br>
+</br>
+<p class="tremark">Note: *_qc.html under the result folder 1. QC/2.fastp_html/ is the result file of fastp quality control, and Q20/Q30 in the file is the quality control result based on reads1 and reads2. In dataTable.txt in the result folder 1. QC/1.dataTable/, Q20/Q30 is the quality control result based on reads1 and reads2</p>
+</br>
+<p class="tremark">(1)	LibraryID: Library No.</p>
+<p class="tremark">(2)	Sample name: Sample name</p>
+<p class="tremark">(3)	Raw Reads: Quantity of rawdata reads</p>
+<p class="tremark">(4)	Raw Bases(G): rawdata data size</p>
+<p class="tremark">(5)	Q20(%): Q20 of reads1 and reads2 of rawdata</p>
+<p class="tremark">(6)	Q30(%): Q30 of reads1 and reads2 of rawdata</p>
+<p class="tremark">(7)	GC Content(%): GC ratio of reads1 and reads2 of rawdata</p>
+<br>
+
+
+
+
+
+
+
+
+
+
+<!------- 加一行大横线------------->
+<hr />
+<h2>4 Data Statistics</h2>
+<!------- 加一行大横线------------->
+<hr />
+<h3>4.1 Detailed Statistical Results of 10X Genomics Analysis</h3>
+
+<p class="paragraph">Please refer to the Cellranger web_summary folder for details:<a href="src/web_summary/">web_summary</a></p>
+
+<br/>
+<!------- 加一行大横线------------->
+<hr />
+<h3>4.2 Construction of Immune Repertoire</h3>
+<img class="normal" src="src/images/10Xyuanli.png">
+
+
+<p class="paragraph">(1)	Assembling contigs: Cellranger filters out barcodes that may contain noise and reads of Unique Molecular Identifiers (UMIs) caused by PCR errors, sequencing errors, etc. Primer sequences at the 5' and 3' ends of reads are removed. These reads are then combined to output a set of assembled contigs, which represent the optimal sequence of the existing transcript sequence. Each base in each contig is assigned a quality value. The number of UMIs and reads supported by each contig is also shown.</p>
+
+</br>
+<p class="paragraph">(2)	Annotating contigs: Contigs are annotated using the V(D)J segment labels and the area CDR3 that forms the transcript is located. Contigs with biological functions are filtered out.</p>
+</br>
+<p class="paragraph">(3)	Cell identification: Barcodes/GEMs containing T or B cells are identified.</p>
+</br>
+<p class="paragraph">(4)	Generating clonotype: The clonotype of cells is identified</p>
+
+
+
+<!------- 加一行大横线------------->
+<hr />
+<h4>4.2.1 Contig Annotation</h4>
+
+<p class="paragraph">Screening of single sample contig annotations</p>
+<p class="paragraph">The statistical details of the comparison results are as follows:</p>
+<p class="paragraph">Table 2.1.1 Summary of Annotations for Single Sample Contig</p>
+<p class="paragraph">Please refer to the result folder: 2. Cellranger_VDJ/*/filtered_contig_annotations.csv</p>
+
+<div style="display: block; overflow-x: scroll">
+	<table class="gy">
+		<thead>
+			<tr>
+				
+				<th>barcode</th>
+				
+				<th>is_cell</th>
+				
+				<th>contig_id</th>
+				
+				<th>high_confidence</th>
+				
+				<th>length</th>
+				
+				<th>chain</th>
+				
+				<th>v_gene</th>
+				
+				<th>d_gene</th>
+				
+				<th>j_gene</th>
+				
+				<th>c_gene</th>
+				
+				<th>full_length</th>
+				
+				<th>productive</th>
+				
+				<th>fwr1</th>
+				
+				<th>fwr1_nt</th>
+				
+				<th>cdr1</th>
+				
+				<th>cdr1_nt</th>
+				
+				<th>fwr2</th>
+				
+				<th>fwr2_nt</th>
+				
+				<th>cdr2</th>
+				
+				<th>cdr2_nt</th>
+				
+				<th>fwr3</th>
+				
+				<th>fwr3_nt</th>
+				
+				<th>cdr3</th>
+				
+				<th>cdr3_nt</th>
+				
+				<th>fwr4</th>
+				
+				<th>fwr4_nt</th>
+				
+				<th>reads</th>
+				
+				<th>umis</th>
+				
+				<th>raw_clonotype_id</th>
+				
+				<th>raw_consensus_id</th>
+				
+				<th>exact_subclonotype_id</th>
+				
+			</tr>
+		</thead>
+		<tbody>
+			
+			<tr>
+				
+				<td>AAACCTGCAGTCCTTC-1</td>
+				
+				<td>true</td>
+				
+				<td>AAACCTGCAGTCCTTC-1_contig_1</td>
+				
+				<td>true</td>
+				
+				<td>515</td>
+				
+				<td>TRA</td>
+				
+				<td>TRAV17</td>
+				
+				<td></td>
+				
+				<td>TRAJ21</td>
+				
+				<td>TRAC</td>
+				
+				<td>true</td>
+				
+				<td>true</td>
+				
+				<td>SQQGEEDPQALSIQEGENATMNCSYK</td>
+				
+				<td>AGTCAACAGGGAGAAGAGGATCCTCAGGCCTTGAGCATCCAGGAGGGTGAAAATGCCACCATGAACTGCAGTTACAAA</td>
+				
+				<td>TSINN</td>
+				
+				<td>ACTAGTATAAACAAT</td>
+				
+				<td>LQWYRQNSGRGLVHLIL</td>
+				
+				<td>TTACAGTGGTATAGACAAAATTCAGGTAGAGGCCTTGTCCACCTAATTTTA</td>
+				
+				<td>IRSNERE</td>
+				
+				<td>ATACGTTCAAATGAAAGAGAG</td>
+				
+				<td>KHSGRLRVTLDTSKKSSSLLITASRAADTASYF</td>
+				
+				<td>AAACACAGTGGAAGATTAAGAGTCACGCTTGACACTTCCAAGAAAAGCAGTTCCTTGTTGATCACGGCTTCCCGGGCAGCAGACACTGCTTCTTACTTC</td>
+				
+				<td>CATDRDNFNKFYF</td>
+				
+				<td>TGTGCTACGGACAGGGACAACTTCAACAAATTTTACTTT</td>
+				
+				<td>GSGTKLNVKP</td>
+				
+				<td>GGATCTGGGACCAAACTCAATGTAAAACCAA</td>
+				
+				<td>9516</td>
+				
+				<td>7</td>
+				
+				<td>clonotype149</td>
+				
+				<td>clonotype149_consensus_2</td>
+				
+				<td>1</td>
+				
+			</tr>
+			
+			<tr>
+				
+				<td>AAACCTGCAGTCCTTC-1</td>
+				
+				<td>true</td>
+				
+				<td>AAACCTGCAGTCCTTC-1_contig_2</td>
+				
+				<td>true</td>
+				
+				<td>469</td>
+				
+				<td>TRB</td>
+				
+				<td>TRBV28</td>
+				
+				<td></td>
+				
+				<td>TRBJ2-2</td>
+				
+				<td>TRBC2</td>
+				
+				<td>true</td>
+				
+				<td>true</td>
+				
+				<td>DVKVTQSSRYLVKRTGEKVFLECVQD</td>
+				
+				<td>GATGTGAAAGTAACCCAGAGCTCGAGATATCTAGTCAAAAGGACGGGAGAGAAAGTTTTTCTGGAATGTGTCCAGGAT</td>
+				
+				<td>MDHEN</td>
+				
+				<td>ATGGACCATGAAAAT</td>
+				
+				<td>MFWYRQDPGLGLRLIYF</td>
+				
+				<td>ATGTTCTGGTATCGACAAGACCCAGGTCTGGGGCTACGGCTGATCTATTTC</td>
+				
+				<td>SYDVKM</td>
+				
+				<td>TCATATGATGTTAAAATG</td>
+				
+				<td>KEKGDIPEGYSVSREKKERFSLILESASTNQTSMYL</td>
+				
+				<td>AAAGAAAAAGGAGATATTCCTGAGGGGTACAGTGTCTCTAGAGAGAAGAAGGAGCGCTTCTCCCTGATTCTGGAGTCCGCCAGCACCAACCAGACATCTATGTACCTC</td>
+				
+				<td>CASTRLAGAGELFF</td>
+				
+				<td>TGTGCCAGCACCCGTCTAGCGGGAGCCGGGGAGCTGTTTTTT</td>
+				
+				<td>GEGSRLTVL</td>
+				
+				<td>GGAGAAGGCTCTAGGCTGACCGTACTGG</td>
+				
+				<td>11758</td>
+				
+				<td>12</td>
+				
+				<td>clonotype149</td>
+				
+				<td>clonotype149_consensus_1</td>
+				
+				<td>1</td>
+				
+			</tr>
+			
+			<tr>
+				
+				<td>AAACGGGCACACCGCA-1</td>
+				
+				<td>true</td>
+				
+				<td>AAACGGGCACACCGCA-1_contig_1</td>
+				
+				<td>true</td>
+				
+				<td>514</td>
+				
+				<td>TRA</td>
+				
+				<td>TRAV1-2</td>
+				
+				<td></td>
+				
+				<td>TRAJ37</td>
+				
+				<td>TRAC</td>
+				
+				<td>true</td>
+				
+				<td>true</td>
+				
+				<td>GQNIDQPTEMTATEGAIVQINCTYQ</td>
+				
+				<td>GGACAAAACATTGACCAGCCCACTGAGATGACAGCTACGGAAGGTGCCATTGTCCAGATCAACTGCACGTACCAG</td>
+				
+				<td>TSGFNG</td>
+				
+				<td>ACATCTGGGTTCAACGGG</td>
+				
+				<td>LFWYQQHAGEAPTFLSY</td>
+				
+				<td>CTGTTCTGGTACCAGCAACATGCTGGCGAAGCACCCACATTTCTGTCTTAC</td>
+				
+				<td>NVLDGL</td>
+				
+				<td>AATGTTCTGGATGGTTTG</td>
+				
+				<td>EEKGRFSSFLSRSKGYSYLLLKELQMKDSASYL</td>
+				
+				<td>GAGGAGAAAGGTCGTTTTTCTTCATTCCTTAGTCGGTCTAAAGGGTACAGTTACCTCCTTTTGAAGGAGCTCCAGATGAAAGACTCTGCCTCTTACCTC</td>
+				
+				<td>CAVRPYPSNTGKLIF</td>
+				
+				<td>TGTGCTGTGAGACCTTACCCTAGCAACACAGGCAAACTAATCTTT</td>
+				
+				<td>GQGTTLQVKP</td>
+				
+				<td>GGGCAAGGGACAACTTTACAAGTAAAACCAG</td>
+				
+				<td>25064</td>
+				
+				<td>10</td>
+				
+				<td>clonotype106</td>
+				
+				<td>clonotype106_consensus_2</td>
+				
+				<td>1</td>
+				
+			</tr>
+			
+			<tr>
+				
+				<td>AAACGGGCACACCGCA-1</td>
+				
+				<td>true</td>
+				
+				<td>AAACGGGCACACCGCA-1_contig_2</td>
+				
+				<td>true</td>
+				
+				<td>501</td>
+				
+				<td>TRB</td>
+				
+				<td>TRBV20-1</td>
+				
+				<td>TRBD1</td>
+				
+				<td>TRBJ1-5</td>
+				
+				<td>TRBC1</td>
+				
+				<td>true</td>
+				
+				<td>true</td>
+				
+				<td>GAVVSQHPSWVICKSGTSVKIECRSL</td>
+				
+				<td>GGTGCTGTCGTCTCTCAACATCCGAGCTGGGTTATCTGTAAGAGTGGAACCTCTGTGAAGATCGAGTGCCGTTCCCTG</td>
+				
+				<td>DFQATT</td>
+				
+				<td>GACTTTCAGGCCACAACT</td>
+				
+				<td>MFWYRQFPKQSLMLMAT</td>
+				
+				<td>ATGTTTTGGTATCGTCAGTTCCCGAAACAGAGTCTCATGCTGATGGCAACT</td>
+				
+				<td>SNEGSKA</td>
+				
+				<td>TCCAATGAGGGCTCCAAGGCC</td>
+				
+				<td>TYEQGVEKDKFLINHASLTLSTLTVTSAHPEDSSFYI</td>
+				
+				<td>ACATACGAGCAAGGCGTCGAGAAGGACAAGTTTCTCATCAACCATGCAAGCCTGACCTTGTCCACTCTGACAGTGACCAGTGCCCATCCTGAAGACAGCAGCTTCTACATC</td>
+				
+				<td>CSAHIGTGSNQPQHF</td>
+				
+				<td>TGCAGTGCTCACATAGGGACAGGGTCTAATCAGCCCCAGCATTTT</td>
+				
+				<td>GDGTRLSIL</td>
+				
+				<td>GGTGATGGGACTCGACTCTCCATCCTAG</td>
+				
+				<td>35062</td>
+				
+				<td>14</td>
+				
+				<td>clonotype106</td>
+				
+				<td>clonotype106_consensus_1</td>
+				
+				<td>1</td>
+				
+			</tr>
+			
+			<tr>
+				
+				<td>AAAGATGAGATGTGTA-1</td>
+				
+				<td>true</td>
+				
+				<td>AAAGATGAGATGTGTA-1_contig_1</td>
+				
+				<td>true</td>
+				
+				<td>506</td>
+				
+				<td>TRB</td>
+				
+				<td>TRBV6-1</td>
+				
+				<td></td>
+				
+				<td>TRBJ2-3</td>
+				
+				<td>TRBC2</td>
+				
+				<td>true</td>
+				
+				<td>true</td>
+				
+				<td>NAGVTQTPKFQVLKTGQSMTLQCAQD</td>
+				
+				<td>AATGCTGGTGTCACTCAGACCCCAAAATTCCAGGTCCTGAAGACAGGACAGAGCATGACACTGCAGTGTGCCCAGGAT</td>
+				
+				<td>MNHNS</td>
+				
+				<td>ATGAACCATAACTCC</td>
+				
+				<td>MYWYRQDPGMGLRLIYY</td>
+				
+				<td>ATGTACTGGTATCGACAAGACCCAGGCATGGGACTGAGGCTGATTTATTAC</td>
+				
+				<td>SASEGT</td>
+				
+				<td>TCAGCTTCTGAGGGTACC</td>
+				
+				<td>TDKGEVPNGYNVSRLNKREFSLRLESAAPSQTSVYF</td>
+				
+				<td>ACTGACAAAGGAGAAGTCCCCAATGGCTACAATGTCTCCAGATTAAACAAACGGGAGTTCTCGCTCAGGCTGGAGTCGGCTGCTCCCTCCCAGACATCTGTGTACTTC</td>
+				
+				<td>CASSIGGPGDTQYF</td>
+				
+				<td>TGTGCCAGCAGTATAGGGGGGCCCGGAGATACGCAGTATTTT</td>
+				
+				<td>GPGTRLTVL</td>
+				
+				<td>GGCCCAGGCACCCGGCTGACAGTGCTCG</td>
+				
+				<td>22680</td>
+				
+				<td>10</td>
+				
+				<td>clonotype190</td>
+				
+				<td>clonotype190_consensus_1</td>
+				
+				<td>1</td>
+				
+			</tr>
+			
+			<tr>
+				
+				<td>AAAGATGAGATGTGTA-1</td>
+				
+				<td>true</td>
+				
+				<td>AAAGATGAGATGTGTA-1_contig_2</td>
+				
+				<td>true</td>
+				
+				<td>683</td>
+				
+				<td>TRA</td>
+				
+				<td>TRAV8-3</td>
+				
+				<td></td>
+				
+				<td>TRAJ16</td>
+				
+				<td>TRAC</td>
+				
+				<td>true</td>
+				
+				<td>true</td>
+				
+				<td>AQSVTQPDIHITVSEGASLELRCNYS</td>
+				
+				<td>GCCCAGTCAGTGACCCAGCCTGACATCCACATCACTGTCTCTGAAGGAGCCTCACTGGAGTTGAGATGTAACTATTCC</td>
+				
+				<td>YGATPY</td>
+				
+				<td>TATGGGGCAACACCTTAT</td>
+				
+				<td>LFWYVQSPGQGLQLLLK</td>
+				
+				<td>CTCTTCTGGTATGTCCAGTCCCCCGGCCAAGGCCTCCAGCTGCTCCTGAAG</td>
+				
+				<td>YFSGDTLV</td>
+				
+				<td>TACTTTTCAGGAGACACTCTGGTT</td>
+				
+				<td>QGIKGFEAEFKRSQSSFNLRKPSVHWSDAAEYF</td>
+				
+				<td>CAAGGCATTAAAGGCTTTGAGGCTGAATTTAAGAGGAGTCAATCTTCCTTCAACCTGAGGAAACCCTCTGTGCATTGGAGTGATGCTGCTGAGTACTTC</td>
+				
+				<td>CAVAGRFSDGQKLLF</td>
+				
+				<td>TGTGCTGTGGCTGGACGGTTTTCAGATGGCCAGAAGCTGCTCTTT</td>
+				
+				<td>ARGTMLKVDL</td>
+				
+				<td>GCAAGGGGGACCATGTTAAAGGTGGATCTTA</td>
+				
+				<td>7712</td>
+				
+				<td>4</td>
+				
+				<td>clonotype190</td>
+				
+				<td>clonotype190_consensus_2</td>
+				
+				<td>1</td>
+				
+			</tr>
+			
+			<tr>
+				
+				<td>AAAGCAATCTCGAGTA-1</td>
+				
+				<td>true</td>
+				
+				<td>AAAGCAATCTCGAGTA-1_contig_1</td>
+				
+				<td>true</td>
+				
+				<td>482</td>
+				
+				<td>TRB</td>
+				
+				<td>TRBV9</td>
+				
+				<td></td>
+				
+				<td>TRBJ2-1</td>
+				
+				<td>TRBC2</td>
+				
+				<td>true</td>
+				
+				<td>true</td>
+				
+				<td>DSGVTQTPKHLITATGQRVTLRCSPR</td>
+				
+				<td>GATTCTGGAGTCACACAAACCCCAAAGCACCTGATCACAGCAACTGGACAGCGAGTGACGCTGAGATGCTCCCCTAGG</td>
+				
+				<td>SGDLS</td>
+				
+				<td>TCTGGAGACCTCTCT</td>
+				
+				<td>VYWYQQSLDQGLQFLIQ</td>
+				
+				<td>GTGTACTGGTACCAACAGAGCCTGGACCAGGGCCTCCAGTTCCTCATTCAG</td>
+				
+				<td>YYNGEE</td>
+				
+				<td>TATTATAATGGAGAAGAG</td>
+				
+				<td>RAKGNILERFSAQQFPDLHSELNLSSLELGDSALYF</td>
+				
+				<td>AGAGCAAAAGGAAACATTCTTGAACGATTCTCCGCACAACAGTTCCCTGACTTGCACTCTGAACTAAACCTGAGCTCTCTGGAGCTGGGGGACTCAGCTTTGTATTTC</td>
+				
+				<td>CASSVVGGNNEQFF</td>
+				
+				<td>TGTGCCAGCAGCGTAGTTGGGGGAAACAATGAGCAGTTCTTC</td>
+				
+				<td>GPGTRLTVL</td>
+				
+				<td>GGGCCAGGGACACGGCTCACCGTGCTAG</td>
+				
+				<td>10346</td>
+				
+				<td>6</td>
+				
+				<td>clonotype154</td>
+				
+				<td>clonotype154_consensus_1</td>
+				
+				<td>1</td>
+				
+			</tr>
+			
+			<tr>
+				
+				<td>AAAGCAATCTCGAGTA-1</td>
+				
+				<td>true</td>
+				
+				<td>AAAGCAATCTCGAGTA-1_contig_2</td>
+				
+				<td>true</td>
+				
+				<td>505</td>
+				
+				<td>TRA</td>
+				
+				<td>TRAV20</td>
+				
+				<td></td>
+				
+				<td>TRAJ30</td>
+				
+				<td>TRAC</td>
+				
+				<td>true</td>
+				
+				<td>true</td>
+				
+				<td>EDQVTQSPEALRLQEGESSSLNCSYT</td>
+				
+				<td>GAAGACCAGGTGACGCAGAGTCCCGAGGCCCTGAGACTCCAGGAGGGAGAGAGTAGCAGTCTCAACTGCAGTTACACA</td>
+				
+				<td>VSGLRG</td>
+				
+				<td>GTCAGCGGTTTAAGAGGG</td>
+				
+				<td>LFWYRQDPGKGPEFLFT</td>
+				
+				<td>CTGTTCTGGTATAGGCAAGATCCTGGGAAAGGCCCTGAATTCCTCTTCACC</td>
+				
+				<td>LYSAGEE</td>
+				
+				<td>CTGTATTCAGCTGGGGAAGAA</td>
+				
+				<td>KEKERLKATLTKKESFLHITAPKPEDSATYL</td>
+				
+				<td>AAGGAGAAAGAAAGGCTAAAAGCCACATTAACAAAGAAGGAAAGCTTTCTGCACATCACAGCCCCTAAACCTGAAGACTCAGCCACTTATCTC</td>
+				
+				<td>CAVQARRDDKIIF</td>
+				
+				<td>TGTGCTGTGCAGGCACGGAGAGATGACAAGATCATCTTT</td>
+				
+				<td>GKGTRLHILP</td>
+				
+				<td>GGAAAAGGGACACGACTTCATATTCTCCCCA</td>
+				
+				<td>5596</td>
+				
+				<td>6</td>
+				
+				<td>clonotype154</td>
+				
+				<td>clonotype154_consensus_2</td>
+				
+				<td>1</td>
+				
+			</tr>
+			
+			<tr>
+				
+				<td>AAAGTAGAGAGGTACC-1</td>
+				
+				<td>true</td>
+				
+				<td>AAAGTAGAGAGGTACC-1_contig_1</td>
+				
+				<td>true</td>
+				
+				<td>502</td>
+				
+				<td>TRB</td>
+				
+				<td>TRBV7-2</td>
+				
+				<td></td>
+				
+				<td>TRBJ2-5</td>
+				
+				<td>TRBC2</td>
+				
+				<td>true</td>
+				
+				<td>true</td>
+				
+				<td>GAGVSQSPSNKVTEKGKDVELRCDPI</td>
+				
+				<td>GGAGCTGGAGTCTCCCAGTCCCCCAGTAACAAGGTCACAGAGAAGGGAAAGGATGTAGAGCTCAGGTGTGATCCAATT</td>
+				
+				<td>SGHTA</td>
+				
+				<td>TCAGGTCATACTGCC</td>
+				
+				<td>LYWYRQSLGQGLEFLIY</td>
+				
+				<td>CTTTACTGGTACCGACAGAGCCTGGGGCAGGGCCTGGAGTTTTTAATTTAC</td>
+				
+				<td>FQGNSA</td>
+				
+				<td>TTCCAAGGCAACAGTGCA</td>
+				
+				<td>PDKSGLPSDRFSAERTGGSVSTLTIQRTQQEDSAVYL</td>
+				
+				<td>CCAGACAAATCAGGGCTGCCCAGTGATCGCTTCTCTGCAGAGAGGACTGGGGGATCCGTCTCCACTCTGACGATCCAGCGCACACAGCAGGAGGACTCGGCCGTGTATCTC</td>
+				
+				<td>CASSLNGGAQETQYF</td>
+				
+				<td>TGTGCCAGCAGCTTAAACGGGGGGGCCCAAGAGACCCAGTACTTC</td>
+				
+				<td>GPGTRLLVL</td>
+				
+				<td>GGGCCAGGCACGCGGCTCCTGGTGCTCG</td>
+				
+				<td>57044</td>
+				
+				<td>32</td>
+				
+				<td>clonotype315</td>
+				
+				<td>clonotype315_consensus_1</td>
+				
+				<td>1</td>
+				
+			</tr>
+			
+		</tbody>
+	</table>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p class="paragraph">The summary results of contig annotation screening for all samples are as follows:</p>
+<p class="paragraph">Please refer to the result folder: 2. Cellranger_VDJ/all_metrics_summary.xls</p>
+
+<div style="display: block; overflow-x: scroll">
+	<table class="gy">
+		<thead>
+			<tr>
+				
+				<th>Sample name</th>
+				
+				<th>Cells With TRA Contig</th>
+				
+				<th>Cells With TRB Contig</th>
+				
+				<th>Cells With CDR3-annotated TRA Contig</th>
+				
+				<th>Cells With CDR3-annotated TRB Contig</th>
+				
+				<th>Cells With V-J Spanning TRA Contig</th>
+				
+				<th>Cells With V-J Spanning TRB Contig</th>
+				
+				<th>Cells With Productive TRA Contig</th>
+				
+				<th>Cells With Productive TRB Contig</th>
+				
+			</tr>
+		</thead>
+		<tbody>
+			
+			<tr>
+				
+				<td>AHF38_TCR</td>
+				
+				<td>72.4%</td>
+				
+				<td>96.3%</td>
+				
+				<td>69.0%</td>
+				
+				<td>95.3%</td>
+				
+				<td>70.4%</td>
+				
+				<td>95.4%</td>
+				
+				<td>66.5%</td>
+				
+				<td>94.6%</td>
+				
+			</tr>
+			
+			<tr>
+				
+				<td>AHF35_TCR</td>
+				
+				<td>92.2%</td>
+				
+				<td>95.9%</td>
+				
+				<td>90.8%</td>
+				
+				<td>94.2%</td>
+				
+				<td>91.4%</td>
+				
+				<td>94.3%</td>
+				
+				<td>88.3%</td>
+				
+				<td>93.6%</td>
+				
+			</tr>
+			
+			<tr>
+				
+				<td>AHF26_TCR</td>
+				
+				<td>94.5%</td>
+				
+				<td>98.3%</td>
+				
+				<td>92.8%</td>
+				
+				<td>98.3%</td>
+				
+				<td>94.5%</td>
+				
+				<td>98.3%</td>
+				
+				<td>91.2%</td>
+				
+				<td>97.8%</td>
+				
+			</tr>
+			
+			<tr>
+				
+				<td>AHF37_TCR</td>
+				
+				<td>80.1%</td>
+				
+				<td>97.6%</td>
+				
+				<td>77.6%</td>
+				
+				<td>96.6%</td>
+				
+				<td>79.0%</td>
+				
+				<td>96.7%</td>
+				
+				<td>75.4%</td>
+				
+				<td>96.1%</td>
+				
+			</tr>
+			
+			<tr>
+				
+				<td>AHF36_TCR</td>
+				
+				<td>96.9%</td>
+				
+				<td>99.3%</td>
+				
+				<td>95.3%</td>
+				
+				<td>98.4%</td>
+				
+				<td>96.0%</td>
+				
+				<td>98.4%</td>
+				
+				<td>94.0%</td>
+				
+				<td>97.8%</td>
+				
+			</tr>
+			
+		</tbody>
+	</table>
+</div>
+
+<p class="paragraph">The screening details of contig annotations for all samples are as follows:</p>
+<p class="tremark">Sample name: Sample name</p>
+<p class="tremark">Cells With TRA,TRB,IGH,IGL,IGK Contig: Represent the percentage of cells annotated with contig to TRA, TRB, IGH, IGL, and IGK, respectively</p>
+<p class="tremark">Cells With CDR3-annotated TRA,TRB,IGH,IGL,IGK Contig: Represent the percentage of area CDR3 cells annotated with contig to TRA, TRB, IGH, IGL, and IGK, respectively</p>
+<p class="tremark">Cells With V-J Spanning TRA,TRB,IGH,IGL,IGK Contig: Represent the percentage of cells annotated with contig to TRA, TRB, IGH, IGL, and IGK spanning the area V-J</p>
+<p class="tremark">Cells With Productive TRA,TRB,IGH,IGL,IGK Contig: Represent the percentage of cells annotated as effective TRA, TRB, IGH, IGL, and IGK chain contig, respectively</p>
+
+
+<!------- 加一行大横线------------->
+<hr />
+<h4>4.2.2 Annotation of Consensus Sequence Splicing</h4>
+
+<p class="paragraph">The high-quality contigs in the sample will ultimately be combined with the contigs of all effective cells in the sample for further consensus sequence splicing, and the splicing and annotation results of consensus sequence will be combined for subsequent TCR typing.</p>
+<p class="paragraph">Consensus Table 2.2 Summary of Sequence Splicing and Annotation Results (Part)</p>
+<p class="paragraph">Please refer to the result folder: 2. Cellranger_VDJ/*/consensus_annotations.csv</p>
+
+
+<div style="display: block; overflow-x: scroll">
+	<table class="gy">
+		<thead>
+			<tr>
+				
+				<th>clonotype_id</th>
+				
+				<th>consensus_id</th>
+				
+				<th>length</th>
+				
+				<th>chain</th>
+				
+				<th>v_gene</th>
+				
+				<th>d_gene</th>
+				
+				<th>j_gene</th>
+				
+				<th>c_gene</th>
+				
+				<th>full_length</th>
+				
+				<th>productive</th>
+				
+				<th>fwr1</th>
+				
+				<th>fwr1_nt</th>
+				
+				<th>cdr1</th>
+				
+				<th>cdr1_nt</th>
+				
+				<th>fwr2</th>
+				
+				<th>fwr2_nt</th>
+				
+				<th>cdr2</th>
+				
+				<th>cdr2_nt</th>
+				
+				<th>fwr3</th>
+				
+				<th>fwr3_nt</th>
+				
+				<th>cdr3</th>
+				
+				<th>cdr3_nt</th>
+				
+				<th>fwr4</th>
+				
+				<th>fwr4_nt</th>
+				
+				<th>reads</th>
+				
+				<th>umis</th>
+				
+				<th>v_start</th>
+				
+				<th>v_end</th>
+				
+				<th>v_end_ref</th>
+				
+				<th>j_start</th>
+				
+				<th>j_start_ref</th>
+				
+				<th>j_end</th>
+				
+				<th>fwr1_start</th>
+				
+				<th>fwr1_end</th>
+				
+				<th>cdr1_start</th>
+				
+				<th>cdr1_end</th>
+				
+				<th>fwr2_start</th>
+				
+				<th>fwr2_end</th>
+				
+				<th>cdr2_start</th>
+				
+				<th>cdr2_end</th>
+				
+				<th>fwr3_start</th>
+				
+				<th>fwr3_end</th>
+				
+				<th>cdr3_start</th>
+				
+				<th>cdr3_end</th>
+				
+				<th>fwr4_start</th>
+				
+				<th>fwr4_end</th>
+				
+			</tr>
+		</thead>
+		<tbody>
+			
+			<tr>
+				
+				<td>clonotype1</td>
+				
+				<td>clonotype1_consensus1</td>
+				
+				<td>499</td>
+				
+				<td>TRB</td>
+				
+				<td>TRBV9</td>
+				
+				<td></td>
+				
+				<td>TRBJ2-3</td>
+				
+				<td>TRBC2</td>
+				
+				<td>true</td>
+				
+				<td>true</td>
+				
+				<td>DSGVTQTPKHLITATGQRVTLRCSPR</td>
+				
+				<td>GATTCTGGAGTCACACAAACCCCAAAGCACCTGATCACAGCAACTGGACAGCGAGTGACGCTGAGATGCTCCCCTAGG</td>
+				
+				<td>SGDLS</td>
+				
+				<td>TCTGGAGACCTCTCT</td>
+				
+				<td>VYWYQQSLDQGLQFLIQ</td>
+				
+				<td>GTGTACTGGTACCAACAGAGCCTGGACCAGGGCCTCCAGTTCCTCATTCAG</td>
+				
+				<td>YYNGEE</td>
+				
+				<td>TATTATAATGGAGAAGAG</td>
+				
+				<td>RAKGNILERFSAQQFPDLHSELNLSSLELGDSALYF</td>
+				
+				<td>AGAGCAAAAGGAAACATTCTTGAACGATTCTCCGCACAACAGTTCCCTGACTTGCACTCTGAACTAAACCTGAGCTCTCTGGAGCTGGGGGACTCAGCTTTGTATTTC</td>
+				
+				<td>CASSLGLYSTDTQYF</td>
+				
+				<td>TGTGCCAGCAGCCTCGGACTCTACAGCACAGATACGCAGTATTTT</td>
+				
+				<td>GPGTRLTVL</td>
+				
+				<td>GGCCCAGGCACCCGGCTGACAGTGCTCG</td>
+				
+				<td>132430</td>
+				
+				<td>151</td>
+				
+				<td>47</td>
+				
+				<td>390</td>
+				
+				<td>343</td>
+				
+				<td>398</td>
+				
+				<td>0</td>
+				
+				<td>447</td>
+				
+				<td>104</td>
+				
+				<td>182</td>
+				
+				<td>182</td>
+				
+				<td>197</td>
+				
+				<td>197</td>
+				
+				<td>248</td>
+				
+				<td>248</td>
+				
+				<td>266</td>
+				
+				<td>266</td>
+				
+				<td>374</td>
+				
+				<td>374</td>
+				
+				<td>419</td>
+				
+				<td>419</td>
+				
+				<td>447</td>
+				
+			</tr>
+			
+			<tr>
+				
+				<td>clonotype1</td>
+				
+				<td>clonotype1_consensus2</td>
+				
+				<td>456</td>
+				
+				<td>TRA</td>
+				
+				<td>TRAV13-1</td>
+				
+				<td></td>
+				
+				<td>TRAJ16</td>
+				
+				<td>TRAC</td>
+				
+				<td>true</td>
+				
+				<td>true</td>
+				
+				<td>GENVEQHPSTLSVQEGDSAVIKCTYS</td>
+				
+				<td>GGAGAGAATGTGGAGCAGCATCCTTCAACCCTGAGTGTCCAGGAGGGAGACAGCGCTGTTATCAAGTGTACTTATTCA</td>
+				
+				<td>DSASNY</td>
+				
+				<td>GACAGTGCCTCAAACTAC</td>
+				
+				<td>FPWYKQELGKGPQLIID</td>
+				
+				<td>TTCCCTTGGTATAAGCAAGAACTTGGAAAAGGACCTCAGCTTATTATAGAC</td>
+				
+				<td>IRSNVGE</td>
+				
+				<td>ATTCGTTCAAATGTGGGCGAA</td>
+				
+				<td>KKDQRIAVTLNKTAKHFSLHITETQPEDSAVYF</td>
+				
+				<td>AAGAAAGACCAACGAATTGCTGTTACATTGAACAAGACAGCCAAACATTTCTCCCTGCACATCACAGAGACCCAACCTGAAGACTCGGCTGTCTACTTC</td>
+				
+				<td>CAASIDGQKLLF</td>
+				
+				<td>TGTGCAGCAAGTATAGATGGCCAGAAGCTGCTCTTT</td>
+				
+				<td>ARGTMLKVDL</td>
+				
+				<td>GCAAGGGGGACCATGTTAAAGGTGGATCTTA</td>
+				
+				<td>167840</td>
+				
+				<td>134</td>
+				
+				<td>23</td>
+				
+				<td>360</td>
+				
+				<td>337</td>
+				
+				<td>361</td>
+				
+				<td>7</td>
+				
+				<td>414</td>
+				
+				<td>80</td>
+				
+				<td>158</td>
+				
+				<td>158</td>
+				
+				<td>176</td>
+				
+				<td>176</td>
+				
+				<td>227</td>
+				
+				<td>227</td>
+				
+				<td>248</td>
+				
+				<td>248</td>
+				
+				<td>347</td>
+				
+				<td>347</td>
+				
+				<td>383</td>
+				
+				<td>383</td>
+				
+				<td>414</td>
+				
+			</tr>
+			
+			<tr>
+				
+				<td>clonotype1</td>
+				
+				<td>clonotype1_consensus3</td>
+				
+				<td>618</td>
+				
+				<td>TRA</td>
+				
+				<td>TRAV21</td>
+				
+				<td></td>
+				
+				<td>TRAJ53</td>
+				
+				<td>TRAC</td>
+				
+				<td>true</td>
+				
+				<td>true</td>
+				
+				<td>KQEVTQIPAALSVPEGENLVLNCSFT</td>
+				
+				<td>AAACAGGAGGTGACGCAGATTCCTGCAGCTCTGAGTGTCCCAGAAGGAGAAAACTTGGTTCTCAACTGCAGTTTCACT</td>
+				
+				<td>DSAIYN</td>
+				
+				<td>GATAGCGCTATTTACAAC</td>
+				
+				<td>LQWFRQDPGKGLTSLLL</td>
+				
+				<td>CTCCAGTGGTTTAGGCAGGACCCTGGGAAAGGTCTCACATCTCTGTTGCTT</td>
+				
+				<td>IQSSQRE</td>
+				
+				<td>ATTCAGTCAAGTCAGAGAGAG</td>
+				
+				<td>QTSGRLNASLDKSSGRSTLYIAASQPGDSATYL</td>
+				
+				<td>CAAACAAGTGGAAGACTTAATGCCTCGCTGGATAAATCATCAGGACGTAGTACTTTATACATTGCAGCTTCTCAGCCTGGTGACTCAGCCACCTACCTC</td>
+				
+				<td>CAVSSSGGSNYKLTF</td>
+				
+				<td>TGTGCTGTGAGTAGTAGTGGAGGTAGCAACTATAAACTGACATTT</td>
+				
+				<td>GKGTLLTVNP</td>
+				
+				<td>GGAAAAGGAACTCTCTTAACCGTGAATCCAA</td>
+				
+				<td>136320</td>
+				
+				<td>114</td>
+				
+				<td>176</td>
+				
+				<td>512</td>
+				
+				<td>336</td>
+				
+				<td>510</td>
+				
+				<td>0</td>
+				
+				<td>576</td>
+				
+				<td>233</td>
+				
+				<td>311</td>
+				
+				<td>311</td>
+				
+				<td>329</td>
+				
+				<td>329</td>
+				
+				<td>380</td>
+				
+				<td>380</td>
+				
+				<td>401</td>
+				
+				<td>401</td>
+				
+				<td>500</td>
+				
+				<td>500</td>
+				
+				<td>545</td>
+				
+				<td>545</td>
+				
+				<td>576</td>
+				
+			</tr>
+			
+			<tr>
+				
+				<td>clonotype2</td>
+				
+				<td>clonotype2_consensus1</td>
+				
+				<td>538</td>
+				
+				<td>TRB</td>
+				
+				<td>TRBV6-4</td>
+				
+				<td></td>
+				
+				<td>TRBJ2-1</td>
+				
+				<td>TRBC2</td>
+				
+				<td>true</td>
+				
+				<td>true</td>
+				
+				<td>IAGITQAPTSQILAAGRRMTLRCTQD</td>
+				
+				<td>ATTGCTGGGATCACCCAGGCACCAACATCTCAGATCCTGGCAGCAGGACGGCGCATGACACTGAGATGTACCCAGGAT</td>
+				
+				<td>MRHNA</td>
+				
+				<td>ATGAGACATAATGCC</td>
+				
+				<td>MYWYRQDLGLGLRLIHY</td>
+				
+				<td>ATGTACTGGTATAGACAAGATCTAGGACTGGGGCTAAGGCTCATCCATTAT</td>
+				
+				<td>SNTAGT</td>
+				
+				<td>TCAAATACTGCAGGTACC</td>
+				
+				<td>TGKGEVPDGYSVSRANTDDFPLTLASAVPSQTSVYF</td>
+				
+				<td>ACTGGCAAAGGAGAAGTCCCTGATGGTTATAGTGTCTCCAGAGCAAACACAGATGATTTCCCCCTCACGTTGGCGTCTGCTGTACCCTCTCAGACATCTGTGTACTTC</td>
+				
+				<td>CASSDSMSGSYNEQFF</td>
+				
+				<td>TGTGCCAGCAGTGACTCGATGAGCGGGAGTTACAATGAGCAGTTCTTC</td>
+				
+				<td>GPGTRLTVL</td>
+				
+				<td>GGGCCAGGGACACGGCTCACCGTGCTAG</td>
+				
+				<td>79030</td>
+				
+				<td>32</td>
+				
+				<td>83</td>
+				
+				<td>427</td>
+				
+				<td>344</td>
+				
+				<td>436</td>
+				
+				<td>0</td>
+				
+				<td>486</td>
+				
+				<td>140</td>
+				
+				<td>218</td>
+				
+				<td>218</td>
+				
+				<td>233</td>
+				
+				<td>233</td>
+				
+				<td>284</td>
+				
+				<td>284</td>
+				
+				<td>302</td>
+				
+				<td>302</td>
+				
+				<td>410</td>
+				
+				<td>410</td>
+				
+				<td>458</td>
+				
+				<td>458</td>
+				
+				<td>486</td>
+				
+			</tr>
+			
+			<tr>
+				
+				<td>clonotype2</td>
+				
+				<td>clonotype2_consensus2</td>
+				
+				<td>505</td>
+				
+				<td>TRA</td>
+				
+				<td>TRAV1-2</td>
+				
+				<td></td>
+				
+				<td>TRAJ33</td>
+				
+				<td>TRAC</td>
+				
+				<td>true</td>
+				
+				<td>true</td>
+				
+				<td>GQNIDQPTEMTATEGAIVQINCTYQ</td>
+				
+				<td>GGACAAAACATTGACCAGCCCACTGAGATGACAGCTACGGAAGGTGCCATTGTCCAGATCAACTGCACGTACCAG</td>
+				
+				<td>TSGFNG</td>
+				
+				<td>ACATCTGGGTTCAACGGG</td>
+				
+				<td>LFWYQQHAGEAPTFLSY</td>
+				
+				<td>CTGTTCTGGTACCAGCAACATGCTGGCGAAGCACCCACATTTCTGTCTTAC</td>
+				
+				<td>NVLDGL</td>
+				
+				<td>AATGTTCTGGATGGTTTG</td>
+				
+				<td>EEKGRFSSFLSRSKGYSYLLLKELQMKDSASYL</td>
+				
+				<td>GAGGAGAAAGGTCGTTTTTCTTCATTCCTTAGTCGGTCTAAAGGGTACAGTTACCTCCTTTTGAAGGAGCTCCAGATGAAAGACTCTGCCTCTTACCTC</td>
+				
+				<td>CAVLNSNYQLIW</td>
+				
+				<td>TGTGCTGTTCTGAATAGCAACTATCAGTTAATCTGG</td>
+				
+				<td>GAGTKLIIKP</td>
+				
+				<td>GGCGCTGGGACCAAGCTAATTATAAAGCCAG</td>
+				
+				<td>20274</td>
+				
+				<td>10</td>
+				
+				<td>84</td>
+				
+				<td>402</td>
+				
+				<td>318</td>
+				
+				<td>406</td>
+				
+				<td>0</td>
+				
+				<td>463</td>
+				
+				<td>135</td>
+				
+				<td>210</td>
+				
+				<td>210</td>
+				
+				<td>228</td>
+				
+				<td>228</td>
+				
+				<td>279</td>
+				
+				<td>279</td>
+				
+				<td>297</td>
+				
+				<td>297</td>
+				
+				<td>396</td>
+				
+				<td>396</td>
+				
+				<td>432</td>
+				
+				<td>432</td>
+				
+				<td>463</td>
+				
+			</tr>
+			
+			<tr>
+				
+				<td>clonotype3</td>
+				
+				<td>clonotype3_consensus1</td>
+				
+				<td>505</td>
+				
+				<td>TRB</td>
+				
+				<td>TRBV7-3</td>
+				
+				<td></td>
+				
+				<td>TRBJ2-5</td>
+				
+				<td>TRBC2</td>
+				
+				<td>true</td>
+				
+				<td>true</td>
+				
+				<td>GAGVSQTPSNKVTEKGKYVELRCDPI</td>
+				
+				<td>GGTGCTGGAGTCTCCCAGACCCCCAGTAACAAGGTCACAGAGAAGGGAAAATATGTAGAGCTCAGGTGTGATCCAATT</td>
+				
+				<td>SGHTA</td>
+				
+				<td>TCAGGTCATACTGCC</td>
+				
+				<td>LYWYRQSLGQGPEFLIY</td>
+				
+				<td>CTTTACTGGTACCGACAAAGCCTGGGGCAGGGCCCAGAGTTTCTAATTTAC</td>
+				
+				<td>FQGTGA</td>
+				
+				<td>TTCCAAGGCACGGGTGCG</td>
+				
+				<td>ADDSGLPNDRFFAVRPEGSVSTLKIQRTERGDSAVYL</td>
+				
+				<td>GCAGATGACTCAGGGCTGCCCAACGATCGGTTCTTTGCAGTCAGGCCTGAGGGATCCGTCTCTACTCTGAAGATCCAGCGCACAGAGCGGGGGGACTCAGCCGTGTATCTC</td>
+				
+				<td>CASSPTGTWGETQYF</td>
+				
+				<td>TGTGCCAGCAGCCCCACCGGGACCTGGGGGGAGACCCAGTACTTC</td>
+				
+				<td>GPGTRLLVL</td>
+				
+				<td>GGGCCAGGCACGCGGCTCCTGGTGCTCG</td>
+				
+				<td>83924</td>
+				
+				<td>53</td>
+				
+				<td>50</td>
+				
+				<td>397</td>
+				
+				<td>347</td>
+				
+				<td>405</td>
+				
+				<td>0</td>
+				
+				<td>453</td>
+				
+				<td>107</td>
+				
+				<td>185</td>
+				
+				<td>185</td>
+				
+				<td>200</td>
+				
+				<td>200</td>
+				
+				<td>251</td>
+				
+				<td>251</td>
+				
+				<td>269</td>
+				
+				<td>269</td>
+				
+				<td>380</td>
+				
+				<td>380</td>
+				
+				<td>425</td>
+				
+				<td>425</td>
+				
+				<td>453</td>
+				
+			</tr>
+			
+			<tr>
+				
+				<td>clonotype3</td>
+				
+				<td>clonotype3_consensus2</td>
+				
+				<td>554</td>
+				
+				<td>TRA</td>
+				
+				<td>TRAV21</td>
+				
+				<td></td>
+				
+				<td>TRAJ26</td>
+				
+				<td>TRAC</td>
+				
+				<td>true</td>
+				
+				<td>true</td>
+				
+				<td>KQEVTQIPAALSVPEGENLVLNCSFT</td>
+				
+				<td>AAACAGGAGGTGACGCAGATTCCTGCAGCTCTGAGTGTCCCAGAAGGAGAAAACTTGGTTCTCAACTGCAGTTTCACT</td>
+				
+				<td>DSAIYN</td>
+				
+				<td>GATAGCGCTATTTACAAC</td>
+				
+				<td>LQWFRQDPGKGLTSLLL</td>
+				
+				<td>CTCCAGTGGTTTAGGCAGGACCCTGGGAAAGGTCTCACATCTCTGTTGCTT</td>
+				
+				<td>IQSSQRE</td>
+				
+				<td>ATTCAGTCAAGTCAGAGAGAG</td>
+				
+				<td>QTSGRLNASLDKSSGRSTLYIAASQPGDSATYL</td>
+				
+				<td>CAAACAAGTGGAAGACTTAATGCCTCGCTGGATAAATCATCAGGACGTAGTACTTTATACATTGCAGCTTCTCAGCCTGGTGACTCAGCCACCTACCTC</td>
+				
+				<td>CAVRDNYGQNFVF</td>
+				
+				<td>TGTGCTGTGAGGGATAACTATGGTCAGAATTTTGTCTTT</td>
+				
+				<td>GPGTRLSVLP</td>
+				
+				<td>GGTCCCGGAACCAGATTGTCCGTGCTGCCCT</td>
+				
+				<td>45992</td>
+				
+				<td>21</td>
+				
+				<td>118</td>
+				
+				<td>454</td>
+				
+				<td>336</td>
+				
+				<td>452</td>
+				
+				<td>0</td>
+				
+				<td>512</td>
+				
+				<td>175</td>
+				
+				<td>253</td>
+				
+				<td>253</td>
+				
+				<td>271</td>
+				
+				<td>271</td>
+				
+				<td>322</td>
+				
+				<td>322</td>
+				
+				<td>343</td>
+				
+				<td>343</td>
+				
+				<td>442</td>
+				
+				<td>442</td>
+				
+				<td>481</td>
+				
+				<td>481</td>
+				
+				<td>512</td>
+				
+			</tr>
+			
+			<tr>
+				
+				<td>clonotype4</td>
+				
+				<td>clonotype4_consensus1</td>
+				
+				<td>518</td>
+				
+				<td>TRB</td>
+				
+				<td>TRBV20-1</td>
+				
+				<td></td>
+				
+				<td>TRBJ1-1</td>
+				
+				<td>TRBC1</td>
+				
+				<td>true</td>
+				
+				<td>true</td>
+				
+				<td>GAVVSQHPSWVICKSGTSVKIECRSL</td>
+				
+				<td>GGTGCTGTCGTCTCTCAACATCCGAGCTGGGTTATCTGTAAGAGTGGAACCTCTGTGAAGATCGAGTGCCGTTCCCTG</td>
+				
+				<td>DFQATT</td>
+				
+				<td>GACTTTCAGGCCACAACT</td>
+				
+				<td>MFWYRQFPKQSLMLMAT</td>
+				
+				<td>ATGTTTTGGTATCGTCAGTTCCCGAAACAGAGTCTCATGCTGATGGCAACT</td>
+				
+				<td>SNEGSKA</td>
+				
+				<td>TCCAATGAGGGCTCCAAGGCC</td>
+				
+				<td>TYEQGVEKDKFLINHASLTLSTLTVTSAHPEDSSFYI</td>
+				
+				<td>ACATACGAGCAAGGCGTCGAGAAGGACAAGTTTCTCATCAACCATGCAAGCCTGACCTTGTCCACTCTGACAGTGACCAGTGCCCATCCTGAAGACAGCAGCTTCTACATC</td>
+				
+				<td>CSARDQGDTEAFF</td>
+				
+				<td>TGCAGTGCTAGAGATCAGGGGGACACTGAAGCTTTCTTT</td>
+				
+				<td>GQGTRLTVV</td>
+				
+				<td>GGACAAGGCACCAGACTCACAGTTGTAG</td>
+				
+				<td>91850</td>
+				
+				<td>65</td>
+				
+				<td>78</td>
+				
+				<td>413</td>
+				
+				<td>335</td>
+				
+				<td>418</td>
+				
+				<td>0</td>
+				
+				<td>466</td>
+				
+				<td>120</td>
+				
+				<td>198</td>
+				
+				<td>198</td>
+				
+				<td>216</td>
+				
+				<td>216</td>
+				
+				<td>267</td>
+				
+				<td>267</td>
+				
+				<td>288</td>
+				
+				<td>288</td>
+				
+				<td>399</td>
+				
+				<td>399</td>
+				
+				<td>438</td>
+				
+				<td>438</td>
+				
+				<td>466</td>
+				
+			</tr>
+			
+			<tr>
+				
+				<td>clonotype4</td>
+				
+				<td>clonotype4_consensus2</td>
+				
+				<td>505</td>
+				
+				<td>TRA</td>
+				
+				<td>TRAV1-2</td>
+				
+				<td></td>
+				
+				<td>TRAJ33</td>
+				
+				<td>TRAC</td>
+				
+				<td>true</td>
+				
+				<td>true</td>
+				
+				<td>GQNIDQPTEMTATEGAIVQINCTYQ</td>
+				
+				<td>GGACAAAACATTGACCAGCCCACTGAGATGACAGCTACGGAAGGTGCCATTGTCCAGATCAACTGCACGTACCAG</td>
+				
+				<td>TSGFNG</td>
+				
+				<td>ACATCTGGGTTCAACGGG</td>
+				
+				<td>LFWYQQHAGEAPTFLSY</td>
+				
+				<td>CTGTTCTGGTACCAGCAACATGCTGGCGAAGCACCCACATTTCTGTCTTAC</td>
+				
+				<td>NVLDGL</td>
+				
+				<td>AATGTTCTGGATGGTTTG</td>
+				
+				<td>EEKGRFSSFLSRSKGYSYLLLKELQMKDSASYL</td>
+				
+				<td>GAGGAGAAAGGTCGTTTTTCTTCATTCCTTAGTCGGTCTAAAGGGTACAGTTACCTCCTTTTGAAGGAGCTCCAGATGAAAGACTCTGCCTCTTACCTC</td>
+				
+				<td>CAVMDSNYQLIW</td>
+				
+				<td>TGTGCTGTGATGGATAGCAACTATCAGTTAATCTGG</td>
+				
+				<td>GAGTKLIIKP</td>
+				
+				<td>GGCGCTGGGACCAAGCTAATTATAAAGCCAG</td>
+				
+				<td>20878</td>
+				
+				<td>17</td>
+				
+				<td>84</td>
+				
+				<td>402</td>
+				
+				<td>318</td>
+				
+				<td>406</td>
+				
+				<td>0</td>
+				
+				<td>463</td>
+				
+				<td>135</td>
+				
+				<td>210</td>
+				
+				<td>210</td>
+				
+				<td>228</td>
+				
+				<td>228</td>
+				
+				<td>279</td>
+				
+				<td>279</td>
+				
+				<td>297</td>
+				
+				<td>297</td>
+				
+				<td>396</td>
+				
+				<td>396</td>
+				
+				<td>432</td>
+				
+				<td>432</td>
+				
+				<td>463</td>
+				
+			</tr>
+			
+		</tbody>
+	</table>
+</div>
+
+<p class="paragraph">The screening details of contig annotations for all samples are as follows:</p>
+<p class="tremark">(1)	clonotype_id: ID of clonotype</p>
+<p class="tremark">(2)	consensus_id: ID of consensus</p>
+<p class="tremark">(3)	length: Length of consensus</p>
+<p class="tremark">(4)	chain: The consensus's chain information (TRA,TRB,IGH,IGL,IGK)</p>
+<p class="tremark">(5,6,7,8)	v_gene,d_gene,j_gene,c_gene: Gene annotation of the consensus corresponding to V\D\J\C</p>
+<p class="tremark">(9)	full_length: Is the splicing result of the consensus the full length of corresponding the area V(D)J</p>
+<p class="tremark">(10)	productive: Is the consensus a valid (capable of encoding effective proteins) segment</p>
+<p class="tremark">(11)	cdr3: Amino acid sequence of area cdr3</p>
+<p class="tremark">(12)	cdr3_nt: Base sequence of area cdr3</p>
+<p class="tremark">(13)	reads: Number of supported reads</p>
+<p class="tremark">(14)	umis: Number of valid umis</p>
+
+<!------- 加一行大横线------------->
+<hr />
+<h3>4.3 Cell Filtration</h3>
+<p class="paragraph">Before the statistics of clonotype, we filter the cells as per their clonotypes and retain those containing both light and heavy chains. For those containing the same chain and multiple clones, the clone chains with the most UMI expression are retained</p>
+
+<p class="paragraph">Please refer to the result folder: /3.Immu_vdj/1.Filtered_unique/</p>
+<div style="display: block; overflow-x: scroll">
+	<table class="gy">
+		<thead>
+			<tr>
+				
+				<th>Sample_name</th>
+				
+				<th>AHF38_TCR</th>
+				
+				<th>AHF35_TCR</th>
+				
+				<th>AHF26_TCR</th>
+				
+				<th>AHF37_TCR</th>
+				
+				<th>AHF36_TCR</th>
+				
+			</tr>
+		</thead>
+		<tbody>
+			
+			<tr>
+				
+				<td>cell_number</td>
+				
+				<td>10598</td>
+				
+				<td>3037</td>
+				
+				<td>181</td>
+				
+				<td>2007</td>
+				
+				<td>451</td>
+				
+			</tr>
+			
+			<tr>
+				
+				<td>Cell_number_filter</td>
+				
+				<td>6479</td>
+				
+				<td>2488</td>
+				
+				<td>161</td>
+				
+				<td>1435</td>
+				
+				<td>414</td>
+				
+			</tr>
+			
+		</tbody>
+	</table>
+</div>
+
+
+<p class="tremark">(1)	Sample_name: Sample name</p>
+<p class="tremark">(2)	Cell_number: Number of cells before filtration</p>
+<p class="tremark">(3)	Cell_number_filter: Number of cells after filtration</p>
+
+<!------- 加一行大横线------------->
+<hr />
+<h3>4.4 Clonotypes Statistics</h3>
+<p class="paragraph">Unique clonotypes are in the system immune system and specifically refer to the unique combination of a specific immune receptor in a group of immune cells (normally lymphocytes, such as T cells and B cells). This unique combination is made up of different parts of immune receptor genes (e.g., segments V, D, J, and C). These parts jointly determine the structure and functions of immune receptors.</p>
+<p class="paragraph">In the immune system, each immune cell has a different immune receptor, which is determined by random recombination and variation of genes. Therefore, even if cells are of the same type, their combination of immune receptors may be unique. Each different combination of immune receptors is called a clonotype. Immune cells with the same combination of immune receptors are called members of the same clonotype.</p>
+<p class="paragraph">Unique clonotype represents a situation where each clonotype only appears once in a group of immune cells. It is commonly used in immune repertoire analysis and immunology studies to describe the diversity of immune cells and the number of clonotypes. The concept of unique clonotype is important in understanding the immune system function, antibody response, and disease states.</p>
+<p class="paragraph">Scale map of unique clonotypes (unique_clonotypes_byaa represents the clonotype with amino acid sequence as unique; sample name on the x-axis, and percentage on the y-axis). Please refer to the result file: /3.Immu_vdj/2.Immu_vdj/*/Unique_clonotypes</p>
+
+<p class="center">
+	<div class="row">
+	<div class="col-1">
+	<div id="unique_clonotypes_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="unique_clonotypes_nav-tabContent">
+	
+	<div class="tab-pane fade" id="unique_clonotypes_pane_file_AHF26_TCR_unique_clonotypes_byaa" 
+	role="tabpanel" aria-labelledby="unique_clonotypes_list_file_AHF26_TCR_unique_clonotypes_byaa"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF26_TCR_unique_clonotypes_byaa.png" /></div>
+	
+	<div class="tab-pane fade" id="unique_clonotypes_pane_file_AHF35_TCR_unique_clonotypes_byaa" 
+	role="tabpanel" aria-labelledby="unique_clonotypes_list_file_AHF35_TCR_unique_clonotypes_byaa"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF35_TCR_unique_clonotypes_byaa.png" /></div>
+	
+	<div class="tab-pane fade" id="unique_clonotypes_pane_file_AHF36_TCR_unique_clonotypes_byaa" 
+	role="tabpanel" aria-labelledby="unique_clonotypes_list_file_AHF36_TCR_unique_clonotypes_byaa"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF36_TCR_unique_clonotypes_byaa.png" /></div>
+	
+	<div class="tab-pane fade" id="unique_clonotypes_pane_file_AHF37_TCR_unique_clonotypes_byaa" 
+	role="tabpanel" aria-labelledby="unique_clonotypes_list_file_AHF37_TCR_unique_clonotypes_byaa"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF37_TCR_unique_clonotypes_byaa.png" /></div>
+	
+	<div class="tab-pane fade" id="unique_clonotypes_pane_file_AHF38_TCR_unique_clonotypes_byaa" 
+	role="tabpanel" aria-labelledby="unique_clonotypes_list_file_AHF38_TCR_unique_clonotypes_byaa"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF38_TCR_unique_clonotypes_byaa.png" /></div>
+	
+	<div class="tab-pane fade" id="unique_clonotypes_pane_file_sample_aggr_unique_clonotypes_byaa" 
+	role="tabpanel" aria-labelledby="unique_clonotypes_list_file_sample_aggr_unique_clonotypes_byaa"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/file/sample_aggr_unique_clonotypes_byaa.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="unique_clonotypes_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="unique_clonotypes_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="unique_clonotypes_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="unique_clonotypes_list_file_AHF26_TCR_unique_clonotypes_byaa"
+	data-toggle="list" href="#unique_clonotypes_pane_file_AHF26_TCR_unique_clonotypes_byaa" role="tab" aria-controls="file_AHF26_TCR_unique_clonotypes_byaa">file_AHF26_TCR_unique_clonotypes_byaa</a>
+	
+	<a class="list-group-item list-group-item-action" id="unique_clonotypes_list_file_AHF35_TCR_unique_clonotypes_byaa"
+	data-toggle="list" href="#unique_clonotypes_pane_file_AHF35_TCR_unique_clonotypes_byaa" role="tab" aria-controls="file_AHF35_TCR_unique_clonotypes_byaa">file_AHF35_TCR_unique_clonotypes_byaa</a>
+	
+	<a class="list-group-item list-group-item-action" id="unique_clonotypes_list_file_AHF36_TCR_unique_clonotypes_byaa"
+	data-toggle="list" href="#unique_clonotypes_pane_file_AHF36_TCR_unique_clonotypes_byaa" role="tab" aria-controls="file_AHF36_TCR_unique_clonotypes_byaa">file_AHF36_TCR_unique_clonotypes_byaa</a>
+	
+	<a class="list-group-item list-group-item-action" id="unique_clonotypes_list_file_AHF37_TCR_unique_clonotypes_byaa"
+	data-toggle="list" href="#unique_clonotypes_pane_file_AHF37_TCR_unique_clonotypes_byaa" role="tab" aria-controls="file_AHF37_TCR_unique_clonotypes_byaa">file_AHF37_TCR_unique_clonotypes_byaa</a>
+	
+	<a class="list-group-item list-group-item-action" id="unique_clonotypes_list_file_AHF38_TCR_unique_clonotypes_byaa"
+	data-toggle="list" href="#unique_clonotypes_pane_file_AHF38_TCR_unique_clonotypes_byaa" role="tab" aria-controls="file_AHF38_TCR_unique_clonotypes_byaa">file_AHF38_TCR_unique_clonotypes_byaa</a>
+	
+	<a class="list-group-item list-group-item-action" id="unique_clonotypes_list_file_sample_aggr_unique_clonotypes_byaa"
+	data-toggle="list" href="#unique_clonotypes_pane_file_sample_aggr_unique_clonotypes_byaa" role="tab" aria-controls="file_sample_aggr_unique_clonotypes_byaa">file_sample_aggr_unique_clonotypes_byaa</a>
+	
+	</div>
+	</div>
+	</div>
+	</p>
+
+
+
+<p class="paragraph">Clonotype abundance statistics are used to describe a group of individuals with the same or similar immune receptor sequences (such as immune globulin or T cell receptor). These sequences are produced in the process of genetic recombination and are used to identify and respond to in vivo and exo-antigens.</p>
+<p class="paragraph">In the immune system, the immune receptors on the surface of cells are highly diverse because they need to be able to recognize many different antigens. When an antigen matches an immune receptor, the corresponding immune cells (such as B cells or T cells) are activated, triggering an immune response. The diversity of immune receptors is achieved through genetic recombination, which allows immune cells to generate millions or even more different immune receptor variants to adapt to various antigens.</p>
+<p class="paragraph">Clonotype abundance statistics involve quantitative analysis of different immune receptor sequences (or clonotypes) present in the sample. It is possible to simultaneously determine a large number of immune receptor sequences in a single sample. This analysis helps to understand how the immune system responds to specific antigens or diseases, as well as the changes in clonotypes under different conditions.</p>
+<p class="paragraph">The number of cells with amino acid sequence as the only clonotype and expressing specific clonotypes is the typing abundance. Clonotype abundance display map (abundance_clonotypes_byaa means taking amino acid sequence as the only clonotype). Please refer to the result folder: 3. Immu_vdj/2.Immu_vdj/*/abundance_clonotypes/</p>
+
+
+
+<p class="center">
+	<div class="row">
+	<div class="col-1">
+	<div id="abundance_clonotypes_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="abundance_clonotypes_nav-tabContent">
+	
+	<div class="tab-pane fade" id="abundance_clonotypes_pane_file_AHF26_TCR_abundance_clonotypes_byaa" 
+	role="tabpanel" aria-labelledby="abundance_clonotypes_list_file_AHF26_TCR_abundance_clonotypes_byaa"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF26_TCR_abundance_clonotypes_byaa.png" /></div>
+	
+	<div class="tab-pane fade" id="abundance_clonotypes_pane_file_AHF35_TCR_abundance_clonotypes_byaa" 
+	role="tabpanel" aria-labelledby="abundance_clonotypes_list_file_AHF35_TCR_abundance_clonotypes_byaa"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF35_TCR_abundance_clonotypes_byaa.png" /></div>
+	
+	<div class="tab-pane fade" id="abundance_clonotypes_pane_file_AHF36_TCR_abundance_clonotypes_byaa" 
+	role="tabpanel" aria-labelledby="abundance_clonotypes_list_file_AHF36_TCR_abundance_clonotypes_byaa"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF36_TCR_abundance_clonotypes_byaa.png" /></div>
+	
+	<div class="tab-pane fade" id="abundance_clonotypes_pane_file_AHF37_TCR_abundance_clonotypes_byaa" 
+	role="tabpanel" aria-labelledby="abundance_clonotypes_list_file_AHF37_TCR_abundance_clonotypes_byaa"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF37_TCR_abundance_clonotypes_byaa.png" /></div>
+	
+	<div class="tab-pane fade" id="abundance_clonotypes_pane_file_AHF38_TCR_abundance_clonotypes_byaa" 
+	role="tabpanel" aria-labelledby="abundance_clonotypes_list_file_AHF38_TCR_abundance_clonotypes_byaa"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF38_TCR_abundance_clonotypes_byaa.png" /></div>
+	
+	<div class="tab-pane fade" id="abundance_clonotypes_pane_file_sample_aggr_abundance_clonotypes_byaa" 
+	role="tabpanel" aria-labelledby="abundance_clonotypes_list_file_sample_aggr_abundance_clonotypes_byaa"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/file/sample_aggr_abundance_clonotypes_byaa.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="abundance_clonotypes_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="abundance_clonotypes_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="abundance_clonotypes_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="abundance_clonotypes_list_file_AHF26_TCR_abundance_clonotypes_byaa"
+	data-toggle="list" href="#abundance_clonotypes_pane_file_AHF26_TCR_abundance_clonotypes_byaa" role="tab" aria-controls="file_AHF26_TCR_abundance_clonotypes_byaa">file_AHF26_TCR_abundance_clonotypes_byaa</a>
+	
+	<a class="list-group-item list-group-item-action" id="abundance_clonotypes_list_file_AHF35_TCR_abundance_clonotypes_byaa"
+	data-toggle="list" href="#abundance_clonotypes_pane_file_AHF35_TCR_abundance_clonotypes_byaa" role="tab" aria-controls="file_AHF35_TCR_abundance_clonotypes_byaa">file_AHF35_TCR_abundance_clonotypes_byaa</a>
+	
+	<a class="list-group-item list-group-item-action" id="abundance_clonotypes_list_file_AHF36_TCR_abundance_clonotypes_byaa"
+	data-toggle="list" href="#abundance_clonotypes_pane_file_AHF36_TCR_abundance_clonotypes_byaa" role="tab" aria-controls="file_AHF36_TCR_abundance_clonotypes_byaa">file_AHF36_TCR_abundance_clonotypes_byaa</a>
+	
+	<a class="list-group-item list-group-item-action" id="abundance_clonotypes_list_file_AHF37_TCR_abundance_clonotypes_byaa"
+	data-toggle="list" href="#abundance_clonotypes_pane_file_AHF37_TCR_abundance_clonotypes_byaa" role="tab" aria-controls="file_AHF37_TCR_abundance_clonotypes_byaa">file_AHF37_TCR_abundance_clonotypes_byaa</a>
+	
+	<a class="list-group-item list-group-item-action" id="abundance_clonotypes_list_file_AHF38_TCR_abundance_clonotypes_byaa"
+	data-toggle="list" href="#abundance_clonotypes_pane_file_AHF38_TCR_abundance_clonotypes_byaa" role="tab" aria-controls="file_AHF38_TCR_abundance_clonotypes_byaa">file_AHF38_TCR_abundance_clonotypes_byaa</a>
+	
+	<a class="list-group-item list-group-item-action" id="abundance_clonotypes_list_file_sample_aggr_abundance_clonotypes_byaa"
+	data-toggle="list" href="#abundance_clonotypes_pane_file_sample_aggr_abundance_clonotypes_byaa" role="tab" aria-controls="file_sample_aggr_abundance_clonotypes_byaa">file_sample_aggr_abundance_clonotypes_byaa</a>
+	
+	</div>
+	</div>
+	</div>
+	</p>
+
+
+<!------- 加一行大横线------------->
+<hr />
+<h3>4.5 CDR3 Length Statistics</h3>
+	<p class="paragraph">CDR3 length distribution statistics are used to determine the frequency distribution of CDR3 area lengths for different immune receptors in a group of samples. This analysis can reveal the changes in CDR3 length in different samples, which helps to understand the diversity of the immune system and the response of immune receptors to specific antigens.</p>
+	<p class="paragraph">With amino acid sequence as the unique clonotype, the length of clonotypes is shown, and the total length of light and heavy chains is counted. CDR3 consists of a area connected by V and J or D and J, with high variability. CDR3 is the area that determines the clonotype of cells, and in its natural state, the length distribution of CDR3 follows a normal distribution.</p>
+	<p class="paragraph">Combined with analysis of sequence length and gene segment grouping, more comprehensive understandings of gene distribution, diversity, and clonotype frequency in a sample can be obtained. These understandings are of great significance for exploring gene expression, immune response, and disease-related genes.</p>
+	<p class="paragraph">Please refer to the result folder: 3. Immu_vdj/2.Immu_vdj/*/lengthContig</p>
+	
+	
+<p class="center">
+<div class="row">
+<div class="col-1">
+<div id="lengthContig_button_prev" class="button_prev" onclick="prev(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_prev">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-6">
+<div class="tab-content" id="lengthContig_nav-tabContent">
+
+<div class="tab-pane fade" id="lengthContig_pane_file_AHF26_TCR_aa_lengthContig" 
+role="tabpanel" aria-labelledby="lengthContig_list_file_AHF26_TCR_aa_lengthContig"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF26_TCR_aa_lengthContig.png" /></div>
+
+<div class="tab-pane fade" id="lengthContig_pane_file_AHF35_TCR_aa_lengthContig" 
+role="tabpanel" aria-labelledby="lengthContig_list_file_AHF35_TCR_aa_lengthContig"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF35_TCR_aa_lengthContig.png" /></div>
+
+<div class="tab-pane fade" id="lengthContig_pane_file_AHF36_TCR_aa_lengthContig" 
+role="tabpanel" aria-labelledby="lengthContig_list_file_AHF36_TCR_aa_lengthContig"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF36_TCR_aa_lengthContig.png" /></div>
+
+<div class="tab-pane fade" id="lengthContig_pane_file_AHF37_TCR_aa_lengthContig" 
+role="tabpanel" aria-labelledby="lengthContig_list_file_AHF37_TCR_aa_lengthContig"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF37_TCR_aa_lengthContig.png" /></div>
+
+<div class="tab-pane fade" id="lengthContig_pane_file_AHF38_TCR_aa_lengthContig" 
+role="tabpanel" aria-labelledby="lengthContig_list_file_AHF38_TCR_aa_lengthContig"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF38_TCR_aa_lengthContig.png" /></div>
+
+<div class="tab-pane fade" id="lengthContig_pane_file_sample_aggr_aa_lengthContig" 
+role="tabpanel" aria-labelledby="lengthContig_list_file_sample_aggr_aa_lengthContig"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/sample_aggr_aa_lengthContig.png" /></div>
+
+<div class="tab-pane fade" id="lengthContig_pane_file_AHF26_TCR_AB_j_aa_spectratype" 
+role="tabpanel" aria-labelledby="lengthContig_list_file_AHF26_TCR_AB_j_aa_spectratype"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF26_TCR_AB_j_aa_spectratype.png" /></div>
+
+<div class="tab-pane fade" id="lengthContig_pane_file_AHF26_TCR_AB_v_aa_spectratype" 
+role="tabpanel" aria-labelledby="lengthContig_list_file_AHF26_TCR_AB_v_aa_spectratype"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF26_TCR_AB_v_aa_spectratype.png" /></div>
+
+<div class="tab-pane fade" id="lengthContig_pane_file_AHF26_TCR_A_j_aa_spectratype" 
+role="tabpanel" aria-labelledby="lengthContig_list_file_AHF26_TCR_A_j_aa_spectratype"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF26_TCR_A_j_aa_spectratype.png" /></div>
+
+<div class="tab-pane fade" id="lengthContig_pane_file_AHF26_TCR_A_v_aa_spectratype" 
+role="tabpanel" aria-labelledby="lengthContig_list_file_AHF26_TCR_A_v_aa_spectratype"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF26_TCR_A_v_aa_spectratype.png" /></div>
+
+<div class="tab-pane fade" id="lengthContig_pane_file_AHF26_TCR_B_j_aa_spectratype" 
+role="tabpanel" aria-labelledby="lengthContig_list_file_AHF26_TCR_B_j_aa_spectratype"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF26_TCR_B_j_aa_spectratype.png" /></div>
+
+<div class="tab-pane fade" id="lengthContig_pane_file_AHF26_TCR_B_v_aa_spectratype" 
+role="tabpanel" aria-labelledby="lengthContig_list_file_AHF26_TCR_B_v_aa_spectratype"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF26_TCR_B_v_aa_spectratype.png" /></div>
+
+<div class="tab-pane fade" id="lengthContig_pane_file_AHF35_TCR_AB_j_aa_spectratype" 
+role="tabpanel" aria-labelledby="lengthContig_list_file_AHF35_TCR_AB_j_aa_spectratype"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF35_TCR_AB_j_aa_spectratype.png" /></div>
+
+<div class="tab-pane fade" id="lengthContig_pane_file_AHF35_TCR_AB_v_aa_spectratype" 
+role="tabpanel" aria-labelledby="lengthContig_list_file_AHF35_TCR_AB_v_aa_spectratype"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF35_TCR_AB_v_aa_spectratype.png" /></div>
+
+<div class="tab-pane fade" id="lengthContig_pane_file_AHF35_TCR_A_j_aa_spectratype" 
+role="tabpanel" aria-labelledby="lengthContig_list_file_AHF35_TCR_A_j_aa_spectratype"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF35_TCR_A_j_aa_spectratype.png" /></div>
+
+<div class="tab-pane fade" id="lengthContig_pane_file_AHF35_TCR_A_v_aa_spectratype" 
+role="tabpanel" aria-labelledby="lengthContig_list_file_AHF35_TCR_A_v_aa_spectratype"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF35_TCR_A_v_aa_spectratype.png" /></div>
+
+<div class="tab-pane fade" id="lengthContig_pane_file_AHF35_TCR_B_j_aa_spectratype" 
+role="tabpanel" aria-labelledby="lengthContig_list_file_AHF35_TCR_B_j_aa_spectratype"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF35_TCR_B_j_aa_spectratype.png" /></div>
+
+<div class="tab-pane fade" id="lengthContig_pane_file_AHF35_TCR_B_v_aa_spectratype" 
+role="tabpanel" aria-labelledby="lengthContig_list_file_AHF35_TCR_B_v_aa_spectratype"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF35_TCR_B_v_aa_spectratype.png" /></div>
+
+<div class="tab-pane fade" id="lengthContig_pane_file_AHF36_TCR_AB_j_aa_spectratype" 
+role="tabpanel" aria-labelledby="lengthContig_list_file_AHF36_TCR_AB_j_aa_spectratype"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF36_TCR_AB_j_aa_spectratype.png" /></div>
+
+<div class="tab-pane fade" id="lengthContig_pane_file_AHF36_TCR_AB_v_aa_spectratype" 
+role="tabpanel" aria-labelledby="lengthContig_list_file_AHF36_TCR_AB_v_aa_spectratype"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF36_TCR_AB_v_aa_spectratype.png" /></div>
+
+<div class="tab-pane fade" id="lengthContig_pane_file_AHF36_TCR_A_j_aa_spectratype" 
+role="tabpanel" aria-labelledby="lengthContig_list_file_AHF36_TCR_A_j_aa_spectratype"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF36_TCR_A_j_aa_spectratype.png" /></div>
+
+<div class="tab-pane fade" id="lengthContig_pane_file_AHF36_TCR_A_v_aa_spectratype" 
+role="tabpanel" aria-labelledby="lengthContig_list_file_AHF36_TCR_A_v_aa_spectratype"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF36_TCR_A_v_aa_spectratype.png" /></div>
+
+<div class="tab-pane fade" id="lengthContig_pane_file_AHF36_TCR_B_j_aa_spectratype" 
+role="tabpanel" aria-labelledby="lengthContig_list_file_AHF36_TCR_B_j_aa_spectratype"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF36_TCR_B_j_aa_spectratype.png" /></div>
+
+<div class="tab-pane fade" id="lengthContig_pane_file_AHF36_TCR_B_v_aa_spectratype" 
+role="tabpanel" aria-labelledby="lengthContig_list_file_AHF36_TCR_B_v_aa_spectratype"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF36_TCR_B_v_aa_spectratype.png" /></div>
+
+<div class="tab-pane fade" id="lengthContig_pane_file_AHF37_TCR_AB_j_aa_spectratype" 
+role="tabpanel" aria-labelledby="lengthContig_list_file_AHF37_TCR_AB_j_aa_spectratype"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF37_TCR_AB_j_aa_spectratype.png" /></div>
+
+<div class="tab-pane fade" id="lengthContig_pane_file_AHF37_TCR_AB_v_aa_spectratype" 
+role="tabpanel" aria-labelledby="lengthContig_list_file_AHF37_TCR_AB_v_aa_spectratype"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF37_TCR_AB_v_aa_spectratype.png" /></div>
+
+<div class="tab-pane fade" id="lengthContig_pane_file_AHF37_TCR_A_j_aa_spectratype" 
+role="tabpanel" aria-labelledby="lengthContig_list_file_AHF37_TCR_A_j_aa_spectratype"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF37_TCR_A_j_aa_spectratype.png" /></div>
+
+<div class="tab-pane fade" id="lengthContig_pane_file_AHF37_TCR_A_v_aa_spectratype" 
+role="tabpanel" aria-labelledby="lengthContig_list_file_AHF37_TCR_A_v_aa_spectratype"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF37_TCR_A_v_aa_spectratype.png" /></div>
+
+<div class="tab-pane fade" id="lengthContig_pane_file_AHF37_TCR_B_j_aa_spectratype" 
+role="tabpanel" aria-labelledby="lengthContig_list_file_AHF37_TCR_B_j_aa_spectratype"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF37_TCR_B_j_aa_spectratype.png" /></div>
+
+<div class="tab-pane fade" id="lengthContig_pane_file_AHF37_TCR_B_v_aa_spectratype" 
+role="tabpanel" aria-labelledby="lengthContig_list_file_AHF37_TCR_B_v_aa_spectratype"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF37_TCR_B_v_aa_spectratype.png" /></div>
+
+<div class="tab-pane fade" id="lengthContig_pane_file_AHF38_TCR_AB_j_aa_spectratype" 
+role="tabpanel" aria-labelledby="lengthContig_list_file_AHF38_TCR_AB_j_aa_spectratype"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF38_TCR_AB_j_aa_spectratype.png" /></div>
+
+<div class="tab-pane fade" id="lengthContig_pane_file_AHF38_TCR_AB_v_aa_spectratype" 
+role="tabpanel" aria-labelledby="lengthContig_list_file_AHF38_TCR_AB_v_aa_spectratype"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF38_TCR_AB_v_aa_spectratype.png" /></div>
+
+<div class="tab-pane fade" id="lengthContig_pane_file_AHF38_TCR_A_j_aa_spectratype" 
+role="tabpanel" aria-labelledby="lengthContig_list_file_AHF38_TCR_A_j_aa_spectratype"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF38_TCR_A_j_aa_spectratype.png" /></div>
+
+<div class="tab-pane fade" id="lengthContig_pane_file_AHF38_TCR_A_v_aa_spectratype" 
+role="tabpanel" aria-labelledby="lengthContig_list_file_AHF38_TCR_A_v_aa_spectratype"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF38_TCR_A_v_aa_spectratype.png" /></div>
+
+<div class="tab-pane fade" id="lengthContig_pane_file_AHF38_TCR_B_j_aa_spectratype" 
+role="tabpanel" aria-labelledby="lengthContig_list_file_AHF38_TCR_B_j_aa_spectratype"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF38_TCR_B_j_aa_spectratype.png" /></div>
+
+<div class="tab-pane fade" id="lengthContig_pane_file_AHF38_TCR_B_v_aa_spectratype" 
+role="tabpanel" aria-labelledby="lengthContig_list_file_AHF38_TCR_B_v_aa_spectratype"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF38_TCR_B_v_aa_spectratype.png" /></div>
+
+</div></div>
+<div class="col-1">
+<div id="lengthContig_button_next" class="button_next" onclick="next(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_next">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-4">
+<input class="form-control" id="lengthContig_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="lengthContig_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="lengthContig_list_file_AHF26_TCR_aa_lengthContig"
+data-toggle="list" href="#lengthContig_pane_file_AHF26_TCR_aa_lengthContig" role="tab" aria-controls="file_AHF26_TCR_aa_lengthContig">file_AHF26_TCR_aa_lengthContig</a>
+
+<a class="list-group-item list-group-item-action" id="lengthContig_list_file_AHF35_TCR_aa_lengthContig"
+data-toggle="list" href="#lengthContig_pane_file_AHF35_TCR_aa_lengthContig" role="tab" aria-controls="file_AHF35_TCR_aa_lengthContig">file_AHF35_TCR_aa_lengthContig</a>
+
+<a class="list-group-item list-group-item-action" id="lengthContig_list_file_AHF36_TCR_aa_lengthContig"
+data-toggle="list" href="#lengthContig_pane_file_AHF36_TCR_aa_lengthContig" role="tab" aria-controls="file_AHF36_TCR_aa_lengthContig">file_AHF36_TCR_aa_lengthContig</a>
+
+<a class="list-group-item list-group-item-action" id="lengthContig_list_file_AHF37_TCR_aa_lengthContig"
+data-toggle="list" href="#lengthContig_pane_file_AHF37_TCR_aa_lengthContig" role="tab" aria-controls="file_AHF37_TCR_aa_lengthContig">file_AHF37_TCR_aa_lengthContig</a>
+
+<a class="list-group-item list-group-item-action" id="lengthContig_list_file_AHF38_TCR_aa_lengthContig"
+data-toggle="list" href="#lengthContig_pane_file_AHF38_TCR_aa_lengthContig" role="tab" aria-controls="file_AHF38_TCR_aa_lengthContig">file_AHF38_TCR_aa_lengthContig</a>
+
+<a class="list-group-item list-group-item-action" id="lengthContig_list_file_sample_aggr_aa_lengthContig"
+data-toggle="list" href="#lengthContig_pane_file_sample_aggr_aa_lengthContig" role="tab" aria-controls="file_sample_aggr_aa_lengthContig">file_sample_aggr_aa_lengthContig</a>
+
+<a class="list-group-item list-group-item-action" id="lengthContig_list_file_AHF26_TCR_AB_j_aa_spectratype"
+data-toggle="list" href="#lengthContig_pane_file_AHF26_TCR_AB_j_aa_spectratype" role="tab" aria-controls="file_AHF26_TCR_AB_j_aa_spectratype">file_AHF26_TCR_AB_j_aa_spectratype</a>
+
+<a class="list-group-item list-group-item-action" id="lengthContig_list_file_AHF26_TCR_AB_v_aa_spectratype"
+data-toggle="list" href="#lengthContig_pane_file_AHF26_TCR_AB_v_aa_spectratype" role="tab" aria-controls="file_AHF26_TCR_AB_v_aa_spectratype">file_AHF26_TCR_AB_v_aa_spectratype</a>
+
+<a class="list-group-item list-group-item-action" id="lengthContig_list_file_AHF26_TCR_A_j_aa_spectratype"
+data-toggle="list" href="#lengthContig_pane_file_AHF26_TCR_A_j_aa_spectratype" role="tab" aria-controls="file_AHF26_TCR_A_j_aa_spectratype">file_AHF26_TCR_A_j_aa_spectratype</a>
+
+<a class="list-group-item list-group-item-action" id="lengthContig_list_file_AHF26_TCR_A_v_aa_spectratype"
+data-toggle="list" href="#lengthContig_pane_file_AHF26_TCR_A_v_aa_spectratype" role="tab" aria-controls="file_AHF26_TCR_A_v_aa_spectratype">file_AHF26_TCR_A_v_aa_spectratype</a>
+
+<a class="list-group-item list-group-item-action" id="lengthContig_list_file_AHF26_TCR_B_j_aa_spectratype"
+data-toggle="list" href="#lengthContig_pane_file_AHF26_TCR_B_j_aa_spectratype" role="tab" aria-controls="file_AHF26_TCR_B_j_aa_spectratype">file_AHF26_TCR_B_j_aa_spectratype</a>
+
+<a class="list-group-item list-group-item-action" id="lengthContig_list_file_AHF26_TCR_B_v_aa_spectratype"
+data-toggle="list" href="#lengthContig_pane_file_AHF26_TCR_B_v_aa_spectratype" role="tab" aria-controls="file_AHF26_TCR_B_v_aa_spectratype">file_AHF26_TCR_B_v_aa_spectratype</a>
+
+<a class="list-group-item list-group-item-action" id="lengthContig_list_file_AHF35_TCR_AB_j_aa_spectratype"
+data-toggle="list" href="#lengthContig_pane_file_AHF35_TCR_AB_j_aa_spectratype" role="tab" aria-controls="file_AHF35_TCR_AB_j_aa_spectratype">file_AHF35_TCR_AB_j_aa_spectratype</a>
+
+<a class="list-group-item list-group-item-action" id="lengthContig_list_file_AHF35_TCR_AB_v_aa_spectratype"
+data-toggle="list" href="#lengthContig_pane_file_AHF35_TCR_AB_v_aa_spectratype" role="tab" aria-controls="file_AHF35_TCR_AB_v_aa_spectratype">file_AHF35_TCR_AB_v_aa_spectratype</a>
+
+<a class="list-group-item list-group-item-action" id="lengthContig_list_file_AHF35_TCR_A_j_aa_spectratype"
+data-toggle="list" href="#lengthContig_pane_file_AHF35_TCR_A_j_aa_spectratype" role="tab" aria-controls="file_AHF35_TCR_A_j_aa_spectratype">file_AHF35_TCR_A_j_aa_spectratype</a>
+
+<a class="list-group-item list-group-item-action" id="lengthContig_list_file_AHF35_TCR_A_v_aa_spectratype"
+data-toggle="list" href="#lengthContig_pane_file_AHF35_TCR_A_v_aa_spectratype" role="tab" aria-controls="file_AHF35_TCR_A_v_aa_spectratype">file_AHF35_TCR_A_v_aa_spectratype</a>
+
+<a class="list-group-item list-group-item-action" id="lengthContig_list_file_AHF35_TCR_B_j_aa_spectratype"
+data-toggle="list" href="#lengthContig_pane_file_AHF35_TCR_B_j_aa_spectratype" role="tab" aria-controls="file_AHF35_TCR_B_j_aa_spectratype">file_AHF35_TCR_B_j_aa_spectratype</a>
+
+<a class="list-group-item list-group-item-action" id="lengthContig_list_file_AHF35_TCR_B_v_aa_spectratype"
+data-toggle="list" href="#lengthContig_pane_file_AHF35_TCR_B_v_aa_spectratype" role="tab" aria-controls="file_AHF35_TCR_B_v_aa_spectratype">file_AHF35_TCR_B_v_aa_spectratype</a>
+
+<a class="list-group-item list-group-item-action" id="lengthContig_list_file_AHF36_TCR_AB_j_aa_spectratype"
+data-toggle="list" href="#lengthContig_pane_file_AHF36_TCR_AB_j_aa_spectratype" role="tab" aria-controls="file_AHF36_TCR_AB_j_aa_spectratype">file_AHF36_TCR_AB_j_aa_spectratype</a>
+
+<a class="list-group-item list-group-item-action" id="lengthContig_list_file_AHF36_TCR_AB_v_aa_spectratype"
+data-toggle="list" href="#lengthContig_pane_file_AHF36_TCR_AB_v_aa_spectratype" role="tab" aria-controls="file_AHF36_TCR_AB_v_aa_spectratype">file_AHF36_TCR_AB_v_aa_spectratype</a>
+
+<a class="list-group-item list-group-item-action" id="lengthContig_list_file_AHF36_TCR_A_j_aa_spectratype"
+data-toggle="list" href="#lengthContig_pane_file_AHF36_TCR_A_j_aa_spectratype" role="tab" aria-controls="file_AHF36_TCR_A_j_aa_spectratype">file_AHF36_TCR_A_j_aa_spectratype</a>
+
+<a class="list-group-item list-group-item-action" id="lengthContig_list_file_AHF36_TCR_A_v_aa_spectratype"
+data-toggle="list" href="#lengthContig_pane_file_AHF36_TCR_A_v_aa_spectratype" role="tab" aria-controls="file_AHF36_TCR_A_v_aa_spectratype">file_AHF36_TCR_A_v_aa_spectratype</a>
+
+<a class="list-group-item list-group-item-action" id="lengthContig_list_file_AHF36_TCR_B_j_aa_spectratype"
+data-toggle="list" href="#lengthContig_pane_file_AHF36_TCR_B_j_aa_spectratype" role="tab" aria-controls="file_AHF36_TCR_B_j_aa_spectratype">file_AHF36_TCR_B_j_aa_spectratype</a>
+
+<a class="list-group-item list-group-item-action" id="lengthContig_list_file_AHF36_TCR_B_v_aa_spectratype"
+data-toggle="list" href="#lengthContig_pane_file_AHF36_TCR_B_v_aa_spectratype" role="tab" aria-controls="file_AHF36_TCR_B_v_aa_spectratype">file_AHF36_TCR_B_v_aa_spectratype</a>
+
+<a class="list-group-item list-group-item-action" id="lengthContig_list_file_AHF37_TCR_AB_j_aa_spectratype"
+data-toggle="list" href="#lengthContig_pane_file_AHF37_TCR_AB_j_aa_spectratype" role="tab" aria-controls="file_AHF37_TCR_AB_j_aa_spectratype">file_AHF37_TCR_AB_j_aa_spectratype</a>
+
+<a class="list-group-item list-group-item-action" id="lengthContig_list_file_AHF37_TCR_AB_v_aa_spectratype"
+data-toggle="list" href="#lengthContig_pane_file_AHF37_TCR_AB_v_aa_spectratype" role="tab" aria-controls="file_AHF37_TCR_AB_v_aa_spectratype">file_AHF37_TCR_AB_v_aa_spectratype</a>
+
+<a class="list-group-item list-group-item-action" id="lengthContig_list_file_AHF37_TCR_A_j_aa_spectratype"
+data-toggle="list" href="#lengthContig_pane_file_AHF37_TCR_A_j_aa_spectratype" role="tab" aria-controls="file_AHF37_TCR_A_j_aa_spectratype">file_AHF37_TCR_A_j_aa_spectratype</a>
+
+<a class="list-group-item list-group-item-action" id="lengthContig_list_file_AHF37_TCR_A_v_aa_spectratype"
+data-toggle="list" href="#lengthContig_pane_file_AHF37_TCR_A_v_aa_spectratype" role="tab" aria-controls="file_AHF37_TCR_A_v_aa_spectratype">file_AHF37_TCR_A_v_aa_spectratype</a>
+
+<a class="list-group-item list-group-item-action" id="lengthContig_list_file_AHF37_TCR_B_j_aa_spectratype"
+data-toggle="list" href="#lengthContig_pane_file_AHF37_TCR_B_j_aa_spectratype" role="tab" aria-controls="file_AHF37_TCR_B_j_aa_spectratype">file_AHF37_TCR_B_j_aa_spectratype</a>
+
+<a class="list-group-item list-group-item-action" id="lengthContig_list_file_AHF37_TCR_B_v_aa_spectratype"
+data-toggle="list" href="#lengthContig_pane_file_AHF37_TCR_B_v_aa_spectratype" role="tab" aria-controls="file_AHF37_TCR_B_v_aa_spectratype">file_AHF37_TCR_B_v_aa_spectratype</a>
+
+<a class="list-group-item list-group-item-action" id="lengthContig_list_file_AHF38_TCR_AB_j_aa_spectratype"
+data-toggle="list" href="#lengthContig_pane_file_AHF38_TCR_AB_j_aa_spectratype" role="tab" aria-controls="file_AHF38_TCR_AB_j_aa_spectratype">file_AHF38_TCR_AB_j_aa_spectratype</a>
+
+<a class="list-group-item list-group-item-action" id="lengthContig_list_file_AHF38_TCR_AB_v_aa_spectratype"
+data-toggle="list" href="#lengthContig_pane_file_AHF38_TCR_AB_v_aa_spectratype" role="tab" aria-controls="file_AHF38_TCR_AB_v_aa_spectratype">file_AHF38_TCR_AB_v_aa_spectratype</a>
+
+<a class="list-group-item list-group-item-action" id="lengthContig_list_file_AHF38_TCR_A_j_aa_spectratype"
+data-toggle="list" href="#lengthContig_pane_file_AHF38_TCR_A_j_aa_spectratype" role="tab" aria-controls="file_AHF38_TCR_A_j_aa_spectratype">file_AHF38_TCR_A_j_aa_spectratype</a>
+
+<a class="list-group-item list-group-item-action" id="lengthContig_list_file_AHF38_TCR_A_v_aa_spectratype"
+data-toggle="list" href="#lengthContig_pane_file_AHF38_TCR_A_v_aa_spectratype" role="tab" aria-controls="file_AHF38_TCR_A_v_aa_spectratype">file_AHF38_TCR_A_v_aa_spectratype</a>
+
+<a class="list-group-item list-group-item-action" id="lengthContig_list_file_AHF38_TCR_B_j_aa_spectratype"
+data-toggle="list" href="#lengthContig_pane_file_AHF38_TCR_B_j_aa_spectratype" role="tab" aria-controls="file_AHF38_TCR_B_j_aa_spectratype">file_AHF38_TCR_B_j_aa_spectratype</a>
+
+<a class="list-group-item list-group-item-action" id="lengthContig_list_file_AHF38_TCR_B_v_aa_spectratype"
+data-toggle="list" href="#lengthContig_pane_file_AHF38_TCR_B_v_aa_spectratype" role="tab" aria-controls="file_AHF38_TCR_B_v_aa_spectratype">file_AHF38_TCR_B_v_aa_spectratype</a>
+
+</div>
+</div>
+</div>
+</p>
+
+	
+<p class="tremark">{Sample name}_aa_lengthContig: Distribution map of amino acid sequence (aa) length;</p>
+<p class="tremark">{Sample name}_{A/B/AB/H/L/HL}_{V/J}_aa_spectratype: Exploration of gene distribution through CDR3 sequence length and gene segment grouping. samplea_A_j_aa_spectratype represents the J gene in the TRA chain of the samplea sample. When the amino acid sequence is used as the clonotype, some highly expressed genes are shown in the length distribution map. A/B/AB/H/L/HL: A represents calculation with TRA chain, B represents calculation with TRB chain, AB represents calculation with TRA+TRB chain, H represents calculation with IGH chain, L represents calculation with IGL/IGK chain, and HL represents calculation with IGH+IGL/IGK chain. V/J: V represents the V gene, and J represents the J gene. aa: aa represents the amino acid sequence as the unique clonotype</p>
+
+<!------- 加一行大横线------------->
+<hr />
+<h3>4.6 Display of VJ Gene Abundance for Each Sample</h3>
+	
+<p class="paragraph">By comparing the abundance of VJ genes in samples under different conditions, we can reveal the immune system's response to a stimulus or disease. This helps to understand the effects of specific diseases or immunotherapy, and may provide clues for new drug development and treatment strategies. Heat maps and histograms of different gene expression frequencies are shown</p>
+<p class="paragraph">Please refer to the result folder: 3. Immu_vdj/2.Immu_vdj/*/genesviz</p>
+<p class="center">
+<div class="row">
+<div class="col-1">
+<div id="bar_vizGenes_button_prev" class="button_prev" onclick="prev(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_prev">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-6">
+<div class="tab-content" id="bar_vizGenes_nav-tabContent">
+
+<div class="tab-pane fade" id="bar_vizGenes_pane_file_AHF26_TCR_J_TRA_heatmap_vizGenes" 
+role="tabpanel" aria-labelledby="bar_vizGenes_list_file_AHF26_TCR_J_TRA_heatmap_vizGenes"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF26_TCR_J_TRA_heatmap_vizGenes.png" /></div>
+
+<div class="tab-pane fade" id="bar_vizGenes_pane_file_AHF26_TCR_J_TRB_heatmap_vizGenes" 
+role="tabpanel" aria-labelledby="bar_vizGenes_list_file_AHF26_TCR_J_TRB_heatmap_vizGenes"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF26_TCR_J_TRB_heatmap_vizGenes.png" /></div>
+
+<div class="tab-pane fade" id="bar_vizGenes_pane_file_AHF26_TCR_V_TRA_heatmap_vizGenes" 
+role="tabpanel" aria-labelledby="bar_vizGenes_list_file_AHF26_TCR_V_TRA_heatmap_vizGenes"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF26_TCR_V_TRA_heatmap_vizGenes.png" /></div>
+
+<div class="tab-pane fade" id="bar_vizGenes_pane_file_AHF26_TCR_V_TRB_heatmap_vizGenes" 
+role="tabpanel" aria-labelledby="bar_vizGenes_list_file_AHF26_TCR_V_TRB_heatmap_vizGenes"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF26_TCR_V_TRB_heatmap_vizGenes.png" /></div>
+
+<div class="tab-pane fade" id="bar_vizGenes_pane_file_AHF35_TCR_J_TRA_heatmap_vizGenes" 
+role="tabpanel" aria-labelledby="bar_vizGenes_list_file_AHF35_TCR_J_TRA_heatmap_vizGenes"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF35_TCR_J_TRA_heatmap_vizGenes.png" /></div>
+
+<div class="tab-pane fade" id="bar_vizGenes_pane_file_AHF35_TCR_J_TRB_heatmap_vizGenes" 
+role="tabpanel" aria-labelledby="bar_vizGenes_list_file_AHF35_TCR_J_TRB_heatmap_vizGenes"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF35_TCR_J_TRB_heatmap_vizGenes.png" /></div>
+
+<div class="tab-pane fade" id="bar_vizGenes_pane_file_AHF35_TCR_V_TRA_heatmap_vizGenes" 
+role="tabpanel" aria-labelledby="bar_vizGenes_list_file_AHF35_TCR_V_TRA_heatmap_vizGenes"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF35_TCR_V_TRA_heatmap_vizGenes.png" /></div>
+
+<div class="tab-pane fade" id="bar_vizGenes_pane_file_AHF35_TCR_V_TRB_heatmap_vizGenes" 
+role="tabpanel" aria-labelledby="bar_vizGenes_list_file_AHF35_TCR_V_TRB_heatmap_vizGenes"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF35_TCR_V_TRB_heatmap_vizGenes.png" /></div>
+
+<div class="tab-pane fade" id="bar_vizGenes_pane_file_AHF36_TCR_J_TRA_heatmap_vizGenes" 
+role="tabpanel" aria-labelledby="bar_vizGenes_list_file_AHF36_TCR_J_TRA_heatmap_vizGenes"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF36_TCR_J_TRA_heatmap_vizGenes.png" /></div>
+
+<div class="tab-pane fade" id="bar_vizGenes_pane_file_AHF36_TCR_J_TRB_heatmap_vizGenes" 
+role="tabpanel" aria-labelledby="bar_vizGenes_list_file_AHF36_TCR_J_TRB_heatmap_vizGenes"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF36_TCR_J_TRB_heatmap_vizGenes.png" /></div>
+
+<div class="tab-pane fade" id="bar_vizGenes_pane_file_AHF36_TCR_V_TRA_heatmap_vizGenes" 
+role="tabpanel" aria-labelledby="bar_vizGenes_list_file_AHF36_TCR_V_TRA_heatmap_vizGenes"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF36_TCR_V_TRA_heatmap_vizGenes.png" /></div>
+
+<div class="tab-pane fade" id="bar_vizGenes_pane_file_AHF36_TCR_V_TRB_heatmap_vizGenes" 
+role="tabpanel" aria-labelledby="bar_vizGenes_list_file_AHF36_TCR_V_TRB_heatmap_vizGenes"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF36_TCR_V_TRB_heatmap_vizGenes.png" /></div>
+
+<div class="tab-pane fade" id="bar_vizGenes_pane_file_AHF37_TCR_J_TRA_heatmap_vizGenes" 
+role="tabpanel" aria-labelledby="bar_vizGenes_list_file_AHF37_TCR_J_TRA_heatmap_vizGenes"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF37_TCR_J_TRA_heatmap_vizGenes.png" /></div>
+
+<div class="tab-pane fade" id="bar_vizGenes_pane_file_AHF37_TCR_J_TRB_heatmap_vizGenes" 
+role="tabpanel" aria-labelledby="bar_vizGenes_list_file_AHF37_TCR_J_TRB_heatmap_vizGenes"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF37_TCR_J_TRB_heatmap_vizGenes.png" /></div>
+
+<div class="tab-pane fade" id="bar_vizGenes_pane_file_AHF37_TCR_V_TRA_heatmap_vizGenes" 
+role="tabpanel" aria-labelledby="bar_vizGenes_list_file_AHF37_TCR_V_TRA_heatmap_vizGenes"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF37_TCR_V_TRA_heatmap_vizGenes.png" /></div>
+
+<div class="tab-pane fade" id="bar_vizGenes_pane_file_AHF37_TCR_V_TRB_heatmap_vizGenes" 
+role="tabpanel" aria-labelledby="bar_vizGenes_list_file_AHF37_TCR_V_TRB_heatmap_vizGenes"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF37_TCR_V_TRB_heatmap_vizGenes.png" /></div>
+
+<div class="tab-pane fade" id="bar_vizGenes_pane_file_AHF38_TCR_J_TRA_heatmap_vizGenes" 
+role="tabpanel" aria-labelledby="bar_vizGenes_list_file_AHF38_TCR_J_TRA_heatmap_vizGenes"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF38_TCR_J_TRA_heatmap_vizGenes.png" /></div>
+
+<div class="tab-pane fade" id="bar_vizGenes_pane_file_AHF38_TCR_J_TRB_heatmap_vizGenes" 
+role="tabpanel" aria-labelledby="bar_vizGenes_list_file_AHF38_TCR_J_TRB_heatmap_vizGenes"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF38_TCR_J_TRB_heatmap_vizGenes.png" /></div>
+
+<div class="tab-pane fade" id="bar_vizGenes_pane_file_AHF38_TCR_V_TRA_heatmap_vizGenes" 
+role="tabpanel" aria-labelledby="bar_vizGenes_list_file_AHF38_TCR_V_TRA_heatmap_vizGenes"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF38_TCR_V_TRA_heatmap_vizGenes.png" /></div>
+
+<div class="tab-pane fade" id="bar_vizGenes_pane_file_AHF38_TCR_V_TRB_heatmap_vizGenes" 
+role="tabpanel" aria-labelledby="bar_vizGenes_list_file_AHF38_TCR_V_TRB_heatmap_vizGenes"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF38_TCR_V_TRB_heatmap_vizGenes.png" /></div>
+
+<div class="tab-pane fade" id="bar_vizGenes_pane_file_sample_aggr_J_TRA_heatmap_vizGenes" 
+role="tabpanel" aria-labelledby="bar_vizGenes_list_file_sample_aggr_J_TRA_heatmap_vizGenes"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/sample_aggr_J_TRA_heatmap_vizGenes.png" /></div>
+
+<div class="tab-pane fade" id="bar_vizGenes_pane_file_sample_aggr_J_TRB_heatmap_vizGenes" 
+role="tabpanel" aria-labelledby="bar_vizGenes_list_file_sample_aggr_J_TRB_heatmap_vizGenes"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/sample_aggr_J_TRB_heatmap_vizGenes.png" /></div>
+
+<div class="tab-pane fade" id="bar_vizGenes_pane_file_sample_aggr_V_TRA_heatmap_vizGenes" 
+role="tabpanel" aria-labelledby="bar_vizGenes_list_file_sample_aggr_V_TRA_heatmap_vizGenes"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/sample_aggr_V_TRA_heatmap_vizGenes.png" /></div>
+
+<div class="tab-pane fade" id="bar_vizGenes_pane_file_sample_aggr_V_TRB_heatmap_vizGenes" 
+role="tabpanel" aria-labelledby="bar_vizGenes_list_file_sample_aggr_V_TRB_heatmap_vizGenes"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/sample_aggr_V_TRB_heatmap_vizGenes.png" /></div>
+
+</div></div>
+<div class="col-1">
+<div id="bar_vizGenes_button_next" class="button_next" onclick="next(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_next">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-4">
+<input class="form-control" id="bar_vizGenes_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="bar_vizGenes_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="bar_vizGenes_list_file_AHF26_TCR_J_TRA_heatmap_vizGenes"
+data-toggle="list" href="#bar_vizGenes_pane_file_AHF26_TCR_J_TRA_heatmap_vizGenes" role="tab" aria-controls="file_AHF26_TCR_J_TRA_heatmap_vizGenes">file_AHF26_TCR_J_TRA_heatmap_vizGenes</a>
+
+<a class="list-group-item list-group-item-action" id="bar_vizGenes_list_file_AHF26_TCR_J_TRB_heatmap_vizGenes"
+data-toggle="list" href="#bar_vizGenes_pane_file_AHF26_TCR_J_TRB_heatmap_vizGenes" role="tab" aria-controls="file_AHF26_TCR_J_TRB_heatmap_vizGenes">file_AHF26_TCR_J_TRB_heatmap_vizGenes</a>
+
+<a class="list-group-item list-group-item-action" id="bar_vizGenes_list_file_AHF26_TCR_V_TRA_heatmap_vizGenes"
+data-toggle="list" href="#bar_vizGenes_pane_file_AHF26_TCR_V_TRA_heatmap_vizGenes" role="tab" aria-controls="file_AHF26_TCR_V_TRA_heatmap_vizGenes">file_AHF26_TCR_V_TRA_heatmap_vizGenes</a>
+
+<a class="list-group-item list-group-item-action" id="bar_vizGenes_list_file_AHF26_TCR_V_TRB_heatmap_vizGenes"
+data-toggle="list" href="#bar_vizGenes_pane_file_AHF26_TCR_V_TRB_heatmap_vizGenes" role="tab" aria-controls="file_AHF26_TCR_V_TRB_heatmap_vizGenes">file_AHF26_TCR_V_TRB_heatmap_vizGenes</a>
+
+<a class="list-group-item list-group-item-action" id="bar_vizGenes_list_file_AHF35_TCR_J_TRA_heatmap_vizGenes"
+data-toggle="list" href="#bar_vizGenes_pane_file_AHF35_TCR_J_TRA_heatmap_vizGenes" role="tab" aria-controls="file_AHF35_TCR_J_TRA_heatmap_vizGenes">file_AHF35_TCR_J_TRA_heatmap_vizGenes</a>
+
+<a class="list-group-item list-group-item-action" id="bar_vizGenes_list_file_AHF35_TCR_J_TRB_heatmap_vizGenes"
+data-toggle="list" href="#bar_vizGenes_pane_file_AHF35_TCR_J_TRB_heatmap_vizGenes" role="tab" aria-controls="file_AHF35_TCR_J_TRB_heatmap_vizGenes">file_AHF35_TCR_J_TRB_heatmap_vizGenes</a>
+
+<a class="list-group-item list-group-item-action" id="bar_vizGenes_list_file_AHF35_TCR_V_TRA_heatmap_vizGenes"
+data-toggle="list" href="#bar_vizGenes_pane_file_AHF35_TCR_V_TRA_heatmap_vizGenes" role="tab" aria-controls="file_AHF35_TCR_V_TRA_heatmap_vizGenes">file_AHF35_TCR_V_TRA_heatmap_vizGenes</a>
+
+<a class="list-group-item list-group-item-action" id="bar_vizGenes_list_file_AHF35_TCR_V_TRB_heatmap_vizGenes"
+data-toggle="list" href="#bar_vizGenes_pane_file_AHF35_TCR_V_TRB_heatmap_vizGenes" role="tab" aria-controls="file_AHF35_TCR_V_TRB_heatmap_vizGenes">file_AHF35_TCR_V_TRB_heatmap_vizGenes</a>
+
+<a class="list-group-item list-group-item-action" id="bar_vizGenes_list_file_AHF36_TCR_J_TRA_heatmap_vizGenes"
+data-toggle="list" href="#bar_vizGenes_pane_file_AHF36_TCR_J_TRA_heatmap_vizGenes" role="tab" aria-controls="file_AHF36_TCR_J_TRA_heatmap_vizGenes">file_AHF36_TCR_J_TRA_heatmap_vizGenes</a>
+
+<a class="list-group-item list-group-item-action" id="bar_vizGenes_list_file_AHF36_TCR_J_TRB_heatmap_vizGenes"
+data-toggle="list" href="#bar_vizGenes_pane_file_AHF36_TCR_J_TRB_heatmap_vizGenes" role="tab" aria-controls="file_AHF36_TCR_J_TRB_heatmap_vizGenes">file_AHF36_TCR_J_TRB_heatmap_vizGenes</a>
+
+<a class="list-group-item list-group-item-action" id="bar_vizGenes_list_file_AHF36_TCR_V_TRA_heatmap_vizGenes"
+data-toggle="list" href="#bar_vizGenes_pane_file_AHF36_TCR_V_TRA_heatmap_vizGenes" role="tab" aria-controls="file_AHF36_TCR_V_TRA_heatmap_vizGenes">file_AHF36_TCR_V_TRA_heatmap_vizGenes</a>
+
+<a class="list-group-item list-group-item-action" id="bar_vizGenes_list_file_AHF36_TCR_V_TRB_heatmap_vizGenes"
+data-toggle="list" href="#bar_vizGenes_pane_file_AHF36_TCR_V_TRB_heatmap_vizGenes" role="tab" aria-controls="file_AHF36_TCR_V_TRB_heatmap_vizGenes">file_AHF36_TCR_V_TRB_heatmap_vizGenes</a>
+
+<a class="list-group-item list-group-item-action" id="bar_vizGenes_list_file_AHF37_TCR_J_TRA_heatmap_vizGenes"
+data-toggle="list" href="#bar_vizGenes_pane_file_AHF37_TCR_J_TRA_heatmap_vizGenes" role="tab" aria-controls="file_AHF37_TCR_J_TRA_heatmap_vizGenes">file_AHF37_TCR_J_TRA_heatmap_vizGenes</a>
+
+<a class="list-group-item list-group-item-action" id="bar_vizGenes_list_file_AHF37_TCR_J_TRB_heatmap_vizGenes"
+data-toggle="list" href="#bar_vizGenes_pane_file_AHF37_TCR_J_TRB_heatmap_vizGenes" role="tab" aria-controls="file_AHF37_TCR_J_TRB_heatmap_vizGenes">file_AHF37_TCR_J_TRB_heatmap_vizGenes</a>
+
+<a class="list-group-item list-group-item-action" id="bar_vizGenes_list_file_AHF37_TCR_V_TRA_heatmap_vizGenes"
+data-toggle="list" href="#bar_vizGenes_pane_file_AHF37_TCR_V_TRA_heatmap_vizGenes" role="tab" aria-controls="file_AHF37_TCR_V_TRA_heatmap_vizGenes">file_AHF37_TCR_V_TRA_heatmap_vizGenes</a>
+
+<a class="list-group-item list-group-item-action" id="bar_vizGenes_list_file_AHF37_TCR_V_TRB_heatmap_vizGenes"
+data-toggle="list" href="#bar_vizGenes_pane_file_AHF37_TCR_V_TRB_heatmap_vizGenes" role="tab" aria-controls="file_AHF37_TCR_V_TRB_heatmap_vizGenes">file_AHF37_TCR_V_TRB_heatmap_vizGenes</a>
+
+<a class="list-group-item list-group-item-action" id="bar_vizGenes_list_file_AHF38_TCR_J_TRA_heatmap_vizGenes"
+data-toggle="list" href="#bar_vizGenes_pane_file_AHF38_TCR_J_TRA_heatmap_vizGenes" role="tab" aria-controls="file_AHF38_TCR_J_TRA_heatmap_vizGenes">file_AHF38_TCR_J_TRA_heatmap_vizGenes</a>
+
+<a class="list-group-item list-group-item-action" id="bar_vizGenes_list_file_AHF38_TCR_J_TRB_heatmap_vizGenes"
+data-toggle="list" href="#bar_vizGenes_pane_file_AHF38_TCR_J_TRB_heatmap_vizGenes" role="tab" aria-controls="file_AHF38_TCR_J_TRB_heatmap_vizGenes">file_AHF38_TCR_J_TRB_heatmap_vizGenes</a>
+
+<a class="list-group-item list-group-item-action" id="bar_vizGenes_list_file_AHF38_TCR_V_TRA_heatmap_vizGenes"
+data-toggle="list" href="#bar_vizGenes_pane_file_AHF38_TCR_V_TRA_heatmap_vizGenes" role="tab" aria-controls="file_AHF38_TCR_V_TRA_heatmap_vizGenes">file_AHF38_TCR_V_TRA_heatmap_vizGenes</a>
+
+<a class="list-group-item list-group-item-action" id="bar_vizGenes_list_file_AHF38_TCR_V_TRB_heatmap_vizGenes"
+data-toggle="list" href="#bar_vizGenes_pane_file_AHF38_TCR_V_TRB_heatmap_vizGenes" role="tab" aria-controls="file_AHF38_TCR_V_TRB_heatmap_vizGenes">file_AHF38_TCR_V_TRB_heatmap_vizGenes</a>
+
+<a class="list-group-item list-group-item-action" id="bar_vizGenes_list_file_sample_aggr_J_TRA_heatmap_vizGenes"
+data-toggle="list" href="#bar_vizGenes_pane_file_sample_aggr_J_TRA_heatmap_vizGenes" role="tab" aria-controls="file_sample_aggr_J_TRA_heatmap_vizGenes">file_sample_aggr_J_TRA_heatmap_vizGenes</a>
+
+<a class="list-group-item list-group-item-action" id="bar_vizGenes_list_file_sample_aggr_J_TRB_heatmap_vizGenes"
+data-toggle="list" href="#bar_vizGenes_pane_file_sample_aggr_J_TRB_heatmap_vizGenes" role="tab" aria-controls="file_sample_aggr_J_TRB_heatmap_vizGenes">file_sample_aggr_J_TRB_heatmap_vizGenes</a>
+
+<a class="list-group-item list-group-item-action" id="bar_vizGenes_list_file_sample_aggr_V_TRA_heatmap_vizGenes"
+data-toggle="list" href="#bar_vizGenes_pane_file_sample_aggr_V_TRA_heatmap_vizGenes" role="tab" aria-controls="file_sample_aggr_V_TRA_heatmap_vizGenes">file_sample_aggr_V_TRA_heatmap_vizGenes</a>
+
+<a class="list-group-item list-group-item-action" id="bar_vizGenes_list_file_sample_aggr_V_TRB_heatmap_vizGenes"
+data-toggle="list" href="#bar_vizGenes_pane_file_sample_aggr_V_TRB_heatmap_vizGenes" role="tab" aria-controls="file_sample_aggr_V_TRB_heatmap_vizGenes">file_sample_aggr_V_TRB_heatmap_vizGenes</a>
+
+</div>
+</div>
+</div>
+</p>
+
+	
+<p class="tremark">{Sample name}_{V/J}_{TRA/TRB/IGH/IGL}_heatmap_vizGenes: samplea_V_TRA_heatmap_vizGenes represents the heat map of V gene expression distribution in the TRA chain of the samplea sample. V/J: V represents the V gene, and J represents the J gene. TRA/TRB/IGH/IGL: TRA and TRB in TCR, IGH and IGL in BCR</p>
+<p class="tremark">{Sample name}_{V/J}_{TRA/TRB/IGH/IGL}_bar_vizGenes: Histogram of gene expression distribution in the sample</p>
+
+
+<!------- 加一行大横线------------->
+<hr />	
+<h3>4.7 Clonotypes for Displaying VJ Gene Combinations</h3>
+<p class="paragraph">The interaction of VJ genes in each sample is shown, and the interaction heat map of genes can provide information about the relative abundance and pairwise matching of VJ genes. By analyzing the co-occurrence patterns in the heat map of VJ gene interaction, we can find the relationship between different VJ genes. This helps to understand the degree of association between specific VJ genes and their role in immune response.</p>
+<p class="paragraph">Please refer to the result folder: 3. Immu_vdj/2.Immu_vdj/*/genesviz</p>
+<p class="center">
+<div class="row">
+<div class="col-1">
+<div id="VJgenes_vizGenes_button_prev" class="button_prev" onclick="prev(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_prev">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-6">
+<div class="tab-content" id="VJgenes_vizGenes_nav-tabContent">
+
+<div class="tab-pane fade" id="VJgenes_vizGenes_pane_file_AHF26_TCR_TRA_VJgenes_vizGenes" 
+role="tabpanel" aria-labelledby="VJgenes_vizGenes_list_file_AHF26_TCR_TRA_VJgenes_vizGenes"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF26_TCR_TRA_VJgenes_vizGenes.png" /></div>
+
+<div class="tab-pane fade" id="VJgenes_vizGenes_pane_file_AHF26_TCR_TRB_VJgenes_vizGenes" 
+role="tabpanel" aria-labelledby="VJgenes_vizGenes_list_file_AHF26_TCR_TRB_VJgenes_vizGenes"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF26_TCR_TRB_VJgenes_vizGenes.png" /></div>
+
+<div class="tab-pane fade" id="VJgenes_vizGenes_pane_file_AHF35_TCR_TRA_VJgenes_vizGenes" 
+role="tabpanel" aria-labelledby="VJgenes_vizGenes_list_file_AHF35_TCR_TRA_VJgenes_vizGenes"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF35_TCR_TRA_VJgenes_vizGenes.png" /></div>
+
+<div class="tab-pane fade" id="VJgenes_vizGenes_pane_file_AHF35_TCR_TRB_VJgenes_vizGenes" 
+role="tabpanel" aria-labelledby="VJgenes_vizGenes_list_file_AHF35_TCR_TRB_VJgenes_vizGenes"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF35_TCR_TRB_VJgenes_vizGenes.png" /></div>
+
+<div class="tab-pane fade" id="VJgenes_vizGenes_pane_file_AHF36_TCR_TRA_VJgenes_vizGenes" 
+role="tabpanel" aria-labelledby="VJgenes_vizGenes_list_file_AHF36_TCR_TRA_VJgenes_vizGenes"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF36_TCR_TRA_VJgenes_vizGenes.png" /></div>
+
+<div class="tab-pane fade" id="VJgenes_vizGenes_pane_file_AHF36_TCR_TRB_VJgenes_vizGenes" 
+role="tabpanel" aria-labelledby="VJgenes_vizGenes_list_file_AHF36_TCR_TRB_VJgenes_vizGenes"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF36_TCR_TRB_VJgenes_vizGenes.png" /></div>
+
+<div class="tab-pane fade" id="VJgenes_vizGenes_pane_file_AHF37_TCR_TRA_VJgenes_vizGenes" 
+role="tabpanel" aria-labelledby="VJgenes_vizGenes_list_file_AHF37_TCR_TRA_VJgenes_vizGenes"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF37_TCR_TRA_VJgenes_vizGenes.png" /></div>
+
+<div class="tab-pane fade" id="VJgenes_vizGenes_pane_file_AHF37_TCR_TRB_VJgenes_vizGenes" 
+role="tabpanel" aria-labelledby="VJgenes_vizGenes_list_file_AHF37_TCR_TRB_VJgenes_vizGenes"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF37_TCR_TRB_VJgenes_vizGenes.png" /></div>
+
+<div class="tab-pane fade" id="VJgenes_vizGenes_pane_file_AHF38_TCR_TRA_VJgenes_vizGenes" 
+role="tabpanel" aria-labelledby="VJgenes_vizGenes_list_file_AHF38_TCR_TRA_VJgenes_vizGenes"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF38_TCR_TRA_VJgenes_vizGenes.png" /></div>
+
+<div class="tab-pane fade" id="VJgenes_vizGenes_pane_file_AHF38_TCR_TRB_VJgenes_vizGenes" 
+role="tabpanel" aria-labelledby="VJgenes_vizGenes_list_file_AHF38_TCR_TRB_VJgenes_vizGenes"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF38_TCR_TRB_VJgenes_vizGenes.png" /></div>
+
+<div class="tab-pane fade" id="VJgenes_vizGenes_pane_file_sample_aggr_TRA_VJgenes_vizGenes" 
+role="tabpanel" aria-labelledby="VJgenes_vizGenes_list_file_sample_aggr_TRA_VJgenes_vizGenes"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/sample_aggr_TRA_VJgenes_vizGenes.png" /></div>
+
+<div class="tab-pane fade" id="VJgenes_vizGenes_pane_file_sample_aggr_TRB_VJgenes_vizGenes" 
+role="tabpanel" aria-labelledby="VJgenes_vizGenes_list_file_sample_aggr_TRB_VJgenes_vizGenes"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/sample_aggr_TRB_VJgenes_vizGenes.png" /></div>
+
+<div class="tab-pane fade" id="VJgenes_vizGenes_pane_file_AHF26_TCR_A_V-Jsankey" 
+role="tabpanel" aria-labelledby="VJgenes_vizGenes_list_file_AHF26_TCR_A_V-Jsankey"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF26_TCR_A_V-J.sankey.png" /></div>
+
+<div class="tab-pane fade" id="VJgenes_vizGenes_pane_file_AHF26_TCR_B_V-Jsankey" 
+role="tabpanel" aria-labelledby="VJgenes_vizGenes_list_file_AHF26_TCR_B_V-Jsankey"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF26_TCR_B_V-J.sankey.png" /></div>
+
+<div class="tab-pane fade" id="VJgenes_vizGenes_pane_file_AHF35_TCR_A_V-Jsankey" 
+role="tabpanel" aria-labelledby="VJgenes_vizGenes_list_file_AHF35_TCR_A_V-Jsankey"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF35_TCR_A_V-J.sankey.png" /></div>
+
+<div class="tab-pane fade" id="VJgenes_vizGenes_pane_file_AHF35_TCR_B_V-Jsankey" 
+role="tabpanel" aria-labelledby="VJgenes_vizGenes_list_file_AHF35_TCR_B_V-Jsankey"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF35_TCR_B_V-J.sankey.png" /></div>
+
+<div class="tab-pane fade" id="VJgenes_vizGenes_pane_file_AHF36_TCR_A_V-Jsankey" 
+role="tabpanel" aria-labelledby="VJgenes_vizGenes_list_file_AHF36_TCR_A_V-Jsankey"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF36_TCR_A_V-J.sankey.png" /></div>
+
+<div class="tab-pane fade" id="VJgenes_vizGenes_pane_file_AHF36_TCR_B_V-Jsankey" 
+role="tabpanel" aria-labelledby="VJgenes_vizGenes_list_file_AHF36_TCR_B_V-Jsankey"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF36_TCR_B_V-J.sankey.png" /></div>
+
+<div class="tab-pane fade" id="VJgenes_vizGenes_pane_file_AHF37_TCR_A_V-Jsankey" 
+role="tabpanel" aria-labelledby="VJgenes_vizGenes_list_file_AHF37_TCR_A_V-Jsankey"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF37_TCR_A_V-J.sankey.png" /></div>
+
+<div class="tab-pane fade" id="VJgenes_vizGenes_pane_file_AHF37_TCR_B_V-Jsankey" 
+role="tabpanel" aria-labelledby="VJgenes_vizGenes_list_file_AHF37_TCR_B_V-Jsankey"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF37_TCR_B_V-J.sankey.png" /></div>
+
+<div class="tab-pane fade" id="VJgenes_vizGenes_pane_file_AHF38_TCR_A_V-Jsankey" 
+role="tabpanel" aria-labelledby="VJgenes_vizGenes_list_file_AHF38_TCR_A_V-Jsankey"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF38_TCR_A_V-J.sankey.png" /></div>
+
+<div class="tab-pane fade" id="VJgenes_vizGenes_pane_file_AHF38_TCR_B_V-Jsankey" 
+role="tabpanel" aria-labelledby="VJgenes_vizGenes_list_file_AHF38_TCR_B_V-Jsankey"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF38_TCR_B_V-J.sankey.png" /></div>
+
+</div></div>
+<div class="col-1">
+<div id="VJgenes_vizGenes_button_next" class="button_next" onclick="next(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_next">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-4">
+<input class="form-control" id="VJgenes_vizGenes_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="VJgenes_vizGenes_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="VJgenes_vizGenes_list_file_AHF26_TCR_TRA_VJgenes_vizGenes"
+data-toggle="list" href="#VJgenes_vizGenes_pane_file_AHF26_TCR_TRA_VJgenes_vizGenes" role="tab" aria-controls="file_AHF26_TCR_TRA_VJgenes_vizGenes">file_AHF26_TCR_TRA_VJgenes_vizGenes</a>
+
+<a class="list-group-item list-group-item-action" id="VJgenes_vizGenes_list_file_AHF26_TCR_TRB_VJgenes_vizGenes"
+data-toggle="list" href="#VJgenes_vizGenes_pane_file_AHF26_TCR_TRB_VJgenes_vizGenes" role="tab" aria-controls="file_AHF26_TCR_TRB_VJgenes_vizGenes">file_AHF26_TCR_TRB_VJgenes_vizGenes</a>
+
+<a class="list-group-item list-group-item-action" id="VJgenes_vizGenes_list_file_AHF35_TCR_TRA_VJgenes_vizGenes"
+data-toggle="list" href="#VJgenes_vizGenes_pane_file_AHF35_TCR_TRA_VJgenes_vizGenes" role="tab" aria-controls="file_AHF35_TCR_TRA_VJgenes_vizGenes">file_AHF35_TCR_TRA_VJgenes_vizGenes</a>
+
+<a class="list-group-item list-group-item-action" id="VJgenes_vizGenes_list_file_AHF35_TCR_TRB_VJgenes_vizGenes"
+data-toggle="list" href="#VJgenes_vizGenes_pane_file_AHF35_TCR_TRB_VJgenes_vizGenes" role="tab" aria-controls="file_AHF35_TCR_TRB_VJgenes_vizGenes">file_AHF35_TCR_TRB_VJgenes_vizGenes</a>
+
+<a class="list-group-item list-group-item-action" id="VJgenes_vizGenes_list_file_AHF36_TCR_TRA_VJgenes_vizGenes"
+data-toggle="list" href="#VJgenes_vizGenes_pane_file_AHF36_TCR_TRA_VJgenes_vizGenes" role="tab" aria-controls="file_AHF36_TCR_TRA_VJgenes_vizGenes">file_AHF36_TCR_TRA_VJgenes_vizGenes</a>
+
+<a class="list-group-item list-group-item-action" id="VJgenes_vizGenes_list_file_AHF36_TCR_TRB_VJgenes_vizGenes"
+data-toggle="list" href="#VJgenes_vizGenes_pane_file_AHF36_TCR_TRB_VJgenes_vizGenes" role="tab" aria-controls="file_AHF36_TCR_TRB_VJgenes_vizGenes">file_AHF36_TCR_TRB_VJgenes_vizGenes</a>
+
+<a class="list-group-item list-group-item-action" id="VJgenes_vizGenes_list_file_AHF37_TCR_TRA_VJgenes_vizGenes"
+data-toggle="list" href="#VJgenes_vizGenes_pane_file_AHF37_TCR_TRA_VJgenes_vizGenes" role="tab" aria-controls="file_AHF37_TCR_TRA_VJgenes_vizGenes">file_AHF37_TCR_TRA_VJgenes_vizGenes</a>
+
+<a class="list-group-item list-group-item-action" id="VJgenes_vizGenes_list_file_AHF37_TCR_TRB_VJgenes_vizGenes"
+data-toggle="list" href="#VJgenes_vizGenes_pane_file_AHF37_TCR_TRB_VJgenes_vizGenes" role="tab" aria-controls="file_AHF37_TCR_TRB_VJgenes_vizGenes">file_AHF37_TCR_TRB_VJgenes_vizGenes</a>
+
+<a class="list-group-item list-group-item-action" id="VJgenes_vizGenes_list_file_AHF38_TCR_TRA_VJgenes_vizGenes"
+data-toggle="list" href="#VJgenes_vizGenes_pane_file_AHF38_TCR_TRA_VJgenes_vizGenes" role="tab" aria-controls="file_AHF38_TCR_TRA_VJgenes_vizGenes">file_AHF38_TCR_TRA_VJgenes_vizGenes</a>
+
+<a class="list-group-item list-group-item-action" id="VJgenes_vizGenes_list_file_AHF38_TCR_TRB_VJgenes_vizGenes"
+data-toggle="list" href="#VJgenes_vizGenes_pane_file_AHF38_TCR_TRB_VJgenes_vizGenes" role="tab" aria-controls="file_AHF38_TCR_TRB_VJgenes_vizGenes">file_AHF38_TCR_TRB_VJgenes_vizGenes</a>
+
+<a class="list-group-item list-group-item-action" id="VJgenes_vizGenes_list_file_sample_aggr_TRA_VJgenes_vizGenes"
+data-toggle="list" href="#VJgenes_vizGenes_pane_file_sample_aggr_TRA_VJgenes_vizGenes" role="tab" aria-controls="file_sample_aggr_TRA_VJgenes_vizGenes">file_sample_aggr_TRA_VJgenes_vizGenes</a>
+
+<a class="list-group-item list-group-item-action" id="VJgenes_vizGenes_list_file_sample_aggr_TRB_VJgenes_vizGenes"
+data-toggle="list" href="#VJgenes_vizGenes_pane_file_sample_aggr_TRB_VJgenes_vizGenes" role="tab" aria-controls="file_sample_aggr_TRB_VJgenes_vizGenes">file_sample_aggr_TRB_VJgenes_vizGenes</a>
+
+<a class="list-group-item list-group-item-action" id="VJgenes_vizGenes_list_file_AHF26_TCR_A_V-Jsankey"
+data-toggle="list" href="#VJgenes_vizGenes_pane_file_AHF26_TCR_A_V-Jsankey" role="tab" aria-controls="file_AHF26_TCR_A_V-Jsankey">file_AHF26_TCR_A_V-Jsankey</a>
+
+<a class="list-group-item list-group-item-action" id="VJgenes_vizGenes_list_file_AHF26_TCR_B_V-Jsankey"
+data-toggle="list" href="#VJgenes_vizGenes_pane_file_AHF26_TCR_B_V-Jsankey" role="tab" aria-controls="file_AHF26_TCR_B_V-Jsankey">file_AHF26_TCR_B_V-Jsankey</a>
+
+<a class="list-group-item list-group-item-action" id="VJgenes_vizGenes_list_file_AHF35_TCR_A_V-Jsankey"
+data-toggle="list" href="#VJgenes_vizGenes_pane_file_AHF35_TCR_A_V-Jsankey" role="tab" aria-controls="file_AHF35_TCR_A_V-Jsankey">file_AHF35_TCR_A_V-Jsankey</a>
+
+<a class="list-group-item list-group-item-action" id="VJgenes_vizGenes_list_file_AHF35_TCR_B_V-Jsankey"
+data-toggle="list" href="#VJgenes_vizGenes_pane_file_AHF35_TCR_B_V-Jsankey" role="tab" aria-controls="file_AHF35_TCR_B_V-Jsankey">file_AHF35_TCR_B_V-Jsankey</a>
+
+<a class="list-group-item list-group-item-action" id="VJgenes_vizGenes_list_file_AHF36_TCR_A_V-Jsankey"
+data-toggle="list" href="#VJgenes_vizGenes_pane_file_AHF36_TCR_A_V-Jsankey" role="tab" aria-controls="file_AHF36_TCR_A_V-Jsankey">file_AHF36_TCR_A_V-Jsankey</a>
+
+<a class="list-group-item list-group-item-action" id="VJgenes_vizGenes_list_file_AHF36_TCR_B_V-Jsankey"
+data-toggle="list" href="#VJgenes_vizGenes_pane_file_AHF36_TCR_B_V-Jsankey" role="tab" aria-controls="file_AHF36_TCR_B_V-Jsankey">file_AHF36_TCR_B_V-Jsankey</a>
+
+<a class="list-group-item list-group-item-action" id="VJgenes_vizGenes_list_file_AHF37_TCR_A_V-Jsankey"
+data-toggle="list" href="#VJgenes_vizGenes_pane_file_AHF37_TCR_A_V-Jsankey" role="tab" aria-controls="file_AHF37_TCR_A_V-Jsankey">file_AHF37_TCR_A_V-Jsankey</a>
+
+<a class="list-group-item list-group-item-action" id="VJgenes_vizGenes_list_file_AHF37_TCR_B_V-Jsankey"
+data-toggle="list" href="#VJgenes_vizGenes_pane_file_AHF37_TCR_B_V-Jsankey" role="tab" aria-controls="file_AHF37_TCR_B_V-Jsankey">file_AHF37_TCR_B_V-Jsankey</a>
+
+<a class="list-group-item list-group-item-action" id="VJgenes_vizGenes_list_file_AHF38_TCR_A_V-Jsankey"
+data-toggle="list" href="#VJgenes_vizGenes_pane_file_AHF38_TCR_A_V-Jsankey" role="tab" aria-controls="file_AHF38_TCR_A_V-Jsankey">file_AHF38_TCR_A_V-Jsankey</a>
+
+<a class="list-group-item list-group-item-action" id="VJgenes_vizGenes_list_file_AHF38_TCR_B_V-Jsankey"
+data-toggle="list" href="#VJgenes_vizGenes_pane_file_AHF38_TCR_B_V-Jsankey" role="tab" aria-controls="file_AHF38_TCR_B_V-Jsankey">file_AHF38_TCR_B_V-Jsankey</a>
+
+</div>
+</div>
+</div>
+</p>
+
+<p class="tremark">{Sample name}_{TRA/TRB/IGH/IGL}_VJgenes_vizGenes: Interactive heat map of VJ gene. TRA/TRB/IGH/IGL: TRA and TRB in TCR. IGH and IGL in BCR</p>
+<p class="tremark">{Sample name}_{A/B/H/L}_V-J.sankey: Interactive Sankey diagram for the first 20 pairs of VJ genes. A represents the calculation by TRA chains. B represents the calculation by TRB chain. AB represents the calculation by TRA+TRB chains. H represents the calculation by IGH chain. L represents the calculation by IGL/IGK chain</p>
+	
+
+
+<!------- 加一行大横线------------->
+<hr />
+<h3>4.8 Analysis of Highly Expressed Clonotypes by Multi-Sample Comparison</h3>
+<p class="paragraph">The top 10 clonotypes with high expression in each sample are displayed, which will appear when the sample size is greater than 3</p>
+<p class="paragraph">Please refer to the result folder: 3. Immu_vdj/2.Immu_vdj/*/top10</p>
+<p class="center">
+<div class="row">
+<div class="col-1">
+<div id="top10_button_prev" class="button_prev" onclick="prev(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_prev">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-6">
+<div class="tab-content" id="top10_nav-tabContent">
+
+<div class="tab-pane fade" id="top10_pane_file_AHF26_TCR_trackClonotypes_aa_area_top10" 
+role="tabpanel" aria-labelledby="top10_list_file_AHF26_TCR_trackClonotypes_aa_area_top10"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF26_TCR_trackClonotypes_aa_area_top10.png" /></div>
+
+<div class="tab-pane fade" id="top10_pane_file_AHF26_TCR_trackClonotypes_aa_bar_top10" 
+role="tabpanel" aria-labelledby="top10_list_file_AHF26_TCR_trackClonotypes_aa_bar_top10"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF26_TCR_trackClonotypes_aa_bar_top10.png" /></div>
+
+<div class="tab-pane fade" id="top10_pane_file_AHF26_TCR_trackClonotypes_aa_line_top10" 
+role="tabpanel" aria-labelledby="top10_list_file_AHF26_TCR_trackClonotypes_aa_line_top10"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF26_TCR_trackClonotypes_aa_line_top10.png" /></div>
+
+<div class="tab-pane fade" id="top10_pane_file_AHF35_TCR_trackClonotypes_aa_area_top10" 
+role="tabpanel" aria-labelledby="top10_list_file_AHF35_TCR_trackClonotypes_aa_area_top10"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF35_TCR_trackClonotypes_aa_area_top10.png" /></div>
+
+<div class="tab-pane fade" id="top10_pane_file_AHF35_TCR_trackClonotypes_aa_bar_top10" 
+role="tabpanel" aria-labelledby="top10_list_file_AHF35_TCR_trackClonotypes_aa_bar_top10"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF35_TCR_trackClonotypes_aa_bar_top10.png" /></div>
+
+<div class="tab-pane fade" id="top10_pane_file_AHF35_TCR_trackClonotypes_aa_line_top10" 
+role="tabpanel" aria-labelledby="top10_list_file_AHF35_TCR_trackClonotypes_aa_line_top10"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF35_TCR_trackClonotypes_aa_line_top10.png" /></div>
+
+<div class="tab-pane fade" id="top10_pane_file_AHF36_TCR_trackClonotypes_aa_area_top10" 
+role="tabpanel" aria-labelledby="top10_list_file_AHF36_TCR_trackClonotypes_aa_area_top10"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF36_TCR_trackClonotypes_aa_area_top10.png" /></div>
+
+<div class="tab-pane fade" id="top10_pane_file_AHF36_TCR_trackClonotypes_aa_bar_top10" 
+role="tabpanel" aria-labelledby="top10_list_file_AHF36_TCR_trackClonotypes_aa_bar_top10"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF36_TCR_trackClonotypes_aa_bar_top10.png" /></div>
+
+<div class="tab-pane fade" id="top10_pane_file_AHF36_TCR_trackClonotypes_aa_line_top10" 
+role="tabpanel" aria-labelledby="top10_list_file_AHF36_TCR_trackClonotypes_aa_line_top10"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF36_TCR_trackClonotypes_aa_line_top10.png" /></div>
+
+<div class="tab-pane fade" id="top10_pane_file_AHF37_TCR_trackClonotypes_aa_area_top10" 
+role="tabpanel" aria-labelledby="top10_list_file_AHF37_TCR_trackClonotypes_aa_area_top10"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF37_TCR_trackClonotypes_aa_area_top10.png" /></div>
+
+<div class="tab-pane fade" id="top10_pane_file_AHF37_TCR_trackClonotypes_aa_bar_top10" 
+role="tabpanel" aria-labelledby="top10_list_file_AHF37_TCR_trackClonotypes_aa_bar_top10"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF37_TCR_trackClonotypes_aa_bar_top10.png" /></div>
+
+<div class="tab-pane fade" id="top10_pane_file_AHF37_TCR_trackClonotypes_aa_line_top10" 
+role="tabpanel" aria-labelledby="top10_list_file_AHF37_TCR_trackClonotypes_aa_line_top10"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF37_TCR_trackClonotypes_aa_line_top10.png" /></div>
+
+<div class="tab-pane fade" id="top10_pane_file_AHF38_TCR_trackClonotypes_aa_area_top10" 
+role="tabpanel" aria-labelledby="top10_list_file_AHF38_TCR_trackClonotypes_aa_area_top10"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF38_TCR_trackClonotypes_aa_area_top10.png" /></div>
+
+<div class="tab-pane fade" id="top10_pane_file_AHF38_TCR_trackClonotypes_aa_bar_top10" 
+role="tabpanel" aria-labelledby="top10_list_file_AHF38_TCR_trackClonotypes_aa_bar_top10"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF38_TCR_trackClonotypes_aa_bar_top10.png" /></div>
+
+<div class="tab-pane fade" id="top10_pane_file_AHF38_TCR_trackClonotypes_aa_line_top10" 
+role="tabpanel" aria-labelledby="top10_list_file_AHF38_TCR_trackClonotypes_aa_line_top10"
+onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF38_TCR_trackClonotypes_aa_line_top10.png" /></div>
+
+</div></div>
+<div class="col-1">
+<div id="top10_button_next" class="button_next" onclick="next(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_next">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-4">
+<input class="form-control" id="top10_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="top10_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="top10_list_file_AHF26_TCR_trackClonotypes_aa_area_top10"
+data-toggle="list" href="#top10_pane_file_AHF26_TCR_trackClonotypes_aa_area_top10" role="tab" aria-controls="file_AHF26_TCR_trackClonotypes_aa_area_top10">file_AHF26_TCR_trackClonotypes_aa_area_top10</a>
+
+<a class="list-group-item list-group-item-action" id="top10_list_file_AHF26_TCR_trackClonotypes_aa_bar_top10"
+data-toggle="list" href="#top10_pane_file_AHF26_TCR_trackClonotypes_aa_bar_top10" role="tab" aria-controls="file_AHF26_TCR_trackClonotypes_aa_bar_top10">file_AHF26_TCR_trackClonotypes_aa_bar_top10</a>
+
+<a class="list-group-item list-group-item-action" id="top10_list_file_AHF26_TCR_trackClonotypes_aa_line_top10"
+data-toggle="list" href="#top10_pane_file_AHF26_TCR_trackClonotypes_aa_line_top10" role="tab" aria-controls="file_AHF26_TCR_trackClonotypes_aa_line_top10">file_AHF26_TCR_trackClonotypes_aa_line_top10</a>
+
+<a class="list-group-item list-group-item-action" id="top10_list_file_AHF35_TCR_trackClonotypes_aa_area_top10"
+data-toggle="list" href="#top10_pane_file_AHF35_TCR_trackClonotypes_aa_area_top10" role="tab" aria-controls="file_AHF35_TCR_trackClonotypes_aa_area_top10">file_AHF35_TCR_trackClonotypes_aa_area_top10</a>
+
+<a class="list-group-item list-group-item-action" id="top10_list_file_AHF35_TCR_trackClonotypes_aa_bar_top10"
+data-toggle="list" href="#top10_pane_file_AHF35_TCR_trackClonotypes_aa_bar_top10" role="tab" aria-controls="file_AHF35_TCR_trackClonotypes_aa_bar_top10">file_AHF35_TCR_trackClonotypes_aa_bar_top10</a>
+
+<a class="list-group-item list-group-item-action" id="top10_list_file_AHF35_TCR_trackClonotypes_aa_line_top10"
+data-toggle="list" href="#top10_pane_file_AHF35_TCR_trackClonotypes_aa_line_top10" role="tab" aria-controls="file_AHF35_TCR_trackClonotypes_aa_line_top10">file_AHF35_TCR_trackClonotypes_aa_line_top10</a>
+
+<a class="list-group-item list-group-item-action" id="top10_list_file_AHF36_TCR_trackClonotypes_aa_area_top10"
+data-toggle="list" href="#top10_pane_file_AHF36_TCR_trackClonotypes_aa_area_top10" role="tab" aria-controls="file_AHF36_TCR_trackClonotypes_aa_area_top10">file_AHF36_TCR_trackClonotypes_aa_area_top10</a>
+
+<a class="list-group-item list-group-item-action" id="top10_list_file_AHF36_TCR_trackClonotypes_aa_bar_top10"
+data-toggle="list" href="#top10_pane_file_AHF36_TCR_trackClonotypes_aa_bar_top10" role="tab" aria-controls="file_AHF36_TCR_trackClonotypes_aa_bar_top10">file_AHF36_TCR_trackClonotypes_aa_bar_top10</a>
+
+<a class="list-group-item list-group-item-action" id="top10_list_file_AHF36_TCR_trackClonotypes_aa_line_top10"
+data-toggle="list" href="#top10_pane_file_AHF36_TCR_trackClonotypes_aa_line_top10" role="tab" aria-controls="file_AHF36_TCR_trackClonotypes_aa_line_top10">file_AHF36_TCR_trackClonotypes_aa_line_top10</a>
+
+<a class="list-group-item list-group-item-action" id="top10_list_file_AHF37_TCR_trackClonotypes_aa_area_top10"
+data-toggle="list" href="#top10_pane_file_AHF37_TCR_trackClonotypes_aa_area_top10" role="tab" aria-controls="file_AHF37_TCR_trackClonotypes_aa_area_top10">file_AHF37_TCR_trackClonotypes_aa_area_top10</a>
+
+<a class="list-group-item list-group-item-action" id="top10_list_file_AHF37_TCR_trackClonotypes_aa_bar_top10"
+data-toggle="list" href="#top10_pane_file_AHF37_TCR_trackClonotypes_aa_bar_top10" role="tab" aria-controls="file_AHF37_TCR_trackClonotypes_aa_bar_top10">file_AHF37_TCR_trackClonotypes_aa_bar_top10</a>
+
+<a class="list-group-item list-group-item-action" id="top10_list_file_AHF37_TCR_trackClonotypes_aa_line_top10"
+data-toggle="list" href="#top10_pane_file_AHF37_TCR_trackClonotypes_aa_line_top10" role="tab" aria-controls="file_AHF37_TCR_trackClonotypes_aa_line_top10">file_AHF37_TCR_trackClonotypes_aa_line_top10</a>
+
+<a class="list-group-item list-group-item-action" id="top10_list_file_AHF38_TCR_trackClonotypes_aa_area_top10"
+data-toggle="list" href="#top10_pane_file_AHF38_TCR_trackClonotypes_aa_area_top10" role="tab" aria-controls="file_AHF38_TCR_trackClonotypes_aa_area_top10">file_AHF38_TCR_trackClonotypes_aa_area_top10</a>
+
+<a class="list-group-item list-group-item-action" id="top10_list_file_AHF38_TCR_trackClonotypes_aa_bar_top10"
+data-toggle="list" href="#top10_pane_file_AHF38_TCR_trackClonotypes_aa_bar_top10" role="tab" aria-controls="file_AHF38_TCR_trackClonotypes_aa_bar_top10">file_AHF38_TCR_trackClonotypes_aa_bar_top10</a>
+
+<a class="list-group-item list-group-item-action" id="top10_list_file_AHF38_TCR_trackClonotypes_aa_line_top10"
+data-toggle="list" href="#top10_pane_file_AHF38_TCR_trackClonotypes_aa_line_top10" role="tab" aria-controls="file_AHF38_TCR_trackClonotypes_aa_line_top10">file_AHF38_TCR_trackClonotypes_aa_line_top10</a>
+
+</div>
+</div>
+</div>
+</p>
+
+<p class="tremark">{Sample name}_trackClonotypes_aa_{line/bar}_top10: A_trackClonotypes_aa_line_top10.png represents the distribution of the top 10 clonotypes of sample A in the columnar Sankey diagram of all samples when amino acid sequence is used as the clonotype. aa: aa represents the amino acid sequence as the statistical clonotype. line/bar: line represents linear Sankey diagram, and bar represents columnar Sankey diagram</p>
+
+
+<!------- 加一行大横线------------->
+
+
+<!------- 加一行大横线------------->
+<hr />	
+<h3>4.9 Clone Proportion Analysis</h3>
+	
+	<p class="paragraph">Similar to the dynamic balance of clone space above, the clone proportion analysis is to divide clonotypes into different bins. The clone proportion analysis is to sort clonotypes based on the total number of clonotypes and put different types of clonotypes in order into the bins. 1:10 means the first 10 clonotypes of each sample. Please refer to the result folder: 3. Immu_vdj/2.Immu_vdj/*/clonalPro</p>
+
+
+	<p class="center">
+		<div class="row">
+		<div class="col-1">
+		<div id="clonalPro_button_prev" class="button_prev" onclick="prev(this.id)">
+		<svg viewbox="0 0 16000 16000" class="svg_prev">
+		<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+		<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+		</polygon></svg></div></div>
+		<div class="col-6">
+		<div class="tab-content" id="clonalPro_nav-tabContent">
+		
+		<div class="tab-pane fade" id="clonalPro_pane_file_AHF26_TCR_aa_clonalPro" 
+		role="tabpanel" aria-labelledby="clonalPro_list_file_AHF26_TCR_aa_clonalPro"
+		onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF26_TCR_aa_clonalPro.png" /></div>
+		
+		<div class="tab-pane fade" id="clonalPro_pane_file_AHF35_TCR_aa_clonalPro" 
+		role="tabpanel" aria-labelledby="clonalPro_list_file_AHF35_TCR_aa_clonalPro"
+		onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF35_TCR_aa_clonalPro.png" /></div>
+		
+		<div class="tab-pane fade" id="clonalPro_pane_file_AHF36_TCR_aa_clonalPro" 
+		role="tabpanel" aria-labelledby="clonalPro_list_file_AHF36_TCR_aa_clonalPro"
+		onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF36_TCR_aa_clonalPro.png" /></div>
+		
+		<div class="tab-pane fade" id="clonalPro_pane_file_AHF37_TCR_aa_clonalPro" 
+		role="tabpanel" aria-labelledby="clonalPro_list_file_AHF37_TCR_aa_clonalPro"
+		onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF37_TCR_aa_clonalPro.png" /></div>
+		
+		<div class="tab-pane fade" id="clonalPro_pane_file_AHF38_TCR_aa_clonalPro" 
+		role="tabpanel" aria-labelledby="clonalPro_list_file_AHF38_TCR_aa_clonalPro"
+		onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF38_TCR_aa_clonalPro.png" /></div>
+		
+		<div class="tab-pane fade" id="clonalPro_pane_file_sample_aggr_aa_clonalPro" 
+		role="tabpanel" aria-labelledby="clonalPro_list_file_sample_aggr_aa_clonalPro"
+		onclick="trans(this.id)"><img class="img-gallery" src="src/file/sample_aggr_aa_clonalPro.png" /></div>
+		
+		</div></div>
+		<div class="col-1">
+		<div id="clonalPro_button_next" class="button_next" onclick="next(this.id)">
+		<svg viewbox="0 0 16000 16000" class="svg_next">
+		<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+		<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+		</polygon></svg></div></div>
+		<div class="col-4">
+		<input class="form-control" id="clonalPro_InputList" type="text" placeholder="Search..">
+		<div class="list-group" id="clonalPro_list-tab" role="tablist">
+		
+		<a class="list-group-item list-group-item-action" id="clonalPro_list_file_AHF26_TCR_aa_clonalPro"
+		data-toggle="list" href="#clonalPro_pane_file_AHF26_TCR_aa_clonalPro" role="tab" aria-controls="file_AHF26_TCR_aa_clonalPro">file_AHF26_TCR_aa_clonalPro</a>
+		
+		<a class="list-group-item list-group-item-action" id="clonalPro_list_file_AHF35_TCR_aa_clonalPro"
+		data-toggle="list" href="#clonalPro_pane_file_AHF35_TCR_aa_clonalPro" role="tab" aria-controls="file_AHF35_TCR_aa_clonalPro">file_AHF35_TCR_aa_clonalPro</a>
+		
+		<a class="list-group-item list-group-item-action" id="clonalPro_list_file_AHF36_TCR_aa_clonalPro"
+		data-toggle="list" href="#clonalPro_pane_file_AHF36_TCR_aa_clonalPro" role="tab" aria-controls="file_AHF36_TCR_aa_clonalPro">file_AHF36_TCR_aa_clonalPro</a>
+		
+		<a class="list-group-item list-group-item-action" id="clonalPro_list_file_AHF37_TCR_aa_clonalPro"
+		data-toggle="list" href="#clonalPro_pane_file_AHF37_TCR_aa_clonalPro" role="tab" aria-controls="file_AHF37_TCR_aa_clonalPro">file_AHF37_TCR_aa_clonalPro</a>
+		
+		<a class="list-group-item list-group-item-action" id="clonalPro_list_file_AHF38_TCR_aa_clonalPro"
+		data-toggle="list" href="#clonalPro_pane_file_AHF38_TCR_aa_clonalPro" role="tab" aria-controls="file_AHF38_TCR_aa_clonalPro">file_AHF38_TCR_aa_clonalPro</a>
+		
+		<a class="list-group-item list-group-item-action" id="clonalPro_list_file_sample_aggr_aa_clonalPro"
+		data-toggle="list" href="#clonalPro_pane_file_sample_aggr_aa_clonalPro" role="tab" aria-controls="file_sample_aggr_aa_clonalPro">file_sample_aggr_aa_clonalPro</a>
+		
+		</div>
+		</div>
+		</div>
+		</p>
+
+<!------- 加一行大横线------------->
+<hr />
+<h3>4.10 Clonal Diversity Analysis</h3>
+	
+	<p class="paragraph">Different algorithms are adopted to analyze the sample's clonal diversity.</p>
+	<p class="paragraph">Chao1 index is an ecological indicator to measure species richness. It was first proposed by Chao (1984). The higher the value, the greater the richness of the community species.</p>
+	<p class="paragraph">InvSimpson, 1-Simpson index value. The larger the InvSimpson index value, the higher the community diversity. (Simpson: One of the indices used to estimate microbial diversity in a sample. The larger the Simpson index value, the lower the community diversity.)</p>
+	<p class="paragraph">Hill (1973) recognized that species richness, Shannon index, and Simpson index are all members of the same series of diversity indices, and proposed Hill numbers to quantify diversity accordingly. Q in the figure represents the Hill number or effective variety number in the Q stage. When Q=0, the abundance of species is not considered, only the number of species is considered, and the larger the value, the more abundant the species. When Q=1, it is the Shannon index. When Q=2, it is the Simpson index. The slope of the curve reflects the heterogeneity of clonotype abundance, and the more uneven the distribution of clonotype abundance, the sharper the decline of the curve.</p>
+	<p class="paragraph">Div (effective species count) refers to the number of species in a homogeneous community that is equal to the average proportion of species abundance in a given dataset.</p>
+	<p class="paragraph">D50, clonotype amino acid sequence is sorted as per the proportion and accumulated from the highest to the lowest. When it reaches 50% of the total sequence, the proportion of CDR3 sequence types is in the curve similar to that of saturation.</p>
+	<p class="paragraph">Please refer to the result file: 3. Immu_vdj/2.Immu_vdj/*/Diversity</p>
+	<p class="center">
+		<div class="row">
+		<div class="col-1">
+		<div id="Diversity_button_prev" class="button_prev" onclick="prev(this.id)">
+		<svg viewbox="0 0 16000 16000" class="svg_prev">
+		<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+		<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+		</polygon></svg></div></div>
+		<div class="col-6">
+		<div class="tab-content" id="Diversity_nav-tabContent">
+		
+		<div class="tab-pane fade" id="Diversity_pane_file_AHF26_TCR_aa_chao_Diversity" 
+		role="tabpanel" aria-labelledby="Diversity_list_file_AHF26_TCR_aa_chao_Diversity"
+		onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF26_TCR_aa_chao_Diversity.png" /></div>
+		
+		<div class="tab-pane fade" id="Diversity_pane_file_AHF26_TCR_aa_d50_Diversity" 
+		role="tabpanel" aria-labelledby="Diversity_list_file_AHF26_TCR_aa_d50_Diversity"
+		onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF26_TCR_aa_d50_Diversity.png" /></div>
+		
+		<div class="tab-pane fade" id="Diversity_pane_file_AHF26_TCR_aa_div_Diversity" 
+		role="tabpanel" aria-labelledby="Diversity_list_file_AHF26_TCR_aa_div_Diversity"
+		onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF26_TCR_aa_div_Diversity.png" /></div>
+		
+		<div class="tab-pane fade" id="Diversity_pane_file_AHF26_TCR_aa_hill_Diversity" 
+		role="tabpanel" aria-labelledby="Diversity_list_file_AHF26_TCR_aa_hill_Diversity"
+		onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF26_TCR_aa_hill_Diversity.png" /></div>
+		
+		<div class="tab-pane fade" id="Diversity_pane_file_AHF26_TCR_aa_invsimp_Diversity" 
+		role="tabpanel" aria-labelledby="Diversity_list_file_AHF26_TCR_aa_invsimp_Diversity"
+		onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF26_TCR_aa_invsimp_Diversity.png" /></div>
+		
+		<div class="tab-pane fade" id="Diversity_pane_file_AHF35_TCR_aa_chao_Diversity" 
+		role="tabpanel" aria-labelledby="Diversity_list_file_AHF35_TCR_aa_chao_Diversity"
+		onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF35_TCR_aa_chao_Diversity.png" /></div>
+		
+		<div class="tab-pane fade" id="Diversity_pane_file_AHF35_TCR_aa_d50_Diversity" 
+		role="tabpanel" aria-labelledby="Diversity_list_file_AHF35_TCR_aa_d50_Diversity"
+		onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF35_TCR_aa_d50_Diversity.png" /></div>
+		
+		<div class="tab-pane fade" id="Diversity_pane_file_AHF35_TCR_aa_div_Diversity" 
+		role="tabpanel" aria-labelledby="Diversity_list_file_AHF35_TCR_aa_div_Diversity"
+		onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF35_TCR_aa_div_Diversity.png" /></div>
+		
+		<div class="tab-pane fade" id="Diversity_pane_file_AHF35_TCR_aa_hill_Diversity" 
+		role="tabpanel" aria-labelledby="Diversity_list_file_AHF35_TCR_aa_hill_Diversity"
+		onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF35_TCR_aa_hill_Diversity.png" /></div>
+		
+		<div class="tab-pane fade" id="Diversity_pane_file_AHF35_TCR_aa_invsimp_Diversity" 
+		role="tabpanel" aria-labelledby="Diversity_list_file_AHF35_TCR_aa_invsimp_Diversity"
+		onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF35_TCR_aa_invsimp_Diversity.png" /></div>
+		
+		<div class="tab-pane fade" id="Diversity_pane_file_AHF36_TCR_aa_chao_Diversity" 
+		role="tabpanel" aria-labelledby="Diversity_list_file_AHF36_TCR_aa_chao_Diversity"
+		onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF36_TCR_aa_chao_Diversity.png" /></div>
+		
+		<div class="tab-pane fade" id="Diversity_pane_file_AHF36_TCR_aa_d50_Diversity" 
+		role="tabpanel" aria-labelledby="Diversity_list_file_AHF36_TCR_aa_d50_Diversity"
+		onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF36_TCR_aa_d50_Diversity.png" /></div>
+		
+		<div class="tab-pane fade" id="Diversity_pane_file_AHF36_TCR_aa_div_Diversity" 
+		role="tabpanel" aria-labelledby="Diversity_list_file_AHF36_TCR_aa_div_Diversity"
+		onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF36_TCR_aa_div_Diversity.png" /></div>
+		
+		<div class="tab-pane fade" id="Diversity_pane_file_AHF36_TCR_aa_hill_Diversity" 
+		role="tabpanel" aria-labelledby="Diversity_list_file_AHF36_TCR_aa_hill_Diversity"
+		onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF36_TCR_aa_hill_Diversity.png" /></div>
+		
+		<div class="tab-pane fade" id="Diversity_pane_file_AHF36_TCR_aa_invsimp_Diversity" 
+		role="tabpanel" aria-labelledby="Diversity_list_file_AHF36_TCR_aa_invsimp_Diversity"
+		onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF36_TCR_aa_invsimp_Diversity.png" /></div>
+		
+		<div class="tab-pane fade" id="Diversity_pane_file_AHF37_TCR_aa_chao_Diversity" 
+		role="tabpanel" aria-labelledby="Diversity_list_file_AHF37_TCR_aa_chao_Diversity"
+		onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF37_TCR_aa_chao_Diversity.png" /></div>
+		
+		<div class="tab-pane fade" id="Diversity_pane_file_AHF37_TCR_aa_d50_Diversity" 
+		role="tabpanel" aria-labelledby="Diversity_list_file_AHF37_TCR_aa_d50_Diversity"
+		onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF37_TCR_aa_d50_Diversity.png" /></div>
+		
+		<div class="tab-pane fade" id="Diversity_pane_file_AHF37_TCR_aa_div_Diversity" 
+		role="tabpanel" aria-labelledby="Diversity_list_file_AHF37_TCR_aa_div_Diversity"
+		onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF37_TCR_aa_div_Diversity.png" /></div>
+		
+		<div class="tab-pane fade" id="Diversity_pane_file_AHF37_TCR_aa_hill_Diversity" 
+		role="tabpanel" aria-labelledby="Diversity_list_file_AHF37_TCR_aa_hill_Diversity"
+		onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF37_TCR_aa_hill_Diversity.png" /></div>
+		
+		<div class="tab-pane fade" id="Diversity_pane_file_AHF37_TCR_aa_invsimp_Diversity" 
+		role="tabpanel" aria-labelledby="Diversity_list_file_AHF37_TCR_aa_invsimp_Diversity"
+		onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF37_TCR_aa_invsimp_Diversity.png" /></div>
+		
+		<div class="tab-pane fade" id="Diversity_pane_file_AHF38_TCR_aa_chao_Diversity" 
+		role="tabpanel" aria-labelledby="Diversity_list_file_AHF38_TCR_aa_chao_Diversity"
+		onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF38_TCR_aa_chao_Diversity.png" /></div>
+		
+		<div class="tab-pane fade" id="Diversity_pane_file_AHF38_TCR_aa_d50_Diversity" 
+		role="tabpanel" aria-labelledby="Diversity_list_file_AHF38_TCR_aa_d50_Diversity"
+		onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF38_TCR_aa_d50_Diversity.png" /></div>
+		
+		<div class="tab-pane fade" id="Diversity_pane_file_AHF38_TCR_aa_div_Diversity" 
+		role="tabpanel" aria-labelledby="Diversity_list_file_AHF38_TCR_aa_div_Diversity"
+		onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF38_TCR_aa_div_Diversity.png" /></div>
+		
+		<div class="tab-pane fade" id="Diversity_pane_file_AHF38_TCR_aa_hill_Diversity" 
+		role="tabpanel" aria-labelledby="Diversity_list_file_AHF38_TCR_aa_hill_Diversity"
+		onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF38_TCR_aa_hill_Diversity.png" /></div>
+		
+		<div class="tab-pane fade" id="Diversity_pane_file_AHF38_TCR_aa_invsimp_Diversity" 
+		role="tabpanel" aria-labelledby="Diversity_list_file_AHF38_TCR_aa_invsimp_Diversity"
+		onclick="trans(this.id)"><img class="img-gallery" src="src/file/AHF38_TCR_aa_invsimp_Diversity.png" /></div>
+		
+		</div></div>
+		<div class="col-1">
+		<div id="Diversity_button_next" class="button_next" onclick="next(this.id)">
+		<svg viewbox="0 0 16000 16000" class="svg_next">
+		<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+		<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+		</polygon></svg></div></div>
+		<div class="col-4">
+		<input class="form-control" id="Diversity_InputList" type="text" placeholder="Search..">
+		<div class="list-group" id="Diversity_list-tab" role="tablist">
+		
+		<a class="list-group-item list-group-item-action" id="Diversity_list_file_AHF26_TCR_aa_chao_Diversity"
+		data-toggle="list" href="#Diversity_pane_file_AHF26_TCR_aa_chao_Diversity" role="tab" aria-controls="file_AHF26_TCR_aa_chao_Diversity">file_AHF26_TCR_aa_chao_Diversity</a>
+		
+		<a class="list-group-item list-group-item-action" id="Diversity_list_file_AHF26_TCR_aa_d50_Diversity"
+		data-toggle="list" href="#Diversity_pane_file_AHF26_TCR_aa_d50_Diversity" role="tab" aria-controls="file_AHF26_TCR_aa_d50_Diversity">file_AHF26_TCR_aa_d50_Diversity</a>
+		
+		<a class="list-group-item list-group-item-action" id="Diversity_list_file_AHF26_TCR_aa_div_Diversity"
+		data-toggle="list" href="#Diversity_pane_file_AHF26_TCR_aa_div_Diversity" role="tab" aria-controls="file_AHF26_TCR_aa_div_Diversity">file_AHF26_TCR_aa_div_Diversity</a>
+		
+		<a class="list-group-item list-group-item-action" id="Diversity_list_file_AHF26_TCR_aa_hill_Diversity"
+		data-toggle="list" href="#Diversity_pane_file_AHF26_TCR_aa_hill_Diversity" role="tab" aria-controls="file_AHF26_TCR_aa_hill_Diversity">file_AHF26_TCR_aa_hill_Diversity</a>
+		
+		<a class="list-group-item list-group-item-action" id="Diversity_list_file_AHF26_TCR_aa_invsimp_Diversity"
+		data-toggle="list" href="#Diversity_pane_file_AHF26_TCR_aa_invsimp_Diversity" role="tab" aria-controls="file_AHF26_TCR_aa_invsimp_Diversity">file_AHF26_TCR_aa_invsimp_Diversity</a>
+		
+		<a class="list-group-item list-group-item-action" id="Diversity_list_file_AHF35_TCR_aa_chao_Diversity"
+		data-toggle="list" href="#Diversity_pane_file_AHF35_TCR_aa_chao_Diversity" role="tab" aria-controls="file_AHF35_TCR_aa_chao_Diversity">file_AHF35_TCR_aa_chao_Diversity</a>
+		
+		<a class="list-group-item list-group-item-action" id="Diversity_list_file_AHF35_TCR_aa_d50_Diversity"
+		data-toggle="list" href="#Diversity_pane_file_AHF35_TCR_aa_d50_Diversity" role="tab" aria-controls="file_AHF35_TCR_aa_d50_Diversity">file_AHF35_TCR_aa_d50_Diversity</a>
+		
+		<a class="list-group-item list-group-item-action" id="Diversity_list_file_AHF35_TCR_aa_div_Diversity"
+		data-toggle="list" href="#Diversity_pane_file_AHF35_TCR_aa_div_Diversity" role="tab" aria-controls="file_AHF35_TCR_aa_div_Diversity">file_AHF35_TCR_aa_div_Diversity</a>
+		
+		<a class="list-group-item list-group-item-action" id="Diversity_list_file_AHF35_TCR_aa_hill_Diversity"
+		data-toggle="list" href="#Diversity_pane_file_AHF35_TCR_aa_hill_Diversity" role="tab" aria-controls="file_AHF35_TCR_aa_hill_Diversity">file_AHF35_TCR_aa_hill_Diversity</a>
+		
+		<a class="list-group-item list-group-item-action" id="Diversity_list_file_AHF35_TCR_aa_invsimp_Diversity"
+		data-toggle="list" href="#Diversity_pane_file_AHF35_TCR_aa_invsimp_Diversity" role="tab" aria-controls="file_AHF35_TCR_aa_invsimp_Diversity">file_AHF35_TCR_aa_invsimp_Diversity</a>
+		
+		<a class="list-group-item list-group-item-action" id="Diversity_list_file_AHF36_TCR_aa_chao_Diversity"
+		data-toggle="list" href="#Diversity_pane_file_AHF36_TCR_aa_chao_Diversity" role="tab" aria-controls="file_AHF36_TCR_aa_chao_Diversity">file_AHF36_TCR_aa_chao_Diversity</a>
+		
+		<a class="list-group-item list-group-item-action" id="Diversity_list_file_AHF36_TCR_aa_d50_Diversity"
+		data-toggle="list" href="#Diversity_pane_file_AHF36_TCR_aa_d50_Diversity" role="tab" aria-controls="file_AHF36_TCR_aa_d50_Diversity">file_AHF36_TCR_aa_d50_Diversity</a>
+		
+		<a class="list-group-item list-group-item-action" id="Diversity_list_file_AHF36_TCR_aa_div_Diversity"
+		data-toggle="list" href="#Diversity_pane_file_AHF36_TCR_aa_div_Diversity" role="tab" aria-controls="file_AHF36_TCR_aa_div_Diversity">file_AHF36_TCR_aa_div_Diversity</a>
+		
+		<a class="list-group-item list-group-item-action" id="Diversity_list_file_AHF36_TCR_aa_hill_Diversity"
+		data-toggle="list" href="#Diversity_pane_file_AHF36_TCR_aa_hill_Diversity" role="tab" aria-controls="file_AHF36_TCR_aa_hill_Diversity">file_AHF36_TCR_aa_hill_Diversity</a>
+		
+		<a class="list-group-item list-group-item-action" id="Diversity_list_file_AHF36_TCR_aa_invsimp_Diversity"
+		data-toggle="list" href="#Diversity_pane_file_AHF36_TCR_aa_invsimp_Diversity" role="tab" aria-controls="file_AHF36_TCR_aa_invsimp_Diversity">file_AHF36_TCR_aa_invsimp_Diversity</a>
+		
+		<a class="list-group-item list-group-item-action" id="Diversity_list_file_AHF37_TCR_aa_chao_Diversity"
+		data-toggle="list" href="#Diversity_pane_file_AHF37_TCR_aa_chao_Diversity" role="tab" aria-controls="file_AHF37_TCR_aa_chao_Diversity">file_AHF37_TCR_aa_chao_Diversity</a>
+		
+		<a class="list-group-item list-group-item-action" id="Diversity_list_file_AHF37_TCR_aa_d50_Diversity"
+		data-toggle="list" href="#Diversity_pane_file_AHF37_TCR_aa_d50_Diversity" role="tab" aria-controls="file_AHF37_TCR_aa_d50_Diversity">file_AHF37_TCR_aa_d50_Diversity</a>
+		
+		<a class="list-group-item list-group-item-action" id="Diversity_list_file_AHF37_TCR_aa_div_Diversity"
+		data-toggle="list" href="#Diversity_pane_file_AHF37_TCR_aa_div_Diversity" role="tab" aria-controls="file_AHF37_TCR_aa_div_Diversity">file_AHF37_TCR_aa_div_Diversity</a>
+		
+		<a class="list-group-item list-group-item-action" id="Diversity_list_file_AHF37_TCR_aa_hill_Diversity"
+		data-toggle="list" href="#Diversity_pane_file_AHF37_TCR_aa_hill_Diversity" role="tab" aria-controls="file_AHF37_TCR_aa_hill_Diversity">file_AHF37_TCR_aa_hill_Diversity</a>
+		
+		<a class="list-group-item list-group-item-action" id="Diversity_list_file_AHF37_TCR_aa_invsimp_Diversity"
+		data-toggle="list" href="#Diversity_pane_file_AHF37_TCR_aa_invsimp_Diversity" role="tab" aria-controls="file_AHF37_TCR_aa_invsimp_Diversity">file_AHF37_TCR_aa_invsimp_Diversity</a>
+		
+		<a class="list-group-item list-group-item-action" id="Diversity_list_file_AHF38_TCR_aa_chao_Diversity"
+		data-toggle="list" href="#Diversity_pane_file_AHF38_TCR_aa_chao_Diversity" role="tab" aria-controls="file_AHF38_TCR_aa_chao_Diversity">file_AHF38_TCR_aa_chao_Diversity</a>
+		
+		<a class="list-group-item list-group-item-action" id="Diversity_list_file_AHF38_TCR_aa_d50_Diversity"
+		data-toggle="list" href="#Diversity_pane_file_AHF38_TCR_aa_d50_Diversity" role="tab" aria-controls="file_AHF38_TCR_aa_d50_Diversity">file_AHF38_TCR_aa_d50_Diversity</a>
+		
+		<a class="list-group-item list-group-item-action" id="Diversity_list_file_AHF38_TCR_aa_div_Diversity"
+		data-toggle="list" href="#Diversity_pane_file_AHF38_TCR_aa_div_Diversity" role="tab" aria-controls="file_AHF38_TCR_aa_div_Diversity">file_AHF38_TCR_aa_div_Diversity</a>
+		
+		<a class="list-group-item list-group-item-action" id="Diversity_list_file_AHF38_TCR_aa_hill_Diversity"
+		data-toggle="list" href="#Diversity_pane_file_AHF38_TCR_aa_hill_Diversity" role="tab" aria-controls="file_AHF38_TCR_aa_hill_Diversity">file_AHF38_TCR_aa_hill_Diversity</a>
+		
+		<a class="list-group-item list-group-item-action" id="Diversity_list_file_AHF38_TCR_aa_invsimp_Diversity"
+		data-toggle="list" href="#Diversity_pane_file_AHF38_TCR_aa_invsimp_Diversity" role="tab" aria-controls="file_AHF38_TCR_aa_invsimp_Diversity">file_AHF38_TCR_aa_invsimp_Diversity</a>
+		
+		</div>
+		</div>
+		</div>
+		</p>
+
+
+<!------- 加一行大横线------------->
+<hr />	
+<h2>5 Appendix</h2>
+
+<hr />
+<h3>5.1 Research Background TCR/BCR</h3>
+
+<p class="paragraph">Immune Repertoire (IR) is the sum of diverse T and B cells of all functions in a systemic circulatory system at a given time. V(D)J rearrangement that occurs during the development from hematopoietic stem cells in the bone marrow to mature T cells in the thymus and mature B cells in the bone marrow can lead to diversity of IR. T cell receptor (TCR) is a molecular structure for T cells to specifically recognize and bind antigen peptide MHC molecules, and its function is to recognize antigens. B cell receptor (BCR) is a membrane surface protein used by B cells to recognize antigens and has antigen binding specificity. After being stimulated by antigens, B cells will proliferate and differentiate into a large number of plasma cells. Plasma cells can synthesize and secrete corresponding immunoglobulins (Igs) for "humoral immunity". There are obvious differences between BCR and TCR structures, as shown in the following figure:</p>
+
+
+<p class="paragraph">As shown in the figure, BCR is composed of two heavy chains and two light chains connected, where the heavy chains are divided into a variable area (area V), a constant area (area C), a transmembrane area, and a cytoplasmic area, and the light chains only have areas V and C. TCR can be divided into two types, with most T cells having TCR composed of α and β chains, and a few TCR composed of γ and δ peptide chains (Note: The standard reagent protocol on 10x Genomics's official website does not contain γ and δ chain primers.<a href='https://kb.10xgenomics.com/hc/en-us/articles/360015793931-Can-I-detect-T-cells-with-gamma-delta-chains-in-my-V-D-J-data#:~:text=Question%3A%20Can%20I%20detect%20T,requires%20additional%20reagents%20and%20primers'>可Please refer to the link on the website.</a>）Each peptide chain of TCR can be divided into area V, area C, transmembrane area, and cytoplasmic area. BCR and TCR have three highly variable areas: CDR1, CDR2, and CDR3. Among them, CDR3 has the largest variation, which determines antigen binding specificity. Studies on the diversity of B cells and T cells are also concentrated in the area CDR3.</p>
+<img class="normal" src="src/images/yanjiubeijing2.png" width="30" height="30">
+
+<p class="paragraph">As shown in the figure, the area CDR3 of BCR includes light-chain V and J gene segments and heavy-chain V, D and J gene segments, while the area CDR3 of TCR includes α-chain V and J gene segments and β-chain V, D, and J gene segments. Analysis of BCR or TCR based on the differences in CDR3 amino acid sequence can reveal their clonotype typing, V-J gene abundance analysis, and related immune analysis.</p>
+<hr />	
+
+<h3>5.2 Help</h3>
+<p class="paragraph">Answer of frequently asked questions:<a href='src/pdf/Help.pdf'>Help</a></p>
+<hr />
+<h3>5.3 English Method</h3>
+<p class="paragraph">In order to facilitate users in writing articles, we have prepared an <a href='src/pdf/Methods.pdf'>English version of the methods</a> involved in the data.</p>
+<!------- 加一行大横线------------->
+<hr />
+<h3>5.4 Browser Software Description</h3>
+<p class="paragraph"><a href='src/pdf/Loupe-VDJ-Browser_Tutorial.pdf'>Browser software description.</a></p>
+<hr />
+<h3>5.5 References</h3>
+	<p class="tremark">	https://www.10xgenomics.com/vdj/(10x Genomics)</p>
+	<p class="tremark">	Borcherding N ,  Bormann N L . scRepertoire: An R-based toolkit for single-cell immune receptor analysis[J]. F1000 Research, 2020.</p>
+	<p class="tremark">	immunarch: An R Package for Painless Bioinformatics Analysis of T-Cell and B-Cell Immune Repertoires. Zenodo. http://doi.org/10.5281/zenodo.3367200</p>
+	<p class="tremark">	 Mikhail S, Bagaev D V, Turchaninova M A, et al. VDJtools: Unifying Post-analysis of T Cell Receptor Repertoires[J]. Plos Computational Biology, 2015, 11(11):e1004503.(VDJTools)</p>
+	<p class="tremark">	 Britanova O V, Putintseva E V, Shugay M, et al. Age-related decrease in TCR repertoire diversity measured with deep and normalized sequence profiling.[J]. Journal of Immunology, 2014, 192(6):2689.</p>
+	<p class="tremark">	 Putintseva E V, Britanova O V, Staroverov D B, et al. Mother and Child T Cell Receptor Repertoires: Deep Profiling Study[J]. Frontiers in Immunology, 2013, 4:463.</p>
+	

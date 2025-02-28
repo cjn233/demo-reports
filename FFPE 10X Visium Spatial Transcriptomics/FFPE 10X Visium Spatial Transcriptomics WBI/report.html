@@ -1,0 +1,1834 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+< html>
+<head>
+	<title> Novogene 10X Visium Spatial Transcriptomics analysis report </title>
+	<META NAME="Author" CONTENT="zhangmin@novogene.cn"> 
+	<META NAME="Modified" CONTENT="duanmeilin@novogene.cn"> 
+	<META NAME="Version" CONTENT="20200410"> 
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+<link rel="stylesheet" href="src/css/jquery-ui.css" />
+<link rel="stylesheet" href="src/css/bootstrap-4.3.1.min.css" />
+<link rel="stylesheet" href="src/css/jquery.tocify.css" />
+<link rel="stylesheet" href="src/css/style.css"/>
+<link rel="stylesheet" href="src/css/base.css"/>
+<link rel="stylesheet" href="src/css/gallery.css"/>
+<script src="src/js/jquery-3.3.1.min.js" type="text/javascript"></script>
+<script src="src/js/jquery-ui.min.js" type="text/javascript"></script>
+<script src="src/js/jquery.tocify.min.js" type="text/javascript"></script>
+<script src="src/js/bootstrap-4.3.1.min.js" type="text/javascript"></script>
+<script src="src/js/scrollTop.js" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+
+	$(function () {
+
+		var options = {
+
+			selectors: "h2,h3,h4,h5",
+
+			theme: "bootstrap",
+
+			scrollTo: "60"
+
+		};
+
+		var toc = $("#toc").tocify(options).data("toc-tocify");
+
+	});
+
+</script>
+
+
+
+
+
+<script type="text/javascript">
+
+function trans(img_div_id) {
+
+img_div = $("#" + img_div_id)
+
+img = $("#" + img_div_id + " img").first();
+
+if (img_div.hasClass("fullscreen-div")) {
+
+img_div.removeClass("fullscreen-div");
+
+img.removeClass("fullscreen-img");
+
+}
+
+else {
+
+img_div.addClass("fullscreen-div");
+
+img.addClass("fullscreen-img");
+
+}
+
+}
+
+
+
+function filter_display() {
+
+return $(this).css("display") != "none";
+
+}
+
+
+
+function show_default() {
+
+var list_group_id = "#" + $(this).attr("id");
+
+if ($(list_group_id + " a.active").css("display") == "none") {
+
+var list_tab = $(list_group_id + " a.active");
+
+var pan_id = list_tab.attr("href");
+
+$(pan_id).removeClass("active show");
+
+list_tab.removeClass("active");
+
+}
+
+if ($(list_group_id + " a.active").filter(filter_display).length == 0) {
+
+$(list_group_id + " a").filter(filter_display).first().tab("show");
+
+}
+
+}
+
+$.fn.show_default = show_default
+
+
+
+function next(botton_id) {
+
+var present_tab = $("#" + botton_id.replace("_button_next", "_list-tab") + " .active").first();
+
+while (present_tab.next().length == 1) {
+
+if (present_tab.next().css("display") != "none") {
+
+present_tab.next().tab("show");
+
+break;
+
+}
+
+else {
+
+present_tab = present_tab.next();
+
+}
+
+}
+
+
+
+}
+
+function prev(botton_id) {
+
+var present_tab = $("#" + botton_id.replace("_button_prev", "_list-tab") + " .active").first();
+
+while (present_tab.prev().length == 1) {
+
+if (present_tab.prev().css("display") != "none") {
+
+present_tab.prev().tab("show");
+
+break;
+
+}
+
+else {
+
+present_tab = present_tab.prev();
+
+}
+
+}
+
+
+
+
+
+}
+
+
+
+$(document).ready(function () {
+
+$(".form-control").on("keyup", function () {
+
+var value = $(this).val().toLowerCase();
+
+var input_box_id = "#" + $(this).attr("id");
+
+var list_group_id = input_box_id.replace("_InputList", "_list-tab");
+
+$(list_group_id + " a").filter(function () {
+
+$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+
+});
+
+$(list_group_id).show_default();
+
+});
+
+$(".list-group").each(show_default);
+
+});
+
+
+
+</script>
+
+</head>
+
+
+<body>
+
+<div id="toc" class="tocify">
+</div>
+
+<div style="position:fixed; top:0; left:0; width:100%; z-index:1000;">
+	<table width="100%" height="50px" border="0" cellpadding="5" cellspacing="0"
+		style="background:#F3F3F3; border-bottom:1px solid #eee;border-top: none;background-image:-moz-linear-gradient(top,#EEEEEE,#FFFFFF); background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0,#EEEEEE), color-stop(1,#FFFFFF));filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#EEEEEE', endColorstr='#FFFFFF', GradientType='0')">
+		<tr height="86%">
+			<td width='1%'></td>
+			<td><img src="src/images/logo1.png"></td>
+			<td><div style="margin:5px;border-left:1px solid #DCDCDC;height:30px"></div></td>
+			<td width="20%"></td>
+			<td width="15%"></td>
+                        <td width="30%"></td>	
+		</tr>
+	</table>
+</div>
+
+
+
+<!--------------------------Title---------------------------------->
+
+<div id="main">
+
+</br><h1> Novogene 10X Visium Spatial Transcriptomics analysis report </h1></br>
+
+
+<table class="gy">
+<thead><tr><th>Contract information</th><th>Contract content</th></tr></thead>
+<tbody>
+<tr>
+<td>Contract ID</td>
+<td>X101SC2401xxxx-Z01</td>
+</tr>
+<tr>
+<td>Contract name</td>
+<td>Mouse Brain FFPE cytassist Visium analysis</td>
+</tr>
+<tr>
+<td>Report time</td>
+<td>2024-01-24</td>
+</tr>
+<tr>
+<td>Batch ID</td>
+<td>X101SC2401xxxx-Z01-J001</td>
+</tr>
+<tr>
+</tbody></table>
+<br/><br/>
+
+<!----------------------------------------Experimental Procedure----------------------------------------->
+<p class="head"><a href="#home" title = "Back to the first page"><img style="height:40px"  align="left" src="src/images/logo.png" /></a> <a name="sequencing procedure">  </a>
+<hr />
+</p>
+
+<h2>1 Experimental Procedure </h2>
+<p class=”paragraph”>10x Genomics’ Visium<sup>TM</sup> Spatial transcriptomics is an unbiased detection of gene expression based on complete tissue sections. This technique preserves the morphological information of samples by performing H&E staining and capturing images of tissue slices placed in specific capture regions on slides. Subsequently, the same sample undergoes permeabilization, allowing the release of RNA, which hybridizes with oligonucleotide probes in the capture region, marking different spots with spatial barcodes. The 10x Visium Spatial transcriptomics can combine the morphological details and gene expression information to present the spatial transcriptomic atlas of the tissue. The core of this technology lies in spatial barcode slides, and the specific principles of the technique are demonstrated as follows：</p>
+<p class = "center"><img class="center" src="src/images/lib.png" width=650/>
+<p class="premark center">Figure 1.1 Principle of Visium Spatial Gene Expression technology. In a 6.5 mm x 6.5 mm area, there are nearly 5000 spots, with each spot containing millions of spatial barcode capture probes. DNA probes, including Illumina sequencing primer sequences, spatial barcodes, UMIs, and poly(dT), with a diameter of 55 micrometers, are anchored at the 5' end on the slide. The spatial barcode sequence of each spot is unique, capable of capturing RNA from 1 to 10 cells. <div class=""></div></p>
+
+
+<p class="paragraph">The 10x Visium Spatial Transcriptomics technology supports both fresh-frozen tissues and samples embedded in formalin-fixed paraffin (FFPE). The Visium CytAssist FFPE Spatial Transcriptomics workflow includes processes such as FFPE sample preparation, staining, imaging, probe hybridization, probe ligation, slide transfer, spatial position marking, library construction, sequencing, data visualization and other steps. To ensure the accuracy and reliability of the sequencing data, Novogene commits to strict quality control at every stage, guaranteeing the production of high quality data. The overall experimental workflow for 10x Genomics Visium FFPE Spatial Transcriptomics is illustrated in the diagram below:</p>
+<p class = "center"><img class="center" src="src/images/FFPEcytassist_pipelineEN.png" width=850/>
+</p>
+<!----------------------------------------1.1   Sample requirements ----------------------------------------->
+
+<p class="head"><a href="#home" title = "first page"><img class="logo" align="left" src="src/images/logo.png" /></a>
+	<a> </a>
+	<hr />
+	</p>
+	<h3 id="pipline">1.1 Sample QC</h3>
+	<p class="paragraph">The species currently eligible for CytAssist Spatial Transcriptomic on FFPE samples include humans and mice. For FFPE samples used in spatial transcriptomics studies, it is advisable to avoid excessively long storage periods, and transportation via ice packs or dry ice is preferable. Regarding the quality control of FFPE samples, a small number of paraffin sections are collected for RNA extraction, and the DV200 quality index is assessed by Agilent 2100. DV200 represents the percentage of RNA fragments longer than 200nt. The DV200 value is correlated with factors such as tissue type (e.g., diseased or necrotic tissue), FFPE sample preparation and processing, and storage duration, indirectly characterizing the quality of RNA in FFPE samples. It is recommended that FFPE samples with a DV200 value higher than 30% can be used for the library construction of CytAssist spatial transcriptomics.</p>
+	
+	<h3 id="pipline">1.2 Capture principle </h3>
+	<p class="paragraph"> In contrast to the capture principle of spatial transcriptomics in fresh frozen tissue, FFPE samples involve capturing mRNA targets with two specific probes of 25nt length each. One probe (RHS) has a synthetic polyA tail structure at one end, designed for capture, while the other segment (LHS) is designed with the TruSeq Read2 sequence for library construction and sequencing (as shown in the diagram below). The ligated capture probes are placed on the Visium slide. Currently, 10x Genomics has designed specific capture probes for human and mouse transcriptomes,enabling spatial transcriptome studies at the whole transcriptome level.</p>
+	<p class="center"><img class="center" src="src/images/ffpe_capture.png" width=650/>
+	
+	<h3 id="pipline">1.3 Library construction</h3>
+	<p class="paragraph">The library construction process starts with preparing the tissue slices placed on standard glass slides, including slicing, glass slide mounting, fixation, deparaffinization, H&E staining and imaging. The CytAssist probe pairs are added to the decrosslinked tissues and hybridize to their complementary target RNA. When both probe pairs bind to their adjacent target sites, they are ligated together. The subsequent steps which are performed upon transfer from glass slides to Visium slides are: and probe release, probe extension and tube transfer. The last steps, which are wash-out of barcoding probes, PCR amplification and library construction happen outside the instrument. Once the library passes the quality control, it proceeds to sequencing. The library construction process is illustrated as follows (figure from 10X Genomics – Spatial Gene Expression for FFPE Product sheet):</p>
+	<p class="center"><img class="center" src="src/images/FFPEcytassist_library.png " width=1050/>
+	
+	 
+	<h3 id="pipline">1.4 Sequencing</h3>
+	<p class="paragraph"> For 10x Spatial Transcriptomics libraries, such as those from FFPE samples, it is recommended to sequence at least 25,000 read pairs per spot. The sequencing depth is influenced by factors such as the coverage area of the captured region on the slide, sample type and complexity. Increasing  the sequencing data volume could improve the gene detection rates. It is suggested to aim for a sequencing data volume in the range of 10 to 20 Gb when using PE50 sequencing strategy, and 50 Gb when using PE150</p>
+	</p>
+	
+
+
+
+<p class="paragraph">The Visium slide information which was used to do library construction is as follow：</p>
+<table class="gy">
+<tr><th>Sample name</th><th>Slide ID</th><th>Capture area</th></tr>
+
+	<tr> 
+	<td>Brain1</td><td>V42A20-353</td><td>A1</td>
+	</tr>
+
+</table>
+</p>
+
+
+
+
+<!-------------------------------------------- Bioinformatic analysis process --------------------------------------->
+
+<p class="head"><a href="#home" title = "First page"><img class="logo" align="left" src="src/images/logo.png" /></a>
+
+	<hr />
+	</p>
+	<h2>2 Bioinformatic analysis procedure</h2>
+	<p class="paragraph">After the raw sequencing data (sequenced reads) is obtained, the bioinformatic analysis is conducted through the following process. The official 10x software “SpaceRanger” is used to integrate gene expression information with the spatial information of tissue slides. This integration illustrates the spatial distribution of cell clusters and cell subpopulations on tissue sections, along with the spatial distribution of differentially expressed genes (DEG). Subsequent analysis involves functional enrichment of these DEG to identify the functional characteristics of the subpopulations. In addition to the analysis results from Space Ranger, basic analysis results from the third-party software Seurat are also provided. Moreover, customized analyses can be offered such as cell definition, variant detection, copy number analysis. (The content of customized analysis is not included in the final report of the standard analysis and needs to be separately requested.)</p>
+	<p class="center"><img class="center" src="src/images/analysis-pipelineEN.png" width=1200/>
+
+
+<!-------------------------------------------- Raw data --------------------------------------->
+
+<p class="head"><a href="#home" title = "First page"><img class="logo" align="left" src="src/images/logo.png" /></a>
+
+	<hr />
+	</p>
+	<h2>3 Raw data QC</h2>
+	<h3>3.1 Explanation of raw sequencing data</h3>
+	<p class="paragraph">High throughput sequencing data generates raw image files that are converted into sequencing reads through base calling using Bcl2fastq. These sequences are stored in FASTQ format. FASTQ is a common text format for storing both the nucleotide sequence and the corresponding quality scores. Taking Illumina NovaSeq PE150 sequencing data as an example, where both reads are 150 bp long, for 10x Spatial Transcriptomic libraries, the first 28 bp of read1 contain spatial barcode and UMI information. This information is crucial for distinguishing from which spot read2 originates. Bases after the initial 28 bp are non-informative data, while all of read2 is useful data.</p>
+	<p class="paragraph">Each read in a FASTQ file consists of four lines of descriptive information, as shown below:</p>
+	<div class="bs-docs-qa">
+	<p class="seq">
+	@ST-E00310:278:HF3GJALXX:5:1101:6745:1924 1:N:0:ACGCTCGA<br />
+	TNTAGATCTTAGGCGGTTGGTGTAGGTATCGACACAGGTCTTCATTTTGGCTAATAATGTACCAACGGAAGTCTGACATTCTGACTGTTCTTCTTCCTCTTCTTCCCCATTCTCTGTAGAAAGAGGCAACAACAGCGGCACCATAGATGT<br />
+	+<br />
+	F#FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF:FFFFF:FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF:FFFFFFFFFFFFFFFFFFFFFFFFFFF:FFFF:FFFFF:FFFFFFFFFFFFFFFFFFFFF,FFFFFFF<br />
+	</div>
+	<p class="paragraph">The first line starts with ”@”, contains Illumina sequencing identifier and descriptive text. The second line represents the nucleotide sequence of the sequencing fragment. The third line optionally starts with “+” or can be empty. The fourth line represents the sequencing quality scores for each corresponding base in ASCII-encoded format. Each character’s ASCII value minus 33 equals the sequencing quality score for the respective base.</p>
+	
+<!----------------------------------------- Data quality control -------------------------------------->
+<p class="head"><a href="#home" title = "First page"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<hr />
+</p>
+<h3>3.2  Sequencing data quality control</h3>
+<p class="paragraph">Massive amounts of data can be generated through sequencing, and ensuring the quality of this data is essential for subsequent data analysis. Therefore, the first step in data analysis is to perform quality control (QC) of the raw data. Basic statistics on the raw reads are conducted with fqstate. Raw data is named according to the sample name followed by a numerical order (e.g., sample name-1, sample name-2, sample name-3…), based on index, lane or sequencing time.</p>
+
+	<p class="center">
+	<div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_QC_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure_QC_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure_QC_pane_Brain1-1" 
+	role="tabpanel" aria-labelledby="gallery_figure_QC_list_Brain1-1"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/QC/Brain1-1.QC.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_QC_pane_Brain1-2" 
+	role="tabpanel" aria-labelledby="gallery_figure_QC_list_Brain1-2"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/QC/Brain1-2.QC.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_figure_QC_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure_QC_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure_QC_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_QC_list_Brain1-1"
+	data-toggle="list" href="#gallery_figure_QC_pane_Brain1-1" role="tab" aria-controls="Brain1-1">Brain1-1</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_QC_list_Brain1-2"
+	data-toggle="list" href="#gallery_figure_QC_pane_Brain1-2" role="tab" aria-controls="Brain1-2">Brain1-2</a>
+	
+	</div>
+	</div>
+	</div>
+	</p>
+
+	<p class="name_fig">Figure 3.1 Raw data QC</p>
+	<p class="premark center"> Top left: Cumulative distribution of data quality statistics; Top right: Distribution of base content across reads</p>
+	<p class="premark center">Bottom left: Distribution of sequencing quality scores across sequencing cycles; Bottom right: Distribution of sequencing error rates across sequencing cycles</p>
+	
+<p class="head"><a href="#home" title = "First page"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<hr />
+</p>
+<h3><a>3.3 Sequencing data summary</a></h3>
+<p class="paragraph">Data quality directly impacts the results of subsequent analysis. Here is a summary of the quality and output of the raw data:</p>
+<table class="gy">
+<tr><th>Sample</th><th>Index</th><th>Total_reads</th><th>Total_bases (G)</th><th>Error_rate (%)</th><th>Q20 (%)</th><th>Q30 (%)</th><th>Q30_read2 (%)</th><th>GC (%)</th></tr>
+
+    
+	
+    		<tr><td rowspan=2>Brain1</td><td>Brain1-1</td><td>97134459</td><td rowspan=2>19.2</td><td>0.0</td><td>98.44</td><td>95.94</td><td>97.59</td><td>41.00</td></tr>
+	
+    
+	
+   		 <tr><td>Brain1-2</td><td>94663591</td><td>0.0</td><td>98.27</td><td>95.41</td><td>97.28</td><td>41.01</td></tr>
+	
+    
+
+</table>
+<p class="tremark">(1) Sample：Sample name</p>
+<p class="tremark">(2) Index：Raw data identifier</p>
+<p class="tremark">(3) Total_reads：Number of read pairs in the raw data </p>
+<p class="tremark">(4) Total_bases (G): Number of bases in the raw data (in gigabases)</p>
+<p class="tremark">(5) Error_rate (%): Percentage of N bases in the raw data </p>
+<p class="tremark">(6) Q20 (%)：Percentage of bases with Phred scores greater than 20 in the raw data.</p>
+<p class="tremark">(7) Q30 (%)：Percentage of bases with Phred scores greater than 30 in the raw data.</p>
+<p class="tremark">(8) Q30_read2 (%)：Q30 percentage for Read2 sequencing data (used for aligning to the reference genome in spatial transcriptomics or single-cell RNA-seq)</p>
+<p class="tremark">(9) GC (%)：Percentage of G and C bases in clean reads out of the four bases</p>
+<br>
+
+
+
+
+
+<!-----------------------------------------SpaceRanger-------------------------------------->
+
+<p class="head"><a href="#home" title = "First page"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<hr />
+</p>
+<h2 id="id_order_SpaceRanger">4 Data alignment and expression quantification   </h2>
+<h3>4.1 Data alignment (Space Ranger)</h3>
+<p class="paragraph">Space Ranger is a software package provided by 10x Genomics for the analysis of Visium Spatial Transcriptomic data. Space Ranger takes raw sequencing data in fastq format and H&E-stained images of tissue slides as input, performs reference genome alignment, tissue detection, landmark detection and barcode/UMI statistics, and generates a spot-gene expression matrix.	
+</p><h4>4.1.1 Reference genome alignment</h4>
+<p class="paragraph">The alignment software used by Space Ranger is STAR. After aligning the reads to the reference genome, the software uses a GTF file for annotation, distinguishing between exonic, intronic, and intergenic regions. The specific rules for differentiation are as follows: reads aligning to at least 50% of an exon are marked as exonic regions, reads aligning to non-exonic regions with an intersection with intronic regions are marked as intronic regions, and all other alignments are considered intergenic regions.</p>
+<p class="paragraph"> Data analysis using Space Ranger yields key results such as the number of spots covered by tissue slices, the number of detected genes, output and quality statistics for sequencing data, and information on: reference genome alignment. The statistical results for each sample in this project are as follows:</p>
+<table class="gy">
+<tr><th>Sample name</th><th>Data statistics</th></tr>
+
+	<tr> 
+	<td>Brain1</td><td><a href="src/pictures/SpaceRanger/Brain1.web_summary.html" title="Click here" target="_blank" style="color:blue">web_summary.html</a></b></span></td>
+	</tr>
+
+</table>
+</p>
+
+<h4>4.1.2 Image processing</h4>
+<p class="paragraph">Space Ranger detects spots that overlap with tissue slices, and only the barcodes corresponding to the spots covered by tissue slices are used for downstream analysis. Space Ranger relies on image processing algorithms to address two key issues related to tissue slice images: determining the placement of the tissue and aligning landmark patterns. Tissue detection is used to identify which capture points are covered by the tissue, thus identifying which barcodes will be used for analysis. During landmark correction, Space Ranger needs to know the position of each barcode-spot in the image because the imaging setup may vary slightly for each user when imaging the Visium capture area.</p>
+<p class="paragraph">Space Ranger first extracts features from the tissue slice image that look like landmarks, and then attempts to align these potential landmarks with a known landmark pattern. Landmarks extracted from the image may lose some information, such as areas covered by tissue, and may also introduce some false positives, such as being tissue fragments or residues being identified as landmarks. The output of landmark alignment is a coordinate transformation linking the Visium barcode spot pattern with the user's tissue image.</p>
+<p class="paragraph">There are 4992 capture points on the Visium slide. In reality, only a subset of these points are covered by the tissue. To restrict Space Ranger’s analysis to only those spots with tissue placement, an algorithm is used to identify tissue in the brightfield image. Using the grayscale values of the input image, multiple samplings are taken to calculate and estimate where the tissue slice is placed. These estimates are used to train a statistical classifier to label each pixel within the captured area as tissue or background.</p>
+
+	<p class="center">
+	<div class="row">
+	<div class="col-1">
+	<div id="gallery_tissue_lowres_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_tissue_lowres_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_tissue_lowres_pane_Brain1_HE_Staining" 
+	role="tabpanel" aria-labelledby="gallery_tissue_lowres_list_Brain1_HE_Staining"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/SpaceRanger/Brain1.tissue_lowres_image.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_tissue_lowres_pane_Brain1_tissue_Spatial" 
+	role="tabpanel" aria-labelledby="gallery_tissue_lowres_list_Brain1_tissue_Spatial"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/SpaceRanger/Brain1.tissue.Spatial.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_tissue_lowres_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_tissue_lowres_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_tissue_lowres_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_tissue_lowres_list_Brain1_HE_Staining"
+	data-toggle="list" href="#gallery_tissue_lowres_pane_Brain1_HE_Staining" role="tab" aria-controls="Brain1_HE_Staining">Brain1_HE_Staining</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_tissue_lowres_list_Brain1_tissue_Spatial"
+	data-toggle="list" href="#gallery_tissue_lowres_pane_Brain1_tissue_Spatial" role="tab" aria-controls="Brain1_tissue_Spatial">Brain1_tissue_Spatial</a>
+	
+	</div>
+	</div>
+	</div>
+	</p>
+<p class="name_fig">Figure 4.1 Image alignment and tissue sample detection</p>
+<p class="premark center">H&E Staining:Tissue slice image with H&E staining;</p>
+<p class="premark center">Tissue_Spatial: Spatial distribution map of the detected tissue on the Visium slide</p>
+
+
+
+<p class="head"><a href="#home" title = "First page"><img class="logo" align="left" src="src/images/logo.png" /></a>
+
+<hr />
+</p>
+<h3>4.2 Gene expression quantification</h3>
+<p class="paragraph"> Space Ranger is used to count the UMI for each gene on every spot, obtaining a spot-gene expression matrix for the sample. After performing data QC, the figure below shows the distribution of UMI per gene across the spatial regions of the tissue.</p>
+
+	<p class="center">
+	<div class="row">
+	<div class="col-1">
+	<div id="gallery_tissueSpatial_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_tissueSpatial_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_tissueSpatial_pane_Brain1_UMI_Spatial" 
+	role="tabpanel" aria-labelledby="gallery_tissueSpatial_list_Brain1_UMI_Spatial"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/SpaceRanger/Brain1.UMI.Spatial.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_tissueSpatial_pane_Brain1_Gene_Spatial" 
+	role="tabpanel" aria-labelledby="gallery_tissueSpatial_list_Brain1_Gene_Spatial"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/SpaceRanger/Brain1.Gene.Spatial.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_tissueSpatial_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_tissueSpatial_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_tissueSpatial_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_tissueSpatial_list_Brain1_UMI_Spatial"
+	data-toggle="list" href="#gallery_tissueSpatial_pane_Brain1_UMI_Spatial" role="tab" aria-controls="Brain1_UMI_Spatial">Brain1_UMI_Spatial</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_tissueSpatial_list_Brain1_Gene_Spatial"
+	data-toggle="list" href="#gallery_tissueSpatial_pane_Brain1_Gene_Spatial" role="tab" aria-controls="Brain1_Gene_Spatial">Brain1_Gene_Spatial</a>
+	
+	</div>
+	</div>
+	</div>
+	</p>
+<p class="name_fig">Figure 4.2 Spatial quantification of gene expression in spots</p>
+<p class="premark center">UMI_Spatial: Spatial distribution map of UMI counts，Gene_Spatial:spatial distribution map of detected gene counts</p>
+
+
+
+
+
+<!-------------------------------------------------------->
+<p class="head"><a href="#home" title = "First page"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<a > </a>
+<hr />
+</p>
+<h2 id="id_order_SpaceRanger2">5 Space Ranger analysis</h2>
+<p class="paragraph">Space Ranger enables downstream analysis directly on the gene expression matrix.The primary analyses include PCA dimensionality reduction, clustering analysis, t-SNE dimensionality reduction and UMAP dimensionality reduction. Following these, Novogene conducts secondary analysis and graphical representation. The PCA is a method that applies variance decomposition to reduce the dimensionality of multidimensional data, extracting the most important structures from the data. Space Ranger initially employs the IRLBA algorithm for PCA, transforming the dataset from (spot x genes) to (spot x M, where M is the number of principal components). Subsequently, non-linear dimensionality reduction algorithms t-SNE (t-Stochastic Neighbor Embedding) and UMAP (Uniform Manifold Approximation and Projection) are used to visualize the reduced data in a two-dimensional space. The closer the gene expression patterns between cells, the closer their distances in the t-SNE or UMAP two-dimensional space. For cluster analysis, Spacer Ranger uses the following two methods.</p>
+<h3 id="id_order_SpaceRanger2">5.1 Graphclust clustering analysis</h3>
+<p class="paragraph">Graph-based clustering includes two steps: first, using PCA-reduced data to construct a k-nearest neighbour sparse matrix between spots, grouping a spot with its k nearest neighbors based on Euclidean distance. Second, using the Louvain algorithm for modularity optimization, aiming to find highly connected modules in the graph. Finally, hierarchical clustering is applied to further merge clusters located in the same region that do not have differentially expressed genes (BH-corrected p-value below 0.05), repeating the process until no clusters can be merged.</p>
+
+	<p class="center">
+	<div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_Distribution_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure_Distribution_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure_Distribution_pane_Brain1_graphclust_Spatial" 
+	role="tabpanel" aria-labelledby="gallery_figure_Distribution_list_Brain1_graphclust_Spatial"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/SpaceRanger/Brain1.graphclust.cluster.Spatial.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_Distribution_pane_Brain1_graphclust_tSNE" 
+	role="tabpanel" aria-labelledby="gallery_figure_Distribution_list_Brain1_graphclust_tSNE"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/SpaceRanger/Brain1.graphclust.cluster.tSNE.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_Distribution_pane_Brain1_graphclust_UMAP" 
+	role="tabpanel" aria-labelledby="gallery_figure_Distribution_list_Brain1_graphclust_UMAP"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/SpaceRanger/Brain1.graphclust.cluster.UMAP.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_figure_Distribution_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure_Distribution_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure_Distribution_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_Distribution_list_Brain1_graphclust_Spatial"
+	data-toggle="list" href="#gallery_figure_Distribution_pane_Brain1_graphclust_Spatial" role="tab" aria-controls="Brain1_graphclust_Spatial">Brain1_graphclust_Spatial</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_Distribution_list_Brain1_graphclust_tSNE"
+	data-toggle="list" href="#gallery_figure_Distribution_pane_Brain1_graphclust_tSNE" role="tab" aria-controls="Brain1_graphclust_tSNE">Brain1_graphclust_tSNE</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_Distribution_list_Brain1_graphclust_UMAP"
+	data-toggle="list" href="#gallery_figure_Distribution_pane_Brain1_graphclust_UMAP" role="tab" aria-controls="Brain1_graphclust_UMAP">Brain1_graphclust_UMAP</a>
+	
+	</div>
+	</div>
+	</div>
+	</p>
+
+<p class="name_fig">Figure  5.1 Graph-based clustering result</p>
+<p class="premark center">graphclust_Spatial: spatial distribution map of clusters，graphclust_tSNE: t-SNE two-dimensional spatial representation map of clusters，graphclust_UMAP: UMAP two-dimensional spatial representation map of clusters</p>
+
+
+
+<!-------------------------------------------------------->
+<p class="head"><a href="#home" title = "First page"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<a name="GO Enrichment"> </a>
+<hr />
+</p>
+<h3><a>5.2 K-Means clustering analysis</a></h3>
+<p class="paragraph">The K-Means algorithm randomly selects k cluster centroids in the space after PCA dimensionality reduction. For each spot, it calculates which cluster it should belong to, then recalculates the centroid of each cluster. This process is repeated until convergence. It is important to note that here, k is the predetermined number of subpopulations (which is different from the meaning of k in graph-based clustering algorithms). The centroids represent estimates of the center points for spots belonging to the same cluster. </p>
+<p class="paragraph">We provide clustering results for 9 different k values (k from 2 to 10), and the results are as follows:</p>	
+    <p class="center">
+	<div class="row">
+	<div class="col-1">
+	
+	<div id="gallery_figure_kmeansSpatial_button_prev" class="button_prev" onclick="prev(this.id)">
+        <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon></svg></div></div>
+        <div class="col-6">
+        <div class="tab-content" id="gallery_figure_kmeansSpatial_nav-tabContent">
+        
+        <div class="tab-pane fade" id="gallery_figure_kmeansSpatial_pane_Brain1_kmeans_Spatial"
+        role="tabpanel" aria-labelledby="gallery_figure_kmeansSpatial_list_Brain1_kmeans_Spatial"
+        onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/SpaceRanger/Brain1.kmeans.cluster.Spatial.png" /></div>
+        
+        </div></div>
+        <div class="col-1">
+        <div id="gallery_figure_kmeansSpatial_button_next" class="button_next" onclick="next(this.id)">
+        <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon></svg></div></div>
+        <div class="col-4">
+        <input class="form-control" id="gallery_figure_kmeansSpatial_InputList" type="text" placeholder="Search..">
+        <div class="list-group" id="gallery_figure_kmeansSpatial_list-tab" role="tablist">
+        
+        <a class="list-group-item list-group-item-action" id="gallery_figure_kmeansSpatial_list_Brain1_kmeans_Spatial"
+        data-toggle="list" href="#gallery_figure_kmeansSpatial_pane_Brain1_kmeans_Spatial" role="tab" aria-controls="Brain1_kmeans_Spatial">Brain1_kmeans_Spatial</a>
+	
+	</div>
+	</div>
+	</div>
+	</p>
+        <p class="name_fig">Figure 5.2 Spatial distribution visualization of K-Means (2-10)</p>
+
+	<p class="center">
+	<div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_kmeansumap_button_prev" class="button_prev" onclick="prev(this.id)">
+  <svg viewbox="0 0 16000 16000" class="svg_prev">
+  <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+  <polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+  </polygon></svg></div></div>
+  <div class="col-6">
+  <div class="tab-content" id="gallery_figure_kmeansumap_nav-tabContent">
+  
+  <div class="tab-pane fade" id="gallery_figure_kmeansumap_pane_Brain1_kmeans_tSNE"
+  role="tabpanel" aria-labelledby="gallery_figure_kmeansumap_list_Brain1_kmeans_tSNE"
+  onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/SpaceRanger/Brain1.kmeans.cluster.tSNE.png" /></div>
+  
+  <div class="tab-pane fade" id="gallery_figure_kmeansumap_pane_Brain1_kmeans_UMAP"
+  role="tabpanel" aria-labelledby="gallery_figure_kmeansumap_list_Brain1_kmeans_UMAP"
+  onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/SpaceRanger/Brain1.kmeans.cluster.UMAP.png" /></div>
+  
+  </div></div>
+  <div class="col-1">
+  <div id="gallery_figure_kmeansumap_button_next" class="button_next" onclick="next(this.id)">
+  <svg viewbox="0 0 16000 16000" class="svg_next">
+  <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+  <polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+  </polygon></svg></div></div>
+  <div class="col-4">
+  <input class="form-control" id="gallery_figure_kmeansumap_InputList" type="text" placeholder="Search..">
+  <div class="list-group" id="gallery_figure_kmeansumap_list-tab" role="tablist">
+  
+  <a class="list-group-item list-group-item-action" id="gallery_figure_kmeansumap_list_Brain1_kmeans_tSNE"
+  data-toggle="list" href="#gallery_figure_kmeansumap_pane_Brain1_kmeans_tSNE" role="tab" aria-controls="Brain1_kmeans_tSNE">Brain1_kmeans_tSNE</a>
+	
+  <a class="list-group-item list-group-item-action" id="gallery_figure_kmeansumap_list_Brain1_kmeans_UMAP"
+  data-toggle="list" href="#gallery_figure_kmeansumap_pane_Brain1_kmeans_UMAP" role="tab" aria-controls="Brain1_kmeans_UMAP">Brain1_kmeans_UMAP</a>
+	
+	</div>
+	</div>
+	</div>
+	</p>
+
+<p class="name_fig">Figure 5.3 t-SNE and UMAP Spatial Distribution of K-Means Clusters (2-10)</p>
+<p class="premark center">kmeans_tSNE: t-SNE two-dimensional spatial representation map of clusters; kmeans_UMAP: UMAP two-dimensional spatial representation map of clusters. </p>
+
+
+
+
+
+
+<!---------------------------------------- Seurat ------------------------------------>
+
+<p class="head"><a href="#home" title = "First page"><img class="logo" align="left" src="src/images/logo.png" /></a>
+
+<hr />
+</p>
+<h2 id="id_order_cds">6 Seurat analysis</h2>
+<p class="paragraph">Seurat is a widely used software for the analysis of 10x spatial transcriptomics or the single-cell transcriptomics data. Building upon the Seurat package, the following analysis steps were performed on the spot-level gene expression matrix: (1) data QC, to assess and remove low-quality spots that may interfere with downstream analysis; (2) normalization, to standardize data and eliminate biases related to capture size; (3) feature selection, to identify and select genes with significant expression differences for downstream analysis; (4) Principal Component Analysis, to reduce the dimensionality of the data; (5) clustering analysis, to use a graph-based algorithm to cluster spots; (6) dimensionality reduction visualization, using t-SNE and UMAP to display the clustering results; (7) spatially variable gene selection, to screen genes with spatially variable expression patterns. </p>
+
+<h3><a>6.1 Data filtering </a></h3>
+<p class="paragraph">After obtaining the gene expression matrix generated by Space Ranger, additional data filtering is done, based on gene counts detected to remove outliers, ensuring the reliability and accuracy of subsequent analysis results.
+<p class="center">
+	<div class="row">
+	<div class="col-1">
+	<div id="gallery_FilterCells_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_FilterCells_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_FilterCells_pane_Brain1_Filter_Stat" 
+	role="tabpanel" aria-labelledby="gallery_FilterCells_list_Brain1_Filter_Stat"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/Brain1.FilterCells.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_FilterCells_pane_Brain1_Filter_Spatial" 
+	role="tabpanel" aria-labelledby="gallery_FilterCells_list_Brain1_Filter_Spatial"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/Brain1.FilterCells.Spatial.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_FilterCells_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_FilterCells_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_FilterCells_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_FilterCells_list_Brain1_Filter_Stat"
+	data-toggle="list" href="#gallery_FilterCells_pane_Brain1_Filter_Stat" role="tab" aria-controls="Brain1_Filter_Stat">Brain1_Filter_Stat</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_FilterCells_list_Brain1_Filter_Spatial"
+	data-toggle="list" href="#gallery_FilterCells_pane_Brain1_Filter_Spatial" role="tab" aria-controls="Brain1_Filter_Spatial">Brain1_Filter_Spatial</a>
+	
+	</div>
+	</div>
+	</div>
+	</p>
+<p class="name_fig">Figure 6.1 Filtering spots according to number of genes detected, and the proportion of mitochondrial genes (if any)</p>
+
+<p class="premark center">Filter_Stat: Distribution map of spots filtered under different conditions，Filter_Spatial: Spatial distribution map of the spots after filtering </p>
+<p class="premark center">Distribution of filtered spots under different conditions: the x-axis of each graph represents various filtering statistics, and the y-axis represents the number of spots, the blue lines represent filtering thresholds. Gray dots represent the filtered spots (if any)</p>
+
+<p class="head"><a href="#home" title = "First page"><img class="logo" align="left" src="src/images/logo.png" /></a>
+
+<hr />
+</p>
+<h3><a>6.2 High-variance gene selection</a></h3>
+<p class="paragraph">Seurat uses the sctransform (SCT) algorithm for data normalization, and then uses vst (variance stabilizing transformation) algorithm to identify gene sets with the largest expression changes across the entire dataset, defining them as high-variance genes (HVGs). The red dots in the figure below represent highly variable genes, totaling 3000. These selected HVGs are used for PCA and downstream analysis.</p>
+<p class="center">
+	<div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_FPKM_Density_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure_FPKM_Density_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure_FPKM_Density_pane_Brain1" 
+	role="tabpanel" aria-labelledby="gallery_figure_FPKM_Density_list_Brain1"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/Brain1.VariableFeatures.volcano.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_figure_FPKM_Density_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure_FPKM_Density_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure_FPKM_Density_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_FPKM_Density_list_Brain1"
+	data-toggle="list" href="#gallery_figure_FPKM_Density_pane_Brain1" role="tab" aria-controls="Brain1">Brain1</a>
+	
+	</div>
+	</div>
+	</div>
+	</p>
+<p class="name_fig">Figure 6.2 Volcano plot of HVGs</p>
+<p class="premark center">The x-axis represents the geometric mean of gene expression levels, the y-axis represents the variance/statistical measure. The top 10 HVGs are highlighted and labeled in the plot. </p>
+
+
+<p class="head"><a href="#home" title = "First page"><img class="logo" align="left" src="src/images/logo.png" /></a>
+
+<hr />
+</p>
+<h3><a>6.3 PCA analysis</a></h3>
+<p class=”paragraph”>When conducting analysis with Seurat, it is possible to assess the standard deviation of principal components, aiding in the selection of an appropriate number of principal components.</p>
+<p class="center">
+	<div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_FPKM_Distribution_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure_FPKM_Distribution_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure_FPKM_Distribution_pane_Brain1_PCA_sdev" 
+	role="tabpanel" aria-labelledby="gallery_figure_FPKM_Distribution_list_Brain1_PCA_sdev"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/Brain1.PCA.sdev_fitted.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_figure_FPKM_Distribution_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure_FPKM_Distribution_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure_FPKM_Distribution_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_FPKM_Distribution_list_Brain1_PCA_sdev"
+	data-toggle="list" href="#gallery_figure_FPKM_Distribution_pane_Brain1_PCA_sdev" role="tab" aria-controls="Brain1_PCA_sdev">Brain1_PCA_sdev</a>
+	
+	</div>
+	</div>
+	</div>
+	</p>
+<p class="name_fig">Figure 6.3 PCA analysis</p>
+<p class="premark center">PCA_sdev: Display of standard deviation statistics for each principal component. X-axis represents the principal components and y-axis the standard deviation. </p>
+
+
+<p class="head"><a href="#home" title = "First page"><img class="logo" align="left" src="src/images/logo.png" /></a>
+
+<hr />
+</p>
+<h3><a>6.4 Clustering and dimensionality reduction analysis</a></h3>
+<p class="paragraph">Seurat clustering analysis uses a graph-based method, similar to the algorithm used in Space Ranger. The clustering results are visualized based on tissue slices and through t-SNE and UMAP dimensionality reduction.</p>
+<p class="center">
+	<div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_UniformDistribution_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure_UniformDistribution_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure_UniformDistribution_pane_Brain1_cluster_Spatial" 
+	role="tabpanel" aria-labelledby="gallery_figure_UniformDistribution_list_Brain1_cluster_Spatial"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/Brain1.cluster.Spatial.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_UniformDistribution_pane_Brain1_cluster_tSNE" 
+	role="tabpanel" aria-labelledby="gallery_figure_UniformDistribution_list_Brain1_cluster_tSNE"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/Brain1.cluster.tSNE.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_UniformDistribution_pane_Brain1_cluster_UMAP" 
+	role="tabpanel" aria-labelledby="gallery_figure_UniformDistribution_list_Brain1_cluster_UMAP"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/Brain1.cluster.UMAP.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_figure_UniformDistribution_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure_UniformDistribution_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure_UniformDistribution_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_UniformDistribution_list_Brain1_cluster_Spatial"
+	data-toggle="list" href="#gallery_figure_UniformDistribution_pane_Brain1_cluster_Spatial" role="tab" aria-controls="Brain1_cluster_Spatial">Brain1_cluster_Spatial</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_UniformDistribution_list_Brain1_cluster_tSNE"
+	data-toggle="list" href="#gallery_figure_UniformDistribution_pane_Brain1_cluster_tSNE" role="tab" aria-controls="Brain1_cluster_tSNE">Brain1_cluster_tSNE</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_UniformDistribution_list_Brain1_cluster_UMAP"
+	data-toggle="list" href="#gallery_figure_UniformDistribution_pane_Brain1_cluster_UMAP" role="tab" aria-controls="Brain1_cluster_UMAP">Brain1_cluster_UMAP</a>
+	
+	</div>
+	</div>
+	</div>
+	</p>
+<p class="name_fig">Figure 6.4 Clustering analysis presentation: spatial distribution, tSNE and UMAP.</p>
+<p class="premark center">Cluster_Spatial:spatial distribution map of clusters; Cluster_tSNE: tSNE two-dimensional spatial representation map of clusters; Cluster_UMAP: UMAP two-dimensional spatial representation map of clusters</p>
+
+<p class="head"><a href="#home" title = "First page"><img class="logo" align="left" src="src/images/logo.png" /></a>
+
+<hr />
+</p>
+<h3><a>6.5 Spatially variable gene expression analysis</a></h3>
+<p class="paragraph"> Seurat software provides a method for screening spatially variable expression genes that is not based on clustering results. This method (markvariogram) measures the dependency between gene expression and its spatial location. By setting certain thresholds, genes with spatially variable expression can be detected. The distribution of the top 6 spatially variable expressed genes is displayed below.</p>
+<p class="center">
+	<div class="row">
+	<div class="col-1">
+    <div id="gallery_figure_clusterspatial_button_prev" class="button_prev" onclick="prev(this.id)">
+    <svg viewbox="0 0 16000 16000" class="svg_prev">
+    <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+    <polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+    </polygon></svg></div></div>
+    <div class="col-6">
+    <div class="tab-content" id="gallery_figure_clusterspatial_nav-tabContent">
+    
+    <div class="tab-pane fade" id="gallery_figure_clusterspatial_pane_Brain1" 
+    role="tabpanel" aria-labelledby="gallery_figure_clusterspatial_list_Brain1"
+    onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/Brain1.spatial_markers.Spatial.png" /></div>
+    
+    </div></div>
+    <div class="col-1">
+    <div id="gallery_figure_clusterspatial_button_next" class="button_next" onclick="next(this.id)">
+    <svg viewbox="0 0 16000 16000" class="svg_next">
+    <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+    <polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+    </polygon></svg></div></div>
+    <div class="col-4">
+    <input class="form-control" id="gallery_figure_clusterspatial_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_clusterspatial_list-tab" role="tablist">
+    
+    <a class="list-group-item list-group-item-action" id="gallery_figure_clusterspatial_list_Brain1"
+    data-toggle="list" href="#gallery_figure_clusterspatial_pane_Brain1" role="tab" aria-controls="Brain1">Brain1</a>
+	
+	</div>
+	</div>
+	</div>
+	</p>
+<p class="name_fig">Figure 6.5 Spatially variable expressed genes</p>
+
+
+
+
+<!---------------------------------------- Differential Expression Analysis ------------------------------------->
+
+<p class="head"><a href="#home" title = "First page"><img class="logo" align="left" src="src/images/logo.png" /></a>
+	<a name="Differential Expression Analysis Q&A"> </a>
+<hr />
+</p>
+<h2 id="id_order_diffexp">7 Differential Expression Analysis </h2>
+<p class="paragraph"></p> Classification results from multiple clustering algorithms were provided in the previous step, so based on the research goals and biological significance, the most suitable result can be chosen for further analysis and scientific research. Different differential analysis methods are employed for different clustering results: edgeR is used for differential analysis of Space Ranger's clustering results, while the Wilcox method is employed for Seurat's clustering results. These methods use the default algorithm included in the respective software. </p>
+<p class="paragraph"></p>By comparing one subpopulation of the sample with all other subpopulations within the same sample, we obtain a list of differentially expressed genes between the subgroup and the others. Based on these differentially expressed genes, those with higher expression in the subpopulation compared to other subpopulations were selected as candidate marker genes (i.e., logFC greater than 0). The differentially expressed genes in each cluster are displayed in various forms. In the final report, the Seurat clustering results of the first sample are displayed as an example. </p>
+<h3><a>7.1 Differential analysis results </a></h3>
+<p class="center">
+    <div id="tb">
+       <table class="gy">
+<tr><th>Gene_id</th><th>Gene</th><th>Cluster</th><th>Avg_logFC</th><th>p_val</th><th>p_val_adj</th><th>pct.1</th><th>pct.2</th></tr>
+
+        <tr> 
+        <td>ENSMUSG00000090121</td><td>Abhd12b</td><td>0</td><td>2.07394077005201</td><td>0</td><td>0</td><td>0.923</td><td>0.04
+</td>
+        </tr>
+
+        <tr> 
+        <td>ENSMUSG00000045871</td><td>Slitrk6</td><td>0</td><td>1.31434274596668</td><td>0</td><td>0</td><td>0.907</td><td>0.048
+</td>
+        </tr>
+
+        <tr> 
+        <td>ENSMUSG00000027833</td><td>Shox2</td><td>0</td><td>1.11293918128887</td><td>0</td><td>0</td><td>0.859</td><td>0.03
+</td>
+        </tr>
+
+        <tr> 
+        <td>ENSMUSG00000020732</td><td>Rab37</td><td>0</td><td>1.85897993760284</td><td>2.92875380303336e-295</td><td>5.58220474858157e-291</td><td>0.968</td><td>0.107
+</td>
+        </tr>
+
+</table>
+</div>
+      </p>
+      <p class="tremark">(1) Gene_id: gene number</p>
+      <p class="tremark">(2) Gene: gene name</p>
+      <p class="tremark">(3) Cluster: cluster number, this table displays the top 4 differentially expressed genes in Cluster 0</p>
+      <p class="tremark">(4) Avg_logFC: average fold change in gene expression (log2-transformed)</p>
+      <p class="tremark">(5) p_val: differential analysis p-value</p>
+      <p class="tremark">(6) p_val_adj: the adjusted p-value</p>
+      <p class="tremark">(7) pct.1: percentage of spots expressing the gene within that cluster.</p>
+      <p class="tremark">(8) pct.2: percentage of spots expressing the gene in other clusters</p>
+      </p> 
+<h3><a>7.2 Differential gene expression clustering heatmap</a></h3>
+<p class="paragraph">A comprehensive heatmap is generated to showcase the top differentially expressed genes identified in each cluster. Each sample has several clusters, and a comparison is made between a specific cluster and the rest of the clusters: e.g., cluster 0 vs clusters 1-10, cluster 1 vs clusters 0, 2-10, etc. In the heatmap, genes are listed on the left and clusters are listed on top. The differential gene expression results of each comparison are displayed under each cluster. The values are log10(UMI+1) and normalized for clustering. In the heatmap, yellow indicates higher gene expression in comparison to other clusters, while purple indicates lower gene expression. The heatmap is shown below:</p>
+
+	<p class="center">
+	<div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_Differential_Expression_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure_Differential_Expression_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure_Differential_Expression_pane_Brain1_cluster_heatmap" 
+	role="tabpanel" aria-labelledby="gallery_figure_Differential_Expression_list_Brain1_cluster_heatmap"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/Brain1.cluster.top10.heatmap.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_figure_Differential_Expression_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure_Differential_Expression_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure_Differential_Expression_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_Differential_Expression_list_Brain1_cluster_heatmap"
+	data-toggle="list" href="#gallery_figure_Differential_Expression_pane_Brain1_cluster_heatmap" role="tab" aria-controls="Brain1_cluster_heatmap">Brain1_cluster_heatmap</a>
+	
+	</div>
+	</div>
+	</div>
+	</p>
+<p class="name_fig">Figure 7.1 Differential gene expression heatmap</p>
+
+
+<p class="head"><a href="#home" title = "First page"><img class="logo" align="left" src="src/images/logo.png" /></a>
+	<a name="Venn Diagrams of differential genes"> </a>
+<hr />
+</p>
+<h3><a>7.3 Spatial Distribution of Differentially Expressed Genes</a></h3>
+<p class="paragraph">The top 4 differentially expressed genes of each cluster are displayed in several ways. The final report only displays the results of differential gene expression in one cluster. The spatial distribution of differentially expressed genes is shown below:</p>
+
+	<p class="center">
+	<div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_markergene_button_prev" class="button_prev" onclick="prev(this.id)">
+    <svg viewbox="0 0 16000 16000" class="svg_prev">
+    <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+    <polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+    </polygon></svg></div></div>
+    <div class="col-6">
+    <div class="tab-content" id="gallery_figure_markergene_nav-tabContent">
+    
+    <div class="tab-pane fade" id="gallery_figure_markergene_pane_Brain1_cluster0" 
+    role="tabpanel" aria-labelledby="gallery_figure_markergene_list_Brain1_cluster0"
+    onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/Brain1.cluster0.marker.spatial.png" /></div>
+    
+    </div></div>
+    <div class="col-1">
+    <div id="gallery_figure_markergene_button_next" class="button_next" onclick="next(this.id)">
+    <svg viewbox="0 0 16000 16000" class="svg_next">
+    <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+    <polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+    </polygon></svg></div></div>
+    <div class="col-4">
+    <input class="form-control" id="gallery_figure_markergene_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_markergene_list-tab" role="tablist">
+    
+    <a class="list-group-item list-group-item-action" id="gallery_figure_markergene_list_Brain1_cluster0"
+    data-toggle="list" href="#gallery_figure_markergene_pane_Brain1_cluster0" role="tab" aria-controls="Brain1_cluster0">Brain1_cluster0</a>
+	
+	</div>
+	</div>
+	</div>
+	</p>
+<p class="name_fig">Figure 7.2 Spatial distribution of differentially expressed genes</p>
+
+<p class="head"><a href="#home" title = "First page"><img class="logo" align="left" src="src/images/logo.png" /></a>
+
+<hr />
+</p>
+<h3><a>7.4 Violin Plot Presentation of Differential Gene Expression</a></h3>
+<p class="paragraph"> The top 4 differentially expressed genes of each cluster are displayed in several ways. The final report only displays the results of differential gene expression in one cluster. The following figure illustrates the expression of differentially expressed genes through Violin plots:</p>
+
+	<p class="center">
+	<div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_Co_Exp_Venn_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure_Co_Exp_Venn_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure_Co_Exp_Venn_pane_Brain1_cluster0" 
+	role="tabpanel" aria-labelledby="gallery_figure_Co_Exp_Venn_list_Brain1_cluster0"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/Brain1.cluster0.marker.violin.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_figure_Co_Exp_Venn_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure_Co_Exp_Venn_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure_Co_Exp_Venn_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_Co_Exp_Venn_list_Brain1_cluster0"
+	data-toggle="list" href="#gallery_figure_Co_Exp_Venn_pane_Brain1_cluster0" role="tab" aria-controls="Brain1_cluster0">Brain1_cluster0</a>
+	
+	</div>
+	</div>
+	</div>
+	</p>
+<p class="name_fig">Figure 7.3 Violin Plot of differentially expressed genes</p>
+<p class="premark center">It shows 4 marker genes, the x-axis is the cluster number, and the y-axis is the average expression of the gene.</p>
+
+
+<p class="head"><a href="#home" title = "First page"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<hr />
+</p>
+<h3><a>7.5 t-SNE and UMAP dimensional reduction visualization</a></h3>
+<p class="paragraph"> The top 4 differentially expressed genes of each cluster are displayed in several ways. The final report only displays the results of differential gene expression in one cluster. The following figure presents the t-SNE and UMAP dimensional reduction visualization of differentially expressed genes:</p>
+
+	<p class="center">
+	<div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_Cluster_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure_Cluster_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure_Cluster_pane_Brain1_cluster0_gene_tSNE" 
+	role="tabpanel" aria-labelledby="gallery_figure_Cluster_list_Brain1_cluster0_gene_tSNE"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/Brain1.cluster0.marker.tsne.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_Cluster_pane_Brain1_cluster0_gene_UMAP" 
+	role="tabpanel" aria-labelledby="gallery_figure_Cluster_list_Brain1_cluster0_gene_UMAP"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/Brain1.cluster0.marker.umap.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_figure_Cluster_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure_Cluster_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure_Cluster_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_Cluster_list_Brain1_cluster0_gene_tSNE"
+	data-toggle="list" href="#gallery_figure_Cluster_pane_Brain1_cluster0_gene_tSNE" role="tab" aria-controls="Brain1_cluster0_gene_tSNE">Brain1_cluster0_gene_tSNE</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_Cluster_list_Brain1_cluster0_gene_UMAP"
+	data-toggle="list" href="#gallery_figure_Cluster_pane_Brain1_cluster0_gene_UMAP" role="tab" aria-controls="Brain1_cluster0_gene_UMAP">Brain1_cluster0_gene_UMAP</a>
+	
+	</div>
+	</div>
+	</div>
+	</p>
+	<p class="name_fig">Figure 7.4 t-SNE and UMAP dimensionality reduction of differentially expressed genes</p>
+	<p class="premark center">gene_tSNE：Two-dimensional spatial plot of t-SNE gene expression，gene_UMAP：Two-dimensional spatial plot of UMAP gene expression</p>
+
+
+
+
+
+
+
+<!-------------------------------GO enrichment-------------------------->
+<p class="head"><a href="#home" title = "First page"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<hr />
+</p>
+<h2 id="id_order_go"><a name="GO enrichment ">8 Functional enrichment analysis </a></h2>
+<p class="paragraph">Through enrichment analysis of differentially expressed genes in each cluster, derived from different clustering methods, it is possible to identify significant associations with certain biological functions or pathways. Novogene uses clusterProfiler to do GO functional enrichment analysis and KEGG pathway enrichment analysis on the set of differentially expressed genes on each cluster. This method is based on the hypergeometric distribution principle, and is employed to do the Gene Set Enrichment (GSE). The tables presented in the final report depict the enrichment analysis results of the DEG sets for individual clusters obtained from the Seurat clustering results of the first sample specified in the sample information form.</p>
+<h3><a>8.1 GO enrichment </a></h3>
+<p class="paragraph">GO (gene ontology) is a comprehensive database for describing gene functions, which can be divided into three groups: molecular function, biological process and cellular component). GO enrichment is considered significant when the adjusted p-value is less than 0.05. The enrichment results are displayed as follows:</p>
+<p class="center">
+<div id="tb">
+<table class="gy">
+<tr><th>Category</th><th>ID</th><th>Description</th><th>GeneRatio</th><th>BgRatio</th><th>p-value</th><th>p.adjust</th></tr>
+
+<tr>
+        <td>GO_CC</td><td>GO:0030054</td><td>cell junction</td><td>189/1881</td><td>838/22260</td><td>2.4856676032828e-37</td><td>1.87145913851162e-33</td>
+                </tr>
+
+<tr>
+        <td>GO_CC</td><td>GO:0045202</td><td>synapse</td><td>182/1881</td><td>793/22260</td><td>5.16098407145731e-37</td><td>1.9428524537001e-33</td>
+                </tr>
+
+<tr>
+        <td>GO_MF</td><td>GO:0005515</td><td>protein binding</td><td>797/1881</td><td>6669/22260</td><td>4.99863215396107e-33</td><td>1.25449004957243e-29</td>
+                </tr>
+
+<tr>
+        <td>GO_CC</td><td>GO:0005737</td><td>cytoplasm</td><td>766/1881</td><td>6481/22260</td><td>1.42594069106938e-29</td><td>2.68397686576534e-26</td>
+                </tr>
+
+</table>
+</div>
+</p>
+
+<p class="tremark">(1) Category: Database name</p>
+<p class="tremark">(2) ID:GO number</p>
+<p class="tremark">(3) Description:GO description</p>
+<p class="tremark">(4) GeneRatio:Ratio of differentially expressed genes (number of differentially expressed genes in this GO term/total number of differentially expressed genes)</p>
+<p class="tremark">(5) BgRatio: Ratio of background genes (number of background genes in this GO term/total number of background genes)</p>
+<p class="tremark">(6) p-value: p-value of enrichment analysis</p>
+<p class="tremark">(7) p.adjust: Adjusted p-value after correction</p>
+
+<p class="paragraph">GO enrichment's results are represented as using enrichment analysis cluster-level heatmap, bar plot of enriched GO terms, scatter plot of enriched GO terms and a network plot of enriched GO terms.</p>
+	<p class="center">
+	<div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_GO_Enrich_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure_GO_Enrich_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure_GO_Enrich_pane_Brain1_GO_heatmap" 
+	role="tabpanel" aria-labelledby="gallery_figure_GO_Enrich_list_Brain1_GO_heatmap"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/Brain1.cluster.GO.enrich.heatmap.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_figure_GO_Enrich_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure_GO_Enrich_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure_GO_Enrich_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_GO_Enrich_list_Brain1_GO_heatmap"
+	data-toggle="list" href="#gallery_figure_GO_Enrich_pane_Brain1_GO_heatmap" role="tab" aria-controls="Brain1_GO_heatmap">Brain1_GO_heatmap</a>
+	
+	</div>
+	</div>
+	</div>
+	</p>
+<p class="name_fig">Figure 8.1 GO enrichment analysis heatmap</p>
+<p class="premark center">Each row represents a GO term, each column represents a cluster ID, and the color intensity represents the p-value from the enrichment analysis (after correction). </p>
+
+<p class="head"><a href="#home" title = "First page"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<hr />
+</p>
+<p class="center">
+	<div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_GOEnrichbar_button_prev" class="button_prev" onclick="prev(this.id)">
+    <svg viewbox="0 0 16000 16000" class="svg_prev">
+    <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+    <polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+    </polygon></svg></div></div>
+    <div class="col-6">
+    <div class="tab-content" id="gallery_figure_GOEnrichbar_nav-tabContent">
+    
+    <div class="tab-pane fade" id="gallery_figure_GOEnrichbar_pane_Brain1_cluster0_GO_bar" 
+    role="tabpanel" aria-labelledby="gallery_figure_GOEnrichbar_list_Brain1_cluster0_GO_bar"
+    onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/Brain1.cluster0.GO.enrich.barplot.png" /></div>
+    
+    </div></div>
+    <div class="col-1">
+    <div id="gallery_figure_GOEnrichbar_button_next" class="button_next" onclick="next(this.id)">
+    <svg viewbox="0 0 16000 16000" class="svg_next">
+    <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+    <polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+    </polygon></svg></div></div>
+    <div class="col-4">
+    <input class="form-control" id="gallery_figure_GOEnrichbar_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_GOEnrichbar_list-tab" role="tablist">
+    
+    <a class="list-group-item list-group-item-action" id="gallery_figure_GOEnrichbar_list_Brain1_cluster0_GO_bar"
+    data-toggle="list" href="#gallery_figure_GOEnrichbar_pane_Brain1_cluster0_GO_bar" role="tab" aria-controls="Brain1_cluster0_GO_bar">Brain1_cluster0_GO_bar</a>
+	
+	</div>
+	</div>
+	</div>
+	</p>
+<p class="name_fig">Figure 8.2 GO enrichment analysis bar plot</p>
+<p class="premark center"> The x-axis represents the number of differentially expressed genes, the y-axis represents GO terms, and the color intensity indicates the enriched p-value (after correction).</p>
+
+<p class="head"><a href="#home" title = "First page"><img class="logo" align="left" src="src/images/logo.png" /></a>
+	<a name="topGO有向无环图 analysis"> </a>
+<hr />
+</p>
+	<p class="center">
+	<div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_GO_DAG_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure_GO_DAG_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure_GO_DAG_pane_Brain1_cluster0_GO_dot" 
+	role="tabpanel" aria-labelledby="gallery_figure_GO_DAG_list_Brain1_cluster0_GO_dot"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/Brain1.cluster0.GO.enrich.dotplot.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_figure_GO_DAG_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure_GO_DAG_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure_GO_DAG_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_GO_DAG_list_Brain1_cluster0_GO_dot"
+	data-toggle="list" href="#gallery_figure_GO_DAG_pane_Brain1_cluster0_GO_dot" role="tab" aria-controls="Brain1_cluster0_GO_dot">Brain1_cluster0_GO_dot</a>
+	
+	</div>
+	</div>
+	</div>
+	</p>
+<p class="name_fig">Figure 8.3 GO enrichment analysis scatter plot</p>
+<p class="premark center"> The x-axis represents the fraction of differentially expressed genes, the y-axis represents GO terms, the size of the points indicates the number of differentially expressed genes, and the color intensity indicates the enriched p-value (after correction).</p>
+
+<p class="head"><a href="#home" title = "First page"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<hr />
+</p>
+	<p class="center">
+	<div class="row">
+	<div class="col-1">	
+	<div id="gallery_figure_GO_emaplot_button_prev" class="button_prev" onclick="prev(this.id)">
+    <svg viewbox="0 0 16000 16000" class="svg_prev">
+    <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+    <polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+    </polygon></svg></div></div>
+    <div class="col-6">
+    <div class="tab-content" id="gallery_figure_GO_emaplot_nav-tabContent">
+    
+    <div class="tab-pane fade" id="gallery_figure_GO_emaplot_pane_Brain1_cluster0_GO_emapplot" 
+    role="tabpanel" aria-labelledby="gallery_figure_GO_emaplot_list_Brain1_cluster0_GO_emapplot"
+    onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/Brain1.cluster0.GO.enrich.emapplot.png" /></div>
+    
+    </div></div>
+    <div class="col-1">
+    <div id="gallery_figure_GO_emaplot_button_next" class="button_next" onclick="next(this.id)">
+    <svg viewbox="0 0 16000 16000" class="svg_next">
+    <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+    <polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+    </polygon></svg></div></div>
+    <div class="col-4">
+    <input class="form-control" id="gallery_figure_GO_emaplot_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_GO_emaplot_list-tab" role="tablist">
+    
+    <a class="list-group-item list-group-item-action" id="gallery_figure_GO_emaplot_list_Brain1_cluster0_GO_emapplot"
+    data-toggle="list" href="#gallery_figure_GO_emaplot_pane_Brain1_cluster0_GO_emapplot" role="tab" aria-controls="Brain1_cluster0_GO_emapplot">Brain1_cluster0_GO_emapplot</a>
+	
+	</div>
+	</div>
+	</div>
+	</p>
+<p class="name_fig">Figure 8.4 GO enrichment analysis network plot</p>
+<p class="premark center"> Dots represent GO terms, the thickness of the lines indicates the number of commonly shared differentially expressed genes between two GO terms, the size of the dots indicates the number of differentially expressed genes, and the color intensity of the dots indicates the enriched p-value (after correction).</p>
+
+
+
+<!---------------------------Differential gene KEGG  enrichment---------------------------->
+<p class="head"><a href="#home" title = "First page"><img class="logo" align="left" src="src/images/logo.png" /></a>
+
+<hr />
+</p>
+<h3 id="id_order_kegg">8.2 KEGG pathway enrichment </h3>
+<p class="paragraph">KEGG (Kyoto Encyclopedia of Genes and Genomes) is a comprehensive database that integrates genomic, chemical and system functional information. Enrichment analysis for KEGG pathways is considered significant when the adjusted p-value is less than 0.05. The enrichment results are presented as follows：</p>
+
+<p class="center">
+<div id="tb">
+<table class="gy">
+<tr><th>Category</th><th>ID</th><th>Description</th><th>GeneRatio</th><th>BgRatio</th><th>p-value</th><th>p.adjust</th></tr>
+
+<tr>
+        <td>KEGG</td><td>mmu05010</td><td>Alzheimer disease</td><td>82/795</td><td>342/8788</td><td>3.76560303108256e-17</td><td>8.51120579103388e-15</td>
+
+<tr>
+        <td>KEGG</td><td>mmu05012</td><td>Parkinson disease</td><td>49/795</td><td>145/8788</td><td>5.49110051034444e-17</td><td>8.51120579103388e-15</td>
+
+<tr>
+        <td>KEGG</td><td>mmu05016</td><td>Huntington disease</td><td>66/795</td><td>272/8788</td><td>2.98727088218372e-14</td><td>3.08684657825651e-12</td>
+
+<tr>
+        <td>KEGG</td><td>mmu00190</td><td>Oxidative phosphorylation</td><td>43/795</td><td>136/8788</td><td>6.83450804981526e-14</td><td>5.29674373860683e-12</td>
+
+</table>
+</div>
+</p>
+
+<p class="tremark">(1) Category: Database name</p>
+<p class="tremark">(2) ID: KEGG number</p>
+<p class="tremark">(3) Description: KEGG description</p>
+<p class="tremark">(4) GeneRatio: Ratio of differentially expressed genes (number of differentially expressed genes in the KEGG pathway / total number of differentially expressed genes)</p>
+<p class="tremark">(5) BgRatio: Ratio of background genes (number of background genes in the KEGG pathway / total number of background genes)</p>
+<p class="tremark">(6) p-value: Enrichment analysis p-value</p>
+<p class="tremark">(7) p.adjust: Corrected p-value</p>
+
+<p class="paragraph">KEGG enrichment's results are presented as enrichment analysis cluster-level heatmap, bar chart of enriched KEGG pathways, scatter plot of enriched KEGG pathways, and a network connectivity diagram of enriched KEGG pathways..</p>
+	<p class="center">
+	<div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_KEGG_Enrich_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure_KEGG_Enrich_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure_KEGG_Enrich_pane_Brain1_KEGG_heatmap" 
+	role="tabpanel" aria-labelledby="gallery_figure_KEGG_Enrich_list_Brain1_KEGG_heatmap"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/Brain1.cluster.KEGG.enrich.heatmap.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_figure_KEGG_Enrich_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure_KEGG_Enrich_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure_KEGG_Enrich_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_KEGG_Enrich_list_Brain1_KEGG_heatmap"
+	data-toggle="list" href="#gallery_figure_KEGG_Enrich_pane_Brain1_KEGG_heatmap" role="tab" aria-controls="Brain1_KEGG_heatmap">Brain1_KEGG_heatmap</a>
+	
+	</div>
+	</div>
+	</div>
+	</p>
+<p class="name_fig">Figure 8.5 KEGG enrichment analysis heatmap </p>
+<p class="premark center">Each row represents a KEGG pathway, each column represents a cluster number, and the color intensity represents the p-value of the enrichment analysis (after correction).</p>
+
+<p class="head"><a href="#home" title = "First page"><img class="logo" align="left" src="src/images/logo.png" /></a>
+
+<hr />
+</p>
+	<p class="center">
+	<div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_KEGGEnrichBar_button_prev" class="button_prev" onclick="prev(this.id)">
+    <svg viewbox="0 0 16000 16000" class="svg_prev">
+    <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+    <polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+    </polygon></svg></div></div>
+    <div class="col-6">
+    <div class="tab-content" id="gallery_figure_KEGGEnrichBar_nav-tabContent">
+    
+    <div class="tab-pane fade" id="gallery_figure_KEGGEnrichBar_pane_Brain1_cluster0_KEGG_bar" 
+    role="tabpanel" aria-labelledby="gallery_figure_KEGGEnrichBar_list_Brain1_cluster0_KEGG_bar"
+    onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/Brain1.cluster0.KEGG.enrich.barplot.png" /></div>
+    
+    </div></div>
+    <div class="col-1">
+    <div id="gallery_figure_KEGGEnrichBar_button_next" class="button_next" onclick="next(this.id)">
+    <svg viewbox="0 0 16000 16000" class="svg_next">
+    <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+    <polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+    </polygon></svg></div></div>
+    <div class="col-4">
+    <input class="form-control" id="gallery_figure_KEGGEnrichBar_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_KEGGEnrichBar_list-tab" role="tablist">
+    
+    <a class="list-group-item list-group-item-action" id="gallery_figure_KEGGEnrichBar_list_Brain1_cluster0_KEGG_bar"
+    data-toggle="list" href="#gallery_figure_KEGGEnrichBar_pane_Brain1_cluster0_KEGG_bar" role="tab" aria-controls="Brain1_cluster0_KEGG_bar">Brain1_cluster0_KEGG_bar</a>
+
+
+	
+	</div>
+	</div>
+	</div>
+	</p>
+<p class="name_fig">Figure 8.6 KEGG enrichment analysis bar plot</p>
+<p class="premark center"> The horizontal axis represents the number of differentially expressed genes, the vertical axis represents KEGG pathways, and the color intensity represents the p-value of enrichment (after correction).</p>
+
+<!------------------------------enrichment KEGG pathway----------------------------->
+<p class="head"><a href="#home" title = "First page"><img class="logo" align="left" src="src/images/logo.png" /></a>
+	<a name="  enrichment KEGG pathway"> </a>
+<hr />
+</p>
+	<p class="center">
+	<div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_KEGG_Pathway_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure_KEGG_Pathway_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure_KEGG_Pathway_pane_Brain1_cluster0_KEGG_dot" 
+	role="tabpanel" aria-labelledby="gallery_figure_KEGG_Pathway_list_Brain1_cluster0_KEGG_dot"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/Brain1.cluster0.KEGG.enrich.dotplot.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_figure_KEGG_Pathway_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure_KEGG_Pathway_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure_KEGG_Pathway_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_KEGG_Pathway_list_Brain1_cluster0_KEGG_dot"
+	data-toggle="list" href="#gallery_figure_KEGG_Pathway_pane_Brain1_cluster0_KEGG_dot" role="tab" aria-controls="Brain1_cluster0_KEGG_dot">Brain1_cluster0_KEGG_dot</a>
+	
+	</div>
+	</div>
+	</div>
+	</p>
+<p class="name_fig">Figure 8.7 KEGG enrichment analysis scatter plot</p>
+<p class="premark center"> The horizontal axis represents the proportion of differentially expressed genes, the vertical axis represents KEGG pathways, the size of the dots represents the number of differentially expressed genes, and the color intensity represents the p-value of enrichment (after correction).</p>
+<p class="head"><a href="#home" title = "First page"><img class="logo" align="left" src="src/images/logo.png" /></a>
+
+<hr />
+</p>
+	<p class="center">
+	<div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_KEGG_emaplot_button_prev" class="button_prev" onclick="prev(this.id)">
+    <svg viewbox="0 0 16000 16000" class="svg_prev">
+    <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+    <polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+    </polygon></svg></div></div>
+    <div class="col-6">
+    <div class="tab-content" id="gallery_figure_KEGG_emaplot_nav-tabContent">
+    
+    <div class="tab-pane fade" id="gallery_figure_KEGG_emaplot_pane_Brain1_cluster0_KEGG_emapplot" 
+    role="tabpanel" aria-labelledby="gallery_figure_KEGG_emaplot_list_Brain1_cluster0_KEGG_emapplot"
+    onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/Brain1.cluster0.KEGG.enrich.emapplot.png" /></div>
+    
+    </div></div>
+    <div class="col-1">
+    <div id="gallery_figure_KEGG_emaplot_button_next" class="button_next" onclick="next(this.id)">
+    <svg viewbox="0 0 16000 16000" class="svg_next">
+    <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+    <polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+    </polygon></svg></div></div>
+    <div class="col-4">
+    <input class="form-control" id="gallery_figure_KEGG_emaplot_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_KEGG_emaplot_list-tab" role="tablist">
+    
+    <a class="list-group-item list-group-item-action" id="gallery_figure_KEGG_emaplot_list_Brain1_cluster0_KEGG_emapplot"
+    data-toggle="list" href="#gallery_figure_KEGG_emaplot_pane_Brain1_cluster0_KEGG_emapplot" role="tab" aria-controls="Brain1_cluster0_KEGG_emapplot">Brain1_cluster0_KEGG_emapplot</a>
+	
+	</div>
+	</div>
+	</div>
+	</p>
+<p class="name_fig">Figure 8.8 KEGG enrichment analysis network plot</p>
+<p class="premark center"> Dots represent KEGG pathways, the thickness of the lines indicates the number of differentially expressed genes shared between two KEGG pathways, the size of the dots represents the number of differentially expressed genes, and the color intensity represents the p-value of enrichment (after correction).</p>
+
+
+
+<!---------------------------Differential gene REACTOME  enrichment---------------------------->
+<p class="head"><a href="#home" title = "First page"><img class="logo" align="left" src="src/images/logo.png" /></a>
+
+<hr />
+</p>
+<h3 id="id_order_kegg">8.3 Reactome pathway  enrichment  </h3>
+<p class="paragraph"> Reactome database compiles various reactions and biological pathways in humans. Enrichment in Reactome is considered significant when the adjusted p-value is less than 0.05. The enrichment results are shown below:</p>
+
+<p class="center">
+<div id="tb">
+<table class="gy">
+<tr><th>Category</th><th>ID</th><th>Description</th><th>GeneRatio</th><th>BgRatio</th><th>p-value</th><th>p.adjust</th></tr>
+
+<tr>
+        <td>REACTOME</td><td>R-MMU-112316</td><td>Neuronal System</td><td>86/898</td><td>311/8669</td><td>2.04600923907157e-18</td><td>2.3385885602588e-15</td>
+
+<tr>
+        <td>REACTOME</td><td>R-MMU-1428517</td><td>The citric acid (TCA) cycle and respiratory electron transport</td><td>42/898</td><td>128/8669</td><td>3.17838863393503e-12</td><td>1.81644910429387e-09</td>
+
+<tr>
+        <td>REACTOME</td><td>R-MMU-5576891</td><td>Cardiac conduction</td><td>36/898</td><td>115/8669</td><td>5.11176507194189e-10</td><td>1.93415924263607e-07</td>
+
+<tr>
+        <td>REACTOME</td><td>R-MMU-112315</td><td>Transmission across Chemical Synapses</td><td>50/898</td><td>195/8669</td><td>6.76871126031871e-10</td><td>1.93415924263607e-07</td>
+
+</table>
+</div>
+</p>
+
+<p class="tremark">(1) Category: Database name</p>
+<p class="tremark">(2) ID: Reactome number</p>
+<p class="tremark">(3) Description: Reactome description</p>
+<p class="tremark">(4) GeneRatio: Ratio of Differentially Expressed Genes (Number of DEGs in the Reactome Pathway / Total Number of DEGs)</p>
+<p class="tremark">(5) BgRatio: Ratio of Background Genes (Number of Background Genes in the Reactome Pathway / Total Number of Background Genes)</p>
+<p class="tremark">(6) p-value: p-value from enrichment analysis</p>
+<p class="tremark">(7) p.adjust: Adjusted p-value</p>
+
+<p class="paragraph">Reactome enrichment's result are presented as an enrichment analysis cluster-level heatmap, a bar plot for enriched Reactome pathways, a scatter plot showing the distribution of enriched Reactome pathways, and a network plot illustrating the connections between enriched Reactome pathways.</p>
+<p class="center">
+        <div class="row">
+        <div class="col-1">
+        <div id="gallery_figure_Reactome_Enrich_button_prev" class="button_prev" onclick="prev(this.id)">
+        <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon></svg></div></div>
+        <div class="col-6">
+        <div class="tab-content" id="gallery_figure_Reactome_Enrich_nav-tabContent">
+        
+        <div class="tab-pane fade" id="gallery_figure_Reactome_Enrich_pane_Brain1_reactome_heatmap" 
+        role="tabpanel" aria-labelledby="gallery_figure_Reactome_Enrich_list_Brain1_reactome_heatmap"
+        onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/Brain1.cluster.REACTOME.enrich.heatmap.png" /></div>
+        
+        </div></div>
+        <div class="col-1">
+        <div id="gallery_figure_Reactome_Enrich_button_next" class="button_next" onclick="next(this.id)">
+        <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon></svg></div></div>
+        <div class="col-4">
+        <input class="form-control" id="gallery_figure_Reactome_Enrich_InputList" type="text" placeholder="Search..">
+        <div class="list-group" id="gallery_figure_Reactome_Enrich_list-tab" role="tablist">
+        
+        <a class="list-group-item list-group-item-action" id="gallery_figure_Reactome_Enrich_list_Brain1_reactome_heatmap"
+        data-toggle="list" href="#gallery_figure_Reactome_Enrich_pane_Brain1_reactome_heatmap" role="tab" aria-controls="Brain1_reactome_heatmap">Brain1_reactome_heatmap</a>
+        
+        </div>
+        </div>
+        </div>
+        </p>
+<p class="name_fig">Figure 8.9 Reactome pathway enrichment analysis heatmap</p>
+<p class="premark center">Each row represents a Reactome pathway, each column represents a cluster number and the color intensity indicates the p-value from the enrichment analysis (adjusted).</p>
+
+<p class="head"><a href="#home" title = "First page"><img class="logo" align="left" src="src/images/logo.png" /></a>
+
+<hr />
+</p>
+	<p class="center">
+	<div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_ReactomeEnrichBar_button_prev" class="button_prev" onclick="prev(this.id)">
+    <svg viewbox="0 0 16000 16000" class="svg_prev">
+    <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+    <polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+    </polygon></svg></div></div>
+    <div class="col-6">
+    <div class="tab-content" id="gallery_figure_ReactomeEnrichBar_nav-tabContent">
+    
+    <div class="tab-pane fade" id="gallery_figure_ReactomeEnrichBar_pane_Brain1_cluster0_reactome_bar" 
+    role="tabpanel" aria-labelledby="gallery_figure_ReactomeEnrichBar_list_Brain1_cluster0_reactome_bar"
+    onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/Brain1.cluster0.REACTOME.enrich.barplot.png" /></div>
+    
+    </div></div>
+    <div class="col-1">
+    <div id="gallery_figure_ReactomeEnrichBar_button_next" class="button_next" onclick="next(this.id)">
+    <svg viewbox="0 0 16000 16000" class="svg_next">
+    <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+    <polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+    </polygon></svg></div></div>
+    <div class="col-4">
+    <input class="form-control" id="gallery_figure_ReactomeEnrichBar_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_ReactomeEnrichBar_list-tab" role="tablist">
+    
+    <a class="list-group-item list-group-item-action" id="gallery_figure_ReactomeEnrichBar_list_Brain1_cluster0_reactome_bar"
+    data-toggle="list" href="#gallery_figure_ReactomeEnrichBar_pane_Brain1_cluster0_reactome_bar" role="tab" aria-controls="Brain1_cluster0_reactome_bar">Brain1_cluster0_reactome_bar</a>
+
+
+        
+        </div>
+        </div>
+        </div>
+        </p>
+<p class="name_fig">Figure 8.10 Reactome pathway enrichment analysis bar plot</p>
+<p class="premark center"> The x-axis represents the number of differentially expressed genes, the y-axis represents Reactome pathways, and the color intensity indicates the p-value from the enrichment analysis (adjusted). </p>
+<br>
+
+<!------------------------------Reactome pathway enrichment----------------------------->
+<p class="head"><a href="#home" title = "First page"><img class="logo" align="left" src="src/images/logo.png" /></a>
+	<a name="  enrichment  Reactome pathway图"> </a>
+<hr />
+</p>
+        <p class="center">
+        <div class="row">
+        <div class="col-1">
+        <div id="gallery_figure_Reactome_Pathway_button_prev" class="button_prev" onclick="prev(this.id)">
+        <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon></svg></div></div>
+        <div class="col-6">
+        <div class="tab-content" id="gallery_figure_Reactome_Pathway_nav-tabContent">
+        
+        <div class="tab-pane fade" id="gallery_figure_Reactome_Pathway_pane_Brain1_cluster0_reactome_dot" 
+        role="tabpanel" aria-labelledby="gallery_figure_Reactome_Pathway_list_Brain1_cluster0_reactome_dot"
+        onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/Brain1.cluster0.REACTOME.enrich.dotplot.png" /></div>
+        
+        </div></div>
+        <div class="col-1">
+        <div id="gallery_figure_Reactome_Pathway_button_next" class="button_next" onclick="next(this.id)">
+        <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon></svg></div></div>
+        <div class="col-4">
+        <input class="form-control" id="gallery_figure_Reactome_Pathway_InputList" type="text" placeholder="Search..">
+        <div class="list-group" id="gallery_figure_Reactome_Pathway_list-tab" role="tablist">
+        
+        <a class="list-group-item list-group-item-action" id="gallery_figure_Reactome_Pathway_list_Brain1_cluster0_reactome_dot"
+        data-toggle="list" href="#gallery_figure_Reactome_Pathway_pane_Brain1_cluster0_reactome_dot" role="tab" aria-controls="Brain1_cluster0_reactome_dot">Brain1_cluster0_reactome_dot</a>
+        
+        </div>
+        </div>
+        </div>
+        </p>
+<p class="name_fig">Figure 8.11 Reactome pathway enrichment scatter plot</p>
+<p class="premark center"> The x-axis represents the proportion of differentially expressed genes, the y-axis represents Reactome pathways, the size of the points indicates the number of differentially expressed genes, and the color intensity indicates the p-value from the enrichment analysis (adjusted). </p>
+
+<p class="head"><a href="#home" title = "First page"><img class="logo" align="left" src="src/images/logo.png" /></a>
+
+<hr />
+</p>
+	<p class="center">
+	<div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_Reactome_emaplot_button_prev" class="button_prev" onclick="prev(this.id)">
+    <svg viewbox="0 0 16000 16000" class="svg_prev">
+    <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+    <polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+    </polygon></svg></div></div>
+    <div class="col-6">
+    <div class="tab-content" id="gallery_figure_Reactome_emaplot_nav-tabContent">
+    
+    <div class="tab-pane fade" id="gallery_figure_Reactome_emaplot_pane_Brain1_cluster0_reactome_emapplot" 
+    role="tabpanel" aria-labelledby="gallery_figure_Reactome_emaplot_list_Brain1_cluster0_reactome_emapplot"
+    onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/Brain1.cluster0.REACTOME.enrich.emapplot.png" /></div>
+    
+    </div></div>
+    <div class="col-1">
+    <div id="gallery_figure_Reactome_emaplot_button_next" class="button_next" onclick="next(this.id)">
+    <svg viewbox="0 0 16000 16000" class="svg_next">
+    <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+    <polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+    </polygon></svg></div></div>
+    <div class="col-4">
+    <input class="form-control" id="gallery_figure_Reactome_emaplot_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_Reactome_emaplot_list-tab" role="tablist">
+    
+    <a class="list-group-item list-group-item-action" id="gallery_figure_Reactome_emaplot_list_Brain1_cluster0_reactome_emapplot"
+    data-toggle="list" href="#gallery_figure_Reactome_emaplot_pane_Brain1_cluster0_reactome_emapplot" role="tab" aria-controls="Brain1_cluster0_reactome_emapplot">Brain1_cluster0_reactome_emapplot</a>
+        
+        </div>
+        </div>
+        </div>
+        </p>
+<p class="name_fig">Figure 8.12 Reactome pathway enrichment analysis network plot</p>
+<p class="premark center"> Each dot represents a Reactome pathway, and the thickness of the lines indicates the number of shared differentially expressed genes between two Reactome pathways. The size of the dots represents the number of differentially expressed genes, and the color intensity indicates the p-value from the enrichment analysis (adjusted). </p>
+
+
+
+
+
+
+<!-------------------------------------------- Remark ------------------------------------------->
+
+<p class="head"><a href="#home" title = "First page"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<a ></a>
+<hr />
+</p>
+
+<h2><a id="remark">Remark</a></h2>
+</br>
+<!--<h3  id="文件目录列表">结果文件目录列表</h3>
+<p class="paragraph">为了方便您查看项目的结果文件，我们提供了结果文件的<a href="src/Methods-EN.pdf" title="点击打开" target="_blank">目录列表</a>（配有相应的中文说明），项目结果文件可通过此目录列表查看。</p>
+<br>-->
+
+<h3 id="软件列表"> Software list and version </h3>
+<!------------------------------------------The list of software------------------------------------------------------>
+	<table width=95% align="center" id="result_note" cellspacing="0" cellpadding="5" class="gy2">
+		<tr><th>Analysis content</th><th>Software</th><th>Version</th></tr>
+		<tr><td>Quality control</td><td>In-house</td><td>1.0.0</td></tr>
+		<tr><td>Alignment and quantification </td><td>SpaceRanger</td><td>spaceranger-2.0.0</td></tr>
+		<tr><td> Dimensionality Reduction and Clustering Analysis</td><td>SpaceRanger</td><td>spaceranger-2.0.0</td></tr>
+		<tr><td> Dimensionality Reduction and Clustering Analysis</td><td>Seurat</td><td>3.1.2</td></tr>
+		<tr><td>Diversified integration </td><td>Space Ranger</td><td>spaceranger-2.0.0</td></tr>	
+		<tr><td>Diversified integration</td><td>Harmony</td><td>1.0</td></tr>
+		<tr><td>Differential expression analysis </td><td>edgeR</td><td>3.24.3</td></tr>
+		<tr><td> Enrichment analysis </td><td>clusterProfiler</td><td>3.10.1</td></tr>
+	</table>
+	<br>
+
+<!------------------------------------------------------------------------------------------------>
+<a name="Methods英文版" ><h3 id="Methods英文版">Methods</h3></a>
+<p class="paragraph"> For ease of article composition, the methods used here were compiled for your reference <a href="src/Methods.pdf" title="Click here" target="_blank" style="color:blue">methods</a></p>
+
+
+<!-------------------------------------------- Reference ------------------------------------------->
+<p class="head"><a href="#home" title = "First page"><img class="logo" align="left" src="src/images/logo.png" /></a>
+	<a > </a>
+	<hr />
+	</p>
+	
+	<h2 name="Reference">Reference</h2>
+	<p class=ref>
+	1. Westholm, J.O., Huss, M., et al. (2016). Visualization and analysis of gene expression in tissue sections by spatial transcriptomics. Science 353, 78-82.<p/>
+	2. Dobin A, Davis C A, Schlesinger F, et al. STAR: ultrafast universal RNA-seq aligner[J]. Bioinformatics, 2013, 29(1): 15-21.<p/>
+	3. Becht, E., McInnes, L., Healy, J. et al. Dimensionality reduction for visualizing single-cell data using UMAP. Nat Biotechnol 37, 38–44 (2019).<p/>
+	4. Van der Maaten, L., Accelerating t-SNE using Tree-Based Algorithms. Journal of Machine Learning Research 15, 3221-3245 (2014).<p/>
+	5. Butler, A., Hoffman, P., Smibert, P., Papalexi, E., & Satija, R. (2018). Integrating single-cell transcriptomic data across different conditions, technologies, and species. Nature Biotechnology, 36(5), 411–420. <p/> 
+	6. Stuart,T.etal.Comprehensive Integration of Single-Cell Data. Cell177, 1888–1902.e21 (2019).<p/>
+	7. Edsgärd, D., Johnsson, P., & Sandberg, R. (2018). Identification of spatial expression trends in single-cell gene expression data. Nature Methods, 15(5), 339–342. doi:10.1038/nmeth.4634<p/>
+	8. Korsunsky I., Millard N., Fan J., Slowikowski K., Zhang F., Wei K., Baglaenko Y., Brenner M., Loh P.R., Raychaudhuri S. Fast, sensitive and accurate integration of single-cell data with Harmony. Nat. Methods. 2019;16:1289-1296<p/>
+	9. Love, M. L., Huber, W. & Anders, S., Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2. Genome Biology 15, number 550 (2014).<p/>
+	10. Robinson M D, McCarthy D J, Smyth G K. edgeR: a Bioconductor package for differential expression analysis of digital gene expression data[J]. Bioinformatics, 2010, 26(1): 139-140.<p/>
+	11. Yu, D., Huber, W. & Vitek, O., Shrinkage estimation of dispersion in Negative Binomial models for RNA-seq experiments with small sample size. Bioinformatics 29, 1275–1282 (2013).<p/>
+	12. Robinson, M. D. & Smyth, G. K. Small-sample estimation of negative binomial dispersion, with applications to SAGE data. Biostatistics 9, 321–332 (2007).<p/>
+	13. Guangchuang Yu, Li-Gen Wang, Yanyan Han, Qing-Yu He. clusterProfiler: an R package for comparing biological themes among gene clusters. OMICS: A Journal of Integrative Biology. 2012, 16(5):284-287.<p/>
+	14. Kanehisa M, Goto S. KEGG: kyoto encyclopedia of genes and genomes[J]. Nucleic acids research, 2000, 28(1): 27-30.<p/>
+	15. G Yu, QY He*. ReactomePA: an R/Bioconductor package for reactome pathway analysis and visualization. Molecular BioSystems 2016, 12(2):477-479<p/>
+	
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+</p>
+</body>
+</html>

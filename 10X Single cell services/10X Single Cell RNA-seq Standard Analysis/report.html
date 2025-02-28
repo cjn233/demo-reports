@@ -1,0 +1,1846 @@
+<html>
+<head>
+	<title> 10X Single Cell Standard Analysis ReportRNA-Seq Reprot </title>
+	<META NAME="Author" CONTENT="guoyang@novogene.cn"> 
+	<META NAME="Version" CONTENT="2014820v2.0"> 
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+<link rel="stylesheet" href="src/css/jquery-ui.css" />
+<link rel="stylesheet" href="src/css/bootstrap-4.3.1.min.css" />
+<link rel="stylesheet" href="src/css/jquery.tocify.css" />
+<link rel="stylesheet" href="src/css/style.css"/>
+<link rel="stylesheet" href="src/css/base.css"/>
+<link rel="stylesheet" href="src/css/gallery.css"/>
+<script src="src/js/jquery-3.3.1.min.js" type="text/javascript"></script>
+<script src="src/js/jquery-ui.min.js" type="text/javascript"></script>
+<script src="src/js/jquery.tocify.min.js" type="text/javascript"></script>
+<script src="src/js/bootstrap-4.3.1.min.js" type="text/javascript"></script>
+<script src="src/js/scrollTop.js" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+
+	$(function () {
+
+		var options = {
+
+			selectors: "h2,h3,h4,h5",
+
+			theme: "bootstrap",
+
+			scrollTo: "60"
+
+		};
+
+		var toc = $("#toc").tocify(options).data("toc-tocify");
+
+	});
+
+</script>
+
+
+
+
+
+<script type="text/javascript">
+
+function trans(img_div_id) {
+
+img_div = $("#" + img_div_id)
+
+img = $("#" + img_div_id + " img").first();
+
+if (img_div.hasClass("fullscreen-div")) {
+
+img_div.removeClass("fullscreen-div");
+
+img.removeClass("fullscreen-img");
+
+}
+
+else {
+
+img_div.addClass("fullscreen-div");
+
+img.addClass("fullscreen-img");
+
+}
+
+}
+
+
+
+function filter_display() {
+
+return $(this).css("display") != "none";
+
+}
+
+
+
+function show_default() {
+
+var list_group_id = "#" + $(this).attr("id");
+
+if ($(list_group_id + " a.active").css("display") == "none") {
+
+var list_tab = $(list_group_id + " a.active");
+
+var pan_id = list_tab.attr("href");
+
+$(pan_id).removeClass("active show");
+
+list_tab.removeClass("active");
+
+}
+
+if ($(list_group_id + " a.active").filter(filter_display).length == 0) {
+
+$(list_group_id + " a").filter(filter_display).first().tab("show");
+
+}
+
+}
+
+$.fn.show_default = show_default
+
+
+
+function next(botton_id) {
+
+var present_tab = $("#" + botton_id.replace("_button_next", "_list-tab") + " .active").first();
+
+while (present_tab.next().length == 1) {
+
+if (present_tab.next().css("display") != "none") {
+
+present_tab.next().tab("show");
+
+break;
+
+}
+
+else {
+
+present_tab = present_tab.next();
+
+}
+
+}
+
+
+
+}
+
+function prev(botton_id) {
+
+var present_tab = $("#" + botton_id.replace("_button_prev", "_list-tab") + " .active").first();
+
+while (present_tab.prev().length == 1) {
+
+if (present_tab.prev().css("display") != "none") {
+
+present_tab.prev().tab("show");
+
+break;
+
+}
+
+else {
+
+present_tab = present_tab.prev();
+
+}
+
+}
+
+
+
+
+
+}
+
+
+
+$(document).ready(function () {
+
+$(".form-control").on("keyup", function () {
+
+var value = $(this).val().toLowerCase();
+
+var input_box_id = "#" + $(this).attr("id");
+
+var list_group_id = input_box_id.replace("_InputList", "_list-tab");
+
+$(list_group_id + " a").filter(function () {
+
+$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+
+});
+
+$(list_group_id).show_default();
+
+});
+
+$(".list-group").each(show_default);
+
+});
+
+
+
+</script>
+
+</head>
+
+
+<body>
+
+<div id="toc" class="tocify">
+</div>
+
+<div style="position:fixed; top:0; left:0; width:100%; z-index:1000;">
+	<table width="100%" height="50px" border="0" cellpadding="5" cellspacing="0"
+		style="background:#F3F3F3; border-bottom:1px solid #eee;border-top: none;background-image:-moz-linear-gradient(top,#EEEEEE,#FFFFFF); background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0,#EEEEEE), color-stop(1,#FFFFFF));filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#EEEEEE', endColorstr='#FFFFFF', GradientType='0')">
+		<tr height="86%">
+			<td width='1%'></td>
+			<td><img src="src/images/logo1.png"></td>
+			<td><div style="margin:5px;border-left:1px solid #DCDCDC;height:30px"></div></td>
+			<td width="20%"></td>
+			<td width="15%"></td>
+			<td width="25%"
+				style="text-align:right;padding:0px;margin:0px;color:black;font-size:14px;font-weight:50;">
+				<!---Tel: 916-252-0068-383
+				<br><a href="mailto:op-rna@novogene.com" target="black"
+				style="text-decoration:none;color:black;font-size:14px;font-weight:50;">Email: inquiry_us@novogene.com<a></td>--->
+			<td width="1%"></td>
+		</tr>
+	</table>
+</div>
+
+
+
+<!--------------------------标题---------------------------------->
+
+<div id="main"> 
+
+    <h1 id="pipline">10x Single Cell RNA-Seq Standard Analysis Report</h1>
+ 
+	<table class="gy" style="text-align:left">
+	<thead><th>Contract Information</th><th>Contract Content</th></tr></thead>
+	<tbody>
+	<tr>
+	<td>Contract Name</td>
+	<td>xxxxx-Human-10x 3 scRNA Seq-120 Gb-WOBI-xxxxx</td>
+	</tr>
+	<tr>
+	<td>Contract Number</td>
+	<td>HxxxSCxxxxxxxx</td>
+	</tr>
+	<tr>
+	<td>Report Number</td>
+	<td>XxxxSCxxxxxxxx-Zxx-Fxxx</td>
+	</tr>
+	<tr>
+	<td>Report Date</td>
+	<td>2024-07-03</td>
+	</tr>
+	</tbody></table>
+	<br>	
+
+    <h2>I. 10x scRNA-seq Workflow</h2>
+    <p class="paragraph">Bulk RNA-seq technologies have been widely used to study gene expression patterns at population level in the past decade. The advent of single-cell RNA sequencing (scRNA-seq) provides unprecedented opportunities for exploring gene expression profile at the single-cell level. Currently, scRNA-seq has become a favorable choice for studying the key biological questions of cell heterogeneity and the development of early embryos (only include a few number of cells), since bulk RNA-seq mainly reflects the averaged gene expression across thousands of cells. </p>
+    <p class="paragraph">The recently developed droplet-based single-cell transcriptome sequencing (scRNA-seq) technology makes it feasible to perform a population-scale scRNA-seq study, in which the transcriptome is measured for tens of thousands of single cells from multiple individuals.</p>
+    <p class="paragraph">10x Single Cell RNA sequencing projects are carried out as follows:</p>
+    <center>
+      <img  src="src/images/pipeline.png" width=800 />
+    </center>
+
+    <hr />
+    </p>
+    <h2 id="pipline">II. Analysis Workflow</h2>
+    <p class="paragraph">Here illustrates the workflow of standard bioinformatic analysis for 10x single cell 3' gene expression sequencing data.</p>
+    <p class="center"> <img  src="src/images/10X_pipeline.png"  width=600 /> </p>
+
+
+<!-------------------------------------------- 原始序列数据 --------------------------------------->
+    <hr />
+    </p>
+    <h2>III. Project Results</h2>
+	<h3 id="">1 Raw Data </h3>
+	<p class="paragraph">Original image data file from high-throughput sequencing (like Illumina) is transformed into sequenced reads (called Raw Data or Raw Reads). The sample demultiplexing was performed based on the 10 bp i5 and i7 sample index reads to generate Read1 and Read2 paired-end reads. Raw data are stored in FASTQ (fq) format files, which contain sequences of reads and corresponding base quality.</p> 
+<p class="paragraph">Final fragment from Chromium<sup>TM</sup> Single Cell 3' v3 library:</p>
+<center>
+      <img src="src/images/lib-v3.png" width=700 />
+          </center>
+      <p class="name_fig">Figure 1. Chromium Single Cell 3' Gene Expression v3 Library. </p>
+<p class="name_table">Table 1.1 Sequencing data of each sample</p>
+<table class="gy">
+       <tr><th>Sample name</th><th>File</th><th>Meaning</th</tr>
+       <tr><td rowspan=2>Sample</td><td>Sample_Sx_L00x_R1_00x.fastq.gz</td><td>The read1 of sample in FASTQ format, the read length depends on your contract</td></tr>
+       <tr><td>Sample_Sx_L00x_R2_00x.fastq.gz</td><td>The read2 of sample in FASTQ format, the read length depends on your contract</td></tr>
+	<p class="tremark">
+</table>
+	<hr />
+<p class="paragraph">FASTQ file format:</p>
+	<div class="bs-docs-qa">
+	<p class="seq">@HWI-ST1276:71:C1162ACXX:1:1101:1208:2458 1:N:0:CGATGT<br />
+      TNTAGATCTTAGGCGGTTGGTGTAGGTATCGACACAGGTCTTCATTTTGGCTAATAATGTACCAACGGAAGTCTGACATTCTGACTGTTCTTCTTCCTCTTCTTCCCCATTCTCTGTAGAAAGAGGCAACAACAGCGGCACCATAGATGT<br />
+      +<br />
+      F#FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF:FFFFF:FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF:FFFFFFFFFFFFFFFFFFFFFFFFFFF:FFFF:FFFFF:FFFFFFFFFFFFFFFFFFFFF,FFFFFFF<br />
+    </div>
+	<p class="step">(1)	Line 1: the at sign (@) followed by sequence identifiers and optional description info (such as FASTA title line).<br />
+	(2)	Line 2: base sequences (raw read, A, G, C, and T).<br />
+        (3)	Line 3: the plus sign (+) optionally followed by the same Illumina sequence identifiers and description information as Line 1.<br />
+	(4)	Line 4: the quality values for each base, corresponding to the data in Line 2.</p>
+<p class="name_table">Table 1.2 Illumina Sequence Identifier</p>
+    <table class="gy">
+       <tr>
+        <th>ID Symbol</th>
+        <th>Meaning</th>
+       </tr>
+       <tr>
+        <td>HWI-ST1276</td>
+        <td>Instrument – unique identifier of the sequencer </td>
+      </tr>
+      <tr>
+        <td>71</td>
+        <td>Run number – Run number on instrument</td>
+      </tr>
+      <tr>
+        <td>C1162ACXX</td>
+        <td>FlowCell ID – ID of flowcell</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>LaneNumber – positive integer</td>
+      </tr>
+      <tr>
+        <td>1101</td>
+        <td>TileNumber – positive integer</td>
+      </tr>
+	  <tr>
+		<td>1208</td>
+        <td>X – x coordinate of the spot. Integer which can be negative</td>
+	  </tr>
+	  <tr>
+        <td>2458</td>
+        <td>Y – y coordinate of the spot. Integer which can be negative</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>ReadNumber - 1 for single reads; 1 or 2 for paired ends</td>
+      </tr>
+      <tr>
+        <td>N</td>
+        <td>whether it is filtered - NB :Y if the read is filtered out, not in the delivered fastq file, N otherwise</td>
+      </tr>
+      <tr>
+        <td>0</td>
+        <td>control number - 0 when none of the control bits are on, otherwise it is an even number</td>
+      </tr>
+      <tr>
+        <td>CGATGT</td>
+        <td>Illumina index sequences</td>
+      </tr>
+    </table>
+    </p>
+   <p class="paragraph"><b>Raw data Q&A: </b></p>
+   <div class="alert alert-qa" role="alert" >
+        Question: Our sequencing core has given me the FASTQ files from a Chromium run with 150 bp reads for R1 and R2. Is there a way to use these FASTQ files (trimmed or otherwise) to provide Cell Ranger with the appropriate R1 and R2 FASTQ files?    
+	<a class="a-qa" data-toggle="collapse" href="#qa1_1" 
+               role="button" aria-expanded="false" aria-controls="collapseExample" >
+                   Click here for details »</a>    
+                   </div>
+                     
+<div class="collapse" id="qa1_1">
+    <div class="bs-docs-qa">
+                Answer: If you sequenced more bases than necessary on any of your reads (R1, R2, or index), you have two options.
+                1. You can leave the sequences "as-is." It may be helpful to specify the --chemistry option (e.g. --chemistry=SC3Pv3).
+                2. If you are unable to demultiplex again, yet you want to save as much disk space as possible, you could use a third party tool to trim your FASTQs directly.
+		</div>
+                </div>
+	
+<!----------------------------------------- 测序数据质量评估 -------------------------------------->
+
+<hr />
+</p>
+<h3><a>2 10x Sequencing Data Processing and Quality Control</a></h3>
+<p class="paragraph">Once the FASTQ files for each sample are generated, the data analysis begins. Reads from scRNA-seq were processed by Cell Ranger software (10x Genomics) with the default parameters for each sample separately. In short, alignment to the reference, UMI (unique molecular identifier) collapsing, UMI counting and initial quality control was performed. The filtered gene expression matrices containing only cellular barcodes were generated in this step. Then the Seurat R package was further utilized to achieve data quality control. The summary metrics for each step were shown as following in detail.</p>
+<p class="paragraph"><span> <b>Click to open the result directory: <a href="../Result_X401SC24010230-Z01-F005_GRCh38/1.Data_process" title="点击打开" target="_blank">Result/1.Data_process</a></b></span></p>
+<h4><a>2.1 Sequencing Summary</a></h4>
+<p class="name_table">Table 2.1 Summary of sequencing</p>
+<div id="tb">
+  <table class="gy">
+        <tr>
+          <th>[Sequencing]</th><th>huc016</th><th>hUC-017</th><th>hUC_020</th>
+        </tr>
+        
+        <tr>
+          <td>Number of Reads</td><td>416,549,485</td><td>403,327,095</td><td>433,636,465</td>
+        </tr>
+        
+        <tr>
+          <td>Base of Reads(G)</td><td>124.0</td><td>120.0</td><td>130.0</td>
+        </tr>
+        
+        <tr>
+          <td>Valid Barcodes</td><td>96.8%</td><td>96.4%</td><td>98.1%</td>
+        </tr>
+        
+        <tr>
+          <td>Sequencing Saturation</td><td>50.4%</td><td>47.0%</td><td>61.0%</td>
+        </tr>
+        
+        <tr>
+          <td>Q30 Bases in Barcode</td><td>95.8%</td><td>96.0%</td><td>96.1%</td>
+        </tr>
+        
+        <tr>
+          <td>Q30 Bases in RNA Read</td><td>92.1%</td><td>91.6%</td><td>93.0%</td>
+        </tr>
+        
+        <tr>
+          <td>Q30 Bases in UMI</td><td>94.6%</td><td>95.6%</td><td>94.2%</td>
+        </tr>
+        
+      </table>
+</div>
+<p class="tremark">(1) Number of Reads: Total number of read pairs that were assigned to this library in demultiplexing. </p>
+<p class="tremark">(2) Base of Reads: Total base of read pairs that were assigned to this library in demultiplexing. </p>
+<p class="tremark">(3) Valid Barcodes: Fraction of reads with barcodes that match the whitelist after barcode correction. </p>
+<p class="tremark">(4) Sequencing Saturation: The fraction of reads originating from an already-observed UMI. This is a function of library complexity and sequencing depth. More specifically, this is the fraction of confidently mapped, valid cell-barcode, valid UMI reads that had a non-unique (cell-barcode, UMI, gene).  </p>
+<p class="tremark">(5) Q30 Bases in Barcode: Fraction of cell barcode bases with Q-score >= 30, excluding very low quality/no-call (Q <= 2) bases from the denominator. </p>
+<p class="tremark">(6) Q30 Bases in RNA Read: Fraction of RNA read bases with Q-score >= 30, excluding very low quality/no-call (Q <= 2) bases from the denominator. This is Read 1 for the Single Cell 3' v1 chemistry and Single Cell 5' paired end, Read 2 for the Single Cell 3' v2/v3 chemistry and Single Cell 5' R2-only). </p>
+<p class="tremark">(7) Q30 Bases in UMI: Fraction of UMI bases with Q-score >= 30, excluding very low quality/no-call (Q <= 2) bases from the denominator. </p>
+<br>
+
+<hr />
+</p>
+<h4><a>2.2 Alignment Summary</a></h4>
+<p class="paragraph">Cell Ranger uses an aligner called STAR, which performs splicing-aware alignment of reads to the genome. It then uses the transcript annotation GTF to bucket the reads into exonic, intronic, and intergenic, and by whether the reads align (confidently) to the genome. A read will be classified into exonic region if at least 50% of it intersects an exon, intronic region if it is non-exonic and intersects an intron, and intergenic region otherwise.</p>
+<p class="paragraph">The exonic reads were further aligned to the existing transcriptome with annotation as well. A read that is compatible with the exons of an annotated transcript, and aligned to the same strand, is considered mapped to the transcriptome. Among mapped reads, these uniquely mapped reads are the only ones considered for UMI counting.</p>
+<p class="name_table">Table 2.2 Summary of Alignment to genome</p>
+<div id="tb">
+  <table class="gy">
+        <tr>
+          <th>[Mapping]</th><th>huc016</th><th>hUC-017</th><th>hUC_020</th>
+        </tr>
+        
+        <tr>
+          <td>Reads Mapped to Genome</td><td>97.2%</td><td>97.5%</td><td>96.5%</td>
+        </tr>
+        
+        <tr>
+          <td>Reads Mapped Confidently to Genome</td><td>95.6%</td><td>95.9%</td><td>95.1%</td>
+        </tr>
+        
+        <tr>
+          <td>Reads Mapped Confidently to Intergenic Regions</td><td>2.4%</td><td>2.9%</td><td>1.7%</td>
+        </tr>
+        
+        <tr>
+          <td>Reads Mapped Confidently to Intronic Regions</td><td>24.2%</td><td>19.8%</td><td>10.9%</td>
+        </tr>
+        
+        <tr>
+          <td>Reads Mapped Confidently to Exonic Regions</td><td>69.0%</td><td>73.2%</td><td>82.4%</td>
+        </tr>
+        
+        <tr>
+          <td>Reads Mapped Confidently to Transcriptome</td><td>83.0%</td><td>83.1%</td><td>87.0%</td>
+        </tr>
+        
+        <tr>
+          <td>Reads Mapped Antisense to Gene</td><td>9.2%</td><td>9.0%</td><td>5.4%</td>
+        </tr>
+        
+      </table>
+</div>
+<p class="tremark">(1) Reads Mapped to Genome: Fraction of reads that mapped to the genome. </p>
+<p class="tremark">(2) Reads Mapped Confidently to Genome: Fraction of reads that mapped uniquely to the genome. If a gene mapped to exonic loci from a single gene and also to non-exonic loci, it is considered uniquely mapped to one of the exonic loci. </p>
+<p class="tremark">(3) Reads Mapped Confidently to Intergenic Regions: Fraction of reads that mapped uniquely to an intergenic region of the genome. </p>
+<p class="tremark">(4) Reads Mapped Confidently to Intronic Regions: Fraction of reads that mapped uniquely to an intronic region of the genome. </p>
+<p class="tremark">(5) Reads Mapped Confidently to Exonic Regions: Fraction of reads that mapped uniquely to an exonic region of the genome. </p>
+<p class="tremark">(6) Reads Mapped Confidently to Transcriptome: Fraction of reads that mapped to a unique gene in the transcriptome. The read must be consistent with annotated splice junctions. These reads are considered for UMI counting. </p>
+<p class="tremark">(7) Reads Mapped Antisense to Gene: Fraction of reads confidently mapped to the transcriptome, but on the opposite strand of their annotated gene. </p>
+<br>
+
+<hr />
+</p>
+<h4><a>2.3 Cell Calling and UMI Counting</a></h4>
+<p class="paragraph">The cell-calling algorithm based on the EmptyDrops method in Cell Ranger determines cell-associated barcodes based on their UMI count or by their RNA profiles. </p>
+<p class="name_table">Table 2.3 Expression distribution of cells</p>
+<div id="tb">  
+<table class="gy">
+        <tr>
+          <th>[Cells]</th><th>huc016</th><th>hUC-017</th><th>hUC_020</th>
+        </tr>
+        
+        <tr>
+          <td>Estimated Number of Cells</td><td>8,546</td><td>7,535</td><td>8,933</td>
+        </tr>
+        
+        <tr>
+          <td>Fraction Reads in Cells</td><td>95.7%</td><td>94.5%</td><td>95.0%</td>
+        </tr>
+        
+        <tr>
+          <td>Mean Reads per Cell</td><td>48,742</td><td>53,527</td><td>48,543</td>
+        </tr>
+        
+        <tr>
+          <td>Total Genes Detected</td><td>29,009</td><td>29,465</td><td>28,060</td>
+        </tr>
+        
+        <tr>
+          <td>Median Genes per Cell</td><td>4,437</td><td>4,392</td><td>3,274</td>
+        </tr>
+        
+        <tr>
+          <td>Median UMI Counts per Cell</td><td>17,208</td><td>16,825</td><td>11,112</td>
+        </tr>
+        
+      </table>
+</div>
+<p class="tremark">(1) Estimated Number of Cells: The number of barcodes associated with at least one cell. </p>
+<p class="tremark">(2) Fraction Reads in Cells: The fraction of valid-barcode, confidently-mapped-to-transcriptome reads with cell-associated barcodes. </p>
+<p class="tremark">(3) Mean Reads per Cell: The total number of sequenced reads divided by the number of barcodes associated with cell-containing partitions. </p>
+<p class="tremark">(4) Total Genes Detected: The number of genes with at least one UMI count in any cell. </p>
+<p class="tremark">(5) Median Genes per Cell: The median number of genes detected per cell-associated barcode. Detection is defined as the presence of at least 1 UMI count. </p>
+<p class="tremark">(6) Median UMI Counts per Cell: The median number of UMI counts per %s cell-associated barcode. </p>
+<br>
+
+<table class="gy">
+<tr><th>Samples</th><th>web summary</th></tr>
+<h4><a>2.4 Pre-procession HTML Summary</a></h4>
+<p class="paragraph">The summary HTML file of each sample named "web_summary.html" that contains summary metrics is also shown as below: 
+<p class="name_table">Table 2.4 Pre-procession summary in HTML format </p>
+
+	<tr> 
+	<td>hUC-017</td><td><a href="src/pictures/Data_process/hUC-017.web_summary.html" title="click to open" target="_blank">web_summary.html</a></b></span></td>
+	</tr>
+
+	<tr> 
+	<td>hUC_020</td><td><a href="src/pictures/Data_process/hUC_020.web_summary.html" title="click to open" target="_blank">web_summary.html</a></b></span></td>
+	</tr>
+
+	<tr> 
+	<td>huc016</td><td><a href="src/pictures/Data_process/huc016.web_summary.html" title="click to open" target="_blank">web_summary.html</a></b></span></td>
+	</tr>
+
+</table>
+<p class="tremark">(1)Samples: Sample name. </p>
+<p class="tremark">(2)web summary: Run summary metrics and charts in HTML format from "cellranger count".</p>
+
+
+
+
+<hr />
+</p>
+<h4><a>2.5 Quality Control Summary</a></h4>
+<p class="paragraph">Low-quality libraries in 10x scRNA-seq data can arise from a variety of sources such as cell damage during dissociation or failure in library preparation. These usually manifest as ‘cells’ with low total counts, few expressed genes and high mitochondrial read proportions. </p>
+<p class="paragraph">The "filtered_feature_bc_matrix" generated by Cell Ranger were read into the Seurat R package. For each cell, quality control metrics such as the total number of counts and the proportion of counts in mitochondrial genes were calculated.</p>
+
+<p class="paragraph">Cells that met any one of the following criteria were filtered out for downstream processing in each sample: < 200 genes with present in each cell, genes with non-zero counts in at most 3 cells, > 8000 feature count (potential multiplets), the proportion of the feature count attributable to mitochondrial genes was greater than 50%, or the proportion of the feature count attributable to Hemoglobin related genes was greater than 5%. </p>
+
+<p class="center">
+	<div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_DataFiltration_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure_DataFiltration_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure_DataFiltration_pane_hUC-017_BarcodeMatrix_filter_scatter" 
+	role="tabpanel" aria-labelledby="gallery_figure_DataFiltration_list_hUC-017_BarcodeMatrix_filter_scatter"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Data_process/hUC-017_BarcodeMatrix_filter.scatter.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_DataFiltration_pane_hUC-017_BarcodeMatrix_filter_violin" 
+	role="tabpanel" aria-labelledby="gallery_figure_DataFiltration_list_hUC-017_BarcodeMatrix_filter_violin"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Data_process/hUC-017_BarcodeMatrix_filter.violin.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_DataFiltration_pane_hUC-017_cluster_UMAP_single_doublt" 
+	role="tabpanel" aria-labelledby="gallery_figure_DataFiltration_list_hUC-017_cluster_UMAP_single_doublt"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Data_process/hUC-017_cluster_UMAP_single_doublt.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_DataFiltration_pane_hUC_020_BarcodeMatrix_filter_scatter" 
+	role="tabpanel" aria-labelledby="gallery_figure_DataFiltration_list_hUC_020_BarcodeMatrix_filter_scatter"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Data_process/hUC_020_BarcodeMatrix_filter.scatter.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_DataFiltration_pane_hUC_020_BarcodeMatrix_filter_violin" 
+	role="tabpanel" aria-labelledby="gallery_figure_DataFiltration_list_hUC_020_BarcodeMatrix_filter_violin"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Data_process/hUC_020_BarcodeMatrix_filter.violin.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_DataFiltration_pane_hUC_020_cluster_UMAP_single_doublt" 
+	role="tabpanel" aria-labelledby="gallery_figure_DataFiltration_list_hUC_020_cluster_UMAP_single_doublt"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Data_process/hUC_020_cluster_UMAP_single_doublt.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_DataFiltration_pane_huc016_BarcodeMatrix_filter_scatter" 
+	role="tabpanel" aria-labelledby="gallery_figure_DataFiltration_list_huc016_BarcodeMatrix_filter_scatter"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Data_process/huc016_BarcodeMatrix_filter.scatter.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_DataFiltration_pane_huc016_BarcodeMatrix_filter_violin" 
+	role="tabpanel" aria-labelledby="gallery_figure_DataFiltration_list_huc016_BarcodeMatrix_filter_violin"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Data_process/huc016_BarcodeMatrix_filter.violin.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_DataFiltration_pane_huc016_cluster_UMAP_single_doublt" 
+	role="tabpanel" aria-labelledby="gallery_figure_DataFiltration_list_huc016_cluster_UMAP_single_doublt"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Data_process/huc016_cluster_UMAP_single_doublt.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_figure_DataFiltration_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure_DataFiltration_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure_DataFiltration_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_DataFiltration_list_hUC-017_BarcodeMatrix_filter_scatter"
+	data-toggle="list" href="#gallery_figure_DataFiltration_pane_hUC-017_BarcodeMatrix_filter_scatter" role="tab" aria-controls="hUC-017_BarcodeMatrix_filter_scatter">hUC-017_BarcodeMatrix_filter_scatter</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_DataFiltration_list_hUC-017_BarcodeMatrix_filter_violin"
+	data-toggle="list" href="#gallery_figure_DataFiltration_pane_hUC-017_BarcodeMatrix_filter_violin" role="tab" aria-controls="hUC-017_BarcodeMatrix_filter_violin">hUC-017_BarcodeMatrix_filter_violin</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_DataFiltration_list_hUC-017_cluster_UMAP_single_doublt"
+	data-toggle="list" href="#gallery_figure_DataFiltration_pane_hUC-017_cluster_UMAP_single_doublt" role="tab" aria-controls="hUC-017_cluster_UMAP_single_doublt">hUC-017_cluster_UMAP_single_doublt</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_DataFiltration_list_hUC_020_BarcodeMatrix_filter_scatter"
+	data-toggle="list" href="#gallery_figure_DataFiltration_pane_hUC_020_BarcodeMatrix_filter_scatter" role="tab" aria-controls="hUC_020_BarcodeMatrix_filter_scatter">hUC_020_BarcodeMatrix_filter_scatter</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_DataFiltration_list_hUC_020_BarcodeMatrix_filter_violin"
+	data-toggle="list" href="#gallery_figure_DataFiltration_pane_hUC_020_BarcodeMatrix_filter_violin" role="tab" aria-controls="hUC_020_BarcodeMatrix_filter_violin">hUC_020_BarcodeMatrix_filter_violin</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_DataFiltration_list_hUC_020_cluster_UMAP_single_doublt"
+	data-toggle="list" href="#gallery_figure_DataFiltration_pane_hUC_020_cluster_UMAP_single_doublt" role="tab" aria-controls="hUC_020_cluster_UMAP_single_doublt">hUC_020_cluster_UMAP_single_doublt</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_DataFiltration_list_huc016_BarcodeMatrix_filter_scatter"
+	data-toggle="list" href="#gallery_figure_DataFiltration_pane_huc016_BarcodeMatrix_filter_scatter" role="tab" aria-controls="huc016_BarcodeMatrix_filter_scatter">huc016_BarcodeMatrix_filter_scatter</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_DataFiltration_list_huc016_BarcodeMatrix_filter_violin"
+	data-toggle="list" href="#gallery_figure_DataFiltration_pane_huc016_BarcodeMatrix_filter_violin" role="tab" aria-controls="huc016_BarcodeMatrix_filter_violin">huc016_BarcodeMatrix_filter_violin</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_DataFiltration_list_huc016_cluster_UMAP_single_doublt"
+	data-toggle="list" href="#gallery_figure_DataFiltration_pane_huc016_cluster_UMAP_single_doublt" role="tab" aria-controls="huc016_cluster_UMAP_single_doublt">huc016_cluster_UMAP_single_doublt</a>
+	
+	</div>
+	</div>
+	</div>
+	</p>
+	<p class="name_fig">Figure 2.1 Scatter and violin plots visualize QC metrics.</p>
+	<p class="premark center">"nFeature_RNA" means the count of gene features; "nCount_RNA" means the count of UMI; "percent.MT" means the percentage of counts originating from mitochondrial genes and "percent.HB" means the percentage of counts originating from Hemoglobin-related genes. Each point represents a cell. </p>
+    <p class="premark center">The UMAP plots constructed from the top PCs in the clusters dataset. Each point represents a cell, coloured according to singlet/doublet.</p>
+
+
+<p class="paragraph"><b>Data processing and quality control Q&A: </b></p>
+<div class="alert alert-qa" role="alert" >
+        Question: How does cellranger count auto-detect the assay chemistry?
+	<a class="a-qa" data-toggle="collapse" href="#qa1_1" 
+            role="button" aria-expanded="false" aria-controls="collapseExample" >
+                Click here for details »</a>    
+                </div>
+                  
+<div class="collapse" id="qa1_1">
+    <div class="bs-docs-qa">
+                Answer: To auto-detect the assay chemistry (--chemistry=auto), cellranger count maps the first 10,000 reads in the FASTQ files.
+                The 3' versus 5' assay configurations are inferred based on the dominant orientation of the R2 read mapping (from at least 1,000 mapped reads). 
+                The distinction between Single Cell 3' v1, v2 and v3 chemistries is made based on the fraction of barcodes overlapping the whitelist for each specific chemistry.
+		</div>
+                </div>
+
+<div class="alert alert-qa" role="alert" >
+        Question: How does cellranger count process and filter UMIs? 
+	<a class="a-qa" data-toggle="collapse" href="#qa1_2" 
+            role="button" aria-expanded="false" aria-controls="collapseExample" >
+                Click here for details »</a>
+                </div>
+
+<div class="collapse" id="qa1_2">
+    <div class="bs-docs-qa">
+                Answer: Since UMIs are random, there is no whitelist to check them against. However, cellranger count performs some basic quality filtering and correction for UMI sequencing errors.
+	The following criteria are used for UMI filtering:
+	– Must not be a homopolymer, e.g. AAAAAAAAAA;
+	– Must not contain N;
+	– Must not contain bases with base quality lower than 10.
+	UMIs that are 1 Hamming distance (substitution) away from a higher-count UMI are corrected to the higher count UMI if they share a cell barcode.
+		</div>
+                </div>
+
+<div class="alert alert-qa" role="alert" >
+        
+	Question: What are valid barcodes? 
+	<a class="a-qa" data-toggle="collapse" href="#qa1_2" 
+            role="button" aria-expanded="false" aria-controls="collapseExample" >
+                Click here for details »</a>
+                </div>
+
+<div class="collapse" id="qa1_2">
+    <div class="bs-docs-qa">
+                Answer: A valid barcode is one which was sequenced from the experimental sample and found to match the barcode whitelist. A barcode whitelist is the list of all known barcode sequences that have been included in the assay kit and are available during library preparation.
+		</div>
+                </div>
+
+<div class="alert alert-qa" role="alert" >
+        Quesion: Why do I see a high level of mitochondrial gene expression?
+	<a class="a-qa" data-toggle="collapse" href="#qa12_1" 
+            role="button" aria-expanded="false" aria-controls="collapseExample" >
+                Click here for details »</a>    
+                </div>
+                  
+<div class="collapse" id="qa12_1">
+    <div class="bs-docs-qa">
+        	Answer: Mitochondrial genes are expressed in most cells and their expression level is cell type-specific.
+        High expression levels of mitochondrial genes could be an indicator of:<br/>
+        Poor sample quality, leading to a high fraction of apoptotic or lysing cells. <br/>
+        Biology of the particular sample, for example tumor biopsies, which may have increased mitochondrial gene expression due to metabolic activity and/or necrosis.<br/>
+
+	</div>
+                </div>
+
+<hr />
+</p>
+<h3 id="id_order_SpaceRanger">3 Identification of Highly Variable Genes (HVGs) </h3>
+<p class="paragraph">Feature selection removes the uninformative genes and identifies the most relevant features to reduce the number of dimensions used in downstream analysis. The identification of highly variable genes (HVGs) was based on the assumption that the highly variable expression of these genes across cells is resulted from biological effects rather than merely technical noise.</p>
+<p class="paragraph">After cell filtering, 10x gene expression matrices from each sample were loaded into Seurat. The expressions of each gene were normalized by total counts for that cell, multiplied by a scale factor (the median UMI counts for all cells within the sample), and natural-log transformed using log1p. Then the expressions of each gene were scaled. </p>
+<p class="paragraph">Next, highly variable genes were identified using FindVariableGenes function with the highest standardized variance selected by selection.method = 'vst'. The top 3000 most variable genes of each sample selected by Seurat were used to compute the PCs.</p>
+<h4>3.1 Normalization</h4>
+<p class="paragraph">Expression values for E<sub>i,j</sub> for gene i in cell j were calculated as following: </p>
+<p class="center">The counts-per-median(CPM<sub>i,j</sub>) = Count<sub>i,j</sub> / Totalcount<sub>j</sub> * M </p>
+<p class="center">Expression values E<sub>i,j</sub> = log<sub>10</sub>(CPM<sub>i,j</sub> + 1)</p>
+<p class="paragraph"><span> <b>Click to open the result directory: <a href="../Result_X401SC24010230-Z01-F005_GRCh38/2.Identification_HVGs/Normalization/" title="点击打开" target="_blank">Result/2.Identification_HVGs/Normalization</a></b></span></p>
+<div id="tb">   
+<p class="name_table">Table 3.1 Normalized expression of cells</p>
+<table class="gy">
+        <tr>
+          <th>Gene</th><th>GeneName</th><th>AAACCCAAGAAGGGAT-1_1</th><th>AAACCCAAGATTGACA-1_1</th><th>AAACCCAAGCTATCTG-1_1</th><th>AAACCCACAAACCATC-1_1</th><th>AAACCCACACCCAATA-1_1</th><th>AAACCCAGTAACATAG-1_1</th><th>AAACCCAGTACAGTCT-1_1</th><th>AAACCCAGTCTCGGGT-1_1</th>
+        </tr>
+        
+        <tr>
+          <td>ENSG00000238009</td><td>AL627309.1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+        </tr>
+        
+        <tr>
+          <td>ENSG00000241860</td><td>AL627309.5</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+        </tr>
+        
+        <tr>
+          <td>ENSG00000286448</td><td>AP006222.2</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+        </tr>
+        
+        <tr>
+          <td>ENSG00000236601</td><td>AL732372.1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+        </tr>
+        
+      </table>
+</div>
+</p>
+<p class="tremark">(1) Gene: The gene id.</p>
+<p class="tremark">(2) GeneName: The gene name.</p>
+<p class="tremark">(3-10)xxx: The 10 bp barcodes. One unique barcode represents one cell. Here only shows gene expression level of eight cells.</p>
+<hr />
+</p>
+<h4>3.2 Volcano Plot of HVGs</h4>
+	<p class="center">
+	<div class="row">
+	<div class="col-1">
+	<div id="gallery_tissue_lowres_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_tissue_lowres_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_tissue_lowres_pane_hUC-017_VariableFeatures_volcano" 
+	role="tabpanel" aria-labelledby="gallery_tissue_lowres_list_hUC-017_VariableFeatures_volcano"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/hUC-017.VariableFeatures.volcano.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_tissue_lowres_pane_huc016_VariableFeatures_volcano" 
+	role="tabpanel" aria-labelledby="gallery_tissue_lowres_list_huc016_VariableFeatures_volcano"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/huc016.VariableFeatures.volcano.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_tissue_lowres_pane_hUC_020_VariableFeatures_volcano" 
+	role="tabpanel" aria-labelledby="gallery_tissue_lowres_list_hUC_020_VariableFeatures_volcano"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/hUC_020.VariableFeatures.volcano.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_tissue_lowres_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_tissue_lowres_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_tissue_lowres_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_tissue_lowres_list_hUC-017_VariableFeatures_volcano"
+	data-toggle="list" href="#gallery_tissue_lowres_pane_hUC-017_VariableFeatures_volcano" role="tab" aria-controls="hUC-017_VariableFeatures_volcano">hUC-017_VariableFeatures_volcano</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_tissue_lowres_list_huc016_VariableFeatures_volcano"
+	data-toggle="list" href="#gallery_tissue_lowres_pane_huc016_VariableFeatures_volcano" role="tab" aria-controls="huc016_VariableFeatures_volcano">huc016_VariableFeatures_volcano</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_tissue_lowres_list_hUC_020_VariableFeatures_volcano"
+	data-toggle="list" href="#gallery_tissue_lowres_pane_hUC_020_VariableFeatures_volcano" role="tab" aria-controls="hUC_020_VariableFeatures_volcano">hUC_020_VariableFeatures_volcano</a>
+	
+	</div>
+	</div>
+	</div>
+	</p>
+<p class="name_fig">Figure 3.1 Volcano plot of features with and without labels.</p>
+
+
+<hr />
+</p>
+<h3 id="id_order_cds">4 Cell Subpopulation Identification</h3>
+<p class="paragraph">A key goal of 10x scRNA-seq data analysis is to identify cell subpopulations (different populations are often distinct cell types) within a certain condition or tissue to unravel the heterogeneity of cells. To identify a gene expression signature associated with this sample or group of cells, HVGs previously determined are used as input for dimensionality reduction via principal component analysis (PCA) . The resulting PCs were then used as input for clustering analysis.</p>
+<h4><a>4.1 Principal Components Analysis </h4> 
+<p class="paragraph">Principal components analysis (PCA) discovers axes in high-dimensional space that capture the largest amount of variation. The PCA on the log-normalized expression values is performed using runPCA function with setting total 50 PCs.</p>
+<p class="paragraph"><span> <b>Click to open the result directory: <a href="../Result_X401SC24010230-Z01-F005_GRCh38/3.Identification_subpopulation/PCA/" title="" target="_blank">Result/3.Identification_subpopulation/PCA</a></b></span></p>
+<p class="center">
+	<div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_FPKM_Density_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure_FPKM_Density_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure_FPKM_Density_pane_Combination1_PCA_sdev" 
+	role="tabpanel" aria-labelledby="gallery_figure_FPKM_Density_list_Combination1_PCA_sdev"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/Combination1.PCA.sdev_fitted.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_FPKM_Density_pane_Combination1_PCA_JackStrawPlot" 
+	role="tabpanel" aria-labelledby="gallery_figure_FPKM_Density_list_Combination1_PCA_JackStrawPlot"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/Combination1.PCA.JackStrawPlot.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_figure_FPKM_Density_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure_FPKM_Density_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure_FPKM_Density_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_FPKM_Density_list_Combination1_PCA_sdev"
+	data-toggle="list" href="#gallery_figure_FPKM_Density_pane_Combination1_PCA_sdev" role="tab" aria-controls="Combination1_PCA_sdev">Combination1_PCA_sdev</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_FPKM_Density_list_Combination1_PCA_JackStrawPlot"
+	data-toggle="list" href="#gallery_figure_FPKM_Density_pane_Combination1_PCA_JackStrawPlot" role="tab" aria-controls="Combination1_PCA_JackStrawPlot">Combination1_PCA_JackStrawPlot</a>
+	
+	</div>
+	</div>
+	</div>
+	</p>
+<p class="name_fig">Figure 4.1 Plots the results of the JackStraw analysis for PCA significance.</p>
+<p class="premark center">There are two type of graphs. Figure 1: "Elbow plot" is a ranking of principle components based on the percentage of variance explained by each one. The “elbow” of this plot, which is used to select relevant PCs to analyse the dataset. Figure 2: Significant PCs should show a p-value distribution (black curve) that is strongly skewed to the left compared to the null distribution (dashed line) The p-value for each PC is based on a proportion test comparing the number of genes with a p-value below a particular threshold (score.thresh), compared with the proportion of genes expected under a uniform distribution of p-values. ‘Significant’ PCs will show a strong enrichment of features with low p-values (solid curve above the dashed line). </p>
+
+<hr />
+</p>
+<h4><a>4.2 Identify Clusters of Cells</a></h4>
+<p class="paragraph">To partition the data into clusters of transcriptionally related cells, a shared nearest neighbor (SNN) modularity optimization based clustering algorithm is used to identify clusters of cells. In this process, the top PCs retained as input for clustering, generally ranging from 5 to 20, are determined by elbow point as shown in Figure 4.1.</p>
+<p class="paragraph"><span> <b>Click to open the result directory: <a href="../Result_X401SC24010230-Z01-F005_GRCh38/3.Identification_subpopulation/Clustering/" title="" target="_blank">Result/3.Identification_subpopulation/Clustering</a></b></span></p>
+<p class="center">
+	<div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_UniformDistribution_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure_UniformDistribution_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure_UniformDistribution_pane_Combination1_Clustering" 
+	role="tabpanel" aria-labelledby="gallery_figure_UniformDistribution_list_Combination1_Clustering"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/Combination1.cluster.barplot.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_figure_UniformDistribution_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure_UniformDistribution_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure_UniformDistribution_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_UniformDistribution_list_Combination1_Clustering"
+	data-toggle="list" href="#gallery_figure_UniformDistribution_pane_Combination1_Clustering" role="tab" aria-controls="Combination1_Clustering">Combination1_Clustering</a>
+	
+	</div>
+	</div>
+	</div>
+	</p>
+<p class="name_fig">Figure 4.2 Relative proportion of cells among clusters in different samples</p>
+
+<hr />
+</p>
+<h4><a>4.3 Dimensionality Reduction and Visualization</a></h4>
+<p class="paragraph">For visualization purposes, dimensionality was further reduced to 2D using t-distributed stochastic neighbor embedding (t-SNE) and uniform manifold approximation and projection (UMAP). Both of them are try to find a low-dimensional representation that preserves relationships between neighbors in high-dimensional space. Compared to t-SNE, the UMAP visualization tends to have more compact visual clusters with more empty space between them.</p>
+<p class="paragraph"><span> <b>Click to open the result directory: <a href="../Result_X401SC24010230-Z01-F005_GRCh38/3.Identification_subpopulation/TSNE/" title="" target="_blank">Result/3.Identification_subpopulation/TSNE</a></b></span></p>
+<p class="paragraph"><span> <b>Click to open the result directory: <a href="../Result_X401SC24010230-Z01-F005_GRCh38/3.Identification_subpopulation/UMAP" title="" target="_blank">Result/3.Identification_subpopulation/UMAP</a></b></span></p>
+<p class="center">
+	<div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_FPKM_Distribution_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure_FPKM_Distribution_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure_FPKM_Distribution_pane_Combination1_cluster_tSNE" 
+	role="tabpanel" aria-labelledby="gallery_figure_FPKM_Distribution_list_Combination1_cluster_tSNE"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/Combination1.cluster.tSNE.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_FPKM_Distribution_pane_Combination1_cluster_samples_tSNE" 
+	role="tabpanel" aria-labelledby="gallery_figure_FPKM_Distribution_list_Combination1_cluster_samples_tSNE"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/Combination1.sample.tSNE.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_FPKM_Distribution_pane_Combination1_cluster_UMAP" 
+	role="tabpanel" aria-labelledby="gallery_figure_FPKM_Distribution_list_Combination1_cluster_UMAP"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/Combination1.cluster.UMAP.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_FPKM_Distribution_pane_Combination1_cluster_samples_UMAP" 
+	role="tabpanel" aria-labelledby="gallery_figure_FPKM_Distribution_list_Combination1_cluster_samples_UMAP"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/Combination1.sample.UMAP.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_figure_FPKM_Distribution_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure_FPKM_Distribution_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure_FPKM_Distribution_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_FPKM_Distribution_list_Combination1_cluster_tSNE"
+	data-toggle="list" href="#gallery_figure_FPKM_Distribution_pane_Combination1_cluster_tSNE" role="tab" aria-controls="Combination1_cluster_tSNE">Combination1_cluster_tSNE</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_FPKM_Distribution_list_Combination1_cluster_samples_tSNE"
+	data-toggle="list" href="#gallery_figure_FPKM_Distribution_pane_Combination1_cluster_samples_tSNE" role="tab" aria-controls="Combination1_cluster_samples_tSNE">Combination1_cluster_samples_tSNE</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_FPKM_Distribution_list_Combination1_cluster_UMAP"
+	data-toggle="list" href="#gallery_figure_FPKM_Distribution_pane_Combination1_cluster_UMAP" role="tab" aria-controls="Combination1_cluster_UMAP">Combination1_cluster_UMAP</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_FPKM_Distribution_list_Combination1_cluster_samples_UMAP"
+	data-toggle="list" href="#gallery_figure_FPKM_Distribution_pane_Combination1_cluster_samples_UMAP" role="tab" aria-controls="Combination1_cluster_samples_UMAP">Combination1_cluster_samples_UMAP</a>
+	
+	</div>
+	</div>
+	</div>
+	</p>
+<p class="name_fig">Figure 4.3 The t-SNE and UMAP plots constructed from the top PCs in the clusters dataset. Each point represents a cell, coloured according to cluster in Figure 1 or sample in Figure 2. </p>
+<p class="premark center"></p>
+
+
+<!---------------------------------------- 差异表达分析 ------------------------------------->
+<hr />
+</p>
+<h3 id="id_order_diffexp">5 Marker Gene Detection </h3>
+<p class="paragraph">Identification of marker genes is usually based around the retrospective detection of differential expression between clusters. These marker genes allow us to assign biological meaning to each cluster based on their functional annotation. In the most obvious case, the marker genes for each cluster are a priori associated with particular cell types, allowing us to regard the clustering as a proxy for cell-type identity. Significantly differential expressed genes for each cluster were identified using the Wilcox test with the threshold qvalue <0.05 and log2foldchange >0.25.</p>
+<h4 id="id_order_diffexp">5.1 List of Marker Genes</h4>
+<p class="paragraph"><span> <b>Click to open the result directory: <a href="../Result_X401SC24010230-Z01-F005_GRCh38/4.Detection_Markergene/" title="" target="_blank">Result/4.Detection_Markergene/*/*cluster.diffexp.significant.xls</a></b></span></p>
+<p class="name_table">Table 5.1 Differential expression analysis results</p>
+<p class="center">
+    <div id="tb">
+       <table class="gy">
+<tr><th>gene_id</th><th>gene</th><th>cluster</th><th>avg_logFC</th><th>p_val</th><th>p_val_adj</th><th>pct.1</th><th>pct.2</th></tr>
+
+        <tr> 
+        <td>ENSG00000145824</td><td>CXCL14</td><td>0</td><td>1.32122852730262</td><td>0</td><td>0</td><td>0.868</td><td>0.484
+</td>
+        </tr>
+
+        <tr> 
+        <td>ENSG00000203783</td><td>PRR9</td><td>0</td><td>1.24392553061041</td><td>0</td><td>0</td><td>0.957</td><td>0.655
+</td>
+        </tr>
+
+        <tr> 
+        <td>ENSG00000167779</td><td>IGFBP6</td><td>0</td><td>1.06474054902523</td><td>0</td><td>0</td><td>0.998</td><td>0.834
+</td>
+        </tr>
+
+        <tr> 
+        <td>ENSG00000196754</td><td>S100A2</td><td>0</td><td>1.00735073798328</td><td>0</td><td>0</td><td>0.995</td><td>0.779
+</td>
+        </tr>
+
+</table>
+</div>
+      </p>
+      <p class="tremark">(1) gene_id: The gene ID.</p>
+      <p class="tremark">(2) gene: The gene name.</p>
+      <p class="tremark">(3) cluster: The cluster number. We only shown cluster0 there.</p>
+      <p class="tremark">(4) avg_logFC: The log fold-chage of the average expression between one given cluster and other clusters.</p> 
+      <p class="tremark">(5) p_val: The p-value (unadjusted).</p>
+      <p class="tremark">(6) p_val_adj: Adjusted p-value, based on bonferroni correction using all features in the dataset.</p>
+      <p class="tremark">(7) pct.1: The percentage of cells where the feature is detected in the given cluster.</p>
+      <p class="tremark">(8) pct.2: The percentage of cells where the feature is detected in the all other clusters.</p>
+     </p> 
+<hr />
+</p>
+<h4><a>5.2 Expression Pattern of Marker Genes</a></h4>
+<p class="paragraph"> Heatmaps showing expression of indicated marker genes for given cells and features. In this case, we are plotting the top 10 markers (or all markers if less than 10) for each cluster.</p>
+	<p class="center">
+	<div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_Differential_Expression_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure_Differential_Expression_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure_Differential_Expression_pane_Combination1_clusters_heatmap" 
+	role="tabpanel" aria-labelledby="gallery_figure_Differential_Expression_list_Combination1_clusters_heatmap"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/Combination1.cluster.top10.heatmap.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_figure_Differential_Expression_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure_Differential_Expression_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure_Differential_Expression_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_Differential_Expression_list_Combination1_clusters_heatmap"
+	data-toggle="list" href="#gallery_figure_Differential_Expression_pane_Combination1_clusters_heatmap" role="tab" aria-controls="Combination1_clusters_heatmap">Combination1_clusters_heatmap</a>
+	
+	</div>
+	</div>
+	</div>
+	</p>
+<p class="name_fig">Figure 5.1 Heatmap showing relative expression of top 10 marker genes exhibiting differential expression across clusters.</p>
+
+
+<hr />
+</p>
+<h4><a>5.3 Expression Level of Marker Genes</a></h4>
+<p class="paragraph"></p>
+
+	<p class="center">
+	<div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_Co_Exp_Venn_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure_Co_Exp_Venn_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure_Co_Exp_Venn_pane_Combination1_cluster0_marker_violin" 
+	role="tabpanel" aria-labelledby="gallery_figure_Co_Exp_Venn_list_Combination1_cluster0_marker_violin"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/Combination1.cluster0.marker.violin.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_figure_Co_Exp_Venn_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure_Co_Exp_Venn_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure_Co_Exp_Venn_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_Co_Exp_Venn_list_Combination1_cluster0_marker_violin"
+	data-toggle="list" href="#gallery_figure_Co_Exp_Venn_pane_Combination1_cluster0_marker_violin" role="tab" aria-controls="Combination1_cluster0_marker_violin">Combination1_cluster0_marker_violin</a>
+	
+	</div>
+	</div>
+	</div>
+	</p>
+<p class="name_fig">Figure 5.2 Violin plots show the relative expression levels of marker genes among all clusters. (Only six marker genes are shown in here)</p>
+<p class="premark center"></p>
+
+
+<hr />
+</p>
+<h4><a>5.4 t-SNE/UMAP Visualize Expression of Marker Genes</a></h4>
+<p class="paragraph"> </p>
+
+	<p class="center">
+	<div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_Cluster_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure_Cluster_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure_Cluster_pane_Combination1_cluster0_marker_tSNE" 
+	role="tabpanel" aria-labelledby="gallery_figure_Cluster_list_Combination1_cluster0_marker_tSNE"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/Combination1.cluster0.marker.tsne.png" /></div>
+	
+	<div class="tab-pane fade" id="gallery_figure_Cluster_pane_Combination1_cluster0_marker_UMAP" 
+	role="tabpanel" aria-labelledby="gallery_figure_Cluster_list_Combination1_cluster0_marker_UMAP"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/Combination1.cluster0.marker.umap.png" /></div>
+	
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_figure_Cluster_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure_Cluster_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure_Cluster_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_Cluster_list_Combination1_cluster0_marker_tSNE"
+	data-toggle="list" href="#gallery_figure_Cluster_pane_Combination1_cluster0_marker_tSNE" role="tab" aria-controls="Combination1_cluster0_marker_tSNE">Combination1_cluster0_marker_tSNE</a>
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_Cluster_list_Combination1_cluster0_marker_UMAP"
+	data-toggle="list" href="#gallery_figure_Cluster_pane_Combination1_cluster0_marker_UMAP" role="tab" aria-controls="Combination1_cluster0_marker_UMAP">Combination1_cluster0_marker_UMAP</a>
+	
+	</div>
+	</div>
+	</div>
+	</p>
+	<p class="name_fig">Figure 5.3 Expression levels of six representitive marker genes of first cluster are color coded (blue) on t-SNE and UMAP plots, respectively.</p>
+
+
+
+
+<div id="page">
+      <hr />
+      </p>
+<h3>6 Enrichment Analysis and Annotation of Marker Genes</a></h3>
+<p class="paragraph">Enrichment analysis is a widely used approach to determine whether known biological functions or processes are over-represented (= enriched) in an experimentally-derived gene list, e.g. a list of differentially expressed genes (DEGs).</p>
+<p class="paragraph">The p-value can be calculated by hypergeometric distribution:</p>
+<p class="center">
+<img src="src/images/enrichment.png" width=600/></p>
+<p class="paragraph">Here, N is the number of all genes with a GO or KEGG annotation, n is the number of DEGs in N, M is the number of all genes annotated to specific terms, and m is number of DEGs in M.</p>
+</div>
+
+<div id="page">
+      <hr />
+      </p>
+<h4>6.1 GO Enrichment Analysis</h4>
+  <p class="paragraph">Gene Ontology (GO) is a standardized classification system widely used for gene function, which supplies a set of controlled vocabulary to describe the property of genes and gene products comprehensively. There are 3 ontologies in GO system: molecular function, cellular component and biological process. The basic unit of GO is GO-term, each of which belongs to one type of ontology. </p>
+  <p class="paragraph">This method firstly maps all source genes to GO terms in the database (http://www.geneontology.org/), calculating gene numbers for each term, then using Wallenius non-central hyper-geometric distribution to find significantly enriched GO terms in source genes comparing to the reference genes background.
+<p class="paragraph"><span> <b>Click to open the result directory: <a href="../Result_X401SC24010230-Z01-F005_GRCh38/5.Enrichment_Annotation/GO" title="" target="_blank">Result/5.Enrichment_Annotation/GO</a></b></span></p>
+<p class="name_table">Table 6.1 GO enrichment of differential expressed marker genes</p>
+<p class="center">
+<div id="tb">
+<table class="gy">
+<tr><th>Category</th><th>ID</th><th>Description</th><th>GeneRatio</th><th>BgRatio</th><th>pvalue</th><th>padj</th><th>Count</th></tr>
+
+	<tr>
+	<td>GO</td><td>GO:0005198</td><td>structural molecule activity</td><td>18/368</td><td>121/11195</td><td>7.67209455572029e-08</td><td>6.05328260446331e-05</td><td>18
+</td>
+	</tr>
+
+	<tr>
+	<td>GO</td><td>GO:0003735</td><td>structural constituent of ribosome</td><td>13/368</td><td>70/11195</td><td>3.6816473657552e-07</td><td>8.70388395946307e-05</td><td>13
+</td>
+	</tr>
+
+	<tr>
+	<td>GO</td><td>GO:0043228</td><td>non-membrane-bounded organelle</td><td>28/368</td><td>295/11195</td><td>4.41261544205986e-07</td><td>8.70388395946307e-05</td><td>28
+</td>
+	</tr>
+
+	<tr>
+	<td>GO</td><td>GO:0043232</td><td>intracellular non-membrane-bounded organelle</td><td>28/368</td><td>295/11195</td><td>4.41261544205986e-07</td><td>8.70388395946307e-05</td><td>28
+</td>
+	</tr>
+
+</table>
+</div>
+</p>
+
+<p class="tremark">Each column stands for: </p>
+<p class="tremark">(1) Category: different class of GO id. CC, BP and MF are the abbreviation of cellular component, biological process and  molecular function respectively.</p>
+<p class="tremark">	(2) ID: the unique identification id of Gene Ontology database.</p>
+<p class="tremark">	(3) Description: function description of Gene Ontology.</p>
+<p class="tremark">	(4) GeneRatio: ratio of differentially expressed genes to all genes for this GO term.</p>
+<p class="tremark">	(5) BgRatio: in background GO database, the ratio of all genes concerning this GO term to all genes.</p>
+<p class="tremark">	(6) pvalue: statistics category term; abbreviation of probability value.</p>
+<p class="tremark">	(7) padj: adjusted p-value. Generally, GO terms with Corrected_pValue < 0.05 are significant enrichment.</p>
+<p class="tremark">	(8) Count: the number of differentially expressed marker genes concerning this GO term.</p>
+</div>
+
+<div id="page">
+      <hr />
+      </p>
+<p class="paragraph">Complex heatmaps are efficient to visualize associations between different sources of data sets and reveal potential patterns. The hierarchical clustering is produced by a pre-defined distance method called "euclidean". Here we display the top 20 significantly enriched pathway in the GO enrichment analysis results, if the enriched pathway is less than 20, the whole enriched pathway will be shown. </p></p>
+<p class="center">
+<div class="row">
+<div class="col-1">
+<div id="gallery_figure_lncgobar_button_prev" class="button_prev" onclick="prev(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_prev">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-6">
+<div class="tab-content" id="gallery_figure_lncgobar_nav-tabContent">
+
+<div class="tab-pane fade" id="gallery_figure_lncgobar_pane_Combination1_GO_heatmap" 
+role="tabpanel" aria-labelledby="gallery_figure_lncgobar_list_Combination1_GO_heatmap"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/Combination1.cluster.GO.enrich.heatmap.png" /></div>
+
+</div>
+</div>
+<div class="col-1">
+<div id="gallery_figure_lncgobar_button_next" class="button_next" onclick="next(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_next">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-4">
+<input class="form-control" id="gallery_figure_lncgobar_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="gallery_figure_lncgobar_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="gallery_figure_lncgobar_list_Combination1_GO_heatmap"
+data-toggle="list" href="#gallery_figure_lncgobar_pane_Combination1_GO_heatmap" role="tab" aria-controls="Combination1_GO_heatmap">Combination1_GO_heatmap</a>
+
+</div>
+</div>
+</div>
+</p>
+<p class="name_fig">Figure 6.1　GO enrichment Heatmap plot of marker genes</p>
+<p class="premark">The color indicates the -log10(q-value).
+</div>
+
+<div id="page">
+      <hr />
+      </p>
+<p class="center">
+        <div class="row">
+        <div class="col-1">
+        <div id="gallery_figure_GO_Enrich_button_prev" class="button_prev" onclick="prev(this.id)">
+        <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon></svg></div></div>
+        <div class="col-6">
+        <div class="tab-content" id="gallery_figure_GO_Enrich_nav-tabContent">
+        
+        <div class="tab-pane fade" id="gallery_figure_GO_Enrich_pane_Combination1_cluster0_GO_bar" 
+        role="tabpanel" aria-labelledby="gallery_figure_GO_Enrich_list_Combination1_cluster0_GO_bar"
+        onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/Combination1.cluster1.GO.enrich.barplot.png" /></div>
+        
+        <div class="tab-pane fade" id="gallery_figure_GO_Enrich_pane_Combination1_cluster0_GO_dot" 
+        role="tabpanel" aria-labelledby="gallery_figure_GO_Enrich_list_Combination1_cluster0_GO_dot"
+        onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/Combination1.cluster1.GO.enrich.dotplot.png" /></div>
+        
+        </div></div>
+        <div class="col-1">
+        <div id="gallery_figure_GO_Enrich_button_next" class="button_next" onclick="next(this.id)">
+        <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon></svg></div></div>
+        <div class="col-4">
+        <input class="form-control" id="gallery_figure_GO_Enrich_InputList" type="text" placeholder="Search..">
+        <div class="list-group" id="gallery_figure_GO_Enrich_list-tab" role="tablist">
+        
+        <a class="list-group-item list-group-item-action" id="gallery_figure_GO_Enrich_list_Combination1_cluster0_GO_bar"
+        data-toggle="list" href="#gallery_figure_GO_Enrich_pane_Combination1_cluster0_GO_bar" role="tab" aria-controls="Combination1_cluster0_GO_bar">Combination1_cluster0_GO_bar</a>
+        
+        <a class="list-group-item list-group-item-action" id="gallery_figure_GO_Enrich_list_Combination1_cluster0_GO_dot"
+        data-toggle="list" href="#gallery_figure_GO_Enrich_pane_Combination1_cluster0_GO_dot" role="tab" aria-controls="Combination1_cluster0_GO_dot">Combination1_cluster0_GO_dot</a>
+        
+        </div>
+        </div>
+        </div>
+        </p>
+<p class="name_fig">Figure 6.2　GO enrichment Histogram and Scatter plot of marker genes</p>
+<p class="premark">There are two graphs in each group. Figure 1:The x- axis is the significance enriched and the y-axis is GO terms enriched. Figure 2:  The y-axis shows the name of the pathway and the x-axis shows the Rich factor. Dot size represents the number of different genes and the color indicates the q-value.
+<div id="page">
+      <hr />
+      </p>
+
+<p class="paragraph">Enrichment map organizes enriched terms into a network with edges connecting overlapping gene sets. In this way, mutually overlapping gene sets are tend to cluster together, making it easy to identify functional module.</p>
+<p class="center">
+<div class="row">
+<div class="col-1">
+<div id="gallery_fig_lncenrich_button_prev" class="button_prev" onclick="prev(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_prev">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-6">
+<div class="tab-content" id="gallery_fig_lncenrich_nav-tabContent">
+
+<div class="tab-pane fade" id="gallery_fig_lncenrich_pane_Combination1_cluster0_GO_emapplot" 
+role="tabpanel" aria-labelledby="gallery_fig_lncenrich_list_Combination1_cluster0_GO_emapplot"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/Combination1.cluster1.GO.enrich.emapplot.png" /></div>
+
+</div>
+</div>
+<div class="col-1">
+<div id="gallery_fig_lncenrich_button_next" class="button_next" onclick="next(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_next">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-4">
+<input class="form-control" id="gallery_fig_lncenrich_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="gallery_fig_lncenrich_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="gallery_fig_lncenrich_list_Combination1_cluster0_GO_emapplot"
+data-toggle="list" href="#gallery_fig_lncenrich_pane_Combination1_cluster0_GO_emapplot" role="tab" aria-controls="Combination1_cluster0_GO_emapplot">Combination1_cluster0_GO_emapplot</a>
+
+</div>
+</div>
+</div>
+</p>
+<p class="name_fig">Figure 6.3 Plot for results obtained from hypergeometric test and GO enrichment analysis.</p>
+<p class="premark">Each node represents a GO term. The darker the color is, the higher is the enrichment level of the term. The name of each term are present on the node.</p></p>
+</div>
+
+<div id="page">
+      <hr />
+      </p>
+<h4>6.2 KEGG Enrichment Analysis</h4>
+<p class="paragraph">The interactions of multiple genes may be involved in certain biological functions. KEGG (Kyoto Encyclopedia of Genes and Genomes) is a collection of manually curated databases dealing with genomes, biological pathways, diseases, drugs, and chemical substances. KEGG is utilized for bioinformatics research and education, including data analysis in genomics, metagenomics, metabolomics and other omics studies. Pathway enrichment analysis identifies significantly enriched metabolic pathways or signal transduction pathways associated with differentially expressed marker genes compared with the whole genome background. </p>
+<p class="paragraph"><span> <b>Click to open the result directory: <a href="../Result_X401SC24010230-Z01-F005_GRCh38/5.Enrichment_Annotation/KEGG" title="" target="_blank">Result/5.Enrichment_Annotation/KEGG</a></b></span></p>
+<p class="name_table">Table 6.3 KEGG enrichment of marker genes</p>
+<p class="center">
+<div id="tb">
+<table class="gy">
+<tr><th>Category</th><th>ID</th><th>Description</th><th>GeneRatio</th><th>BgRatio</th><th>pvalue</th><th>padj</th><th>Count</th></tr>
+
+<tr>
+        <td>KEGG</td><td>hsa03010</td><td>Ribosome</td><td>32/338</td><td>123/7703</td><td>7.76490948845274e-17</td><td>2.08099574290533e-14</td><td>32
+</td>
+                        </tr>
+
+<tr>
+        <td>KEGG</td><td>hsa05171</td><td>Coronavirus disease - COVID-19</td><td>40/338</td><td>221/7703</td><td>7.12248779811483e-15</td><td>9.54413364947387e-13</td><td>40
+</td>
+                        </tr>
+
+<tr>
+        <td>KEGG</td><td>hsa05208</td><td>Chemical carcinogenesis - reactive oxygen species</td><td>30/338</td><td>212/7703</td><td>9.8483474360815e-09</td><td>8.79785704289947e-07</td><td>30
+</td>
+                        </tr>
+
+<tr>
+        <td>KEGG</td><td>hsa05418</td><td>Fluid shear stress and atherosclerosis</td><td>21/338</td><td>130/7703</td><td>1.825874178468e-07</td><td>1.22333569957356e-05</td><td>21
+</td>
+                        </tr>
+
+</table>
+</div>
+</p>
+
+<p class="tremark">(1) Category: KEGG database.</p>
+<p class="tremark">	(2) ID: the unique identification id of KEGG database.</p>
+<p class="tremark">	(3) Description: function description of this pathway.</p>
+<p class="tremark">	(4) GeneRatio: ratio of differentially expressed genes to all genes, which are concerned with this pathway.</p>
+<p class="tremark">	(5) BgRatio: in background KEGG  database, the ratio of all genes concerning this KEGG term to all genes.</p>
+<p class="tremark">	(6) pvalue: statistics category term; abbreviation of probability value.</p>
+<p class="tremark">	(7) padj: adjusted p-value. Generally, KEGG terms with Corrected_pValue < 0.05 are significant enrichment.</p>
+<p class="tremark">	(8) Count: the number of differentially expressed genes concerning this term.</p>
+</div>
+
+
+
+<div id="page">
+      <hr />
+      </p>
+      <p class="center">
+        <div class="row">
+        <div class="col-1">
+        <div id="gallery_figure_KEGG_Enrich_button_prev" class="button_prev" onclick="prev(this.id)">
+        <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon></svg></div></div>
+        <div class="col-6">
+        <div class="tab-content" id="gallery_figure_KEGG_Enrich_nav-tabContent">
+        
+        <div class="tab-pane fade" id="gallery_figure_KEGG_Enrich_pane_Combination1_KEGG_heatmap" 
+        role="tabpanel" aria-labelledby="gallery_figure_KEGG_Enrich_list_Combination1_KEGG_heatmap"
+        onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/Combination1.cluster.KEGG.enrich.heatmap.png" /></div>
+        
+        </div></div>
+        <div class="col-1">
+        <div id="gallery_figure_KEGG_Enrich_button_next" class="button_next" onclick="next(this.id)">
+        <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon></svg></div></div>
+        <div class="col-4">
+        <input class="form-control" id="gallery_figure_KEGG_Enrich_InputList" type="text" placeholder="Search..">
+        <div class="list-group" id="gallery_figure_KEGG_Enrich_list-tab" role="tablist">
+        
+        <a class="list-group-item list-group-item-action" id="gallery_figure_KEGG_Enrich_list_Combination1_KEGG_heatmap"
+        data-toggle="list" href="#gallery_figure_KEGG_Enrich_pane_Combination1_KEGG_heatmap" role="tab" aria-controls="Combination1_KEGG_heatmap">Combination1_KEGG_heatmap</a>
+        
+        </div>
+        </div>
+        </div>
+        </p>
+<p class="name_fig">Figure 6.4 KEGG enrichment Heatmap plot of marker genes</p>
+<p class="premark center"></p>
+
+<div id="page">
+      <hr />
+      </p>
+<p class="paragraph">KEGG enrichment scattered plot shows the DEGs enrichment analysis results in KEGG pathway. The degree of KEGG enrichment is measured by Rich factor, q-value and the number of genes enriched in this pathway. Rich factor refers to the ratio of the DEGs number in the pathway and the number of all genes annotated in the pathway. Q-value is the p-value after normalization and its range is [0,1]. The smaller q-value is, the more significant the enrichment is. The top20 significantly DEGs enriched pathways are displayed in the report. If the enriched pathways are less than 20, all enriched pathways are displayed. 
+<p class="center">
+<div class="row">
+<div class="col-1">
+<div id="gallery_figure_lnckeggscat_button_prev" class="button_prev" onclick="prev(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_prev">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-6">
+<div class="tab-content" id="gallery_figure_lnckeggscat_nav-tabContent">
+
+<div class="tab-pane fade" id="gallery_figure_lnckeggscat_pane_Combination1_cluster0_KEGG_bar" 
+role="tabpanel" aria-labelledby="gallery_figure_lnckeggscat_list_Combination1_cluster0_KEGG_bar"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/Combination1.cluster1.KEGG.enrich.barplot.png" /></div>
+
+<div class="tab-pane fade" id="gallery_figure_lnckeggscat_pane_Combination1_cluster0_KEGG_dot" 
+role="tabpanel" aria-labelledby="gallery_figure_lnckeggscat_list_Combination1_cluster0_KEGG_dot"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/Combination1.cluster1.KEGG.enrich.dotplot.png" /></div>
+
+</div>
+</div>
+<div class="col-1">
+<div id="gallery_figure_lnckeggscat_button_next" class="button_next" onclick="next(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_next">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-4">
+<input class="form-control" id="gallery_figure_lnckeggscat_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="gallery_figure_lnckeggscat_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="gallery_figure_lnckeggscat_list_Combination1_cluster0_KEGG_bar"
+data-toggle="list" href="#gallery_figure_lnckeggscat_pane_Combination1_cluster0_KEGG_bar" role="tab" aria-controls="Combination1_cluster0_KEGG_bar">Combination1_cluster0_KEGG_bar</a>
+
+<a class="list-group-item list-group-item-action" id="gallery_figure_lnckeggscat_list_Combination1_cluster0_KEGG_dot"
+data-toggle="list" href="#gallery_figure_lnckeggscat_pane_Combination1_cluster0_KEGG_dot" role="tab" aria-controls="Combination1_cluster0_KEGG_dot">Combination1_cluster0_KEGG_dot</a>
+
+</div>
+</div>
+</div>
+</p>
+<p class="name_fig">Figure 6.5　KEGG enrichment Histogram and Scatter plot of marker genes</p>
+<p class="premark">There are two graphs in each group. Figure 1:The x- axis is the significance enriched and the y-axis is KEGG terms enriched. Figure 2:  The y-axis shows the name of the pathway and the x-axis shows the Rich factor. Dot size represents the number of different genes and the color indicates the q-value.</p></p>
+</div>
+
+
+<div id="page">
+      <hr />
+      </p>
+<p class="paragraph"></p>
+<p class="center">
+<div class="row">
+<div class="col-1">
+<div id="gallery_fig_lnc_kegg3_button_prev" class="button_prev" onclick="prev(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_prev">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-6">
+<div class="tab-content" id="gallery_fig_lnc_kegg3_nav-tabContent">
+
+<div class="tab-pane fade" id="gallery_fig_lnc_kegg3_pane_Combination1_cluster0_KEGG_emapplot" 
+role="tabpanel" aria-labelledby="gallery_fig_lnc_kegg3_list_Combination1_cluster0_KEGG_emapplot"
+onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/Combination1.cluster1.KEGG.enrich.emapplot.png" /></div>
+
+</div>
+</div>
+<div class="col-1">
+<div id="gallery_fig_lnc_kegg3_button_next" class="button_next" onclick="next(this.id)">
+<svg viewbox="0 0 16000 16000" class="svg_next">
+<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+</polygon></svg></div></div>
+<div class="col-4">
+<input class="form-control" id="gallery_fig_lnc_kegg3_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="gallery_fig_lnc_kegg3_list-tab" role="tablist">
+
+<a class="list-group-item list-group-item-action" id="gallery_fig_lnc_kegg3_list_Combination1_cluster0_KEGG_emapplot"
+data-toggle="list" href="#gallery_fig_lnc_kegg3_pane_Combination1_cluster0_KEGG_emapplot" role="tab" aria-controls="Combination1_cluster0_KEGG_emapplot">Combination1_cluster0_KEGG_emapplot</a>
+
+</div>
+</div>
+</div>
+</p>
+<p class="name_fig">Figure 6.6 Plot for results obtained from hypergeometric test and KEGG enrichment analysis.</p>
+<p class="premark">Each node represents a KEGG term. The darker the color is, the higher is the enrichment level of the term. The name of each term are present on the node.</p>
+
+<hr />
+</p>
+
+<h4 id="id_order_kegg">6.3 Reactome Enrichment Analysis</h4>
+<p class="paragraph">The Reactome (http://www.reactome.org) is a database of reactions, pathways and biological processes, which can be used to browse pathways and submit data to a suite of data analysis tools, containing curated annotations that cover a diverse set of topics in molecular and cellular biology. Reactome terms with padj < 0.05 are significant enrichment. </p>
+<p class="paragraph"><span> <b>Click to open the result directory: <a href="../Result_X401SC24010230-Z01-F005_GRCh38/5.Enrichment_Annotation/Reactome" title="" target="_blank">Result/5.Enrichment_Annotation/Reactome</a></b></span></p>
+<p class="name_table">Table 6.3 Reactome enrichment of differential expressed marker genes</p>
+<p class="center">
+<div id="tb">
+<table class="gy">
+<tr><th>Category</th><th>ID</th><th>Description</th><th>GeneRatio</th><th>BgRatio</th><th>pvalue</th><th>padj</th><th>Count</th></tr>
+
+<tr>
+        <td>REACTOME</td><td>R-HSA-156902</td><td>Peptide chain elongation</td><td>40/469</td><td>106/11915</td><td>2.94725131706138e-29</td><td>3.43354778437651e-26</td><td>40
+</td></tr>
+
+<tr>
+        <td>REACTOME</td><td>R-HSA-156842</td><td>Eukaryotic Translation Elongation</td><td>40/469</td><td>112/11915</td><td>3.63562459418592e-28</td><td>1.81335425410547e-25</td><td>40
+</td></tr>
+
+<tr>
+        <td>REACTOME</td><td>R-HSA-192823</td><td>Viral mRNA Translation</td><td>39/469</td><td>106/11915</td><td>4.66958177022869e-28</td><td>1.81335425410547e-25</td><td>39
+</td></tr>
+
+<tr>
+        <td>REACTOME</td><td>R-HSA-72764</td><td>Eukaryotic Translation Termination</td><td>39/469</td><td>110/11915</td><td>2.40161485530369e-27</td><td>6.994703266072e-25</td><td>39
+</td></tr>
+
+</table>
+</div>
+</p>
+
+<p class="tremark">(1) Category: Reactome database.</p>
+<p class="tremark">	(2) ID: the unique identification id of Reactome database.</p>
+<p class="tremark">	(3) Description: function description of this pathway.</p>
+<p class="tremark">	(4) GeneRatio: ratio of differentially expressed genes to all genes, which are concerned with this pathway.</p>
+<p class="tremark">	(5) BgRatio: in background Reactome database, the ratio of all genes concerning this Reactome term to all genes.</p>
+<p class="tremark">	(6) pvalue: statistics category term; abbreviation of probability value.</p>
+<p class="tremark">	(7) padj: adjusted p-value. Generally, Reactome terms with Corrected_pValue < 0.05 are significant enrichment.</p>
+<p class="tremark">	(8) Count: the number of differentially expressed genes concerning this term.</p>
+</div>
+
+<p class="paragraph"> </p>
+<p class="center">
+        <div class="row">
+        <div class="col-1">
+        <div id="gallery_figure_Reactome_Enrich_button_prev" class="button_prev" onclick="prev(this.id)">
+        <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon></svg></div></div>
+        <div class="col-6">
+        <div class="tab-content" id="gallery_figure_Reactome_Enrich_nav-tabContent">
+        
+        <div class="tab-pane fade" id="gallery_figure_Reactome_Enrich_pane_Combination1_cluster1_reactome_heatmap" 
+        role="tabpanel" aria-labelledby="gallery_figure_Reactome_Enrich_list_Combination1_cluster1_reactome_heatmap"
+        onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/Combination1.cluster.REACTOME.enrich.heatmap.png" /></div>
+        
+        </div></div>
+        <div class="col-1">
+        <div id="gallery_figure_Reactome_Enrich_button_next" class="button_next" onclick="next(this.id)">
+        <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon></svg></div></div>
+        <div class="col-4">
+        <input class="form-control" id="gallery_figure_Reactome_Enrich_InputList" type="text" placeholder="Search..">
+        <div class="list-group" id="gallery_figure_Reactome_Enrich_list-tab" role="tablist">
+        
+        <a class="list-group-item list-group-item-action" id="gallery_figure_Reactome_Enrich_list_Combination1_cluster1_reactome_heatmap"
+        data-toggle="list" href="#gallery_figure_Reactome_Enrich_pane_Combination1_cluster1_reactome_heatmap" role="tab" aria-controls="Combination1_cluster1_reactome_heatmap">Combination1_cluster1_reactome_heatmap</a>
+        
+        </div>
+        </div>
+        </div>
+        </p>
+<p class="name_fig">Figure 6.7 Reactome enrichment Heatmap plot of marker genes</p>
+<p class="premark center"> </p>
+
+<hr />
+</p>
+        <p class="center">
+        <div class="row">
+        <div class="col-1">
+        <div id="gallery_figure_ReactomeEnrichBar_button_prev" class="button_prev" onclick="prev(this.id)">
+    <svg viewbox="0 0 16000 16000" class="svg_prev">
+    <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+    <polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+    </polygon></svg></div></div>
+    <div class="col-6">
+    <div class="tab-content" id="gallery_figure_ReactomeEnrichBar_nav-tabContent">
+    
+    <div class="tab-pane fade" id="gallery_figure_ReactomeEnrichBar_pane_Combination1_cluster1_reactome_bar" 
+    role="tabpanel" aria-labelledby="gallery_figure_ReactomeEnrichBar_list_Combination1_cluster1_reactome_bar"
+    onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/Combination1.cluster1.REACTOME.enrich.barplot.png" /></div>
+    
+    <div class="tab-pane fade" id="gallery_figure_ReactomeEnrichBar_pane_Combination1_cluster1_reactome_dot" 
+    role="tabpanel" aria-labelledby="gallery_figure_ReactomeEnrichBar_list_Combination1_cluster1_reactome_dot"
+    onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/Combination1.cluster1.REACTOME.enrich.dotplot.png" /></div>
+    
+    </div></div>
+    <div class="col-1">
+    <div id="gallery_figure_ReactomeEnrichBar_button_next" class="button_next" onclick="next(this.id)">
+    <svg viewbox="0 0 16000 16000" class="svg_next">
+    <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+    <polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+    </polygon></svg></div></div>
+    <div class="col-4">
+    <input class="form-control" id="gallery_figure_ReactomeEnrichBar_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_ReactomeEnrichBar_list-tab" role="tablist">
+    
+    <a class="list-group-item list-group-item-action" id="gallery_figure_ReactomeEnrichBar_list_Combination1_cluster1_reactome_bar"
+    data-toggle="list" href="#gallery_figure_ReactomeEnrichBar_pane_Combination1_cluster1_reactome_bar" role="tab" aria-controls="Combination1_cluster1_reactome_bar">Combination1_cluster1_reactome_bar</a>
+
+
+        
+    <a class="list-group-item list-group-item-action" id="gallery_figure_ReactomeEnrichBar_list_Combination1_cluster1_reactome_dot"
+    data-toggle="list" href="#gallery_figure_ReactomeEnrichBar_pane_Combination1_cluster1_reactome_dot" role="tab" aria-controls="Combination1_cluster1_reactome_dot">Combination1_cluster1_reactome_dot</a>
+
+
+        
+        </div>
+        </div>
+        </div>
+        </p>
+<p class="name_fig">Figure 6.8 Reactome enrichment Histogram and Scatter plot of marker genes</p>
+<p class="premark center"> </p>
+<br>
+
+<hr />
+</p>
+        <p class="center">
+        <div class="row">
+        <div class="col-1">
+        <div id="gallery_figure_Reactome_emaplot_button_prev" class="button_prev" onclick="prev(this.id)">
+    <svg viewbox="0 0 16000 16000" class="svg_prev">
+    <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+    <polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+    </polygon></svg></div></div>
+    <div class="col-6">
+    <div class="tab-content" id="gallery_figure_Reactome_emaplot_nav-tabContent">
+    
+    <div class="tab-pane fade" id="gallery_figure_Reactome_emaplot_pane_Combination1_cluster1_reactome_emapplot" 
+    role="tabpanel" aria-labelledby="gallery_figure_Reactome_emaplot_list_Combination1_cluster1_reactome_emapplot"
+    onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/Seurat/Combination1.cluster1.REACTOME.enrich.emapplot.png" /></div>
+    
+    </div></div>
+    <div class="col-1">
+    <div id="gallery_figure_Reactome_emaplot_button_next" class="button_next" onclick="next(this.id)">
+    <svg viewbox="0 0 16000 16000" class="svg_next">
+    <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+    <polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+    </polygon></svg></div></div>
+    <div class="col-4">
+    <input class="form-control" id="gallery_figure_Reactome_emaplot_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_Reactome_emaplot_list-tab" role="tablist">
+    
+    <a class="list-group-item list-group-item-action" id="gallery_figure_Reactome_emaplot_list_Combination1_cluster1_reactome_emapplot"
+    data-toggle="list" href="#gallery_figure_Reactome_emaplot_pane_Combination1_cluster1_reactome_emapplot" role="tab" aria-controls="Combination1_cluster1_reactome_emapplot">Combination1_cluster1_reactome_emapplot</a>
+        
+        </div>
+        </div>
+        </div>
+        </p>
+<p class="name_fig">Figure 6.9 Plot for results obtained from hypergeometric test and Reactome enrichment analysis.</p>
+<p class="premark">Each node represents a Reactome term. The darker the color is, the higher is the enrichment level of the term. The name of each term are present on the node.</p>
+
+<hr />
+</p>
+<h4>6.4 Functional Annotation of Transcription Factor</h4>
+<p class="paragraph">TFCat is a curated catalog of mouse and human transcription factors (TF) based on a reliable core collection of annotations obtained by experts' review of the scientific literature. Annotated genes are assigned to a functional category and confidence level. We use the differentially expressed marker genes in each cluster to search the TFCat, then provides the annotation of the TF and the corresponding reference (PubMed ID).
+<p class="paragraph"><span> <b>Click to open the result directory: <a href="../Result_X401SC24010230-Z01-F005_GRCh38/5.Enrichment_Annotation/Transcript_factor" title="" target="_blank">Result/5.Enrichment_Annotation/Transcript_factor</a></b></span></p>
+<p class="name_table">Table 6.4 Results of transcription factors</p>
+<p class="center">
+<div id="tb">
+<table class="gy">
+<tr><th>gene_id</th><th>gene</th><th>cluster</th><th>avg_logFC</th><th>p_val</th><th>p_val_adj</th><th>pct.1</th><th>pct.2</th><th>Description</th><th>DBD_Classification (Protein_Group/Protein_Family)</th><th>Reviewer</th><th>Judgement</th><th>Taxa</th><th>Reviewer_Commments</th><th>PubMed_ID</th><th>Function</th><th>Evidence_Strength</th><th>PubMed_Comments</th></tr>
+
+        <tr>
+                <td>ENSG00000116717</td><td>GADD45A</td><td>0</td><td>0.979803352008361</td><td>0</td><td>0</td><td>0.999</td><td>0.85</td><td>growth arrest and DNA-damage-inducible 45 alpha</td><td></td><td>Amy Ticoll</td><td>TF Gene</td><td>Transcription Factor Binding: tf co-factor binding</td><td>Yeast two-hybrid studies and GST pulldown assays indicate Gadd45a binds nuclear hormone receptors including RXR-alpha and RAR-alpha. Co-transfection assays in NIH/3T3 cells indicate Gadd45 proteins activate the transactivation function of nuclear receptors.</td><td>10872826</td><td>TF PPI</td><td>Human</td><td>Medium</td>
+                        </tr>
+                        
+        <tr>
+                <td>ENSG00000112182</td><td>BACH2</td><td>0</td><td>0.791004907451812</td><td>0</td><td>0</td><td>0.945</td><td>0.738</td><td>BTB and CNC homology 2</td><td>Zipper-Type Group/Leucine Zipper Family</td><td>Rob Sladek</td><td>TF Gene</td><td>DNA-Binding: sequence-specific</td><td>Bach2 demonstrates binding as a Bach2-MafK heteromdimer to the chicken beta-globin NF-E2 response elemement (5&#39;-TCGACCCGAAAGGAGCTGACTCATGCTAGCCC-3&#39;) in gel shift assays. Binding site selection studies performed using a bacterially synthesized MBP-Bach2 fusion protein identified a Bach2 consensus binding site (cgTGAGTCAtc).Transient transfection of quail QT6 fibroblasts and chicken erythroid HD3 cells show that Bach2 represses transcription mediated by a reporter plasmid containing NF-E2 sites from the chicken beta-globin 3&#39; enhancer driving luciferase expression.</td><td>10949928</td><td>DNA Binding</td><td>Human</td><td>Strong</td>
+                        </tr>
+                        
+        <tr>
+                <td>ENSG00000111912</td><td>NCOA7</td><td>0</td><td>0.661826806988002</td><td>0</td><td>0</td><td>0.696</td><td>0.374</td><td>nuclear receptor coactivator 7</td><td></td><td>Rob Sladek</td><td>TF Gene</td><td>Transcription Factor Binding: tf co-factor binding</td><td>NCOA7 (ERAP140) was cloned from a lymphoma cDNA library by interaction screening using the ligand-binding domain of the estrogen receptor (ERalpha). Interaction between NCOA7 and a GST-ERalpha fusion protein was confirmed in pulldown assays.NCOA7 augmented ER and thyroid hormone-induced activity of suynthetic promoters following transient cotransfection in HepG2 cells. A fusion protein containing NCOA7 linked to the GAL4 DNA-binding domain activated transcription from a synthetic promoter ((GAL4 X 5)SV40-Luc) in COS-1 cells.</td><td>11971969</td><td>Co-activation</td><td>Human</td><td>Strong</td>
+                        </tr>
+                        
+        <tr>
+                <td>ENSG00000157557</td><td>ETS2</td><td>0</td><td>0.657776880593745</td><td>0</td><td>0</td><td>0.998</td><td>0.887</td><td>&quot;E26 avian leukemia oncogene 2, 3&#39; domain&quot;</td><td>Winged Helix-Turn-Helix/Ets Domain Family</td><td>Amy Ticoll</td><td>TF Gene</td><td>DNA-Binding: sequence-specific</td><td>EMSA indicates Ets-2 binds to a specific region within the BRCA1 promoter. Transient transfections performed in MCF-7 cells suggest Ets-2 represses BRCA1 promoter activity.</td><td>12637547</td><td>DNA Binding</td><td>Human</td><td>Medium</td>
+                        </tr>
+                        
+                        </table>
+                        </div>
+                        </p>
+
+<p class="tremark">Each column stands for: </p>
+<p class="tremark">(1) gene_id: The gene ID.</p>
+<p class="tremark">(2) gene: The gene name.</p>
+<p class="tremark">(3) cluster: The cluster number. We only shown cluster0 there.</p>
+<p class="tremark">(4) avg_logFC: The log fold-chage of the average expression between one given cluster and other clusters.</p>
+<p class="tremark">(5) p_val: The p-value (unadjusted).</p>
+<p class="tremark">(6) p_val_adj: Adjusted p-value, based on bonferroni correction using all features in the dataset.</p>
+<p class="tremark">(7) pct.1: The percentage of cells where the feature is detected in the given cluster.</p>
+<p class="tremark">(8) pct.2: The percentage of cells where the feature is detected in the all other clusters.</p>
+<p class="tremark">(9) Description: gene function description.
+<p class="tremark">(10) DBD_Classification (Protein_Group/Protein_Family): DNA binding region classification (used to distinguish protein family).
+<p class="tremark">(11) Reviewer: the name of literature review expert.
+<p class="tremark">(12) Judgement: the result of experts to judge the transcription factors.
+<p class="tremark">(13) Taxa: the function classification of TF.
+<p class="tremark">(14) Reviewer Commments: expert commentary.
+<p class="tremark">(15) PubMed ID: reference ID in PubMed.
+<p class="tremark">(16) Function: the function of TF.
+<p class="tremark">(17) Evidence Strength: the evaluation of evidence.
+<p class="tremark">(18) PubMed Comments.
+</div>
+
+<hr />
+</p>
+
+<h4>6.5 Protein-Protein Interaction Network Analysis</h4>
+<p class="paragraph">The protein-protein interaction network is constructed for differentially expressed genes in each cluster by using STRING protein interaction database (http://string-db.org). Protein-protein interaction is provided as network file which can be imported into Cytoscape software and visualized and edited. The central organizing metaphor of Cytoscape is a network graph, with molecular species represented as nodes and intermolecular interactions represented as links, that is, edges, between nodes.</p>
+<p class="paragraph"><span> <b>Click to open the result directory: <a href="../Result_X401SC24010230-Z01-F005_GRCh38/5.Enrichment_Annotation/PPI" title="" target="_blank">Result/5.Enrichment_Annotation/PPI</a></b></span></p>
+<p class="center">
+<img src="src/images/PPI.png" width=480/></p>
+
+
+<!-------------------------------------------- 备注 ------------------------------------------->
+
+    <hr />
+    <h2>IV Appendix</h2>
+    <h3 id="note_2">Result Directory</h3>
+    <p class="paragraph">Click to open the result content in html format in advance.</p>
+    <p class="paragraph">Result Content: <a href="src/DirectoryTree.html" title="" target="_blank">html</a></p>
+
+       <table width=80% align="center" id="result_note" cellspacing="0" cellpadding="5" class="gy2">
+
+		<tr><th colspan="3">1.Explanation on result file:</th></tr>
+
+		<tr><td rowspan="2">compressed files in the fomat of *.tar.gz:</td><td>Unix/Linux/Mac user</td><td>use tar -zxvf *.tar.gz command</td></tr>
+
+		<tr><td>Windows user</td><td>use uncompressed software such as WinRAR, 7-Zip et al</td></tr>
+
+		<tr><td rowspan="2">compressed files in the fomat of *.gz:</td><td>Unix/Linux/Mac user</td><td>use gzip –d  *.gz command</td></tr>
+
+		<tr><td>Windows user</td><td>use uncompressed software such as WinRAR, 7-Zip et al</td></tr>
+
+		<tr><td rowspan="2">compressed files in the fomat of *.zip:</td><td>Unix/Linux/Mac user</td><td>use unzip *.zip command</td></tr>
+
+		<tr><td>Windows user</td><td>use uncompressed software such as WinRAR, 7-Zip et al</td></tr>
+
+</table>
+</p>
+
+<table width=80% align="center" id="result_note" cellspacing="0" cellpadding="5" class="gy2">
+
+		<tr><th colspan="3">2. Explanation on how to operating file:</th>
+
+			</tr>
+
+		<tr><td rowspan="2">*.fasta</td><td rowspan="2">sequence file, in the fomat of fasta. in genaral, because sequence of gene or genome is large, we provide customer with sampled*.fasta file(partial sequences of *.fasta). It will be more convenient to check file fomat.</td><td>unix/Linux/Mac user use less or more command can view sequences in the fomat of *.fasta.</td>
+
+			</tr>
+
+		<tr><td>windows user use editor Editplus/Notepad++ et al</td>
+
+			</tr>
+
+		<tr><td rowspan="2">*.fq/fastq</td><td rowspan="2">reads sequence file, in the fomat of fasta. it is no easy to open because of big file.</td><td>unix/Linux/Mac user use less or more command;</td>
+
+			</tr>
+
+		<tr><td>windows user use editor Editplus/Notepad++ et al</td>
+
+			</tr>
+
+		<tr><td rowspan="2">*.xls,*.txt</td><td rowspan="2">table result file; files are separated by(Tab)</td><td>unix/Linux/Mac user use less or more command</td>
+
+			</tr>
+
+		<tr><td>windows user use editor Editplus/Notepad++ et al, also can use Microsoft Excel to open.</td>
+
+			</tr>
+
+		<tr><td rowspan="2">*.png</td><td rowspan="2">figure result files; bitmap</td><td>unix/Linux/Mac user use display command to open.</td>
+
+			</tr>
+
+		<tr><td>windows user use picture viewer to view, for example photoshop et al</td>
+
+		</tr>
+
+		<tr><td>*.pdf</td><td>figure result files; vectorgraph, can be zoom in or out. it is very convenient for customer to view or edit. using Adobe Illustrator to edit,the picture can be used in paper for publishing.</td><td>windows/Mac user use Adobe Reader/Foxit reader/web browser to open, unix/Linux user use evince command to open.</td>
+
+			</tr>
+		</table>
+		</p>
+
+<h3 id="note_2">Software Catalog</h3>
+<!------------------------------------------软件列表------------------------------------------------------>
+	<table width=95% align="center" id="result_note" cellspacing="0" cellpadding="5" class="gy2">
+		<tr><th>Analysis</th><th>Software</th><th>Version</th></tr>
+		<tr><td>Data pre-processing</td><td>Cell Ranger</td><td>v7.0.0</td></tr>
+		<tr><td>Cell filtering</td><td>Seurat</td><td>v4.1.1</td></tr>	
+		<tr><td>Doublets filtering</td><td>DoubletFinder</td><td>2.0.3</td></tr>
+		<tr><td>Alignment to genome</td><td>STAR</td><td>-</td></tr>
+		<tr><td>Identification of Highly Variable Genes</td><td>FindVariableGenes(Seurat)</td><td>v4.1.1</td></tr>
+		<tr><td>Cell Subpopulation Identification</td><td>FindClusters(Seurat)</td><td>v4.1.1</td></tr>
+		<tr><td>Marker Gene Detection</td><td>FindAllMarkers(Seurat)</td><td>v4.1.1</td></tr>
+		<tr><td>Enrichment Analysis</td><td>clusterProfiler</td><td>v3.10.1</td></tr>
+		<tr><td>Functional Annotation of Transcription Factor</td><td>TFCat</td><td>-</td></tr>
+		<tr><td>Protein-Protein Interaction Network Analysis</td><td>STRING</td><td>v11</td></tr>
+	</table>
+	<br>
+
+<!------------------------------------------------------------------------------------------------>
+<a name="Methods" ><h3 id="Methods">Methods</h3></a>
+<p class="paragraph">The method of 10x single cell RNA-seq analysis is shown in file. Please click to open: <a href="src/Methods_10XscRNA-seq.pdf" title="click to open" target="_blank">10x scRNA-seq Methods</a></p>
+
+
+<!-------------------------------------------- 参考文献 ------------------------------------------->
+<hr />
+</p>
+
+<h2 name="">V Reference</h2>
+<p class=ref>
+1. Zheng, G. X. Y., Terry, J. M., Belgrader, P., Ryvkin, P., Bent, Z.W. , & Wilson, R., et al. (2017). Massively parallel digital transcriptional profiling of single cells. Nature Communications, 8, 14049.<br /><br />
+2. Stuart T, Butler A, Hoffman P, Hafemeister C, Papalexi E, III WMM, Hao Y, Stoeckius M, Smibert P, Satija R. (2019). Comprehensive Integration of Single-Cell Data. Cell, 177, 1888-1902.<br /><br />
+3. Ayyaz, A., Kumar, S., Sangiorgi, B. et al. (2019). Single-cell transcriptomes of the regenerating intestine reveal a revival stem cell. Nature, 569, 121–125.<br /><br />
+4. Peng, Y. R., Shekhar, K., Yan, W., Herrmann, D., Sappington, A., & Bryman, G. S., et al. (2019). Molecular classification and comparative taxonomics of foveal and peripheral cells in primate retina. Cell, 176, 1222-1237.e22.<br /><br />
+5. Kim, D. W., Yao, Z., Graybuck, L. T., Kim, T. K., & Anderson, D. J,. (2019). Multimodal analysis of cell types in a hypothalamic node controlling social behavior. Cell, 179(3), 713-728.e17.<br /><br />
+6. Amezquita, R. A., Lun, A.T.L., Becht, E. et al. (2020). Orchestrating single-cell analysis with Bioconductor. Nature Methods, 17, 137–145.<br /><br />
+7. Geng, Chen, Baitang, Ning, Tieliu, & Shi. (2019). Single-cell rna-seq technologies and related computational data analysis. Frontiers in Genetics, 10, 317.<br /><br />
+8. Dobin, A., Davis, C. A., Schlesinger, F., et al. (2013). STAR: ultrafast universal RNA-seq aligner. Bioinformatics, 29(1): 15-21.<br /><br />
+9. Becht, E., McInnes, L., Healy, J. et al. (2019). Dimensionality reduction for visualizing single-cell data using UMAP. Nature Biotechnol 37, 38–44.<br /><br />
+10. Van der Maaten, L., (2014). Accelerating t-SNE using Tree-Based Algorithms. Journal of Machine Learning Research, 15, 3221-3245.<br /><br />
+11. Butler, A., Hoffman, P., Smibert, P., Papalexi, E., & Satija, R. (2018). Integrating single-cell transcriptomic data across different conditions, technologies, and species. Nature Biotechnology, 36(5), 411–420. <br /><br /> 
+12.  Yu, G., Wang, L. G., Han, Y., & He, Q.Y. . (2012). Clusterprofiler: an r package for comparing biological themes among gene clusters. Omics A Journal of Integrative Biology, 16(5), 284-287.<br /><br /> 
+13. Kanehisa M, Goto S. (2000). KEGG: kyoto encyclopedia of genes and genomes. Nucleic acids research, 28(1): 27-30.<br /><br />
+ Yu, G., & He, Q. Y. . (2016). Reactomepa: an r/bioconductor package for reactome pathway analysis and visualization. Molecular BioSystems, 12(2), 477-479.<br /><br />
+14. Schlesner, Matthias, Eils, Roland, Gu, & Zuguang. (2016). Complex heatmaps reveal patterns and correlations in multidimensional genomic data. Bioinformatics, 32, 2847–2849.<br /><br />
+<br/>
+<br/>
+<br/>
+<br/>
+</p>
+</body>
+</html>

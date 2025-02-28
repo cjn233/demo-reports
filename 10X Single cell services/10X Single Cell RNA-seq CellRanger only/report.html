@@ -1,0 +1,710 @@
+<html>
+<head>
+	<title> 10X Single Cell Standard Analysis ReportRNA-Seq Reprot </title>
+	<META NAME="Author" CONTENT="guoyang@novogene.cn"> 
+	<META NAME="Version" CONTENT="2014820v2.0"> 
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+<link rel="stylesheet" href="src/css/jquery-ui.css" />
+<link rel="stylesheet" href="src/css/bootstrap-4.3.1.min.css" />
+<link rel="stylesheet" href="src/css/jquery.tocify.css" />
+<link rel="stylesheet" href="src/css/style.css"/>
+<link rel="stylesheet" href="src/css/base.css"/>
+<link rel="stylesheet" href="src/css/gallery.css"/>
+<script src="src/js/jquery-3.3.1.min.js" type="text/javascript"></script>
+<script src="src/js/jquery-ui.min.js" type="text/javascript"></script>
+<script src="src/js/jquery.tocify.min.js" type="text/javascript"></script>
+<script src="src/js/bootstrap-4.3.1.min.js" type="text/javascript"></script>
+<script src="src/js/scrollTop.js" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+
+	$(function () {
+
+		var options = {
+
+			selectors: "h2,h3,h4,h5",
+
+			theme: "bootstrap",
+
+			scrollTo: "60"
+
+		};
+
+		var toc = $("#toc").tocify(options).data("toc-tocify");
+
+	});
+
+</script>
+
+
+
+
+
+<script type="text/javascript">
+
+function trans(img_div_id) {
+
+img_div = $("#" + img_div_id)
+
+img = $("#" + img_div_id + " img").first();
+
+if (img_div.hasClass("fullscreen-div")) {
+
+img_div.removeClass("fullscreen-div");
+
+img.removeClass("fullscreen-img");
+
+}
+
+else {
+
+img_div.addClass("fullscreen-div");
+
+img.addClass("fullscreen-img");
+
+}
+
+}
+
+
+
+function filter_display() {
+
+return $(this).css("display") != "none";
+
+}
+
+
+
+function show_default() {
+
+var list_group_id = "#" + $(this).attr("id");
+
+if ($(list_group_id + " a.active").css("display") == "none") {
+
+var list_tab = $(list_group_id + " a.active");
+
+var pan_id = list_tab.attr("href");
+
+$(pan_id).removeClass("active show");
+
+list_tab.removeClass("active");
+
+}
+
+if ($(list_group_id + " a.active").filter(filter_display).length == 0) {
+
+$(list_group_id + " a").filter(filter_display).first().tab("show");
+
+}
+
+}
+
+$.fn.show_default = show_default
+
+
+
+function next(botton_id) {
+
+var present_tab = $("#" + botton_id.replace("_button_next", "_list-tab") + " .active").first();
+
+while (present_tab.next().length == 1) {
+
+if (present_tab.next().css("display") != "none") {
+
+present_tab.next().tab("show");
+
+break;
+
+}
+
+else {
+
+present_tab = present_tab.next();
+
+}
+
+}
+
+
+
+}
+
+function prev(botton_id) {
+
+var present_tab = $("#" + botton_id.replace("_button_prev", "_list-tab") + " .active").first();
+
+while (present_tab.prev().length == 1) {
+
+if (present_tab.prev().css("display") != "none") {
+
+present_tab.prev().tab("show");
+
+break;
+
+}
+
+else {
+
+present_tab = present_tab.prev();
+
+}
+
+}
+
+
+
+
+
+}
+
+
+
+$(document).ready(function () {
+
+$(".form-control").on("keyup", function () {
+
+var value = $(this).val().toLowerCase();
+
+var input_box_id = "#" + $(this).attr("id");
+
+var list_group_id = input_box_id.replace("_InputList", "_list-tab");
+
+$(list_group_id + " a").filter(function () {
+
+$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+
+});
+
+$(list_group_id).show_default();
+
+});
+
+$(".list-group").each(show_default);
+
+});
+
+
+
+</script>
+
+</head>
+
+
+<body>
+
+<div id="toc" class="tocify">
+</div>
+
+<div style="position:fixed; top:0; left:0; width:100%; z-index:1000;">
+	<table width="100%" height="50px" border="0" cellpadding="5" cellspacing="0"
+		style="background:#F3F3F3; border-bottom:1px solid #eee;border-top: none;background-image:-moz-linear-gradient(top,#EEEEEE,#FFFFFF); background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0,#EEEEEE), color-stop(1,#FFFFFF));filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#EEEEEE', endColorstr='#FFFFFF', GradientType='0')">
+		<tr height="86%">
+			<td width='1%'></td>
+			<td><img src="src/images/logo1.png"></td>
+			<td><div style="margin:5px;border-left:1px solid #DCDCDC;height:30px"></div></td>
+			<td width="20%"></td>
+			<td width="15%"></td>
+			<td width="25%"
+				style="text-align:right;padding:0px;margin:0px;color:black;font-size:14px;font-weight:50;">
+				<!---Tel: 916-252-0068-383
+				<br><a href="mailto:op-rna@novogene.com" target="black"
+				style="text-decoration:none;color:black;font-size:14px;font-weight:50;">Email: inquiry_us@novogene.com<a></td>--->
+			<td width="1%"></td>
+		</tr>
+	</table>
+</div>
+
+
+
+<!--------------------------标题---------------------------------->
+
+<div id="main"> 
+
+    <h1 id="pipline">10x Single Cell RNA-Seq CellRanger Only Analysis Report</h1>
+ 
+	<table class="gy" style="text-align:left">
+	<thead><th>Contract Information</th><th>Contract Content</th></tr></thead>
+	<tbody>
+	<tr>
+	<td>Contract Name</td>
+	<td>10x Single Cell RNA-Seq CellRanger Only Analysis</td>
+	</tr>
+	<tr>
+	<td>Contract Number</td>
+	<td>HxxxSCxxxxxxxx</td>
+	</tr>
+	<tr>
+	<td>Report Number</td>
+	<td>XxxxSCxxxxxxxx-Zxx-Fxxx</td>
+	</tr>
+	<tr>
+	<td>Report Date</td>
+	<td>2024-11-27</td>
+	</tr>
+	</tbody></table>
+	<br>	
+
+    <h2>I. 10x scRNA-seq Workflow</h2>
+    <p class="paragraph">Bulk RNA-seq technologies have been widely used to study gene expression patterns at population level in the past decade. The advent of single-cell RNA sequencing (scRNA-seq) provides unprecedented opportunities for exploring gene expression profile at the single-cell level. Currently, scRNA-seq has become a favorable choice for studying the key biological questions of cell heterogeneity and the development of early embryos (only include a few number of cells), since bulk RNA-seq mainly reflects the averaged gene expression across thousands of cells. </p>
+    <p class="paragraph">The recently developed droplet-based single-cell transcriptome sequencing (scRNA-seq) technology makes it feasible to perform a population-scale scRNA-seq study, in which the transcriptome is measured for tens of thousands of single cells from multiple individuals.</p>
+    <p class="paragraph">10x Single Cell RNA sequencing projects are carried out as follows:</p>
+    <center>
+      <img  src="src/images/pipeline.png" width=800 />
+    </center>
+
+    <hr />
+    </p>
+    <h2 id="pipline">II. Analysis Workflow</h2>
+    <p class="paragraph">Here illustrates the workflow of standard bioinformatic analysis for 10x single cell 3' gene expression sequencing data.</p>
+    <p class="center"> <img  src="src/images/10X_pipeline_only.png"  width=600 /> </p>
+
+
+<!-------------------------------------------- 原始序列数据 --------------------------------------->
+    <hr />
+    </p>
+    <h2>III. Project Results</h2>
+	<h3 id="">1 Raw Data </h3>
+	<p class="paragraph">Original image data file from high-throughput sequencing (like Illumina) is transformed into sequenced reads (called Raw Data or Raw Reads). The sample demultiplexing was performed based on the 10 bp i5 and i7 sample index reads to generate Read1 and Read2 paired-end reads. Raw data are stored in FASTQ (fq) format files, which contain sequences of reads and corresponding base quality.</p> 
+<p class="paragraph">Final fragment from Chromium<sup>TM</sup> Single Cell 3' v3 library:</p>
+<center>
+      <img src="src/images/lib-v3.png" width=700 />
+          </center>
+      <p class="name_fig">Figure 1. Chromium Single Cell 3' Gene Expression v3 Library. </p>
+<p class="name_table">Table 1.1 Sequencing data of each sample</p>
+<table class="gy">
+       <tr><th>Sample name</th><th>File</th><th>Meaning</th</tr>
+       <tr><td rowspan=2>Sample</td><td>Sample_Sx_L00x_R1_00x.fastq.gz</td><td>The read1 of sample in FASTQ format, the read length depends on your contract</td></tr>
+       <tr><td>Sample_Sx_L00x_R2_00x.fastq.gz</td><td>The read2 of sample in FASTQ format, the read length depends on your contract</td></tr>
+	<p class="tremark">
+</table>
+	<hr />
+<p class="paragraph">FASTQ file format:</p>
+	<div class="bs-docs-qa">
+	<p class="seq">@HWI-ST1276:71:C1162ACXX:1:1101:1208:2458 1:N:0:CGATGT<br />
+      TNTAGATCTTAGGCGGTTGGTGTAGGTATCGACACAGGTCTTCATTTTGGCTAATAATGTACCAACGGAAGTCTGACATTCTGACTGTTCTTCTTCCTCTTCTTCCCCATTCTCTGTAGAAAGAGGCAACAACAGCGGCACCATAGATGT<br />
+      +<br />
+      F#FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF:FFFFF:FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF:FFFFFFFFFFFFFFFFFFFFFFFFFFF:FFFF:FFFFF:FFFFFFFFFFFFFFFFFFFFF,FFFFFFF<br />
+    </div>
+	<p class="step">(1)	Line 1: the at sign (@) followed by sequence identifiers and optional description info (such as FASTA title line).<br />
+	(2)	Line 2: base sequences (raw read, A, G, C, and T).<br />
+        (3)	Line 3: the plus sign (+) optionally followed by the same Illumina sequence identifiers and description information as Line 1.<br />
+	(4)	Line 4: the quality values for each base, corresponding to the data in Line 2.</p>
+<p class="name_table">Table 1.2 Illumina Sequence Identifier</p>
+    <table class="gy">
+       <tr>
+        <th>ID Symbol</th>
+        <th>Meaning</th>
+       </tr>
+       <tr>
+        <td>HWI-ST1276</td>
+        <td>Instrument – unique identifier of the sequencer </td>
+      </tr>
+      <tr>
+        <td>71</td>
+        <td>Run number – Run number on instrument</td>
+      </tr>
+      <tr>
+        <td>C1162ACXX</td>
+        <td>FlowCell ID – ID of flowcell</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>LaneNumber – positive integer</td>
+      </tr>
+      <tr>
+        <td>1101</td>
+        <td>TileNumber – positive integer</td>
+      </tr>
+	  <tr>
+		<td>1208</td>
+        <td>X – x coordinate of the spot. Integer which can be negative</td>
+	  </tr>
+	  <tr>
+        <td>2458</td>
+        <td>Y – y coordinate of the spot. Integer which can be negative</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>ReadNumber - 1 for single reads; 1 or 2 for paired ends</td>
+      </tr>
+      <tr>
+        <td>N</td>
+        <td>whether it is filtered - NB :Y if the read is filtered out, not in the delivered fastq file, N otherwise</td>
+      </tr>
+      <tr>
+        <td>0</td>
+        <td>control number - 0 when none of the control bits are on, otherwise it is an even number</td>
+      </tr>
+      <tr>
+        <td>CGATGT</td>
+        <td>Illumina index sequences</td>
+      </tr>
+    </table>
+    </p>
+   <p class="paragraph"><b>Raw data Q&A: </b></p>
+   <div class="alert alert-qa" role="alert" >
+        Question: Our sequencing core has given me the FASTQ files from a Chromium run with 150 bp reads for R1 and R2. Is there a way to use these FASTQ files (trimmed or otherwise) to provide Cell Ranger with the appropriate R1 and R2 FASTQ files?    
+	<a class="a-qa" data-toggle="collapse" href="#qa1_1" 
+               role="button" aria-expanded="false" aria-controls="collapseExample" >
+                   Click here for details »</a>    
+                   </div>
+                     
+<div class="collapse" id="qa1_1">
+    <div class="bs-docs-qa">
+                Answer: If you sequenced more bases than necessary on any of your reads (R1, R2, or index), you have two options.
+                1. You can leave the sequences "as-is." It may be helpful to specify the --chemistry option (e.g. --chemistry=SC3Pv3).
+                2. If you are unable to demultiplex again, yet you want to save as much disk space as possible, you could use a third party tool to trim your FASTQs directly.
+		</div>
+                </div>
+	
+<!----------------------------------------- 测序数据质量评估 -------------------------------------->
+
+<hr />
+</p>
+<h3><a>2 10x Sequencing Data Processing and Quality Control</a></h3>
+<p class="paragraph">Once the FASTQ files for each sample are generated, the data analysis begins. Reads from scRNA-seq were processed by Cell Ranger software (10x Genomics) with the default parameters for each sample separately. In short, alignment to the reference, UMI (unique molecular identifier) collapsing, UMI counting and initial quality control was performed. The filtered gene expression matrices containing only cellular barcodes were generated in this step. Then the Seurat R package was further utilized to achieve data quality control. The summary metrics for each step were shown as following in detail.</p>
+<p class="paragraph"><span> <b>Click to open the result directory: <a href="../Result_XxxxSCxxxxxxxx-Zxx-Fxxx_GRCh38/1.Data_process" title="点击打开" target="_blank">Result/1.Data_process</a></b></span></p>
+<h4><a>2.1 Sequencing Summary</a></h4>
+<p class="name_table">Table 2.1 Summary of sequencing</p>
+<div id="tb">
+  <table class="gy">
+        <tr>
+          <th>[Sequencing]</th><th>Sample</th>
+        </tr>
+        
+        <tr>
+          <td>Number of Reads</td><td>392,563,750</td>
+        </tr>
+        
+        <tr>
+          <td>Base of Reads(G)</td><td>117.0</td>
+        </tr>
+        
+        <tr>
+          <td>Valid Barcodes</td><td>97.6%</td>
+        </tr>
+        
+        <tr>
+          <td>Sequencing Saturation</td><td>66.4%</td>
+        </tr>
+        
+        <tr>
+          <td>Q30 Bases in Barcode</td><td>96.0%</td>
+        </tr>
+        
+        <tr>
+          <td>Q30 Bases in RNA Read</td><td>92.9%</td>
+        </tr>
+        
+        <tr>
+          <td>Q30 Bases in UMI</td><td>94.6%</td>
+        </tr>
+        
+      </table>
+</div>
+<p class="tremark">(1) Number of Reads: Total number of read pairs that were assigned to this library in demultiplexing. </p>
+<p class="tremark">(2) Base of Reads: Total base of read pairs that were assigned to this library in demultiplexing. </p>
+<p class="tremark">(3) Valid Barcodes: Fraction of reads with barcodes that match the whitelist after barcode correction. </p>
+<p class="tremark">(4) Sequencing Saturation: The fraction of reads originating from an already-observed UMI. This is a function of library complexity and sequencing depth. More specifically, this is the fraction of confidently mapped, valid cell-barcode, valid UMI reads that had a non-unique (cell-barcode, UMI, gene).  </p>
+<p class="tremark">(5) Q30 Bases in Barcode: Fraction of cell barcode bases with Q-score >= 30, excluding very low quality/no-call (Q <= 2) bases from the denominator. </p>
+<p class="tremark">(6) Q30 Bases in RNA Read: Fraction of RNA read bases with Q-score >= 30, excluding very low quality/no-call (Q <= 2) bases from the denominator. This is Read 1 for the Single Cell 3' v1 chemistry and Single Cell 5' paired end, Read 2 for the Single Cell 3' v2/v3 chemistry and Single Cell 5' R2-only). </p>
+<p class="tremark">(7) Q30 Bases in UMI: Fraction of UMI bases with Q-score >= 30, excluding very low quality/no-call (Q <= 2) bases from the denominator. </p>
+<br>
+
+<hr />
+</p>
+<h4><a>2.2 Alignment Summary</a></h4>
+<p class="paragraph">Cell Ranger uses an aligner called STAR, which performs splicing-aware alignment of reads to the genome. It then uses the transcript annotation GTF to bucket the reads into exonic, intronic, and intergenic, and by whether the reads align (confidently) to the genome. A read will be classified into exonic region if at least 50% of it intersects an exon, intronic region if it is non-exonic and intersects an intron, and intergenic region otherwise.</p>
+<p class="paragraph">The exonic reads were further aligned to the existing transcriptome with annotation as well. A read that is compatible with the exons of an annotated transcript, and aligned to the same strand, is considered mapped to the transcriptome. Among mapped reads, these uniquely mapped reads are the only ones considered for UMI counting.</p>
+<p class="name_table">Table 2.2 Summary of Alignment to genome</p>
+<div id="tb">
+  <table class="gy">
+        <tr>
+          <th>[Mapping]</th><th>Sample</th>
+        </tr>
+        
+        <tr>
+          <td>Reads Mapped to Genome</td><td>96.2%</td>
+        </tr>
+        
+        <tr>
+          <td>Reads Mapped Confidently to Genome</td><td>93.4%</td>
+        </tr>
+        
+        <tr>
+          <td>Reads Mapped Confidently to Intergenic Regions</td><td>6.0%</td>
+        </tr>
+        
+        <tr>
+          <td>Reads Mapped Confidently to Intronic Regions</td><td>32.6%</td>
+        </tr>
+        
+        <tr>
+          <td>Reads Mapped Confidently to Exonic Regions</td><td>54.8%</td>
+        </tr>
+        
+        <tr>
+          <td>Reads Mapped Confidently to Transcriptome</td><td>79.7%</td>
+        </tr>
+        
+        <tr>
+          <td>Reads Mapped Antisense to Gene</td><td>6.9%</td>
+        </tr>
+        
+      </table>
+</div>
+<p class="tremark">(1) Reads Mapped to Genome: Fraction of reads that mapped to the genome. </p>
+<p class="tremark">(2) Reads Mapped Confidently to Genome: Fraction of reads that mapped uniquely to the genome. If a gene mapped to exonic loci from a single gene and also to non-exonic loci, it is considered uniquely mapped to one of the exonic loci. </p>
+<p class="tremark">(3) Reads Mapped Confidently to Intergenic Regions: Fraction of reads that mapped uniquely to an intergenic region of the genome. </p>
+<p class="tremark">(4) Reads Mapped Confidently to Intronic Regions: Fraction of reads that mapped uniquely to an intronic region of the genome. </p>
+<p class="tremark">(5) Reads Mapped Confidently to Exonic Regions: Fraction of reads that mapped uniquely to an exonic region of the genome. </p>
+<p class="tremark">(6) Reads Mapped Confidently to Transcriptome: Fraction of reads that mapped to a unique gene in the transcriptome. The read must be consistent with annotated splice junctions. These reads are considered for UMI counting. </p>
+<p class="tremark">(7) Reads Mapped Antisense to Gene: Fraction of reads confidently mapped to the transcriptome, but on the opposite strand of their annotated gene. </p>
+<br>
+
+<hr />
+</p>
+<h4><a>2.3 Cell Calling and UMI Counting</a></h4>
+<p class="paragraph">The cell-calling algorithm based on the EmptyDrops method in Cell Ranger determines cell-associated barcodes based on their UMI count or by their RNA profiles. </p>
+<p class="name_table">Table 2.3 Expression distribution of cells</p>
+<div id="tb">  
+<table class="gy">
+        <tr>
+          <th>[Cells]</th><th>Sample</th>
+        </tr>
+        
+        <tr>
+          <td>Estimated Number of Cells</td><td>5,452</td>
+        </tr>
+        
+        <tr>
+          <td>Fraction Reads in Cells</td><td>94.4%</td>
+        </tr>
+        
+        <tr>
+          <td>Mean Reads per Cell</td><td>72,004</td>
+        </tr>
+        
+        <tr>
+          <td>Total Genes Detected</td><td>31,176</td>
+        </tr>
+        
+        <tr>
+          <td>Median Genes per Cell</td><td>3,508</td>
+        </tr>
+        
+        <tr>
+          <td>Median UMI Counts per Cell</td><td>11,305</td>
+        </tr>
+        
+      </table>
+</div>
+<p class="tremark">(1) Estimated Number of Cells: The number of barcodes associated with at least one cell. </p>
+<p class="tremark">(2) Fraction Reads in Cells: The fraction of valid-barcode, confidently-mapped-to-transcriptome reads with cell-associated barcodes. </p>
+<p class="tremark">(3) Mean Reads per Cell: The total number of sequenced reads divided by the number of barcodes associated with cell-containing partitions. </p>
+<p class="tremark">(4) Total Genes Detected: The number of genes with at least one UMI count in any cell. </p>
+<p class="tremark">(5) Median Genes per Cell: The median number of genes detected per cell-associated barcode. Detection is defined as the presence of at least 1 UMI count. </p>
+<p class="tremark">(6) Median UMI Counts per Cell: The median number of UMI counts per %s cell-associated barcode. </p>
+<br>
+
+<table class="gy">
+<tr><th>Samples</th><th>web summary</th></tr>
+<h4><a>2.4 Pre-procession HTML Summary</a></h4>
+<p class="paragraph">The summary HTML file of each sample named "web_summary.html" that contains summary metrics is also shown as below: 
+<p class="name_table">Table 2.4 Pre-procession summary in HTML format </p>
+
+	<tr> 
+	<td>Sample</td><td><a href="src/pictures/Data_process/Sample.web_summary.html" title="click to open" target="_blank">web_summary.html</a></b></span></td>
+	</tr>
+
+</table>
+<p class="tremark">(1)Samples: Sample name. </p>
+<p class="tremark">(2)web summary: Run summary metrics and charts in HTML format from "cellranger count".</p>
+
+
+
+<p class="paragraph"><b>Data processing and quality control Q&A: </b></p>
+<div class="alert alert-qa" role="alert" >
+        Question: How does cellranger count auto-detect the assay chemistry?
+	<a class="a-qa" data-toggle="collapse" href="#qa1_1" 
+            role="button" aria-expanded="false" aria-controls="collapseExample" >
+                Click here for details »</a>    
+                </div>
+                  
+<div class="collapse" id="qa1_1">
+    <div class="bs-docs-qa">
+                Answer: To auto-detect the assay chemistry (--chemistry=auto), cellranger count maps the first 10,000 reads in the FASTQ files.
+                The 3' versus 5' assay configurations are inferred based on the dominant orientation of the R2 read mapping (from at least 1,000 mapped reads). 
+                The distinction between Single Cell 3' v1, v2 and v3 chemistries is made based on the fraction of barcodes overlapping the whitelist for each specific chemistry.
+		</div>
+                </div>
+
+<div class="alert alert-qa" role="alert" >
+        Question: How does cellranger count process and filter UMIs? 
+	<a class="a-qa" data-toggle="collapse" href="#qa1_2" 
+            role="button" aria-expanded="false" aria-controls="collapseExample" >
+                Click here for details »</a>
+                </div>
+
+<div class="collapse" id="qa1_2">
+    <div class="bs-docs-qa">
+                Answer: Since UMIs are random, there is no whitelist to check them against. However, cellranger count performs some basic quality filtering and correction for UMI sequencing errors.
+	The following criteria are used for UMI filtering:
+	– Must not be a homopolymer, e.g. AAAAAAAAAA;
+	– Must not contain N;
+	– Must not contain bases with base quality lower than 10.
+	UMIs that are 1 Hamming distance (substitution) away from a higher-count UMI are corrected to the higher count UMI if they share a cell barcode.
+		</div>
+                </div>
+
+<div class="alert alert-qa" role="alert" >
+        
+	Question: What are valid barcodes? 
+	<a class="a-qa" data-toggle="collapse" href="#qa1_2" 
+            role="button" aria-expanded="false" aria-controls="collapseExample" >
+                Click here for details »</a>
+                </div>
+
+<div class="collapse" id="qa1_2">
+    <div class="bs-docs-qa">
+                Answer: A valid barcode is one which was sequenced from the experimental sample and found to match the barcode whitelist. A barcode whitelist is the list of all known barcode sequences that have been included in the assay kit and are available during library preparation.
+		</div>
+                </div>
+
+<div class="alert alert-qa" role="alert" >
+        Quesion: Why do I see a high level of mitochondrial gene expression?
+	<a class="a-qa" data-toggle="collapse" href="#qa12_1" 
+            role="button" aria-expanded="false" aria-controls="collapseExample" >
+                Click here for details »</a>    
+                </div>
+                  
+<div class="collapse" id="qa12_1">
+    <div class="bs-docs-qa">
+        	Answer: Mitochondrial genes are expressed in most cells and their expression level is cell type-specific.
+        High expression levels of mitochondrial genes could be an indicator of:<br/>
+        Poor sample quality, leading to a high fraction of apoptotic or lysing cells. <br/>
+        Biology of the particular sample, for example tumor biopsies, which may have increased mitochondrial gene expression due to metabolic activity and/or necrosis.<br/>
+
+	</div>
+                </div>
+
+
+
+
+<!-------------------------------------------- 备注 ------------------------------------------->
+
+    <hr />
+    <h2>IV Appendix</h2>
+    <h3 id="note_2">Result Directory</h3>
+    <p class="paragraph">Click to open the result content in html format in advance.</p>
+    <p class="paragraph">Result Content: <a href="src/DirectoryTree.html" title="" target="_blank">html</a></p>
+
+       <table width=80% align="center" id="result_note" cellspacing="0" cellpadding="5" class="gy2">
+
+		<tr><th colspan="3">1.Explanation on result file:</th></tr>
+
+		<tr><td rowspan="2">compressed files in the fomat of *.tar.gz:</td><td>Unix/Linux/Mac user</td><td>use tar -zxvf *.tar.gz command</td></tr>
+
+		<tr><td>Windows user</td><td>use uncompressed software such as WinRAR, 7-Zip et al</td></tr>
+
+		<tr><td rowspan="2">compressed files in the fomat of *.gz:</td><td>Unix/Linux/Mac user</td><td>use gzip –d  *.gz command</td></tr>
+
+		<tr><td>Windows user</td><td>use uncompressed software such as WinRAR, 7-Zip et al</td></tr>
+
+		<tr><td rowspan="2">compressed files in the fomat of *.zip:</td><td>Unix/Linux/Mac user</td><td>use unzip *.zip command</td></tr>
+
+		<tr><td>Windows user</td><td>use uncompressed software such as WinRAR, 7-Zip et al</td></tr>
+
+</table>
+</p>
+
+<table width=80% align="center" id="result_note" cellspacing="0" cellpadding="5" class="gy2">
+
+		<tr><th colspan="3">2. Explanation on how to operating file:</th>
+
+			</tr>
+
+		<tr><td rowspan="2">*.fasta</td><td rowspan="2">sequence file, in the fomat of fasta. in genaral, because sequence of gene or genome is large, we provide customer with sampled*.fasta file(partial sequences of *.fasta). It will be more convenient to check file fomat.</td><td>unix/Linux/Mac user use less or more command can view sequences in the fomat of *.fasta.</td>
+
+			</tr>
+
+		<tr><td>windows user use editor Editplus/Notepad++ et al</td>
+
+			</tr>
+
+		<tr><td rowspan="2">*.fq/fastq</td><td rowspan="2">reads sequence file, in the fomat of fasta. it is no easy to open because of big file.</td><td>unix/Linux/Mac user use less or more command;</td>
+
+			</tr>
+
+		<tr><td>windows user use editor Editplus/Notepad++ et al</td>
+
+			</tr>
+
+		<tr><td rowspan="2">*.xls,*.txt</td><td rowspan="2">table result file; files are separated by(Tab)</td><td>unix/Linux/Mac user use less or more command</td>
+
+			</tr>
+
+		<tr><td>windows user use editor Editplus/Notepad++ et al, also can use Microsoft Excel to open.</td>
+
+			</tr>
+
+		<tr><td rowspan="2">*.png</td><td rowspan="2">figure result files; bitmap</td><td>unix/Linux/Mac user use display command to open.</td>
+
+			</tr>
+
+		<tr><td>windows user use picture viewer to view, for example photoshop et al</td>
+
+		</tr>
+
+		<tr><td>*.pdf</td><td>figure result files; vectorgraph, can be zoom in or out. it is very convenient for customer to view or edit. using Adobe Illustrator to edit,the picture can be used in paper for publishing.</td><td>windows/Mac user use Adobe Reader/Foxit reader/web browser to open, unix/Linux user use evince command to open.</td>
+
+			</tr>
+		</table>
+		</p>
+
+<h3 id="note_2">Software Catalog</h3>
+<!------------------------------------------软件列表------------------------------------------------------>
+	<table width=95% align="center" id="result_note" cellspacing="0" cellpadding="5" class="gy2">
+		<tr><th>Analysis</th><th>Software</th><th>Version</th></tr>
+		<tr><td>Data pre-processing</td><td>Cell Ranger</td><td>v7.0.0</td></tr>
+		<tr><td>Alignment to genome</td><td>STAR</td><td>-</td></tr>
+	</table>
+	<br>
+
+<!------------------------------------------------------------------------------------------------>
+<a name="Methods" ><h3 id="Methods">Methods</h3></a>
+<p class="paragraph">The method of 10x single cell RNA-seq analysis is shown in file. Please click to open: <a href="src/Methods_10XscRNA-seq_only.pdf" title="click to open" target="_blank">10x scRNA-seq Methods</a></p>
+
+
+<!-------------------------------------------- 参考文献 ------------------------------------------->
+<hr />
+</p>
+
+<h2 name="">V Reference</h2>
+<p class=ref>
+1. Zheng, G. X. Y., Terry, J. M., Belgrader, P., Ryvkin, P., Bent, Z.W. , & Wilson, R., et al. (2017). Massively parallel digital transcriptional profiling of single cells. Nature Communications, 8, 14049.<br /><br />
+2. Stuart T, Butler A, Hoffman P, Hafemeister C, Papalexi E, III WMM, Hao Y, Stoeckius M, Smibert P, Satija R. (2019). Comprehensive Integration of Single-Cell Data. Cell, 177, 1888-1902.<br /><br />
+3. Ayyaz, A., Kumar, S., Sangiorgi, B. et al. (2019). Single-cell transcriptomes of the regenerating intestine reveal a revival stem cell. Nature, 569, 121–125.<br /><br />
+4. Peng, Y. R., Shekhar, K., Yan, W., Herrmann, D., Sappington, A., & Bryman, G. S., et al. (2019). Molecular classification and comparative taxonomics of foveal and peripheral cells in primate retina. Cell, 176, 1222-1237.e22.<br /><br />
+5. Kim, D. W., Yao, Z., Graybuck, L. T., Kim, T. K., & Anderson, D. J,. (2019). Multimodal analysis of cell types in a hypothalamic node controlling social behavior. Cell, 179(3), 713-728.e17.<br /><br />
+6. Amezquita, R. A., Lun, A.T.L., Becht, E. et al. (2020). Orchestrating single-cell analysis with Bioconductor. Nature Methods, 17, 137–145.<br /><br />
+7. Geng, Chen, Baitang, Ning, Tieliu, & Shi. (2019). Single-cell rna-seq technologies and related computational data analysis. Frontiers in Genetics, 10, 317.<br /><br />
+8. Dobin, A., Davis, C. A., Schlesinger, F., et al. (2013). STAR: ultrafast universal RNA-seq aligner. Bioinformatics, 29(1): 15-21.<br /><br />
+9. Becht, E., McInnes, L., Healy, J. et al. (2019). Dimensionality reduction for visualizing single-cell data using UMAP. Nature Biotechnol 37, 38–44.<br /><br />
+10. Van der Maaten, L., (2014). Accelerating t-SNE using Tree-Based Algorithms. Journal of Machine Learning Research, 15, 3221-3245.<br /><br />
+11. Butler, A., Hoffman, P., Smibert, P., Papalexi, E., & Satija, R. (2018). Integrating single-cell transcriptomic data across different conditions, technologies, and species. Nature Biotechnology, 36(5), 411–420. <br /><br /> 
+12.  Yu, G., Wang, L. G., Han, Y., & He, Q.Y. . (2012). Clusterprofiler: an r package for comparing biological themes among gene clusters. Omics A Journal of Integrative Biology, 16(5), 284-287.<br /><br /> 
+13. Kanehisa M, Goto S. (2000). KEGG: kyoto encyclopedia of genes and genomes. Nucleic acids research, 28(1): 27-30.<br /><br />
+ Yu, G., & He, Q. Y. . (2016). Reactomepa: an r/bioconductor package for reactome pathway analysis and visualization. Molecular BioSystems, 12(2), 477-479.<br /><br />
+14. Schlesner, Matthias, Eils, Roland, Gu, & Zuguang. (2016). Complex heatmaps reveal patterns and correlations in multidimensional genomic data. Bioinformatics, 32, 2847–2849.<br /><br />
+<br/>
+<br/>
+<br/>
+<br/>
+</p>
+</body>
+</html>

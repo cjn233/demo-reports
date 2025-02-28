@@ -1,0 +1,23 @@
+[Sequencing]
+Number of Reads
+Base of Reads(G)
+Valid Barcodes
+Sequencing Saturation
+Q30 Bases in Barcode
+Q30 Bases in RNA Read
+Q30 Bases in UMI
+[Mapping]
+Reads Mapped to Genome
+Reads Mapped Confidently to Genome
+Reads Mapped Confidently to Intergenic Regions
+Reads Mapped Confidently to Intronic Regions
+Reads Mapped Confidently to Exonic Regions
+Reads Mapped Confidently to Transcriptome
+Reads Mapped Antisense to Gene
+[Cells]
+Estimated Number of Cells
+Fraction Reads in Cells
+Mean Reads per Cell
+Total Genes Detected
+Median Genes per Cell
+Median UMI Counts per Cell
