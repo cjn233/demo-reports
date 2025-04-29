@@ -1,19 +1,20 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -e
 
-# Navigate to the GitHub repository
-cd "$(dirname "$0")"
+echo "🔄 Full update running…"
 
-# Pull the latest changes (to avoid conflicts)
-git pull origin main
+echo "1️⃣  renaming folders…"
+bash rename_folders.sh
 
-# Add all changes (new, modified, and deleted files)
-git add .
+echo "2️⃣  standardising report files…"
+bash rename_reports.sh
 
-# Commit with a timestamp
-commit_message="Updated reports - $(date +'%Y-%m-%d %H:%M:%S')"
-git commit -m "$commit_message"
+echo "3️⃣  building redirects & internal list…"
+bash generate_redirects.sh
 
-# Push to GitHub
+echo "4️⃣  committing & pushing…"
+git add _redirects internal.html report_links.csv
+git commit -m "full update: folders↔_, report.html, redirects & internal list refreshed"
 git push origin main
 
-echo "✅ Reports updated and pushed to GitHub!"
+echo "✅ All done! Deploy on Netlify to see updates."

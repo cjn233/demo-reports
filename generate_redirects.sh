@@ -1,39 +1,52 @@
 #!/usr/bin/env bash
-# run from demo-reports root
+set -e
 
-# where your report folders live
-BASE="."
+base_url="https://europe-demoreports.netlify.app"
 
-# clear old
+# start fresh
 > _redirects
+cat > internal.html <<'EOF'
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Internal Report Links</title></head>
+<body><h1>Internal Access to Reports</h1><ul>
+EOF
 
-for dir in "$BASE"/*/; do
-  # skip dot-folders
-  [[ "$(basename "$dir")" =~ ^[._] ]] && continue
+# CSV header
+echo "Report Name,Link" > report_links.csv
 
-  # find a suitable html: prefer index.html, then *.html
-  if     [[ -f "$dir/index.html"    ]]; then target="$dir/index.html"
-  elif   [[ -f "$dir/report.html"   ]]; then target="$dir/report.html"
-  else
-    # any other .html?
-    target=$(find "$dir" -maxdepth 1 -type f -iname "*.html" | head -n1)
-  fi
-
-  if [[ -z "$target" ]]; then
-    echo "⚠️  no html found in $dir, skipping"
+for folder_path in */; do
+  folder=${folder_path%/}
+  # skip if no report.html
+  if [[ ! -f "$folder/report.html" ]]; then
+    echo "⚠️  skipping $folder (no report.html)"
     continue
   fi
 
-  # make slug: lowercase, non-alnum→hyphen, collapse
-  slug=$(basename "$dir" \
+  # build a URL-friendly slug
+  slug=$(echo "$folder" \
     | tr '[:upper:]' '[:lower:]' \
     | sed 's/[^a-z0-9]/-/g; s/-\+/-/g; s/^-//; s/-$//'
   )
 
-  # write the redirect
-  echo "/$slug  /${target#./}  200" >> _redirects
+  # 1) serve the report page
+  echo "/$slug    /$folder/report.html    200" >> _redirects
+
+  # 2) serve any asset under slug/* back to folder
+  echo "/$slug/*  /$folder/:splat         200" >> _redirects
+
+  # internal.html entry
+  echo "  <li><a href=\"$base_url/$slug\">$folder</a></li>" >> internal.html
+
+  # CSV entry
+  echo "\"$folder\",\"$base_url/$slug\"" >> report_links.csv
 done
 
-echo "✅  _redirects generated:"
-cat _redirects
+# finish internal.html
+cat >> internal.html <<'EOF'
+</ul>
+</body>
+</html>
+EOF
 
+echo "✅ _redirects, internal.html & report_links.csv rebuilt with asset rewrites"

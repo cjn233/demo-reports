@@ -1,49 +1,49 @@
 #!/bin/bash
 
-# Function to process folders recursively while skipping "src/"
+# safer rename_reports.sh
 rename_report_files() {
-    local folder="$1"
+  local folder="$1"
 
-    # Skip any folder that contains "src/" in its path
-    if [[ "$folder" == *"/src/"* ]]; then
-        echo "Skipping: $folder (inside src/)"
-        return
+  # Skip src folders
+  if [[ "$folder" == *"/src/"* ]]; then
+    echo "Skipping src/ folder: $folder"
+    return
+  fi
+
+  # If report.html already exists, do nothing
+  if [[ -f "$folder/report.html" ]]; then
+    echo "✅ report.html already exists in $folder, skipping."
+    return
+  fi
+
+  # If index.html exists, rename it
+  if [[ -f "$folder/index.html" ]]; then
+    mv "$folder/index.html" "$folder/report.html"
+    echo "✏️ Renamed index.html → report.html in $folder"
+    return
+  fi
+
+  # Otherwise, find a large enough html file (>50KB) to be considered a report
+  candidate=$(find "$folder" -maxdepth 1 -type f -iname "*.html" -size +50k | head -n1)
+
+  if [[ -f "$candidate" ]]; then
+    mv "$candidate" "$folder/report.html"
+    echo "✏️ Renamed large html file to report.html in $folder"
+  else
+    echo "⚠️  No suitable large report.html found in $folder, skipping."
+  fi
+
+  # Then process subfolders recursively
+  for subfolder in "$folder"*/ ; do
+    if [[ -d "$subfolder" ]]; then
+      rename_report_files "$subfolder"
     fi
-
-    # Check if index.html exists and rename it to report.html
-    if [[ -f "$folder/index.html" ]]; then
-        mv "$folder/index.html" "$folder/report.html"
-        echo "Renamed: $folder/index.html → $folder/report.html"
-        return
-    fi
-
-    # Find the largest .html file (excluding report.html)
-    report_file=$(find "$folder" -maxdepth 1 -type f -name "*.html" ! -name "report.html" ! -name "directory_tree.html" -exec du -b {} + | sort -nr | head -n 1 | awk '{print $2}')
-
-    # If a large HTML file is found, rename it to report.html
-    if [[ -f "$report_file" ]]; then
-        mv "$report_file" "$folder/report.html"
-        echo "Renamed largest HTML file: $report_file → $folder/report.html"
-    else
-        echo "No suitable report file found in $folder"
-    fi
-
-    # Recursively process subfolders (except those containing src/)
-    for subfolder in "$folder"/*/ ; do
-        if [[ -d "$subfolder" ]]; then
-            rename_report_files "$subfolder"
-        fi
-    done
+  done
 }
 
-# Loop through all main folders and call the function recursively
+# Start processing from root
 for main_dir in */ ; do
-    rename_report_files "$main_dir"
+  rename_report_files "$main_dir"
 done
 
-# Commit and push the changes
-git add .
-git commit -m "Recursively renamed report files while skipping src/ folders"
-git push origin main
-
-echo "✅ Report file renaming completed in all nested folders, skipping src/!"
+echo "✅ Done renaming all reports!"
