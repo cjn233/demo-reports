@@ -1,2 +1,6 @@
 User-agent: *
 Disallow: /internal.html
+Disallow: /report_links.csv
+Disallow: /*/report.html
+Disallow: /*/          # prevents directory crawling
+Disallow: /src/
