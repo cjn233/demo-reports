@@ -9,13 +9,14 @@
     function promptPassword(tries = 2) {
       const pass = prompt(`🔒 Enter internal access password: (${tries} tries left)`);
       if (pass === allowedPassword) {
-        localStorage.setItem("internalAccess", pass);
+        localStorage.setItem("internalAccess", pass); // store only if correct
       } else {
         if (tries > 1) {
           alert("❌ Wrong password. Please try again.");
           promptPassword(tries - 1);
         } else {
           alert("❌ Wrong password entered twice. Redirecting...");
+	  localStorage.removeItem("internalAccess"); // ensure nothing is remembered
           setTimeout(() => {
             window.location.href = "https://www.google.com";
           }, 2000);
@@ -152,7 +153,7 @@
     <a href="report_links.csv" download>Download full report link list (CSV)</a>
   </div>
   <div class="timestamp">
-    Last updated on: 2025-04-29 21:00 RST
+    Last updated on: 2025-04-29 21:09 RST
   </div>
 </body>
 </html>
