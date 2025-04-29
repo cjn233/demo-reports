@@ -1,83 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Internal Demo Report Links</title>
-    <style>
-        body { font-family: Arial, sans-serif; max-width: 800px; margin: auto; padding: 20px; }
-        h1 { text-align: center; }
-        ul { list-style-type: none; padding: 0; }
-        li { margin: 10px 0; }
-        a { text-decoration: none; color: #007bff; font-size: 18px; }
-        a:hover { text-decoration: underline; }
-    </style>
-</head>
-<body>
-    <h1>Internal Access to Demo Reports</h1>
-    <ul>
-        <li><a href="10X_Single_Cell_RNA-seq_CellRanger_only/report.html">10X_Single_Cell_RNA-seq_CellRanger_only</a></li>
-        <li><a href="10X_Single_Cell_RNA-seq_Standard_Analysis/report.html">10X_Single_Cell_RNA-seq_Standard_Analysis</a></li>
-        <li><a href="10X_Single_cell_VDJ_Analysis/report.html">10X_Single_cell_VDJ_Analysis</a></li>
-        <li><a href="ATAC-seq/report.html">ATAC-seq</a></li>
-        <li><a href="Amplicon_Standard&Advanced_QIIME2/report.html">Amplicon_Standard&Advanced_QIIME2</a></li>
-        <li><a href="Amplicon_Standard_QIIME2/report.html">Amplicon_Standard_QIIME2</a></li>
-        <li><a href="ChIP-seq/report.html">ChIP-seq</a></li>
-        <li><a href="FFPE_10X_Visium_Spatial_Transcriptomics_WBI/report.html">FFPE_10X_Visium_Spatial_Transcriptomics_WBI</a></li>
-        <li><a href="FFPE_10X_Visium_Spatial_Transcriptomics_WOBI/report.html">FFPE_10X_Visium_Spatial_Transcriptomics_WOBI</a></li>
-        <li><a href="Human_Cancer_WES_Advance_demo_report/report.html">Human_Cancer_WES_Advance_demo_report</a></li>
-        <li><a href="Human_Cancer_WGS_Advance_demo_report/report.html">Human_Cancer_WGS_Advance_demo_report</a></li>
-        <li><a href="Human_Disease_WES_Advance_demo_report/report.html">Human_Disease_WES_Advance_demo_report</a></li>
-        <li><a href="Human_Disease_WGS_Advance_demo_report/report.html">Human_Disease_WGS_Advance_demo_report</a></li>
-        <li><a href="Human_Low-Pass-WGS-demo-report/report.html">Human_Low-Pass-WGS-demo-report</a></li>
-        <li><a href="Human_WES_Standard_Analysis_Paired/report.html">Human_WES_Standard_Analysis_Paired</a></li>
-        <li><a href="Human_WES_Standard_Analysis_Unpaired/report.html">Human_WES_Standard_Analysis_Unpaired</a></li>
-        <li><a href="Human_WGS_ONT/report.html">Human_WGS_ONT</a></li>
-        <li><a href="Human_WGS_PBRevio/report.html">Human_WGS_PBRevio</a></li>
-        <li><a href="Human_WGS_Standard_Analysis_Paired/report.html">Human_WGS_Standard_Analysis_Paired</a></li>
-        <li><a href="Human_WGS_Standard_Analysis_Unpaired/report.html">Human_WGS_Standard_Analysis_Unpaired</a></li>
-        <li><a href="Kinnex Full-Length RNA-seq with Reference Genome/report.html">Kinnex Full-Length RNA-seq with Reference Genome</a></li>
-        <li><a href="Kinnex_16S_Full-length_Amplicon_Analysis/report.html">Kinnex_16S_Full-length_Amplicon_Analysis</a></li>
-        <li><a href="Metatranscriptomics_RNA-seq/report.html">Metatranscriptomics_RNA-seq</a></li>
-        <li><a href="Microbial_Denovo_Bacteria_Draftmap/report.html">Microbial_Denovo_Bacteria_Draftmap</a></li>
-        <li><a href="Microbial_Denovo_Fungi_Draftmap/report.html">Microbial_Denovo_Fungi_Draftmap</a></li>
-        <li><a href="Microbial_Reseq_COG/report.html">Microbial_Reseq_COG</a></li>
-        <li><a href="Microbial_Reseq_KOG/report.html">Microbial_Reseq_KOG</a></li>
-        <li><a href="PAWGS-Germline&Somatic/report.html">PAWGS-Germline&Somatic</a></li>
-        <li><a href="PAWGS-Germline/report.html">PAWGS-Germline</a></li>
-        <li><a href="PAWGS-SNP-InDel_GATK-JointCalling/report.html">PAWGS-SNP-InDel_GATK-JointCalling</a></li>
-        <li><a href="PAWGS_ONT/report.html">PAWGS_ONT</a></li>
-        <li><a href="PAWGS_PBRevio/report.html">PAWGS_PBRevio</a></li>
-        <li><a href="PA_denovo_annotation/report.html">PA_denovo_annotation</a></li>
-        <li><a href="PA_denovo_assembly_PacBio&Illumina/report.html">PA_denovo_assembly_PacBio&Illumina</a></li>
-        <li><a href="Premade_library/report.html">Premade_library</a></li>
-        <li><a href="Prokaryotic_RNA-seq/report.html">Prokaryotic_RNA-seq</a></li>
-        <li><a href="RIP-seq/report.html">RIP-seq</a></li>
-        <li><a href="RNA-seq_WGBS_joint_analysis/report.html">RNA-seq_WGBS_joint_analysis</a></li>
-        <li><a href="RNA-seq_denovo_quantification/report.html">RNA-seq_denovo_quantification</a></li>
-        <li><a href="RNA-seq_denovo_standard/report.html">RNA-seq_denovo_standard</a></li>
-        <li><a href="RNA-seq_medical_quantification_human/report.html">RNA-seq_medical_quantification_human</a></li>
-        <li><a href="RNA-seq_medical_quantification_mouse/report.html">RNA-seq_medical_quantification_mouse</a></li>
-        <li><a href="RNA-seq_medical_standard_human/report.html">RNA-seq_medical_standard_human</a></li>
-        <li><a href="RNA-seq_medical_standard_mouse/report.html">RNA-seq_medical_standard_mouse</a></li>
-        <li><a href="RNA-seq_refgenome_quantification/report.html">RNA-seq_refgenome_quantification</a></li>
-        <li><a href="RNA-seq_refgenome_standard/report.html">RNA-seq_refgenome_standard</a></li>
-        <li><a href="RRBS/report.html">RRBS</a></li>
-        <li><a href="Shotgun-Metagenomics_Readsmapping_Kraken2/report.html">Shotgun-Metagenomics_Readsmapping_Kraken2</a></li>
-        <li><a href="Shotgun-Metagenomics_Readsmapping_MetaPhlAn/report.html">Shotgun-Metagenomics_Readsmapping_MetaPhlAn</a></li>
-        <li><a href="Shotgun-Metagenomics_Standard_Analysis-Assemblybased/report.html">Shotgun-Metagenomics_Standard_Analysis-Assemblybased</a></li>
-        <li><a href="WGBS/report.html">WGBS</a></li>
-        <li><a href="WGBS_advanced_Loci_analysis/report.html">WGBS_advanced_Loci_analysis</a></li>
-        <li><a href="Whole_Transcriptome_Seq-joint_analysis/report.html">Whole_Transcriptome_Seq-joint_analysis</a></li>
-        <li><a href="circRNA-seq/report.html">circRNA-seq</a></li>
-        <li><a href="circRNA-seq_exosome/report.html">circRNA-seq_exosome</a></li>
-        <li><a href="lncRNA-seq/report.html">lncRNA-seq</a></li>
-        <li><a href="lncRNA-seq_advanced_medical/report.html">lncRNA-seq_advanced_medical</a></li>
-        <li><a href="lncRNA-seq_exosome/report.html">lncRNA-seq_exosome</a></li>
-        <li><a href="smallRNA-seq/report.html">smallRNA-seq</a></li>
-        <li><a href="smallRNA-seq_exosome/report.html">smallRNA-seq_exosome</a></li>
-        <li><a href="smallRNA-seq_piRNA_advanced/report.html">smallRNA-seq_piRNA_advanced</a></li>
-        <li><a href="smallRNA-seq_siRNA_advanced/report.html">smallRNA-seq_siRNA_advanced</a></li>
-    </ul>
+<head><meta charset="UTF-8"><title>Internal Report Links</title></head>
+<body><h1>Internal Access to Reports</h1><ul>
+  <li><a href="https://europe-demoreports.netlify.app/10x-single-cell-rna-seq-cellranger-only">10X_Single_Cell_RNA-seq_CellRanger_only</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/10x-single-cell-rna-seq-standard-analysis">10X_Single_Cell_RNA-seq_Standard_Analysis</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/10x-single-cell-vdj-analysis">10X_Single_cell_VDJ_Analysis</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/atac-seq">ATAC-seq</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/amplicon-standard-advanced-qiime2">Amplicon_Standard&Advanced_QIIME2</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/amplicon-standard-qiime2">Amplicon_Standard_QIIME2</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/chip-seq">ChIP-seq</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/ffpe-10x-visium-spatial-transcriptomics-wbi">FFPE_10X_Visium_Spatial_Transcriptomics_WBI</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/ffpe-10x-visium-spatial-transcriptomics-wobi">FFPE_10X_Visium_Spatial_Transcriptomics_WOBI</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/human-cancer-wes-advance-demo-report">Human_Cancer_WES_Advance_demo_report</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/human-cancer-wgs-advance-demo-report">Human_Cancer_WGS_Advance_demo_report</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/human-disease-wes-advance-demo-report">Human_Disease_WES_Advance_demo_report</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/human-disease-wgs-advance-demo-report">Human_Disease_WGS_Advance_demo_report</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/human-low-pass-wgs-demo-report">Human_Low-Pass-WGS-demo-report</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/human-wes-standard-analysis-paired">Human_WES_Standard_Analysis_Paired</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/human-wes-standard-analysis-unpaired">Human_WES_Standard_Analysis_Unpaired</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/human-wgs-ont">Human_WGS_ONT</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/human-wgs-pbrevio">Human_WGS_PBRevio</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/human-wgs-standard-analysis-paired">Human_WGS_Standard_Analysis_Paired</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/human-wgs-standard-analysis-unpaired">Human_WGS_Standard_Analysis_Unpaired</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/kinnex-full-length-rna-seq-with-reference-genome">Kinnex Full-Length RNA-seq with Reference Genome</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/kinnex-16s-full-length-amplicon-analysis">Kinnex_16S_Full-length_Amplicon_Analysis</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/metatranscriptomics-rna-seq">Metatranscriptomics_RNA-seq</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/microbial-denovo-bacteria-draftmap">Microbial_Denovo_Bacteria_Draftmap</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/microbial-denovo-fungi-draftmap">Microbial_Denovo_Fungi_Draftmap</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/microbial-reseq-cog">Microbial_Reseq_COG</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/microbial-reseq-kog">Microbial_Reseq_KOG</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/pawgs-germline-somatic">PAWGS-Germline&Somatic</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/pawgs-germline">PAWGS-Germline</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/pawgs-snp-indel-gatk-jointcalling">PAWGS-SNP-InDel_GATK-JointCalling</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/pawgs-ont">PAWGS_ONT</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/pawgs-pbrevio">PAWGS_PBRevio</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/pa-denovo-annotation">PA_denovo_annotation</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/pa-denovo-assembly-pacbio-illumina">PA_denovo_assembly_PacBio&Illumina</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/premade-library">Premade_library</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/prokaryotic-rna-seq">Prokaryotic_RNA-seq</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/rip-seq">RIP-seq</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/rna-seq-wgbs-joint-analysis">RNA-seq_WGBS_joint_analysis</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/rna-seq-denovo-quantification">RNA-seq_denovo_quantification</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/rna-seq-denovo-standard">RNA-seq_denovo_standard</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/rna-seq-medical-quantification-human">RNA-seq_medical_quantification_human</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/rna-seq-medical-quantification-mouse">RNA-seq_medical_quantification_mouse</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/rna-seq-medical-standard-human">RNA-seq_medical_standard_human</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/rna-seq-medical-standard-mouse">RNA-seq_medical_standard_mouse</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/rna-seq-refgenome-quantification">RNA-seq_refgenome_quantification</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/rna-seq-refgenome-standard">RNA-seq_refgenome_standard</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/rrbs">RRBS</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/shotgun-metagenomics-readsmapping-kraken2">Shotgun-Metagenomics_Readsmapping_Kraken2</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/shotgun-metagenomics-readsmapping-metaphlan">Shotgun-Metagenomics_Readsmapping_MetaPhlAn</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/shotgun-metagenomics-standard-analysis-assemblybased">Shotgun-Metagenomics_Standard_Analysis-Assemblybased</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/wgbs">WGBS</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/wgbs-advanced-loci-analysis">WGBS_advanced_Loci_analysis</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/whole-transcriptome-seq-joint-analysis">Whole_Transcriptome_Seq-joint_analysis</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/circrna-seq">circRNA-seq</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/circrna-seq-exosome">circRNA-seq_exosome</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/lncrna-seq">lncRNA-seq</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/lncrna-seq-advanced-medical">lncRNA-seq_advanced_medical</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/lncrna-seq-exosome">lncRNA-seq_exosome</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/smallrna-seq">smallRNA-seq</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/smallrna-seq-exosome">smallRNA-seq_exosome</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/smallrna-seq-pirna-advanced">smallRNA-seq_piRNA_advanced</a></li>
+  <li><a href="https://europe-demoreports.netlify.app/smallrna-seq-sirna-advanced">smallRNA-seq_siRNA_advanced</a></li>
+</ul>
 </body>
 </html>
