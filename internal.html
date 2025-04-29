@@ -3,10 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Internal Demo Report Index</title>
+
   <style>
-    body.locked #content {
-      display: none;
-    }
     body {
       font-family: 'Segoe UI', sans-serif;
       max-width: 900px;
@@ -60,20 +58,22 @@
   </style>
 
   <script>
-    const allowedPassword = "Novogene4NGS";
+    const allowedPassword = "yourpassword2024";
     const stored = localStorage.getItem("internalAccess");
 
     function unlockPage() {
-      document.body.classList.remove("locked");
+      const tmpl = document.getElementById("main-template");
+      document.body.innerHTML = tmpl.innerHTML;
     }
 
-    function lockPage() {
-      document.body.classList.add("locked");
+    function lockAndRedirect() {
+      alert("❌ Access denied. Redirecting...");
+      localStorage.removeItem("internalAccess");
+      window.location.href = "https://www.google.com";
     }
 
     function promptPassword(tries = 2) {
       const pass = prompt(`🔒 Enter internal access password: (${tries} tries left)`);
-
       if (pass === allowedPassword) {
         localStorage.setItem("internalAccess", allowedPassword);
         unlockPage();
@@ -82,9 +82,7 @@
           alert("❌ Wrong password. Please try again.");
           promptPassword(tries - 1);
         } else {
-          alert("❌ Access denied. Redirecting…");
-          localStorage.removeItem("internalAccess");
-          window.location.href = "https://www.google.com";
+          lockAndRedirect();
         }
       }
     }
@@ -92,14 +90,12 @@
     if (stored === allowedPassword) {
       unlockPage();
     } else {
-      lockPage();
       promptPassword();
     }
   </script>
 </head>
-
-<body class="locked">
-  <div id="content">
+<body>
+  <template id="main-template">
     <h1>Internal Demo Report Index</h1>
     <div class="disclaimer">
       STRICTLY CONFIDENTIAL — For Internal Use Only. Do Not Share Externally.
@@ -172,8 +168,8 @@
       <a href="report_links.csv" download>Download full report link list (CSV)</a>
     </div>
     <div class="timestamp">
-      Last updated on: 2025-04-29 21:13 RST
+      Last updated on: 2025-04-29 21:17 RST
     </div>
-  </div>
+  </template>
 </body>
 </html>
