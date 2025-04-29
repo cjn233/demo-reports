@@ -63,7 +63,9 @@
 
     function unlockPage() {
       const tmpl = document.getElementById("main-template");
-      document.body.innerHTML = tmpl.innerHTML;
+      if (tmpl) {
+        document.body.innerHTML = tmpl.innerHTML;
+      }
     }
 
     function lockAndRedirect() {
@@ -76,7 +78,7 @@
       const pass = prompt(`🔒 Enter internal access password: (${tries} tries left)`);
       if (pass === allowedPassword) {
         localStorage.setItem("internalAccess", allowedPassword);
-        unlockPage();
+        document.addEventListener("DOMContentLoaded", unlockPage);
       } else {
         if (tries > 1) {
           alert("❌ Wrong password. Please try again.");
@@ -88,12 +90,13 @@
     }
 
     if (stored === allowedPassword) {
-      unlockPage();
+      document.addEventListener("DOMContentLoaded", unlockPage);
     } else {
-      promptPassword();
+      document.addEventListener("DOMContentLoaded", () => promptPassword());
     }
   </script>
 </head>
+
 <body>
   <template id="main-template">
     <h1>Internal Demo Report Index</h1>
@@ -168,7 +171,7 @@
       <a href="report_links.csv" download>Download full report link list (CSV)</a>
     </div>
     <div class="timestamp">
-      Last updated on: 2025-04-29 21:18 RST
+      Last updated on: 2025-04-29 21:28 RST
     </div>
   </template>
 </body>
