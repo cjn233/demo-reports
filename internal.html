@@ -2,34 +2,88 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <title>Internal Demo Report Index</title>
   <script>
-    const allowedPassword = "carolina";
-
-    const entered = localStorage.getItem("internalAccess");
-
-    if (entered !== allowedPassword) {
-      const pass = prompt("🔒 Enter internal access password:");
-      if (pass !== allowedPassword) {
-        alert("Access denied.");
-        location.href = "https://www.google.com";
-      } else {
+    const allowedPassword = "Novogene4NGS";
+    const stored = localStorage.getItem("internalAccess");
+    function promptPassword(tries = 2) {
+      const pass = prompt(`🔒 Enter internal access password: (${tries} tries left)`);
+      if (pass === allowedPassword) {
         localStorage.setItem("internalAccess", pass);
+      } else {
+        if (tries > 1) {
+          alert("❌ Wrong password. Please try again.");
+          promptPassword(tries - 1);
+        } else {
+          alert("❌ Wrong password entered twice. Redirecting...");
+          setTimeout(() => {
+            window.location.href = "https://www.google.com";
+          }, 2000);
+        }
       }
     }
+    if (stored !== allowedPassword) {
+      promptPassword();
+    }
   </script>
-
-  <title>Internal Report Index</title>
   <style>
-    body { font-family: sans-serif; max-width: 800px; margin: auto; padding: 40px; }
-    h1 { text-align: center; }
-    ul { list-style-type: none; padding: 0; }
-    li { margin: 10px 0; }
-    a { text-decoration: none; color: #007bff; }
-    a:hover { text-decoration: underline; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+      background: #f9f9f9;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .disclaimer {
+      background-color: #ffe5e5;
+      border: 1px solid #ff5a5a;
+      padding: 15px;
+      color: #a60000;
+      font-weight: bold;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      background: #fff;
+      border: 1px solid #ddd;
+      margin-bottom: 10px;
+      padding: 12px 18px;
+      border-radius: 5px;
+      transition: background 0.2s;
+    }
+    li:hover {
+      background: #f0f0ff;
+    }
+    a {
+      color: #0056b3;
+      text-decoration: none;
+      font-size: 16px;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .timestamp, .csv-link {
+      font-size: 13px;
+      color: #555;
+      text-align: center;
+      margin-top: 30px;
+    }
   </style>
 </head>
 <body>
-  <h1>Demo Report Index</h1>
+  <h1>Internal Demo Report Index</h1>
+  <div class="disclaimer">
+    STRICTLY CONFIDENTIAL — For Internal Use Only. Do Not Share Externally.
+  </div>
   <ul>
     <li><a href="https://europe-demoreports.netlify.app/10X_Single_Cell_RNA-seq_CellRanger_only/report.html">10X_Single_Cell_RNA-seq_CellRanger_only</a></li>
     <li><a href="https://europe-demoreports.netlify.app/10X_Single_Cell_RNA-seq_Standard_Analysis/report.html">10X_Single_Cell_RNA-seq_Standard_Analysis</a></li>
@@ -94,5 +148,11 @@
     <li><a href="https://europe-demoreports.netlify.app/smallRNA-seq_piRNA_advanced/report.html">smallRNA-seq_piRNA_advanced</a></li>
     <li><a href="https://europe-demoreports.netlify.app/smallRNA-seq_siRNA_advanced/report.html">smallRNA-seq_siRNA_advanced</a></li>
   </ul>
+  <div class="csv-link">
+    <a href="report_links.csv" download>Download full report link list (CSV)</a>
+  </div>
+  <div class="timestamp">
+    Last updated on: 2025-04-29 21:00 RST
+  </div>
 </body>
 </html>
