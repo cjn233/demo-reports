@@ -1,0 +1,11 @@
+<tr><th colspan="3">2.结果文件格式说明:</th></tr>
+
+<tr><td rowspan="2">*.fasta</td><td rowspan="2">序列文件，fasta格式，一般为基因序列或者基因组序列。因文件一般较大，打开较为困难，为您提供了sampled*.fasta文件(部分*.fasta中的序列)，方便您查看文件格式。</td><td>unix/Linux/Mac用户使用 less 或 more 命令；</td></tr><tr><td>windows使用高级文本编辑器Editplus/Notepad++等。</td></tr>
+
+<tr><td rowspan="2">*.fq/fastq</td><td rowspan="2">序列文件，fastq格式，一般为reads序列；因文件一般较大，打开较为困难。</td><td>unix/Linux/Mac用户使用 less 或 more 命令；</td></tr><tr><td>windows用户使用高级文本编辑器Editplus/Notepad++等。</td></tr>
+
+<tr><td rowspan="2">*.xls,*.txt</td><td rowspan="2">结果数据表格文件；文件以制表符(Tab)分隔。</td><td>unix/Linux/Mac用户使用 less 或 more 命令；</td></tr><tr><td>windows用户使用高级文本编辑器Editplus/Notepad++ 等，也可以用Microsoft Excel打开。</td></tr>
+
+<tr><td rowspan="2">*.png</td><td rowspan="2">结果图像文件；是位图，无损压缩。</td><td>unix/Linux/Mac用户使用display命令打开。</td></tr><tr><td>windows用户可以使用图片浏览器打开，如photoshop等。</td></tr>
+
+<tr><td>*.pdf</td><td>结果图像文件；是矢量图，可以放大和缩小而不失真，方便用户查看和编辑处理，可使用Adobe Illustrator进行图片编辑，用于文章发表等。</td><td>windows/Mac用户可以使用Adobe Reader/福昕阅读器/网页>浏览器等打开，unix/Linux用户使用evince命令打开。</td></tr>
