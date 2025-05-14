@@ -2,7 +2,7 @@
 
 base_url="https://europe-demoreports.netlify.app"
 timestamp=$(date +"%Y-%m-%d %H:%M %Z")
-password="demo2025"
+password="novogene4ngs"
 
 cat > internal.html <<EOF
 <!DOCTYPE html>
@@ -47,6 +47,11 @@ cat > internal.html <<EOF
     }
     li:hover {
       background: #f0f0ff;
+    }
+    .meta {
+      font-size: 12px;
+      color: #777;
+      margin-left: 10px;
     }
     a {
       color: #0056b3;
@@ -113,19 +118,31 @@ cat > internal.html <<EOF
     <ul>
 EOF
 
-# add links
+# Build report_links.csv with disclaimer
+echo "CONFIDENTIAL - For internal use only. Do not forward or share externally." > report_links.csv
+echo "Report Name,Last Updated,Link" >> report_links.csv
+
+# Add each report to HTML + CSV with timestamp
 for folder in */; do
   folder=${folder%/}
-  if [[ -f "$folder/report.html" ]]; then
-    echo "      <li><a href=\"$base_url/$folder/report.html\">$folder</a></li>" >> internal.html
+  report_file="$folder/report.html"
+  if [[ -f "$report_file" ]]; then
+    last_updated=$(date -r "$report_file" +"%Y-%m-%d %H:%M")
+    report_url="$base_url/$folder/report.html"
+
+    echo "      <li><a href=\"$report_url\">$folder</a><span class=\"meta\">– updated $last_updated</span></li>" >> internal.html
+    echo "$folder,$last_updated,$report_url" >> report_links.csv
   fi
 done
 
-# add CSV and timestamp
+# Finish HTML
 cat >> internal.html <<EOF
     </ul>
     <div class="csv-link">
       <a href="report_links.csv" download>Download full report link list (CSV)</a>
+      <p style="font-size: 12px; color: #a60000; text-align: center; margin-top: 5px;">
+        ⚠️ This file is for internal use only. Do not forward or share externally.
+      </p>
     </div>
     <div class="timestamp">
       Last updated on: $timestamp
@@ -135,9 +152,9 @@ cat >> internal.html <<EOF
 </html>
 EOF
 
-# optional: auto-commit and push
-git add internal.html
-git commit -m "fix: reliable unlock with window.onload"
+# Auto-commit and push
+git add internal.html report_links.csv
+git commit -m "update: added last modified dates to report list and CSV"
 git push origin main
 
-echo "✅ internal.html fully updated and pushed!"
+echo "✅ internal.html and report_links.csv updated with last modified info and pushed."

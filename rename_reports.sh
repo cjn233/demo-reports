@@ -23,15 +23,23 @@ rename_report_files() {
     return
   fi
 
-  # Otherwise, find a large enough html file (>50KB) to be considered a report
+  # Try to find a large enough HTML file first (>50KB)
   candidate=$(find "$folder" -maxdepth 1 -type f -iname "*.html" -size +50k | head -n1)
-
   if [[ -f "$candidate" ]]; then
     mv "$candidate" "$folder/report.html"
     echo "✏️ Renamed large html file to report.html in $folder"
-  else
-    echo "⚠️  No suitable large report.html found in $folder, skipping."
+    return
   fi
+
+  # Fallback: try any .html file if nothing else worked
+  fallback=$(find "$folder" -maxdepth 1 -type f -iname "*.html" | head -n1)
+  if [[ -f "$fallback" ]]; then
+    mv "$fallback" "$folder/report.html"
+    echo "✏️ Renamed fallback html file to report.html in $folder"
+    return
+  fi
+
+  echo "⚠️  No suitable report file found in $folder, skipping."
 
   # Then process subfolders recursively
   for subfolder in "$folder"*/ ; do
