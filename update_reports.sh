@@ -22,6 +22,18 @@ bash generate_report_links.sh
 # 5️⃣ commit and push
 echo "5. committing and pushing changes…"
 git add internal.html report_links.csv
+# Stage all relevant changes (new + modified + deletions)
+git add -A
+
+# Only commit if there are changes
+if git diff --cached --quiet; then
+  echo "ℹ️  No changes to commit."
+else
+  git commit -m "update: added new reports and updated links"
+  git push origin main
+  echo "✅ Changes committed and pushed!"
+fi
+
 git commit -m "full update: folders cleaned, reports renamed, internal links rebuilt"
 git push origin main
 
