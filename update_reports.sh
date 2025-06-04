@@ -21,7 +21,7 @@ bash generate_report_links.sh
 
 # 5️⃣ commit and push
 echo "5. committing and pushing changes…"
-git add internal.html report_links.csv
+git add internal.html report_links.csv */report.html */src
 # Stage all relevant changes (new + modified + deletions)
 git add -A
 
