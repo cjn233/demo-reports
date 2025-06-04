@@ -1,0 +1,10 @@
+1	StringTie	transcript	868381	868626	1000	-	.	gene_id "STRG.1"; transcript_id "STRG.1.1"; cov "5.955285"; FPKM "0.474359"; TPM "2.978461";
+1	StringTie	exon	868381	868626	1000	-	.	gene_id "STRG.1"; transcript_id "STRG.1.1"; exon_number "1"; cov "5.955285";
+1	StringTie	transcript	16867	17497	1000	+	.	gene_id "STRG.2"; transcript_id "STRG.2.1"; cov "2.643172"; FPKM "0.210538"; TPM "1.321949";
+1	StringTie	exon	16867	17055	1000	+	.	gene_id "STRG.2"; transcript_id "STRG.2.1"; exon_number "1"; cov "2.306878";
+1	StringTie	exon	17233	17497	1000	+	.	gene_id "STRG.2"; transcript_id "STRG.2.1"; exon_number "2"; cov "2.883019";
+1	StringTie	transcript	14696	24886	1000	-	.	gene_id "STRG.3"; transcript_id "STRG.3.1"; reference_id "ENST00000488147"; ref_gene_id "ENSG00000227232"; ref_gene_name "WASH7P"; cov "1.105641"; FPKM "0.088068"; TPM "0.552972";
+1	StringTie	exon	14696	14829	1000	-	.	gene_id "STRG.3"; transcript_id "STRG.3.1"; exon_number "1"; reference_id "ENST00000488147"; ref_gene_id "ENSG00000227232"; ref_gene_name "WASH7P"; cov "0.880691";
+1	StringTie	exon	14970	15038	1000	-	.	gene_id "STRG.3"; transcript_id "STRG.3.1"; exon_number "2"; reference_id "ENST00000488147"; ref_gene_id "ENSG00000227232"; ref_gene_name "WASH7P"; cov "0.630372";
+1	StringTie	exon	15796	15947	1000	-	.	gene_id "STRG.3"; transcript_id "STRG.3.1"; exon_number "3"; reference_id "ENST00000488147"; ref_gene_id "ENSG00000227232"; ref_gene_name "WASH7P"; cov "0.322097";
+1	StringTie	exon	16607	16765	1000	-	.	gene_id "STRG.3"; transcript_id "STRG.3.1"; exon_number "4"; reference_id "ENST00000488147"; ref_gene_id "ENSG00000227232"; ref_gene_name "WASH7P"; cov "0.489758";

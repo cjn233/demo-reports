@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<head>
+<title>XXXXXX report</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+<script type="text/javascript"> 
+this.hideMainPage= function() {
+     document.getElementsByTagName("frameset")[0].rows="100%,0"; 
+} 
+this.showMainPage= function() {
+     document.getElementsByTagName("frameset")[0].rows="40,*"; 
+} 
+function receiveMessage(e) { 
+     var data = e.data; 
+     if(data=="hideMainPage") { 
+          hideMainPage() ; 
+     }
+	 if(data=="showMainPage") { 
+          showMainPage() ; 
+     }
+} 
+if (typeof window.addEventListener != 'undefined') {//使用html5 的postMessage必须处理的
+     window.addEventListener('message', receiveMessage, false); 
+} else if (typeof window.attachEvent != 'undefined') {
+     window.attachEvent('onmessage', receiveMessage); 
+} 
+</script>
+  <link href="src/css/new/base_new.css" type="text/css" rel="stylesheet">
+</head>
+<frameset rows="100%,0" frameborder="NO" border="0" framespacing="0">
+<!--<frame src="src/top.html" noresize="noresize" frameborder="NO" name="topFrame" scrolling="no" marginwidth="0" marginheight="0" target="main"/>-->
+	<frame src="src/body.html" name="main" marginwidth="0" marginheight="0" frameborder="0" scrolling="auto" target="_self" id="main_page"/>
+
+</frameset>
+<noframes>
+  <body>
+
+   <script>
+    $(document).ready(function () {
+
+      // 初始化materialScrollTop
+      $('body').materialScrollTop();
+
+      $('.flexslider').flexslider({
+        animation: "slide",
+        slideshow: false,
+        controlNav: false
+      });
+
+
+      $('#leftNavigation .step').click(function (event) {
+        $(this).children('ul').slideToggle();
+      });
+
+      // 显示隐藏按钮切换
+      $('.hide_or_show').click(function (e) {
+        $(this).parent().next().fadeToggle();
+      });
+
+    });
+
+    function displaySubMenu(li) {
+      var subMenu = li.getElementsByTagName("ul")[0];
+      subMenu.style.display = "block";
+    }
+
+    function hideSubMenu(li) {
+      var subMenu = li.getElementsByTagName("ul")[0];
+      subMenu.style.display = "none";
+    }
+  </script>
+  </body>
+</noframes>
+</html>
