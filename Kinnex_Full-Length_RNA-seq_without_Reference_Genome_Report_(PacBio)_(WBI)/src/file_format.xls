@@ -1,0 +1,7 @@
+Compression format	User type	Method
+Compressed files of the form file.tar.gz	Unix/Linux/Mac users	Use tar -zxvf file.tar.gz command
+Compressed files of the form file.tar.gz	Windows users	Use decompression software such as WinRAR, 7-Zip, etc.
+Compressed files of the form file.tar.gz	Unix/Linux/Mac users	Use the gzip -d file.gz command
+Compressed files of the form file.tar.gz	Windows users	Use decompression software such as WinRAR, 7-Zip, etc.
+Compressed files of the form file.tar.gz	Unix/Linux/Mac users	Use the unzip file.zip command
+Compressed files of the form file.tar.gz	Windows users	Use decompression software such as WinRAR, 7-Zip, etc.
