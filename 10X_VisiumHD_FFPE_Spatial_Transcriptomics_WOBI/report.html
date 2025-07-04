@@ -1,0 +1,438 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+< html>
+<head>
+	<title> Novogene 10X Genomics Visium HD Spatial Transcriptomics Analysis Report </title>
+	<META NAME="Author" CONTENT="zhangmin@novogene.cn"> 
+	<META NAME="Modified" CONTENT="duanmeilin@novogene.cn"> 
+	<META NAME="Version" CONTENT="20200410"> 
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+<link rel="stylesheet" href="src/css/jquery-ui.css" />
+<link rel="stylesheet" href="src/css/bootstrap-4.3.1.min.css" />
+<link rel="stylesheet" href="src/css/jquery.tocify.css" />
+<link rel="stylesheet" href="src/css/style.css"/>
+<link rel="stylesheet" href="src/css/base.css"/>
+<link rel="stylesheet" href="src/css/gallery.css"/>
+<script src="src/js/jquery-3.3.1.min.js" type="text/javascript"></script>
+<script src="src/js/jquery-ui.min.js" type="text/javascript"></script>
+<script src="src/js/jquery.tocify.min.js" type="text/javascript"></script>
+<script src="src/js/bootstrap-4.3.1.min.js" type="text/javascript"></script>
+<script src="src/js/scrollTop.js" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+
+	$(function () {
+
+		var options = {
+
+			selectors: "h2,h3,h4,h5",
+
+			theme: "bootstrap",
+
+			scrollTo: "60"
+
+		};
+
+		var toc = $("#toc").tocify(options).data("toc-tocify");
+
+	});
+
+</script>
+
+
+
+
+
+<script type="text/javascript">
+
+function trans(img_div_id) {
+
+img_div = $("#" + img_div_id)
+
+img = $("#" + img_div_id + " img").first();
+
+if (img_div.hasClass("fullscreen-div")) {
+
+img_div.removeClass("fullscreen-div");
+
+img.removeClass("fullscreen-img");
+
+}
+
+else {
+
+img_div.addClass("fullscreen-div");
+
+img.addClass("fullscreen-img");
+
+}
+
+}
+
+
+
+function filter_display() {
+
+return $(this).css("display") != "none";
+
+}
+
+
+
+function show_default() {
+
+var list_group_id = "#" + $(this).attr("id");
+
+if ($(list_group_id + " a.active").css("display") == "none") {
+
+var list_tab = $(list_group_id + " a.active");
+
+var pan_id = list_tab.attr("href");
+
+$(pan_id).removeClass("active show");
+
+list_tab.removeClass("active");
+
+}
+
+if ($(list_group_id + " a.active").filter(filter_display).length == 0) {
+
+$(list_group_id + " a").filter(filter_display).first().tab("show");
+
+}
+
+}
+
+$.fn.show_default = show_default
+
+
+
+function next(botton_id) {
+
+var present_tab = $("#" + botton_id.replace("_button_next", "_list-tab") + " .active").first();
+
+while (present_tab.next().length == 1) {
+
+if (present_tab.next().css("display") != "none") {
+
+present_tab.next().tab("show");
+
+break;
+
+}
+
+else {
+
+present_tab = present_tab.next();
+
+}
+
+}
+
+
+
+}
+
+function prev(botton_id) {
+
+var present_tab = $("#" + botton_id.replace("_button_prev", "_list-tab") + " .active").first();
+
+while (present_tab.prev().length == 1) {
+
+if (present_tab.prev().css("display") != "none") {
+
+present_tab.prev().tab("show");
+
+break;
+
+}
+
+else {
+
+present_tab = present_tab.prev();
+
+}
+
+}
+
+
+
+
+
+}
+
+
+
+$(document).ready(function () {
+
+$(".form-control").on("keyup", function () {
+
+var value = $(this).val().toLowerCase();
+
+var input_box_id = "#" + $(this).attr("id");
+
+var list_group_id = input_box_id.replace("_InputList", "_list-tab");
+
+$(list_group_id + " a").filter(function () {
+
+$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+
+});
+
+$(list_group_id).show_default();
+
+});
+
+$(".list-group").each(show_default);
+
+});
+
+
+
+</script>
+
+</head>
+
+
+<body>
+
+<div id="toc" class="tocify">
+</div>
+
+<div style="position:fixed; top:0; left:0; width:100%; z-index:1000;">
+	<table width="100%" height="50px" border="0" cellpadding="5" cellspacing="0"
+		style="background:#F3F3F3; border-bottom:1px solid #eee;border-top: none;background-image:-moz-linear-gradient(top,#EEEEEE,#FFFFFF); background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0,#EEEEEE), color-stop(1,#FFFFFF));filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#EEEEEE', endColorstr='#FFFFFF', GradientType='0')">
+		<tr height="86%">
+			<td width='1%'></td>
+			<td><img src="src/images/logo1.png"></td>
+			<td><div style="margin:5px;border-left:1px solid #DCDCDC;height:30px"></div></td>
+			<td width="20%"></td>
+			<td width="15%"></td>
+                        <td width="30%"></td>	
+		</tr>
+	</table>
+</div>
+
+
+
+<!--------------------------Title---------------------------------->
+
+<div id="main">
+
+</br><h1> Novogene 10X Genomics Visium HD Spatial Transcriptomics Analysis Report </h1></br>
+
+
+<table class="gy">
+<thead><tr><th>Contract information</th><th>Contract content</th></tr></thead>
+<tbody>
+<tr>
+<td>Contract ID</td>
+<td>X101SC2401xxxx-Z01</td>
+</tr>
+<tr>
+<td>Contract name</td>
+<td>Mouse Brain FFPE Visium HD analysis</td>
+</tr>
+<tr>
+<td>Report time</td>
+<td>2024-01-25</td>
+</tr>
+<tr>
+<td>Batch ID</td>
+<td>X101SC2401xxxx-Z01-J001</td>
+</tr>
+<tr>
+</tbody></table>
+<br/><br/>
+
+<!----------------------------------------Experimental Procedure----------------------------------------->
+<p class="head"><a href="#home" title = "Back to the first page"><img style="height:40px"  align="left" src="src/images/logo.png" /></a> <a name="sequencing procedure">  </a>
+<hr />
+</p>
+
+<h2>1 Experimental Procedure </h2>
+<p class="paragraph">Visium HD Spatial transcriptomics is an unbiased detection of gene expression based on complete tissue sections. This technique preserves the morphological information of samples by performing H&E staining and capturing images of tissue slices placed in specific capture regions on slides. Subsequently, the same sample undergoes permeabilization, allowing the release of RNA, which hybridizes with oligonucleotide probes in the capture region, marking different bins with spatial barcodes. Visium HD platform slide is a continues lawn of 2x2 um barcode squares without gap, acheiving single-cell scale spatial resolution. The platform combines gene expression activity information with tissue morphology information, presenting a new view of tissue and gene expression complexity. The core of Visium HD spatial gene expression technology lies in spatial barcode slides, and the specific technical principles are shown as follows:</p>
+<p class = "center"><img class="center" src="src/images/lib.png" width=650/>
+<p class="premark center">Figure 1.1 Principle of Visium HD spatial technology. 6.5 x 6.5 mm capture Areas with a continuous lawn of oligonucleotides arrayed in ~11 million 2 x 2 μm barcoded squares without gaps, with each spot containing millions of spatial barcode capture probes. DNA probes, including Illumina sequencing primer sequences, spatial barcodes, UMIs, and poly(dT), with a diameter of 55 micrometers, are anchored at the 5' end on the slide. <div class=""></div></p>
+
+
+<p class="paragraph">Visium HD Spatial Transcriptomics technology supports samples embedded in formalin-fixed paraffin (FFPE). The Visium HD FFPE Spatial Transcriptomics workflow includes processes such as FFPE sample preparation, staining, imaging, probe hybridization, probe ligation, slide transfer, spatial position marking, library construction, sequencing, data visualization and other steps. To ensure the accuracy and reliability of the sequencing data, Novogene commits to strict quality control at every stage, guaranteeing the production of high quality data. The overall experimental workflow for 10x Genomics Visium HD FFPE Spatial Transcriptomics is illustrated in the diagram below:</p>
+<p class = "center"><img class="center" src="src/images/FFPEcytassist_pipelineEN.png" width=850/>
+</p>
+<!----------------------------------------1.1   Sample requirements ----------------------------------------->
+
+<p class="head"><a href="#home" title = "first page"><img class="logo" align="left" src="src/images/logo.png" /></a>
+	<a> </a>
+	<hr />
+	</p>
+	<h3 id="pipline">1.1 Sample QC</h3>
+	<p class="paragraph">The species currently eligible for Visium HD Spatial Transcriptomic on FFPE samples include humans and mice. For FFPE samples used in spatial transcriptomics studies, it is advisable to avoid excessively long storage periods, and transportation via ice packs or dry ice is preferable. Regarding the quality control of FFPE samples, a small number of paraffin sections are collected for RNA extraction, and the DV200 quality index is assessed by Agilent 2100. DV200 represents the percentage of RNA fragments longer than 200nt. The DV200 value is correlated with factors such as tissue type (e.g., diseased or necrotic tissue), FFPE sample preparation and processing, and storage duration, indirectly characterizing the quality of RNA in FFPE samples. It is recommended that FFPE samples with a DV200 value higher than 30% can be used for the library construction of Visium HD.</p>
+	
+	<h3 id="pipline">1.2 Capture principle </h3>
+	<p class="paragraph"> In contrast to the capture principle of spatial transcriptomics in fresh frozen tissue, FFPE samples involve capturing mRNA targets with two specific probes of 25nt length each. One probe (RHS) has a synthetic polyA tail structure at one end, designed for capture, while the other segment (LHS) is designed with the TruSeq Read2 sequence for library construction and sequencing (as shown in the diagram below). The ligated capture probes are placed on the Visium slide. Currently, 10x Genomics has designed specific capture probes for human and mouse transcriptomes,enabling spatial transcriptome studies at the whole transcriptome level.</p>
+	<p class="center"><img class="center" src="src/images/ffpe_capture.png" width=650/>
+	
+	<h3 id="pipline">1.3 Library construction</h3>
+	<p class="paragraph">The library construction process starts with preparing the tissue slices placed on standard glass slides, including slicing, glass slide mounting, fixation, deparaffinization, H&E staining and imaging. The Visium HD probe pairs are added to the decrosslinked tissues and hybridize to their complementary target RNA. When both probe pairs bind to their adjacent target sites, they are ligated together. The subsequent steps which are performed upon transfer from glass slides to Visium slides are: probe release, probe extension and tube transfer. The last steps, which are wash-out of barcoding probes, PCR amplification and library construction happen outside the instrument. Once the library passes the quality control, it proceeds to sequencing. The library construction process is illustrated as follows (figure from 10x Genomics - Spatial Gene Expression for FFPE Product sheet):</p>
+	<p class="center"><img class="center" src="src/images/FFPEcytassist_library.png " width=1050/>
+	
+	 
+	<h3 id="pipline">1.4 Sequencing</h3>
+	<p class="paragraph"> The sequencing depth is influenced by factors such as the coverage area of the captured region on the slide, sample type and complexity. Increasing  the sequencing data volume could improve the gene detection rates. It is suggested to sequence 100-150 Gb/sample when using PE150.</p>
+
+	</p>
+	
+
+
+
+<p class="paragraph">The Visium HD slide information which was used to do library construction is as follow：</p>
+<table class="gy">
+<tr><th>Sample name</th><th>Slide ID</th><th>Capture area</th></tr>
+
+	<tr> 
+	<td>Mouse_Brain</td><td>H1-8CPZTMY</td><td>A1</td>
+	</tr>
+
+</table>
+</p>
+
+
+
+
+
+<!-------------------------------------------- Raw data --------------------------------------->
+
+<p class="head"><a href="#home" title = "First page"><img class="logo" align="left" src="src/images/logo.png" /></a>
+
+	<hr />
+	</p>
+	<h2>2 Data QC</h2>
+	<h3>2.1 Explanation of raw sequencing data</h3>
+	<p class="paragraph">High throughput sequencing data generates raw image files that are converted into sequencing reads through base calling using Bcl2fastq. These sequences are stored in FASTQ format. FASTQ is a common text format for storing both the nucleotide sequence and the corresponding quality scores. Taking Illumina NovaSeq PE150 sequencing data as an example, where both reads are 150 bp long, for 10x Spatial Transcriptomic libraries, the first 43 bp of read1 contain spatial barcode and UMI information. This information is crucial for distinguishing from which spot read2 originates. Bases after the initial 43 bp are non-informative data, while all of read2 is useful data.</p>
+	<p class="paragraph">Each read in a FASTQ file consists of four lines of descriptive information, as shown below:</p>
+	<div class="bs-docs-qa">
+	<p class="seq">
+	@ST-E00310:278:HF3GJALXX:5:1101:6745:1924 1:N:0:ACGCTCGA<br />
+	TNTAGATCTTAGGCGGTTGGTGTAGGTATCGACACAGGTCTTCATTTTGGCTAATAATGTACCAACGGAAGTCTGACATTCTGACTGTTCTTCTTCCTCTTCTTCCCCATTCTCTGTAGAAAGAGGCAACAACAGCGGCACCATAGATGT<br />
+	+<br />
+	F#FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF:FFFFF:FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF:FFFFFFFFFFFFFFFFFFFFFFFFFFF:FFFF:FFFFF:FFFFFFFFFFFFFFFFFFFFF,FFFFFFF<br />
+	</div>
+	<p class="paragraph">The first line starts with ”@”, contains Illumina sequencing identifier and descriptive text. The second line represents the nucleotide sequence of the sequencing fragment. The third line optionally starts with “+” or can be empty. The fourth line represents the sequencing quality scores for each corresponding base in ASCII-encoded format. Each character’s ASCII value minus 33 equals the sequencing quality score for the respective base.</p>
+	
+<!----------------------------------------- Data quality control -------------------------------------->
+<p class="head"><a href="#home" title = "First page"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<hr />
+</p>
+<h3>2.2  Sequencing data quality control</h3>
+<p class="paragraph">Massive amounts of data can be generated through sequencing, and ensuring the quality of this data is essential for subsequent data analysis. Therefore, the first step in data analysis is to perform quality control (QC) of the raw data. Basic statistics on the raw reads are conducted with fqstate. Raw data is named according to the sample name followed by a numerical order (e.g., sample name-1, sample name-2, sample name-3…), based on index, lane or sequencing time.</p>
+
+
+	<p class="center">
+	<div class="row">
+	<div class="col-1">
+	<div id="gallery_figure_QC_button_prev" class="button_prev" onclick="prev(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_prev">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-6">
+	<div class="tab-content" id="gallery_figure_QC_nav-tabContent">
+	
+	<div class="tab-pane fade" id="gallery_figure_QC_pane_Mouse_Brain" 
+	role="tabpanel" aria-labelledby="gallery_figure_QC_list_Mouse_Brain"
+	onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/QC/Mouse_Brain.QC.png" /></div>
+
+	</div></div>
+	<div class="col-1">
+	<div id="gallery_figure_QC_button_next" class="button_next" onclick="next(this.id)">
+	<svg viewbox="0 0 16000 16000" class="svg_next">
+	<circle class="c" cx="8000" cy="8000" r="6080"></circle>
+	<polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+	</polygon></svg></div></div>
+	<div class="col-4">
+	<input class="form-control" id="gallery_figure_QC_InputList" type="text" placeholder="Search..">
+	<div class="list-group" id="gallery_figure_QC_list-tab" role="tablist">
+	
+	<a class="list-group-item list-group-item-action" id="gallery_figure_QC_list_Mouse_Brain"
+	data-toggle="list" href="#gallery_figure_QC_pane_Mouse_Brain" role="tab" aria-controls="Mouse_Brain">Mouse_Brain</a>
+	
+	</div>
+	</div>
+	</div>
+	</p>
+<h3><a>2.3 Sequencing data summary</a></h3>
+<p class="paragraph">Data quality directly impacts the results of subsequent analysis. Here is a summary of the quality and output of the raw data:</p>
+<table class="gy">
+<tr><th>Sample</th><th>Index</th><th>Total_reads</th><th>Total_bases (G)</th><th>Error_rate (%)</th><th>Q20 (%)</th><th>Q30 (%)</th><th>Q30_read2 (%)</th><th>GC (%)</th></tr>
+    		<tr><td rowspan=4>Mouse_Brain</td><td>Mouse_Brain-1</td><td>83,643,120</td><td rowspan=4>31.1</td><td>0.0</td><td>97.53</td><td>92.62</td><td>92.00</td><td>50.35</td></tr>
+	
+    
+	
+   		 <tr><td>Mouse_Brain-2</td><td>83,575,496</td><td>0.0</td><td>97.44</td><td>92.43</td><td>91.77</td><td>50.35</td></tr>
+	
+    
+	
+   		 <tr><td>Mouse_Brain-3</td><td>82,689,892</td><td>0.0</td><td>97.23</td><td>91.96</td><td>91.32</td><td>50.34</td></tr>
+   		 <tr><td>Mouse_Brain-4</td><td>84,275,769</td><td>0.0</td><td>97.31</td><td>92.21</td><td>91.47</td><td>50.33</td></tr>
+</table>
+<p class="tremark">(1) Sample: Sample name</p>
+<p class="tremark">(2) Index: Raw data identifier</p>
+<p class="tremark">(3) Total_reads: Number of read pairs in the raw data </p>
+<p class="tremark">(4) Total_bases (G): Number of bases in the raw data (in gigabases)</p>
+<p class="tremark">(5) Error_rate (%): Percentage of N bases in the raw data </p>
+<p class="tremark">(6) Q20 (%): Percentage of bases with Phred scores greater than 20 in the raw data.</p>
+<p class="tremark">(7) Q30 (%): Percentage of bases with Phred scores greater than 30 in the raw data.</p>
+<p class="tremark">(8) Q30_read2 (%): Q30 percentage for Read2 sequencing data (used for aligning to the reference genome in spatial transcriptomics or single-cell RNA-seq)</p>
+<p class="tremark">(9) GC (%): Percentage of G and C bases in clean reads out of the four bases</p>
+<br>
+
+
+
+<h3 id="软件列表"> Software list and version </h3>
+<!------------------------------------------The list of software------------------------------------------------------>
+	<table width=95% align="center" id="result_note" cellspacing="0" cellpadding="5" class="gy2">
+		<tr><th>Analysis content</th><th>Software</th><th>Version</th></tr>
+		<tr><td>Quality control</td><td>In-house</td><td>1.0.0</td></tr>
+	</table>
+	<br>
+
+<!------------------------------------------------------------------------------------------------>
+<a name="Methods英文版" ><h3 id="Methods英文版">Methods</h3></a>
+<p class="paragraph"> For ease of article composition, the methods used here were compiled for your reference <a href="src/Methods-HD.pdf" title="Click here" target="_blank" style="color:blue">methods</a></p>
+
+
+<!-------------------------------------------- Reference ------------------------------------------->
+<p class="head"><a href="#home" title = "First page"><img class="logo" align="left" src="src/images/logo.png" /></a>
+	<a > </a>
+	<hr />
+	</p>
+	
+	<h2 name="Reference">Reference</h2>
+	<ol class=ref>
+	<li>Westholm, J.O., Huss, M., et al. (2016). Visualization and analysis of gene expression in tissue sections by spatial transcriptomics. Science 353, 78-82.</li>
+	<li>Dobin A, Davis C A, Schlesinger F, et al. STAR: ultrafast universal RNA-seq aligner[J]. Bioinformatics, 2013, 29(1): 15-21.</li>
+	<li>Becht, E., McInnes, L., Healy, J. et al. Dimensionality reduction for visualizing single-cell data using UMAP. Nat Biotechnol 37, 38–44 (2019).</li>
+	<li>Van der Maaten, L., Accelerating t-SNE using Tree-Based Algorithms. Journal of Machine Learning Research 15, 3221-3245 (2014).</li>
+	<li>Butler, A., Hoffman, P., Smibert, P., Papalexi, E., & Satija, R. (2018). Integrating single-cell transcriptomic data across different conditions, technologies, and species. Nature Biotechnology, 36(5), 411–420. </li> 
+	<li>Stuart,T.etal.Comprehensive Integration of Single-Cell Data. Cell177, 1888–1902.e21 (2019).</li>
+	<li>Edsgärd, D., Johnsson, P., & Sandberg, R. (2018). Identification of spatial expression trends in single-cell gene expression data. Nature Methods, 15(5), 339–342. doi:10.1038/nmeth.4634</li>
+	<li>Korsunsky I., Millard N., Fan J., Slowikowski K., Zhang F., Wei K., Baglaenko Y., Brenner M., Loh P.R., Raychaudhuri S. Fast, sensitive and accurate integration of single-cell data with Harmony. Nat. Methods. 2019;16:1289-1296</li>
+	<li>Love, M. L., Huber, W. & Anders, S., Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2. Genome Biology 15, number 550 (2014).</li>
+	<li>Robinson M D, McCarthy D J, Smyth G K. edgeR: a Bioconductor package for differential expression analysis of digital gene expression data[J]. Bioinformatics, 2010, 26(1): 139-140.</li>
+	<li>Yu, D., Huber, W. & Vitek, O., Shrinkage estimation of dispersion in Negative Binomial models for RNA-seq experiments with small sample size. Bioinformatics 29, 1275–1282 (2013).</li>
+	<li>Robinson, M. D. & Smyth, G. K. Small-sample estimation of negative binomial dispersion, with applications to SAGE data. Biostatistics 9, 321–332 (2007).</li>
+	<li>Guangchuang Yu, Li-Gen Wang, Yanyan Han, Qing-Yu He. clusterProfiler: an R package for comparing biological themes among gene clusters. OMICS: A Journal of Integrative Biology. 2012, 16(5):284-287.</li>
+	<li>Kanehisa M, Goto S. KEGG: kyoto encyclopedia of genes and genomes[J]. Nucleic acids research, 2000, 28(1): 27-30.</li>
+	<li>G Yu, QY He*. ReactomePA: an R/Bioconductor package for reactome pathway analysis and visualization. Molecular BioSystems 2016, 12(2):477-479</li>
+	
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+</p>
+</body>
+</html>
