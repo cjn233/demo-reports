@@ -1,0 +1,45 @@
+
+##基因组组分分析
+&emsp;&emsp;微生物基因组包含的功能区域非常丰富，除编码基因区域，更有非编码区域实现转录调控、转录后调控、翻译调控、表观遗传调控等功能，部分功能区域还与物种进化的多样性存在关系。
+
+&emsp;&emsp;通过多种方法，对编码基因、重复序列、非编码RNA等进行预测，获取目标基因组的组成情况。
+
+###编码基因
+&emsp;&emsp;使用GeneMarkS（Version 4.17）(http://topaz.gatech.edu/GeneMark/) 软件对新测序的基因组进行编码基因预测。基因预测结果统计信息如下表所示：
+
+<p class='mark'>表 2-4 编码基因预测结果统计表</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/03.Genome_Component/gene.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **Sample ID**：样品名称
+- **Genome size**：全基因组总长度
+- **Gene number**：预测到的编码基因个数
+- **Gene total length**：所有编码基因的总长度
+- **Gene average length**：编码基因的平均长度
+- **Gene length / Genome**：编码区总长度占全基因组的比例
+
+&emsp;&emsp;绘制基因长度统计图如下：
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/03.Genome_Component/","*.cds.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.cds.png"="","file/03.Genome_Component//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>图 2-2 基因长度分布图</p>
+<p class='mark'>说明 横坐标为基因长度，纵坐标为相应基因个数。</p>
+
+&emsp;&emsp;结果文件目录：Result/03.Genome_Component/*/Gene/
+
+<p>
+<br/>
+<img class="logo" align="left" src="src/logo.png"/>
+<h6 style="text-align:right">北京诺禾致源科技股份有限公司</h6>
+<hr/>
+</p>

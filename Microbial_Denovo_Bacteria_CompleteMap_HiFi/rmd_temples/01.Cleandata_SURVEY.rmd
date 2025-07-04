@@ -1,0 +1,73 @@
+
+# 结果展示及说明
+
+## 数据概况 
+
+***
+
+&emsp;&emsp;原始下机数据处理：测序得到的原始数据(Raw Data)会存在一定比例的低质量数据，为了保证后续信息分析结果的准确可靠，首先要对原始数据进行过滤处理，得到有效数据(Clean Data)。
+
+&emsp;&emsp;具体处理步骤如下：
+
+&emsp;&emsp;1) 去除所含低质量碱基（质量值≤20）超过一定比例（默认设为 40bp）的 reads；
+
+&emsp;&emsp;2) 去除 N 碱基达到一定比例的 reads（默认设为10bp）；
+
+&emsp;&emsp;3) 去除与 Adapter 之间 overlap 超过一定阈值（默认设为 15bp）的 reads；
+
+&emsp;&emsp;4) 对于小基因组等项目，如果样品存在宿主污染，需与宿主数据库进行比对，过滤掉可能来源于宿主的 reads；
+
+&emsp;&emsp;5）去除duplication污染；
+
+&emsp;&emsp;详细的质控统计信息如下表：
+
+<p class='mark'>表<font face="Arial"> 2-1 测序数据统计</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/01.Cleandata/all_sample.Cleandata.stat.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **<font face="Arial">Insert size</font>**：插入片段长度
+- **<font face="Arial">Reads length</font>**：read1和read2的长度
+- **<font face="Arial">Raw data</font>**：原始数据量
+- **<font face="Arial">Filtered reads</font>**：过滤掉的数据占原始数据的比例
+- **<font face="Arial">Clean data</font>**：过滤后的有效数据量
+- **<font face="Arial">Clean data GC</font>**：效数据的平均GC含量
+- **<font face="Arial">Clean data Q20</font>**：有效数据的Q20值
+- **<font face="Arial">Clean data Q30</font>**：有效数据的Q30值。
+
+&emsp;&emsp;有效数据的碱基含量和质量分布情况如下图所示：
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/01.Cleandata/","*Clean.base.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\Clean.base.png"="","file/01.Cleandata//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>图 2-1-1 各样品的碱基含量分布图</p>
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/01.Cleandata/","*Clean.qual.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\Clean.qual.png"="","file/01.Cleandata//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>图 2-1-2 各样品的碱基质量分布图</p>
+
+&emsp;&emsp;说明 碱基含量分布图：横坐标表示碱基所在的reads的位置，纵坐标表示某一位置上各碱基的含量；碱基质量分布图：横坐标表示碱基所在的reads的位置，纵坐标为reads该位置上的平均错误率百分比。
+
+&emsp;&emsp;结果文件目录：Result/01.Cleandata/
+
+<p>
+<br/>
+<img class="logo" align="left" src="src/logo.png"/>
+<h6 style="text-align:right">北京诺禾致源科技股份有限公司</h6>
+<hr/>
+</p>
+

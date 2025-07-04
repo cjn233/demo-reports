@@ -1,0 +1,64 @@
+
+# 结果展示及说明
+
+## 数据概况 
+
+***
+
+&emsp;&emsp;Nanopore测序的下机数据原始格式为fast5格式，使用Guppy软件basecalling将fast5转化为fastq格式，根据barcode进行拆分得到每个样品的原始数据。每个样品的原始数据采用NanoPlot(https://github.com/wdecoster/NanoPlot ，version：1.29.1)软件进行统计，详细的统计信息如下表:
+
+
+<p class='mark'>表 2-1 测序数据统计</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/01.Cleandata/all.Cleandata.stat.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **Sample ID**：样品名称
+- **Number of Reads**：reads的数目
+- **Total Bases(bp)**：数据量
+- **Mean Read Length(bp)**：reads的平均长度
+- **N50 Read Length(bp)**：将得到的Polymerase read按照长度从长到短排序，依次累加reads的长度直至不小于总长50%时的Polymerase read的长度。
+- **Mean Read quality**：reads的平均测序质量。
+
+&emsp;&emsp;结果文件目录：Result/00.Rawdata。
+
+&emsp;&emsp;采用NanoPlot软件对质量阈值Q>7的数据进行统计，统计信息如下表:
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/01.Cleandata/pass.clean_data.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+<p class='mark'>表 2-2 测序质控数据统计</p>
+
+- **Sample ID**：样品名称
+- **Number of Reads**：reads的数目
+- **Total Bases(bp)**：数据量
+- **Mean Read Length(bp)**：reads的平均长度
+- **N50 Read Length(bp)**：将得到的Polymerase read按照长度从长到短排序，依次累加reads的长度直至不小于总长50%时的Polymerase read的长度。
+- **Mean Read quality**：reads的平均测序质量。
+
+&emsp;&emsp;Polymerase Read的长度分布图如下：
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/01.Cleandata/","*HistogramReadlength.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\HistogramReadlength.png"="","file/01.Cleandata//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>图 2-1 reads 长度分布图：横坐标（长度）；纵坐标（reads个数，并在图中表明N50所在位置）</p>
+&emsp;&emsp;结果文件目录：Result/01.Clean_data。
+
+<p>
+<br/>
+<img class="logo" align="left" src="src/logo.png"/>
+<h6 style="text-align:right">北京诺禾致源科技股份有限公司</h6>
+<hr/>
+</p>
+

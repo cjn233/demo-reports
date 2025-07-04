@@ -1,0 +1,266 @@
+
+##基因功能分析
+
+###效应子
+
+####分泌蛋白预测
+&emsp;&emsp;分泌蛋白是指在细胞内合成后，在信号肽的引导下穿过细胞膜分泌到细胞外起作用的蛋白质。分泌蛋白中有许多是生命活动所需的重要酶类。分泌蛋白的N端是由15～30个氨基酸组成的信号肽，对分泌蛋白的分泌起主导作用。
+
+&emsp;&emsp;使用SignalP[27]（Version 4.1）、TMHMM（Version 2.0c）工具进行预测，检测是否含有信号肽及跨膜结构，综合预测蛋白序列是否是分泌蛋白。
+
+<p class='mark'>表 2-9 分泌蛋白结果统计表</p>
+
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/04.Genome_Function/SP.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **Sample ID**：样品名称
+- **SignalP Protein**：具有信号肽结构的蛋白个数
+- **TMHMM Protein**：具有跨膜结构的蛋白个数
+- **Secreted Protein**：预测为分泌蛋白的个数
+
+&emsp;&emsp;结果文件目录：Result/04.Genome_Function/*/Effector/Secretory_Protein/
+
+####次级代谢基因簇分析
+&emsp;&emsp;次级代谢产物是微生物在一定的生长时期，以初级代谢产物为前体合成的对微生物的生命活动无明确功能，并非生长繁殖所必需的物质。采用antiSMASH程序[29]（version 4.0.2）对基因组进行预测。
+
+&emsp;&emsp;PKS可分为三种类型：I型也称为模块类PKS，是由多个结构域组成的多功能酶复合物。II型也称为芳香类PKS，主要合成芳香类化合物。III型也称为查尔酮型PKS。使用antiSMASH-4.0.2程序对基因组进行预测，预测结果统计如下表所示：
+
+<p class='mark'>表 2-10 次级代谢基因簇及基因数量统计</p>
+
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/04.Genome_Function/sm.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **Sample ID**：样品名称
+- **Gene cluster ID**：基因簇名称
+- **Clusters number**：基因簇数量
+- **Gene number**：基因簇中含有的基因数量
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/04.Genome_Function/","*cluster_num.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.cluster_num.png"="","file/04.Genome_Function//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>图 2-6 样品基因簇及相应基因数量统计图</p>
+&emsp;&emsp;结果文件目录：Result/04.Genome_Function/*/Effector/Secondary_Metabolism/
+
+####P450数据库注释
+&emsp;&emsp;细胞色素P450（cytochromeP450或CYP450,简称CYP450）为一类亚铁血红素—硫醇盐蛋白的超家族，它参与内源性物质和包括药物、环境化合物在内的外源性物质的代谢。P450数据库根据基因在IterPro数据库中的位置，一共分为16类，统计结果如下图：
+
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/04.Genome_Function/","*P450.class.catalog.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.P450.class.catalog.png"="","file/04.Genome_Function//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>图 2-7  样品基因功能注释 P450分类图</p>
+<p class='mark'>说明 横坐标表示P450注释上的分类类型，纵坐标表示注释上的基因个数。</p>
+&emsp;&emsp;结果文件目录：Result/04.Genome_Function/*/General_Gene_Annotation/P450/
+
+####转录因子分析
+
+&emsp;&emsp;转录因子(Transcription Factors, TFs)是指能够以序列特异性方式结合DNA并且调节转录的蛋白质。转录因子通过识别特定的DNA序列来控制染色质和转录，以形成指导基因组表达的复杂系统。
+
+&emsp;&emsp;把目标物种的氨基酸序列，与真菌转录因子数据库(http://ftfd.snu.ac.kr/) 进行比对，得到注释结果。
+
+&emsp;&emsp;结果文件目录：Result/04.Genome_Function/*/General_Gene_Annotation/TF/
+
+###基因功能注释
+&emsp;&emsp;目前提供注释的通用功能数据库主要有NR、GO、KEGG、KOG、TCDB、CAZY、Pfam和Swiss-Prot。
+
+&emsp;&emsp;功能注释基本步骤如下：
+
+&emsp;&emsp;1）将预测基因的蛋白序列与各功能数据库进行Diamond 比对（evalue ≤ 1e-5）；
+
+&emsp;&emsp;2）比对结果过滤：对于每一条序列的比对结果，选取 score 最高的比对结果（默认identity>=40%，coverage>=40%）进行注释。
+
+####NR数据库注释
+&emsp;&emsp;NR全称为Non-Redundant Protein Database[23]，是一个非冗余的蛋白质数据库，由NCBI创建并维护，其特点在于内容比较全面，同时注释结果中会包含有物种信息，可作物种分类用。根据基因注释到的物种情况，统计注释到的物种及基因数目，其统计结果如下图:
+
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/04.Genome_Function/","*nr.anno.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.nr.anno.png"="","file/04.Genome_Function//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>图 2-8 样品NR数据库物种注释统计图</p>
+<p class='mark'>说明 横坐标表示物种ID，纵坐标表示注释上的基因个数。</p>
+&emsp;&emsp;结果文件目录：Result/04.Genome_Function/*/General_Gene_Annotation/NR/
+
+####GO数据库注释
+&emsp;&emsp;GO的全称是Gene Ontology[19]，是一套国际标准化的基因功能描述的分类系统。GO分为三大类：1）细胞组分（Cellular Component）：用于描述亚细胞结构、位置和大分子复合物，如核仁、端粒和识别起始的复合物；2）分子功能（Molecular Function）：用于描述基因、基因产物个体的功能，如与碳水化合物结合或 ATP 水解酶活性等；3）生物过程（Biological Process）：用来描述基因编码的产物所参与的生物过程，如有丝分裂或嘌呤代谢等。GO数据库三大分类统计结果如下图：
+
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/04.Genome_Function/","*.go.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.go.png"="","file/04.Genome_Function//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>图 2-9 样品基因功能注释 GO功能分类图</p>
+
+<p class='mark'>说明：横坐标为GO三个大类的下一层级的GO term，纵坐标为注释到该term下(包括该term的子term)的基因个数。3种不同分类表示Go term的三种基本分类(从左往右依次为生物学过程，细胞成分，分子功能)。</p>
+
+&emsp;&emsp;结果文件目录：Result/04.Genome_Function/*/General_Gene_Annotation/GO/
+
+####KEGG数据库注释
+&emsp;&emsp;KEGG全称为Kyoto Encyclopedia of Genes and Genomes[20][21]。系统分析基因产物和化合物在细胞中的代谢途径以及这些基因产物的功能的数据库。它整合了基因组、化学分子和生化系统等方面的数据,包括代谢通路(KEGG PATHWAY)、药物(KEGG DRUG)、疾病(KEGG DISEASE)、功能模型(KEGG MODULE)、基因序列(KEGG GENES)及基因组(KEGG GENOME)等等。KO(KEGG ORTHOLOG)系统将各个KEGG注释系统联系在一起，KEGG已建立了一套完整KO注释的系统，可完成新测序物种的基因组或转录组的功能注释。详见http://www.genome.jp/kegg/。
+
+&emsp;&emsp;绘制KEGG数据库中注释基因数目统计图如下：
+
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/04.Genome_Function/","*kegg.functional_classification.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.kegg.functional_classification.png"="","file/04.Genome_Function//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>图 2-10 样品基因功能注释 KEGG代谢通路分类图</p>
+
+<p class='mark'>说明 条形图上的数字代表注释上的基因数目；其余一个坐标轴是数据库中 level1 各功能类的代码，代码的解释见对应的图例说明。</p>
+
+&emsp;&emsp;结果文件目录：Result/04.Genome_Function/*/General_Gene_Annotation/KEGG/
+
+#### KOG数据库注释
+&emsp;&emsp;KOG数据库，属于COG数据库的一个针对真核生物的直系同源数据库。
+
+&emsp;&emsp;COG，全称是Cluster of Orthologous Groups of proteins，由NCBI创建并维护的蛋白数据库，根据细菌、藻类和真核生物完整基因组的编码蛋白系统进化关系分类构建而成。通过比对可以将某个蛋白序列注释到某一个COG中，每一簇COG由直系同源序列构成，从而可以推测该序列的功能。COG数据库按照功能一共可以分为二十六类，详见http://www.ncbi.nlm.nih.gov/COG/。
+
+&emsp;&emsp;KOG数据库按照功能一共可以分为二十六类，其统计结果如下图：
+
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/04.Genome_Function/","*kog.class.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.kog.class.png"="","file/04.Genome_Function//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>图 2-11 样品基因功能注释 KOG功能分类图</p>
+<p class='mark'>说明 横坐标表示KOG功能类型，纵坐标表示注释上的基因个数。</p>
+&emsp;&emsp;结果文件目录：Result/04.Genome_Function/*/General_Gene_Annotation/KOG/
+
+####CAZy数据库注释
+&emsp;&emsp;CAZy[26]全称为Carbohydrate-Active enZYmes Database，碳水化合物活性酶相关的专业数据库，内容包括能催化碳水化合物降解、修饰、以及生物合成的相关酶系家族。其包含五个主要分类：糖苷水解酶 （Glycoside Hydrolases, GHs）、糖基转移酶（GlycosylTransferases, GTs）、多糖裂解酶（Polysaccharide Lyases, PLs）和糖类酯解酶（Carbohydrate Esterases, CEs）、氧化还原酶（Auxiliary Activities, AAs）。详见http://www.cazy.org/
+
+&emsp;&emsp;CAZy数据库分类注释结果统计表和个数统计图展示如下：
+
+<p class='mark'>表 2-11 碳水化合物酶分类注释结果</p>
+
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/04.Genome_Function/CAZy.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **Sample ID**：样品名称
+- **CBM**：与碳水化合物相关的modules（CBMs）的基因数目
+- **CE**：糖类酯解酶（CEs）的基因数目
+- **GH**：糖苷水解酶（GHs）的基因数目
+- **GT**：糖基转移酶（GTs）的基因数目
+- **PL**：多糖裂解酶（PLs）的基因数
+- **AA**：氧化还原酶（AAs）的基因数目
+
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/04.Genome_Function/","*single_CAZy_class.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.single_CAZy_class.png"="","file/04.Genome_Function//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+<p class='mark'>图 2-12 样品CAZy功能分类及相应基因数量统计图</p>
+<p class='mark'>说明 横坐标是CAZy数据库分类类型，纵坐标是注释上的基因个数。</p>
+
+&emsp;&emsp;碳水化合物结合结构域是一种非催化结构域，能折叠成特定的三维空间结构，具有结合碳水化合物的功能。近年来研究表明：碳水化合物结合结构域能通过结合碳水化合物活性酶的底物，提高碳水化合物活性酶的催化结构域作用于底物的活性。
+
+&emsp;&emsp;结果文件目录：Result/04.Genome_Function/*/General_Gene_Annotation/CAZy/
+
+
+
+####TCDB数据库注释
+&emsp;&emsp;TCDB，全称是Transporter Classification Database[24]，转运蛋白分类数据库，是膜转运蛋白，包括离子通道（ion channels）的分类系统（TC system）。TCDB数据库转移系统以5个级别进行分类，第一级统计结果如下图：
+
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/04.Genome_Function/","*tcdb.class.catalog.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.tcdbclasscatalog.png"="","file/04.Genome_Function//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>图 2-13 样品基因功能注释 TCDB功能分类图：横坐标（TCDB一级分类类型）；纵坐标（注释上的基因个数）</p>
+&emsp;&emsp;结果文件目录：Result/04.Genome_Function/*/General_Gene_Annotation/TCDB/
+
+
+
+####Pfam数据库注释
+
+&emsp;&emsp;Pfam数据库有两个组成部分：Pfam-A和Pfam-B，其中Pfam-A经过人工筛选，质量较高。详见http://pfam.xfam.org/。
+
+&emsp;&emsp;结果文件目录：Result/04.Genome_Function/*/General_Gene_Annotation/Pfam/
+
+####Swiss-Prot数据库注释
+
+&emsp;&emsp;Swiss-Prot[25]是一个精选的蛋白质序列数据库，它提供一个高水平的注释结果，例如一个蛋白质功能、其域结构、翻译后修饰、变异等的描述。详见http://www.ebi.ac.uk/uniprot/。
+
+&emsp;&emsp;结果文件目录：Result/04.Genome_Function/*/General_Gene_Annotation/Swiss-Prot/
+
+###致病性分析
+####病原与宿主互作数据库（PHI）注释
+&emsp;&emsp;PHI全称为Pathogen Host Interactions Database[30]，病原与宿主互作数据库，主要来源于真菌、卵菌和细菌病原，感染的宿主包括动物、植物、真菌以及昆虫。该数据库对寻找药物干预的靶基因研究有重要作用，同时该数据库还包括抗真菌化合物和相应的靶基因。数据库中的每个基因都包含核酸和氨基酸序列，以及感染宿主过程中预测的蛋白功能的详细描述。
+
+&emsp;&emsp;病原体PHI表型突变类型基因数目的统计情况如下图所示：
+
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/04.Genome_Function/","*phi.class.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.phi.class.png"="","file/04.Genome_Function//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>图 2-14 样品基因功能注释 病原体PHI表型突变类型分布图</p>
+<p class='mark'>说明 横坐标表示表型突变类型，纵坐标表示注释上的基因个数。</p>
+
+&emsp;&emsp;结果文件目录：Result/04.Genome_Function/*/Pathogenicity/PHI/
+
+####真菌毒力因子数据库（DFVF）注释
+&emsp;&emsp;DFVF数据库全称为database of fungal virulence factors（真菌毒力因子数据库），是一个综合的已知真菌毒力因子数据库，收集了来自85个属的228个真菌菌株所产生的2058个致病基因。每个基因详细描述引起的疾病和作用的宿主，更与Pfam功能域注释和GO注释信息进行了关联。
+
+&emsp;&emsp;使用Diamond软件，把目标物种的氨基酸序列，与DFVF数据库进行比对，把目标物种的基因和其相对应的功能注释信息结合起来，得到注释结果。
+
+&emsp;&emsp;结果文件目录：Result/04.Genome_Function/*/Pathogenicity/DVDF/
+
+
+<p>
+<br/>
+<img class="logo" align="left" src="src/logo.png"/>
+<h6 style="text-align:right">北京诺禾致源科技股份有限公司</h6>
+<hr/>
+</p>
+

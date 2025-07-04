@@ -1,0 +1,60 @@
+
+```{r echo=FALSE}
+library(knitr)
+data <- read.delim('file/project_info.xls',sep='\t',header=T)
+kable(data, table.attr = "class=\"nowrap\"","html") %>%
+kable_styling(bootstrap_options=c("striped","hover","condensed"))
+```
+
+
+# 总体工作流程概述
+##实验流程
+
+<img class="normal" src="src/sequencing_theory.png">
+
+### DNA提取
+
+HiSeq平台建库及库检
+
+&emsp;&emsp;经电泳检测合格的 DNA 样品用 Covaris 超声波破碎仪随机打断成长度约为350bp的片段。处理完成后的DNA片段，经末端修复、加A尾、加测序接头、纯化、PCR扩增等步骤完成整个文库制备。
+
+&emsp;&emsp;文库构建完成后，先使用 Qubit 2.0 进行初步定量，稀释文库至 2ng/ul，随后使用 Agilent 2100 对文库的插入片段（insert size）进行检测，insert size符合预期后，使用 Q-PCR 方法对文库的有效浓度进行准确定量，以保证文库质量。
+
+
+### 建库类型
+
+<img class="normal" src="src/product_B_SURVEY.png">
+
+### 上机测序
+
+
+&emsp;&emsp;库检合格后，把不同文库按照有效浓度及目标下机数据量的需求 pooling 后进行 Illumina HiSeq 测序。
+
+
+## 生物信息分析流程
+
+<img class="normal" src="src/bacteria_draft.png">
+
+<p class='mark'>图 1-1 生物信息分析流程图</p>
+<p class='mark'>说明 蓝色虚线方框内为高级分析内容</p>
+
+信息分析分以下几个步骤：
+
+&emsp;&emsp;1 原始下机数据处理 此步骤过滤测序质量值低的reads，保留高质量reads，过滤后的数据称为Clean Data；
+
+&emsp;&emsp;2 样品组装 进行基因组组装，得到能反映样品基因组基本情况的序列文件，并对组装结果进行评价；
+
+&emsp;&emsp;3 基因组组分分析 组装完成后，分析样品基因组的成分，包括编码基因、非编码RNA、重复序列、前噬菌体、基因岛、CRISPR等基因组成分的预测；
+
+&emsp;&emsp;4 功能注释 针对编码基因序列进行不同数据库的功能注释，包括常用的KEGG、COG数据库、针对病原微生物的数据库；
+
+&emsp;&emsp;5 基因组比较分析 此步骤从基因组、基因两层面分别比较样品与参考基因组的差异，包括共线性分析、基因家族构建、共有/特有基因分析、物种进化树构建；
+
+&emsp;&emsp;注：此分析流程图包括该产品的所有分析内容，本项目具体分析内容以此报告为准。
+
+
+<img class="logo" align="left" src="src/logo.png"/>
+<h6 style="text-align:right">北京诺禾致源科技股份有限公司</h6>
+<hr/>
+</p>
+

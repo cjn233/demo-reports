@@ -1,0 +1,65 @@
+
+```{r echo=FALSE}
+library(knitr)
+data <- read.delim('file/project_info.xls',sep='\t',header=T)
+kable(data, table.attr = "class=\"nowrap\"","html") %>%
+kable_styling(bootstrap_options=c("striped","hover","condensed"))
+```
+
+
+# overview of the workflow
+##Experimental procedure
+
+<img class="normal" src="src/sequencing_theory_EN.png">
+
+### DNA extraction
+
+
+The STE method was used to extract genomic DNA from the sample, followed by agarose gel electrophoresis to test the purity and integrity of the DNA. Quantification was performed using Qubit.
+
+### Library construction
+
+&emsp;&emsp;With the development of high-throughput sequencing technology, the third generation sequencing platforms have become new tools of genome research. PacBio is one of the third generation sequencing platforms, which can construct longer fragments and produce longer reads. CCS (Circular Consensus Sequencing) produces a consensus sequence from multiple subreads of the same DNA molecule, with high accuracy and a quality value greater than 99.9% (Q30). PacBio Sequel IIe and Revio platforms are used for sequencing. (For more information, please refer to the Appendix).
+
+&emsp;&emsp;After DNA quality control, the genomic DNA was fragmented to appropriate sizes, then SMRTbell cleanup beads were added to each tube of sheared DNA for purification. And then DNA fragments were damage repaired and end repaired. The SMRTbell library was produced by ligating hairpin-shaped sequencing adapters to both ends of the DNA fragments and any failed connections was removed using exonucleases. After size collection using AMPure PB bead/gel cassette and AMPure PB beads purification steps, sequencing primer was annealed to the SMRTbell templates, followed by binding of the sequence polymerase to the annealed templates. 
+
+### Library construction types
+
+<img class="normal" src="src/product_B_PB_EN.png">
+
+### Sequencing
+
+
+&emsp;&emsp;After library quality control, the different libraries were sequenced on the PacBio Sequel IIe/Revio platform according to their effective concentrations and target data output.
+
+
+
+## Bioinformatics analysis workflow
+
+<img class="normal" src="src/bacteria_complete_hifi.EN.png">
+
+<p class='mark'>Figure 1-1: Bioinformatics analysis workflow diagram</p>
+
+Information analysis consists of several steps:
+
+&emsp;&emsp;1 Raw data processing: This step involves filtering out low-quality reads and retaining high-quality reads. The filtered data is referred to as Clean Data.
+
+&emsp;&emsp;2 Sample assembly: Genomic assembly is performed to obtain sequence files that reflect the sample's genome.
+
+&emsp;&emsp;3 Genomic composition analysis: After assembly, the composition of the sample's genome is analyzed, including predictions of coding genes, non-coding RNAs, repetitive sequences, prophages, genomic islands, CRISPR, and other genomic components.
+
+&emsp;&emsp;4 Functional annotation: Functional annotation is performed on the coding gene sequences using different databases, including commonly used databases such as KEGG, COG, and databases specific to pathogenic microorganisms.
+
+&emsp;&emsp;5 Genomic comparative analysis: In this step, the differences between the sample and reference genomes are compared at the genome and gene levels. This includes analyses such as collinearity analysis, gene family construction, analysis of shared/unique genes, and construction of species phylogenetic trees.
+
+&emsp;&emsp;6 Genomic visualization analysis: This step combines the results of genomic composition analysis and functional annotation to display the basic research findings of the genome.
+
+
+&emsp;&emsp;Note: This analysis workflow includes all the analysis contents of this product. The blue dashed line represents advanced analysis content. The specific analysis content of this project is based on this report.
+
+
+<img class="logo" align="left" src="src/logo.png"/>
+<h6 style="text-align:right">北京诺禾致源科技股份有限公司</h6>
+<hr/>
+</p>
+

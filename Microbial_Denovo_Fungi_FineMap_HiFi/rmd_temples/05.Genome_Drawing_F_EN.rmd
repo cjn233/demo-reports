@@ -1,0 +1,28 @@
+
+## Genomic visualization analysis
+
+### Whole-Genome map
+
+***
+&emsp;&emsp;For the assembled genomic sequence of the sequencing sample, combined with the predicted results of the coding genes, the Circos software [38] is used to display the genomic information of the sample. If the analysis of non-coding RNA is also conducted, the relevant analysis results will be displayed on the graph. The whole genome map is shown below:
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/05.Genome_Drawing/","*.Overview.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.Overview.png"="","file/05.Genome_Drawing//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>Figure 2-12 Whole genome map</p>
+The outermost ring displays genomic sequence coordinates. From the exterior inward, the subsequent rings represent: (1) gene functional annotation results; (2) ncRNA distribution; (3) genomic GC content, calculated with sliding windows (chromosome length/1,000 bp) and step size (chromosome length/1,000 bp)—inward blue segments denote regions with GC content below the genomic average, while outward red arcs indicate regions above the average, where peak height reflects the magnitude of deviation from the mean; and (4) genomic GC skew (window/step size = chromosome length/1,000 bp), computed as (G-C)/(G+C). Inward green segments signify regions where G content is lower than C, and outward orange arcs represent the inverse relationship.
+
+&emsp;&emsp;Result file directory: Result/05.Genome_Drawing/Genome_Overview。
+
+<p>
+<br/>
+<img class="logo" align="left" src="src/logo.png"/>
+<h6 style="text-align:right">Novogene Co., Ltd.</h6>
+<hr/>
+</p>
+

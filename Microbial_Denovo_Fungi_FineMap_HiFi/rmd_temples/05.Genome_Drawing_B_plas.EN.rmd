@@ -1,0 +1,18 @@
+
+
+***
+&emsp;&emsp;Plasmid circular diagram is shown as follows:
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/05.Genome_Drawing/Plas/","*.Overview.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.Overview.png"="","file/05.Genome_Drawing/Plas//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>Figure 2-14 Plasmid circular map</p>
+<p class='mark'>Note: From outer to inner, the image consists of COG functional annotation classified genes (arrows represent the coding genes in the clockwise direction), genomic sequence position coordinates, genome GC content. The GC content is calculated with a window size of 500 bp and a step size of 20 bp. The blue region inwards represents regions with GC content lower than the average GC content of the whole genome, while the red region outwards represents the opposite. The higher the peak, the greater the difference from the average GC content. The genome GC skew value is calculated with a window size of 500 bp and a step size of 20 bp. The specific algorithm is (G-C)/(G+C). The green region inwards represents regions with a lower G content than C, while the orange region outwards represents the opposite.</p>
+
+&emsp;&emsp;Result file directory: Result/05.Genome_Drawing/Genome_Overview/
+

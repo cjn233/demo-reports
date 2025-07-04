@@ -1,0 +1,88 @@
+## Methylation Analysis
+### Epigenetic Modification
+&emsp;&emsp;Using SMRT Link v25.2.0, methylation site detection and prediction of nucleotide motifs potentially recognized by methyltransferases were performed on the final genome assembly results. The predicted modification types include m6A, m4C,as well as unknown types (modified_base).
+
+&emsp;&emsp;The result statistics are as follows:
+<p class='mark'>Table 2-18 Statistics of modified sites in the sample genome</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/02.Assembly/motif/motif_type.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **Sample ID**: sample name
+- **<font face="Arial">motifString</font>**: Nucleotide motif sequence recognized by methyltransferases
+- **<font face="Arial">centerPos</font>**: Position of the modified base
+- **<font face="Arial">ModificationType</font>**: Type of modification
+- **<font face="Arial">fraction</font>**: Proportion of modified motifs in the entire genome for this motif
+- **<font face="Arial">nDetected</font>**: Number of modified motifs
+- **<font face="Arial">meanScore</font>**: Average score
+- **<font face="Arial">objectiveScore</font>**: Total score of all motifs
+
+
+<p class='mark'>Table 2-19 Statistics of motif sequences in the sample genome</p>
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/02.Assembly/motif/motif_sum.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **Sample ID**: Sample name
+- **<font face="Arial">Type</font>**: Type of modified site
+- **<font face="Arial">Number</font>**: Number of modified sites
+- **<font face="Arial">Percent%</font>**: Percentage of modified sites in all sites
+
+
+### Distribution of Methylation Motifs in GRs/IGRs
+<p class='mark'>Table 2-20 Distribution statistics of methylation motifs in GRs/IGRs</p>
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/02.Assembly/motif/motif_dis.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **Sample ID**: Sample name
+- **<font face="Arial">m4C.in genome</font>**: Number of m4C methylation types in the genome
+- **<font face="Arial">m4C.in GR(%)</font>**: Number of m4C methylation types in gene regions
+- **<font face="Arial">m4C.in IGR(%)</font>**: Number of m4C methylation types in intergenic regions
+- **<font face="Arial">m6A.in genome</font>**: Number of m6A methylation types in the genome
+- **<font face="Arial">m6A.in GR(%)</font>**: Number of m6A methylation types in gene regions
+- **<font face="Arial">m6A.in IGR(%)</font>**: Number of m6A methylation types in intergenic regions
+- **<font face="Arial">modified_base. in genome</font>**: Number of unknown types of methylation types in the genome
+- **<font face="Arial">modified_base. in GR(%)</font>**: Number of unknown types of methylation types in gene regions
+- **<font face="Arial">modified_base. in IGR(%)</font>**: Number of unknown types of methylation types in intergenic regions.
+
+&emsp;&emsp;Result file directory: Result/02.Assembly/all.modifications.distribution.xls
+
+### Motif Gene Annotation
+
+&emsp;&emsp;The annotation of genes on each motif site in major databases such as NR, SwissProt, KEGG, GO, etc., is displayed.
+
+&emsp;&emsp;Result file directory: Result/04.Genome_Function/motify.anno/*.motifs_anno.table.xls
+
+
+### COG annotation Distribution Plot
+
+&emsp;&emsp;COG annotation and plotting analysis of nucleotide motif sequences recognized by methyltransferases.
+
+&emsp;&emsp;Result file directory: Result/04.Genome_Function/motify.anno/
+
+
+### Methylation Circle Map
+<p class='mark'>The distribution circle plot of epigenetic modifications is shown as follows:</p>
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/02.Assembly/motif/","*motifs.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\motifs.png"="","file/02.Assembly/motif//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>Figure 2-15 Distribution circle plot of epigenetic modifications</p>
+&emsp;&emsp;Explanation: Each circle in the figure represents, from outer to inner, the genomic position; the distribution of modified sites on the forward strand counted in 2000bp windows with a step size of 2000bp; the distribution of modified sites on the reverse strand counted in 2000bp windows with a step size of 2000bp; GC content: counted in 2000bp windows with a step size of 2000bp, the inner red region represents regions with GC content lower than the average GC content of the whole genome, while the outer green region represents the opposite, and the peak height indicates the difference from the average GC content; GC skewness: counted in 2000bp windows with a step size of 2000bp, calculated as (G-C)/(G+C), the inner pink region represents regions where the content of G is lower than that of C, while the outer light green region represents the opposite.
+
+
+&emsp;&emsp;Result file directory: Result/02.Assembly/02.Modification_Overview。
+
+

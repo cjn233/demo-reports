@@ -1,0 +1,106 @@
+##甲基化分析 
+###表观修饰
+&emsp;&emsp;使用SMRT Link v5.0.1[6][7]，对最终的基因组组装结果进行甲基化位点检测和可能的甲基化转移酶识别的核苷酸基序（motif）的预测。能够预测到的修饰类型包括m6A，m4C和m5C，以及未知类型(modified_base)。
+
+&emsp;&emsp;结果统计如下:
+<p class='mark'>表 2-16 样品基因组修饰位点各类型统计信息</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/02.Assembly/motif/motif_type.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **Sample ID**:样品ID
+- **<font face="Arial">motifString</font>**：甲基转移酶识别的核苷酸motif序列
+- **<font face="Arial">centerPos</font>**：修饰碱基所在的位置
+- **<font face="Arial">ModificationType</font>**：修饰类型
+- **<font face="Arial">fraction</font>**：修饰的motif占基因组中全部此motif的比例
+- **<font face="Arial">nDetected</font>**：修饰的motif个数
+- **<font face="Arial">meanScore</font>**: 平均得分
+- **<font face="Arial">objectiveScore</font>**：全部motif的总得分值
+
+
+<p class='mark'>表 2-17 样品基因组基序motif统计信息</p>
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/02.Assembly/motif/motif_sum.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **Sample ID**:样品ID
+- **<font face="Arial">Type</font>**：修饰位点类型
+- **<font face="Arial">Number</font>**：修饰位点个数
+- **<font face="Arial">Percent%</font>**：修饰位点占所有中的百分比
+
+###甲基化motif在GRs/IGRs上的分布统计
+<p class='mark'>表 2-18 甲基化motif在GRs/IGRs上的分布统计信息</p>
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/02.Assembly/motif/motif_dis.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **Sample ID**:样品ID
+- **<font face="Arial">m4C.in genome</font>**：m4C甲基化类型在基因组上的数量
+- **<font face="Arial">m4C.in GR(%)</font>**：m4C甲基化类型在基因区域上的数量
+- **<font face="Arial">m4C.in IGR(%)</font>**：m4C甲基化类型在基因间区上的数量
+- **<font face="Arial">m5C.in genome</font>**：m5C甲基化类型在基因组上的数量
+- **<font face="Arial">m5C.in GR</font>**：m5C甲基化类型在基因区域上的数量
+- **<font face="Arial">m5C.in IGR(%)</font>**：m5C甲基化类型在基因间区上的数量
+- **<font face="Arial">m6A.in genome</font>**：m6A甲基化类型在基因组上的数量
+- **<font face="Arial">m6A.in GR(%)</font>**：m6A甲基化类型在基因区域上的数量
+- **<font face="Arial">m6A.in IGR(%)</font>**：m6A甲基化类型在基因间区上的数量
+- **<font face="Arial">modified_base. in genome</font>**：未知类型甲基化类型在基因组上的数量
+- **<font face="Arial">modified_base. in GR(%)</font>**：未知类型甲基化类型在基因区域上的数量
+- **<font face="Arial">modified_base. in IGR(%)</font>**：未知类型甲基化类型在基因间区上的数量。
+
+&emsp;&emsp;结果文件目录：Result/02.Assembly/all.modifications.distribution.xls
+
+###未甲基化motif在GRs/IGRs上的分布统计
+<p class='mark'>表 2-19 未甲基化motif在GRs/IGRs上的分布统计信息</p>
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/02.Assembly/motif/motif_undis.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **Sample ID**:样品ID
+- **<font face="Arial">motifString</font>**：未甲基化的甲基转移酶识别的核苷酸motif序列
+- **<font face="Arial">No. in genome</font>**：未甲基化motif序列在基因组上的数量
+- **<font face="Arial">No. in GR(%)</font>**：未甲基化motif序列在基因区域上的数量
+- **<font face="Arial">No. in IGR(%)</font>**：未甲基化motif序列在基因间区上的数量
+
+&emsp;&emsp;结果文件目录：Result/02.Assembly/all.un_modifications.distribution.xls
+
+
+###motif基因注释
+
+&emsp;&emsp;样品各motif位点上的基因在NR，SwissProt，KEGG，GO等各大数据库的注释情况展示。
+
+&emsp;&emsp;结果文件目录：Result/04.Genome_Function/motify.anno/*.motifs_anno.table.xls
+
+
+###COG注释分布图
+
+&emsp;&emsp;甲基转移酶识别的核苷酸motif序列的COG注释和绘图分析。
+
+&emsp;&emsp;结果文件目录：Result/04.Genome_Function/motify.anno/
+
+
+###甲基化圈图
+<p class='mark'>表观修饰分布圈图如下所示:</p>
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/02.Assembly/motif/","*motifs.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\motifs.png"="","file/02.Assembly/motif//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>图 2-14 表观修饰分布圈图</p>
+&emsp;&emsp;说明 图中各圈从外至内依次代表：基因组位置；以窗口2000bp，步长2000bp来统计正义链修饰位点分布情况；以窗口2000bp，步长2000bp来统计反义链修饰位点分布情况；GC含量：以窗口2000bp，步长2000bp来统计，向内的红色部分表示该区域GC含量低于全基因组平均GC含量，向外的绿色部分与之相反，且峰值越高表示与平均GC含量差值越大；GC偏好性：以窗口2000bp，步长2000bp来统计，具体算法为G-C/G+C，向内的粉色部分表示该区域G的含量低于C的含量，向外的浅绿色部分与之相反。
+
+&emsp;&emsp;结果文件目录：Result/02.Assembly/02.Modification_Overview。
+
+

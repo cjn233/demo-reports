@@ -1,0 +1,128 @@
+
+##Analysis of Genome Composition
+
+&emsp;&emsp;Microbial genomes contain a rich repertoire of functional regions, which include not only coding gene regions but also non-coding regions that are involved in transcriptional regulation, post-transcriptional regulation, translational regulation, and epigenetic regulation. Some of these functional regions are also associated with species diversity and evolution.
+
+&emsp;&emsp;To predict the composition of a target genome, various methods can be employed to analyze coding genes, repetitive sequences, non-coding RNAs, etc.
+
+###Coding genes
+&emsp;&emsp;The methods for predicting coding genes in fungal samples are as follows: (1) If transcriptome data is available, the following methods are used: de novo prediction using Transdecoder, Glimmer, Snap, PASA prediction based on transcriptome data, Cufflinks prediction based on transcriptome data, de novo prediction using Augustus (version 2.7), and homology-based prediction using Genewise (version 2.4.1) with closely related sequences (if provided). The results from multiple methods are then integrated using EVM and validated using PASA in the second round. (2) If transcriptome data is not available but closely related reference sequences are provided, homology-based prediction is done using Genewise. (3) If neither transcriptome data nor closely related reference sequences are provided, de novo prediction is done using Augustus. The statistical information of the gene prediction results is shown in the table below:
+<p class='mark'>Table 2-4 Encoded Gene Prediction Result Statistics Table</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/03.Genome_Component/gene.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **Sample ID**：Sample name
+- **Genome size**：Genome size
+- **Gene number**：Gene number
+- **Gene total length**：Gene total length
+- **Gene average length**：Gene average length
+- **Gene length / Genome**：Gene length / Genome
+
+&emsp;&emsp;Here is the gene length statistics chart:
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/03.Genome_Component/","*.cds.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.cds.png"="","file/03.Genome_Component//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>Figure 2-4 Gene Length Distribution Chart</p>
+<p class='mark'>Explanation: The x-axis represents gene length, and the y-axis represents the corresponding number of genes.</p>
+
+&emsp;&emsp;Result file directory：Result/03.Genome_Component/*/Gene/
+
+
+###Repetitive sequences
+&emsp;&emsp;Repetitive sequences refer to the identical or complementary segments that appear at different positions in the genome. They are the components of gene regulatory networks. Based on the distribution of repetitive sequences in the genome, they can be classified into dispersed repetitive sequences and tandem repetitive sequences.
+
+&emsp;&emsp;Dispersed repetitive sequences can be further classified into Short Interspersed Nuclear Elements (SINEs) and Long Interspersed Nuclear Elements (LINEs). Long interspersed repetitive sequences often possess transpositional activity. Tandem Repeat (TR) sequences are adjacent repeated sequences that occur two or more times. They are further divided into Minisatellite DNA and Microsatellite DNA. Tandem repeat units have species-specific composition and can be used as genetic traits to study evolutionary relationships.
+
+&emsp;&emsp;Through the use of RepeatMasker software (Version open-4.0.5)[10], predictions for dispersed repetitive sequences were made. Additionally, TRF (Tandem Repeats Finder, Version 4.07b)[11] was utilized to search for tandem repeat sequences within the DNA sequence. The predicted results are shown in the table below:
+
+<p class='mark'>Table 2-6: Statistics of Dispersed Repeat Sequence Results</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/03.Genome_Component/rep.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **Sample ID**：Sample name
+- **Type**：Types of Dispersed Repeat Sequences
+- **Number**：The number of repetitive sequences
+- **Total Length(bp)**：Total length of repetitive sequences
+- **In genome(%)**：Percentage of repetitive sequences in the genome
+- **Average length(bp)**：Average length of repetitive sequences
+- **LTR**：Long terminal repetitive sequences
+- **DNA**：DNA transposons
+- **LINE**：Long interspersed repetitive sequences
+- **SINE**：Short interspersed repetitive sequences
+- **RC**：Rolling circle
+
+<p class='mark'>Table 2-7: Statistics of Tandem Repeat Sequences Results</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/03.Genome_Component/TR.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **Sample ID**：Sample name
+- **Type**：Types of Tandem Repeat Sequences
+- **Number(#)**：Number of Repeat Sequences
+- **Repeat Size(bp)**：Range of Repeat Sequence Lengths
+- **Total Length(bp)**：Total Length of Repeat Sequences
+- **In genome(%)**：Percentage of Repeat Sequences in the Genome
+- **TR**：Tandem Repeat Sequences
+- **Minisatellite DNA**：Minisatellite DNA
+- **Microsatellite DNA**：Microsatellite DNA
+
+&emsp;&emsp;Result file directory：Result/03.Genome_Component/*/Repeat/
+
+
+###Non-coding RNA
+
+&emsp;&emsp;Non-coding RNA (ncRNA) is a class of RNA molecules that perform various biological functions but do not carry information for protein translation. They directly participate in biological activities at the RNA level. Commonly studied ncRNAs in microorganisms include sRNA, rRNA, and tRNA.
+
+&emsp;&emsp;tRNA：tRNAscan-SE software [12]（Version 1.3.1）is used to predict tRNA.
+
+&emsp;&emsp;rRNA: ribosomal RNA, is highly conserved in closely related species. There are two methods for predicting rRNA. The first method is to find rRNA by aligning with a reference rRNA database of closely related sequences. The second method is to predict rRNA using rRNAmmer software [13]（Version 1.2）.
+
+&emsp;&emsp;sRNA: small RNA, is first annotated by aligning with the Rfam database. Then, the final sRNA is determined using the cmsearch program (Version 1.1rc4)[14][15] with default parameters.
+
+&emsp;&emsp;snRNA: small nuclear RNA, is a major component of the RNA spliceosome involved in post-transcriptional processing in eukaryotes.
+
+&emsp;&emsp;miRNA: MicroRNA (miRNA) is a class of endogenous non-coding RNA with regulatory functions discovered in eukaryotes. The precursor is approximately 90bp in length, and the mature miRNA is about 20-25 nucleotides (nt) long. miRNA is widely present in eukaryotes and is a group of short sequence RNAs that do not encode proteins. It does not have an open reading frame (ORF) and regulates gene expression.
+
+&emsp;&emsp;The prediction principles for sRNA, snRNA, and miRNA are similar. They are first annotated by aligning with the Rfam software against the Rfam database. Then, the final sRNA, snRNA, or miRNA is determined using the cmsearch program with default parameters.
+
+<p class='mark'>Table 2-8 the statistical results of non-coding RNA (ncRNA) after redundancy</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/03.Genome_Component/ncRNA.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **Sample ID**：Sample name
+- **Type**：type of ncRNA
+- **Number(#)**：number of ncRNA
+- **Average length(bp)**：Mean Length of ncRNA
+- **Total length(bp)**：Total Length of ncRNA
+
+
+&emsp;&emsp;Result file directory：Result/03.Genome_Component/*/ncRNA/
+
+
+<p>
+<br/>
+<img class="logo" align="left" src="src/logo.png"/>
+<h6 style="text-align:right">北京诺禾致源科技股份有限公司</h6>
+<hr/>
+</p>

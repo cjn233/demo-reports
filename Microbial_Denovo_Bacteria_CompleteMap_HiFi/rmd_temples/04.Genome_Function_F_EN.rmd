@@ -1,0 +1,261 @@
+
+## Functional Gene Analysis
+
+### Effector
+
+#### Secreted protein prediction
+&emsp;&emsp;Secretory proteins are defined as proteins synthesized intracellularly and translocated across the membrane via signal peptides to exert extracellular functions, many of which are essential enzymes. The N-terminal signal peptide (15-30 amino acids) is required for secretion.
+
+&emsp;&emsp;Prediction is performed using SignalP (Version 4.1)[27] and TMHMM (Version 2.0c) to identify signal peptides and transmembrane domains, respectively. Combined results determine secretory protein candidates.
+
+<p class='mark'>Table 2-9 Secreted protein identification statistics</p>
+
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/04.Genome_Function/SP.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **Sample ID**: Sample name
+- **SignalP Protein**: Number of proteins with signal peptide structures
+- **TMHMM Protein**: Number of proteins with transmembrane domains
+- **Secretory Protein**: Number of predicted secretory proteins
+
+&emsp;&emsp;Result file directory: Result/04.Genome_Function/*/Effector/Secretory_Protein/
+
+#### Secondary Metabolite Gene Cluster Analysis
+&emsp;&emsp;Secondary metabolites are non-essential compounds produced during specific growth phases. The antiSMASH program [29] (version 4.0.2) is used to predict the gene clusters in the genome.
+
+&emsp;&emsp;PKS can be divided into three types: type I, also known as modular PKS, is a multifunctional enzyme complex composed of multiple domains. Type II, also known as aromatic PKS, mainly synthesizes aromatic compounds. Type III, also known as chalcone PKS. The antiSMASH-4.0.2 program is used to predict the genome, and the prediction results are summarized in the following table:
+
+<p class='mark'>Table 2-10 Statistics of secondary metabolite gene clusters and gene numbers</p>
+
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/04.Genome_Function/sm.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **Sample ID**: Sample name
+- **cluster**: Gene cluster name
+- **Clusters number**: Number of gene clusters
+- **Gene number**: Number of genes in the gene cluster
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/04.Genome_Function/","*cluster_num.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.cluster_num.png"="","file/04.Genome_Function//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>Figure 2-4 Statistics of sample gene clusters and corresponding gene numbers</p>
+&emsp;&emsp;Result file directory: Result/04.Genome_Function/*/Effector/Secondary_Metabolism/
+
+####P450 Annotation
+&emsp;&emsp;Cytochrome P450 (cytochrome P450 or CYP450, abbreviated as CYP450) is a superfamily of heme-thiolate proteins that are involved in the metabolism of endogenous substances as well as exogenous substances including drugs and environmental compounds. The P450 database is divided into 16 classes based on the gene's location in the IterPro database, and the statistical results are shown in the figure below:
+
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/04.Genome_Function/","*P450.class.catalog.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.P450.class.catalog.png"="","file/04.Genome_Function//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>Figure 2-5 Sample Gene Functional Annotation P450 Classification Chart</p>
+<p class='mark'>Note: The x-axis represents the classification types in P450 annotation, and the y-axis represents the number of genes annotated.</p>
+&emsp;&emsp;Result file directory: Result/04.Genome_Function/*/General_Gene_Annotation/P450/
+
+####Transcription Factor Analysis
+
+&emsp;&emsp;Transcription factors (TFs) refer to proteins that can bind to DNA in a sequence-specific manner and regulate transcription. Transcription factors control chromatin and transcription by recognizing specific DNA sequences, forming a complex system that guides genome expression.
+
+&emsp;&emsp;Compare the amino acid sequence of the target species with the fungal transcription factor database(http://ftfd.snu.ac.kr/) to obtain annotation results.
+
+&emsp;&emsp;Result file directory: Result/04.Genome_Function/*/General_Gene_Annotation/TF/
+
+### Gene Function Annotation
+&emsp;&emsp;Currently, the commonly used functional databases for annotation include NR, GO, KEGG, COG, TCDB, CAZY, Pfam, and Swiss-Prot.
+
+&emsp;&emsp;The basic steps of functional annotation are as follows:
+
+&emsp;&emsp;1) Use the Diamond tool to compare the predicted gene protein sequences with various functional databases (evalue ≤ 1e-5);
+
+&emsp;&emsp;2) Filter the comparison results: For each sequence's comparison: results, select the comparison result with the highest score (defaultidentity>=40%，coverage>=40%) for annotation.
+
+#### NR Annotation
+&emsp;&emsp;The Non-Redundant Protein Database (NR), established and maintained by the National Center for Biotechnology Information (NCBI), represents a comprehensive repository of non-redundant protein sequences. Its annotations encompass species-specific information, facilitating taxonomical classification. Leveraging NR database annotations affords access to functional insights into the genes of the respective species.The annotation results are classified as follows:
+
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/04.Genome_Function/","*nr.anno.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.nr.anno.png"="","file/04.Genome_Function//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>Figure 2-6 Sample NR database species annotation statistics chart</p>
+<p class='mark'>Note: The x-axis represents the species ID, and the y-axis represents the number of genes annotated.</p>
+&emsp;&emsp;Result file directory: Result/04.Genome_Function/*/General_Gene_Annotation/NR/
+
+#### GO Annotation
+&emsp;&emsp;GO (Gene Ontology) is the established standard for gene function annotation. The GO provides controlled vocabularies to classify different gene functions: Biological Process (BP), Molecular Function (MF) and Cellular Component (CC). GO term is the basic unit of GO system. Each term has a unique identifier. The relationship between the GO term of each ontology can form a Directed Acyclic Topology. More details could be found from the website, the annotation results are classified as follows:
+
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/04.Genome_Function/","*.go.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.go.png"="","file/04.Genome_Function//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>Figure 2-7 GO annotation classification</p>
+<p class='mark'>Note: The x-axis represents the sub-terms of GO terms for the three main categories of GO, and the y-axis represents the number of genes annotated to this term (including the sub-terms of the term). The three different classifications represent the three fundamental classifications of GO terms (from left to right: biological process, cellular component, molecular function).</p>
+
+&emsp;&emsp;Result file directory: Result/04.Genome_Function/*/General_Gene_Annotation/GO/
+
+#### KEGG Annotation
+&emsp;&emsp;The full name of KEGG is the Kyoto Encyclopedia of Genes and Genomes. It is a database that performs systematic analysis of the metabolic pathways of gene products and compounds within cells, as well as the functions of these gene products. KEGG integrates data from various aspects such as genomics, chemical molecules, and biochemical systems, including metabolic pathways (KEGG PATHWAY), drugs (KEGG DRUG), diseases (KEGG DISEASE), functional models (KEGG MODULE), gene sequences (KEGG GENES), and genomes (KEGG GENOME), among others. The KO (KEGG ORTHOLOG) system links various KEGG annotation systems together, and KEGG has established a comprehensive KO annotation system, which can complete functional annotation of the genome of new species. After annotating genes with KO, they can be classified according to the KEGG metabolic pathways in which they participate.
+
+&emsp;&emsp;The statistical chart of the number of annotated genes in the KEGG database is shown below:
+
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/04.Genome_Function/","*kegg.functional_classification.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.kegg.functional_classification.png"="","file/04.Genome_Function//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>Figure 2-8 KEGG metabolic pathway classification</p>
+&emsp;&emsp;Note: The numbers on the bar graph represent the number of annotated genes. The y-axis represents the codes of level 1 functional categories, with their explanations detailed in the corresponding legend. 
+
+&emsp;&emsp;Result file directory: Result/04.Genome_Function/*/General_Gene_Annotation/KEGG/
+
+#### KOG database annotation
+&emsp;&emsp;Developed by the NCBI, the KOG database categorizes eukaryotic orthologous protein-coding genes into functional groups linked to core biological processes, including information storage/processing, cellular regulation, and metabolism. It supports gene functional annotation, evolutionary analyses, and discovery of conserved genomic elements across eukaryotes. Tailored for eukaryotic gene systems, KOG integrates data from key model organisms (e.g., humans, yeast, Drosophila) to enhance functional prediction accuracy. The statistical results are shown in the following figure：
+
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/04.Genome_Function/","*kog.class.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.kog.class.png"="","file/04.Genome_Function//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>Figure 2-9 Annotation of KOG database</p>
+<p class='mark'>Note: The x-axis denotes the names of the twenty-six groups of KOG/COG, while the y-axis represents the proportion of genes annotated to each group compared to the total number of annotated genes.
+&emsp;&emsp;Result file directory: Result/04.Genome_Function/*/General_Gene_Annotation/KOG/
+
+#### CAZy Annotation
+&emsp;&emsp;CAZy [26], short for Carbohydrate-Active enZYmes Database, is a specialized database related to carbohydrate-active enzymes. It includes enzyme families that catalyze carbohydrate degradation, modification, and biosynthesis. It consists of five main classifications: glycoside hydrolases (GHs), glycosyl transferases (GTs), polysaccharide lyases (PLs), carbohydrate esterases (CEs), and auxiliary activities (AAs). For more details, please refer to http://www.cazy.org/.
+
+&emsp;&emsp;The classification annotation results and the number statistics graph of the CAZy database are shown below:
+
+<p class='mark'>Table 2-11 CAZy annotation results</p>
+
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/04.Genome_Function/CAZy.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **Sample ID**: Sample name
+- **CBM**: Number of genes related to carbohydrate-binding modules (CBMs)
+- **CE**: Number of genes related to carbohydrate esterases (CEs)
+- **GH**: Number of genes related to glycoside hydrolases (GHs)
+- **GT**: Number of genes related to glycosyl transferases (GTs)
+- **PL**: Number of genes related to polysaccharide lyases (PLs)
+- **AA**: Number of genes related to auxiliary activities (AAs)
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/04.Genome_Function/","*single_CAZy_class.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.single_CAZy_class.png"="","file/04.Genome_Function//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+<p class='mark'>Figure 2-10 CAZy functional classification and gene count statistics</p>
+<p class='mark'>Note: The x-axis represents CAZy database classification categories, and the y-axis indicates the number of annotated genes.</p>
+
+&emsp;&emsp;Carbohydrate-binding domains are non-catalytic domains that can fold into specific three-dimensional structures and have the function of binding carbohydrates. Recent studies have shown that carbohydrate-binding domains can enhance the activity of carbohydrate-active enzymes by binding to the substrates of these enzymes.
+
+&emsp;&emsp;Result file directory: Result/04.Genome_Function/*/General_Gene_Annotation/CAZy/
+
+
+
+#### TCDB Annotation
+&emsp;&emsp;TCDB, short for Transporter Classification Database [24], is a membrane transporter protein classification database that includes ion channels (TC system). The TCDB database classifies transport systems into 5 levels, and the statistical results for the first level are shown in the following figure:
+
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/04.Genome_Function/","*tcdb.class.catalog.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.tcdbclasscatalog.png"="","file/04.Genome_Function//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'> Figure 2-11 Sample gene function annotation TCDB functional classification chart</p>
+<p class='mark'> Note: X-axis (TCDB first-level classification types); Y-axis (number of annotated genes) </p>
+&emsp;&emsp;Result file directory: Result/04.Genome_Function/*/General_Gene_Annotation/TCDB/
+
+
+
+####Pfam Annotation
+
+&emsp;&emsp;Pfam database is composed of two parts: Pfam-A and Pfam-B. Pfam-A is manually curated and of higher quality. For more information, you can visit http://pfam.xfam.org/.
+
+&emsp;&emsp;Result file directory: Result/04.Genome_Function/*/General_Gene_Annotation/Pfam/
+
+####Swiss-Prot Annotation
+
+&emsp;&emsp;Swiss-Prot[25] is a curated protein sequence database that provides high-level annotation results for proteins, including descriptions of protein functions, domain structures, post-translational modifications, variations, and more. For more information, you can visit http://www.ebi.ac.uk/uniprot/.
+
+&emsp;&emsp;Result file directory: Result/04.Genome_Function/*/General_Gene_Annotation/Swiss-Prot/
+
+### Toxicity or Pathogenicity Analysis
+#### Pathogen Host Interactions (PHI) Annotation
+
+&emsp;&emsp; PHI, short for Pathogen Host Interactions Database [30], is a database of interactions between pathogens and hosts. It mainly includes fungal, oomycete, and bacterial pathogens, and their hosts include animals, plants, fungi, and insects. This database plays an important role in the identification of target genes for drug intervention. It also includes antifungal compounds and their corresponding target genes. Each gene in the database contains nucleotide and amino acid sequences, as well as detailed descriptions of predicted protein functions during the infection process.
+
+&emsp;&emsp;The statistical distribution of the number of genes for each phenotype mutation type in the pathogen PHI is shown in the following figure:
+
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/04.Genome_Function/","*phi.class.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.phi.class.png"="","file/04.Genome_Function//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>Figure 2-12 Sample gene function annotation pathogen PHI phenotype mutation type distribution chart</p>
+<p class='mark'>Note: The x-axis represents phenotype mutation types, and the y-axis represents the number of annotated genes.</p>
+
+&emsp;&emsp;Result file directory: Result/04.Genome_Function/*/Pathogenicity/PHI/
+
+####Fungal Virulence Factors (DFVF) Annotation.
+&emsp;&emsp;The full name of DFVF database is the Database of Fungal Virulence Factors. It is a comprehensive database of known fungal virulence factors, collecting 2058 pathogenic genes produced by 228 fungal strains from 85 genera. Each gene is described in detail regarding the diseases it causes and the host it affects. Furthermore, it is associated with Pfam functional domain annotation and Gene Ontology (GO) annotation information.
+
+&emsp;&emsp;Use Diamond software to align the amino acid sequences of the target species with the DFVF database, and integrate the target species' genes with their corresponding functional annotation information to obtain annotation results.
+
+&emsp;&emsp;Result file directory: Result/04.Genome_Function/*/Pathogenicity/DVDF/
+
+
+<p>
+<br/>
+<img class="logo" align="left" src="src/logo.png"/>
+<h6 style="text-align:right">Novogene Co., Ltd. </h6>
+<hr/>
+</p>
+

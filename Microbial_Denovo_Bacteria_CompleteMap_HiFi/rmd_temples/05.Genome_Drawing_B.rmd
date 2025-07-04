@@ -1,0 +1,41 @@
+
+##  基因组可视化分析
+
+###  全基因组图谱
+
+***
+&emsp;&emsp;针对测序样品的组装基因组序列，结合编码基因的预测结果，使用Circos软件[38]对样品基因组进行展示，如果同时进行了非编码RNA、基因功能注释的分析，图上也会展示相关的分析结果。全基因组图谱如下所示：
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/05.Genome_Drawing/Chr/","*.Overview.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.Overview.png"="","file/05.Genome_Drawing/Chr//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>图 2-12 全基因组图谱</p>
+<p class='mark'>说明：最外圈是基因组序列位置坐标，由外到里，分别是基因功能注释结果（根据实际项目情况，包含COG（KOG）注释结果信息）、ncRNA、基因组GC含量：以窗口（染色体长度/1000）bp，步长（染色体长度/1000）bp来统计GC含量，向内的蓝色部分表示该区域GC含量低于全基因组平均GC含量，向外的红色部分与之相反，且峰值越高表示与平均GC含量差值越大、基因组GC skew值：窗口（染色体长度/1000）bp，步长（染色体长度/1000）bp，具体算法为G-C/G+C，向内的绿色部分表示该区域G的含量低于C的含量，向外的橘色部分与之相反。</p>
+
+&emsp;&emsp;质粒图谱如下所示：
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/05.Genome_Drawing/Plas/","*.Overview.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.Overview.png"="","file/05.Genome_Drawing/Plas//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>图 2-13 质粒圈图</p>
+<p class='mark'>说明 图片由外到里，分别是COG 功能注释分类基因（箭头顺时针表示正链编码）、基因组序列位置坐标、基因组GC含量：以窗口500bp，步长20bp来统计，向内的红色部分表示该区域GC含量低于全基因组平均GC含量，向外的绿色部分与之相反，且峰值越高表示与平均GC含量差值越大、基因组GC skew值：以窗口500bp，步长20bp来统计，具体算法为G-C/G+C，向内的紫色部分表示该区域G的含量低于C的含量，向外的绿色部分与之相反。</p>
+
+&emsp;&emsp;结果文件目录：Result/05.Genome_Drawing/Genome_Overview。
+
+<p>
+<br/>
+<img class="logo" align="left" src="src/logo.png"/>
+<h6 style="text-align:right">北京诺禾致源科技股份有限公司</h6>
+<hr/>
+</p>
+

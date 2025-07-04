@@ -1,0 +1,26 @@
+### SNP统计与注释
+&emsp;&emsp;SNP（单核苷酸多态性）主要是指在基因组水平上由单个核苷酸的变异所引起的DNA序列多态性，包括单个碱基的转换、颠换等。
+&emsp;&emsp;采用MUMmer（Version 3.23）比对软件进行个体SNP的检测，依照SNP和基因之间的位置关系及相互作用，对SNP功能进行注释。
+<p class='mark'>表<font face="Arial">SNP注释结果统计</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/06.Comparative_Genomics/snp.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **<font face="Arial">Reference Name</font>**：参考序列ID
+- **<font face="Arial">Sample_name</font>**：样品ID
+- **<font face="Arial">Start_syn</font>**：起始密码子同义突变
+- **<font face="Arial">Stop_syn</font>**：终止密码子同义突变
+- **<font face="Arial">Start_nonsyn</font>**：起始密码子非同义突变
+- **<font face="Arial">Stop_nonsyn</font>**：终止密码子非同义突变
+- **<font face="Arial">Premature_stop</font>**：无义突变，该位点三联体密码子突变成终止密码子
+- **<font face="Arial">Synonymous</font>**：基因区内同义突变
+- **<font face="Arial">Nonsynonymous</font>**：基因区内的非同义突变
+- **<font face="Arial">Total_CDS_SNP</font>**：位于基因区的SNP
+- **<font face="Arial">Intergenic</font>**：位于基因间区的SNP
+- **<font face="Arial">Total_SNP</font>**：样品总SNP
+
+&emsp;&emsp;结果文件目录：Result/06.Comparative_Genomics/SNP/
+

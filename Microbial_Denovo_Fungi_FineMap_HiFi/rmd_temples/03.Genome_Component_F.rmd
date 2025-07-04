@@ -1,0 +1,128 @@
+
+##基因组组分分析
+
+&emsp;&emsp;微生物基因组包含的功能区域非常丰富，除编码基因区域，更有非编码区域实现转录调控、转录后调控、翻译调控、表观遗传调控等功能，部分功能区域还与物种进化的多样性存在关系。
+
+&emsp;&emsp;通过多种方法，对编码基因、重复序列、非编码RNA等进行预测，获取目标基因组的组成情况。
+
+###编码基因
+&emsp;&emsp;真菌样本基因预测的方法如下：（1）若提供转录组数据，进行基于转录组数据的Transdecoder、Glimmer、Snap的从头PASA预测、 从头Augustus[9]（version 2.7）预测和以近缘序列（若有提供）做参考的同源Genewise（version 2.4.1）预测，然后将多种方法的结果进行EVM整合和PASA第二轮验证。（2）若未提供转录组数据，但提供近缘参考序列，则进行同源Genewise预测。（3）若未提供转录组数据和近缘参考序列，则进行从头Augustus预测。基因预测结果统计信息如下表所示：
+<p class='mark'>表 2-4 编码基因预测结果统计表</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/03.Genome_Component/gene.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **Sample ID**：样品名称
+- **Genome size**：全基因组总长度
+- **Gene number**：预测到的编码基因个数
+- **Gene total length**：所有编码基因的总长度
+- **Gene average length**：编码基因的平均长度
+- **Gene length / Genome**：编码区总长度占全基因组的比例
+
+&emsp;&emsp;绘制基因长度统计图如下：
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/03.Genome_Component/","*.cds.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.cds.png"="","file/03.Genome_Component//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>图 2-4 基因长度分布图</p>
+<p class='mark'>说明 横坐标为基因长度，纵坐标为相应基因个数。</p>
+
+&emsp;&emsp;结果文件目录：Result/03.Genome_Component/*/Gene/
+
+
+###重复序列
+&emsp;&emsp;重复序列是基因组中不同位置出现的相同或互补性片段，是基因调控网络的组成成分。 根据重复的序列在基因组上的分布，分为散在重复序列、串联重复序列。
+
+&emsp;&emsp;散在重复序列又分短分散重复序列（Short interspersed nuclear elements，SINEs）以及长散在重复序列（Longinterspersed nuclear elements，LINEs），其中长散在重复序列常具有转座活性。串联重复序列（Tandem Repeat，TR），即相邻的、重复两次或多次特定核酸序列模式的重复序列。分为Minisatellite DNA（小卫星DNA）和Microsatellite DNA（微卫星DNA）。串联重复单元具有种属组成特异性，可作为物种的遗传性状，进行进化关系的研究。
+
+&emsp;&emsp;通过RepeatMasker（Version open-4.0.5）软件[10]进行散在重复序列预测，TRF（Tandem Repeats Finder, Version 4.07b）[11]搜寻DNA序列中的串联重复序列。预测结果如下表所示：
+
+<p class='mark'>表 2-6 散在重复序列结果统计</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/03.Genome_Component/rep.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **Sample ID**：样品名称
+- **Type**：散在重复序列的类型
+- **Number**：重复序列的个数
+- **Total Length(bp)**：重复序列的总长度
+- **In genome(%)**：重复序列占基因组的百分比
+- **Average length(bp)**：重复序列的平均长度
+- **LTR**：长末端重复序列
+- **DNA**：DNA转座子
+- **LINE**：长散在重复序列
+- **SINE**：短散在重复序列
+- **RC**：滚环（rolling circle）
+
+<p class='mark'>表 2-7 串联重复序列结果统计</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/03.Genome_Component/TR.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **Sample ID**：样品名称
+- **Type**：串联重复序列的类型
+- **Number(#)**：重复序列的个数
+- **Repeat Size(bp)**：重复序列的长度范围
+- **Total Length(bp)**：重复序列的总长度
+- **In genome(%)**：重复序列占基因组的百分比
+- **TR**：串联重复序列
+- **Minisatellite DNA**：小卫星DNA
+- **Microsatellite DNA**：微卫星DNA
+
+&emsp;&emsp;结果文件目录：Result/03.Genome_Component/*/Repeat/
+
+
+###非编码RNA
+
+&emsp;&emsp;非编码RNA（ncRNA）是一类执行多种生物学功能的RNA分子，其本身并不携带翻译为蛋白质的信息，直接在RNA水平对生命活动发挥作用。对于微生物而言，研究较为普遍的包括sRNA、rRNA、tRNA。
+
+&emsp;&emsp;tRNA：通过tRNAscan-SE软件[12]（Version 1.3.1）对tRNA进行预测。
+
+&emsp;&emsp;rRNA：即核糖体RNA，rRNA在相邻物种中高度保守。rRNA的预测方法有两种，一是通过与近缘参考序列的rRNA库比对找到rRNA，二是用rRNAmmer软件[13]（Version 1.2）预测rRNA。
+
+&emsp;&emsp;sRNA：小RNA，首先进行Rfam database[14][15]比对注释，接着用cmsearch程序（Version 1.1rc4）（参数默认）确定最终的sRNA。
+
+&emsp;&emsp;snRNA：（small nuclearRNA，小核RNA），它是真核生物转录后加工过程中RNA剪接体(spilceosome）的主要成分。
+
+&emsp;&emsp;miRNA：MicroRNA(miRNA)是在真核生物中发现的一类内源性的具有调控功能的非编码RNA，前体全长约90bp，其成熟miRNA大小长约20~25个核苷酸（nt）。miRNA广泛存在于真核生物中，是一组不编码蛋白质的短序列RNA，它本身不具有开放阅读框（ORF），对基因的表达具有调控作用。
+
+&emsp;&emsp;sRNA、snRNA、miRNA的预测原理类似，首先用Rfam软件进行Rfam database比对注释，接着用其cmsearch程序（参数默认）确定最终的sRNA、snRNA、miRNA。
+
+<p class='mark'>表 2-8 ncRNA去冗余后的统计结果</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/03.Genome_Component/ncRNA.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **Sample ID**：样品名称
+- **Type**：ncRNA的类型
+- **Number(#)**：ncRNA的个数
+- **Average length(bp)**：ncRNA的平均长度
+- **Total length(bp)**：ncRNA的总长度
+
+
+&emsp;&emsp;结果文件目录：Result/03.Genome_Component/*/ncRNA/
+
+
+<p>
+<br/>
+<img class="logo" align="left" src="src/logo.png"/>
+<h6 style="text-align:right">北京诺禾致源科技股份有限公司</h6>
+<hr/>
+</p>

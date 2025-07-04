@@ -1,0 +1,70 @@
+
+##  Genomic Overview
+
+### Assembly analysis
+
+&emsp;&emsp;Using Flye software (https://github.com/fenderglass/Flye，version：2.9-b1768) genome assembly was conducted to obtain preliminary assembly results reflecting the basic genomic characteristics of the sample. Subsequently, Racon software (version: 1.4.13) was used for three rounds of error correction based on third-generation sequencing data, followed by three rounds of Pilon (version: 1.22) error correction using second-generation reads. The final assembly results are shown in the table below:
+
+
+<p class='mark'>Table 2-3: Statistics of Sample Genome Assembly Results</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/02.Assembly/all.assembly.stat.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+
+- **Sample ID**：Sample name
+- **Contigs**：Number of contigs obtained from assembly
+- **Max Contig Length**：The maximum length of contig obtained from assembly
+- **N50 Contig Length**：The contigs obtained from assembly are arranged in descending order, and the length of the contig at the 50% cumulative length.
+- **Totle Length**：The total length of all assembled contigs.
+- **GC(%)**：The GC content of the assembled contigs.
+
+###  Evaluation of the assembly result.
+
+&emsp;&emsp;Align reads to the assembled genome sequence and summarize the GC bias and repetitive sequence situation of the genome by calculating the GC content of the assembled sequence and the read coverage depth. The analysis results are shown in the figure below:
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/02.Assembly/","*GC_depth.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.GC_depth.png"="","file/02.Assembly//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+&emsp;&emsp;BUSCO(Benchmarking Universal Single-Copy Orthologs：http://busco.ezlab.org/) evaluation is performed using a single-copy orthologous gene library, and software such as metaeuk and hmmer is used to evaluate the assembled genome. This is done to assess the integrity of the assembled genome.
+
+<p class='mark'>Figure 2-4: BUSCO statistical table.</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/02.Assembly/BUSCO.stat.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **Sample ID**：Sample name
+- **C**：Complete BUSCOs
+- **S**：Complete and single-copy BUSCOs
+- **D**：Complete Duplicated BUSCOs
+- **F**：Fragmented BUSCOs
+- **M**：Missing BUSCOs
+- **n**：Total BUSCO groups searched
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/02.Assembly/","*.busco_figure.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.busco_figure.png"="","file/04.Genome_Function//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+<p class='mark'>Figure 2-3: BUSCO statistical graph.</p>
+
+<p>
+<br/>
+<img class="logo" align="left" src="src/logo.png"/>
+<h6 style="text-align:right">北京诺禾致源科技股份有限公司</h6>
+<hr/>
+</p>
+

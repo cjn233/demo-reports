@@ -1,0 +1,46 @@
+
+# Results Presentation and Explanation
+
+## Data overview 
+
+***
+
+&emsp;&emsp;After the PacBio sequencing, data statistics were performed, and the results are as follows:
+
+
+<p class='mark'>Table<font face="Arial">2-1 Sequencing Data Statistics</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/01.Cleandata/all.Cleandata.stat.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **<font face="Arial">Sample ID</font>**：Sample name
+- **<font face="Arial">Mean Concordance</font>**：<font face="Arial">Average sequencing quality of reads.</font>
+- **<font face="Arial">Number of Bases (bp)</font>**：Data volume.
+- **<font face="Arial">Number of Reads</font>**：<font face="Arial">Number of reads. </font>
+- **<font face="Arial">Mean Read Length (bp)</font>**：<font face="Arial">Average length of reads.</font>
+- **<font face="Arial">N50 ReadLength(bp)</font>**：<font face="Arial">The length of the subreads at which 50% of the total length is reached when the subreads are sorted in descending order of length and their lengths are cumulatively added.</font>
+
+&emsp;&emsp;<font face="Arial">The length distribution of subreads is as follows:</font>
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/01.Cleandata/","*.post_filter_readlength_histogram.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.post_filter_readlength_histogram.png"="","file/01.Cleandata//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>Figure 2-1 Number of reads (y-axis) against subreads sequence length (x-axis).</p>
+
+&emsp;&emsp;Result file directory：Result/01.Cleandata/
+
+<p>
+<br/>
+<img class="logo" align="left" src="src/logo.png"/>
+<h6 style="text-align:right">北京诺禾致源科技股份有限公司</h6>
+<hr/>
+</p>
+

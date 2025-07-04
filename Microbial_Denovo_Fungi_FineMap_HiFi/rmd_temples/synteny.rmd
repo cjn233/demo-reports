@@ -1,0 +1,34 @@
+
+
+###  全基因组共线性分析
+
+***
+
+&emsp;&emsp;共线性指的是遗传学中的基因连锁关系， 是不同物种基因组上同源基因以相同顺序排列的现象。两个物种之间的共线性程度可以作为衡量他们之间进化距离的尺度，可以知道物种间的亲缘关系。
+&emsp;&emsp;使用MUMmer软件（Version 3.23）对目标基因组和参考基因组进行比对，确定了基因组间的大范围共线性关系。后使用LASTZ（Version 1.03.54）对区域间进行比对，确认局部位置排列关系，并从中查找易位（Translocation/Trans），倒置（Inversion/Inv）和易位+倒置（Trans+Inv）的区域。
+&emsp;&emsp;样品基因组和参考基因组之间的共线性展示结果如下图：
+
+&emsp;&emsp;平行共线性图一：
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/06.Comparative_Genomics/","*xoy.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.xoy.png"="","file/06.Comparative_Genomics//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>说明：图中横轴是参考序列基因组，纵轴是所测基因组（纵轴序列名字右上角有“*”表示使用该序列的负链进行比对），如果序列 ID 在轴线外没有显示，表示此序列没有任何比对块比对上；图中黑色虚线表示比对块的边缘，红色线条表示正向比对，蓝色表示反向比对。中间方块颜色表示比对类型：Collinear：同线性比对；Translocation：易位比对；Inversion：倒置比对；Tran+Inver：易位兼倒置的比对。</p>
+
+&emsp;&emsp;平行共线性图二：
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/06.Comparative_Genomics/","*parallel.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.parallel.png"="","file/06.Comparative_Genomics//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+<p class='mark'>说明：上轴表示所测基因组，下轴表示参考序列基因组。上下两条轴中黄色框表示基因组正向链，蓝色框表示基因组反向链，框中填充颜色的高度表示比对的相似度，完全填充表示相似度为 100%；上下轴之间链接图形的颜色表示比对类型：Collinear：同线性比对；Translocation：易位比对；Inversion：倒置比对；Tran+Inver：易位兼倒置的比对。</p>
+
+<p class='mark'>结果文件目录：Result/06.Comparative_Genomics/Synteny。</p>

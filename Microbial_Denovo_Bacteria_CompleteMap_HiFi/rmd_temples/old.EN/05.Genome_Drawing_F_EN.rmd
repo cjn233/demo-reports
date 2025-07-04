@@ -1,0 +1,28 @@
+
+# 2.8 Genomic visualization analysis
+
+## 2.8.1 Whole-genome map
+
+***
+&emsp;&emsp;For the assembled genomic sequence of the sequencing sample, combined with the predicted results of the coding genes, the Circos software [38] is used to display the genomic information of the sample. If the analysis of non-coding RNA is also conducted, the relevant analysis results will be displayed on the graph. The whole genome map is shown below:
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/05.Genome_Drawing/","*.Overview.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.Overview.png"="","file/05.Genome_Drawing//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>Figure 2-16: Whole genome map</p>
+<p class='mark'>The outermost circle represents the genomic sequence position coordinates. Moving inward, the next circle shows the GC content and GC-skew. The light blue region indicates a lower GC content compared to the average GC content of the whole genome, while the dark purple region represents a higher GC content. The higher the peak, the greater the difference from the average GC content. The next circle represents the gene density, specifically for coding genes, rRNA genes, snRNA genes, and tRNA genes. It shows the proportion of genes in each window (window size is calculated as chromosome length divided by 1000) and the step size is also calculated as chromosome length divided by 1000. Finally, the innermost circle represents gene duplication.</p>
+
+&emsp;&emsp;Result file directory：Result/05.Genome_Drawing/Genome_Overview。
+
+<p>
+<br/>
+<img class="logo" align="left" src="src/logo.png"/>
+<h6 style="text-align:right">北京诺禾致源科技股份有限公司</h6>
+<hr/>
+</p>
+

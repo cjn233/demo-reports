@@ -1,0 +1,49 @@
+
+# Results Presentation and Explanation
+
+## Data Overview 
+
+***
+
+&emsp;&emsp;Sequencing statistics from the PacBio platform:
+
+
+<p class='mark'>Table 2-1. Sequencing data statistics</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/01.Cleandata/clean_data.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+
+- **Sample ID**: Sample name  
+- **num_seqs**: Number of reads  
+- **sum_len (bp)**: Total base pairs  
+- **min_len (bp)**: Minimum read length  
+- **N50_len (bp)**: The read length at which 50% of the bases are in reads longer than, or equal to, this value  
+- **max_len (bp)**: Maximum read length
+
+&emsp;&emsp;<font face="Arial">The length distribution of HiFi reads is as follows:</font>
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/01.Cleandata/","*.subreads_distri.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.subreads_distri.png"="","file/01.Cleandata//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>Figure 2-1 Length distribution of HiFi reads</p>
+
+<p class='mark'>Note: Number of reads (y-axis) against HiFi reads sequence length (x-axis).</p>
+
+&emsp;&emsp;Result file directory: Result/01.Cleandata/
+
+<p>
+<br/>
+<img class="logo" align="left" src="src/logo.png"/>
+<h6 style="text-align:right">Novogene Co., Ltd.</h6>
+<hr/>
+</p>
+

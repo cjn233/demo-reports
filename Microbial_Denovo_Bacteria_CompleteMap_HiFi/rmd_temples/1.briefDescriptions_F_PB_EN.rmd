@@ -1,0 +1,48 @@
+
+```{r echo=FALSE}
+library(knitr)
+data <- read.delim('file/project_info.xls',sep='\t',header=T)
+kable(data, table.attr = "class=\"nowrap\"","html") %>%
+kable_styling(bootstrap_options=c("striped","hover","condensed"))
+```
+
+
+# Overview of the Workflow
+## Experimental Procedure
+
+<img class="normal" src="src/Project_workflow_EN.png">
+
+<p class='mark'>Figure 1-1 Project workflow</p>
+
+### Sample Quality Control
+
+&emsp;&emsp;Please refer to Novogene’s sample QC report.
+
+### Library Construction, Quality Control and Sequencing
+
+&emsp;&emsp;SMRTbell libraries were prepared using the SMRTbell® Prep Kit 3.0. Qualified DNA samples were sheared to target sizes using Covaris g-TUBE, followed by DNA damage repair and end polishing. Hairpin adapters were ligated to DNA fragments using DNA ligase, with subsequent purification using AMPure PB beads. Size selection was performed using BluePippin, followed by additional AMPure PB bead purification. After final DNA damage repair and another AMPure PB bead clean-up, completed libraries were quantified by Qubit and fragment size distribution was analyzed using Agilent Femto Pulse. Polymerase and primers were then bound, and sequencing was performed on the PacBio Revio platform.
+
+## Bioinformatics analysis workflow
+
+<img class="normal" src="src/F_fine_EN.png">
+
+<p class='mark'>Figure 1-2 Bioinformatics analysis workflow diagram</p>
+
+The information analysis consists of several steps:
+
+Information analysis consists of several steps:
+
+&emsp;&emsp;1. Raw data processing: This step involves filtering out low-quality reads and retaining high-quality reads. The filtered data is referred to as Clean Data.
+
+&emsp;&emsp;2. Sample assembly: Genomic assembly is performed to obtain fasta that reflect the sample's genome.
+
+&emsp;&emsp;3. Genomic composition analysis: After assembly, the composition of the sample's genome is analyzed, including predictions of coding genes, non-coding RNAs, repetitive sequences, and other genomic components.
+
+&emsp;&emsp;4. Functional annotation: Functional annotation is performed on the coding gene sequences using different databases, including commonly used databases such as KEGG, COG, and databases specific to pathogenic microorganisms.
+
+
+<img class="logo" align="left" src="src/logo.png"/>
+<h6 style="text-align:right">Novogene Co., Ltd.</h6>
+<hr/>
+</p>
+

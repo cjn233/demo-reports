@@ -1,0 +1,60 @@
+
+## 基因组概况
+
+### 组装分析 
+
+***
+
+&emsp;&emsp;基于上述测序数据，使用三款组装软件并行组装，依据组装质量选取最优组装结果（都成环选取基因组最长的软件的结果
+）。三款软件分别为：Canu软件(https://github.com/marbl/canu/ ,version：2.0)、Flye软件(https://github.com/fenderglass/Flye，version：2.9-b1768)、Falcon软件（https://github.com/PacificBiosciences/pb-assembly） 对reads进行基因组组装，得到能反映样品基因组基本情况的初步的组装结果，然后使用 Racon（version：1.4.13）软件基于三代测序数据对拼接结果进行三轮纠错后，再进行二轮二代 reads 的 Pilon软件（version：1.22）纠错，得到最终的组装结果。结果统计如下表所示：
+
+
+<p class='mark'>表<font face="Arial"> 2-2 </font> 样品基因组组装结果统计</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/02.Assembly/all.assembly.stat.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **<font face="Arial">Sample ID</font>**：样品名称：
+- **<font face="Arial">Type</font>**：组装结果序列类型
+- **<font face="Arial">Contig ID</font>**：组装得到的<font face="Arial">contig</font>编号：
+- **<font face="Arial">Size(bp)</font>**：组装得到的序列的大小：
+- **<font face="Arial">GC%</font>**：组装得到的contig的GC含量：
+- **<font face="Arial">Circular</font>**：是否是已经环化的序列。
+
+###质粒序列比对
+***
+&emsp;&emsp;将组装的质粒序列与质粒数据库进行比对，对比对结果进行分析，total score值排前5的比对结果统计如下：
+<p class='mark'>表<font face="Arial"> 2-3 </font>样品质粒序列比对结果TOP5统计</p>
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/02.Assembly/all.plassmid.blast.stat.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+
+- **<font face="Arial">Sample ID</font>**：样品名称：
+- **<font face="Arial">query_id</font>**：样品质粒id；
+- **<font face="Arial">query_len</font>**：质粒长度：
+- **<font face="Arial">subject_id</font>**：比对上的目标序列ID标识；
+- **<font face="Arial">subject_len</font>**：<font face="Arial">subject</font> 序列长度；
+- **<font face="Arial">max_score</font>**：质粒序列和比对到数据库质粒序列之间的最高比对分数；
+- **<font face="Arial">total_score</font>**：比对分数总和：
+- **<font face="Arial">query_cover</font>**：比对覆盖度（比对上的片段占质粒序列的百分比）；
+- **<font face="Arial">E_value</font>**：比对结果的期望值：
+- **<font face="Arial">identity</font>**：序列比对的一致性百分比；
+- **<font face="Arial">descroption</font>**：比对到数据库中质粒的描述信息。
+
+&emsp;&emsp;注：query cover值小于50% 时，样品质粒比对到NCBI对应质粒的可信度不高。
+
+&emsp;&emsp;结果文件目录：Result/02.Assembly/。
+
+<p>
+<br/>
+<img class="logo" align="left" src="src/logo.png"/>
+<h6 style="text-align:right">北京诺禾致源科技股份有限公司</h6>
+<hr/>
+</p>
+

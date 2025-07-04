@@ -1,0 +1,46 @@
+
+# Results Presentation and Explanation
+
+## Data overview 
+
+***
+
+&emsp;&emsp;After the PacBio sequencing, data statistics were performed, and the results are as follows:
+
+
+<p class='mark'>Table<font face="Arial">2-1 Sequencing Data Statistics</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/01.Cleandata/clean_data.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **<font face="Arial">Sample ID</font>**：Sample name
+- **<font face="Arial">num_seqs</font>**：Number of reads.
+- **<font face="Arial">sum_len(bp)</font>**：Data volume.
+- **<font face="Arial">min_len(bp)</font>**：<font face="Arial">min length of reads. </font>
+- **<font face="Arial">N50_len(bp)</font>**：<font face="Arial">The length of the subreads at which 50% of the total length is reached when the reads are sorted in descending order of length and their lengths are cumulatively added.</font>
+- **<font face="Arial">max_len(bp)</font>**：<font face="Arial">max length of reads. </font>
+
+&emsp;&emsp;<font face="Arial">The length distribution of subreads is as follows:</font>
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/01.Cleandata/","*.subreads_distri.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.subreads_distri.png"="","file/01.Cleandata//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>Figure 2-1 Number of reads (y-axis) against subreads sequence length (x-axis).</p>
+
+&emsp;&emsp;Result file directory：Result/01.Cleandata/
+
+<p>
+<br/>
+<img class="logo" align="left" src="src/logo.png"/>
+<h6 style="text-align:right">北京诺禾致源科技股份有限公司</h6>
+<hr/>
+</p>
+

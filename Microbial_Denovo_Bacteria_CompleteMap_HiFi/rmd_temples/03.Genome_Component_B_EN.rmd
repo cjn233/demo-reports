@@ -1,0 +1,217 @@
+
+## Genomic Composition Analysis
+
+&emsp;&emsp;The microbial genome is composed of diverse functional regions. Beyond protein-coding sequences, non-coding regions are involved in transcriptional regulation, post-transcriptional regulation, translational regulation, and epigenetic control, with some functional elements linked to evolutionary diversity.
+
+&emsp;&emsp;Protein-coding genes, repetitive sequences, and non-coding RNAs are predicted through multiple computational approaches to characterize the genomic composition.
+
+### Coding Genes
+&emsp;&emsp;Use GeneMarkS (Version 4.17) (http://topaz.gatech.edu/GeneMark/) software to predict coding genes in the newly sequenced genome. The statistical information of the gene prediction results is shown in the table below:
+
+<p class='mark'>Table 2-5 Statistical table of predicted coding genes</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/03.Genome_Component/gene.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **Sample ID**: Sample name
+- **Genome size**: Total length of the genome
+- **Gene number**: Number of predicted coding genes
+- **Gene total length**: Total length of all coding genes
+- **Gene average length**: Average length of coding genes
+- **Gene length / Genome**: Percentage of coding region length in the whole genome
+
+&emsp;&emsp;The gene length distribution plot is shown below:
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/03.Genome_Component/","*.cds.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.cds.png"="","file/03.Genome_Component//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>Figure 2-3 Gene length distribution plot</p>
+<p class='mark'>Note: The x-axis represents the gene length, and the y-axis represents the corresponding number of genes.</p>
+&emsp;&emsp;Result file directory: Result/03.Genome_Component/*/Gene/
+
+### Repetitive Sequences
+&emsp;&emsp;Repeated sequences (also known as repetitive elements, repeating units or repeats) are short or long patterns that occur in multiple copies throughout the genome. These sequences are classified into two major categories based on their distribution patterns: interspersed repeats and tandem repeats.
+
+&emsp;&emsp;Interspersed repeats are further categorized into Short Interspersed Nuclear Elements (SINEs) and Long Interspersed Nuclear Elements (LINEs). Among these, LINEs are typically associated with transpositional activity. Tandem Repeats (TR) refer to repeats of specific nucleotide sequences that occur adjacently and are repeated two or more times. Tandem repeats are further classified into Minisatellite DNA and Microsatellite DNA. Tandem repeat units exhibit species-specific compositional characteristics and can be utilized as genetic traits for studying evolutionary relationships.
+
+&emsp;&emsp;Interspersed repeats are predicted using RepeatMasker (version open-4.0.5), while tandem repeats in DNA sequences are identified through Tandem Repeats Finder (TRF, version 4.07b). The prediction results are provided in the table below.
+
+<p class='mark'>Table 2-6 Statistics of interspersed repeat elements</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/03.Genome_Component/rep.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **Sample ID**: Sample name
+- **Type**: Type of interspersed repeats
+- **Number (#)**: Number of repeats
+- **Total Length (bp)**: Total length of repeats
+- **In genome (%)**: Percentage of the genome occupied by repeats
+- **Average length (bp)**: Average length of repeats
+- **LTR**: Long terminal repeats
+- **DNA**: DNA transposons
+- **LINE**: Long interspersed nuclear elements
+- **SINE**: Short interspersed nuclear elements
+- **RC**: Rolling-circle 
+
+<p class='mark'>Table 2-7 Statistics of tandem repeats results</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/03.Genome_Component/TR.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **Sample ID**: Sample name
+- **Type**: Type of tandem repeats
+- **Number (#)**: Number of repeats
+- **Repeat Size (bp)**: Range of repeat sizes
+- **Total Length (bp)**: Total length of repeats
+- **In genome (%)**: Percentage of the genome occupied by repeats
+- **TR**: Tandem repeats
+- **Minisatellite DNA**: Minisatellite DNA
+- **Microsatellite DNA**: Microsatellite DNA
+
+ &emsp;&emsp;Result file directory: Result/03.Genome_Component/*/Repeat/
+
+
+### Non-coding RNA
+&emsp;&emsp;Non-coding RNAs (ncRNAs) are functional RNA molecules that regulate biological processes at the RNA level without encoding proteins. In microorganisms, the most extensively studied ncRNAs include sRNAs, rRNAs, and tRNAs.
+
+&emsp;&emsp;tRNA prediction: tRNAs are identified using tRNAscan-SE (Version 2.0.9).
+
+&emsp;&emsp;rRNA prediction: Ribosomal RNAs (rRNAs) are detected through alignment with reference rRNA databases of closely related species or by computational prediction using rRNAmmer (Version 1.2), given their high conservation among related species.
+
+&emsp;&emsp;sRNA prediction: Small RNAs (sRNAs) are annotated through Rfam database screening followed by confirmation with cmsearch (Version 1.1rc4) using default parameters.
+
+
+<p class='mark'>Table 2-8 Statistical results of ncRNA after de-replication</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/03.Genome_Component/ncRNA.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **Sample ID**: Sample name
+- **Type**: Types of ncRNA
+- **Number (#)**: Number of ncRNAs
+- **Average length (bp)**: Average length of ncRNAs
+- **Total length (bp)**: Total length of ncRNAs
+
+&emsp;&emsp;Result file directory: Result/03.Genome_Component/*/ncRNA/
+
+### Genomic Islands（GIs）
+&emsp;&emsp;A genomic island (GI) is part of a genome that has evidence of A GI can code for many functions, can be involved in symbiosis or pathogenesis, and may help an organism's adaptation. The same GI can occur in distantly related species as a result of various types of horizontal gene transfer (transformation, conjugation, transduction). This can be determined by base composition analysis, as well as phylogeny estimations.
+
+&emsp;&emsp;Genomic islands are predicted using IslandPath-DIOMB (Version 0.2), which identifies potential horizontally acquired regions through detection of dinucleotide composition bias (phylogenetically atypical patterns) and mobility genes (e.g., transposases or integrases). The prediction results are summarized in the table below:
+
+<p class='mark'>Table 2-9 Genomic island prediction statistics</p>
+
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/03.Genome_Component/GIs.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **Sample ID**: Sample name
+- **GIs number**: Number of GIs
+- **GIs total length (bp)**: Total Length of GIs
+- **GIs Average length (bp)**: Average Length of GIs
+
+&emsp;&emsp;Genomic island gene distribution statistics are as follows:
+
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/03.Genome_Component/","*.GI.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.GI.png"="","file/03.Genome_Component//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>Figure 2-4 Genomic island gene distribution statistics</p>
+<p class='mark'>Note: The x-axis represents the length scale (showing genomic islands with lengths smaller than 15kb).</p>
+
+
+&emsp;&emsp;Result file directory: Result/03.Genome_Component/*/Genomic_Island/
+
+### Prophages
+&emsp;&emsp;Prophages are temperate phage genomes integrated into host DNA. They can replicate or segregate synchronously with the host bacterial DNA. The presence of prophage sequences may enable bacteria to acquire antibiotic resistance, enhance adaptability to the environment, increase adhesion, or transform bacteria into pathogens.
+
+
+&emsp;&emsp;PhiSpy software (Version 2.3) was used to predict prophages in the sample genome. The prediction results are shown in Table 2-19:
+
+<p class='mark'>Table 2-10 Prophage prediction result statistics</p>
+
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/03.Genome_Component/Prophage.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **Sample ID**: Sample name
+- **Prophage_Num**: Number of prophages
+- **Total_length**: Total length of prophages
+- **Average_length**: Average length of prophages
+
+
+&emsp;&emsp;Result file directory: Result/03.Genome_Component/*/Prophage/
+
+### CRISPR
+&emsp;&emsp;CRISPR (Clustered Regularly Interspaced Short Palindromic Repeats) are DNA sequences in prokaryotes (bacteria/archaea) containing phage-derived fragments from past infections. These sequences guide the detection and destruction of matching phage DNA in future encounters, forming an acquired, heritable antiviral defense system. CRISPR systems occur in ~50% of bacterial and ~90% of archaeal genomes.
+
+&emsp;&emsp;CRISPR prediction is performed using CRISPRdigger (Version 1.0), with the results summarized in the following table:
+
+<p class='mark'>Table 2-11 CRISPR prediction result statistics</p>
+
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/03.Genome_Component/CRISPR.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **Sample ID**: Sample name
+- **CRISPR_Num number**: Predicted total number of CRISPRs 
+- **Total_length**: Total length of CRISPRs
+- **Average_length**: Average length of CRISPRs 
+
+
+&emsp;&emsp;Result file directory: Result/03.Genome_Component/*/CRISPR/
+
+### ISfinder Analysis
+
+&emsp;&emsp;The ISfinder database identifies insertion sequences (IS) - short DNA sequences ranging from 0.7 to 2.5 kb that encode solely mobility-related functions. As a predominant category of mobile genetic elements (MGEs), these sequences can be predicted using the ISfinder database (https://isfinder.biotoul.fr/).
+
+&emsp;&emsp;The assembly sequences are compared to the ISfinder database using Blast software to obtain the prediction results for insertion sequences.
+
+&emsp;&emsp;Result file directory: Result/03.Genome_Component/*/ISfinder/
+
+###Integron Analysis
+
+&emsp;&emsp;Integron:Integron: Integrative element: Integrons are mobile DNA molecules with a unique structure that can capture and integrate exogenous genes, transforming them into functional gene expression units. They facilitate the horizontal transfer of multidrug resistance genes in bacteria through transposons or conjugative plasmids. Integrons are present in many bacteria, located on chromosomes, plasmids, or transposons. They are an inherent genetic unit in bacteria that enhances bacterial survival by capturing exogenous genes. The INTEGRALL database (http://integrall.bio.ua.pt/)is used to predict integrons in the genome.
+
+
+&emsp;&emsp;Blast software is used to compare the assembly sequences with the INTEGRALL database to obtain the integron prediction results.
+
+&emsp;&emsp;Result file directory: Result/03.Genome_Component/*/Integron/
+
+<p>
+<br/>
+<img class="logo" align="left" src="src/logo.png"/>
+<h6 style="text-align:right">Novogene Co., Ltd.</h6>
+<hr/>
+</p>

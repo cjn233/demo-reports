@@ -1,0 +1,93 @@
+
+## 基因组概况
+
+### 基因组大小估计 
+
+***
+
+&emsp;&emsp;组装前采用基于K-mer统计的分析方法来估计基因组大小。用15-mer对测序数据进行分析，估算得到样品的基因组大小见表2-2，K-mer统计分布图如图2-2所示：
+
+<p class='mark'>表<font face="Arial"> 2-2 </font> K-mer分析数据统计</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/02.Assembly/all_kmer.stat.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **<font face="Arial">K-mer number</font>**：从reads中提取用于统计的kmer个数
+- **<font face="Arial">K-mer depth</font>**：统计的kmer平均深度
+- **<font face="Arial">Genome size</font>**：估计的基因组大小
+- **<font face="Arial">Revised gsize</font>**：纠正后估计的基因组大小
+- **<font face="Arial">Heterozygous Rate</font>**：估计的基因组杂合比例
+- **<font face="Arial">Repeat Rate</font>**：估计的基因组重复比例。
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/02.Assembly/","*kmer.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\*kmer.png"="","file/02.Assembly//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>图 2-2 样品15-mer统计图</p>
+
+&emsp;&emsp;说明 横坐标表示kmer深度，纵坐标表示各深度下的频数占总频数的比例，图中红色的曲线为测序数据的15-mer深度分布曲线，黑色的曲线为与之最接近的标准泊松分布曲线。
+
+
+###组装分析
+
+***
+&emsp;&emsp;从各样品质控后的 Clean Data 出发，进行基因组组装，得到能反映样品基因组基本情况的序列文件，并对组装结果进行评价。
+
+&emsp;&emsp;基因组组装的具体处理步骤如下：
+
+&emsp;&emsp;1）经过预处理后得到 Clean Data，使用 SOAP denovo（version 2.04）[1][2]，SPAdes [3]，ABySS [4] 组装软件进行组装，并最终使用CISA [5]软件进行整合；
+
+&emsp;&emsp;2）采用gapclose（Version: 1.12）等软件对初步组装结果进行优化和补洞，从而得到最终的组装结果；
+
+&emsp;&emsp;3）过滤掉 500bp以下的片段，并进行评估和统计分析以及后续基因预测。
+
+&emsp;&emsp;结果统计：
+
+<p class='mark'>表<font face="Arial"> 2-3-1 </font>组装结果Scaffold统计表</p>
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/02.Assembly/all_sample.scaf.stat.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+<p class='mark'>表<font face="Arial"> 2-3-2 </font>组装结果Contig统计表</p>
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/02.Assembly/all_sample.contig.stat.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+&emsp;&emsp;说明 表2-3-1中统计的是长度大于500bp的Scaffold，表格2-3-2中统计的是大于500bp的Scaffold在N处打断得到的Contig序列。
+
+&emsp;&emsp;将reads比对到组装好的基因组序列上，通过统计组装序列的GC含量和reads覆盖深度，总结基因组的GC偏向性和重复序列情况。分析结果如下图所示：
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/02.Assembly/","*GC-depth.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\GC-depth.png"="","file/02.Assembly//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>图 2-3 样品GC含量与测序深度（Depth）关联分析统计图</p>
+
+&emsp;&emsp;说明 横坐标表示GC含量，纵坐标表示测序深度，右方是测序深度分布，上方是GC含量分布。
+
+&emsp;&emsp;注：测序深度分析与GC-Depth分析，可以直观地判断样品中是否存在污染序列，是否有质粒存在并能够观察到目标菌株中重复序列的情况。
+
+&emsp;&emsp;结果文件目录：Result/02.Assembly/
+
+<p>
+<br/>
+<img class="logo" align="left" src="src/logo.png"/>
+<h6 style="text-align:right">北京诺禾致源科技股份有限公司</h6>
+<hr/>
+</p>
+
