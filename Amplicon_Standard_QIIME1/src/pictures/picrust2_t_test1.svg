@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg height="500" width="1308" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<line stroke="black" stroke-width="2" x1="436" x2="576" y1="410" y2="410" />
+	<line stroke="black" stroke-width="1" x1="436" x2="436" y1="410" y2="405" />
+	<line stroke="black" stroke-width="1" x1="576" x2="576" y1="410" y2="405" />
+	<text font-family="Arial" font-size="10" text-anchor="middle" x="436" y="425">0</text>
+	<text font-family="Arial" font-size="10" text-anchor="middle" x="576" y="425">0.03</text>
+	<text font-family="Arial" font-size="15" text-anchor="middle" x="506" y="440">Means in groups</text>
+	<rect fill="sandybrown" height="10" stroke="black" width="28" x="64" y="70" />
+	<text font-family="Arial" font-size="10" text-anchor="start" x="97" y="80">D</text>
+	<rect fill="cornflowerblue" height="10" stroke="black" width="28" x="107" y="70" />
+	<text font-family="Arial" font-size="10" text-anchor="start" x="140" y="80">B</text>
+	<line stroke="black" stroke-width="2" x1="636" x2="886" y1="410" y2="410" />
+	<line stroke="black" stroke-width="1" x1="636" x2="636" y1="410" y2="405" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="636" y="425">-0.009</text>
+	<line stroke="black" stroke-width="1" x1="698.5" x2="698.5" y1="410" y2="405" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="698.5" y="425">-0.006</text>
+	<line stroke="black" stroke-width="1" x1="761" x2="761" y1="410" y2="405" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="761" y="425">-0.003</text>
+	<line stroke="black" stroke-width="1" x1="823.5" x2="823.5" y1="410" y2="405" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="823.5" y="425">0</text>
+	<line stroke="black" stroke-width="1" x1="886" x2="886" y1="410" y2="405" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="886" y="425">0.003</text>
+	<line stroke="black" stroke-dasharray="3 2" stroke-width="1" x1="823.5" x2="823.5" y1="400" y2="100" />
+	<text font-family="Arial" font-size="15" text-anchor="middle" x="761" y="440">Difference between groups</text>
+	<text font-family="Arial" font-size="10" text-anchor="middle" x="761" y="80">95% confidence intervals</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="431" y="115">Other&#194;&#160;glycan&#194;&#160;degradation</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="891" y="115">0.034</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="436" y="100" />
+	<rect fill-opacity="0.1" height="20" width="250" x="636" y="100" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="431" y="135">Pentose&#194;&#160;phosphate&#194;&#160;pathway</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="891" y="135">0.047</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="431" y="155">One&#194;&#160;carbon&#194;&#160;pool&#194;&#160;by&#194;&#160;folate</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="891" y="155">0.028</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="436" y="140" />
+	<rect fill-opacity="0.1" height="20" width="250" x="636" y="140" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="431" y="175">Sulfur&#194;&#160;relay&#194;&#160;system</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="891" y="175">0.022</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="431" y="195">Vitamin&#194;&#160;B6&#194;&#160;metabolism</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="891" y="195">0.030</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="436" y="180" />
+	<rect fill-opacity="0.1" height="20" width="250" x="636" y="180" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="431" y="215">Other&#194;&#160;carbon&#194;&#160;fixation&#194;&#160;pathways</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="891" y="215">0.027</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="431" y="235">Lipopolysaccharide&#194;&#160;biosynthesis</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="891" y="235">0.033</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="436" y="220" />
+	<rect fill-opacity="0.1" height="20" width="250" x="636" y="220" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="431" y="255">Base&#194;&#160;excision&#194;&#160;repair</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="891" y="255">0.042</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="431" y="275">Citrate&#194;&#160;cycle&#194;&#160;(TCA&#194;&#160;cycle)</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="891" y="275">0.024</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="436" y="260" />
+	<rect fill-opacity="0.1" height="20" width="250" x="636" y="260" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="431" y="295">Pentose&#194;&#160;and&#194;&#160;glucuronate&#194;&#160;interconversions</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="891" y="295">0.023</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="431" y="315">Nitrogen&#194;&#160;metabolism</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="891" y="315">0.041</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="436" y="300" />
+	<rect fill-opacity="0.1" height="20" width="250" x="636" y="300" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="431" y="335">Tropane,&#194;&#160;piperidine&#194;&#160;and&#194;&#160;pyridine&#194;&#160;alkaloid&#194;&#160;biosynthesis</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="891" y="335">0.007</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="431" y="355">Phenylalanine&#194;&#160;metabolism</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="891" y="355">0.006</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="436" y="340" />
+	<rect fill-opacity="0.1" height="20" width="250" x="636" y="340" />
+	<text font-family="Arial" font-size="10" text-anchor="end" x="431" y="375">Peroxisome</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="891" y="375">0.003</text>
+	<text font-family="Arial" font-size="10" text-anchor="end" x="431" y="395">Epithelial&#194;&#160;cell&#194;&#160;signaling&#194;&#160;in&#194;&#160;Helicobacter&#194;&#160;pylori&#194;&#160;infection</text>
+	<text font-family="Arial" font-size="10" text-anchor="start" x="891" y="395">0.030</text>
+	<rect fill-opacity="0.1" height="20" width="140" x="436" y="380" />
+	<rect fill-opacity="0.1" height="20" width="250" x="636" y="380" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="59.9741486990151" x="436" y="102" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="75.6983828696905" x="436" y="110" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="89.3587838437243" x="436" y="122" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="84.7500576125929" x="436" y="130" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="87.8400506356991" x="436" y="142" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="94.5934002473376" x="436" y="150" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="53.6748959669365" x="436" y="162" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="46.6795824377358" x="436" y="170" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="48.7273318784719" x="436" y="182" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="56.4966187983302" x="436" y="190" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="54.5911306903998" x="436" y="202" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="57.0398342972873" x="436" y="210" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="23.8843684636179" x="436" y="222" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="35.0323773940073" x="436" y="230" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="50.2360913150133" x="436" y="242" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="47.2625042587493" x="436" y="250" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="44.755762887158" x="436" y="262" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="48.3535410127667" x="436" y="270" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="34.5710636296225" x="436" y="282" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="37.724240281726" x="436" y="290" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="30.5017877729554" x="436" y="302" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="31.5584047027967" x="436" y="310" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="19.2751654430465" x="436" y="322" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="22.0807082748901" x="436" y="330" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="10.8885884530206" x="436" y="342" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="12.5672531718092" x="436" y="350" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="9.33236858323425" x="436" y="362" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="11.0722357844691" x="436" y="370" />
+	<rect fill="sandybrown" height="8" stroke="black" stroke-width="1" width="7.37335358329906" x="436" y="382" />
+	<rect fill="cornflowerblue" height="8" stroke="black" width="8.25154359058965" x="436" y="390" />
+	<line stroke="black" stroke-width="1" x1="689.031047213443" x2="749.969192690437" y1="110" y2="110" />
+	<circle cx="753.302526023771" cy="110" fill="cornflowerblue" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="756.635859357104" x2="817.574004834098" y1="110" y2="110" />
+	<line stroke="black" stroke-width="1" x1="689.031047213443" x2="689.031047213443" y1="108.333333333333" y2="111.666666666667" />
+	<line stroke="black" stroke-width="1" x1="817.574004834098" x2="817.574004834098" y1="108.333333333333" y2="111.666666666667" />
+	<line stroke="black" stroke-width="1" x1="823.847200020835" x2="840.74133734136" y1="130" y2="130" />
+	<circle cx="844.074670674694" cy="130" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="847.408004008027" x2="864.302141328553" y1="130" y2="130" />
+	<line stroke="black" stroke-width="1" x1="823.847200020835" x2="823.847200020835" y1="128.333333333333" y2="131.666666666667" />
+	<line stroke="black" stroke-width="1" x1="864.302141328553" x2="864.302141328553" y1="128.333333333333" y2="131.666666666667" />
+	<line stroke="black" stroke-width="1" x1="767.007203617927" x2="790.017784471852" y1="150" y2="150" />
+	<circle cx="793.351117805185" cy="150" fill="cornflowerblue" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="796.684451138519" x2="819.695031992445" y1="150" y2="150" />
+	<line stroke="black" stroke-width="1" x1="767.007203617927" x2="767.007203617927" y1="148.333333333333" y2="151.666666666667" />
+	<line stroke="black" stroke-width="1" x1="819.695031992445" x2="819.695031992445" y1="148.333333333333" y2="151.666666666667" />
+	<line stroke="black" stroke-width="1" x1="828.656681052238" x2="851.395744922027" y1="170" y2="170" />
+	<circle cx="854.72907825536" cy="170" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="858.062411588694" x2="880.801475458484" y1="170" y2="170" />
+	<line stroke="black" stroke-width="1" x1="828.656681052238" x2="828.656681052238" y1="168.333333333333" y2="171.666666666667" />
+	<line stroke="black" stroke-width="1" x1="880.801475458484" x2="880.801475458484" y1="168.333333333333" y2="171.666666666667" />
+	<line stroke="black" stroke-width="1" x1="757.839301878709" x2="785.482350060156" y1="190" y2="190" />
+	<circle cx="788.81568339349" cy="190" fill="cornflowerblue" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="792.149016726823" x2="819.792064908269" y1="190" y2="190" />
+	<line stroke="black" stroke-width="1" x1="757.839301878709" x2="757.839301878709" y1="188.333333333333" y2="191.666666666667" />
+	<line stroke="black" stroke-width="1" x1="819.792064908269" x2="819.792064908269" y1="188.333333333333" y2="191.666666666667" />
+	<line stroke="black" stroke-width="1" x1="803.047362156321" x2="809.234954135919" y1="210" y2="210" />
+	<circle cx="812.568287469252" cy="210" fill="cornflowerblue" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="815.901620802585" x2="822.089212782185" y1="210" y2="210" />
+	<line stroke="black" stroke-width="1" x1="803.047362156321" x2="803.047362156321" y1="208.333333333333" y2="211.666666666667" />
+	<line stroke="black" stroke-width="1" x1="822.089212782185" x2="822.089212782185" y1="208.333333333333" y2="211.666666666667" />
+	<line stroke="black" stroke-width="1" x1="728.559990303269" x2="770.398769656" y1="230" y2="230" />
+	<circle cx="773.732102989333" cy="230" fill="cornflowerblue" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="777.065436322666" x2="818.904215675397" y1="230" y2="230" />
+	<line stroke="black" stroke-width="1" x1="728.559990303269" x2="728.559990303269" y1="228.333333333333" y2="231.666666666667" />
+	<line stroke="black" stroke-width="1" x1="818.904215675397" x2="818.904215675397" y1="228.333333333333" y2="231.666666666667" />
+	<line stroke="black" stroke-width="1" x1="824.080937013322" x2="833.441608882131" y1="250" y2="250" />
+	<circle cx="836.774942215465" cy="250" fill="sandybrown" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="840.108275548798" x2="849.468947417609" y1="250" y2="250" />
+	<line stroke="black" stroke-width="1" x1="824.080937013322" x2="824.080937013322" y1="248.333333333333" y2="251.666666666667" />
+	<line stroke="black" stroke-width="1" x1="849.468947417609" x2="849.468947417609" y1="248.333333333333" y2="251.666666666667" />
+	<line stroke="black" stroke-width="1" x1="793.718310217845" x2="804.105157177342" y1="270" y2="270" />
+	<circle cx="807.438490510675" cy="270" fill="cornflowerblue" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="810.771823844009" x2="821.158670803507" y1="270" y2="270" />
+	<line stroke="black" stroke-width="1" x1="793.718310217845" x2="793.718310217845" y1="268.333333333333" y2="271.666666666667" />
+	<line stroke="black" stroke-width="1" x1="821.158670803507" x2="821.158670803507" y1="268.333333333333" y2="271.666666666667" />
+	<line stroke="black" stroke-width="1" x1="797.539094977172" x2="806.089985184062" y1="290" y2="290" />
+	<circle cx="809.423318517395" cy="290" fill="cornflowerblue" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="812.756651850728" x2="821.307542057618" y1="290" y2="290" />
+	<line stroke="black" stroke-width="1" x1="797.539094977172" x2="797.539094977172" y1="288.333333333333" y2="291.666666666667" />
+	<line stroke="black" stroke-width="1" x1="821.307542057618" x2="821.307542057618" y1="288.333333333333" y2="291.666666666667" />
+	<line stroke="black" stroke-width="1" x1="814.294089403759" x2="815.449626801304" y1="310" y2="310" />
+	<circle cx="818.782960134637" cy="310" fill="cornflowerblue" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="822.11629346797" x2="823.271830865515" y1="310" y2="310" />
+	<line stroke="black" stroke-width="1" x1="814.294089403759" x2="814.294089403759" y1="308.333333333333" y2="311.666666666667" />
+	<line stroke="black" stroke-width="1" x1="823.271830865515" x2="823.271830865515" y1="308.333333333333" y2="311.666666666667" />
+	<line stroke="black" stroke-width="1" x1="802.356149997204" x2="807.64192188165" y1="330" y2="330" />
+	<circle cx="810.975255214984" cy="330" fill="cornflowerblue" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="814.308588548317" x2="819.594360432763" y1="330" y2="330" />
+	<line stroke="black" stroke-width="1" x1="802.356149997204" x2="802.356149997204" y1="328.333333333333" y2="331.666666666667" />
+	<line stroke="black" stroke-width="1" x1="819.594360432763" x2="819.594360432763" y1="328.333333333333" y2="331.666666666667" />
+	<line stroke="black" stroke-width="1" x1="810.948301968544" x2="812.672627743504" y1="350" y2="350" />
+	<circle cx="816.005961076837" cy="350" fill="cornflowerblue" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="819.33929441017" x2="821.063620185129" y1="350" y2="350" />
+	<line stroke="black" stroke-width="1" x1="810.948301968544" x2="810.948301968544" y1="348.333333333333" y2="351.666666666667" />
+	<line stroke="black" stroke-width="1" x1="821.063620185129" x2="821.063620185129" y1="348.333333333333" y2="351.666666666667" />
+	<line stroke="black" stroke-width="1" x1="810.944040396381" x2="812.39940237544" y1="370" y2="370" />
+	<circle cx="815.732735708773" cy="370" fill="cornflowerblue" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="819.066069042106" x2="820.521431021165" y1="370" y2="370" />
+	<line stroke="black" stroke-width="1" x1="810.944040396381" x2="810.944040396381" y1="368.333333333333" y2="371.666666666667" />
+	<line stroke="black" stroke-width="1" x1="820.521431021165" x2="820.521431021165" y1="368.333333333333" y2="371.666666666667" />
+	<line stroke="black" stroke-width="1" x1="816.08871791141" x2="816.246175562691" y1="390" y2="390" />
+	<circle cx="819.579508896024" cy="390" fill="cornflowerblue" r="3.33333333333333" stroke="black" />
+	<line stroke="black" stroke-width="1" x1="822.912842229358" x2="823.070299880638" y1="390" y2="390" />
+	<line stroke="black" stroke-width="1" x1="816.08871791141" x2="816.08871791141" y1="388.333333333333" y2="391.666666666667" />
+	<line stroke="black" stroke-width="1" x1="823.070299880638" x2="823.070299880638" y1="388.333333333333" y2="391.666666666667" />
+	<g transform="rotate(90,933.5,250)">
+		<text font-family="Arial" font-size="10" text-anchor="middle" x="933.5" y="250">p_value</text>
+	</g>
+	<!-- 
+	Generated using the Perl SVG Module V2.59
+	by Ronan Oger
+	Info: http://www.roitsystems.com/
+ -->
+</svg>
