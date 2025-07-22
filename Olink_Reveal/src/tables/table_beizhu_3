@@ -1,0 +1,9 @@
+<tr><th colspan="3">3.分析软件列表及版本:</th></tr>
+<tr><td rowspan="1">比对分析</td><td>STAR</td><td>2.5.1b</td></tr>
+<tr><td rowspan="3">定量分析</td><td>HTSeq</td><td>0.6.0</td></tr><tr><td>featureCounts</td><td>1.5.0</td></tr><tr><td>RSEM</td><td>1.2.28</td></tr>
+<tr><td rowspan="2">差异分析</td><td>DESeq2</td><td>1.10.1</td></tr><tr><td>edgeR</td><td>3.12.1</td></tr>
+<tr><td rowspan="3">差异基因注释</td><td>animalTFDB</td><td>2.0</td></tr><tr><td>Cosmic</td><td>v78</td></tr><tr><td>DisGeNET</td><td>v4.0</td></tr>
+<tr><td rowspan="1">富集分析</td><td>clusterProfiler</td><td>3.0.5</td></tr>
+<tr><td rowspan="1">可变剪接</td><td>rMATS</td><td>3.2.5</td></tr>
+<tr><td rowspan="2">变异分析</td><td>GATK</td><td>3.2.1</td></tr><tr><td>snpEff</td><td>4.2</td></tr>
+<tr><td rowspan="2">融合基因</td><td>SOAPfuse</td><td>1.27</td></tr><tr><td>star-fusion</td><td>0.7.0</td></tr>
