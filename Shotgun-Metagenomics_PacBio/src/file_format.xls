@@ -1,0 +1,11 @@
+文件类型	文件描述	打开方式
+file.fa/fasta	序列文件，fasta格式，一般为基因序列或者基因组序列。因文件一般较大，打开较为困难	unix/Linux/Mac用户使用less或more命令
+file.fa/fasta	序列文件，fasta格式，一般为基因序列或者基因组序列。因文件一般较大，打开较为困难	windows用户使用高级文本编辑器Editplus/Notepad++等
+file.fq/fastq	序列文件，fastq格式，一般为reads序列；因文件一般较大，打开较为困难	unix/Linux/Mac用户使用 less 或 more 命令
+file.fq/fastq	序列文件，fastq格式，一般为reads序列；因文件一般较大，打开较为困难	windows用户使用高级文本编辑器Editplus/Notepad++等
+file.txt/xls	结果数据表格文件；文件以制表符Tab分隔	unix/Linux/Mac用户使用less或more命令
+file.txt/xls	结果数据表格文件；文件以制表符Tab分隔	windows用户使用高级文本编辑器Editplus/Notepad++ 等，也可以用Microsoft Excel打开
+file.pdf/svg	结果图像文件；矢量图，可以放大和缩小而不失真，方便用户查看和编辑处理，可使用Adobe Illustrator进行图片编辑，用于文章发表等	windows/Mac用户可以使用Adobe Reader/福昕阅读器/网页浏览器等打开
+file.pdf/svg	结果图像文件；矢量图，可以放大和缩小而不失真，方便用户查看和编辑处理，可使用Adobe Illustrator进行图片编辑，用于文章发表等	unix/Linux用户使用evince命令打开
+file.png	结果图像文件；位图，无损压缩	unix/Linux/Mac用户使用display命令打开
+file.png	结果图像文件；位图，无损压缩	windows用户可以使用图片浏览器打开，如photoshop等

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+  <META NAME="Author" CONTENT="liuruolin@novogene.cn">
+
+    <META NAME="Version" CONTENT="20171224" "Silent Night ^_^">
+    <title>Noref3+2 ReadMe</title>
+  <!--tree/start-->
+  <script src="https://cdn.bootcss.com/jquery-treetable/3.2.0/jquery.treetable.min.js"></script>
+  <link href="https://cdn.bootcss.com/jquery-treetable/3.2.0/css/jquery.treetable.min.css" rel="stylesheet">
+  <link href="https://cdn.bootcss.com/jquery-treetable/3.2.0/css/jquery.treetable.theme.default.css" rel="stylesheet">
+  <!--tree/end-->
+  <style type='text/css'>
+  .task-list { list-style-type: none; }
+    .task-list-item { position: relative; padding-left: 2em; }
+    .task-list-item input { position: absolute; top: 0px; left: 0px; }
+   </style>
+  </head>
+  <body>
+    <div id="main">
+      <p><h3 align="center"  style="color:#696969" >Noref3+2 Readme</h3></p>
+      <table id="example-advanced">
+        <caption>
+          <a href="#" onclick="jQuery('#example-advanced').treetable('expandAll'); return false;">Expand all</a>
+          <a href="#" onclick="jQuery('#example-advanced').treetable('collapseAll'); return false;">Collapse all</a>
+        </caption>
+        <thead>
+          <tr>
+            <th>Result</th>
+            <th>Contents</th>
+      <th>Type</th>
+          </tr>
+        </thead>
+      <tbody>
+  <tr data-tt-id='2'><td><span class='folder'><a href='./01.SMRT'>01.SMRT</span></td><td>【Iso-seq结果文件】</td><td>folder</td></tr>   
+  <tr data-tt-id='2-1' data-tt-parent-id='2'><td><span class='file'><a href='./01.SMRT/01.SMRT--ReadMe.pdf'>01.SMRT--ReadMe.pdf</span></td><td>【SMRT交付结果目录说明】</td><td>file</td></tr>
+  <tr data-tt-id='2-4' data-tt-parent-id='2'><td><span class='folder'>Sample</span></td><td>【样品目录】</td><td>folder</td></tr>
+  <tr data-tt-id='2-4-1' data-tt-parent-id='2-4'><td><span class='folder'>ccs</span></td><td>【环形一致性序列目录】</td><td>folder</td></tr> 
+  <tr data-tt-id='2-4-1-1' data-tt-parent-id='2-4-1'><td><span class='file'>Sample.ccs.fastq.zip</span></td><td>【环形一致性序列，fastq 格式】</td><td>file</td></tr> 
+    <tr data-tt-id='2-4-2' data-tt-parent-id='2-4'><td><span class='folder'>classify</span></td><td>【转录本分类目录】</td><td>folder</td></tr>
+    <tr data-tt-id='2-4-2-1' data-tt-parent-id='2-4-2'><td><span class='file'>Sample.isoseq_flnc.fasta</span></td><td>【全长非嵌合序列文件，fasta格式】</td><td>folder</td></tr>
+    <tr data-tt-id='2-4-3' data-tt-parent-id='2-4'><td><span class='folder'>cluster</span></td><td>【转录本聚类结果目录】</td><td>folder</td></tr>
+    <tr data-tt-id='2-4-3-1' data-tt-parent-id='2-4-3'><td><span class='file'>Sample.polished_hq.fasta</span></td><td>【修饰后的高质量转录本序列，fasta 格式】</td><td>file</td></tr>
+    <tr data-tt-id='2-4-3-2' data-tt-parent-id='2-4-3'><td><span class='file'>Sample.polished_lq.fast</span></td><td>【修饰后的低质量转录本序列，fasta 格式】</td><td>file</td></tr>
+  <tr data-tt-id='2-4-3-3' data-tt-parent-id='2-4-3'><td><span class='file'>Sample.polished_consensus.fasta</span></td><td>【修饰后的一致性转录本序列，fasta 格式】</td><td>file</td></tr>
+  <tr data-tt-id='2-4-4' data-tt-parent-id='2-4'><td><span class='folder'>stat</span></td><td>【转录本统计结果目录】</td><td>folder</td></tr>  
+  <tr data-tt-id='2-4-4-1' data-tt-parent-id='2-4-4'><td><span class='file'>Sample.polymerase_reads_distri.xls</span></td><td>【polymerase_reads 长度分布统计结果】</td><td>file</td></tr>
+  <tr data-tt-id='2-4-4-2' data-tt-parent-id='2-4-4'><td><span class='file'>Sample.polymerase_reads_distri.{png|pdf}</span></td><td>【polymerase_reads 长度分布图】</td><td>file</td></tr>
+
+  <tr data-tt-id='2-4-4-4' data-tt-parent-id='2-4-4'><td><span class='file'>Sample.polymerase_reads_stat.xls</span></td><td>【polymerase_reads 统计结果】</td><td>file</td></tr>
+  <tr data-tt-id='2-4-4-5' data-tt-parent-id='2-4-4'><td><span class='file'>Sample.subreads_stat.xls</span></td><td>【subreads统计结果】</td><td>file</td></tr>
+  <tr data-tt-id='2-4-4-6' data-tt-parent-id='2-4-4'><td><span class='file'>Sample.subreads_distri.xls</span></td><td>【subreads 长度分布统计结果】</td><td>file</td></tr>
+  <tr data-tt-id='2-4-4-7' data-tt-parent-id='2-4-4'><td><span class='file'>Sample.subreads_distri.{png|pdf}</span></td><td>【subreads 长度分布图】</td><td>file</td></tr>
+
+  <tr data-tt-id='2-4-4-9' data-tt-parent-id='2-4-4'><td><span class='file'>Sample.ccs_stat.xls</span></td><td>【环形一致性序列长度分布统计结果】</td><td>file</td></tr>
+  <tr data-tt-id='2-4-4-10' data-tt-parent-id='2-4-4'><td><span class='file'>Sample.ccs_distri.xls</span></td><td>【环形一致性序列统计结果】</td><td>file</td></tr>
+  <tr data-tt-id='2-4-4-11' data-tt-parent-id='2-4-4'><td><span class='file'>Sample.ccs_distri.{png|pdf}</span></td><td>【环形一致性序列长度分布图】</td><td>file</td></tr>
+
+  <tr data-tt-id='2-4-4-13' data-tt-parent-id='2-4-4'><td><span class='file'>Sample.flnc_stat.xls</span></td><td>【全长非嵌合序列统计结果】</td><td>file</td></tr>
+  <tr data-tt-id='2-4-4-14' data-tt-parent-id='2-4-4'><td><span class='file'>Sample.flnc_distri.xls</span></td><td>【全长非嵌合序列长度分布统计结果】</td><td>file</td></tr>
+  <tr data-tt-id='2-4-4-15' data-tt-parent-id='2-4-4'><td><span class='file'>Sample.flnc_distri.{png|pdf}</span></td><td>【全长非嵌合序列长度分布图】</td><td>file</td></tr>
+
+  <tr data-tt-id='2-4-4-18' data-tt-parent-id='2-4-4'><td><span class='file'>Sample.consensus_stat.xls</span></td><td>【一致性序列统计结果】</td><td>file</td></tr>
+  <tr data-tt-id='2-4-4-19' data-tt-parent-id='2-4-4'><td><span class='file'>Sample.consensus_distri.xls</span></td><td>【一致性序列长度分布统计结果】</td><td>file</td></tr>
+  <tr data-tt-id='2-4-4-20' data-tt-parent-id='2-4-4'><td><span class='file'>Sample.consensus_distri.{png|pdf}</span></td><td>【一致性序列长度分布图】</td><td>file</td></tr>
+  
+  <tr data-tt-id='1'><td><span class='folder'><a href='./02.Correct'>02.Correct</td><td>【二代数据校正目录】</td><td>folder</td></tr>
+  <tr data-tt-id='1-2' data-tt-parent-id='1'><td><span class='file'><a href='./02.Correct/02.Correct--ReadMe.pdf'>02.Correct--ReadMe.pdf</td><td>【Correct 交付结果目录说明】</td><td>file</td></tr>
+  <tr data-tt-id='1-1' data-tt-parent-id='1'><td><span class='folder'><a href='./02.Correct'>sample</td><td>【样品目录】</td><td>folder</td></tr>
+  <tr data-tt-id='1-1-1' data-tt-parent-id='1-1'><td><span class='file'>Sample.FL_corrected.fasta</td><td>【二代数据校正后的 consensus 序列，fasta 格式】</td><td>file</td></tr>
+  <tr data-tt-id='1-1-1' data-tt-parent-id='1-1'><td><span class='file'>Sample.correct_stat.xls</td><td>【consensus 校正前后长度分布统计结果】</td><td>file</td></tr>
+  
+ 
+    <tr data-tt-id='3'><td><span class='folder'><a href='./03.CD-HIT'>03.CD-HIT</td><td>【转录本去冗余目录】</td><td>folder</td></tr>
+    <tr data-tt-id='3-1' data-tt-parent-id='3'><td><span class='file'><a href ='./03.CD-HIT/03.CD-HIT--ReadMe.pdf'>03.CD-HIT--ReadMe.pdf</a></span></td><td>【转录本去冗余交付结果目录说明】</td><td>file</td></tr>
+    <tr data-tt-id='3-3' data-tt-parent-id='3'><td><span class='file'>transcript_Sample1_share.xls</a></span></td><td>【Sample2 特有的转录本 ID】</td><td>file</td></tr>
+    <tr data-tt-id='3-3' data-tt-parent-id='3'><td><span class='file'>transcript_Sample1_share.xls</a></span></td><td>【Sample1 特有的转录本 ID】</td><td>file</td></tr>
+    <tr data-tt-id='3-4' data-tt-parent-id='3'><td><span class='file'>transcript_Sample1_Sample2_share.xls </a></span></td><td>【两个样本及以上存在：Sample1 和 Sample2 共有的转录本 ID】</td><td>file</td></tr>
+    <tr data-tt-id='3-5' data-tt-parent-id='3'><td><span class='file'>transcript_compare.{pdf|png}</a></span></td><td>【两个样本及以上存在：转录组比较的韦恩图，pdf|png 格式】</td><td>file</td></tr>
+    <tr data-tt-id='3-6' data-tt-parent-id='3'><td><span class='file'>all.FL_NR_NR.fasta</a></span></td><td>【两个样品的fasta的合集】</td><td>file</td></tr>
+    <tr data-tt-id='3-2' data-tt-parent-id='3'><td><span class='folder'>Sample</a></span></td><td>【样品目录】</td><td>table</td></tr>
+
+    <tr data-tt-id='3-2-1' data-tt-parent-id='3-2'><td><span class='file'>Sample.cdhit_stat.xls</td><td>【去冗余后序列长度分布统计表】</td><td>file</td></tr>
+    <tr data-tt-id='3-2-2' data-tt-parent-id='3-2'><td><span class='file'>Sample.FL_NR.fasta</td><td>【unigene 序列，fasta 格式】</td><td>file</td></tr>
+    <tr data-tt-id='3-2-3' data-tt-parent-id='3-2'><td><span class='file'>Sample.interval_stat.xls</td><td>【转录本去冗余前后长度频数分布统计结果】</td><td>file</td></tr>
+    <tr data-tt-id='3-2-4' data-tt-parent-id='3-2'><td><span class='file'>Sample.unigene_distri.xls </td><td>【unigene 长度分布统计结果】</td><td>file</td></tr>
+    <tr data-tt-id='3-2-5' data-tt-parent-id='3-2'><td><span class='file'>Sample.unigene_distri.{png|pdf}</td><td>【unigene 长度分布图，png格式】</td><td>file</td></tr>
+    <tr data-tt-id='3-2-7' data-tt-parent-id='3-2'><td><span class='file'>Sample.cluster_stat.xls</td><td>【转录本聚类分析统计结果】</td><td>file</td></tr>
+    <tr data-tt-id='3-2-9' data-tt-parent-id='3-2'><td><span class='file'>Sample.cluster_distri.{png|pdf}</td><td>【转录本聚类分布图，pdf|png 格式】</td><td>file</td></tr>
+    <tr data-tt-id='3-2-10' data-tt-parent-id='3-2'><td><span class='file'>Sample.cluster_unigene_detail.xls</td><td>【转录本聚类详细统计结果】</td><td>file</td></tr>
+    
+
+  
+   <tr data-tt-id='4'><td><span class='folder'><a href='./04.SSR_CDS_TF'>04.SSR_CDS_TF</td><td>【SSR、CDS 和 TF 预测结果】</td><td>folder</td></tr>  
+   <tr data-tt-id='4-2' data-tt-parent-id='4'><td><span class='folder'>Sample</a></span></td><td>【样品名称】</td><td>folder</td></tr>
+
+    <tr data-tt-id='4-1' data-tt-parent-id='4'><td><span class='file'><a href='./04.SSR_CDS_TF/04.SSR_CDS_TF--ReadMe.pdf'>04.SSR_CDS_TF--ReadMe.pdf</a></span></td><td>【SSR_CDS_TF，交付结果目录说明】</td><td>file</td></tr>
+   <tr data-tt-id='4-2-1' data-tt-parent-id='4-2'><td><span class='folder'>CDS</a></span></td><td>【CDS 预测结果】</td><td>table</td></tr>
+   <tr data-tt-id='4-2-1-1' data-tt-parent-id='4-2-1'><td><span class='file'>Sample.ANGEL.cds</a></span></td><td>【CDS 最终预测结果，分别为 cds、pep 和 utr 序列，fasta 格式】</td><td>file</td></tr>
+   <tr data-tt-id='4-2-1-3' data-tt-parent-id='4-2-1'><td><span class='file'>Sample.cds_len.{png|svg}</a></span></td><td>【CDS 长度分布图】</td><td>file</td></tr>
+   <tr data-tt-id='4-2-1-4' data-tt-parent-id='4-2-1'><td><span class='file'>Sample.ANGEL.pep</a></span></td><td>【CDS 最终预测结果，分别为 cds、pep 和 utr 序列，fasta 格式】</td><td>file</td></tr>
+   <tr data-tt-id='4-2-1-5' data-tt-parent-id='4-2-1'><td><span class='file'>Sample.ANGEL.utr</a></span></td><td>【CDS 最终预测结果，分别为 cds、pep 和 utr 序列，fasta 格式】</td><td>file</td></tr>
+  
+  <tr data-tt-id='4-2-2' data-tt-parent-id='4-2'><td><span class='folder'>SSR</a></span></td><td>【SSR预测结果】</td><td>table</td></tr>
+  <tr data-tt-id='4-2-2-1' data-tt-parent-id='4-2-2'><td><span class='file'>Sample.polished_consensus.fasta.misa.xls</a></span></td><td>【SSR 分析结果文件】</td><td>file</td></tr>
+  <tr data-tt-id='4-2-2-2' data-tt-parent-id='4-2-2'><td><span class='file'>Sample.SSR_motifs_distribution.{png|pdf}</a></span></td><td>【SSR 分布图】</td><td>file</td></tr>
+  <tr data-tt-id='4-2-2-3' data-tt-parent-id='4-2-2'><td><span class='file'>Sample.summary_plot.xls</a></span></td><td>【SSR分布图统计文件】</td><td>file</td></tr>
+
+
+  <tr data-tt-id='4-2-3' data-tt-parent-id='4-2'><td><span class='folder'>TF</a></span></td><td>【转录因子鉴定结果】</td><td>table</td></tr>
+  <tr data-tt-id='4-2-3-1' data-tt-parent-id='4-2-3'><td><span class='file'>Sample.TF.{png|svg}</a></span></td><td>【转录因子频数统计图】</td><td>file</td></tr>
+  <tr data-tt-id='4-2-3-3' data-tt-parent-id='4-2-3'><td><span class='file'>Sample.transcription_factor.txt</a></span></td><td>【转录因子结果（植物）|动物】</td><td>file</td></tr>
+  <tr data-tt-id='4-2-3-4' data-tt-parent-id='4-2-3'><td><span class='file'>Sample.tf_stat.xls</a></span></td><td>【注释到转录本数目最多的前30个转录因子家族统计结果】</td><td>file</td></tr>
+
+
+  
+   <tr data-tt-id='5'><td><span class='folder'><a href='./05.LncRNA'>05.LncRNA</td><td>【LncRNA 分析结果目录】</td><td>folder</td></tr>
+  <tr data-tt-id='5-1' data-tt-parent-id='5'><td><span class='folder'>Sample</a></span></td><td>【样品名称】</td><td>table</td></tr>
+  <tr data-tt-id='5-2' data-tt-parent-id='5'><td><span class='file'><a href='./05.LncRNA/05.LncRNA--ReadMe.pdf'>05.LncRNA--ReadMe.pdf</a></span></td><td>【LncRNA 交付结果目录说明】</td><td>file</td></tr>
+  <tr data-tt-id='5-1-2' data-tt-parent-id='5-1'><td><span class='file'>Sample.cnci.xls</a></span></td><td>【CNCI 软件编码潜能预测结果】</td><td>file</td></tr>
+  <tr data-tt-id='5-1-3' data-tt-parent-id='5-1'><td><span class='file'>Sample.cpc.xls</a></span></td><td>【CPC 软件编码潜能预测结果】</td><td>file</td></tr>
+  <tr data-tt-id='5-1-4' data-tt-parent-id='5-1'><td><span class='file'>Sample.pfam.xls</a></span></td><td>【pfam 软件编码潜能预测结果】</td><td>file</td></tr>
+  <tr data-tt-id='5-1-5' data-tt-parent-id='5-1'><td><span class='file'>Sample.plek.xls</a></span></td><td>【plek 软件编码潜能预测结果】</td><td>file</td></tr>
+  <tr data-tt-id='5-1-6' data-tt-parent-id='5-1'><td><span class='file'>Sample.lnc.xls</a></span></td><td>【各编码潜能预测软件预测 LncRNA 的结果】</td><td>file</td></tr>
+  <tr data-tt-id='5-1-1' data-tt-parent-id='5-1'><td><span class='file'>Sample.venn.{png|pdf}</a></span></td><td>【各编码潜能预测软件预测 LncRNA 的韦恩图 pdf|png 格式】</td><td>file</td></tr>
+  <tr data-tt-id='5-1-8' data-tt-parent-id='5-1'><td><span class='file'>Sample.length_stat.xls</a></span></td><td>【LncRNA 和 mRNA 长度统计结果】</td><td>file</td></tr>
+  <tr data-tt-id='5-1-9' data-tt-parent-id='5-1'><td><span class='file'>Sample.LncRNA_mRNA_density.{png|pdf}</a></span></td><td>【LncRNA 和 mRNA 长度密度分布图 pdf|png 格式】</td><td>file</td></tr>
+  
+  <tr data-tt-id='5-1-11' data-tt-parent-id='5-1'><td><span class='file'>Sample.lncRNA.fasta</a></span></td><td>【LncRNA 序列文件，fasta 格式】</td><td>file</td></tr>
+
+
+   <tr data-tt-id='6'><td><span class='folder'><a href='./06.Annotation'>06.Annotation</td><td>【功能注释目录】</td><td>folder</td></tr>
+  <tr data-tt-id='6-1' data-tt-parent-id='6'><td><span class='folder'>Sample</a></span></td><td>【样品名称】</td><td>table</td></tr>
+  <tr data-tt-id='6-2' data-tt-parent-id='6'><td><span class='file'><a href='./06.Annotation/06.Annotation--ReadMe.pdf'>06.Annotation--ReadMe.pdf</a></span></td><td>【Annotation 交付结果目录说明】</td><td>file</td></tr>
+  <tr data-tt-id='6-1-2' data-tt-parent-id='6-1'><td><span class='file'>Sample.anno.{png|svg}</a></span></td><td>【各个数据库注释结果统计图】</td><td>file</td></tr>
+  <tr data-tt-id='6-1-5' data-tt-parent-id='6-1'><td><span class='file'>Sample.anno_stat.xls</a></span></td><td>【各个数据库功能注释统计文件】</td><td>file</td></tr>
+  <tr data-tt-id='6-1-6' data-tt-parent-id='6-1'><td><span class='file'>Sample.anno.xls</a></span></td><td>【每条转录本在各个数据库中功能注释结果】</td><td>file</td></tr>
+  <tr data-tt-id='6-1-7' data-tt-parent-id='6-1'><td><span class='file'>Sample.anno.venn.{png|pdf}</a></span></td><td>【基因功能注释维恩图】</td><td>file</td></tr>
+
+  <tr data-tt-id='6-1-8' data-tt-parent-id='6-1'><td><span class='folder'>NT</a></span></td><td>【NT 数据库功能注释结果目录】</td><td>folder</td></tr>
+  <tr data-tt-id='6-1-8-1' data-tt-parent-id='6-1-8'><td><span class='file'>Sample.NT.filter.m8.xls</a></span></td><td>【consensus 序列比对得分最高的比对结果】</td><td>file</td></tr>
+  <tr data-tt-id='6-1-8-2' data-tt-parent-id='6-1-8'><td><span class='file'>Sample.filter.m8.anno.xls</a></span></td><td>【consensus 序列与 NT 数据库比对结果物种信息注释结果】</td><td>fiel</td></tr>
+  
+
+  <tr data-tt-id='6-1-9' data-tt-parent-id='6-1'><td><span class='folder'>NR</a></span></td><td>【NR 数据库功能注释结果目录】</td><td>folder</td></tr>
+  <tr data-tt-id='6-1-9-1' data-tt-parent-id='6-1-9'><td><span class='file'>Sample.filter.m8.xls</a></span></td><td>【consensus 序列与 NR 数据库比对得分最高的比对结果】</td><td>file</td></tr>
+  <tr data-tt-id='6-1-9-2' data-tt-parent-id='6-1-9'><td><span class='file'>Sample.filter.m8.anno.xls</a></span></td><td>【consensus 序列与 NR 数据库比对结果物种信息注释】</td><td>file</td></tr>
+  <tr data-tt-id='6-1-9-3' data-tt-parent-id='6-1-9'><td><span class='file'>Sample.NR.nr.species.xls</a></span></td><td>【NR 数据库比对注释结果物种分布列表】</td><td>file</td></tr>
+  <tr data-tt-id='6-1-9-4' data-tt-parent-id='6-1-9'><td><span class='file'>Sample.nr.anno.{png|pdf}</a></span></td><td>【NR 数据库比对注释结果物种分布图.pdfTOP20】</td><td>file</td></tr>
+  <tr data-tt-id='6-1-10' data-tt-parent-id='6-1'><td><span class='folder'>KEGG</a></span></td><td>【KEGG 数据库功能注释结果目录】</td><td>folder</td></tr>
+  <tr data-tt-id='6-1-10-1' data-tt-parent-id='6-1-10'><td><span class='file'>Sample.KEGG.filter.m8.xls</a></span></td><td>【consensus 序列与 KEGG 数据库比对得分最高结果列表】</td><td>file</td></tr>
+  <tr data-tt-id='6-1-10-2' data-tt-parent-id='6-1-10'><td><span class='file'>Sample.KEGG.filter.m8.anno.xls</a></span></td><td>【consensus 序列与 KEGG 数据库比对注释结果】</td><td>file</td></tr>
+  <tr data-tt-id='6-1-10-5' data-tt-parent-id='6-1-10'><td><span class='file'>Sample.consensus.kegg.num.{png|pdf}</a></span></td><td>【KEGG 通路注释基因数结果图片 pdf|png 格式】</td><td>file</td></tr>
+  <tr data-tt-id='6-1-10-6' data-tt-parent-id='6-1-10'><td><span class='file'>Sample.kegg.anno.stat.xls</a></span></td><td>【KEGG 数据库注释结果】</td><td>file</td></tr>
+  <tr data-tt-id='6-1-10-7' data-tt-parent-id='6-1-10'><td><span class='file'>Annotation_KO.html</a></span></td><td>【注释KO网页结果】</td><td>file</td></tr>
+  <tr data-tt-id='6-1-10-8' data-tt-parent-id='6-1-10'><td><span class='folder'>src</a></span></td><td>【网页目录支撑文件】</td><td>file</td></tr>
+
+
+  <tr data-tt-id='6-1-11' data-tt-parent-id='6-1'><td><span class='folder'>PFAM</a></span></td><td>【PFAM 数据库功能注释结果目录】</td><td>folder</td></tr>
+  <tr data-tt-id='6-1-11-1' data-tt-parent-id='6-1-11'><td><span class='file'>Sample.pfam.anno.xls</a></span></td><td>【pfam 数据库蛋白注释结果】</td><td>folder</td></tr>
+
+  
+  <tr data-tt-id='6-1-12' data-tt-parent-id='6-1'><td><span class='folder'>GO</a></span></td><td>【GO 数据库功能注释结果目录】</td><td>folder</td></tr>
+  <tr data-tt-id='6-1-12-1' data-tt-parent-id='6-1-12'><td><span class='file'>Sample.GO.anno.xls</a></span></td><td>【GO 注释信息列表】</td><td>file</td></tr>
+  <tr data-tt-id='6-1-12-2' data-tt-parent-id='6-1-12'><td><span class='file'>Sample.GO_classification_count.xls</a></span></td><td>【GO 数据库注释统计结果】</td><td>file</td></tr>
+  <tr data-tt-id='6-1-12-3' data-tt-parent-id='6-1-12'><td><span class='file'>Sample.GO_classification_bar.{png|pdf}</a></span></td><td>【GO 注释分类图】</td><td>file</td></tr>
+
+  <tr data-tt-id='6-1-13' data-tt-parent-id='6-1'><td><span class='folder'>Swiss-Prot</a></span></td><td>【Swiss-Prot 数据库功能注释结果文件夹】</td><td>folder</td></tr>
+  <tr data-tt-id='6-1-13-1' data-tt-parent-id='6-1-13'><td><span class='file'>Sample.Swissprot.filter.m8.xls</a></span></td><td>【consensus 序列比对 SwissProt 数据库得分最高结果】</td><td>file</td></tr>
+  <tr data-tt-id='6-1-13-2' data-tt-parent-id='6-1-13'><td><span class='file'>Sample.Swissprot.filter.m8.anno.xls</a></span></td><td>【SwissProt 数据库 blast 比对结果注释信息】</td><td>file</td></tr>
+
+
+  <tr data-tt-id='6-1-14' data-tt-parent-id='6-1'><td><span class='folder'>KOG</a></span></td><td>【KOG 数据库功能注释结果目录】</td><td>folder</td></tr>
+  <tr data-tt-id='6-1-14-1' data-tt-parent-id='6-1-14'><td><span class='file'>Sample.KOG.filter.m8.xls</a></span></td><td>【consensus 序列与 KOG 数据库比对得分最高的比对结果】</td><td>file</td></tr>
+  <tr data-tt-id='6-1-14-2' data-tt-parent-id='6-1-14'><td><span class='file'>Sample.KOG.filter.m8.anno.xls</a></span></td><td>【consensus 序列与 KOG 数据库比对结果蛋白分类信息注释】</td><td>file</td></tr>
+  <tr data-tt-id='6-1-14-3' data-tt-parent-id='6-1-14'><td><span class='file'>Sample.KOG.level.xls</a></span></td><td>【KOG 数据库功能注释按 KOG 编号注释信息】</td><td>file</td></tr>
+  <tr data-tt-id='6-1-14-5' data-tt-parent-id='6-1-14'><td><span class='file'>Sample.KOG.class.{png|pdf}</a></span></td><td>【KOG 数据库功能注释蛋白分类图.pdf|png】</td><td>file</td></tr>
+  <tr data-tt-id='6-1-14-5' data-tt-parent-id='6-1-14'><td><span class='file'>Sample.KOG.class.xls</a></span></td><td>【KOG 数据库功能注释蛋白分类26类注释信息】</td><td>file</td></tr>
+  
+
+   <tr data-tt-id='7'><td><span class='folder'><a href='./07.Expression'>07.Expression</td><td>【二代数据定量、差异和富集分析结果】</td><td>folder</td></tr>
+    <tr data-tt-id='7-5' data-tt-parent-id='7'><td><span class='file'><a href='./07.Expression/07.Expression--ReadMe.pdf'>07.Expression--ReadMe.pdf</span></td><td>【07.Expression 交付结果目录说明】</td><td>file</td></tr>
+  <tr data-tt-id='7-1' data-tt-parent-id='7'><td><span class='folder'>Quantification</span></td><td>【定量结果】</td><td>folder</td></tr>
+  <tr data-tt-id='7-1-1' data-tt-parent-id='7-1'><td><span class='folder'>sample</span></td><td>【样品目录】</td><td>folder</td></tr>
+  <tr data-tt-id='7-1-1-1' data-tt-parent-id='7-1-1'><td><span class='file'>Sample.Readcount_FPKM.xls</span></td><td>【每个样品的基因表达水平的统计】</td><td>file</td></tr>
+  <tr data-tt-id='7-1-1-2' data-tt-parent-id='7-1-1'><td><span class='file'>Sample.FPKM_density_distribution.{png|pdf}</span></td><td>【每个样品的 FPKM 密度分布图】</td><td>file</td></tr>
+  <tr data-tt-id='7-1-2' data-tt-parent-id='7-1'><td><span class='file'>Mapping_rate.xls</span></td><td>【各样本二代数据 mapping（比对）率统计】</td><td>file</td></tr>
+  <tr data-tt-id='7-1-3' data-tt-parent-id='7-1'><td><span class='file'>FPKM_interval.xls</span></td><td>【不同表达水平区间的基因数量统计表】</td><td>file</td></tr>
+  <tr data-tt-id='7-1-4' data-tt-parent-id='7-1'><td><span class='file'>FPKM_interval.bar.{png|pdf}</span></td><td>【不同分组（样品）的 FPKM 区间分布柱状图】</td><td>file</td></tr>
+  <tr data-tt-id='7-1-5' data-tt-parent-id='7-1'><td><span class='file'>merged.readcount.xls</span></td><td>【基因 readcount 值统计】</td><td>file</td></tr>
+  <tr data-tt-id='7-1-6' data-tt-parent-id='7-1'><td><span class='file'>merged.fpkm.xls</span></td><td>【基因 fpkm 值统计】</td><td>file</td></tr>
+  <tr data-tt-id='7-1-7' data-tt-parent-id='7-1'><td><span class='file'>rowmeans_fpkm.xls</span></td><td>【样品组间的基因 fpkm 值统计】</td><td>file</td></tr>
+  <tr data-tt-id='7-1-8' data-tt-parent-id='7-1'><td><span class='file'>FPKM_density_distribution.{png|pdf}</span></td><td>【不同分组（样品）的 FPKM 密度分布图】</td><td>file</td></tr>
+  <tr data-tt-id='7-1-9' data-tt-parent-id='7-1'><td><span class='file'>FPKM_boxplot.{png|pdf}</span></td><td>【不同分组（样品）的 FPKM 箱线图】</td><td>file</td></tr>
+  <tr data-tt-id='7-1-10' data-tt-parent-id='7-1'><td><span class='file'>Readcount_FPKM_Anno.xls</span></td><td>【基因表达水平及注释统计表】</td><td>file</td></tr>
+
+  <tr data-tt-id='7-2' data-tt-parent-id='7'><td><span class='folder'>DiffExprAnalysis</span></td><td>【差异分析结果】</td><td>folder</td></tr>
+  <tr data-tt-id='7-2-1' data-tt-parent-id='7-2'><td><span class='folder'>Correlation</span></td><td>【二代样品间相关性分析结果】</td><td>folder</td></tr>
+  <tr data-tt-id='7-2-1-1' data-tt-parent-id='7-2-1'><td><span class='file'>cor_pearson.{png|pdf}</span></td><td>【所有样品的相关系数热图】</td><td>file</td></tr>
+  <tr data-tt-id='7-2-1-2' data-tt-parent-id='7-2-1'><td><span class='file'>cor_pearson.xls</span></td><td>【所有样品的相关系数矩阵】</td><td>file</td></tr>
+  <tr data-tt-id='7-2-1-3' data-tt-parent-id='7-2-1'><td><span class='file'>Sample1_vs_Sample2.scatter.{png|pdf}</span></td><td>【Sample1 与 Sample2 的基因表达量相关性散点图】</td><td>file</td></tr>
+  <tr data-tt-id='7-2-2' data-tt-parent-id='7-2'><td><span class='folder'>DiffExprAnalysis</span></td><td>【差异分析结果】</td><td>folder</td></tr>
+  <tr data-tt-id='7-2-2-1' data-tt-parent-id='7-2-2'><td><span class='folder'>compare</span></td><td>【各比较组合目】</td><td>folder</td></tr>
+  <tr data-tt-id='7-2-2-1-2' data-tt-parent-id='7-2-2-1'><td><span class='file'>compare.Differential_analysis_results.xls</span></td><td>【所有基因的差异分析结果】</td><td>file</td></tr>
+  <tr data-tt-id='7-2-2-1-3' data-tt-parent-id='7-2-2-1'><td><span class='file'>compare.DEG.xls</span></td><td>【差异基因的结果】</td><td>file</td></tr>
+  <tr data-tt-id='7-2-2-1-4' data-tt-parent-id='7-2-2-1'><td><span class='file'>compare. DEG_anno.xls</span></td><td>【差异基因的注释结果】</td><td>file</td></tr>
+  <tr data-tt-id='7-2-2-1-5' data-tt-parent-id='7-2-2-1'><td><span class='file'>compare.DEGlist.txt</span></td><td>【差异基因 list（差异基因 id）】</td><td>file</td></tr>
+  <tr data-tt-id='7-2-2-1-6' data-tt-parent-id='7-2-2-1'><td><span class='file'>compare.DEG_up.xls</span></td><td>【上调的差异基因的结果】</td><td>file</td></tr>
+  <tr data-tt-id='7-2-2-1-7' data-tt-parent-id='7-2-2-1'><td><span class='file'>compare.DEGlist_up.txt</span></td><td>【上调的差异基因 list（上调差异基因 id）】</td><td>file</td></tr>
+  <tr data-tt-id='7-2-2-1-8' data-tt-parent-id='7-2-2-1'><td><span class='file'>compare.DEG_down.xls</span></td><td>【下调的差异基因的结果】</td><td>file</td></tr>
+  <tr data-tt-id='7-2-2-1-9' data-tt-parent-id='7-2-2-1'><td><span class='file'>compare.DEGlist_down.txt</span></td><td>【下调的差异基因 list（下调差异基因 id）】</td><td>file</td></tr>
+  <tr data-tt-id='7-2-2-1-10' data-tt-parent-id='7-2-2-1'><td><span class='file'>compare.Volcanoplot.{png|pdf}</span></td><td>【基因差异表达分析火山图】</td><td>file</td></tr>
+
+
+  <tr data-tt-id='7-2-3' data-tt-parent-id='7-2'><td><span class='folder'>DEGcluster</span></td><td>【差异基因聚类分析结果】</td><td>folder</td></tr>
+  <tr data-tt-id='7-2-3-1' data-tt-parent-id='7-2-3'><td><span class='file'>DEG_union_for_cluster.xls</span></td><td>【所有组合差异基因的并集】</td><td>file</td></tr>
+  <tr data-tt-id='7-2-3-2' data-tt-parent-id='7-2-3'><td><span class='file'>Hcluster_heatmap.{png|pdf}</span></td><td>【差异基因表达量层次聚类热图】</td><td>file</td></tr>
+  <tr data-tt-id='7-2-3-3' data-tt-parent-id='7-2-3'><td><span class='file'>Hcluster_heatmap.detail.pdf</span></td><td>【差异基因表达量层次聚类热图（带有差异基因 geneid）】</td><td>file</td></tr>
+  <tr data-tt-id='7-2-3-4' data-tt-parent-id='7-2-3'><td><span class='folder'>H_cluster</span></td><td>【层次聚类分析结果目录】</td><td>folder</td></tr>
+  <tr data-tt-id='7-2-3-4-1' data-tt-parent-id='7-2-3-4'><td><span class='file'>H_cluster.{png|pdf}</span></td><td>【层次聚类图】</td><td>file</td></tr>
+  <tr data-tt-id='7-2-3-4-2' data-tt-parent-id='7-2-3-4'><td><span class='file'>subcluster_n</span></td><td>【文本文件，第 n 个子聚类结果文件】</td><td>file</td></tr>
+  <tr data-tt-id='7-2-3-5' data-tt-parent-id='7-2-3'><td><span class='folder'>K_means_cluster</span></td><td>【K-means 聚类分析结果目录】</td><td>folder</td></tr>
+  <tr data-tt-id='7-2-3-5-1' data-tt-parent-id='7-2-3-5'><td><span class='file'>K_means_cluster.{png|pdf}</span></td><td>【K-means 聚类图】</td><td>file</td></tr>
+  <tr data-tt-id='7-2-3-5-2' data-tt-parent-id='7-2-3-5'><td><span class='file'>subcluster_n</span></td><td>【文本文件，第 n 个子聚类结果文件】</td><td>file</td></tr>
+  <tr data-tt-id='7-2-3-6' data-tt-parent-id='7-2-3'><td><span class='folder'>SOM_cluster</span></td><td>【SOM 聚类分析结果目录】</td><td>folder</td></tr>
+  <tr data-tt-id='7-2-3-6-1' data-tt-parent-id='7-2-3-6'><td><span class='file'>SOM_cluster.{png|pdf}</span></td><td>【SOM 聚类图】</td><td>folder</td></tr>
+  <tr data-tt-id='7-2-3-6-2' data-tt-parent-id='7-2-3-6'><td><span class='file'>subcluster_n</span></td><td>【文本文件，第 n 个子聚类结果文件】</td><td>folder</td></tr>
+
+  <tr data-tt-id='7-2-5' data-tt-parent-id='7-2'><td><span class='folder'>VennDiagram</span></td><td>【venn 图结果】</td><td>folder</td></tr>
+  <tr data-tt-id='7-2-5-1' data-tt-parent-id='7-2-5'><td><span class='folder'>venn_compare1_compare2_ compare3</span></td><td>【维恩图作图目录】</td><td>folder</td></tr>
+  <tr data-tt-id='7-2-5-1-1' data-tt-parent-id='7-2-5-1'><td><span class='file'>compare1_compare2_compare3.DEG_Venn_diagram.{png|pdf}</span></td><td>【compare1，compare2，
+compare3 差异基因维恩图】</td><td>file</td></tr>
+  <tr data-tt-id='7-2-5-1-2' data-tt-parent-id='7-2-5-1'><td><span class='file'>compare1_compare2_compare3.DEG_up_Venn_diagram.{png|pdf}</span></td><td>【compare1,compare2，
+compare3 上调差异基因维恩图】</td><td>file</td></tr>
+<tr data-tt-id='7-2-5-1-3' data-tt-parent-id='7-2-5-1'><td><span class='file'>compare1_compare2_compare3.DEG_down_Venn_diagram.{png|pdf}</span></td><td>【compare1,compare2，compare3 下调差异基因维恩图】</td><td>file</td></tr>
+<tr data-tt-id='7-2-5-1-4' data-tt-parent-id='7-2-5-1'><td><span class='file'>compare1_up-no-compare2_up-yes-compare3_up-no.txt</span></td><td>【表示在 compare2 中是上调的差
+异基因，而在 compare1 和 compare3 中是非上调的差异基因，其他文件依此类推】</td><td>file</td></tr>
+<tr data-tt-id='7-2-5-1-5' data-tt-parent-id='7-2-5-1'><td><span class='file'>all.txt</span></td><td>【所有 venn 图中的差异基因 id】</td><td>file</td></tr>
+<tr data-tt-id='7-2-5-1-6' data-tt-parent-id='7-2-5-1'><td><span class='file'>all_up.txt</span></td><td>【所有 venn 图中的上调差异基因 id】</td><td>file</td></tr>
+<tr data-tt-id='7-2-5-1-7' data-tt-parent-id='7-2-5-1'><td><span class='file'>all_down.txt</span></td><td>【所有 venn 图中的下调差异基因 id】</td><td>file</td></tr>
+<tr data-tt-id='7-2-5-1-8' data-tt-parent-id='7-2-5-1'><td><span class='file'>compare1_compare2_compare3.Hcluster_heatmap.{png|pdf}</span></td><td>【compare1，compare2，
+compare3 差异基因表达量层次聚类图】</td><td>file</td></tr>
+<tr data-tt-id='7-2-5-1-9' data-tt-parent-id='7-2-5-1'><td><span class='file'>compare1_compare2_compare3_up.Hcluster_heatmap.{png|pdf}</span></td><td>【compare1，compare2，
+compare3 上调差异基因表达量层次聚类图】</td><td>file</td></tr>
+<tr data-tt-id='7-2-5-1-10' data-tt-parent-id='7-2-5-1'><td><span class='file'>compare1_compare2_compare3_down.Hcluster_heatmap.{png|pdf}</span></td><td>【compare1，compare2，
+compare3 下调差异基因表达量层次聚类图】</td><td>file</td></tr>
+ 
+
+
+
+  <tr data-tt-id='7-4' data-tt-parent-id='7'><td><span class='folder'>DEG_GOenrichment</span></td><td>【差异基因 GO 富集结果】</td><td>folder</td></tr>
+  <tr data-tt-id='7-4-1' data-tt-parent-id='7-4'><td><span class='folder'>ALL</span></td><td>【所有差异基因 GO 富集目录】</td><td>folder</td></tr>
+  <tr data-tt-id='7-4-1-1' data-tt-parent-id='7-4-1'><td><span class='folder'>compare</span></td><td>【比较组合目录】</td><td>folder</td></tr>
+  <tr data-tt-id='7-4-1-1-1' data-tt-parent-id='7-4-1-1'><td><span class='file'>Compare.DEG_GO_enrichment_result.xls</span></td><td>【GO 富集结果】</td><td>file</td></tr>
+  <tr data-tt-id='7-4-1-1-2' data-tt-parent-id='7-4-1-1'><td><span class='file'>Compare.GO_enrichment_result_up_down.xls</span></td><td>【差异基因 GO 富集列表】</td><td>file</td></tr>
+  <tr data-tt-id='7-4-1-1-3' data-tt-parent-id='7-4-1-1'><td><span class='file'>Compare.bar_graph_updown.{png|pdf} </span></td><td>【与富集的 GO 相关的上调基因和下调基因的分类
+统计柱状图】</td><td>file</td></tr>
+  <tr data-tt-id='7-4-1-1-4' data-tt-parent-id='7-4-1-1'><td><span class='file'>Compare.DEG_Enriched_GO_bp_DAG.{png|pdf}</span></td><td>【生物过程上富集 GO 的有向无环图】</td><td>file</td></tr>
+  <tr data-tt-id='7-4-1-1-6' data-tt-parent-id='7-4-1-1'><td><span class='file'>Compare.DEG_Enriched_GO_mf_DAG.{png|pdf} </span></td><td>【分子功能上富集 GO 的有向无环图】</td><td>file</td></tr>
+  <tr data-tt-id='7-4-1-1-7' data-tt-parent-id='7-4-1-1'><td><span class='file'>Compare.DEG_Enriched_GO_classification_gene_count.txt</span></td><td>【分类图的画图数据】</td><td>file</td></tr>
+  <tr data-tt-id='7-4-1-1-8' data-tt-parent-id='7-4-1-1'><td><span class='file'>Compare.DEG_Enriched_GO_classification.{png|pdf} </span></td><td>【与富集的 GO 相关的基因的分类统计图】</td><td>file</td></tr>
+
+  <tr data-tt-id='7-4-2' data-tt-parent-id='7-4'><td><span class='folder'>UP</span></td><td>【上调基因 GO 富集目录】</td><td>folder</td></tr>
+  <tr data-tt-id='7-4-2-1' data-tt-parent-id='7-4-2'><td><span class='folder'>Compare</span></td><td>【比较组合目录】</td><td>folder</td></tr>
+  <tr data-tt-id='7-4-2-1-1' data-tt-parent-id='7-4-2-1'><td><span class='file'>Compare.DEG_GO_enrichment_result.xls</span></td><td>【GO 富集结果】</td><td>file</td></tr>
+  <tr data-tt-id='7-4-2-1-4' data-tt-parent-id='7-4-2-1'><td><span class='file'>Compare.DEG_Enriched_GO_bp_DAG.{png|pdf}</span></td><td>【生物过程上富集 GO 的有向无环
+图】</td><td>file</td></tr>
+  <tr data-tt-id='7-4-2-1-5' data-tt-parent-id='7-4-2-1'><td><span class='file'>Compare.DEG_Enriched_GO_cc_DAG.{png|pdf}</span></td><td>【细胞组分上富集 GO 的有向无环
+图】</td><td>file</td></tr>
+  <tr data-tt-id='7-4-2-1-6' data-tt-parent-id='7-4-2-1'><td><span class='file'>Compare.DEG_Enriched_GO_mf_DAG.{png|pdf}</span></td><td>【分子功能上富集 GO 的有向无环
+图】</td><td>file</td></tr>
+  <tr data-tt-id='7-4-2-1-7' data-tt-parent-id='7-4-2-1'><td><span class='file'>Compare..DEG_Enriched_GO_classification_gene_count.txt</span></td><td>【富集到 GO 的数据】</td><td>file</td></tr>
+  <tr data-tt-id='7-4-2-1-8' data-tt-parent-id='7-4-2-1'><td><span class='file'>Compare..DEG_Enriched_GO_classification.{png|pdf}</span></td><td>【与 GO 相关的基因的分类统计
+图】</td><td>file</td></tr>
+
+
+  <tr data-tt-id='7-4-3' data-tt-parent-id='7-4'><td><span class='folder'>DOWN</span></td><td>【下调基因 GO 富集目录】</td><td>folder</td></tr>
+  <tr data-tt-id='7-4-3-1' data-tt-parent-id='7-4-3'><td><span class='folder'>Compare</span></td><td>【比较组合目录】</td><td>folder</td></tr>
+  <tr data-tt-id='7-4-3-1-1' data-tt-parent-id='7-4-3-1'><td><span class='file'>Compare.DEG_GO_enrichment_result.xls</span></td><td>【GO 富集结果】</td><td>file</td></tr>
+
+  <tr data-tt-id='7-4-3-1-4' data-tt-parent-id='7-4-3-1'><td><span class='file'>Compare.DEG_Enriched_GO_bp_DAG.{png|pdf}</span></td><td>【生物过程上富集 GO 的有向无环图】</td><td>file</td></tr>
+  <tr data-tt-id='7-4-3-1-5' data-tt-parent-id='7-4-3-1'><td><span class='file'>Compare.DEG_Enriched_GO_cc_DAG.{png|pdf}</span></td><td>【细胞组分上富集 GO 的有向无环图】</td><td>file</td></tr>
+  <tr data-tt-id='7-4-3-1-6' data-tt-parent-id='7-4-3-1'><td><span class='file'>Compare.DEG_Enriched_GO_mf_DAG.{png|pdf}</span></td><td>【分子功能上富集 GO 的有向无环图】</td><td>file</td></tr>
+  <tr data-tt-id='7-4-3-1-7' data-tt-parent-id='7-4-3-1'><td><span class='file'>Compare..DEG_Enriched_GO_classification_gene_count.txt</span></td><td>【富集到 GO 的数据】</td><td>file</td></tr>
+  <tr data-tt-id='7-4-3-1-8' data-tt-parent-id='7-4-3-1'><td><span class='file'>Compare..DEG_Enriched_GO_classification.{png|pdf}</span></td><td>【与 GO 相关的基因的分类统计图】</td><td>file</td></tr>
+
+  <tr data-tt-id='7-5' data-tt-parent-id='7'><td><span class='folder'>DEG_KEGGenrichment</span></td><td>【差异基因 KEGG 富集结果】</td><td>folder</td></tr>
+  <tr data-tt-id='7-5-1' data-tt-parent-id='7-5'><td><span class='folder'>ALL</span></td><td>【所有差异基因 KEGG 富集目录】</td><td>folder</td></tr>
+  <tr data-tt-id='7-5-1-1' data-tt-parent-id='7-5-1'><td><span class='folder'>compare</span></td><td>【比较组合目录】</td><td>folder</td></tr>
+  <tr data-tt-id='7-5-1-1-1' data-tt-parent-id='7-5-1-1'><td><span class='file'>Compare.DEG_KEGG_pathway_enrichment_result.xls</span></td><td>【KEGG PATHWAY富集结果】</td><td>file</td></tr>
+  <tr data-tt-id='7-5-1-1-2' data-tt-parent-id='7-5-1-1'><td><span class='file'>Compare.DEG_enriched_KEGG_pathway_top20.xls</span></td><td>【PATHWAY 富集前 20 的结果文件】</td><td>file</td></tr>
+  <tr data-tt-id='7-5-1-1-3' data-tt-parent-id='7-5-1-1'><td><span class='file'>Compare.DEG_enriched_KEGG_pathway_scatterplot.{png|pdf}</span></td><td>【富集 PATHWAY 的散点图】</td><td>file</td></tr>
+  <tr data-tt-id='7-5-1-1-5' data-tt-parent-id='7-5-1-1'><td><span class='file'>Compare.DEG_KEGG_pathway_enrichment_add.xls_rendered_html_detail.html</span></td><td>【富集 PATHWAY 的网页】</td><td>file</td></tr>
+  <tr data-tt-id='7-5-1-1-6' data-tt-parent-id='7-5-1-1'><td><span class='folder'>src</span></td><td>【富集 PATHWAY 的网页的支撑数据目录】</td><td>file</td></tr>
+
+  <tr data-tt-id='7-5-2' data-tt-parent-id='7-5'><td><span class='folder'>UP</span></td><td>【上调基因 KEGG 富集目录】</td><td>folder</td></tr>
+  <tr data-tt-id='7-5-2-1' data-tt-parent-id='7-5-2'><td><span class='folder'>compare</span></td><td>【比较组合目录】</td><td>folder</td></tr>
+  <tr data-tt-id='7-5-2-1-1' data-tt-parent-id='7-5-2-1'><td><span class='file'>Compare.DEG_KEGG_pathway_enrichment_result.xls</span></td><td>【KEGG PATHWAY富集结果】</td><td>file</td></tr>
+  <tr data-tt-id='7-5-2-1-2' data-tt-parent-id='7-5-2-1'><td><span class='file'>Compare.DEG_enriched_KEGG_pathway_top20.xls</span></td><td>【PATHWAY 富集前 20 的结果文件】</td><td>file</td></tr>
+  <tr data-tt-id='7-5-2-1-3' data-tt-parent-id='7-5-2-1'><td><span class='file'>Compare.DEG_enriched_KEGG_pathway_scatterplot.{png|pdf}</span></td><td>【富集 PATHWAY 的散点图】</td><td>file</td></tr>
+  <tr data-tt-id='7-5-2-1-5' data-tt-parent-id='7-5-2-1'><td><span class='file'>Compare.DEG_KEGG_pathway_enrichment_add.xls_rendered_html_detail.html</span></td><td>【富集 PATHWAY 的网页】</td><td>file</td></tr>
+  <tr data-tt-id='7-5-2-1-6' data-tt-parent-id='7-5-2-1'><td><span class='folder'>src</span></td><td>【富集 PATHWAY 的网页的支撑数据目录】</td><td>folder</td></tr>
+
+  <tr data-tt-id='7-5-3' data-tt-parent-id='7-5'><td><span class='folder'>DOWN</span></td><td>【下调基因 KEGG 富集目录】</td><td>folder</td></tr>
+  <tr data-tt-id='7-5-3-1' data-tt-parent-id='7-5-3'><td><span class='folder'>compare</span></td><td>【比较组合目录】</td><td>folder</td></tr>
+  <tr data-tt-id='7-5-3-1-1' data-tt-parent-id='7-5-3-1'><td><span class='file'>Compare.DEG_KEGG_pathway_enrichment_result.xls</span></td><td>【KEGG PATHWAY富集结果】</td><td>file</td></tr>
+  <tr data-tt-id='7-5-3-1-2' data-tt-parent-id='7-5-3-1'><td><span class='file'>Compare.DEG_enriched_KEGG_pathway_top20.xls</span></td><td>【PATHWAY 富集前 20 的结果文件】</td><td>file</td></tr>
+  <tr data-tt-id='7-5-3-1-3' data-tt-parent-id='7-5-3-1'><td><span class='file'>Compare.DEG_enriched_KEGG_pathway_scatterplot.{png|pdf}</span></td><td>【富集 PATHWAY 的散点图】</td><td>file</td></tr>
+  <tr data-tt-id='7-5-3-1-5' data-tt-parent-id='7-5-3-1'><td><span class='file'>Compare.DEG_KEGG_pathway_enrichment_add.xls_rendered_html_detail.html</span></td><td>【富集 PATHWAY 的网页】</td><td>file</td></tr>
+  <tr data-tt-id='7-5-3-1-6' data-tt-parent-id='7-5-3-1'><td><span class='folder'>src</span></td><td>【富集 PATHWAY 的网页的支撑数据目录】</td><td>folder</td></tr>
+  
+
+     </tbody>
+      </table>    
+    </div>
+  
+    <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <script src="https://cdn.bootcss.com/jquery-treetable/3.2.0/jquery.treetable.js"></script>
+    <script>
+      $("#example-basic").treetable({ expandable: true });
+
+      $("#example-basic-static").treetable();
+
+      $("#example-basic-expandable").treetable({ expandable: true });
+
+      $("#example-advanced").treetable({ expandable: true });
+
+      // Highlight selected row
+      $("#example-advanced tbody").on("mousedown", "tr", function() {
+        $(".selected").not(this).removeClass("selected");
+        $(this).toggleClass("selected");
+      });
+
+      // Drag & Drop Example Code
+      $("#example-advanced .file, #example-advanced .folder").draggable({
+        helper: "clone",
+        opacity: .75,
+        refreshPositions: true, // Performance?
+        revert: "invalid",
+        revertDuration: 300,
+        scroll: true
+      });
+
+      $("#example-advanced .folder").each(function() {
+        $(this).parents("#example-advanced tr").droppable({
+          accept: ".file, .folder",
+          drop: function(e, ui) {
+            var droppedEl = ui.draggable.parents("tr");
+            $("#example-advanced").treetable("move", droppedEl.data("ttId"), $(this).data("ttId"));
+          },
+          hoverClass: "accept",
+          over: function(e, ui) {
+            var droppedEl = ui.draggable.parents("tr");
+            if(this != droppedEl[0] && !$(this).is(".expanded")) {
+              $("#example-advanced").treetable("expandNode", $(this).data("ttId"));
+            }
+          }
+        });
+      });
+
+      $("form#reveal").submit(function() {
+        var nodeId = $("#revealNodeId").val()
+
+        try {
+          $("#example-advanced").treetable("reveal", nodeId);
+        }
+        catch(error) {
+          alert(error.message);
+        }
+
+        return false;
+      });
+    </script>
+  
+ <form action="">
+  <fieldset>
+  <legend><p><button type="button" class="btn btn-default btn-sm">
+          <span class="glyphicon glyphicon-exclamation-sign"></span>Tip:</button></p></legend>
+  <ul class='task-list'>
+    <li class='task-list-item task-list-done' >
+      <input type='checkbox' disabled='disabled' checked> </input><p>全长转录本：包含5'-primer、3'-primer、poly-A的CCS序列。</p>
+    </li>
+  </ul>
+  <ul class='task-list'>
+    <li class='task-list-item task-list-done' >
+      <input type='checkbox' disabled='disabled' checked> </input><p>转录本去冗余：将两个或两个以上的三代样本数据合并后去冗余，再次使用CD-HIT软件（参数：-c 0.95 -T 6 -G 0 -aL 0.90 -AL 100 -aS 0.99 -AS 30）进行转录本聚类分析，此处的转录本比较分析是基于序列相似性（>95%）进行的，与转录本的表达水平并没有关系。</p>
+    </li>
+  </ul>
+  <ul class='task-list'>
+    <li class='task-list-item task-list-done' >
+      <input type='checkbox' disabled='disabled' checked> </input><p>共有转录本：当三代样本少于2个时，无法做共有转录本分析及相应的venn图绘制。</p>
+    </li>
+  </ul>
+    <ul class='task-list'>
+    <li class='task-list-item task-list-done' >
+      <input type='checkbox' disabled='disabled' checked> </input><p>CDS预测：按照正向的三个编码阅读框开始，有三种可能性，即从正向第一到第三个碱基开始（标记为0，1，2）进行阅读和翻译，根据预测结果，最终可能会输出多条CDS序列（氨基酸长度≥50），选择转录本最长的CDS序列作为最佳预测结果。</p>
+    </li>
+  </ul>
+   <ul class='task-list'>
+    <li class='task-list-item task-list-done' >
+      <input type='checkbox' disabled='disabled' checked> </input><p>差异分析：当p值校正的q值≤0.05时才认为组间差异显著，若组间无差异基因，则相应的GO、KEGG富集结果不展示。</p>
+    </li>
+  </ul>
+ 
+  </fieldset>
+  </form>
+  <hr style="height:5px;border:none;border-top:5px ridge grey;" />
+  <table align="center"  height="100%" style="font-size:12px font-weight:bold color:#F5F5F5" >
+  <td "align="center" valign="top">如有疑问请咨询项目销售或运营，我们将竭诚为您服务。感谢您对Novogene的信任！</td>
+  </body>
+</html>
+
+      

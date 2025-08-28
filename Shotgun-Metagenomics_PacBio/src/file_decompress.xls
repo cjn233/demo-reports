@@ -1,0 +1,7 @@
+压缩格式	用户类型	方法
+file.tar.gz形式的压缩文件	Unix/Linux/Mac用户	使用tar -zxvf file.tar.gz命令
+file.tar.gz形式的压缩文件	Windows用户	使用解压缩软件如WinRAR、7-Zip等
+file.gz形式的压缩文件	Unix/Linux/Mac用户	使用gzip -d file.gz命令
+file.gz形式的压缩文件	Windows用户	使用解压缩软件如WinRAR、7-Zip等
+file.zip形式的压缩文件	Unix/Linux/Mac用户	使用unzip file.zip命令
+file.zip形式的压缩文件	Windows用户	使用解压缩软件如WinRAR、7-Zip等
