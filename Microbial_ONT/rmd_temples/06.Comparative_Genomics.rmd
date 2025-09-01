@@ -1,0 +1,240 @@
+
+# 2.5 比较基因组分析
+
+## 2.5.1 全基因组共线性分析
+
+***
+
+&emsp;&emsp;共线性指的是遗传学中的基因连锁关系， 是不同物种基因组上同源基因以相同顺序排列的现象。两个物种之间的共线性程度可以作为衡量他们之间进化距离的尺度，可以知道物种间的亲缘关系。
+&emsp;&emsp;使用MUMmer软件（Version 3.23）对目标基因组和参考基因组进行比对，确定了基因组间的大范围共线性关系。后使用LASTZ（Version 1.03.54）对区域间进行比对，确认局部位置排列关系，并从中查找易位（Translocation/Trans），倒置（Inversion/Inv）和易位+倒置（Trans+Inv）的区域。
+&emsp;&emsp;样品基因组和参考基因组之间的共线性展示结果如下图：
+&emsp;&emsp;平行共线性图一：
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/06.Comparative_Genomics/","*xoy.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.xoy.png"="","file/06.Comparative_Genomics//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>说明：图中横轴是参考序列基因组，纵轴是所测基因组（纵轴序列名字右上角有“*”表示使用该序列的负链进行比对），如果序列 ID 在轴线外没有显示，表示此序列没有任何比对块比对上；图中黑色虚线表示比对块的边缘，红色线条表示正向比对，蓝色表示反向比对。中间方块颜色表示比对类型：Collinear：同线性比对；Translocation：易位比对；Inversion：倒置比对；Tran+Inver：易位兼倒置的比对。</p>
+
+&emsp;&emsp;平行共线性图二：
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/06.Comparative_Genomics/","*parallel.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.parallel.png"="","file/06.Comparative_Genomics//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+<p class='mark'>说明：上轴表示所测基因组，下轴表示参考序列基因组。上下两条轴中黄色框表示基因组正向链，蓝色框表示基因组反向链，框中填充颜色的高度表示比对的相似度，完全填充表示相似度为 100%；上下轴之间链接图形的颜色表示比对类型：Collinear：同线性比对；Translocation：易位比对；Inversion：倒置比对；Tran+Inver：易位兼倒置的比对。</p>
+
+<p class='mark'>结果文件目录：Result/06.Comparative_Genomics/Synteny。</p>
+
+## 2.5.2 SNP统计与注释
+&emsp;&emsp;SNP（单核苷酸多态性）主要是指在基因组水平上由单个核苷酸的变异所引起的DNA序列多态性，包括单个碱基的转换、颠换等。
+&emsp;&emsp;采用MUMmer（Version 3.23）比对软件进行个体SNP的检测，依照SNP和基因之间的位置关系及相互作用，对SNP功能进行注释。
+<p class='mark'>表<font face="Arial">SNP注释结果统计</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/06.Comparative_Genomics/snp.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **<font face="Arial">Reference Name</font>**：参考序列ID
+- **<font face="Arial">Sample_name</font>**：样品ID
+- **<font face="Arial">Start_syn</font>**：起始密码子同义突变
+- **<font face="Arial">Stop_syn</font>**：终止密码子同义突变
+- **<font face="Arial">Start_nonsyn</font>**：起始密码子非同义突变
+- **<font face="Arial">Stop_nonsyn</font>**：终止密码子非同义突变
+- **<font face="Arial">Premature_stop</font>**：无义突变，该位点三联体密码子突变成终止密码子
+- **<font face="Arial">Synonymous</font>**：基因区内同义突变
+- **<font face="Arial">Nonsynonymous</font>**：基因区内的非同义突变
+- **<font face="Arial">Total_CDS_SNP</font>**：位于基因区的SNP
+- **<font face="Arial">Intergenic</font>**：位于基因间区的SNP
+- **<font face="Arial">Total_SNP</font>**：样品总SNP
+
+&emsp;&emsp;结果文件目录：Result/06.Comparative_Genomics/SNP/
+
+## 2.5.3 InDel统计与注释
+&emsp;&emsp;InDel是指基因组中小片段的插入和缺失序列。
+&emsp;&emsp;利用LASTZ（Version 1.03.54）软件检测长度小于50bp的小片段插入与缺失（InDel），对InDel类型进行统计，结果见下表：
+<p class='mark'>表<font face="Arial">2-17 InDel类型统计</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/06.Comparative_Genomics/indel.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **<font face="Arial">Reference Name</font>**：参考序列ID
+- **<font face="Arial">Sample ID</font>**：样品ID
+- **<font face="Arial">Start codon ins</font>**：位于起始密码子的插入
+- **<font face="Arial">CDS inside ins</font>**：位于CDS中间的插入
+- **<font face="Arial">Stop codon ins</font>**：位于终止密码子的插入
+- **<font face="Arial">Start codon del</font>**：位于起始密码子的缺失
+- **<font face="Arial">CDS inside del</font>**：位于CDS中间的缺失
+- **<font face="Arial">Stop codon del</font>**：位于终止密码子的缺失
+
+&emsp;&emsp;对InDel进行注释，注释结果见下表：
+<p class='mark'>表<font face="Arial">2-18 InDel注释结果统计</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/06.Comparative_Genomics/indel_anno.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **<font face="Arial">Reference Name</font>**：参考序列ID
+- **<font face="Arial">Sample ID</font>**：样品ID
+- **<font face="Arial">Frame-shifted</font>**：ORF移码突变
+- **<font face="Arial">Start codon</font>**：ORF起始密码子被破坏
+- **<font face="Arial">Stop codon</font>**：ORF终止密码子被破坏
+- **<font face="Arial">Premature stop</font>**：提前终止了ORF
+- **<font face="Arial">Effect</font>**：对ORF无重大影响
+- **<font face="Arial">CDS with indel</font>**：存在InDel的CDS个数
+- **<font face="Arial">All CDS</font>**：参考序列的CDS总个数。
+
+&emsp;&emsp;结果文件目录：Result/06.Comparative_Genomics/InDel/
+
+##2.5.4 SV统计与注释
+&emsp;&emsp;结构性变异（Structural Variation，SV）指基因组水平上大片段的插入、缺失、倒置、易位等序列。
+&emsp;&emsp;使用MUMmer（version 3.22）[34]进行两个基因组的快速比对，确定序列的相对方向，并对基因组进行调整，对齐基因组起点。运用Lastz（version 1.02.00）[35][36]软件进行全基因组比对。使用chainNet等软件包将比较零散的比对结果连接成更长的比对结果（如chain、net等形式）。根据新的比对块顺序排列关系和相对方向，查找出属于易位（Translocation）、倒置（Inversion）和易位兼倒置（Trans+Inver）关系的比对块，再根据两个基因组上相邻比对块之间的距离关系确定比对块间的SV区域。
+&emsp;&emsp;全基因组结构变异类型配对图如下所示:
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/06.Comparative_Genomics/","*SV_cycle..png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.SV_cycle..png"="","file/06.Comparative_Genomics//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>图 2-15 全基因组结构变异类型配对图</p>
+<p class='mark'>说明 内圈是样品基因组，外圈是参考基因组。Collinear：同线性区域；Translocation：易位区域；Inversion：倒置区域；Tran+Inver：易位兼倒置的区域；Insertion：长度大于等于50bp的插入区域；Deletion：长度大于等于50bp的缺失区域； ComplexInDel：比对不上但位置相对应的区域；Forward_chain：基因组序列的正向链，此时基因坐标沿顺时针方向增大；Reverse_chain：基因组序列的反向链，此时基因坐标沿逆时针方向增大；Forward_CDS：基因组序列正向链上翻译的CDS；Reverse_CDS：基因组序列反向链上翻译的CDS；Subjoin_Forward_CDS：补充的基因组序列正向链上翻译的CDS；Subjoin_ Reverse _CDS：补充的基因组序列反向链上翻译的CDS，将DeleteGene或InsertGene的配对序列作为补充的CDS。</p>
+
+&emsp;&emsp;结果文件目录：Result/06.Comparative_Genomics/SV/
+
+#2.6 群体进化分析
+##2.6.1 共有和特有基因分析
+&emsp;&emsp;所有样本中均存在的同源基因称为共有基因（Core gene），除去共有基因，其他的基因称为非共有基因（Dispensable gene），特有基因（Specific gene）是只有在某个样品中所特异拥有的基因。所有非共有基因与共有基因合并作为泛基因集（Pan gene）。其中共有基因（Core gene）和特有基因（Specific gene）很可能与样品的共性和特性相对应，可以作为样本间功能差异的研究依据。
+&emsp;&emsp;使用cd-hit（Version 4.6.1）软件对需要分析的多个样品的蛋白序列进行聚类，并用R（Version 3.2.4）进行绘图。
+&emsp;&emsp;通过比较sample1,ref1,ref2,ref3基因组的基因蛋白序列，我们构建了几个基因组间的Core和Pan基因，结果统计见下表：
+
+<p class='mark'>表<font face="Arial">2-17 Core-pan基因统计结果</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/06.Comparative_Genomics/corepan.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **<font face="Arial">Group ID</font>**：分组编号
+- **<font face="Arial">Gore_gene_number</font>**：Core基因个数
+- **<font face="Arial">Pan_gene_number</font>**：Pan基因个数
+&emsp;&emsp;几个基因组的共有和特有基因关系如下Venn图所示：
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/06.Comparative_Genomics/","*Venn.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.Venn.png"="","file/06.Comparative_Genomics//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+<p class='mark'>图2-16 基因组的Core/Pan基因簇数目Venn图</p>
+<p class='mark'>说明 每个椭圆表示一个样品，每个区域上的数据表示在且仅在此区域的样品中出现的group的个数，一个group表示一组具有大于50%相似性、序列长度差异低于0.7的基因集。</p>
+
+&emsp;&emsp;结果文件目录：Result/06.Comparative_Genomics/Core-Pan/
+
+##2.6.2 基因家族分析
+
+&emsp;&emsp;基因组进化中，一个基因通过基因重复产生了两个或更多的拷贝，这些基因即构成一个基因家族。基因家族是具有共同祖先的一组基因，家族内不同基因往往具有相似的结构和功能。
+&emsp;&emsp;使用BLAST软件[37]（Version 2.2.26）对多个目标基因组的蛋白进行两两比对，过滤比对不可信的结果，再使用Solar（Version 0.9.6）去除冗余，用Hcluster-sg（Version 0.2.0）按照比对相似度对蛋白进行聚类，得到基因家族聚类结果。
+
+<p class='mark'>表 2-20 基因家族鉴定的统计结果</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/06.Comparative_Genomics/gf.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **<font face="Arial">Total genes</font>**：该物种全部编码基因个数
+- **<font face="Arial">Genes in families</font>**：所有基因家族中包含的基因个数
+- **<font face="Arial">Unclustered genes</font>**：该物种特有的gene的个数（包含该物种未聚类的特异基因）
+- **<font face="Arial">Families</font>**：所有基因家族个数
+- **<font face="Arial">Unique familys</font>**：该物种特有的基因家族个数（这些基因家族只包含该物种的gene）
+
+
+&emsp;&emsp;同源基因数目如下图所示：
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/06.Comparative_Genomics/","*barchart.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.barchart.png"="","file/06.Comparative_Genomics//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+<p class='mark'>图2-17 同源基因数目统计条形图</p>
+- **<font face="Arial">Single-copy orthologs</font>**：物种共有基因家族中的单拷贝同源基因数目
+- **<font face="Arial">Multiple-copy orthologs</font>**：物种共有基因家族中的多拷贝同源基因数目
+- **<font face="Arial">Unique paralogs</font>**：物种特异基因家族中的基因
+- **<font face="Arial">Other orthologs</font>**：其它所有的基因
+- **<font face="Arial">Unclustered genes</font>**：未被聚类到任何家族的基因
+<p class='mark'>说明：ortholog：起源于同一组先，在不同生物体中行使同一个功能的基因群，又称为直系同源物。Paralog：同一生物体中由同一基因复制而产生的多个蛋白质的基因，译为旁系同源物或横向同源物。单拷贝基因：指在生物的一个染色体组中只有一份拷贝的基因，细胞中的大多数基因都是单拷贝的。多拷贝基因：进化过程中，微生物的基因组DNA序列会发生重复，这些重复有的继续发生进化歧异，成为与原来序列不同的新基因；而有的以结构和功>能仍基本相同的形式保留下来成为多拷贝基因。
+
+&emsp;&emsp;同源基因家族数目Venn图如下：
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/06.Comparative_Genomics/","*venn.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.venn.png"="","file/06.Comparative_Genomics//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+<p class='mark'>图2-18 多个物种的同源基因家族数目Venn图 </p>
+<p class='mark'>说明 每个椭圆表示一个样品或一类样品，每个区域上的数据表示在且仅在此区域的物种中出现的基因家族的个数</p>
+
+<p class='mark'>结果文件目录：Result/06.Comparative_Genomics/Gene_Family/</p>
+
+##2.6.3 物种进化分析
+
+&emsp;&emsp;系统发生树（英文：phylogenetic tree或evolutionary tree）是表明被认为具有共同祖先的各物种相互间演化关系的树。 它用来表示系统发生研究的结果，用它描述物种之间的进化关系。系统进化树展示了不同物种之间的进化关系及其拓扑结构，树形图末端是各个物种，交点是物种之间的共同祖先，支长则展示了物种间的相对遗传距离大小。通过系统发生树结果，可以直观看到各个物种间的系统发生关系以及相对遗传距离。
+&emsp;&emsp;用Treebest（Version 1.9.2）（Neighbor-Joining,NJ）或 PHYML（Maximum likelihood,ML)（Version v3.0）软件构建进化树，物种之间的进化树见下图：
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/06.Comparative_Genomics/","*rectangular_cladogram_tree.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.rectangular_cladogram_tree.png"="","file/06.Comparative_Genomics//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+<p class='mark'>2-19 物种间的进化关系图</p>
+<p class='mark'>说明 分支上的数字表示分支可信度，值越接近100表示可信度越高；分支长度表示进化距离的大小，进化距离以平均每个核苷酸的替换次数来计算。</p>
+
+&emsp;&emsp;不考虑分支长度的进化树见下图：
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/06.Comparative_Genomics/","*.tree.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.tree.png"="","file/06.Comparative_Genomics//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+<p class='mark'>图 2-20 物种间的进化关系图(不考虑分支长度)</p>
+<p class='mark'>说明 分支上的数字表示分支可信度，值越接近100表示可信度越高。</p>
+
+&emsp;&emsp;结果文件目录：Result/06.Comparative_Genomics/Phylogenetic_Tree/
+
+
+
+<p>
+<br/>
+<img class="logo" align="left" src="src/logo.png"/>
+<h6 style="text-align:right">北京诺禾致源科技股份有限公司</h6>
+<hr/>
+</p>
+

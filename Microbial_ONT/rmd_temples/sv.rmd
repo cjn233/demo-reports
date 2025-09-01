@@ -1,0 +1,18 @@
+### SV统计与注释
+&emsp;&emsp;结构性变异（Structural Variation，SV）指基因组水平上大片段的插入、缺失、倒置、易位等序列。
+&emsp;&emsp;使用MUMmer（version 3.22）[34]进行两个基因组的快速比对，确定序列的相对方向，并对基因组进行调整，对齐基因组起点。运用Lastz（version 1.02.00）[35][36]软件进行全基因组比对。使用chainNet等软件包将比较零散的比对结果连接成更长的比对结果（如chain、net等形式）。根据新的比对块顺序排列关系和相对方向，查找出属于易位（Translocation）、倒置（Inversion）和易位兼倒置（Trans+Inver）关系的比对块，再根据两个基因组上相邻比对块之间的距离关系确定比对块间的SV区域。
+&emsp;&emsp;全基因组结构变异类型配对图如下所示:
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/06.Comparative_Genomics/","*SV_cycle.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.SV_cycle.png"="","file/06.Comparative_Genomics//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>图 2-15 全基因组结构变异类型配对图</p>
+<p class='mark'>说明 内圈是样品基因组，外圈是参考基因组。Collinear：同线性区域；Translocation：易位区域；Inversion：倒置区域；Tran+Inver：易位兼倒置的区域；Insertion：长度大于等于50bp的插入区域；Deletion：长度大于等于50bp的缺失区域； ComplexInDel：比对不上但位置相对应的区域；Forward_chain：基因组序列的正向链，此时基因坐标沿顺时针方向增大；Reverse_chain：基因组序列的反向链，此时基因坐标沿逆时针方向增大；Forward_CDS：基因组序列正向链上翻译的CDS；Reverse_CDS：基因组序列反向链上翻译的CDS；Subjoin_Forward_CDS：补充的基因组序列正向链上翻译的CDS；Subjoin_ Reverse _CDS：补充的基因组序列反向链上翻译的CDS，将DeleteGene或InsertGene的配对序列作为补充的CDS。</p>
+
+&emsp;&emsp;结果文件目录：Result/06.Comparative_Genomics/SV/
+

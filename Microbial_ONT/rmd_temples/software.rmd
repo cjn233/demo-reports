@@ -1,0 +1,100 @@
+
+# 附录
+
+***
+
+## <font face="Arial">methods</font>
+
+&emsp;&emsp;为了方便用户撰写文章，我们准备了数据分析所涉及到的[英文版<font face="Arial">methods</font>](src/methods.pdf)
+
+&emsp;&emsp;为了方便用户理解三代数据前期的处理逻辑，我们准备了数据涉及到的几个步骤的[数据流说明](src/结题报告数据流说明.pdf) ///ref3v2
+&emsp;&emsp;为了方便用户理解三代数据前期的处理逻辑，我们准备了数据涉及到的几个步骤的[数据流说明](src/结题报告数据流说明.pdf) ///ref3
+&emsp;&emsp;为了方便用户理解三代数据前期的处理逻辑，我们准备了数据涉及到的几个步骤的[数据流说明](src/无参结题报告数据流梳理.pdf) ///noref3v2
+&emsp;&emsp;为了方便用户理解三代数据前期的处理逻辑，我们准备了数据涉及到的几个步骤的[数据流说明](src/无参结题报告数据流梳理.pdf) ///noref3
+
+&emsp;&emsp;为了方便用户撰写文章，我们准备了数据分析所涉及到的[验证方法](src/验证方法.pdf)
+
+&emsp;&emsp;为了方便用户进行了解，我们准备了[常见问题解答](src/全长转录组常见Q_A.pdf)
+
+&emsp;&emsp;为了方便用户方便阅读结果文件，我们准备了[结果文件的导航文件](src/Ref3vs2.html);这里方便提前阅读了解，请转至结果文件目录打开<font face="Arial">ResultStructureReadme.html </font>文件进行导航查看。///ref3v2
+&emsp;&emsp;为了方便用户方便阅读结果文件，我们准备了[结果文件的导航文件](src/Ref3.html);这里方便提前阅读了解，请转至结果文件目录打开<font face="Arial">ResultStructureReadme.html </font>文>件进行导航查看。///ref3
+&emsp;&emsp;为了方便用户方便阅读结果文件，我们准备了[结果文件的导航文件](src/Noref3v2.html);这里方便提前阅读了解，请转至结果文件目录打开<font face="Arial">ResultStructureReadme.html </font>文>件进行导航查看。///noref3v2
+&emsp;&emsp;为了方便用户方便阅读结果文件，我们准备了[结果文件的导航文件](src/Noref3.html);这里方便提前阅读了解，请转至结果文件目录打开<font face="Arial">ResultStructureReadme.html </font>文>件进行导航查看。///noref3
+
+## 结果文件解压方法
+
+```{r echo=FALSE}
+library(knitr)
+data <- read.delim('src/file_decompress.xls')
+kable(data,table.attr = "class=\"nowrap\"","html",align="c") %>%
+kable_styling(full_width=T)  %>%
+column_spec(1,bold=T) %>%
+collapse_rows(columns=1:2)
+```
+
+## 结果文件格式说明
+
+```{r echo=FALSE}
+library(knitr)
+data <- read.delim('src/file_format.xls')
+kable(data,table.attr = "class=\"nowrap\"","html",align="c") %>%
+kable_styling(full_width=T) %>%
+column_spec(1,bold=T) %>%
+collapse_rows(columns=1:2)
+```
+
+## 分析软件列表及版本
+
+```{r echo=FALSE}///ref3v2
+library(knitr)///ref3v2
+data <- read.delim('src/ref_software_list.xls',sep='\t',header=T)///ref3v2
+kable(data, table.attr = "class=\"nowrap\"","html",align="c") %>%///ref3v2
+kable_styling(bootstrap_options=c("striped", "hover","condensed","responsive") , full_width = F) %>%///ref3v2
+column_spec(1,bold=T) %>%///ref3v2
+collapse_rows(columns=1:2)///ref3v2
+```///ref3v2
+
+```{r echo=FALSE}///ref3
+library(knitr)///ref3
+data <- read.delim('src/ref_software_list.xls',sep='\t',header=T)///ref3
+kable(data, table.attr = "class=\"nowrap\"","html",align="c") %>%///ref3
+kable_styling(bootstrap_options=c("striped", "hover","condensed","responsive") , full_width = F) %>%///ref3
+column_spec(1,bold=T) %>%///ref3
+collapse_rows(columns=1:2)///ref3
+```///ref3
+
+```{r echo=FALSE}///noref3v2
+library(knitr)///noref3v2
+data <- read.delim('src/noref_software_list.xls',sep='\t',header=T)///noref3v2
+kable(data, table.attr = "class=\"nowrap\"","html",align="c") %>%///noref3v2
+kable_styling( full_width = F) %>%///noref3v2
+column_spec(1,bold=T) %>%///noref3v2
+column_spec(1,width_max = "50px") %>%///noref3v2
+column_spec(2,width_max = "60px") %>%///noref3v2
+column_spec(3,width_max = "125px") %>%///noref3v2
+column_spec(4,width_max = "100px") %>%///noref3v2
+collapse_rows(columns=1:2)///noref3v2
+```///noref3v2
+
+```{r echo=FALSE}///noref3
+library(knitr)///noref3
+data <- read.delim('src/noref_software_list.xls',sep='\t',header=T)///noref3
+kable(data, table.attr = "class=\"nowrap\"","html",align="c") %>%///noref3
+kable_styling(full_width = F) %>%///noref3
+column_spec(1,bold=T) %>%///noref3
+column_spec(1,width_max = "50px") %>%///noref3
+column_spec(2,width_max = "60px") %>%///noref3
+column_spec(3,width_max = "125px") %>%///noref3
+column_spec(4,width_max = "100px") %>%///noref3
+collapse_rows(columns=1:2)///noref3
+```///noref3
+
+<p>
+<br/>
+<img class="logo" align="left" src="src/logo.png"/>
+<h6 style="text-align:right">北京诺禾致源科技股份有限公司</h6>
+<hr/>
+</p>
+
+<div id="reference"></div>
+## 参考文献

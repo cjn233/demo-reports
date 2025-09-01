@@ -1,0 +1,52 @@
+
+# 结果展示及说明
+
+## 数据概况 
+
+***
+
+&emsp;&emsp;Nanopore测序的下机数据原始格式为fast5格式，使用Guppy软件basecalling将fast5转化为fastq格式，并使用qcat软件根据barcode拆分样品。拆分到每个样品的数据采用NanoPlot软件选用阈值Q>7进行质控，从而得到有效数据。详细的质控统计信息如下表:
+
+
+<p class='mark'>表<font face="Arial">表 2-1 测序数据统计</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/01.Cleandata/poly_stat.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+<p class='mark'>注：我们对该表格设置了<font face="Arial">Copy/Print/Download</font>以及<font face="Arial">Search</font>功能，点击<font face="Arial">Copy</font>可以复制表格中数据，用户可以任意新建<font face="Arial">excel</font>或文本文档，可以将数据粘贴其中，并保留原有的行和列的格式；点击<font face="Arial">Print</font>则可以打印表格中数据（链接打印机的情况下）；点击<font face="Arial">Download</font>可以以<font face="Arial">CSV、Excel、PDF</font>的三种格式下载表格中数据。在<font face="Arial">Search</font>方框中输入指定信息，则会在下方表格中显示包含该信息的所有内容。以下表格中涉及的<font face="Arial">Copy/Print/Search</font>功能与此处相同。</p>
+Sample ID	Number of Reads	Number of Bases(bp)	Mean Read Length(bp)	N50 Read Length(bp)	Mean Read quality
+- **<font face="Arial">Sample ID</font>**：样品名称
+- **<font face="Arial">Number of Reads</font>**：<font face="Arial">reads</font>的数目
+- **<font face="Arial">Total Bases(bp)</font>**：数据量
+- **<font face="Arial">Mean Read Length(bp)</font>**：<font face="Arial">reads</font>的平均长度
+- **<font face="Arial">N50 Read Length(bp)</font>**：将得到的<font face="Arial">Polymerase read</font>按照长度从长到短排序，依次累加<font face="Arial">reads</font>的长度直至不小于总长<font face="Arial">50%</font>时的<font face="Arial">Polymerase read</font>的长度。
+- **<font face="Arial">Mean Read quality</font>**：<font face="Arial">reads</font>的平均测序质量。
+
+&emsp;&emsp;<font face="Arial">Polymerase Read</font>的长度分布图如下：
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/01.Cleandata/","*HistogramReadlength.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\HistogramReadlength.png"="","file/01.Cleandata//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>图<font face="Arial">reads</font> 长度分布图：横坐标（长度）；纵坐标（<font face="Arial">reads</font>个数，并在图中表明N50所在位置）</p>
+<p class='mark'>结果文件目录：Result/01.Clean_data。</p>
+
+
+<p class='mark'>图<font face="Arial">3.1.6 Polished consensus</font> 长度分布的<font face="Arial">reads</font>条数（纵坐标）；<font face="Arial">consensus</font>序列长度（横坐标）</p>
+
+&emsp;&emsp;结果文件目录：XXX_Result_XXXX/01.SMRT
+
+<p>
+<br/>
+<img class="logo" align="left" src="src/logo.png"/>
+<h6 style="text-align:right">北京诺禾致源科技股份有限公司</h6>
+<hr/>
+</p>
+

@@ -1,0 +1,51 @@
+
+### 基因家族分析
+
+&emsp;&emsp;基因组进化中，一个基因通过基因重复产生了两个或更多的拷贝，这些基因即构成一个基因家族。基因家族是具有共同祖先的一组基因，家族内不同基因往往具有相似的结构和功能。
+&emsp;&emsp;使用BLAST软件[37]（Version 2.2.26）对多个目标基因组的蛋白进行两两比对，过滤比对不可信的结果，再使用Solar（Version 0.9.6）去除冗余，用Hcluster-sg（Version 0.2.0）按照比对相似度对蛋白进行聚类，得到基因家族聚类结果。
+
+<p class='mark'>表 2-20 基因家族鉴定的统计结果</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/06.Comparative_Genomics/gf.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **<font face="Arial">Total genes</font>**：该物种全部编码基因个数
+- **<font face="Arial">Genes in families</font>**：所有基因家族中包含的基因个数
+- **<font face="Arial">Unclustered genes</font>**：该物种特有的gene的个数（包含该物种未聚类的特异基因）
+- **<font face="Arial">Families</font>**：所有基因家族个数
+- **<font face="Arial">Unique familys</font>**：该物种特有的基因家族个数（这些基因家族只包含该物种的gene）
+
+
+&emsp;&emsp;同源基因数目如下图所示：
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/06.Comparative_Genomics/","*barchart.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.barchart.png"="","file/06.Comparative_Genomics//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+<p class='mark'>图2-17 同源基因数目统计条形图</p>
+- **<font face="Arial">Single-copy orthologs</font>**：物种共有基因家族中的单拷贝同源基因数目
+- **<font face="Arial">Multiple-copy orthologs</font>**：物种共有基因家族中的多拷贝同源基因数目
+- **<font face="Arial">Unique paralogs</font>**：物种特异基因家族中的基因
+- **<font face="Arial">Other orthologs</font>**：其它所有的基因
+- **<font face="Arial">Unclustered genes</font>**：未被聚类到任何家族的基因
+<p class='mark'>说明：ortholog：起源于同一组先，在不同生物体中行使同一个功能的基因群，又称为直系同源物。Paralog：同一生物体中由同一基因复制而产生的多个蛋白质的基因，译为旁系同源物或横向同源物。单拷贝基因：指在生物的一个染色体组中只有一份拷贝的基因，细胞中的大多数基因都是单拷贝的。多拷贝基因：进化过程中，微生物的基因组DNA序列会发生重复，这些重复有的继续发生进化歧异，成为与原来序列不同的新基因；而有的以结构和功>能仍基本相同的形式保留下来成为多拷贝基因。
+
+&emsp;&emsp;同源基因家族数目Venn图如下：
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/06.Comparative_Genomics/","*venn.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.venn.png"="","file/06.Comparative_Genomics//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+<p class='mark'>图2-18 多个物种的同源基因家族数目Venn图 </p>
+<p class='mark'>说明 每个椭圆表示一个样品或一类样品，每个区域上的数据表示在且仅在此区域的物种中出现的基因家族的个数</p>
+
+<p class='mark'>结果文件目录：Result/06.Comparative_Genomics/Gene_Family/</p>

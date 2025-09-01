@@ -1,0 +1,90 @@
+
+##  基因组概况
+
+### 组装分析
+
+&emsp;&emsp;从各样品质控后的有效数据出发，使用三款组装软件并行组装，依据组装质量选取最优组装结果（n50最长）。三款软件分别为：Canu软件(https://github.com/marbl/canu/ ,version：2.0)、Flye软件(https://github.com/fenderglass/Flye，version>：2.9-b1768)、Falcon软件(https://github.com/PacificBiosciences/pb-assembly) 对reads进行基因组组装，得到能反映样品基因组基本情况的初步的组装结果，然后使用 Racon（version：1.4.13）软件基于三代测序数据对拼接结果进行三轮纠错后，再进行二轮二代 reads 的 Pilon（version：1.22）纠错，得到最终的组装结果。结果统计如下表所示：
+
+
+<p class='mark'>表<font face="Arial"> 2-2 样品基因组初步组装结果统计</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/02.Assembly/all.assembly.stat.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+
+- **Sample ID**：样品名称
+- **Polished Contigs**：组装得到的contigs个数
+- **Max Contig Length**：组装得到的序列中最大的contig长度
+- **N50 Contig Length**：组装得到的序列从大到小排列，在总长50%的contig的长度
+- **Total  Lengths**：所有组装contigs的总长度。
+- **GC%**:组装得到的序列的GC含量。
+
+### 组装结果优化
+
+&emsp;&emsp;将得到的初步组装结果进行比对评估。最终的组装结果统计情况如下：
+
+<p class='mark'>表<font face="Arial"> 2-3 样品基因组最终组装结果统计</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/02.Assembly/all.assembly.stat.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+
+- **Sample ID**：样品名称
+- **Contigs**：组装得到的contigs个数
+- **Max_Length(bp)**：组装得到的序列中最大的contig长度
+- **N50 Length(bp)**：组装得到的序列从大到小排列，在总长50%的contig的长度
+- **Total_length(bp)**：所有组装contigs的总长度。
+- **GC(%)**：组装得到的contig的GC含量。
+
+###  组装结果评价
+
+&emsp;&emsp;将reads比对到组装好的基因组序列上，通过统计组装序列的GC含量和reads覆盖深度，总结基因组的GC偏向性和重复序列情况。分析结果如下图所示：
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/02.Assembly/","*GC_depth.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.GC_depth.png"="","file/02.Assembly//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+&emsp;&emsp;BUSCO（Benchmarking Universal Single-Copy Orthologs：http://busco.ezlab.org/） 评估是使用单拷贝直系同源基因库，利用metaeuk和hmmer等软件对组装得到的基因组进行评估，以此评估组装基因组的完整性。
+
+<p class='mark'>图 2-4 BUSCO统计表</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/02.Assembly/BUSCO.stat.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **Sample ID**：样品名称
+- **C**：Complete BUSCOs
+- **S**：Complete and single-copy BUSCOs
+- **D**：Complete Duplicated BUSCOs
+- **F**：Fragmented BUSCOs
+- **M**：Missing BUSCOs
+- **n**：Total BUSCO groups searched
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/02.Assembly/","*.busco_figure.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.busco_figure.png"="","file/04.Genome_Function//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+<p class='mark'>图 2-3 BUSCO统计图</p>
+
+<p>
+<br/>
+<img class="logo" align="left" src="src/logo.png"/>
+<h6 style="text-align:right">北京诺禾致源科技股份有限公司</h6>
+<hr/>
+</p>
+

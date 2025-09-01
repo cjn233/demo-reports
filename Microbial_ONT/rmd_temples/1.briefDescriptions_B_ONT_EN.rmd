@@ -1,0 +1,68 @@
+
+```{r echo=FALSE}
+library(knitr)
+data <- read.delim('file/project_info.xls',sep='\t',header=T)
+kable(data, table.attr = "class=\"nowrap\"","html") %>%
+kable_styling(bootstrap_options=c("striped","hover","condensed"))
+```
+
+
+# overview of the workflow
+##Experimental procedure
+
+<img class="normal" src="src/sequencing_theory_ONT_EN.png">
+
+### DNA extraction
+
+
+The STE method was used to extract genomic DNA from the sample, followed by agarose gel electrophoresis to test the purity and integrity of the DNA. Quantification was performed using Qubit.
+
+### Library construction
+
+&emsp;&emsp;（1）Library construction on the Nanopore platform.
+
+&emsp;&emsp;First, the BluePippin automated nucleic acid fragment recovery system is used to recover large DNA fragments. Then, end-repair is performed, and the EXP-NBD104 reagent kit from Oxford Nanopore Technologies is used for PCR-free barcode addition. Subsequently, the AATI automated capillary electrophoresis system is used to detect the fragment sizes and perform equimolar pooling of the samples. Finally, the SQK-LSK109 ligation kit from Oxford Nanopore Technologies is used for adapter ligation to construct a 1D library. Sequencing is performed on the Nanopore platform.
+
+
+&emsp;&emsp;（2）<font face="Arial">Library construction and library quality control on the Illumina platform.</font>
+
+&emsp;&emsp;DNA samples that have passed gel electrophoresis are randomly sheared into fragments of approximately 350bp in length using the Covaris ultrasonic disruptor. The processed DNA fragments are then prepared into a complete library using the NEBNext® Ultra™ DNA Library Prep Kit for Illumina (NEB, USA) reagent kit, which includes steps such as end repair, A-tailing, adapter ligation, purification, and PCR amplification. After library construction is completed, initial quantification is performed using the Qubit 2.0, and the library is diluted to a concentration of 2ng/ul. Subsequently, the insert fragments of the library are detected using the Agilent 2100, and once the insert size meets expectations, the library's effective concentration is quantified using Q-PCR to ensure library quality.
+
+### Library construction types
+
+<img class="normal" src="src/product_ONT_B_ONT_EN.png">
+
+### Sequencing
+
+
+&emsp;&emsp;After passing library quality control, different libraries are sequenced using Nanopore PromethION and Illumina NovaSeq PE150 sequencing platforms, based on their effective concentrations and the desired amount of data to be generated.
+
+
+## Bioinformatics analysis workflow
+
+<img class="normal" src="src/bacteria_complete_ONT_EN.png">
+
+<p class='mark'>Figure 1-1: Bioinformatics analysis workflow diagram</p>
+
+Information analysis consists of several steps:
+
+&emsp;&emsp;1 Raw data processing: This step involves filtering out low-quality reads and retaining high-quality reads. The filtered data is referred to as Clean Data.
+
+&emsp;&emsp;2 Sample assembly: Genomic assembly is performed to obtain sequence files that reflect the sample's genome.
+
+&emsp;&emsp;3 Genomic composition analysis: After assembly, the composition of the sample's genome is analyzed, including predictions of coding genes, non-coding RNAs, repetitive sequences, prophages, genomic islands, CRISPR, and other genomic components.
+
+&emsp;&emsp;4 Functional annotation: Functional annotation is performed on the coding gene sequences using different databases, including commonly used databases such as KEGG, COG, and databases specific to pathogenic microorganisms.
+
+&emsp;&emsp;5 Genomic comparative analysis: In this step, the differences between the sample and reference genomes are compared at the genome and gene levels. This includes analyses such as collinearity analysis, gene family construction, analysis of shared/unique genes, and construction of species phylogenetic trees.
+
+&emsp;&emsp;6 Genomic visualization analysis: This step combines the results of genomic composition analysis and functional annotation to display the basic research findings of the genome.
+
+&emsp;&emsp;Note: This analysis workflow includes all the analysis contents of this product. The blue dashed line represents advanced analysis content. The specific analysis content of this project is based on this report.
+
+
+<img class="logo" align="left" src="src/logo.png"/>
+<h6 style="text-align:right">北京诺禾致源科技股份有限公司</h6>
+<hr/>
+</p>
+

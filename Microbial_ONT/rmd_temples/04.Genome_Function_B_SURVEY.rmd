@@ -1,0 +1,49 @@
+
+##物种注释
+
+
+###物种注释
+
+&emsp;&emsp;使用16S序列或NR功能数据库进行物种注释。即如果本分期中所有样本的16S序列均可以注释到种级别，则对每条16S序列进行注释（方法：采用silva.nr_v132.fasta 序列做参比，以NCBI 比对的注释层级为主，使用分类注释算法mothur, 置信度设为0.8），否则使用NR功能数据库进行物种注释。
+
+&emsp;&emsp;功能注释基本步骤如下：
+
+&emsp;&emsp;1）将预测基因的蛋白序列与各功能数据库进行Diamond 比对（evalue ≤ 1e-5）；
+
+&emsp;&emsp;2）比对结果过滤：对于每一条序列的比对结果，选取 score 最高的比对结果（默认identity>=40%，coverage>=40%）进行注释。
+
+&emsp;&emsp;本项目进行的注释结果如下所示：
+
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/04.Genome_Function/","*.nr.anno.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.nr.anno.png"="","file/04.Genome_Function//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>图 2-4 样品NR数据库物种注释统计图</p>
+<p class='mark'>说明 横坐标表示物种ID，纵坐标表示注释上的基因个数。</p>
+
+<p class='mark'>表<font face="Arial"> 2-4 NR注释结果统计表</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/04.Genome_Function/all.top10.species.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+&emsp;&emsp;说明 表2-4中统计的注释到NR数据库排名前10的物种。
+
+&emsp;&emsp;结果文件目录：Result/04.Species_annotation/*/General_Gene_Annotation/NR/
+
+
+
+<p>
+<br/>
+<img class="logo" align="left" src="src/logo.png"/>
+<h6 style="text-align:right">北京诺禾致源科技股份有限公司</h6>
+<hr/>
+</p>
+

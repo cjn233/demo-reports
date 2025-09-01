@@ -1,0 +1,218 @@
+
+##基因组组分分析
+&emsp;&emsp;微生物基因组包含的功能区域非常丰富，除编码基因区域，更有非编码区域实现转录调控、转录后调控、翻译调控、表观遗传调控等功能，部分功能区域还与物种进化的多样性存在关系。
+
+&emsp;&emsp;通过多种方法，对编码基因、重复序列、非编码RNA等进行预测，获取目标基因组的组成情况。
+
+###编码基因
+&emsp;&emsp;使用GeneMarkS（Version 4.17）(http://topaz.gatech.edu/GeneMark/) 软件对新测序的基因组进行编码基因预测。基因预测结果统计信息如下表所示：
+
+<p class='mark'>表 2-4 编码基因预测结果统计表</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/03.Genome_Component/gene.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **Sample ID**：样品名称
+- **Genome size**：全基因组总长度
+- **Gene number**：预测到的编码基因个数
+- **Gene total length**：所有编码基因的总长度
+- **Gene average length**：编码基因的平均长度
+- **Gene length / Genome**：编码区总长度占全基因组的比例
+
+&emsp;&emsp;绘制基因长度统计图如下：
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/03.Genome_Component/","*.cds.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.cds.png"="","file/03.Genome_Component//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>图 2-2 基因长度分布图</p>
+<p class='mark'>说明 横坐标为基因长度，纵坐标为相应基因个数。</p>
+&emsp;&emsp;结果文件目录：Result/03.Genome_Component/*/Gene/
+
+###重复序列
+&emsp;&emsp;重复序列是基因组中不同位置出现的相同或互补性片段，是基因调控网络的组成成分。 根据重复的序列在基因组上的分布，分为散在重复序列、串联重复序列。
+
+&emsp;&emsp;散在重复序列又分短分散重复序列（Short interspersed nuclear elements，SINEs）以及长散在重复序列（Longinterspersed nuclear elements，LINEs），其中长散在重复序列常具有转座活性。串联重复序列（Tandem Repeat，TR），即相邻的、重复两次或多次特定核酸序列模式的重复序列。分为Minisatellite DNA（小卫星DNA）和Microsatellite DNA（微卫星DNA）。串联重复单元具有种属组成特异性，可作为物种的遗传性状，进行进化关系的研究。
+
+&emsp;&emsp;通过RepeatMasker（Version open-4.0.5）软件进行散在重复序列预测，TRF（Tandem Repeats Finder, Version 4.07b）[11]搜寻DNA序列中的串联重复序列。预测结果如下表所示：
+
+<p class='mark'>表 2-5 散在重复序列结果统计</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/03.Genome_Component/rep.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **Sample ID**：样品名称
+- **Type**：散在重复序列的类型
+- **Number(#)**：重复序列的个数
+- **Total Length(bp)**：重复序列的总长度
+- **In genome(%)**：重复序列占基因组的百分比
+- **Average length(bp)**：重复序列的平均长度
+- **LTR**：长末端重复序列
+- **DNA**：DNA转座子
+- **LINE**：长散在重复序列
+- **SINE**：短散在重复序列
+- **RC**：滚环（rolling circle）
+
+<p class='mark'>表 2-6 串联重复序列结果统计</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/03.Genome_Component/TR.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **Sample ID**：样品名称
+- **Type**：串联重复序列的类型
+- **Number(#)**：重复序列的个数
+- **Repeat Size(bp)**：重复序列的长度范围
+- **Total Length(bp)**：重复序列的总长度
+- **In genome(%)**：重复序列占基因组的百分比
+- **TR**：串联重复序列
+- **Minisatellite DNA**：小卫星DNA
+- **Microsatellite DNA**：微卫星DNA
+
+
+
+ &emsp;&emsp;结果文件目录：Result/03.Genome_Component/*/Repeat/
+
+
+###非编码RNA
+&emsp;&emsp;非编码RNA（ncRNA）是一类执行多种生物学功能的RNA分子，其本身并不携带翻译为蛋白质的信息，直接在RNA水平对生命活动发挥作用。对于微生物而言，研究较为普遍的包括sRNA、rRNA、tRNA。
+
+&emsp;&emsp;tRNA：通过tRNAscan-SE软件（Version 1.3.1）对tRNA进行预测。
+rRNA：即核糖体RNA，rRNA在相邻物种中高度保守。rRNA的预测方法有两种，一是通过与近缘参考序列的rRNA库比对找到rRNA，二是用rRNAmmer软件[13]（Version 1.2）预测rRNA。
+
+&emsp;&emsp;sRNA：小RNA，首先进行Rfam database[14][15]比对注释，接着用cmsearch程序（Version 1.1rc4）（参数默认）确定最终的sRNA。
+
+<p class='mark'>表 2-7 ncRNA去冗余后的统计结果</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/03.Genome_Component/ncRNA.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **Sample ID**：样品名称
+- **Type**：ncRNA的类型
+- **Number(#)**：ncRNA的个数
+- **Average length(bp)**：ncRNA的平均长度
+- **Total length(bp)**：ncRNA的总长度
+
+
+&emsp;&emsp;结果文件目录：Result/03.Genome_Component/*/ncRNA/
+
+###基因岛（GIs）
+&emsp;&emsp;基因岛（Genomics Islands，GIs）是一些细菌、噬菌体或质粒中通过基因水平转移整合到微生物基因组中的一个基因组区段。一个基因岛能与病原机理、生物体的适应性等多种生物功能相关。通过比较基因组分析手段可研究微生物特殊功能的特异性和功能来源。
+
+&emsp;&emsp;基于序列组成，采用IslandPath-DIOMB软件[16]（Version 0.2）预测基因岛，其通过检测序列中二核苷酸偏向性（phylogentically bias）和移动性基因（mobility genes，如转座酶或整合酶）以判定基因岛以及潜在的水平基因转移。结果统计见下表：
+
+<p class='mark'>表 2-8 基因岛预测结果统计</p>
+
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/03.Genome_Component/GIs.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **Sample ID**：样品名称
+- **GIs number**：GIs个数
+- **GIs total length(bp)**：GIs总长度
+- **GIs Average length(bp)**：GIs平均长度
+
+&emsp;&emsp;绘制的基因岛中基因分布统计图如下：
+
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/03.Genome_Component/","*.GI.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.GI.png"="","file/03.Genome_Component//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>图 2-3 样品基因岛中基因分布统计图</p>
+<p class='mark'>说明 横坐标为长度标尺（图中展示长度小于15kb的基因岛）。</p>
+
+
+&emsp;&emsp;结果文件目录：Result/03.Genome_Component/*/Genomic_Island/
+
+###前噬菌体（Prophage）
+&emsp;&emsp;整合在宿主基因组上的温和噬菌体的核酸被称为前噬菌体，能随宿主细菌DNA进行同步复制或分裂传代。前噬菌体序列的存在可能会使一些细菌获取抗生素抗性，增强对环境的适应性，提高粘附力或使细菌成为致病菌。
+
+&emsp;&emsp;通过phiSpy软件[17]（Version 2.3）预测样品基因组上的前噬菌体，预测结果见表2-9：
+
+<p class='mark'>表 2-9 前噬菌体预测结果统计</p>
+
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/03.Genome_Component/Prophage.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **Sample ID**：样品名称
+- **Prophage_Num**：前噬菌体个数
+- **Total_length**：前噬菌体总长度
+- **Average_length**：前噬菌体平均长度
+
+
+&emsp;&emsp;结果文件目录：Result/03.Genome_Component/*/Prophage/
+
+###CRISPR
+&emsp;&emsp;CRISPR（Clustered Regularly Interspaced Short Palindromic Repeat Sequences）是与噬菌体或质粒同源的短的重复序列，通过对外来同源的DNA作用对噬菌体有抗性，是原核生物免疫系统的一部分。
+
+&emsp;&emsp;CRISPR前端具有CRISPR相关基因（CRISPR-associated genes，Cas gene），与CRISPR结合行使免疫作用，例如CRISPR/Cas9。CRISPR的研究，可分析不同菌株的功能差异，特别是在环境适应性、菌株致病性等上的差异。
+
+&emsp;&emsp;利用CRISPRdigger[18]（Version 1.0）对样品基因组进行CRISPR预测，预测结果统计如下表所示：
+
+<p class='mark'>表 2-10 CRISPR预测结果统计</p>
+
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/03.Genome_Component/CRISPR.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **Sample ID**：样品名称
+- **CRISPR_Num number**：预测到的CRISPR总个数
+- **Total_length**：CRISPR总长度
+- **Average_length**：CRISPR平均长度
+
+
+&emsp;&emsp;结果文件目录：Result/03.Genome_Component/*/CRISPR/
+
+###ISfinder分析
+
+&emsp;&emsp;IS，插入序列，是相对较短的紧凑的 DNA 片段（0.7 到 2.5 kb 之间），它们只编码与移动性有关的功能， 是可移动元件(MGE) 的一大类群;使用ISfinder数据库（https://www-is.biotoul.fr/）  预测细菌插入序列。
+
+&emsp;&emsp;使用Blast软件，将组装序列与ISfinder数据库进行比对，得到插入序列预测结果。
+
+
+&emsp;&emsp;结果文件目录：Result/03.Genome_Component/*/ISfinder/
+
+###Integron分析
+
+&emsp;&emsp;Integron：整合子：整合子是一种运动性的 DNA 分子，具有独特结构可捕获和整合外源性基因，使之转变为功能性基因的表达单位。 它通过转座子或接合性质粒，使多重耐药基因在细菌中进行水平传播。整合子存在于许多细菌中，定位于染色体和质粒或转座子上，是细菌固有的一种遗传单位，并通过捕获外源性基因来增强细菌生存的适应性，使用 INTEGRALL数据库（http://integrall.bio.ua.pt/?）对基因组进行整合子预测。 
+
+&emsp;&emsp;使用Blast软件，将组装序列与INTEGRALL数据库进行比对，得到整合子预测结果。
+
+&emsp;&emsp;结果文件目录：Result/03.Genome_Component/*/Integron/
+
+<p>
+<br/>
+<img class="logo" align="left" src="src/logo.png"/>
+<h6 style="text-align:right">北京诺禾致源科技股份有限公司</h6>
+<hr/>
+</p>

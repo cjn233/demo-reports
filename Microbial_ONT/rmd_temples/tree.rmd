@@ -1,0 +1,38 @@
+### 物种进化分析
+
+&emsp;&emsp;系统发生树（英文：phylogenetic tree或evolutionary tree）是表明被认为具有共同祖先的各物种相互间演化关系的树。 它用来表示系统发生研究的结果，用它描述物种之间的进化关系。系统进化树展示了不同物种之间的进化关系及其拓扑结构，树形图末端是各个物种，交点是物种之间的共同祖先，支长则展示了物种间的相对遗传距离大小。通过系统发生树结果，可以直观看到各个物种间的系统发生关系以及相对遗传距离。
+&emsp;&emsp;用Treebest（Version 1.9.2）（Neighbor-Joining,NJ）或 PHYML（Maximum likelihood,ML)（Version v3.0）软件构建进化树，物种之间的进化树见下图：
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/06.Comparative_Genomics/","*rectangular_cladogram_tree.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.rectangular_cladogram_tree.png"="","file/06.Comparative_Genomics//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+<p class='mark'>2-19 物种间的进化关系图</p>
+<p class='mark'>说明 分支上的数字表示分支可信度，值越接近100表示可信度越高；分支长度表示进化距离的大小，进化距离以平均每个核苷酸的替换次数来计算。</p>
+
+&emsp;&emsp;不考虑分支长度的进化树见下图：
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/06.Comparative_Genomics/","*.tree.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.tree.png"="","file/06.Comparative_Genomics//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+<p class='mark'>图 2-20 物种间的进化关系图(不考虑分支长度)</p>
+<p class='mark'>说明 分支上的数字表示分支可信度，值越接近100表示可信度越高。</p>
+
+&emsp;&emsp;结果文件目录：Result/06.Comparative_Genomics/Phylogenetic_Tree/
+
+
+
+<p>
+<br/>
+<img class="logo" align="left" src="src/logo.png"/>
+<h6 style="text-align:right">北京诺禾致源科技股份有限公司</h6>
+<hr/>
+</p>
+

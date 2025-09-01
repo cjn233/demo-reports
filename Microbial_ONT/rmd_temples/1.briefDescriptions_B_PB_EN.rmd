@@ -1,0 +1,71 @@
+
+```{r echo=FALSE}
+library(knitr)
+data <- read.delim('file/project_info.xls',sep='\t',header=T)
+kable(data, table.attr = "class=\"nowrap\"","html") %>%
+kable_styling(bootstrap_options=c("striped","hover","condensed"))
+```
+
+
+# overview of the workflow
+##Experimental procedure
+
+<img class="normal" src="src/sequencing_theory_EN.png">
+
+### DNA extraction
+
+
+The STE method was used to extract genomic DNA from the sample, followed by agarose gel electrophoresis to test the purity and integrity of the DNA. Quantification was performed using Qubit.
+
+### Library construction
+
+&emsp;&emsp;（1）PacBio Platform Library Construction
+
+&emsp;&emsp;The SMRT Bell Template kit (version 2.0) was used to construct the SMRT Bell library on the PacBio platform. The DNA samples, which passed the electrophoresis test, were fragmented into target fragments of the desired size using the Covaris g-TUBE. After DNA damage repair and end repair, DNA hairpin adapters were ligated to both ends of the DNA fragments using DNA ligase, and the DNA fragments were purified using AMpure PB magnetic beads. Specific-sized fragments were selected using the Blue Pippin fragment size selection system, and the SMRT Bell library was concentrated using AMpure PB magnetic beads. DNA damage was repaired again, and the SMRT Bell library was purified once more using AMpure PB magnetic beads. The constructed library was quantified using Qubit fluorescence quantitation and the insert fragment size was confirmed using the Agilent 2100 system. Finally, sequencing was performed on the PacBio platform.
+
+
+
+&emsp;&emsp;（2）<font face="Arial">Illumina Platform Library Construction and Library QC </font>
+
+&emsp;&emsp;The DNA samples, which passed the electrophoresis test, were randomly fragmented into fragments of approximately 350bp in length using the Covaris ultrasonic disruptor. The processed DNA fragments were then subjected to library preparation using the NEBNext® Ultra™ DNA Library Prep Kit for Illumina (NEB, USA). This involved steps such as end repair, A-tailing, adapter ligation, purification, and PCR amplification to complete the library preparation process. After library construction, the library was initially quantified using Qubit 2.0, and then diluted to a concentration of 2ng/ul. The insert fragments of the library were then checked using the Agilent 2100 system. Once the insert size met the expected criteria, the effective concentration of the library was accurately quantified using Q-PCR to ensure library quality.
+
+### Library construction types
+
+<img class="normal" src="src/product_B_PB_EN.png">
+
+### Sequencing
+
+
+&emsp;&emsp;After passing library QC, the different libraries were sequenced on the PacBio Sequel II/PacBio Sequel IIe and Illumina NovaSeq PE150 platforms according to their effective concentrations and target data output.
+
+
+
+## Bioinformatics analysis workflow
+
+<img class="normal" src="src/bacteria_complete_EN.png">
+
+<p class='mark'>Figure 1-1: Bioinformatics analysis workflow diagram</p>
+
+Information analysis consists of several steps:
+
+&emsp;&emsp;1 Raw data processing: This step involves filtering out low-quality reads and retaining high-quality reads. The filtered data is referred to as Clean Data.
+
+&emsp;&emsp;2 Sample assembly: Genomic assembly is performed to obtain sequence files that reflect the sample's genome.
+
+&emsp;&emsp;3 Genomic composition analysis: After assembly, the composition of the sample's genome is analyzed, including predictions of coding genes, non-coding RNAs, repetitive sequences, prophages, genomic islands, CRISPR, and other genomic components.
+
+&emsp;&emsp;4 Functional annotation: Functional annotation is performed on the coding gene sequences using different databases, including commonly used databases such as KEGG, COG, and databases specific to pathogenic microorganisms.
+
+&emsp;&emsp;5 Genomic comparative analysis: In this step, the differences between the sample and reference genomes are compared at the genome and gene levels. This includes analyses such as collinearity analysis, gene family construction, analysis of shared/unique genes, and construction of species phylogenetic trees.
+
+&emsp;&emsp;6 Genomic visualization analysis: This step combines the results of genomic composition analysis and functional annotation to display the basic research findings of the genome.
+
+
+&emsp;&emsp;Note: This analysis workflow includes all the analysis contents of this product. The blue dashed line represents advanced analysis content. The specific analysis content of this project is based on this report.
+
+
+<img class="logo" align="left" src="src/logo.png"/>
+<h6 style="text-align:right">北京诺禾致源科技股份有限公司</h6>
+<hr/>
+</p>
+

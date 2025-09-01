@@ -1,0 +1,42 @@
+
+##物种注释
+
+
+###物种注释
+
+&emsp;&emsp;使用16S序列或NR功能数据库进行物种注释。即如果本分期中所有样本的16S序列均可以注释到种级别，则对每条16S序列进行注释（方法：采用silva.nr_v132.fasta 序列做参比，以NCBI 比对的注释层级为主，使用分类注释算法mothur, 置信度设为0.8），否则使用NR功能数据库进行物种注释。
+
+&emsp;&emsp;功能注释基本步骤如下：
+
+&emsp;&emsp;1）将预测基因的蛋白序列与各功能数据库进行Diamond 比对（evalue ≤ 1e-5）；
+
+&emsp;&emsp;2）比对结果过滤：对于每一条序列的比对结果，选取 score 最高的比对结果（默认identity>=40%，coverage>=40%）进行注释。
+
+&emsp;&emsp;本项目进行的注释结果如下所示：
+
+
+<p class='mark'>表<font face="Arial"> 2-4 16S物种注释结果统计表</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/04.Genome_Function/all.tax_assignments.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+- **<font face="Arial">Sample_16S</font>**：样本16S序列编号
+
+- **<font face="Arial">Tax</font>**：物种
+
+- **<font face="Arial">confidence</font>**：置信度。
+
+
+&emsp;&emsp;结果文件目录：Result/04.Species_annotation/
+
+
+
+<p>
+<br/>
+<img class="logo" align="left" src="src/logo.png"/>
+<h6 style="text-align:right">北京诺禾致源科技股份有限公司</h6>
+<hr/>
+</p>
+
