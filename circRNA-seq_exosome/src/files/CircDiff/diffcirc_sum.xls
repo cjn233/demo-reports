@@ -1,4 +1,4 @@
 compare	all	up	down	threshold
-Cortisol_HighvsCortisol_Low	91	4	87	DESeq2 pvalue<=0.05 |log2FoldChange|>=0.0
-PSS_HighvsPSS_Low	11	0	11	DESeq2 pvalue<=0.05 |log2FoldChange|>=0.0
-Z_HighvsZ_Low	10	0	10	DESeq2 pvalue<=0.05 |log2FoldChange|>=0.0
+group1vsgroup2	1	1	0	DESeq2 pvalue<=0.05 |log2FoldChange|>=0.0
+group2vssample1	0	0	0	DESeq2 pvalue<=0.05 |log2FoldChange|>=0.0
+sample1vssample5	1	1	0	edgeR pvalue<=0.05 |log2FoldChange|>=1.0
