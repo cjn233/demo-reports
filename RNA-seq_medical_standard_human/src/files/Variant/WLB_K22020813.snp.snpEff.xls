@@ -1,0 +1,6 @@
+CHROM	POS	ID	REF	ALT	QUAL	DP	AD	GT	GeneID	GeneName	FeatureID	Biotype	HGVS_C	HGVS_P	EFFECT	IMPACT
+1	14498	rs1365855774	G	A	223.64	13	7,6	0/1	ENSG00000223972	DDX11L1	ENST00000456328.2	processed_transcript	n.*89G>A	.	downstream_gene_variant	MODIFIER
+1	14498	rs1365855774	G	A	223.64	13	7,6	0/1	ENSG00000278267	MIR6859-1	ENST00000619216.1	miRNA	n.*2871C>T	.	downstream_gene_variant	MODIFIER
+1	14498	rs1365855774	G	A	223.64	13	7,6	0/1	ENSG00000223972	DDX11L1	ENST00000450305.2	transcribed_unprocessed_pseudogene	n.*828G>A	.	downstream_gene_variant	MODIFIER
+1	14498	rs1365855774	G	A	223.64	13	7,6	0/1	ENSG00000227232	WASH7P	ENST00000488147.1	unprocessed_pseudogene	n.1257C>T	.	non_coding_transcript_exon_variant	MODIFIER
+1	14501	.	C	T	223.64	13	7,6	0/1	ENSG00000227232	WASH7P	ENST00000488147.1	unprocessed_pseudogene	n.1254G>A	.	splice_region_variant&non_coding_transcript_exon_variant	LOW

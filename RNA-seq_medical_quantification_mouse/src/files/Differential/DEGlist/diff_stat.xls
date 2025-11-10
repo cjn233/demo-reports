@@ -1,5 +1,3 @@
 compare	all	up	down	threshold
-tCNQXvscontrol	921	452	469	DESeq2 padj<=0.05 |log2FoldChange|>=1.0
-CNQXvsGlu	1889	1308	581	DESeq2 padj<=0.05 |log2FoldChange|>=1.0
-CNQXvscontrol	248	125	123	DESeq2 padj<=0.05 |log2FoldChange|>=1.0
-Gluvscontrol	1095	432	663	DESeq2 padj<=0.05 |log2FoldChange|>=1.0
+NC_DHA_HvsNC_C_H	643	356	287	DESeq2 pvalue<=0.05 |log2FoldChange|>=0.0
+HFD_DHA_HvsHFD_C_H	325	164	161	DESeq2 pvalue<=0.05 |log2FoldChange|>=0.0

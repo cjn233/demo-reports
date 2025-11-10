@@ -1,6 +1,6 @@
 gene_id	gene_name	gene_chr	gene_start	gene_end	gene_strand	gene_length	gene_biotype	gene_description	Family
-novel.1	-	NC_051336.1	526188	526416	+	207	-	- && - && -	-
-novel.2	-	NC_051336.1	1861954	1862864	+	853	-	- && - && -	-
-novel.3	-	NC_051336.1	23120795	23128189	+	567	-	- && - && -	-
-novel.4	-	NC_051336.1	30666407	30699781	+	11111	-	- && - && -	-
-novel.5	-	NC_051336.1	34288815	34295861	+	2982	-	- && sp|P63010|AP2B1_HUMAN AP-2 complex subunit beta OS=Homo sapiens OX=9606 GN=AP2B1 PE=1 SV=1 && PF02883:Adaptin C-terminal domain|PF01602:Adaptin N terminal region|PF09066:Beta2-adaptin appendage, C-terminal sub-domain	-
+novel.1	-	A01	59818	60308	+	335	-	- && - && -	-
+novel.2	-	A01	80627	80934	+	273	-	- && - && -	-
+novel.3	-	A01	349363	353873	+	2567	-	- && sp|P51820|DRTS_SOYBN Bifunctional dihydrofolate reductase-thymidylate synthase OS=Glycine max OX=3847 PE=1 SV=1 && PF00303:Thymidylate synthase|PF00186:Dihydrofolate reductase	-
+novel.4	-	A01	355078	357319	+	747	-	- && sp|Q9T029|RS254_ARATH Small ribosomal subunit protein eS25w OS=Arabidopsis thaliana OX=3702 GN=RPS25E PE=3 SV=1 && PF03297:S25 ribosomal protein	-
+novel.5	-	A01	532188	536628	+	2598	-	- && sp|Q56ZQ3|VSR4_ARATH Vacuolar-sorting receptor 4 OS=Arabidopsis thaliana OX=3702 GN=VSR4 PE=2 SV=2 && -	WRKY

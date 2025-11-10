@@ -1,2 +1,3 @@
 compare	all	up	down	threshold
-ncvsH2_inhit	9185	2153	7032	edgeR padj<=0.05 |log2FoldChange|>=1.0
+NC_DHA_HvsNC_C_H	643	356	287	DESeq2 pvalue<=0.05 |log2FoldChange|>=0.0
+HFD_DHA_HvsHFD_C_H	325	164	161	DESeq2 pvalue<=0.05 |log2FoldChange|>=0.0
