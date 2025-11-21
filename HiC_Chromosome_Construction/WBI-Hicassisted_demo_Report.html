@@ -1,0 +1,455 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<html>
+<head>
+    <title>Novogene Hi-C chromosome construction report</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="src/css/jquery-ui.css" />
+    <link rel="stylesheet" href="src/css/bootstrap-4.3.1.min.css" />
+    <link rel="stylesheet" href="src/css/jquery.tocify.css" />
+    <link rel="stylesheet" href="src/css/style.css"/>
+    <link rel="stylesheet" href="src/css/base.css"/>
+    <link rel="stylesheet" href="src/css/gallery.css"/>
+    <script src="src/js/jquery-3.3.1.min.js" type="text/javascript"></script>
+    <script src="src/js/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="src/js/jquery.tocify.min.js" type="text/javascript"></script>
+    <script src="src/js/bootstrap-4.3.1.min.js" type="text/javascript"></script>
+    <script src="src/js/scrollTop.js" type="text/javascript"></script>
+    <link href="src/css/cloth.css" rel="stylesheet" type="text/css" media="screen" />
+	<script src="src/js/paginate_table.js" type="text/javascript"></script>
+
+    <script src="src/js/echarts.min.js" type="text/javascript"></script>
+	<script src="src/js/esl.js" type="text/javascript"></script>
+	<link rel="stylesheet" type="text/css" href="src/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="src/css/buttons.css">
+	<script type="text/javascript" src="src/js/tablecloth.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            var options = {
+                selectors: "h2,h3,h4,h5",
+                theme: "bootstrap",
+                scrollTo: "60"
+            };
+            var toc = $("#toc").tocify(options).data("toc-tocify");
+        });
+    </script>
+
+    <script type="text/javascript">
+        function trans(img_div_id) {
+            img_div = $("#" + img_div_id);
+            img = $("#" + img_div_id + " img").first();
+            if (img_div.hasClass("fullscreen-div")) {
+                img_div.removeClass("fullscreen-div");
+                img.removeClass("fullscreen-img");
+            } else {
+                img_div.addClass("fullscreen-div");
+                img.addClass("fullscreen-img");
+            }
+        }
+
+        function filter_display() {
+            return $(this).css("display") != "none";
+        }
+
+        function show_default() {
+            var list_group_id = "#" + $(this).attr("id");
+            if ($(list_group_id + " a.active").css("display") == "none") {
+                var list_tab = $(list_group_id + " a.active");
+                var pan_id = list_tab.attr("href");
+                $(pan_id).removeClass("active show");
+                list_tab.removeClass("active");
+            }
+            if ($(list_group_id + " a.active").filter(filter_display).length == 0) {
+                $(list_group_id + " a").filter(filter_display).first().tab("show");
+            }
+        }
+
+        $.fn.show_default = show_default;
+
+        function next(botton_id) {
+            var present_tab = $("#" + botton_id.replace("_button_next", "_list-tab") + " .active").first();
+            while (present_tab.next().length == 1) {
+                if (present_tab.next().css("display") != "none") {
+                    present_tab.next().tab("show");
+                    break;
+                } else {
+                    present_tab = present_tab.next();
+                }
+            }
+        }
+
+        function prev(botton_id) {
+            var present_tab = $("#" + botton_id.replace("_button_prev", "_list-tab") + " .active").first();
+            while (present_tab.prev().length == 1) {
+                if (present_tab.prev().css("display") != "none") {
+                    present_tab.prev().tab("show");
+                    break;
+                } else {
+                    present_tab = present_tab.prev();
+                }
+            }
+        }
+
+        $(document).ready(function () {
+            $(".form-control").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                var input_box_id = "#" + $(this).attr("id");
+                var list_group_id = input_box_id.replace("_InputList", "_list-tab");
+                $(list_group_id + " a").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+                });
+                $(list_group_id).show_default();
+            });
+            $(".list-group").each(show_default);
+        });
+    </script>
+
+    <script type="text/javascript">
+        /* show or hide element */
+        function hiddenShow(btnObj){
+            ctObj = btnObj.nextElementSibling;
+            if (ctObj.style.display == 'inline'){
+                ctObj.style.display = 'none';
+                btnObj.innerHTML = "Show Annotation";
+            } else {
+                ctObj.style.display = 'inline';
+                btnObj.innerHTML = "Hide Annotation";
+            }
+            return 0;
+        }
+    </script>
+
+    <script type="text/javascript">
+        /* show or hide element */
+        function hiddenQA(btnObj){
+            ctObj = btnObj.nextElementSibling;
+            if (ctObj.style.display == 'inline'){
+                ctObj.style.display = 'none';
+                btnObj.innerHTML = "Show Q&A";
+            } else {
+                ctObj.style.display = 'inline';
+                btnObj.innerHTML = "Hide Q&A";
+            }
+            return 0;
+        }
+    </script>
+
+</head>
+
+<body>
+    <div id="toc" class="tocify"></div>
+    <div style="position:fixed; top:0; left:0; width:100%; z-index:1000;">
+        <table width="100%" height="50px" border="0" cellpadding="5" cellspacing="0"
+            style="background:#F3F3F3; border-bottom:1px solid #eee;border-top: none;background-image:-moz-linear-gradient(top,#EEEEEE,#FFFFFF); background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0,#EEEEEE), color-stop(1,#FFFFFF));filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#EEEEEE', endColorstr='#FFFFFF', GradientType='0')">
+            <tr height="86%">
+                <td width='1%'></td>
+                <td><img src="src/images/logo1-GN.png"></td>
+                <td>
+                    <div style="margin:5px;border-left:1px solid #DCDCDC;height:30px"></div>
+                </td>
+                <td width="70%"></td>
+            </tr>
+        </table>
+    </div>
+
+<div id="main">
+<br />
+<h1>Novogene Hi-C chromosome construction report</h1>
+<br />
+
+
+<table class="tb2">
+
+<tr class="tb2"><td class="tb2">Contract Number</td><td style="text-align:left" class="tb2">X101SCXXXXXXXX</td></tr>
+<tr class="tb2"><td class="tb2">Contract Name</td><td style="text-align:left" class="tb2">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</td></tr>
+<tr class="tb2"><td class="tb2">Phase Number</td><td style="text-align:left" class="tb2">X101SCXXXXXXXX-Z01-J003</td></tr>
+<tr class="tb2"><td class="tb2">Report Time</td><td style="text-align:left" class="tb2">2024-10-30</td></tr>
+</table>
+<br /><br />
+
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<a name="Novogene">Novogene Co., Ltd</a>
+<hr />
+</p>
+
+<br />
+<h2>1 Background</h2>
+
+<p class="paragraph">Hi-C is a powerful genomic technology used to study the three-dimensional architecture of genomes. It is an extension of the Chromosome Conformation Capture (3C) technique and provides high-resolution insights into how chromosomes fold and interact within the nucleus.  Hi-C technology combines the principles of chromosome conformation capture with high-throughput sequencing to study the three-dimensional organization of genomes. Hi-C data is particularly useful in scaffolding contigs and organizing them into chromosome-level assemblies.</p>
+
+<br />
+<h3>1.1 Workflow of Hi-C technology and sequencing</h3>
+
+<p class="paragraph">Here's the typical workflow as shown in Figure 1:1. Treat the cells with paraformaldehyde to crosslink DNA with proteins and other DNA regions that are in close proximity in the nucleus; 2. After cell lysis, digest the crosslinked chromatin using a restriction enzyme to cut the DNA at specific sites; 3. For end repair, fill ends and mark oligonucleotide with biotins; 4. Ligate adjacent DNA fragments using ligase; 5. Digest using protease to reverse the crosslinks followed by DNA purification, and pull down biotin-labelled DNA using streptavidin beads; 6. Prepare the library using purified DNA and perform sequencing using high-throughput technologies like Illumina sequencing.</p>
+
+<p class="center"><img src="src/images/experiment.jpg" width="750" height="450" /></p>
+<br />
+
+<p class="name_fig" style="font-size: 12px">Figure1.1 Workflow of Hi-C technology and sequencing</p>
+<br />
+
+<br />
+<h3>1.2 Workflow of chromosome construction</h3>
+
+<p class="paragraph">Hi-C technology captures interaction information between spatially connected DNA fragments that are physically distant, using specialized experimental techniques. This technology allows for the differentiation of contigs or scaffolds into different chromosomes, based on the significantly higher probability of interaction within chromosomes compared to between chromosomes. Within a single chromosome, the probability of interaction decreases as the distance between interacting fragments increases. This property facilitates the sorting and orientation of contigs or scaffolds within their respective chromosomes.To achieve a high-quality genome assembly, the process begins with generating initial contigs using traditional sequencing methods such as Illumina, PacBio, or Nanopore, which provide both short and long reads. Next, Hi-C libraries are prepared and sequenced to obtain Hi-C interaction data, capturing the spatial organization of the genome. The Hi-C reads are then mapped back to the initial contigs, allowing the identification of interaction pairs. Specialized software ALLhic utilize this Hi-C interaction data to order and orient the contigs into scaffolds, thereby enhancing the assembly's continuity and accuracy. Finally, the assembled scaffolds undergo validation and refinement to ensure consistency and accuracy, resulting in a reliable and comprehensive genomic map. The pipeline is illustrated in Figure 1.2.</p>
+
+<p class="center"><img src="src/images/ass_1_1.png" width="300" height="200" /></p>
+<br />
+
+<p class="name_fig" style="font-size: 12px">Figure1.2 Chromosome construction pipeline</p>
+<br />
+
+<p class="paragraph">The main steps involved in genome scaffolding and clustering using ALLHiC (https://github.com/tangerzhang/ALLHiC) include Partition, Rescue, and Optimize. After completing these steps, we manually corrected the heatmaps using Juicebox. Finally, a chromosome-level assembly is obtained, and the heat map is generated.</p>
+
+<p class="center"><img src="src/images/allhic.jpg" width="750" height="450" /></p>
+<br />
+
+<p class="name_fig" style="font-size: 12px">Figure1.3 ALLHiC workflow3</p>
+<br />
+
+<br />
+<h2>2 Chromosome construction results</h2>
+
+<br />
+<h3>2.1 Genome assembly results statistics</h3>
+
+<p class="paragraph">Based on the Hi-C data obtained from sequencing, the assembled contigs/scaffolds were organized into chromosome-level sequences using the ALLHiC software. This process allowed us to achieve a chromosome-level genome assembly. The results of the XXX genome assembly are presented in Table 2.1 below. For statistical analysis, only contigs longer than 100bp were included.</p>
+
+<p class="name_table" style="font-size: 12px">Table2.1 Genome statistics</p>
+
+
+<div style="overflow-x: auto">
+<div>
+    <span class="status"></span>
+    <span class="total"></span>
+    <a href="javascript:void(0)" class="firstBtn">First | </a>
+    <a href="javascript:void(0)" class="prevBtn">Previous | </a>
+    <a href="javascript:void(0)" class="nextBtn">Next | </a>
+    <a href="javascript:void(0)" class="lastBtn">Last | </a>
+    <a>Go to </a>
+    <input class="changePage" type="text" size="4" maxlength="6"/>
+    <a> page </a>
+    <a href="javascript:void(0)" class="goBtn">Jump </a>
+</div>
+<table class="tb2 paginateTable">
+<th class="tb2 paginateTable">Sample ID</th><th class="tb2 paginateTable">Contig length</th><th class="tb2 paginateTable">Scaffold length</th><th class="tb2 paginateTable">Contig number</th><th class="tb2 paginateTable">Scaffold number</th>
+<tr class="tb2 paginateTable"><td class="tb2 paginateTable">total</td><td class="tb2 paginateTable">1,306,282,582</td><td class="tb2 paginateTable">1,306,296,482</td><td class="tb2 paginateTable">564</td><td class="tb2 paginateTable">425</td></tr>
+<tr class="tb2 paginateTable"><td class="tb2 paginateTable">Max</td><td class="tb2 paginateTable">55,722,280</td><td class="tb2 paginateTable">103,729,348</td><td class="tb2 paginateTable">-</td><td class="tb2 paginateTable">-</td></tr>
+<tr class="tb2 paginateTable"><td class="tb2 paginateTable">N50</td><td class="tb2 paginateTable">27,843,004</td><td class="tb2 paginateTable">65,593,168</td><td class="tb2 paginateTable">18</td><td class="tb2 paginateTable">8</td></tr>
+<tr class="tb2 paginateTable"><td class="tb2 paginateTable">N90</td><td class="tb2 paginateTable">7,106,979</td><td class="tb2 paginateTable">42,393,931</td><td class="tb2 paginateTable">50</td><td class="tb2 paginateTable">18</td></tr>
+</table>
+</div>
+<br />
+
+<button onclick="hiddenShow(this)">Show Annotation</button>
+<div class="comment">
+<p class="tremark">Total: Total number/length of contig/scaffold for genome.<br />
+Max: The length of the longest contig/scaffold in genome.<br />
+Nx0: Sort the obtained genome contig in descending order of length, and sequentially add up the lengths until the cumulative length is not less than x0% of the total length of genome.</p>
+</div>
+<br/><br/>
+
+<br />
+<h3>2.2 Statistics of genome scaffolding</h3>
+
+<p class="paragraph">The results, including the number of clusters per chromosome, the length of each chromosome, and the genome loading rate, are presented in Tables 2.2 and 2.3 below:</p>
+
+<p class="name_table" style="font-size: 12px">Table2.2 Statistics of cluster number and length of a single chromosome</p>
+
+
+<div style="overflow-x: auto">
+<div>
+    <span class="status"></span>
+    <span class="total"></span>
+    <a href="javascript:void(0)" class="firstBtn">First | </a>
+    <a href="javascript:void(0)" class="prevBtn">Previous | </a>
+    <a href="javascript:void(0)" class="nextBtn">Next | </a>
+    <a href="javascript:void(0)" class="lastBtn">Last | </a>
+    <a>Go to </a>
+    <input class="changePage" type="text" size="4" maxlength="6"/>
+    <a> page </a>
+    <a href="javascript:void(0)" class="goBtn">Jump </a>
+</div>
+<table class="tb2 paginateTable">
+<th class="tb2 paginateTable">Sequeues ID</th><th class="tb2 paginateTable">Cluster Number</th><th class="tb2 paginateTable">Sequeues Length</th>
+<tr class="tb2 paginateTable"><td class="tb2 paginateTable">Chr01</td><td class="tb2 paginateTable">9</td><td class="tb2 paginateTable">65,592,368</td></tr>
+<tr class="tb2 paginateTable"><td class="tb2 paginateTable">Chr02</td><td class="tb2 paginateTable">3</td><td class="tb2 paginateTable">64,758,852</td></tr>
+<tr class="tb2 paginateTable"><td class="tb2 paginateTable">Chr03</td><td class="tb2 paginateTable">8</td><td class="tb2 paginateTable">42,720,256</td></tr>
+<tr class="tb2 paginateTable"><td class="tb2 paginateTable">Chr04</td><td class="tb2 paginateTable">2</td><td class="tb2 paginateTable">75,929,938</td></tr>
+<tr class="tb2 paginateTable"><td class="tb2 paginateTable">Chr05</td><td class="tb2 paginateTable">5</td><td class="tb2 paginateTable">53,025,760</td></tr>
+<tr class="tb2 paginateTable"><td class="tb2 paginateTable">Chr06</td><td class="tb2 paginateTable">5</td><td class="tb2 paginateTable">97,468,562</td></tr>
+<tr class="tb2 paginateTable"><td class="tb2 paginateTable">Chr07</td><td class="tb2 paginateTable">5</td><td class="tb2 paginateTable">55,932,177</td></tr>
+<tr class="tb2 paginateTable"><td class="tb2 paginateTable">Chr08</td><td class="tb2 paginateTable">3</td><td class="tb2 paginateTable">41,989,348</td></tr>
+<tr class="tb2 paginateTable"><td class="tb2 paginateTable">Chr09</td><td class="tb2 paginateTable">9</td><td class="tb2 paginateTable">103,728,548</td></tr>
+<tr class="tb2 paginateTable"><td class="tb2 paginateTable">Chr10</td><td class="tb2 paginateTable">4</td><td class="tb2 paginateTable">42,393,631</td></tr>
+<tr class="tb2 paginateTable"><td class="tb2 paginateTable">Chr11</td><td class="tb2 paginateTable">9</td><td class="tb2 paginateTable">56,536,227</td></tr>
+<tr class="tb2 paginateTable"><td class="tb2 paginateTable">Chr12</td><td class="tb2 paginateTable">4</td><td class="tb2 paginateTable">44,202,074</td></tr>
+<tr class="tb2 paginateTable"><td class="tb2 paginateTable">Chr13</td><td class="tb2 paginateTable">3</td><td class="tb2 paginateTable">42,589,099</td></tr>
+<tr class="tb2 paginateTable"><td class="tb2 paginateTable">Chr14</td><td class="tb2 paginateTable">6</td><td class="tb2 paginateTable">48,607,584</td></tr>
+<tr class="tb2 paginateTable"><td class="tb2 paginateTable">Chr15</td><td class="tb2 paginateTable">8</td><td class="tb2 paginateTable">54,329,160</td></tr>
+<tr class="tb2 paginateTable"><td class="tb2 paginateTable">Chr16</td><td class="tb2 paginateTable">9</td><td class="tb2 paginateTable">77,057,724</td></tr>
+<tr class="tb2 paginateTable"><td class="tb2 paginateTable">Chr17</td><td class="tb2 paginateTable">4</td><td class="tb2 paginateTable">84,367,557</td></tr>
+<tr class="tb2 paginateTable"><td class="tb2 paginateTable">Chr18</td><td class="tb2 paginateTable">3</td><td class="tb2 paginateTable">96,780,914</td></tr>
+<tr class="tb2 paginateTable"><td class="tb2 paginateTable">Chr19</td><td class="tb2 paginateTable">6</td><td class="tb2 paginateTable">75,496,647</td></tr>
+</table>
+</div>
+<br />
+
+<button onclick="hiddenShow(this)">Show Annotation</button>
+<div class="comment">
+<p class="tremark">Sequence ID: The name of this chromosome.<br />
+Cluster number: The number of contigs within this chromosome.<br />
+Sequence length: The total length of this chromosome.</p>
+</div>
+<br/><br/>
+
+<p class="name_table" style="font-size: 12px">Table2.3 Genome loading rate</p>
+
+
+<div style="overflow-x: auto">
+<div>
+    <span class="status"></span>
+    <span class="total"></span>
+    <a href="javascript:void(0)" class="firstBtn">First | </a>
+    <a href="javascript:void(0)" class="prevBtn">Previous | </a>
+    <a href="javascript:void(0)" class="nextBtn">Next | </a>
+    <a href="javascript:void(0)" class="lastBtn">Last | </a>
+    <a>Go to </a>
+    <input class="changePage" type="text" size="4" maxlength="6"/>
+    <a> page </a>
+    <a href="javascript:void(0)" class="goBtn">Jump </a>
+</div>
+<table class="tb2 paginateTable">
+<th class="tb2 paginateTable">Class</th><th class="tb2 paginateTable">Scaffold Number</th><th class="tb2 paginateTable">Total Length</th>
+<tr class="tb2 paginateTable"><td class="tb2 paginateTable">place</td><td class="tb2 paginateTable">19</td><td class="tb2 paginateTable">1,223,515,026</td></tr>
+<tr class="tb2 paginateTable"><td class="tb2 paginateTable">unplace</td><td class="tb2 paginateTable">406</td><td class="tb2 paginateTable">82,781,456</td></tr>
+<tr class="tb2 paginateTable"><td class="tb2 paginateTable">total</td><td class="tb2 paginateTable">425</td><td class="tb2 paginateTable">1,306,296,482</td></tr>
+<tr class="tb2 paginateTable"><td class="tb2 paginateTable">loading_rate</td><td class="tb2 paginateTable">93.66%</td></tr>
+</table>
+</div>
+<br />
+
+<button onclick="hiddenShow(this)">Show Annotation</button>
+<div class="comment">
+<p class="tremark">Place: Genome assembled at the chromosome level.<br />
+Unplace: Genome not assembled at the chromosome level.<br />
+Total: The total number/length of genome.<br />
+Loading rate: Place length/unplace length x 100%.<br />
+Place scaffold number: The number of scaffolds is the same as the number of chromosomes.<br />
+Unplace scaffold number: The number of scaffolds that are not genome scaffolding.</p>
+</div>
+<br/><br/>
+
+<p class="paragraph">From Tables 2.2 and 2.3, it can be observed that after the Hi-C technology-assisted assembly of the <b>Dl</b> genome, <b>19</b> sequences were assembled to the chromosome level, while <b>406</b> sequences remained unassembled at this level. The genome loading rate is <b>93.66%</b>. For statistical purposes, only contigs longer than 100bp were considered.</p>
+
+<br />
+<h3>2.3 Hi-C heatmap</h3>
+
+<div class="row gallery-row">
+<div class="col-1">
+<div id="gallery_hic_heatmap_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-6">
+<div class="tab-content" id="gallery_hic_heatmap_nav-tabContent">
+<div class="tab-pane fade" id="gallery_hic_heatmap_pane_all_genome" role="tabpanel" aria-labelledby="gallery_hic_heatmap_list_all_genome" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/hic_heatmap.jpg" /></div>
+<div class="tab-pane fade" id="gallery_hic_heatmap_pane_Chr01" role="tabpanel" aria-labelledby="gallery_hic_heatmap_list_Chr01" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/HiC_heatmap.Chr01.png" /></div>
+<div class="tab-pane fade" id="gallery_hic_heatmap_pane_Chr02" role="tabpanel" aria-labelledby="gallery_hic_heatmap_list_Chr02" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/HiC_heatmap.Chr02.png" /></div>
+<div class="tab-pane fade" id="gallery_hic_heatmap_pane_Chr03" role="tabpanel" aria-labelledby="gallery_hic_heatmap_list_Chr03" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/HiC_heatmap.Chr03.png" /></div>
+<div class="tab-pane fade" id="gallery_hic_heatmap_pane_Chr04" role="tabpanel" aria-labelledby="gallery_hic_heatmap_list_Chr04" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/HiC_heatmap.Chr04.png" /></div>
+<div class="tab-pane fade" id="gallery_hic_heatmap_pane_Chr05" role="tabpanel" aria-labelledby="gallery_hic_heatmap_list_Chr05" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/HiC_heatmap.Chr05.png" /></div>
+<div class="tab-pane fade" id="gallery_hic_heatmap_pane_Chr06" role="tabpanel" aria-labelledby="gallery_hic_heatmap_list_Chr06" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/HiC_heatmap.Chr06.png" /></div>
+<div class="tab-pane fade" id="gallery_hic_heatmap_pane_Chr07" role="tabpanel" aria-labelledby="gallery_hic_heatmap_list_Chr07" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/HiC_heatmap.Chr07.png" /></div>
+<div class="tab-pane fade" id="gallery_hic_heatmap_pane_Chr08" role="tabpanel" aria-labelledby="gallery_hic_heatmap_list_Chr08" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/HiC_heatmap.Chr08.png" /></div>
+<div class="tab-pane fade" id="gallery_hic_heatmap_pane_Chr09" role="tabpanel" aria-labelledby="gallery_hic_heatmap_list_Chr09" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/HiC_heatmap.Chr09.png" /></div>
+<div class="tab-pane fade" id="gallery_hic_heatmap_pane_Chr10" role="tabpanel" aria-labelledby="gallery_hic_heatmap_list_Chr10" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/HiC_heatmap.Chr10.png" /></div>
+<div class="tab-pane fade" id="gallery_hic_heatmap_pane_Chr11" role="tabpanel" aria-labelledby="gallery_hic_heatmap_list_Chr11" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/HiC_heatmap.Chr11.png" /></div>
+<div class="tab-pane fade" id="gallery_hic_heatmap_pane_Chr12" role="tabpanel" aria-labelledby="gallery_hic_heatmap_list_Chr12" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/HiC_heatmap.Chr12.png" /></div>
+<div class="tab-pane fade" id="gallery_hic_heatmap_pane_Chr13" role="tabpanel" aria-labelledby="gallery_hic_heatmap_list_Chr13" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/HiC_heatmap.Chr13.png" /></div>
+<div class="tab-pane fade" id="gallery_hic_heatmap_pane_Chr14" role="tabpanel" aria-labelledby="gallery_hic_heatmap_list_Chr14" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/HiC_heatmap.Chr14.png" /></div>
+<div class="tab-pane fade" id="gallery_hic_heatmap_pane_Chr15" role="tabpanel" aria-labelledby="gallery_hic_heatmap_list_Chr15" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/HiC_heatmap.Chr15.png" /></div>
+<div class="tab-pane fade" id="gallery_hic_heatmap_pane_Chr16" role="tabpanel" aria-labelledby="gallery_hic_heatmap_list_Chr16" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/HiC_heatmap.Chr16.png" /></div>
+<div class="tab-pane fade" id="gallery_hic_heatmap_pane_Chr17" role="tabpanel" aria-labelledby="gallery_hic_heatmap_list_Chr17" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/HiC_heatmap.Chr17.png" /></div>
+<div class="tab-pane fade" id="gallery_hic_heatmap_pane_Chr18" role="tabpanel" aria-labelledby="gallery_hic_heatmap_list_Chr18" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/HiC_heatmap.Chr18.png" /></div>
+<div class="tab-pane fade" id="gallery_hic_heatmap_pane_Chr19" role="tabpanel" aria-labelledby="gallery_hic_heatmap_list_Chr19" onclick="trans(this.id)"><img class="img-gallery" src="src/pictures/HiC_heatmap.Chr19.png" /></div>
+</div>
+</div>
+<div class="col-1">
+<div id="gallery_hic_heatmap_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+</div>
+<div class="col-4">
+<input class="form-control" id="gallery_hic_heatmap_InputList" type="text" placeholder="Search..">
+<div class="list-group" id="gallery_hic_heatmap_list-tab" role="tablist">
+<a class="list-group-item list-group-item-action" id="gallery_hic_heatmap_list_all_genome" data-toggle="list" href="#gallery_hic_heatmap_pane_all_genome" role="tab" aria-controls="all_genome">all_genome</a>
+<a class="list-group-item list-group-item-action" id="gallery_hic_heatmap_list_Chr01" data-toggle="list" href="#gallery_hic_heatmap_pane_Chr01" role="tab" aria-controls="Chr01">Chr01</a>
+<a class="list-group-item list-group-item-action" id="gallery_hic_heatmap_list_Chr02" data-toggle="list" href="#gallery_hic_heatmap_pane_Chr02" role="tab" aria-controls="Chr02">Chr02</a>
+<a class="list-group-item list-group-item-action" id="gallery_hic_heatmap_list_Chr03" data-toggle="list" href="#gallery_hic_heatmap_pane_Chr03" role="tab" aria-controls="Chr03">Chr03</a>
+<a class="list-group-item list-group-item-action" id="gallery_hic_heatmap_list_Chr04" data-toggle="list" href="#gallery_hic_heatmap_pane_Chr04" role="tab" aria-controls="Chr04">Chr04</a>
+<a class="list-group-item list-group-item-action" id="gallery_hic_heatmap_list_Chr05" data-toggle="list" href="#gallery_hic_heatmap_pane_Chr05" role="tab" aria-controls="Chr05">Chr05</a>
+<a class="list-group-item list-group-item-action" id="gallery_hic_heatmap_list_Chr06" data-toggle="list" href="#gallery_hic_heatmap_pane_Chr06" role="tab" aria-controls="Chr06">Chr06</a>
+<a class="list-group-item list-group-item-action" id="gallery_hic_heatmap_list_Chr07" data-toggle="list" href="#gallery_hic_heatmap_pane_Chr07" role="tab" aria-controls="Chr07">Chr07</a>
+<a class="list-group-item list-group-item-action" id="gallery_hic_heatmap_list_Chr08" data-toggle="list" href="#gallery_hic_heatmap_pane_Chr08" role="tab" aria-controls="Chr08">Chr08</a>
+<a class="list-group-item list-group-item-action" id="gallery_hic_heatmap_list_Chr09" data-toggle="list" href="#gallery_hic_heatmap_pane_Chr09" role="tab" aria-controls="Chr09">Chr09</a>
+<a class="list-group-item list-group-item-action" id="gallery_hic_heatmap_list_Chr10" data-toggle="list" href="#gallery_hic_heatmap_pane_Chr10" role="tab" aria-controls="Chr10">Chr10</a>
+<a class="list-group-item list-group-item-action" id="gallery_hic_heatmap_list_Chr11" data-toggle="list" href="#gallery_hic_heatmap_pane_Chr11" role="tab" aria-controls="Chr11">Chr11</a>
+<a class="list-group-item list-group-item-action" id="gallery_hic_heatmap_list_Chr12" data-toggle="list" href="#gallery_hic_heatmap_pane_Chr12" role="tab" aria-controls="Chr12">Chr12</a>
+<a class="list-group-item list-group-item-action" id="gallery_hic_heatmap_list_Chr13" data-toggle="list" href="#gallery_hic_heatmap_pane_Chr13" role="tab" aria-controls="Chr13">Chr13</a>
+<a class="list-group-item list-group-item-action" id="gallery_hic_heatmap_list_Chr14" data-toggle="list" href="#gallery_hic_heatmap_pane_Chr14" role="tab" aria-controls="Chr14">Chr14</a>
+<a class="list-group-item list-group-item-action" id="gallery_hic_heatmap_list_Chr15" data-toggle="list" href="#gallery_hic_heatmap_pane_Chr15" role="tab" aria-controls="Chr15">Chr15</a>
+<a class="list-group-item list-group-item-action" id="gallery_hic_heatmap_list_Chr16" data-toggle="list" href="#gallery_hic_heatmap_pane_Chr16" role="tab" aria-controls="Chr16">Chr16</a>
+<a class="list-group-item list-group-item-action" id="gallery_hic_heatmap_list_Chr17" data-toggle="list" href="#gallery_hic_heatmap_pane_Chr17" role="tab" aria-controls="Chr17">Chr17</a>
+<a class="list-group-item list-group-item-action" id="gallery_hic_heatmap_list_Chr18" data-toggle="list" href="#gallery_hic_heatmap_pane_Chr18" role="tab" aria-controls="Chr18">Chr18</a>
+<a class="list-group-item list-group-item-action" id="gallery_hic_heatmap_list_Chr19" data-toggle="list" href="#gallery_hic_heatmap_pane_Chr19" role="tab" aria-controls="Chr19">Chr19</a>
+</div>
+</div>
+</div>
+<br />
+
+<p class="name_fig" style="font-size: 12px">Figure2.1 Frequency of chromatin interactions in Heatmap</p>
+<br />
+
+<br />
+<h2>3 Conclusion</h2>
+
+<p class="paragraph">Using the sequenced Hi-C data, the assembly of the <b>Dl</b> genome was assisted, enabling it to reach the chromosome level. The results of the chromosomal genome assembly are as follows: the total length of contigs is <b>1,306,282,582</b> bp, with a contig N50 length of <b>27,843,004</b> bp; the total length of scaffolds is <b>1,306,296,482</b> bp, with a scaffold N50 length of <b>65,593,168</b> bp. The genome loading rate is <b>93.66%</b>. Overall, the genome indices and assembly quality are satisfactory. For statistical purposes, only contigs longer than 100bp were considered.</p>
+
+<br />
+<h2>4 References</h2>
+
+<p class=ref>Lieberman-Aiden, E. et al. Comprehensive mapping of long-range interactions reveals folding principles of the human genome. Science 326, 289-293 (2009). https://doi.org:10.1126/science.1181369</p>
+<br />
+
+<p class=ref>Dekker, J., Rippe, K., Dekker, M. & Kleckner, N. Capturing chromosome conformation. Science 295, 1306-1311 (2002). https://doi.org:10.1126/science.1067799</p>
+<br />
+
+<p class=ref>Zhang, X., Zhang, S., Zhao, Q., Ming, R. & Tang, H. Assembly of allele-aware, chromosomal-scale autopolyploid genomes based on Hi-C data. Nature Plants 5, 833-845 (2019). https://doi.org:10.1038/s41477-019-0487-8</p>
+<br />
+
+<p class=ref>Durand, N. C. et al. Juicebox Provides a Visualization System for Hi-C Contact Maps with Unlimited Zoom. Cell Syst 3, 99-101 (2016). https://doi.org:10.1016/j.cels.2015.07.012</p>
+<br />
+
+<p class=ref>Li, H. & Durbin, R. Fast and accurate short read alignment with Burrows-Wheeler transform. Bioinformatics 25, 1754-1760 (2009). https://doi.org:10.1093/bioinformatics/btp324</p>
+<br />
+
+<p class=ref>Li, H. et al. The Sequence Alignment/Map format and SAMtools. Bioinformatics 25, 2078-2079 (2009). https://doi.org:10.1093/bioinformatics/btp352</p>
+<br />
+
+<p class=ref>Wang, K., Li, M. & Hakonarson, H. ANNOVAR: functional annotation of genetic variants from high-throughput sequencing data. Nucleic Acids Res 38, e164 (2010). https://doi.org:10.1093/nar/gkq603</p>
+<br />
+
+<p class=ref>Yaffe, E. & Tanay, A. Probabilistic modeling of Hi-C contact maps eliminates systematic biases to characterize global chromosomal architecture. Nature Genetics 43, 1059-1065 (2011). https://doi.org:10.1038/ng.947</p>
+<br />
+<br />
+<h2>5 Appendix</h2>
+
+<p class="name_table" style="font-size: 12px">Table5.1 Software Description List</p>
+
+
+<table class="tb3">
+<th class="tb3">Step</th><th class="tb3">Software</th><th class="tb3">Version</th><th class="tb3">Parameter</th>
+<tr class="tb3"><td class="tb3">Genome scaffolding</td><td class="tb3">ALLhic</td><td class="tb3">0.9.8</td><td class="tb3">Default</td></tr>
+<tr class="tb3"><td class="tb3">Heatmap</td><td class="tb3">Juicebox</td><td class="tb3">1.11.08</td><td class="tb3">Default</td></tr>
+</table>
+<br />
+</div>
+</body>
+</html>
