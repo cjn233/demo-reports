@@ -2,7 +2,7 @@
 
 base_url="https://europe-demoreports.netlify.app"
 timestamp=$(date +"%Y-%m-%d %H:%M %Z")
-password="novogene4ngs"
+password="novogene4omics"
 
 cat > internal.html <<EOF
 <!DOCTYPE html>
