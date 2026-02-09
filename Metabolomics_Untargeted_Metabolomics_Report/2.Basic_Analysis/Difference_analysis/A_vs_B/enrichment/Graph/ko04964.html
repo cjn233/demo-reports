@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html>
+ <!--
+ENTRY       map04964
+DEFINITION  Proximal tubule bicarbonate reclamation
+--->
+ <head>
+  <meta charset="utf-8"/>
+  <title>
+   KEGG PATHWAY: Proximal tubule bicarbonate reclamation - Reference pathway
+  </title>
+  <link href="/css/jquery-ui.css" rel="stylesheet"/>
+  <style type="text/css">
+   <!--
+
+html {
+	margin: 0px;
+	padding: 0px;
+	height: 100%;
+}
+
+body {
+	margin: 0px;
+	padding: 8px;
+	height: calc(100% - 16px);
+}
+
+h1.page-title {
+	font-size: 14px;
+	margin: 0px;
+	white-space: nowrap;
+}
+h1.page-title * {
+	vertical-align: middle;
+}
+
+input, select {
+	margin: 0px;
+}
+
+.hidden {
+	display: none !important;
+}
+
+/** navigation start **/
+.nav {
+	padding: 3px 0px 5px 0px;
+	position: relative;
+	min-width: 600px;
+	max-width: 800px;
+	background: #fff;
+}
+
+.nav form {
+	margin: 5px 0px 0px 0px;
+}
+
+.nav .help {
+	display: inline-block;
+	position: relative;
+	left: 20px;
+/*
+	position: absolute;
+	bottom: 5px;
+	right: 0px;
+*/
+}
+/** navigation end **/
+
+#biosynthesis {
+	margin-left: 75px;
+	margin-top: -12px;
+	margin-bottom: 10px;
+	max-width: 800px;
+}
+
+#description {
+	padding: 10px;
+	max-width: 800px;
+}
+
+#waiting-circle {
+	position: fixed;
+	top: 10px;
+	right: 10px;
+	display: none;
+}
+
+#controlPanel {
+	top: 0px;
+	left: 0px;
+	width: 220px;
+	background: #ffffff;
+	padding: 0px 0px 0px 0px;
+	white-space: nowrap;
+	overflow: auto;
+	position: fixed;
+	border: solid 1px #999999;
+	display: none;
+}
+
+#controlPanel.closed {
+	border: none;
+	padding: 0px 0px 0px 0px;
+	background: transparent;
+
+	/* jQuery-UI resizale.disabled() の実行で
+	 *      色が薄くなるのを打ち消す */
+	opacity: 1.0;
+}
+
+/** div.row start **/
+
+div.row {
+	margin-top: 2px;
+	margin-bottom: 2px;
+	/* 以下のwidth,overflowの定義で.rowのブロック内で横スクロールする。 */
+	/*
+	width: 98%;
+	overflow: auto;
+	*/
+}
+
+div.row * {
+	vertical-align: middle;
+}
+
+div.row.disabled * {
+	color: gray;
+}
+
+/* 横に並べる場合(title可変幅) start */
+
+.row.scale input {
+	width: 110px;
+}
+
+.row.scale .label {
+	font-size: 0.9em;
+}
+
+/* 横に並べる場合(title可変幅) end */
+
+
+/* Search欄の検索結果 start */
+
+div.row.result > div {
+	margin: 5px 1px 2px 1px;
+}
+
+/* Search欄の検索結果 end */
+
+/**  div.row end **/
+
+#controlPanel h5 {
+  margin: 0px;
+	padding: 5px 0px 5px 10px;
+	vertical-align: middle;
+	border-top: solid 1px #cccccc;
+	border-bottom: solid 1px #cccccc;
+	background: #eeeeee;
+	/* ui-iconの位置調整のために必要 */
+	position: relative;
+}
+
+#controlPanel h5::before {
+	content: url(/Fig/get_htext/open.png);
+	margin: 0px 5px 0px 0px;
+}
+
+#controlPanel h5.closed::before {
+	content: url(/Fig/get_htext/close.png);
+	margin: 0px 5px 0px 0px;
+}
+
+#controlPanel h5:first-child {
+	border-top: none;
+}
+
+#controlPanel h5:hover {
+	cursor: pointer;
+}
+
+#controlPanel h5  + div {
+	padding: 5px 0px 5px 10px;
+}
+
+#controlPanel h5 .ui-icon {
+	display: inline-block;
+	position: absolute;
+	right: 5px;
+	top: 50%;
+	margin-top: -8px;
+	cursor: pointer;
+}
+
+button {
+	/* Safariでボタンの周りに入る余白を削除 */
+	margin: 0px;
+	padding: 0px;
+	/* ボタンを押した時に表示されるボーダーを非表示にする */
+	outline: none;
+}
+
+button.close, button.open {
+	border: none;
+	padding: 0px;
+	position: absolute;
+	right: 5px;
+	top: 7px;
+}
+
+button.close {
+	/* コントロールパネルに合わせて初期は非表示 */
+	display: none;
+}
+
+button:hover {
+	cursor: pointer;
+}
+
+button img {
+	/* 画像の下に入る余白を無くす */
+	display: block;
+}
+
+/** tree style start **/
+ul.tree, ul.tree ul {
+	padding: 0px;
+	margin: 0px;
+	list-style-type: none;
+}
+
+ul.tree ul {
+	padding-left: 12px;
+}
+
+ul.tree .class-A > span {
+	font-weight: bold;
+}
+
+ul.tree li {
+	margin: 3px 0px 3px 0px;
+}
+
+.module-tree .module.disabled {
+	display: none;
+}
+
+.module-tree .classification.disabled {
+	display: none;
+}
+
+/** tree style > User data start **/
+ul.mappers {
+	padding: 0px;
+	margin: 0px;
+	list-style-type: none;
+}
+
+ul.mappers li {
+	position: relative;
+	margin: 5px 0px 2px 0px;
+}
+
+ul.mappers li .ui-icon {
+	display: inline-block;
+	position: absolute;
+	top: 50%;
+	margin-top: -8px;
+}
+ul.mappers li .ui-icon:hover {
+	cursor: pointer;
+}
+ul.mappers li .ui-icon-trash {
+	right: 5px;
+}
+ul.mappers li .ui-icon-document {
+	right: 26px;
+}
+/** tree style > User data end **/
+
+/** tree style end **/
+
+.ui-icon.button {
+	display: inline-block;
+	cursor: pointer;
+}
+
+ul.simple {
+	margin: 0px;
+	padding: 0px;
+}
+ul.simple li {
+	list-style-type: none;
+}
+ul.simple li:not(:first-child) {
+	margin-top: 5px;
+}
+
+#download-menu {
+	padding: 10px !important;
+}
+#download-menu div:not(:first-child) {
+	margin-top: 5px;
+}
+
+//-->
+   body {font-size:12px; font-family:verdana,arial,helvetica,sans-serif; background-color:#ffffff}
+.text {font-size:12px; font-family:verdana,arial,helvetica,sans-serif}
+b {font-size:12px; font-weight:bold; font-family:verdana,arial,helvetica,sans-serif}
+th {font-size:12px; font-weight:bold; font-family:verdana,arial,helvetica,sans-serif}
+td {font-size:12px; font-family:verdana,arial,helvetica,sans-serif}
+input {font-size:12px; font-family:verdana,arial,helvetica,sans-serif}
+select {font-size:12px; font-family:verdana,arial,helvetica,sans-serif}
+a {text-decoration:none}
+a:link {color:#003399}
+a:visited {color:#003399}
+a:hover {color:#33cc99}
+font.title3 {color: #005050; font-size:14px; font-weight:bold; font-family:verdana,arial,helvetica,sans-serif}
+hr.frame0 {border: 1px solid #f5e05f; color: #f5e05f}
+  </style>
+  <script src="/js/jquery-3.1.0.min.js">
+  </script>
+  <script src="/js/jquery-ui.js">
+  </script>
+  <script src="/js/jquery.balloon.min.js">
+  </script>
+  <script src="/js/lz-string.min.js">
+  </script>
+  <script src="/kegg-bin/get_data.cgi?data=0021&amp;id=show_pathway.merged.js&amp;v2.11">
+  </script>
+  <script type="text/javascript">
+   <!--
+
+// common variable
+const env = {
+	       mapno: '04964',
+	         org: 'map',
+	       entry: 'map04964',
+	       scale: 1,
+	 colorModule: '',
+	personalConf: '',
+}
+
+// HELP button
+function btn(bobj,img) { bobj.src = "/Fig/bget/button_" + img + ".gif"; }
+
+//-->
+  </script>
+  <link href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB3klEQVR4AXSTA8wdQRSFv9q2bdu2bbth7QZF9ILatm3btvvbtnWS7D5/ye744szcbKdzzMnAhtVji/C7TUtE7VdvKfn8BmK+d3tckR1gY+XnOKLDMjS3T4g+ag3zdm3A8fD6k1GIFqNjSJg0kUk7AvXR9MwNev856mTIKQVx4Xx2jvfcgUCr2dQCBSAxMjdnVhRn561SSovsOCAPOqwD+hJTcvPtR3G1EAt5iyaT1CYvRupOBuruuYcwDk9/PIP3e3Pz719BKIhgVJcQDHLaaiCx5EGetPnowfK8u1uIfoUg9FEuvlHc5S2YNJ+ZbM5GeRTgwNpCLOl52pxXJLNHVdCHcNKgRo1YiAfyw8cLBRETh/rToE44TYfFmrm7jEDhG0jpXTWHU2VjRwyKlIlj5lRPdp/xszegMPQ1Cm1G3lzJ2HLCqxsSD7lJB0X34kthDKSf3TvQQ5Enbf72qzhKKW/OZDPOqKACXLYUci/imUelUP6iQd1wu4gSk3ObuojKteQXcqp4VDCh7fvxO8bC/csPOD54B7Z8e1cc3YArcqpgHPM+saUbewotpVZ4AkVeNOfPhcrktclbzCWE9TGTyYkD46o8QEb0BuZ79yEYE7uy3njrObSHTAAAAP//AwCnC723w5oqxAAAAABJRU5ErkJggg==" rel="icon" type="image/png"/>
+ </head>
+ <body>
+  <!-- header logo start -->
+  <h1 class="page-title">
+   <a href="https://www.genome.jp/kegg/pathway.html" target="_blank">
+    <img alt="KEGG" border="0" src="data: image/gif;base64,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"/>
+   </a>
+   Proximal tubule bicarbonate reclamation - Reference pathway
+  </h1>
+  <!-- header logo end -->
+  <!-- page navigation start -->
+  <div class="nav">
+   [
+   <a href="https://www.genome.jp/brite/query=04964&amp;htext=br08901.keg&amp;option=-a&amp;node_proc=br08901_org&amp;proc_enabled=map&amp;panel=collapse" id="navPathwayMenu" target="_blank">
+    Pathway menu
+   </a>
+   |
+   <a href="https://www.genome.jp/brite/htext=br08611&amp;zoomout=E&amp;brel=off&amp;hier=10&amp;pruning=join_brite&amp;func=org2pathway-s-lp2~_3+04964" id="navOrganismMenu" target="_blank">
+    Organism menu
+   </a>
+   |
+   <a href="https://www.genome.jp/entry/pathway+map04964" id="navPathwayEntry" target="_blank">
+    Pathway entry
+   </a>
+   |
+   <a href="#description" id="descLink" target="_blank">
+    Show description
+   </a>
+   |
+   <a href="#" id="downloadMenu" target="_blank">
+    Download
+   </a>
+   |
+   <a href="https://www.genome.jp/kegg/document/help_pathway.html" target="_blank">
+    Help
+   </a>
+   ]
+   <div class="hidden" id="description">
+    One of the major tasks of the renal proximal tubule (PT) is to secrete acid into the tubule lumen, thereby reabsorbing approximately 80% of the filtered bicarbonate (HCO3(-)), as well as generating "new HCO3(-)" for regulating blood pH. In the tubular lumen, filtered HCO3(-) combines with H(+) in a reaction catalyzed by CA IV. The CO2 thus produced rapidly diffuses into the tubular cells and is combined with water to produce intracellular H(+) and HCO3(-), catalyzed by soluble cytoplasmic CA II. HCO3(-) is then cotransported with Na(+) into blood via the NBC-1. The intracellular H(+) produced by CA II is secreted into the tubular lumen predominantly via the NHE-3. The PT creates the "new HCO3(-)" by taking glutamine and metabolizing it to two molecules each of NH4(+) and HCO3(-). The NH4(+) is excreted into the tubular lumen, and the HCO3(-) , which is "new HCO3(-) ," is returned to the blood, where it replaces the HCO3(-) lost earlier in the titration of nonvolatile acids.
+   </div>
+   <!-- organism list start -->
+   <!-- organism list end -->
+  </div>
+  <!-- page navigation end -->
+  <!-- pathway image start -->
+  <div class="image-block" style="position:static;">
+   <img border="0" data-srcset="/kegg/pathway/map/map04964.png 1x, /kegg/pathway/map/map04964@2x.png 2x" id="pathwayimage" src="ko04964.png" srcset="ko04964.png 1x" usemap="#mapdata" width="820"/>
+   <map data-scale="1" id="mapdata" name="mapdata">
+    <area class="original" coords="37,434,4" data-coords="37,434,4" data-entry="C00001" href="https://www.genome.jp/entry/C00001" id="26B48F0F" shape="circle" target="_blank" title="C00001 (H2O)"/>
+    <area class="original" coords="393,435,4" data-coords="393,435,4" data-entry="C00001" href="https://www.genome.jp/entry/C00001" id="E370011F" shape="circle" target="_blank" title="C00001 (H2O)"/>
+    <area class="original" coords="86,315,4" data-coords="86,315,4" data-entry="C00080" href="https://www.genome.jp/entry/C00080" id="22B48A82" shape="circle" target="_blank" title="C00080 (H+)"/>
+    <area class="original" coords="230,307,4" data-coords="230,307,4" data-entry="C01330" href="https://www.genome.jp/entry/C01330" id="D66FE27A" shape="circle" target="_blank" title="C01330 (Sodium cation)"/>
+    <area class="original" coords="57,279,4" data-coords="57,279,4" data-entry="C00288" href="https://www.genome.jp/entry/C00288" id="2BB48555" shape="circle" target="_blank" title="C00288 (HCO3-)"/>
+    <area class="original" coords="78,433,4" data-coords="78,433,4" data-entry="C00011" href="https://www.genome.jp/entry/C00011" id="2AB48F73" shape="circle" target="_blank" title="C00011 (CO2)"/>
+    <area class="original" coords="338,434,4" data-coords="338,434,4" data-entry="C00011" href="https://www.genome.jp/entry/C00011" id="FB700089" shape="circle" target="_blank" title="C00011 (CO2)"/>
+    <area class="original" coords="333,317,4" data-coords="333,317,4" data-entry="C00080" href="https://www.genome.jp/entry/C00080" id="E56FFB7F" shape="circle" target="_blank" title="C00080 (H+)"/>
+    <area class="original" coords="394,317,4" data-coords="394,317,4" data-entry="C00288" href="https://www.genome.jp/entry/C00288" id="EA6FFC15" shape="circle" target="_blank" title="C00288 (HCO3-)"/>
+    <area class="original" coords="672,307,4" data-coords="672,307,4" data-entry="C01330" href="https://www.genome.jp/entry/C01330" id="E07046DE" shape="circle" target="_blank" title="C01330 (Sodium cation)"/>
+    <area class="original" coords="673,319,4" data-coords="673,319,4" data-entry="C00288" href="https://www.genome.jp/entry/C00288" id="E77046E3" shape="circle" target="_blank" title="C00288 (HCO3-)"/>
+    <area class="original" coords="104,850,4" data-coords="104,850,4" data-entry="C01330" href="https://www.genome.jp/entry/C01330" id="E36FE248" shape="circle" target="_blank" title="C01330 (Sodium cation)"/>
+    <area class="original" coords="115,876,4" data-coords="115,876,4" data-entry="C00698" href="https://www.genome.jp/entry/C00698" id="EE6FE26B" shape="circle" target="_blank" title="C00698 (Cl-)"/>
+    <area class="original" coords="115,822,4" data-coords="115,822,4" data-entry="C00001" href="https://www.genome.jp/entry/C00001" id="EA6FE252" shape="circle" target="_blank" title="C00001 (H2O)"/>
+    <area class="original" coords="375,520,4" data-coords="375,520,4" data-entry="C00064" href="https://www.genome.jp/entry/C00064" id="E87005E8" shape="circle" target="_blank" title="C00064 (L-Glutamine)"/>
+    <area class="original" coords="375,576,4" data-coords="375,576,4" data-entry="C00025" href="https://www.genome.jp/entry/C00025" id="EE700601" shape="circle" target="_blank" title="C00025 (L-Glutamate)"/>
+    <area class="original" coords="375,633,4" data-coords="375,633,4" data-entry="C00026" href="https://www.genome.jp/entry/C00026" id="EB700AED" shape="circle" target="_blank" title="C00026 (2-Oxoglutarate)"/>
+    <area class="original" coords="211,610,4" data-coords="211,610,4" data-entry="C01358" href="https://www.genome.jp/entry/C01358" id="D46FF14D" shape="circle" target="_blank" title="C01358 (NH4OH)"/>
+    <area class="original" coords="450,661,4" data-coords="450,661,4" data-entry="C00288" href="https://www.genome.jp/entry/C00288" id="D07023CA" shape="circle" target="_blank" title="C00288 (HCO3-)"/>
+    <area class="original" coords="564,797,4" data-coords="564,797,4" data-entry="C00267" href="https://www.genome.jp/entry/C00267" id="EA7041F2" shape="circle" target="_blank" title="C00267 (alpha-D-Glucose)"/>
+    <area class="original" coords="211,598,4" data-coords="211,598,4" data-entry="C01330" href="https://www.genome.jp/entry/C01330" id="DC6FEC75" shape="circle" target="_blank" title="C01330 (Sodium cation)"/>
+    <area class="original" coords="210,691,4" data-coords="210,691,4" data-entry="C00014" href="https://www.genome.jp/entry/C00014" id="D06FF175" shape="circle" target="_blank" title="C00014 (Ammonia)"/>
+    <area class="original" coords="95,611,4" data-coords="95,611,4" data-entry="C01358" href="https://www.genome.jp/entry/C01358" id="19B4999B" shape="circle" target="_blank" title="C01358 (NH4OH)"/>
+    <area class="original" coords="96,690,4" data-coords="96,690,4" data-entry="C00014" href="https://www.genome.jp/entry/C00014" id="1DB499C3" shape="circle" target="_blank" title="C00014 (Ammonia)"/>
+    <area class="original" coords="59,758,4" data-coords="59,758,4" data-entry="C01358" href="https://www.genome.jp/entry/C01358" id="34B49E4B" shape="circle" target="_blank" title="C01358 (NH4OH)"/>
+    <area class="original" coords="96,709,4" data-coords="96,709,4" data-entry="C00080" href="https://www.genome.jp/entry/C00080" id="26B49E96" shape="circle" target="_blank" title="C00080 (H+)"/>
+    <area class="original" coords="670,429,4" data-coords="670,429,4" data-entry="C01330" href="https://www.genome.jp/entry/C01330" id="D8704BE8" shape="circle" target="_blank" title="C01330 (Sodium cation)"/>
+    <area class="original" coords="556,436,4" data-coords="556,436,4" data-entry="C00238" href="https://www.genome.jp/entry/C00238" id="F37032BB" shape="circle" target="_blank" title="C00238 (Potassium cation)"/>
+    <area class="original" coords="668,517,4" data-coords="668,517,4" data-entry="C00064" href="https://www.genome.jp/entry/C00064" id="FE7050CA" shape="circle" target="_blank" title="C00064 (L-Glutamine)"/>
+    <area class="original" coords="374,695,4" data-coords="374,695,4" data-entry="C00149" href="https://www.genome.jp/entry/C00149" id="E8700B0B" shape="circle" target="_blank" title="C00149 ((S)-Malate)"/>
+    <area class="original" coords="374,754,4" data-coords="374,754,4" data-entry="C00149" href="https://www.genome.jp/entry/C00149" id="E7700FF7" shape="circle" target="_blank" title="C00149 ((S)-Malate)"/>
+    <area class="original" coords="374,796,4" data-coords="374,796,4" data-entry="C00036" href="https://www.genome.jp/entry/C00036" id="E970100B" shape="circle" target="_blank" title="C00036 (Oxaloacetate)"/>
+    <area class="original" coords="457,797,4" data-coords="457,797,4" data-entry="C00074" href="https://www.genome.jp/entry/C00074" id="F97028D9" shape="circle" target="_blank" title="C00074 (Phosphoenolpyruvate)"/>
+    <area class="original" coords="366,360,4" data-coords="366,360,4" data-entry="C01353" href="https://www.genome.jp/entry/C01353" id="ED6FFBE3" shape="circle" target="_blank" title="C01353 (Carbonic acid)"/>
+    <area class="original" coords="58,361,4" data-coords="58,361,4" data-entry="C01353" href="https://www.genome.jp/entry/C01353" id="28B48A50" shape="circle" target="_blank" title="C01353 (Carbonic acid)"/>
+    <area class="original" coords="132,302,178,319" data-coords="132,302,178,319" href="https://www.genome.jp/entry/K12040" id="80A5B649" shape="rect" target="_blank" title="K12040 (SLC9A3)"/>
+    <area class="original" coords="590,303,636,320" data-coords="590,303,636,320" href="https://www.genome.jp/entry/K13575" id="B89C75EA" shape="rect" target="_blank" title="K13575 (SLC4A4)"/>
+    <area class="original" coords="132,597,178,614" data-coords="132,597,178,614" href="https://www.genome.jp/entry/K12040" id="00A6AFB3" shape="rect" target="_blank" title="K12040 (SLC9A3)"/>
+    <area class="original" coords="75,385,121,402" data-coords="75,385,121,402" href="https://www.genome.jp/entry/K18246" id="48B62450" shape="rect" target="_blank" title="K18246 (CA4)"/>
+    <area class="original" coords="371,393,417,410" data-coords="371,393,417,410" href="https://www.genome.jp/entry/K18245" id="2C8C9872" shape="rect" target="_blank" title="K18245 (CA2)"/>
+    <area class="original" coords="323,531,369,548" data-coords="323,531,369,548" href="https://www.genome.jp/entry/K01425" id="F0A9954F" shape="rect" target="_blank" title="K01425 (glsA)"/>
+    <area class="original" coords="323,588,369,605" data-coords="323,588,369,605" href="https://www.genome.jp/entry/K00261" id="A0A594C5" shape="rect" target="_blank" title="K00261 (GLUD1_2)"/>
+    <area class="original" coords="591,423,637,440" data-coords="591,423,637,440" href="https://www.genome.jp/entry/K01539+K01540+K01538" id="369EF8E9" shape="rect" target="_blank" title="K01539 (ATP1A), K01540 (ATP1B), K01538 (FXYD2)"/>
+    <area class="original" coords="132,477,178,494" data-coords="132,477,178,494" href="https://www.genome.jp/entry/K09864" id="FEAE31B4" shape="rect" target="_blank" title="K09864 (AQP1)"/>
+    <area class="original" coords="591,509,637,526" data-coords="591,509,637,526" href="https://www.genome.jp/entry/K13576" id="CD9D7AEF" shape="rect" target="_blank" title="K13576 (SLC38A3)"/>
+    <area class="original" coords="352,712,398,729" data-coords="352,712,398,729" href="https://www.genome.jp/entry/K13577" id="8EB791A8" shape="rect" target="_blank" title="K13577 (SLC25A10)"/>
+    <area class="original" coords="322,761,368,778" data-coords="322,761,368,778" href="https://www.genome.jp/entry/K00025" id="75AD8BC6" shape="rect" target="_blank" title="K00025 (MDH1)"/>
+    <area class="original" coords="393,775,439,792" data-coords="393,775,439,792" href="https://www.genome.jp/entry/K01596" id="5BA09C5F" shape="rect" target="_blank" title="K01596 (E4.1.1.32)"/>
+    <area class="original" coords="40,45,433,70" data-coords="40,45,433,70" data-entry="map04964" href="https://www.genome.jp/entry/map04964" id="37BCB0D3" shape="rect" target="_blank" title="map04964: Proximal tubule bicarbonate reclamation"/>
+    <area class="original" coords="194,104,309,129" data-coords="194,104,309,129" data-entry="map04530" href="https://www.genome.jp/pathway/map04530" id="B482CFF4" shape="rect" target="_blank" title="map04530: Tight junction"/>
+    <area class="original" coords="464,747,556,781" data-coords="464,747,556,781" data-entry="map00010" href="https://www.genome.jp/pathway/map00010" id="0FABF49A" shape="rect" target="_blank" title="map00010: Glycolysis / Gluconeogenesis"/>
+    <area class="original" coords="274,645,366,679" data-coords="274,645,366,679" data-entry="map00020" href="https://www.genome.jp/pathway/map00020" id="D2AAA006" shape="rect" target="_blank" title="map00020: Citrate cycle (TCA cycle)"/>
+   </map>
+   <map data-scale="1" id="module_mapdata" name="module_mapdata">
+   </map>
+  </div>
+  <!-- pathway image end -->
+  <!-- control panel start -->
+  <div id="controlPanel">
+   <div class="controller">
+    <div class="feature option">
+     <h5>
+      Option
+     </h5>
+     <div>
+      <div class="row scale">
+       <span class="title">
+        Scale:
+       </span>
+       <span class="content">
+        <input max="1" min="0.1" step="0.1" type="range" value="1"/>
+        <span class="label">
+         100%
+        </span>
+       </span>
+      </div>
+      <div class="row image-resolution hidden">
+       <span class="title">
+        Image resolution:
+       </span>
+       <span class="content">
+        <label>
+         <input type="checkbox" value="high"/>
+         High
+        </label>
+       </span>
+      </div>
+     </div>
+    </div>
+    <div class="feature search">
+     <h5>
+      Search
+     </h5>
+     <div>
+      <div class="row query">
+       <form>
+        <input autocomplete="off" name="query" style="width:130px;" type="text" value=""/>
+        <input type="submit" value="Go"/>
+        <span class="ui-icon button ui-icon-close clear-query hidden">
+        </span>
+       </form>
+      </div>
+      <div class="row result">
+      </div>
+     </div>
+    </div>
+    <div class="feature search-pathway">
+     <h5>
+      ID search
+      <span class="ui-icon ui-icon-plus">
+      </span>
+     </h5>
+     <div>
+      <form>
+       <div class="row" style="display:grid; grid-template-columns:135px 1fr; column-gap:5px;">
+        <div>
+         <textarea class="query" rows="2" style="width:130px; resize:none;"></textarea>
+        </div>
+        <div>
+         <input class="submit" type="submit" value="Go"/>
+         <span class="ui-icon button ui-icon-close clear-query hidden">
+         </span>
+        </div>
+       </div>
+      </form>
+      <div class="row personal hidden">
+       <ul class="mappers">
+       </ul>
+      </div>
+     </div>
+    </div>
+    <div class="feature color-pathway">
+     <h5>
+      Color
+      <span class="ui-icon ui-icon-plus">
+      </span>
+     </h5>
+     <div>
+      <div class="row personal hidden">
+       <ul class="mappers">
+       </ul>
+      </div>
+     </div>
+    </div>
+   </div>
+   <button class="close">
+    <img src="/Fig/left_triangle_12x12.png"/>
+   </button>
+   <button class="open">
+    <img src="/Fig/right_triangle_12x12.png"/>
+   </button>
+  </div>
+  <!-- control panel end -->
+  <form action="/kegg-bin/download" id="downloadForm" method="post">
+   <input name="name" type="hidden" value="map04964.png"/>
+   <input name="content" type="hidden"/>
+   <input name="dpi" type="hidden"/>
+   <input name="decode" type="hidden" value="base64"/>
+  </form>
+  <div id="waiting-circle">
+   <img src="/Fig/waiting-circle-small.gif"/>
+  </div>
+  <!-- pathway image url start -->
+  <form class="imageset" data-name="">
+   <input data-situation="1x" data-src="/kegg/pathway/map/map04964.png" name="image_normal" type="hidden" value="/kegg/pathway/map/map04964.png 1x"/>
+   <input data-situation="2x" data-src="/kegg/pathway/map/map04964@2x.png" name="image_normal" type="hidden" value="/kegg/pathway/map/map04964@2x.png 2x"/>
+  </form>
+  <!-- pathway image url end -->
+  <div id="download-menu" style="display:none;">
+   <!--<div><a id="downloadImageLink" href="#downloadImage">Image (png)</a></div>-->
+   <div>
+    <a class="downloadImageNx" data-scale="1" href="#downloadImage1x" target="_blank">
+     Image (png) file 1x
+    </a>
+   </div>
+   <div>
+    <a class="downloadImageNx" data-scale="2" href="#downloadImage2x" target="_blank">
+     Image (png) file 2x
+    </a>
+   </div>
+  </div>
+ </body>
+</html>

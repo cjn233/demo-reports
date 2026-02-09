@@ -1,0 +1,241 @@
+<html>
+<!---
+ENTRY       A_vs_B_ko00785.png
+DEFINITION  Pathway A_vs_B_ko00785.png
+--->
+<head>
+<title>
+KEGG PATHWAY: Pathway A_vs_B_ko00785.png
+</title>
+<style type="text/css">
+<!--
+div.poplay {
+  position: absolute;
+  padding: 2px;
+  background-color: #ffff99;
+  border-top: solid 1px #c0c0c0;
+  border-left: solid 1px #c0c0c0;
+  border-bottom: solid 1px #808080;
+  border-right: solid 1px #808080;
+  visibility: hidden;
+}
+
+span.popup
+{
+  font-weight: bold;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+form {
+  margin: 0px;
+}
+
+div.image {
+  position: absolute;
+  padding: 0px;
+  top: 0px;
+  padding: 0px;
+  border: solid 1px #000000;
+}
+
+img {
+  border: none;
+}
+
+
+-->
+</style>
+<link rel="stylesheet" href="/css/kegg.css" type="text/css" />
+<script language="JavaScript" src="/js/dhtml.js"></script>
+
+<script language="JavaScript">
+<!---
+var image_height;
+100 100 1013function(){
+	100 100 1013window).bind('load',function(){
+  image_height = 100 100 1013"div.image").height()-10;
+	100 100 1013"div.control").height(image_height-5);
+	100 100 1013"#resizable").height(image_height);
+	});
+});
+
+
+function resize_map(scale){
+  var form = document.forms["form2"];
+  form.scale.value = scale;
+  form.submit();
+}
+
+function select_menu(){
+  var form = document.forms["selmenu"];
+  if(form.org_name.value == 'set_cookie' || form.org_name.value == 'reset_cookie'){
+    window.open('/kegg/misc/kegg2_select.html','sel_org','toolbar=no,location=no,directories=no,width=500,height=320,resizable=yes');
+  }else{
+    form.action='/kegg-bin/show_pathway';
+    form.submit();
+  }
+}
+
+var timer = 0;
+var p_entry, p_title, p_bgcolor;
+function popupTimer(entry, title, bgcolor)
+{
+  p_entry = entry;
+  p_title = title;
+  p_bgcolor = bgcolor;
+
+  if(timer == 0){
+    var func = "showThumbnail()";
+    timer = setTimeout(func, 1200);
+  }
+}
+
+
+function hideMapTn(){
+  var layer = new Component("poplay");
+  layer.visible(false);
+
+  if(timer != 0){
+    clearTimeout(timer);
+    timer = 0;
+  }
+}
+
+function switchDescription(){
+  var form = document.forms[0];
+  var status = form.show_description.value;
+
+  if(status == "hide"){
+    document.getElementById("description").style.display = "";
+    document.getElementById("descLink").innerHTML = "Hide description";
+    form.show_description.value='show';
+
+    if(document.forms[1]){
+    	document.forms[1].show_description.value='show';
+    }
+  }
+  else
+  {
+    document.getElementById("description").style.display = 'none';
+    document.getElementById("descLink").innerHTML = "Show description";
+    form.show_description.value='hide';
+
+    if(document.forms[1]){
+      document.forms[1].show_description.value='hide';
+    }
+  }
+}
+
+function btn(bobj,img) { bobj.src = "/Fig/bget/button_" + img + ".gif"; }
+//--->
+</script>
+<body>
+<img src=A_vs_B_ko00785.png usemap="#mapdata" border="0" />
+<map name="mapdata">
+			<area shape=circ	coords=645,179,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16241"	title="C16241 ((R)-Lipoate)" onmouseover="popupTimer(C16241 ((R)-Lipoate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=645,274,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16238"	title="C16238 (Lipoyl-AMP)" onmouseover="popupTimer(C16238 (Lipoyl-AMP), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=275,274,4	href="http://www.kegg.jp/dbget-bin/www_bget?C22160"	title="C22160 ([Lipoyl-carrier protein E2]-N6-octanoyl-L-lysine)" onmouseover="popupTimer(C22160 ([Lipoyl-carrier protein E2]-N6-octanoyl-L-lysine), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=645,369,4	href="http://www.kegg.jp/dbget-bin/www_bget?C15972"	title="C15972 (Enzyme N6-(lipoyl)lysine)" onmouseover="popupTimer(C15972 (Enzyme N6-(lipoyl)lysine), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=398,274,4	href="http://www.kegg.jp/dbget-bin/www_bget?C22159"	title="C22159 ([Glycine cleavage system H]-N6-octanoyl-L-lysine)" onmouseover="popupTimer(C22159 ([Glycine cleavage system H]-N6-octanoyl-L-lysine), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=95,274,4	href="http://www.kegg.jp/dbget-bin/www_bget?C06423"	title="C06423 (Octanoic acid)" onmouseover="popupTimer(C06423 (Octanoic acid), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=275,369,4	href="http://www.kegg.jp/dbget-bin/www_bget?C15973"	title="C15973 (Enzyme N6-(dihydrolipoyl)lysine)" onmouseover="popupTimer(C15973 (Enzyme N6-(dihydrolipoyl)lysine), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=165,179,4	href="http://www.kegg.jp/dbget-bin/www_bget?C01944"	title="C01944 (Octanoyl-CoA)" onmouseover="popupTimer(C01944 (Octanoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=845,369,4	href="http://www.kegg.jp/dbget-bin/www_bget?C02051"	title="C02051 (Lipoylprotein)" onmouseover="popupTimer(C02051 (Lipoylprotein), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=275,179,4	href="http://www.kegg.jp/dbget-bin/www_bget?C05752"	title="C05752 (Octanoyl-[acp])" onmouseover="popupTimer(C05752 (Octanoyl-[acp]), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=398,369,4	href="http://www.kegg.jp/dbget-bin/www_bget?C02972"	title="C02972 (Dihydrolipoylprotein)" onmouseover="popupTimer(C02972 (Dihydrolipoylprotein), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=546,179,4	href="http://www.kegg.jp/dbget-bin/www_bget?C02147"	title="C02147 (Dihydrolipoate)" onmouseover="popupTimer(C02147 (Dihydrolipoate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=546,274,4	href="http://www.kegg.jp/dbget-bin/www_bget?C22161"	title="C22161 (Dihydrolipoyl-AMP)" onmouseover="popupTimer(C22161 (Dihydrolipoyl-AMP), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=658,716,4	href="http://www.kegg.jp/dbget-bin/www_bget?C15973"	title="C15973 (Enzyme N6-(dihydrolipoyl)lysine)" onmouseover="popupTimer(C15973 (Enzyme N6-(dihydrolipoyl)lysine), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=658,635,4	href="http://www.kegg.jp/dbget-bin/www_bget?C15972"	title="C15972 (Enzyme N6-(lipoyl)lysine)" onmouseover="popupTimer(C15972 (Enzyme N6-(lipoyl)lysine), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=738,596,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00068"	title="C00068 (Thiamin diphosphate)" onmouseover="popupTimer(C00068 (Thiamin diphosphate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=677,526,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00233"	title="C00233 (4-Methyl-2-oxopentanoate)" onmouseover="popupTimer(C00233 (4-Methyl-2-oxopentanoate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=698,681,4	href="http://www.kegg.jp/dbget-bin/www_bget?C15975+C15977+C15979"	title="C15975 ([Dihydrolipoyllysine-residue (2-methylpropanoyl)transferase] S-(3-methylbutanoyl)dihydrolipoyllysine), C15977 ([Dihydrolipoyllysine-residue (2-methylpropanoyl)transferase] S-(2-methylpropanoyl)dihydrolipoyllysine), C15979 ([Dihydrolipoyllysine-residue (2-methylpropanoyl)transferase] S-(2-methylbutanoyl)dihydrolipoyllysine)" onmouseover="popupTimer(C15975 ([Dihydrolipoyllysine-residue (2-methylpropanoyl)transferase] S-(3-methylbutanoyl)dihydrolipoyllysine), C15977 ([Dihydrolipoyllysine-residue (2-methylpropanoyl)transferase] S-(2-methylpropanoyl)dihydrolipoyllysine), C15979 ([Dihydrolipoyllysine-residue (2-methylpropanoyl)transferase] S-(2-methylbutanoyl)dihydrolipoyllysine), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=677,758,4	href="http://www.kegg.jp/dbget-bin/www_bget?C02939"	title="C02939 (3-Methylbutanoyl-CoA)" onmouseover="popupTimer(C02939 (3-Methylbutanoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=698,607,4	href="http://www.kegg.jp/dbget-bin/www_bget?C15974+C15976+C15978"	title="C15974 (3-Methyl-1-hydroxybutyl-ThPP), C15976 (2-Methyl-1-hydroxypropyl-ThPP), C15978 (2-Methyl-1-hydroxybutyl-ThPP)" onmouseover="popupTimer(C15974 (3-Methyl-1-hydroxybutyl-ThPP), C15976 (2-Methyl-1-hydroxypropyl-ThPP), C15978 (2-Methyl-1-hydroxybutyl-ThPP), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=510,530,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00322"	title="C00322 (2-Oxoadipate)" onmouseover="popupTimer(C00322 (2-Oxoadipate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=510,756,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00527"	title="C00527 (Glutaryl-CoA)" onmouseover="popupTimer(C00527 (Glutaryl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=470,716,4	href="http://www.kegg.jp/dbget-bin/www_bget?C15973"	title="C15973 (Enzyme N6-(dihydrolipoyl)lysine)" onmouseover="popupTimer(C15973 (Enzyme N6-(dihydrolipoyl)lysine), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=470,635,4	href="http://www.kegg.jp/dbget-bin/www_bget?C15972"	title="C15972 (Enzyme N6-(lipoyl)lysine)" onmouseover="popupTimer(C15972 (Enzyme N6-(lipoyl)lysine), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=550,596,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00068"	title="C00068 (Thiamin diphosphate)" onmouseover="popupTimer(C00068 (Thiamin diphosphate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=510,607,4	href="http://www.kegg.jp/dbget-bin/www_bget?C22667"	title="C22667 (4-Carboxy-1-hydroxybutyryl-ThPP)" onmouseover="popupTimer(C22667 (4-Carboxy-1-hydroxybutyryl-ThPP), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=510,681,4	href="http://www.kegg.jp/dbget-bin/www_bget?C06157"	title="C06157 ([Dihydrolipoyllysine-residue succinyltransferase] S-glutaryldihydrolipoyllysine)" onmouseover="popupTimer(C06157 ([Dihydrolipoyllysine-residue succinyltransferase] S-glutaryldihydrolipoyllysine), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=906,530,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00037"	title="C00037 (Glycine)" onmouseover="popupTimer(C00037 (Glycine), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=906,645,4	href="http://www.kegg.jp/dbget-bin/www_bget?C01242"	title="C01242 ([Protein]-S8-aminomethyldihydrolipoyllysine)" onmouseover="popupTimer(C01242 ([Protein]-S8-aminomethyldihydrolipoyllysine), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=906,756,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00143"	title="C00143 (5,10-Methylenetetrahydrofolate)" onmouseover="popupTimer(C00143 (5,10-Methylenetetrahydrofolate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=849,690,4	href="http://www.kegg.jp/dbget-bin/www_bget?C02972"	title="C02972 (Dihydrolipoylprotein)" onmouseover="popupTimer(C02972 (Dihydrolipoylprotein), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=849,614,4	href="http://www.kegg.jp/dbget-bin/www_bget?C02051"	title="C02051 (Lipoylprotein)" onmouseover="popupTimer(C02051 (Lipoylprotein), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=951,594,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00011"	title="C00011 (CO2)" onmouseover="popupTimer(C00011 (CO2), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=951,722,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00014"	title="C00014 (Ammonia)" onmouseover="popupTimer(C00014 (Ammonia), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=949,666,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00101"	title="C00101 (Tetrahydrofolate)" onmouseover="popupTimer(C00101 (Tetrahydrofolate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=282,635,4	href="http://www.kegg.jp/dbget-bin/www_bget?C15972"	title="C15972 (Enzyme N6-(lipoyl)lysine)" onmouseover="popupTimer(C15972 (Enzyme N6-(lipoyl)lysine), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=362,596,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00068"	title="C00068 (Thiamin diphosphate)" onmouseover="popupTimer(C00068 (Thiamin diphosphate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=322,681,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16254"	title="C16254 ([Dihydrolipoyllysine-residue succinyltransferase] S-succinyldihydrolipoyllysine)" onmouseover="popupTimer(C16254 ([Dihydrolipoyllysine-residue succinyltransferase] S-succinyldihydrolipoyllysine), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=282,716,4	href="http://www.kegg.jp/dbget-bin/www_bget?C15973"	title="C15973 (Enzyme N6-(dihydrolipoyl)lysine)" onmouseover="popupTimer(C15973 (Enzyme N6-(dihydrolipoyl)lysine), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=322,756,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00091"	title="C00091 (Succinyl-CoA)" onmouseover="popupTimer(C00091 (Succinyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=322,607,4	href="http://www.kegg.jp/dbget-bin/www_bget?C05381"	title="C05381 (3-Carboxy-1-hydroxypropyl-ThPP)" onmouseover="popupTimer(C05381 (3-Carboxy-1-hydroxypropyl-ThPP), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=322,530,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00026"	title="C00026 (2-Oxoglutarate)" onmouseover="popupTimer(C00026 (2-Oxoglutarate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=134,756,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00024"	title="C00024 (Acetyl-CoA)" onmouseover="popupTimer(C00024 (Acetyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=134,607,4	href="http://www.kegg.jp/dbget-bin/www_bget?C05125"	title="C05125 (2-(alpha-Hydroxyethyl)thiamine diphosphate)" onmouseover="popupTimer(C05125 (2-(alpha-Hydroxyethyl)thiamine diphosphate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=174,596,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00068"	title="C00068 (Thiamin diphosphate)" onmouseover="popupTimer(C00068 (Thiamin diphosphate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=94,635,4	href="http://www.kegg.jp/dbget-bin/www_bget?C15972"	title="C15972 (Enzyme N6-(lipoyl)lysine)" onmouseover="popupTimer(C15972 (Enzyme N6-(lipoyl)lysine), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=134,681,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16255"	title="C16255 ([Dihydrolipoyllysine-residue acetyltransferase] S-acetyldihydrolipoyllysine)" onmouseover="popupTimer(C16255 ([Dihydrolipoyllysine-residue acetyltransferase] S-acetyldihydrolipoyllysine), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=94,716,4	href="http://www.kegg.jp/dbget-bin/www_bget?C15973"	title="C15973 (Enzyme N6-(dihydrolipoyl)lysine)" onmouseover="popupTimer(C15973 (Enzyme N6-(dihydrolipoyl)lysine), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=134,530,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00022"	title="C00022 (Pyruvate)" onmouseover="popupTimer(C00022 (Pyruvate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=698,758,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00630"	title="C00630 (2-Methylpropanoyl-CoA)" onmouseover="popupTimer(C00630 (2-Methylpropanoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=719,758,4	href="http://www.kegg.jp/dbget-bin/www_bget?C15980"	title="C15980 ((S)-2-Methylbutanoyl-CoA)" onmouseover="popupTimer(C15980 ((S)-2-Methylbutanoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=698,526,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00141"	title="C00141 (3-Methyl-2-oxobutanoic acid)" onmouseover="popupTimer(C00141 (3-Methyl-2-oxobutanoic acid), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=719,526,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00671"	title="C00671 ((S)-3-Methyl-2-oxopentanoic acid)" onmouseover="popupTimer(C00671 ((S)-3-Methyl-2-oxopentanoic acid), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=rect	coords=350,217,396,234	href="http://www.kegg.jp/dbget-bin/www_bget?K03801+2.3.1.181+R12428"	title="K03801 (lipB), 2.3.1.181, R12428" />
+			<area shape=rect	coords=253,312,299,329	href="http://www.kegg.jp/dbget-bin/www_bget?K03644+2.8.1.8+R12423"	title="K03644 (lipA), 2.8.1.8, R12423" />
+			<area shape=rect	coords=227,217,273,234	href="http://www.kegg.jp/dbget-bin/www_bget?K03801+K23763+2.3.1.181+R12427"	title="K03801 (lipB), K23763 (lipL2), 2.3.1.181, R12427" />
+			<area shape=rect	coords=623,312,669,329	href="http://www.kegg.jp/dbget-bin/www_bget?K10105+R12450"	title="K10105 (LIPT1), R12450" />
+			<area shape=rect	coords=623,217,669,234	href="http://www.kegg.jp/dbget-bin/www_bget?K23756+R07770"	title="K23756 (ACSM1), R07770" />
+			<area shape=rect	coords=723,266,769,283	href="http://www.kegg.jp/dbget-bin/www_bget?K03800+6.3.1.20+R12449"	title="K03800 (lplA), 6.3.1.20, R12449" />
+			<area shape=rect	coords=116,266,162,283	href="http://www.kegg.jp/dbget-bin/www_bget?K03800+6.3.1.20+R12429"	title="K03800 (lplA), 6.3.1.20, R12429" />
+			<area shape=rect	coords=142,217,188,234	href="http://www.kegg.jp/dbget-bin/www_bget?K23750+R12431"	title="K23750 (LIP3), R12431" />
+			<area shape=rect	coords=207,171,253,188	href="http://www.kegg.jp/dbget-bin/www_bget?R12430"	title="2.3.1.-, R12430" />
+			<area shape=rect	coords=823,266,869,283	href="http://www.kegg.jp/dbget-bin/www_bget?K03800+6.3.1.20+R12433"	title="K03800 (lplA), 6.3.1.20, R12433" />
+			<area shape=rect	coords=762,361,808,378	href="http://www.kegg.jp/dbget-bin/www_bget?K18821+2.3.1.200+R12426"	title="K18821 (lipL), 2.3.1.200, R12426" />
+			<area shape=rect	coords=350,312,396,329	href="http://www.kegg.jp/dbget-bin/www_bget?K03644+2.8.1.8+R12424"	title="K03644 (lipA), 2.8.1.8, R12424" />
+			<area shape=rect	coords=316,371,362,388	href="http://www.kegg.jp/dbget-bin/www_bget?K10105+R12432"	title="K10105 (LIPT1), R12432" />
+			<area shape=rect	coords=316,266,362,283	href="http://www.kegg.jp/dbget-bin/www_bget?K16869+2.3.1.204+R12425"	title="K16869 (lipL), 2.3.1.204, R12425" />
+			<area shape=rect	coords=277,217,323,234	href="http://www.kegg.jp/dbget-bin/www_bget?K10105+R12427"	title="K10105 (LIPT1), R12427" />
+			<area shape=rect	coords=400,217,446,234	href="http://www.kegg.jp/dbget-bin/www_bget?K23735+K23734+2.3.1.181+R12428"	title="K23735 (LIPT2), K23734 (lipM), 2.3.1.181, R12428" />
+			<area shape=rect	coords=524,217,570,234	href="http://www.kegg.jp/dbget-bin/www_bget?K03800+R12434"	title="K03800 (lplA), R12434" />
+			<area shape=rect	coords=524,312,570,329	href="http://www.kegg.jp/dbget-bin/www_bget?K23763+R12435"	title="K23763 (lipL2), R12435" />
+			<area shape=rect	coords=316,350,362,367	href="http://www.kegg.jp/dbget-bin/www_bget?K16869+R12432"	title="K16869 (lipL), R12432" />
+			<area shape=rect	coords=400,312,446,329	href="http://www.kegg.jp/dbget-bin/www_bget?K09711+K24689+R12691"	title="K09711 (lipS1), K24689 (lipS2), R12691" />
+			<area shape=rect	coords=636,667,682,684	href="http://www.kegg.jp/dbget-bin/www_bget?K00382+1.8.1.4+R07618"	title="K00382 (DLD), 1.8.1.4, R07618" />
+			<area shape=rect	coords=676,628,722,645	href="http://www.kegg.jp/dbget-bin/www_bget?K00166+K00167+K11381+1.2.4.4+R07602+R07600+R07604"	title="K00166 (BCKDHA), K00167 (BCKDHB), K11381 (bkdA), 1.2.4.4, R07602, R07600, R07604" />
+			<area shape=rect	coords=676,560,722,577	href="http://www.kegg.jp/dbget-bin/www_bget?K00166+K00167+K11381+1.2.4.4+R07601+R07599+R07603"	title="K00166 (BCKDHA), K00167 (BCKDHB), K11381 (bkdA), 1.2.4.4, R07601, R07599, R07603" />
+			<area shape=rect	coords=676,704,722,721	href="http://www.kegg.jp/dbget-bin/www_bget?K09699+2.3.1.168+R04097+R02662+R03174"	title="K09699 (DBT), 2.3.1.168, R04097, R02662, R03174" />
+			<area shape=rect	coords=448,667,494,684	href="http://www.kegg.jp/dbget-bin/www_bget?K00382+1.8.1.4+R07618"	title="K00382 (DLD), 1.8.1.4, R07618" />
+			<area shape=rect	coords=488,628,534,645	href="http://www.kegg.jp/dbget-bin/www_bget?K15791+R13167"	title="K15791 (DHKTD1), R13167" />
+			<area shape=rect	coords=488,560,534,577	href="http://www.kegg.jp/dbget-bin/www_bget?K15791+R13166"	title="K15791 (DHKTD1), R13166" />
+			<area shape=rect	coords=488,704,534,721	href="http://www.kegg.jp/dbget-bin/www_bget?K00658+2.3.1.61+R02571"	title="K00658 (DLST), 2.3.1.61, R02571" />
+			<area shape=rect	coords=825,644,871,661	href="http://www.kegg.jp/dbget-bin/www_bget?K00382+1.8.1.4+R03815"	title="K00382 (DLD), 1.8.1.4, R03815" />
+			<area shape=rect	coords=885,684,931,701	href="http://www.kegg.jp/dbget-bin/www_bget?K00605+2.1.2.10+R04125"	title="K00605 (gcvT), 2.1.2.10, R04125" />
+			<area shape=rect	coords=886,563,932,580	href="http://www.kegg.jp/dbget-bin/www_bget?K00281+K00282+K00283+1.4.4.2+R03425"	title="K00281 (GLDC), K00282 (gcvPA), K00283 (gcvPB), 1.4.4.2, R03425" />
+			<area shape=rect	coords=855,593,901,610	href="http://www.kegg.jp/dbget-bin/www_bget?K02437"	title="K02437 (gcvH)" />
+			<area shape=rect	coords=259,667,305,684	href="http://www.kegg.jp/dbget-bin/www_bget?K00382+1.8.1.4+R07618"	title="K00382 (DLD), 1.8.1.4, R07618" />
+			<area shape=rect	coords=300,560,346,577	href="http://www.kegg.jp/dbget-bin/www_bget?K00164+K01616+1.2.4.2+R00621"	title="K00164 (OGDH), K01616 (kgd), 1.2.4.2, R00621" />
+			<area shape=rect	coords=300,628,346,645	href="http://www.kegg.jp/dbget-bin/www_bget?K00164+K01616+1.2.4.2+R03316"	title="K00164 (OGDH), K01616 (kgd), 1.2.4.2, R03316" />
+			<area shape=rect	coords=300,704,346,721	href="http://www.kegg.jp/dbget-bin/www_bget?K00658+K01616+2.3.1.61+R02570"	title="K00658 (DLST), K01616 (kgd), 2.3.1.61, R02570" />
+			<area shape=rect	coords=112,560,158,577	href="http://www.kegg.jp/dbget-bin/www_bget?K00163+K00161+K00162+1.2.4.1+R00014"	title="K00163 (aceE), K00161 (PDHA), K00162 (PDHB), 1.2.4.1, R00014" />
+			<area shape=rect	coords=112,628,158,645	href="http://www.kegg.jp/dbget-bin/www_bget?K00163+K00161+K00162+1.2.4.1+R03270"	title="K00163 (aceE), K00161 (PDHA), K00162 (PDHB), 1.2.4.1, R03270" />
+			<area shape=rect	coords=71,667,117,684	href="http://www.kegg.jp/dbget-bin/www_bget?K00382+1.8.1.4+R07618"	title="K00382 (DLD), 1.8.1.4, R07618" />
+			<area shape=rect	coords=112,704,158,721	href="http://www.kegg.jp/dbget-bin/www_bget?K00627+2.3.1.12+R02569"	title="K00627 (DLAT), 2.3.1.12, R02569" />
+			<area shape=rect	coords=40,45,240,70	href="http://www.kegg.jp/dbget-bin/www_bget?map00785"	title="map00785: Lipoic acid metabolism" />
+			<area shape=rect	coords=161,106,247,140	href="http://www.kegg.jp/kegg-bin/show_pathway?map00061"	title="map00061: Fatty acid biosynthesis" />
+			<area shape=rect	coords=281,800,365,825	href="http://www.kegg.jp/kegg-bin/show_pathway?map00020"	title="map00020: Citrate cycle (TCA cycle)" />
+			<area shape=rect	coords=75,800,195,825	href="http://www.kegg.jp/kegg-bin/show_pathway?map00620"	title="map00620: Pyruvate metabolism" />
+			<area shape=rect	coords=454,800,567,825	href="http://www.kegg.jp/kegg-bin/show_pathway?map00310"	title="map00310: Lysine degradation" />
+			<area shape=rect	coords=849,800,964,825	href="http://www.kegg.jp/kegg-bin/show_pathway?map00260"	title="map00260: Glycine, serine and threonine metabolism" />
+			<area shape=rect	coords=633,799,765,833	href="http://www.kegg.jp/kegg-bin/show_pathway?map00280"	title="map00280: Valine, leucine and isoleucine degradation" />
+</map>
+<div id="poplay" class="poplay" />
+
+</form>
+</body>
+</html>

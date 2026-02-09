@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html>
+ <!--
+ENTRY       map00430
+DEFINITION  Taurine and hypotaurine metabolism
+--->
+ <head>
+  <meta charset="utf-8"/>
+  <title>
+   KEGG PATHWAY: Taurine and hypotaurine metabolism - Reference pathway
+  </title>
+  <link href="/css/jquery-ui.css" rel="stylesheet"/>
+  <style type="text/css">
+   <!--
+
+html {
+	margin: 0px;
+	padding: 0px;
+	height: 100%;
+}
+
+body {
+	margin: 0px;
+	padding: 8px;
+	height: calc(100% - 16px);
+}
+
+h1.page-title {
+	font-size: 14px;
+	margin: 0px;
+	white-space: nowrap;
+}
+h1.page-title * {
+	vertical-align: middle;
+}
+
+input, select {
+	margin: 0px;
+}
+
+.hidden {
+	display: none !important;
+}
+
+/** navigation start **/
+.nav {
+	padding: 3px 0px 5px 0px;
+	position: relative;
+	min-width: 600px;
+	max-width: 800px;
+	background: #fff;
+}
+
+.nav form {
+	margin: 5px 0px 0px 0px;
+}
+
+.nav .help {
+	display: inline-block;
+	position: relative;
+	left: 20px;
+/*
+	position: absolute;
+	bottom: 5px;
+	right: 0px;
+*/
+}
+/** navigation end **/
+
+#biosynthesis {
+	margin-left: 75px;
+	margin-top: -12px;
+	margin-bottom: 10px;
+	max-width: 800px;
+}
+
+#description {
+	padding: 10px;
+	max-width: 800px;
+}
+
+#waiting-circle {
+	position: fixed;
+	top: 10px;
+	right: 10px;
+	display: none;
+}
+
+#controlPanel {
+	top: 0px;
+	left: 0px;
+	width: 220px;
+	background: #ffffff;
+	padding: 0px 0px 0px 0px;
+	white-space: nowrap;
+	overflow: auto;
+	position: fixed;
+	border: solid 1px #999999;
+	display: none;
+}
+
+#controlPanel.closed {
+	border: none;
+	padding: 0px 0px 0px 0px;
+	background: transparent;
+
+	/* jQuery-UI resizale.disabled() ã®å®è¡ã§
+	 *      è²ãèããªãã®ãæã¡æ¶ã */
+	opacity: 1.0;
+}
+
+/** div.row start **/
+
+div.row {
+	margin-top: 2px;
+	margin-bottom: 2px;
+	/* ä»¥ä¸ã®width,overflowã®å®ç¾©ã§.rowã®ãã­ãã¯åã§æ¨ªã¹ã¯ã­ã¼ã«ããã */
+	/*
+	width: 98%;
+	overflow: auto;
+	*/
+}
+
+div.row * {
+	vertical-align: middle;
+}
+
+div.row.disabled * {
+	color: gray;
+}
+
+/* æ¨ªã«ä¸¦ã¹ãå ´å(titleå¯å¤å¹) start */
+
+.row.scale input {
+	width: 110px;
+}
+
+.row.scale .label {
+	font-size: 0.9em;
+}
+
+/* æ¨ªã«ä¸¦ã¹ãå ´å(titleå¯å¤å¹) end */
+
+
+/* Searchæ¬ã®æ¤ç´¢çµæ start */
+
+div.row.result > div {
+	margin: 5px 1px 2px 1px;
+}
+
+/* Searchæ¬ã®æ¤ç´¢çµæ end */
+
+/**  div.row end **/
+
+#controlPanel h5 {
+  margin: 0px;
+	padding: 5px 0px 5px 10px;
+	vertical-align: middle;
+	border-top: solid 1px #cccccc;
+	border-bottom: solid 1px #cccccc;
+	background: #eeeeee;
+	/* ui-iconã®ä½ç½®èª¿æ´ã®ããã«å¿è¦ */
+	position: relative;
+}
+
+#controlPanel h5::before {
+	content: url(/Fig/get_htext/open.png);
+	margin: 0px 5px 0px 0px;
+}
+
+#controlPanel h5.closed::before {
+	content: url(/Fig/get_htext/close.png);
+	margin: 0px 5px 0px 0px;
+}
+
+#controlPanel h5:first-child {
+	border-top: none;
+}
+
+#controlPanel h5:hover {
+	cursor: pointer;
+}
+
+#controlPanel h5  + div {
+	padding: 5px 0px 5px 10px;
+}
+
+#controlPanel h5 .ui-icon {
+	display: inline-block;
+	position: absolute;
+	right: 5px;
+	top: 50%;
+	margin-top: -8px;
+	cursor: pointer;
+}
+
+button {
+	/* Safariã§ãã¿ã³ã®å¨ãã«å¥ãä½ç½ãåé¤ */
+	margin: 0px;
+	padding: 0px;
+	/* ãã¿ã³ãæ¼ããæã«è¡¨ç¤ºããããã¼ãã¼ãéè¡¨ç¤ºã«ãã */
+	outline: none;
+}
+
+button.close, button.open {
+	border: none;
+	padding: 0px;
+	position: absolute;
+	right: 5px;
+	top: 7px;
+}
+
+button.close {
+	/* ã³ã³ãã­ã¼ã«ããã«ã«åããã¦åæã¯éè¡¨ç¤º */
+	display: none;
+}
+
+button:hover {
+	cursor: pointer;
+}
+
+button img {
+	/* ç»åã®ä¸ã«å¥ãä½ç½ãç¡ãã */
+	display: block;
+}
+
+/** tree style start **/
+ul.tree, ul.tree ul {
+	padding: 0px;
+	margin: 0px;
+	list-style-type: none;
+}
+
+ul.tree ul {
+	padding-left: 12px;
+}
+
+ul.tree .class-A > span {
+	font-weight: bold;
+}
+
+ul.tree li {
+	margin: 3px 0px 3px 0px;
+}
+
+.module-tree .module.disabled {
+	display: none;
+}
+
+.module-tree .classification.disabled {
+	display: none;
+}
+
+/** tree style > User data start **/
+ul.mappers {
+	padding: 0px;
+	margin: 0px;
+	list-style-type: none;
+}
+
+ul.mappers li {
+	position: relative;
+	margin: 5px 0px 2px 0px;
+}
+
+ul.mappers li .ui-icon {
+	display: inline-block;
+	position: absolute;
+	top: 50%;
+	margin-top: -8px;
+}
+ul.mappers li .ui-icon:hover {
+	cursor: pointer;
+}
+ul.mappers li .ui-icon-trash {
+	right: 5px;
+}
+ul.mappers li .ui-icon-document {
+	right: 26px;
+}
+/** tree style > User data end **/
+
+/** tree style end **/
+
+.ui-icon.button {
+	display: inline-block;
+	cursor: pointer;
+}
+
+ul.simple {
+	margin: 0px;
+	padding: 0px;
+}
+ul.simple li {
+	list-style-type: none;
+}
+ul.simple li:not(:first-child) {
+	margin-top: 5px;
+}
+
+#download-menu {
+	padding: 10px !important;
+}
+#download-menu div:not(:first-child) {
+	margin-top: 5px;
+}
+
+//-->
+   body {font-size:12px; font-family:verdana,arial,helvetica,sans-serif; background-color:#ffffff}
+.text {font-size:12px; font-family:verdana,arial,helvetica,sans-serif}
+b {font-size:12px; font-weight:bold; font-family:verdana,arial,helvetica,sans-serif}
+th {font-size:12px; font-weight:bold; font-family:verdana,arial,helvetica,sans-serif}
+td {font-size:12px; font-family:verdana,arial,helvetica,sans-serif}
+input {font-size:12px; font-family:verdana,arial,helvetica,sans-serif}
+select {font-size:12px; font-family:verdana,arial,helvetica,sans-serif}
+a {text-decoration:none}
+a:link {color:#003399}
+a:visited {color:#003399}
+a:hover {color:#33cc99}
+font.title3 {color: #005050; font-size:14px; font-weight:bold; font-family:verdana,arial,helvetica,sans-serif}
+hr.frame0 {border: 1px solid #f5e05f; color: #f5e05f}
+  </style>
+  <script src="/js/jquery-3.1.0.min.js">
+  </script>
+  <script src="/js/jquery-ui.js">
+  </script>
+  <script src="/js/jquery.balloon.min.js">
+  </script>
+  <script src="/js/lz-string.min.js">
+  </script>
+  <script src="/kegg-bin/get_data.cgi?data=0021&amp;id=show_pathway.merged.js&amp;v2.11">
+  </script>
+  <script type="text/javascript">
+   <!--
+
+// common variable
+const env = {
+	       mapno: '00430',
+	         org: 'map',
+	       entry: 'map00430',
+	       scale: 1,
+	 colorModule: '',
+	personalConf: '',
+}
+
+// HELP button
+function btn(bobj,img) { bobj.src = "/Fig/bget/button_" + img + ".gif"; }
+
+//-->
+  </script>
+  <link href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB3klEQVR4AXSTA8wdQRSFv9q2bdu2bbth7QZF9ILatm3btvvbtnWS7D5/ye744szcbKdzzMnAhtVji/C7TUtE7VdvKfn8BmK+d3tckR1gY+XnOKLDMjS3T4g+ag3zdm3A8fD6k1GIFqNjSJg0kUk7AvXR9MwNev856mTIKQVx4Xx2jvfcgUCr2dQCBSAxMjdnVhRn561SSovsOCAPOqwD+hJTcvPtR3G1EAt5iyaT1CYvRupOBuruuYcwDk9/PIP3e3Pz719BKIhgVJcQDHLaaiCx5EGetPnowfK8u1uIfoUg9FEuvlHc5S2YNJ+ZbM5GeRTgwNpCLOl52pxXJLNHVdCHcNKgRo1YiAfyw8cLBRETh/rToE44TYfFmrm7jEDhG0jpXTWHU2VjRwyKlIlj5lRPdp/xszegMPQ1Cm1G3lzJ2HLCqxsSD7lJB0X34kthDKSf3TvQQ5Enbf72qzhKKW/OZDPOqKACXLYUci/imUelUP6iQd1wu4gSk3ObuojKteQXcqp4VDCh7fvxO8bC/csPOD54B7Z8e1cc3YArcqpgHPM+saUbewotpVZ4AkVeNOfPhcrktclbzCWE9TGTyYkD46o8QEb0BuZ79yEYE7uy3njrObSHTAAAAP//AwCnC723w5oqxAAAAABJRU5ErkJggg==" rel="icon" type="image/png"/>
+ </head>
+ <body>
+  <!-- header logo start -->
+  <h1 class="page-title">
+   <a href="https://www.genome.jp/kegg/pathway.html" target="_blank">
+    <img alt="KEGG" border="0" src="data: image/gif;base64,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"/>
+   </a>
+   Taurine and hypotaurine metabolism - Reference pathway
+  </h1>
+  <!-- header logo end -->
+  <!-- page navigation start -->
+  <div class="nav">
+   [
+   <a href="https://www.genome.jp/brite/query=00430&amp;htext=br08901.keg&amp;option=-a&amp;node_proc=br08901_org&amp;proc_enabled=map&amp;panel=collapse" id="navPathwayMenu" target="_blank">
+    Pathway menu
+   </a>
+   |
+   <a href="https://www.genome.jp/brite/htext=br08611&amp;zoomout=E&amp;brel=off&amp;hier=10&amp;pruning=join_brite&amp;func=org2pathway-s-lp2~_3+00430" id="navOrganismMenu" target="_blank">
+    Organism menu
+   </a>
+   |
+   <a href="https://www.genome.jp/entry/pathway+map00430" id="navPathwayEntry" target="_blank">
+    Pathway entry
+   </a>
+   |
+   <a href="#" id="downloadMenu" target="_blank">
+    Download
+   </a>
+   |
+   <a href="https://www.genome.jp/kegg/document/help_pathway.html" target="_blank">
+    Help
+   </a>
+   ]
+   <!-- organism list start -->
+   <!-- organism list end -->
+  </div>
+  <!-- page navigation end -->
+  <!-- pathway image start -->
+  <div class="image-block" style="position:static;">
+   <img border="0" data-srcset="/kegg/pathway/map/map00430.png 1x, /kegg/pathway/map/map00430@2x.png 2x" id="pathwayimage" src="ko00430.png" srcset="ko00430.png 1x" usemap="#mapdata" width="729"/>
+   <map data-scale="1" id="mapdata" name="mapdata">
+    <area class="original" coords="243,395,4" data-coords="243,395,4" data-entry="C00094" href="https://www.genome.jp/entry/C00094" id="E36FE2C0" shape="circle" target="_blank" title="C00094 (Sulfite)"/>
+    <area class="original" coords="211,364,4" data-coords="211,364,4" data-entry="C06735" href="https://www.genome.jp/entry/C06735" id="D86FE266" shape="circle" target="_blank" title="C06735 (Aminoacetaldehyde)"/>
+    <area class="original" coords="412,400,4" data-coords="412,400,4" data-entry="C00041" href="https://www.genome.jp/entry/C00041" id="D9701948" shape="circle" target="_blank" title="C00041 (L-Alanine)"/>
+    <area class="original" coords="412,335,4" data-coords="412,335,4" data-entry="C00022" href="https://www.genome.jp/entry/C00022" id="DE701457" shape="circle" target="_blank" title="C00022 (Pyruvate)"/>
+    <area class="original" coords="259,432,4" data-coords="259,432,4" data-entry="C00227" href="https://www.genome.jp/entry/C00227" id="FE6FE7BB" shape="circle" target="_blank" title="C00227 (Acetyl phosphate)"/>
+    <area class="original" coords="166,432,4" data-coords="166,432,4" data-entry="C00024" href="https://www.genome.jp/entry/C00024" id="EF6FCED4" shape="circle" target="_blank" title="C00024 (Acetyl-CoA)"/>
+    <area class="original" coords="243,193,4" data-coords="243,193,4" data-entry="C00606" href="https://www.genome.jp/entry/C00606" id="E16FD8C0" shape="circle" target="_blank" title="C00606 (3-Sulfino-L-alanine)"/>
+    <area class="original" coords="362,193,4" data-coords="362,193,4" data-entry="C00519" href="https://www.genome.jp/entry/C00519" id="DC6FF1F2" shape="circle" target="_blank" title="C00519 (Hypotaurine)"/>
+    <area class="original" coords="243,144,4" data-coords="243,144,4" data-entry="C01678" href="https://www.genome.jp/entry/C01678" id="E26FD8A7" shape="circle" target="_blank" title="C01678 (Cysteamine)"/>
+    <area class="original" coords="141,193,4" data-coords="141,193,4" data-entry="C00097" href="https://www.genome.jp/entry/C00097" id="D76FBFC0" shape="circle" target="_blank" title="C00097 (L-Cysteine)"/>
+    <area class="original" coords="243,302,4" data-coords="243,302,4" data-entry="C00506" href="https://www.genome.jp/entry/C00506" id="E06FE293" shape="circle" target="_blank" title="C00506 (L-Cysteate)"/>
+    <area class="original" coords="362,303,4" data-coords="362,303,4" data-entry="C00245" href="https://www.genome.jp/entry/C00245" id="DC6FFBC5" shape="circle" target="_blank" title="C00245 (Taurine)"/>
+    <area class="original" coords="362,432,4" data-coords="362,432,4" data-entry="C00593" href="https://www.genome.jp/entry/C00593" id="DB7000D4" shape="circle" target="_blank" title="C00593 (Sulfoacetaldehyde)"/>
+    <area class="original" coords="362,579,4" data-coords="362,579,4" data-entry="C05123" href="https://www.genome.jp/entry/C05123" id="E27005E8" shape="circle" target="_blank" title="C05123 (2-Hydroxyethanesulfonate)"/>
+    <area class="original" coords="499,302,4" data-coords="499,302,4" data-entry="C01959" href="https://www.genome.jp/entry/C01959" id="FE701510" shape="circle" target="_blank" title="C01959 (Taurocyamine)"/>
+    <area class="original" coords="655,302,4" data-coords="655,302,4" data-entry="C03149" href="https://www.genome.jp/entry/C03149" id="EA7046AC" shape="circle" target="_blank" title="C03149 (N-Phosphotaurocyamine)"/>
+    <area class="original" coords="497,230,4" data-coords="497,230,4" data-entry="C05844" href="https://www.genome.jp/entry/C05844" id="F270101F" shape="circle" target="_blank" title="C05844 (5-L-Glutamyl-taurine)"/>
+    <area class="original" coords="226,341,4" data-coords="226,341,4" data-entry="C05122" href="https://www.genome.jp/entry/C05122" id="EE6FE275" shape="circle" target="_blank" title="C05122 (Taurocholate)"/>
+    <area class="original" coords="259,535,4" data-coords="259,535,4" data-entry="C00033" href="https://www.genome.jp/entry/C00033" id="016FECC0" shape="circle" target="_blank" title="C00033 (Acetate)"/>
+    <area class="original" coords="471,400,4" data-coords="471,400,4" data-entry="C00025" href="https://www.genome.jp/entry/C00025" id="D47019DE" shape="circle" target="_blank" title="C00025 (L-Glutamate)"/>
+    <area class="original" coords="471,335,4" data-coords="471,335,4" data-entry="C00026" href="https://www.genome.jp/entry/C00026" id="D97014ED" shape="circle" target="_blank" title="C00026 (2-Oxoglutarate)"/>
+    <area class="original" coords="166,579,4" data-coords="166,579,4" data-entry="C00084" href="https://www.genome.jp/entry/C00084" id="F66FD3E8" shape="circle" target="_blank" title="C00084 (Acetaldehyde)"/>
+    <area class="original" coords="538,501,4" data-coords="538,501,4" data-entry="C14179" href="https://www.genome.jp/entry/C14179" id="F870377A" shape="circle" target="_blank" title="C14179 (Sulfoacetate)"/>
+    <area class="original" coords="448,501,4" data-coords="448,501,4" data-entry="C19685" href="https://www.genome.jp/entry/C19685" id="F8701E93" shape="circle" target="_blank" title="C19685 (Sulfoacetyl-CoA)"/>
+    <area class="original" coords="251,356,297,373" data-coords="251,356,297,373" href="https://www.genome.jp/entry/K03119+1.14.11.17+R05320" id="6CB8239C" shape="rect" target="_blank" title="K03119 (tauD), 1.14.11.17, R05320"/>
+    <area class="original" coords="276,500,322,517" data-coords="276,500,322,517" href="https://www.genome.jp/entry/R06981" id="4E900B17" shape="rect" target="_blank" title="1.1.2.-, R06981"/>
+    <area class="original" coords="390,359,436,376" data-coords="390,359,436,376" href="https://www.genome.jp/entry/K00259+K19244+1.4.1.1+R00396" id="449C9C60" shape="rect" target="_blank" title="K00259 (ald), K19244 (ala), 1.4.1.1, R00396"/>
+    <area class="original" coords="190,424,236,441" data-coords="190,424,236,441" href="https://www.genome.jp/entry/K13788+K00625+K15024+2.3.1.8+R00230" id="BE9530E4" shape="rect" target="_blank" title="K13788 (pta), K00625 (pta), K15024 (K15024), 2.3.1.8, R00230"/>
+    <area class="original" coords="303,424,349,441" data-coords="303,424,349,441" href="https://www.genome.jp/entry/K03852+2.3.3.15+R05651" id="3A9F0BF5" shape="rect" target="_blank" title="K03852 (xsc), 2.3.3.15, R05651"/>
+    <area class="original" coords="339,359,385,376" data-coords="339,359,385,376" href="https://www.genome.jp/entry/K03851+2.6.1.77+R05652" id="A4B588CE" shape="rect" target="_blank" title="K03851 (tpa), 2.6.1.77, R05652"/>
+    <area class="original" coords="548,359,594,376" data-coords="548,359,594,376" href="https://www.genome.jp/entry/K07255+K07256+R01685" id="31BF683F" shape="rect" target="_blank" title="K07255 (tauX), K07256 (tauY), R01685"/>
+    <area class="original" coords="578,294,624,311" data-coords="578,294,624,311" href="https://www.genome.jp/entry/2.7.3.4+R03785" id="B995EF81" shape="rect" target="_blank" title="2.7.3.4, R03785"/>
+    <area class="original" coords="277,304,323,321" data-coords="277,304,323,321" href="https://www.genome.jp/entry/K18966+4.1.1.29+R01682" id="2D90101C" shape="rect" target="_blank" title="K18966 (GADL1), 4.1.1.29, R01682"/>
+    <area class="original" coords="277,283,323,300" data-coords="277,283,323,300" href="https://www.genome.jp/entry/K01580+4.1.1.15+R01682" id="148D9604" shape="rect" target="_blank" title="K01580 (E4.1.1.15), 4.1.1.15, R01682"/>
+    <area class="original" coords="158,294,204,311" data-coords="158,294,204,311" href="https://www.genome.jp/entry/4.4.1.10+R00901" id="A582269F" shape="rect" target="_blank" title="4.4.1.10, R00901"/>
+    <area class="original" coords="340,235,386,252" data-coords="340,235,386,252" href="https://www.genome.jp/entry/K00485+R12959" id="DAB30E2C" shape="rect" target="_blank" title="K00485 (FMO), R12959"/>
+    <area class="original" coords="158,186,204,203" data-coords="158,186,204,203" href="https://www.genome.jp/entry/K00456+1.13.11.20+R00893" id="D680AB22" shape="rect" target="_blank" title="K00456 (CDO1), 1.13.11.20, R00893"/>
+    <area class="original" coords="277,136,323,153" data-coords="277,136,323,153" href="https://www.genome.jp/entry/K10712+1.13.11.19+R02467" id="5D921993" shape="rect" target="_blank" title="K10712 (ADO), 1.13.11.19, R02467"/>
+    <area class="original" coords="277,195,323,212" data-coords="277,195,323,212" href="https://www.genome.jp/entry/K18966+4.1.1.29+R02466" id="458E1B81" shape="rect" target="_blank" title="K18966 (GADL1), 4.1.1.29, R02466"/>
+    <area class="original" coords="277,174,323,191" data-coords="277,174,323,191" href="https://www.genome.jp/entry/K01580+4.1.1.15+R02466" id="2B961987" shape="rect" target="_blank" title="K01580 (E4.1.1.15), 4.1.1.15, R02466"/>
+    <area class="original" coords="423,222,469,239" data-coords="423,222,469,239" href="https://www.genome.jp/entry/K00681+K18592+2.3.2.2+R01687" id="0BA98FD7" shape="rect" target="_blank" title="K00681 (ggt), K18592 (GGT1_5), 2.3.2.2, R01687"/>
+    <area class="original" coords="251,331,297,348" data-coords="251,331,297,348" href="https://www.genome.jp/entry/K00659+2.3.1.65+R03720" id="EFB5279D" shape="rect" target="_blank" title="K00659 (BAAT), 2.3.1.65, R03720"/>
+    <area class="original" coords="236,477,282,494" data-coords="236,477,282,494" href="https://www.genome.jp/entry/K00925+2.7.2.1+R00315" id="F7B584BE" shape="rect" target="_blank" title="K00925 (ackA), 2.7.2.1, R00315"/>
+    <area class="original" coords="368,301,493,301,493,303,368,303" data-coords="368,301,493,301,493,303,368,303" href="https://www.genome.jp/entry/R01686" id="6B11F1E8" shape="poly" target="_blank" title="R01686"/>
+    <area class="original" coords="242,197,242,296,244,296,244,197" data-coords="242,197,242,296,244,296,244,197" href="https://www.genome.jp/entry/R02434" id="7B0E4F11" shape="poly" target="_blank" title="R02434"/>
+    <area class="original" coords="364,527,410,544" data-coords="364,527,410,544" href="https://www.genome.jp/entry/K15373+1.1.1.313+R02600" id="08906DA0" shape="rect" target="_blank" title="K15373 (isfD), 1.1.1.313, R02600"/>
+    <area class="original" coords="498,359,544,376" data-coords="498,359,544,376" href="https://www.genome.jp/entry/K15372+2.6.1.55+R01684" id="31A40374" shape="rect" target="_blank" title="K15372 (toa), 2.6.1.55, R01684"/>
+    <area class="original" coords="448,359,494,376" data-coords="448,359,494,376" href="https://www.genome.jp/entry/K00260+K15371+1.4.1.2+R00243" id="2CBCF73F" shape="rect" target="_blank" title="K00260 (gudB), K15371 (GDH2), 1.4.1.2, R00243"/>
+    <area class="original" coords="238,571,284,588" data-coords="238,571,284,588" href="https://www.genome.jp/entry/K25261+K25262+4.4.1.38+R12763" id="5CB50FC3" shape="rect" target="_blank" title="K25261 (islA), K25262 (islB), 4.4.1.38, R12763"/>
+    <area class="original" coords="314,527,360,544" data-coords="314,527,360,544" href="https://www.genome.jp/entry/K25985+1.1.1.433+R13009" id="03A9616B" shape="rect" target="_blank" title="K25985 (sarD), 1.1.1.433, R13009"/>
+    <area class="original" coords="516,455,562,472" data-coords="516,455,562,472" href="https://www.genome.jp/entry/K19699+1.2.1.73+R06980" id="D4B0CFE2" shape="rect" target="_blank" title="K19699 (safD), 1.2.1.73, R06980"/>
+    <area class="original" coords="385,493,431,510" data-coords="385,493,431,510" href="https://www.genome.jp/entry/K15515+1.2.1.81+R09557" id="2196F9ED" shape="rect" target="_blank" title="K15515 (sauS), 1.2.1.81, R09557"/>
+    <area class="original" coords="476,493,522,510" data-coords="476,493,522,510" href="https://www.genome.jp/entry/K26005+R13030" id="A3946D7C" shape="rect" target="_blank" title="K26005 (sauT), R13030"/>
+    <area class="original" coords="112,378,185,412" data-coords="112,378,185,412" data-entry="map00920" href="https://www.genome.jp/pathway/map00920" id="17AA9ED7" shape="rect" target="_blank" title="map00920: Sulfur metabolism"/>
+    <area class="original" coords="130,485,203,519" data-coords="130,485,203,519" data-entry="map00620" href="https://www.genome.jp/pathway/map00620" id="D8831E2C" shape="rect" target="_blank" title="map00620: Pyruvate metabolism"/>
+    <area class="original" coords="40,45,359,70" data-coords="40,45,359,70" data-entry="map00430" href="https://www.genome.jp/entry/map00430" id="37B7BAF1" shape="rect" target="_blank" title="map00430: Taurine and hypotaurine metabolism"/>
+    <area class="original" coords="32,149,107,183" data-coords="32,149,107,183" data-entry="map00480" href="https://www.genome.jp/pathway/map00480" id="32B33D93" shape="rect" target="_blank" title="map00480: Glutathione metabolism"/>
+    <area class="original" coords="84,95,188,129" data-coords="84,95,188,129" data-entry="map00460" href="https://www.genome.jp/pathway/map00460" id="9DBFFFB7" shape="rect" target="_blank" title="map00460: Cyanoamino acid metabolism"/>
+    <area class="original" coords="156,230,235,275" data-coords="156,230,235,275" data-entry="map00270" href="https://www.genome.jp/pathway/map00270" id="46972CAC" shape="rect" target="_blank" title="map00270: Cysteine and methionine metabolism"/>
+   </map>
+   <map data-scale="1" id="module_mapdata" name="module_mapdata">
+    <area class="module" coords="258,438,258,529,260,529,260,438" data-coords="258,438,258,529,260,529,260,438" data-module="M00579" data-refid="A30FD499" href="javascript:void(0)" shape="poly" target="_blank"/>
+    <area class="module" coords="259,529,255,520,262,520" data-coords="259,529,255,520,262,520" data-module="M00579" data-refid="DC678CAA" href="javascript:void(0)" shape="poly" target="_blank"/>
+    <area class="module" coords="259,438,262,446,255,446" data-coords="259,438,262,446,255,446" data-module="M00579" data-refid="54814FA0" href="javascript:void(0)" shape="poly" target="_blank"/>
+    <area class="module" coords="172,431,253,431,253,433,172,433" data-coords="172,431,253,431,253,433,172,433" data-module="M00579" data-refid="7D0D636C" href="javascript:void(0)" shape="poly" target="_blank"/>
+    <area class="module" coords="253,432,244,435,244,428" data-coords="253,432,244,435,244,428" data-module="M00579" data-refid="531049A0" href="javascript:void(0)" shape="poly" target="_blank"/>
+    <area class="module" coords="172,432,180,428,180,435" data-coords="172,432,180,428,180,435" data-module="M00579" data-refid="B65C545F" href="javascript:void(0)" shape="poly" target="_blank"/>
+    <area class="module" coords="190,424,236,441" data-coords="190,424,236,441" data-module="M00579" data-refid="BE9530E4" href="javascript:void(0)" shape="rect" target="_blank"/>
+    <area class="module" coords="259,432,4" data-coords="259,432,4" data-module="M00579" data-refid="FE6FE7BB" href="javascript:void(0)" shape="circle" target="_blank"/>
+    <area class="module" coords="166,432,4" data-coords="166,432,4" data-module="M00579" data-refid="EF6FCED4" href="javascript:void(0)" shape="circle" target="_blank"/>
+    <area class="module" coords="236,477,282,494" data-coords="236,477,282,494" data-module="M00579" data-refid="F7B584BE" href="javascript:void(0)" shape="rect" target="_blank"/>
+    <area class="module" coords="259,535,4" data-coords="259,535,4" data-module="M00579" data-refid="016FECC0" href="javascript:void(0)" shape="circle" target="_blank"/>
+   </map>
+  </div>
+  <!-- pathway image end -->
+  <!-- control panel start -->
+  <div id="controlPanel">
+   <div class="controller">
+    <div class="feature option">
+     <h5>
+      Option
+     </h5>
+     <div>
+      <div class="row scale">
+       <span class="title">
+        Scale:
+       </span>
+       <span class="content">
+        <input max="1" min="0.1" step="0.1" type="range" value="1"/>
+        <span class="label">
+         100%
+        </span>
+       </span>
+      </div>
+      <div class="row image-resolution hidden">
+       <span class="title">
+        Image resolution:
+       </span>
+       <span class="content">
+        <label>
+         <input type="checkbox" value="high"/>
+         High
+        </label>
+       </span>
+      </div>
+     </div>
+    </div>
+    <div class="feature search">
+     <h5>
+      Search
+     </h5>
+     <div>
+      <div class="row query">
+       <form>
+        <input autocomplete="off" name="query" style="width:130px;" type="text" value=""/>
+        <input type="submit" value="Go"/>
+        <span class="ui-icon button ui-icon-close clear-query hidden">
+        </span>
+       </form>
+      </div>
+      <div class="row result">
+      </div>
+     </div>
+    </div>
+    <div class="feature search-pathway">
+     <h5>
+      ID search
+      <span class="ui-icon ui-icon-plus">
+      </span>
+     </h5>
+     <div>
+      <form>
+       <div class="row" style="display:grid; grid-template-columns:135px 1fr; column-gap:5px;">
+        <div>
+         <textarea class="query" rows="2" style="width:130px; resize:none;"></textarea>
+        </div>
+        <div>
+         <input class="submit" type="submit" value="Go"/>
+         <span class="ui-icon button ui-icon-close clear-query hidden">
+         </span>
+        </div>
+       </div>
+      </form>
+      <div class="row personal hidden">
+       <ul class="mappers">
+       </ul>
+      </div>
+     </div>
+    </div>
+    <div class="feature color-pathway">
+     <h5>
+      Color
+      <span class="ui-icon ui-icon-plus">
+      </span>
+     </h5>
+     <div>
+      <div class="row personal hidden">
+       <ul class="mappers">
+       </ul>
+      </div>
+     </div>
+    </div>
+    <div class="feature">
+     <h5>
+      Module
+     </h5>
+     <div>
+      <div class="row">
+       <ul class="tree module-tree">
+        <li class="classification class-A ">
+         <span>
+          <input type="checkbox"/>
+          Pathway modules
+         </span>
+         <ul>
+          <li class="classification class-B ">
+           <span>
+            <input type="checkbox"/>
+            Energy metabolism
+           </span>
+           <ul>
+            <li class="classification class-C ">
+             <span>
+              <input type="checkbox"/>
+              Carbon fixation
+             </span>
+             <ul>
+              <li class="entry class-D module complete">
+               <span>
+                <input type="checkbox"/>
+                <a data-entry="M00579" href="/module/M00579" target="_blank">
+                 M00579
+                </a>
+                Phosphate acetyltransferase-acetate kinase pathway
+               </span>
+              </li>
+             </ul>
+            </li>
+           </ul>
+          </li>
+         </ul>
+        </li>
+       </ul>
+      </div>
+     </div>
+    </div>
+   </div>
+   <button class="close">
+    <img src="/Fig/left_triangle_12x12.png"/>
+   </button>
+   <button class="open">
+    <img src="/Fig/right_triangle_12x12.png"/>
+   </button>
+  </div>
+  <!-- control panel end -->
+  <form action="/kegg-bin/download" id="downloadForm" method="post">
+   <input name="name" type="hidden" value="map00430.png"/>
+   <input name="content" type="hidden"/>
+   <input name="dpi" type="hidden"/>
+   <input name="decode" type="hidden" value="base64"/>
+  </form>
+  <div id="waiting-circle">
+   <img src="/Fig/waiting-circle-small.gif"/>
+  </div>
+  <!-- pathway image url start -->
+  <form class="imageset" data-name="">
+   <input data-situation="1x" data-src="/kegg/pathway/map/map00430.png" name="image_normal" type="hidden" value="/kegg/pathway/map/map00430.png 1x"/>
+   <input data-situation="2x" data-src="/kegg/pathway/map/map00430@2x.png" name="image_normal" type="hidden" value="/kegg/pathway/map/map00430@2x.png 2x"/>
+  </form>
+  <!-- pathway image url end -->
+  <div id="download-menu" style="display:none;">
+   <!--<div><a id="downloadImageLink" href="#downloadImage">Image (png)</a></div>-->
+   <div>
+    <a class="downloadImageNx" data-scale="1" href="#downloadImage1x" target="_blank">
+     Image (png) file 1x
+    </a>
+   </div>
+   <div>
+    <a class="downloadImageNx" data-scale="2" href="#downloadImage2x" target="_blank">
+     Image (png) file 2x
+    </a>
+   </div>
+  </div>
+ </body>
+</html>

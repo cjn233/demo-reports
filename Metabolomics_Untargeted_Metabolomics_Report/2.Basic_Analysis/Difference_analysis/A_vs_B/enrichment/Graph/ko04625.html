@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html>
+ <!--
+ENTRY       map04625
+DEFINITION  C-type lectin receptor signaling pathway
+--->
+ <head>
+  <meta charset="utf-8"/>
+  <title>
+   KEGG PATHWAY: C-type lectin receptor signaling pathway - Reference pathway
+  </title>
+  <link href="/css/jquery-ui.css" rel="stylesheet"/>
+  <style type="text/css">
+   <!--
+
+html {
+	margin: 0px;
+	padding: 0px;
+	height: 100%;
+}
+
+body {
+	margin: 0px;
+	padding: 8px;
+	height: calc(100% - 16px);
+}
+
+h1.page-title {
+	font-size: 14px;
+	margin: 0px;
+	white-space: nowrap;
+}
+h1.page-title * {
+	vertical-align: middle;
+}
+
+input, select {
+	margin: 0px;
+}
+
+.hidden {
+	display: none !important;
+}
+
+/** navigation start **/
+.nav {
+	padding: 3px 0px 5px 0px;
+	position: relative;
+	min-width: 600px;
+	max-width: 800px;
+	background: #fff;
+}
+
+.nav form {
+	margin: 5px 0px 0px 0px;
+}
+
+.nav .help {
+	display: inline-block;
+	position: relative;
+	left: 20px;
+/*
+	position: absolute;
+	bottom: 5px;
+	right: 0px;
+*/
+}
+/** navigation end **/
+
+#biosynthesis {
+	margin-left: 75px;
+	margin-top: -12px;
+	margin-bottom: 10px;
+	max-width: 800px;
+}
+
+#description {
+	padding: 10px;
+	max-width: 800px;
+}
+
+#waiting-circle {
+	position: fixed;
+	top: 10px;
+	right: 10px;
+	display: none;
+}
+
+#controlPanel {
+	top: 0px;
+	left: 0px;
+	width: 220px;
+	background: #ffffff;
+	padding: 0px 0px 0px 0px;
+	white-space: nowrap;
+	overflow: auto;
+	position: fixed;
+	border: solid 1px #999999;
+	display: none;
+}
+
+#controlPanel.closed {
+	border: none;
+	padding: 0px 0px 0px 0px;
+	background: transparent;
+
+	/* jQuery-UI resizale.disabled() の実行で
+	 *      色が薄くなるのを打ち消す */
+	opacity: 1.0;
+}
+
+/** div.row start **/
+
+div.row {
+	margin-top: 2px;
+	margin-bottom: 2px;
+	/* 以下のwidth,overflowの定義で.rowのブロック内で横スクロールする。 */
+	/*
+	width: 98%;
+	overflow: auto;
+	*/
+}
+
+div.row * {
+	vertical-align: middle;
+}
+
+div.row.disabled * {
+	color: gray;
+}
+
+/* 横に並べる場合(title可変幅) start */
+
+.row.scale input {
+	width: 110px;
+}
+
+.row.scale .label {
+	font-size: 0.9em;
+}
+
+/* 横に並べる場合(title可変幅) end */
+
+
+/* Search欄の検索結果 start */
+
+div.row.result > div {
+	margin: 5px 1px 2px 1px;
+}
+
+/* Search欄の検索結果 end */
+
+/**  div.row end **/
+
+#controlPanel h5 {
+  margin: 0px;
+	padding: 5px 0px 5px 10px;
+	vertical-align: middle;
+	border-top: solid 1px #cccccc;
+	border-bottom: solid 1px #cccccc;
+	background: #eeeeee;
+	/* ui-iconの位置調整のために必要 */
+	position: relative;
+}
+
+#controlPanel h5::before {
+	content: url(/Fig/get_htext/open.png);
+	margin: 0px 5px 0px 0px;
+}
+
+#controlPanel h5.closed::before {
+	content: url(/Fig/get_htext/close.png);
+	margin: 0px 5px 0px 0px;
+}
+
+#controlPanel h5:first-child {
+	border-top: none;
+}
+
+#controlPanel h5:hover {
+	cursor: pointer;
+}
+
+#controlPanel h5  + div {
+	padding: 5px 0px 5px 10px;
+}
+
+#controlPanel h5 .ui-icon {
+	display: inline-block;
+	position: absolute;
+	right: 5px;
+	top: 50%;
+	margin-top: -8px;
+	cursor: pointer;
+}
+
+button {
+	/* Safariでボタンの周りに入る余白を削除 */
+	margin: 0px;
+	padding: 0px;
+	/* ボタンを押した時に表示されるボーダーを非表示にする */
+	outline: none;
+}
+
+button.close, button.open {
+	border: none;
+	padding: 0px;
+	position: absolute;
+	right: 5px;
+	top: 7px;
+}
+
+button.close {
+	/* コントロールパネルに合わせて初期は非表示 */
+	display: none;
+}
+
+button:hover {
+	cursor: pointer;
+}
+
+button img {
+	/* 画像の下に入る余白を無くす */
+	display: block;
+}
+
+/** tree style start **/
+ul.tree, ul.tree ul {
+	padding: 0px;
+	margin: 0px;
+	list-style-type: none;
+}
+
+ul.tree ul {
+	padding-left: 12px;
+}
+
+ul.tree .class-A > span {
+	font-weight: bold;
+}
+
+ul.tree li {
+	margin: 3px 0px 3px 0px;
+}
+
+.module-tree .module.disabled {
+	display: none;
+}
+
+.module-tree .classification.disabled {
+	display: none;
+}
+
+/** tree style > User data start **/
+ul.mappers {
+	padding: 0px;
+	margin: 0px;
+	list-style-type: none;
+}
+
+ul.mappers li {
+	position: relative;
+	margin: 5px 0px 2px 0px;
+}
+
+ul.mappers li .ui-icon {
+	display: inline-block;
+	position: absolute;
+	top: 50%;
+	margin-top: -8px;
+}
+ul.mappers li .ui-icon:hover {
+	cursor: pointer;
+}
+ul.mappers li .ui-icon-trash {
+	right: 5px;
+}
+ul.mappers li .ui-icon-document {
+	right: 26px;
+}
+/** tree style > User data end **/
+
+/** tree style end **/
+
+.ui-icon.button {
+	display: inline-block;
+	cursor: pointer;
+}
+
+ul.simple {
+	margin: 0px;
+	padding: 0px;
+}
+ul.simple li {
+	list-style-type: none;
+}
+ul.simple li:not(:first-child) {
+	margin-top: 5px;
+}
+
+#download-menu {
+	padding: 10px !important;
+}
+#download-menu div:not(:first-child) {
+	margin-top: 5px;
+}
+
+//-->
+   body {font-size:12px; font-family:verdana,arial,helvetica,sans-serif; background-color:#ffffff}
+.text {font-size:12px; font-family:verdana,arial,helvetica,sans-serif}
+b {font-size:12px; font-weight:bold; font-family:verdana,arial,helvetica,sans-serif}
+th {font-size:12px; font-weight:bold; font-family:verdana,arial,helvetica,sans-serif}
+td {font-size:12px; font-family:verdana,arial,helvetica,sans-serif}
+input {font-size:12px; font-family:verdana,arial,helvetica,sans-serif}
+select {font-size:12px; font-family:verdana,arial,helvetica,sans-serif}
+a {text-decoration:none}
+a:link {color:#003399}
+a:visited {color:#003399}
+a:hover {color:#33cc99}
+font.title3 {color: #005050; font-size:14px; font-weight:bold; font-family:verdana,arial,helvetica,sans-serif}
+hr.frame0 {border: 1px solid #f5e05f; color: #f5e05f}
+  </style>
+  <script src="/js/jquery-3.1.0.min.js">
+  </script>
+  <script src="/js/jquery-ui.js">
+  </script>
+  <script src="/js/jquery.balloon.min.js">
+  </script>
+  <script src="/js/lz-string.min.js">
+  </script>
+  <script src="/kegg-bin/get_data.cgi?data=0021&amp;id=show_pathway.merged.js&amp;v2.11">
+  </script>
+  <script type="text/javascript">
+   <!--
+
+// common variable
+const env = {
+	       mapno: '04625',
+	         org: 'map',
+	       entry: 'map04625',
+	       scale: 1,
+	 colorModule: '',
+	personalConf: '',
+}
+
+// HELP button
+function btn(bobj,img) { bobj.src = "/Fig/bget/button_" + img + ".gif"; }
+
+//-->
+  </script>
+  <link href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB3klEQVR4AXSTA8wdQRSFv9q2bdu2bbth7QZF9ILatm3btvvbtnWS7D5/ye744szcbKdzzMnAhtVji/C7TUtE7VdvKfn8BmK+d3tckR1gY+XnOKLDMjS3T4g+ag3zdm3A8fD6k1GIFqNjSJg0kUk7AvXR9MwNev856mTIKQVx4Xx2jvfcgUCr2dQCBSAxMjdnVhRn561SSovsOCAPOqwD+hJTcvPtR3G1EAt5iyaT1CYvRupOBuruuYcwDk9/PIP3e3Pz719BKIhgVJcQDHLaaiCx5EGetPnowfK8u1uIfoUg9FEuvlHc5S2YNJ+ZbM5GeRTgwNpCLOl52pxXJLNHVdCHcNKgRo1YiAfyw8cLBRETh/rToE44TYfFmrm7jEDhG0jpXTWHU2VjRwyKlIlj5lRPdp/xszegMPQ1Cm1G3lzJ2HLCqxsSD7lJB0X34kthDKSf3TvQQ5Enbf72qzhKKW/OZDPOqKACXLYUci/imUelUP6iQd1wu4gSk3ObuojKteQXcqp4VDCh7fvxO8bC/csPOD54B7Z8e1cc3YArcqpgHPM+saUbewotpVZ4AkVeNOfPhcrktclbzCWE9TGTyYkD46o8QEb0BuZ79yEYE7uy3njrObSHTAAAAP//AwCnC723w5oqxAAAAABJRU5ErkJggg==" rel="icon" type="image/png"/>
+ </head>
+ <body>
+  <!-- header logo start -->
+  <h1 class="page-title">
+   <a href="https://www.genome.jp/kegg/pathway.html" target="_blank">
+    <img alt="KEGG" border="0" src="data: image/gif;base64,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"/>
+   </a>
+   C-type lectin receptor signaling pathway - Reference pathway
+  </h1>
+  <!-- header logo end -->
+  <!-- page navigation start -->
+  <div class="nav">
+   [
+   <a href="https://www.genome.jp/brite/query=04625&amp;htext=br08901.keg&amp;option=-a&amp;node_proc=br08901_org&amp;proc_enabled=map&amp;panel=collapse" id="navPathwayMenu" target="_blank">
+    Pathway menu
+   </a>
+   |
+   <a href="https://www.genome.jp/brite/htext=br08611&amp;zoomout=E&amp;brel=off&amp;hier=10&amp;pruning=join_brite&amp;func=org2pathway-s-lp2~_3+04625" id="navOrganismMenu" target="_blank">
+    Organism menu
+   </a>
+   |
+   <a href="https://www.genome.jp/entry/pathway+map04625" id="navPathwayEntry" target="_blank">
+    Pathway entry
+   </a>
+   |
+   <a href="#description" id="descLink" target="_blank">
+    Show description
+   </a>
+   |
+   <a href="#" id="downloadMenu" target="_blank">
+    Download
+   </a>
+   |
+   <a href="https://www.genome.jp/kegg/document/help_pathway.html" target="_blank">
+    Help
+   </a>
+   ]
+   <div class="hidden" id="description">
+    C-type lectin receptors (CLRs) are a large superfamily of proteins characterized by the presence of one or more C-type lectin-like domains (CTLDs). CLRs function as pattern-recognition receptors (PRRs) for pathogen-derived ligands in dendric cells, macrophages, neutrophils, etc., such as Dectin-1 and Dectin-2 for recognition of fungi-derived B-glucan and high mannose-type carbohydrates. Upon ligand binding, CLRs stimulate intracellular signaling cascades that induce the production of inflammatory cytokines and chemokines, consequently triggering innate and adaptive immunity to pathogens.
+   </div>
+   <!-- organism list start -->
+   <!-- organism list end -->
+  </div>
+  <!-- page navigation end -->
+  <!-- pathway image start -->
+  <div class="image-block" style="position:static;">
+   <img border="0" data-srcset="/kegg/pathway/map/map04625.png 1x, /kegg/pathway/map/map04625@2x.png 2x" id="pathwayimage" src="ko04625.png" srcset="ko04625.png 1x" usemap="#mapdata" width="1534"/>
+   <map data-scale="1" id="mapdata" name="mapdata">
+    <area class="original" coords="104,265,4" data-coords="104,265,4" data-entry="C00965" href="https://www.genome.jp/entry/C00965" id="E86FC44D" shape="circle" target="_blank" title="C00965 (1,3-beta-D-Glucan)"/>
+    <area class="original" coords="104,447,4" data-coords="104,447,4" data-entry="C00159" href="https://www.genome.jp/entry/C00159" id="EA6FCE43" shape="circle" target="_blank" title="C00159 (D-Mannose)"/>
+    <area class="original" coords="104,559,4" data-coords="104,559,4" data-entry="C01019" href="https://www.genome.jp/entry/C01019" id="EC6FD348" shape="circle" target="_blank" title="C01019 (L-Fucose)"/>
+    <area class="original" coords="104,362,4" data-coords="104,362,4" data-entry="C00159" href="https://www.genome.jp/entry/C00159" id="E56FC94D" shape="circle" target="_blank" title="C00159 (D-Mannose)"/>
+    <area class="original" coords="373,219,4" data-coords="373,219,4" data-entry="C01245" href="https://www.genome.jp/entry/C01245" id="E76FF6E3" shape="circle" target="_blank" title="C01245 (D-myo-Inositol 1,4,5-trisphosphate)"/>
+    <area class="original" coords="559,205,4" data-coords="559,205,4" data-entry="C00076" href="https://www.genome.jp/entry/C00076" id="017028B1" shape="circle" target="_blank" title="C00076 (Calcium cation)"/>
+    <area class="original" coords="560,264,4" data-coords="560,264,4" data-entry="C00027" href="https://www.genome.jp/entry/C00027+C16844" id="D37028E3" shape="circle" target="_blank" title="C00027 (Hydrogen peroxide), C16844 (Hydroxyl radical)"/>
+    <area class="original" coords="104,767,4" data-coords="104,767,4" data-entry="C21790" href="https://www.genome.jp/entry/C21790" id="EA6FDD4D" shape="circle" target="_blank" title="C21790 (Trehalose dimycolate)"/>
+    <area class="original" coords="104,828,4" data-coords="104,828,4" data-entry="C21791" href="https://www.genome.jp/entry/C21791" id="EB6FE239" shape="circle" target="_blank" title="C21791 (Rhodocytin)"/>
+    <area class="original" coords="462,829,4" data-coords="462,829,4" data-entry="C01245" href="https://www.genome.jp/entry/C01245" id="E2702DCF" shape="circle" target="_blank" title="C01245 (D-myo-Inositol 1,4,5-trisphosphate)"/>
+    <area class="original" coords="652,814,4" data-coords="652,814,4" data-entry="C00076" href="https://www.genome.jp/entry/C00076" id="DD705FB1" shape="circle" target="_blank" title="C00076 (Calcium cation)"/>
+    <area class="original" coords="104,716,4" data-coords="104,716,4" data-entry="C21790" href="https://www.genome.jp/entry/C21790" id="E96FDD34" shape="circle" target="_blank" title="C21790 (Trehalose dimycolate)"/>
+    <area class="original" coords="374,328,4" data-coords="374,328,4" data-entry="C00165" href="https://www.genome.jp/entry/C00165" id="EB6FFBE8" shape="circle" target="_blank" title="C00165 (Diacylglycerol)"/>
+    <area class="original" coords="103,661,4" data-coords="103,661,4" data-entry="C21790" href="https://www.genome.jp/entry/C21790" id="DF6FD84D" shape="circle" target="_blank" title="C21790 (Trehalose dimycolate)"/>
+    <area class="original" coords="103,676,4" data-coords="103,676,4" data-entry="C00159" href="https://www.genome.jp/entry/C00159" id="E46FD852" shape="circle" target="_blank" title="C00159 (D-Mannose)"/>
+    <area class="original" coords="1248,358,4" data-coords="1248,358,4" data-entry="C00584" href="https://www.genome.jp/entry/C00584" id="BAAF60BC" shape="circle" target="_blank" title="C00584 (Prostaglandin E2)"/>
+    <area class="original" coords="104,380,4" data-coords="104,380,4" data-entry="G13115" href="https://www.genome.jp/entry/G13115" id="E36FC957" shape="circle" target="_blank" title="G13115 (Mannose-capped lipoarabinomannan)"/>
+    <area class="original" coords="104,465,4" data-coords="104,465,4" data-entry="G13115" href="https://www.genome.jp/entry/G13115" id="E86FCE4D" shape="circle" target="_blank" title="G13115 (Mannose-capped lipoarabinomannan)"/>
+    <area class="original" coords="156,256,202,273" data-coords="156,256,202,273" href="https://www.genome.jp/entry/K10074" id="DC881CA6" shape="rect" target="_blank" title="K10074 (CLEC7A)"/>
+    <area class="original" coords="156,364,202,381" data-coords="156,364,202,381" href="https://www.genome.jp/entry/K17514" id="AB899823" shape="rect" target="_blank" title="K17514 (CLEC6A)"/>
+    <area class="original" coords="156,661,202,678" data-coords="156,661,202,678" href="https://www.genome.jp/entry/K10059" id="638A1623" shape="rect" target="_blank" title="K10059 (CLEC4E)"/>
+    <area class="original" coords="156,708,202,725" data-coords="156,708,202,725" href="https://www.genome.jp/entry/K10058" id="13858D3A" shape="rect" target="_blank" title="K10058 (CLEC4D)"/>
+    <area class="original" coords="156,381,202,398" data-coords="156,381,202,398" href="https://www.genome.jp/entry/K07983" id="608AA01D" shape="rect" target="_blank" title="K07983 (FCER1G)"/>
+    <area class="original" coords="156,450,202,467" data-coords="156,450,202,467" href="https://www.genome.jp/entry/K06563" id="48881AA6" shape="rect" target="_blank" title="K06563 (CLEC4L_M)"/>
+    <area class="original" coords="156,488,202,505" data-coords="156,488,202,505" href="https://www.genome.jp/entry/K14957" id="11821A22" shape="rect" target="_blank" title="K14957 (LSP1)"/>
+    <area class="original" coords="515,471,561,488" data-coords="515,471,561,488" href="https://www.genome.jp/entry/K14958" id="F3B1D1D7" shape="rect" target="_blank" title="K14958 (KSR1)"/>
+    <area class="original" coords="515,505,561,522" data-coords="515,505,561,522" href="https://www.genome.jp/entry/K08862" id="58AC4571" shape="rect" target="_blank" title="K08862 (PLK3)"/>
+    <area class="original" coords="361,516,407,533" data-coords="361,516,407,533" href="https://www.genome.jp/entry/K05704" id="788A8F19" shape="rect" target="_blank" title="K05704 (SRC)"/>
+    <area class="original" coords="1123,505,1169,522" data-coords="1123,505,1169,522" href="https://www.genome.jp/entry/K02580" id="024C0E9C" shape="rect" target="_blank" title="K02580 (NFKB1)"/>
+    <area class="original" coords="515,488,561,505" data-coords="515,488,561,505" href="https://www.genome.jp/entry/K04366" id="A3A9CF59" shape="rect" target="_blank" title="K04366 (RAF1)"/>
+    <area class="original" coords="361,450,407,467" data-coords="361,450,407,467" href="https://www.genome.jp/entry/K04409" id="E18D1808" shape="rect" target="_blank" title="K04409 (PAK1)"/>
+    <area class="original" coords="361,488,407,505" data-coords="361,488,407,505" href="https://www.genome.jp/entry/K02833+K07827+K07828+K07831+K07829+K07830" id="AA871784" shape="rect" target="_blank" title="K02833 (HRAS), K07827 (KRAS), K07828 (NRAS), K07831 (MRAS), K07829 (RRAS), K07830 (RRAS2)"/>
+    <area class="original" coords="1123,488,1169,505" data-coords="1123,488,1169,505" href="https://www.genome.jp/entry/K04735" id="01D0FB13" shape="rect" target="_blank" title="K04735 (RELA)"/>
+    <area class="original" coords="156,678,202,695" data-coords="156,678,202,695" href="https://www.genome.jp/entry/K07983" id="128C13A5" shape="rect" target="_blank" title="K07983 (FCER1G)"/>
+    <area class="original" coords="156,725,202,742" data-coords="156,725,202,742" href="https://www.genome.jp/entry/K07983" id="C8878B2F" shape="rect" target="_blank" title="K07983 (FCER1G)"/>
+    <area class="original" coords="253,256,299,273" data-coords="253,256,299,273" href="https://www.genome.jp/entry/K05855" id="65B7B0A1" shape="rect" target="_blank" title="K05855 (SYK)"/>
+    <area class="original" coords="1292,652,1338,669" data-coords="1292,652,1338,669" href="https://www.genome.jp/entry/K05426" id="104294B4" shape="rect" target="_blank" title="K05426 (IL23A)"/>
+    <area class="original" coords="253,240,299,257" data-coords="253,240,299,257" href="https://www.genome.jp/entry/K07293" id="CFB5B41F" shape="rect" target="_blank" title="K07293 (PTPN11)"/>
+    <area class="original" coords="783,312,829,329" data-coords="783,312,829,329" href="https://www.genome.jp/entry/K07210" id="209C6E00" shape="rect" target="_blank" title="K07210 (IKBKG)"/>
+    <area class="original" coords="783,329,829,346" data-coords="783,329,829,346" href="https://www.genome.jp/entry/K04467+K07209" id="CF9E6B7D" shape="rect" target="_blank" title="K04467 (IKBKA), K07209 (IKBKB)"/>
+    <area class="original" coords="957,330,1003,347" data-coords="957,330,1003,347" href="https://www.genome.jp/entry/K02580" id="9817E0C1" shape="rect" target="_blank" title="K02580 (NFKB1)"/>
+    <area class="original" coords="957,313,1003,330" data-coords="957,313,1003,330" href="https://www.genome.jp/entry/K04735" id="9815E138" shape="rect" target="_blank" title="K04735 (RELA)"/>
+    <area class="original" coords="1243,141,1289,158" data-coords="1243,141,1289,158" href="https://www.genome.jp/entry/K05406+K05425" id="03DCE8A8" shape="rect" target="_blank" title="K05406 (IL12A), K05425 (IL12B)"/>
+    <area class="original" coords="608,256,654,273" data-coords="608,256,654,273" href="https://www.genome.jp/entry/K12800" id="EAAD4F76" shape="rect" target="_blank" title="K12800 (NLRP3)"/>
+    <area class="original" coords="783,256,829,273" data-coords="783,256,829,273" href="https://www.genome.jp/entry/K01370" id="83A0ECF4" shape="rect" target="_blank" title="K01370 (CASP1)"/>
+    <area class="original" coords="156,126,202,143" data-coords="156,126,202,143" href="https://www.genome.jp/entry/K14957" id="DB849E2F" shape="rect" target="_blank" title="K14957 (LSP1)"/>
+    <area class="original" coords="654,256,700,273" data-coords="654,256,700,273" href="https://www.genome.jp/entry/K12799" id="FB9447A1" shape="rect" target="_blank" title="K12799 (PYCARD)"/>
+    <area class="original" coords="956,227,1002,244" data-coords="956,227,1002,244" href="https://www.genome.jp/entry/K04519" id="969A5CBB" shape="rect" target="_blank" title="K04519 (IL1B)"/>
+    <area class="original" coords="1243,290,1289,307" data-coords="1243,290,1289,307" href="https://www.genome.jp/entry/K04519" id="0657582B" shape="rect" target="_blank" title="K04519 (IL1B)"/>
+    <area class="original" coords="783,284,829,301" data-coords="783,284,829,301" href="https://www.genome.jp/entry/K04398" id="5299EC6B" shape="rect" target="_blank" title="K04398 (CASP8)"/>
+    <area class="original" coords="829,284,875,301" data-coords="829,284,875,301" href="https://www.genome.jp/entry/K12799" id="40B53AD4" shape="rect" target="_blank" title="K12799 (PYCARD)"/>
+    <area class="original" coords="1243,486,1289,503" data-coords="1243,486,1289,503" href="https://www.genome.jp/entry/K05405" id="0950DA19" shape="rect" target="_blank" title="K05405 (IL6)"/>
+    <area class="original" coords="1292,506,1338,523" data-coords="1292,506,1338,523" href="https://www.genome.jp/entry/K05406+K05425" id="0EBF1FA8" shape="rect" target="_blank" title="K05406 (IL12A), K05425 (IL12B)"/>
+    <area class="original" coords="253,489,299,506" data-coords="253,489,299,506" href="https://www.genome.jp/entry/K07532" id="B3B1AF18" shape="rect" target="_blank" title="K07532 (ARHGEF12)"/>
+    <area class="original" coords="253,450,299,467" data-coords="253,450,299,467" href="https://www.genome.jp/entry/K04513" id="D1B7AE9C" shape="rect" target="_blank" title="K04513 (RHOA)"/>
+    <area class="original" coords="156,552,202,569" data-coords="156,552,202,569" href="https://www.genome.jp/entry/K06563" id="7B8899A6" shape="rect" target="_blank" title="K06563 (CLEC4L_M)"/>
+    <area class="original" coords="156,588,202,605" data-coords="156,588,202,605" href="https://www.genome.jp/entry/K14957" id="12829722" shape="rect" target="_blank" title="K14957 (LSP1)"/>
+    <area class="original" coords="361,621,407,638" data-coords="361,621,407,638" href="https://www.genome.jp/entry/K08601" id="FC8B1191" shape="rect" target="_blank" title="K08601 (CYLD)"/>
+    <area class="original" coords="361,556,407,573" data-coords="361,556,407,573" href="https://www.genome.jp/entry/K07211" id="788E910D" shape="rect" target="_blank" title="K07211 (IKBKE)"/>
+    <area class="original" coords="515,556,561,573" data-coords="515,556,561,573" href="https://www.genome.jp/entry/K11220" id="71B148E2" shape="rect" target="_blank" title="K11220 (STAT1)"/>
+    <area class="original" coords="1124,573,1170,590" data-coords="1124,573,1170,590" href="https://www.genome.jp/entry/K11221" id="025B4C13" shape="rect" target="_blank" title="K11221 (STAT2)"/>
+    <area class="original" coords="1124,556,1170,573" data-coords="1124,556,1170,573" href="https://www.genome.jp/entry/K11220" id="0258568A" shape="rect" target="_blank" title="K11220 (STAT1)"/>
+    <area class="original" coords="1124,539,1170,556" data-coords="1124,539,1170,556" href="https://www.genome.jp/entry/K04693" id="02556101" shape="rect" target="_blank" title="K04693 (IRF9)"/>
+    <area class="original" coords="1243,556,1289,573" data-coords="1243,556,1289,573" href="https://www.genome.jp/entry/K05492" id="09D36319" shape="rect" target="_blank" title="K05492 (IL17D)"/>
+    <area class="original" coords="515,621,561,638" data-coords="515,621,561,638" href="https://www.genome.jp/entry/K09258" id="F5ADC966" shape="rect" target="_blank" title="K09258 (BCL3)"/>
+    <area class="original" coords="253,588,299,605" data-coords="253,588,299,605" href="https://www.genome.jp/entry/K04443" id="9BB22B18" shape="rect" target="_blank" title="K04443 (MAPKAPK2)"/>
+    <area class="original" coords="1124,610,1170,627" data-coords="1124,610,1170,627" href="https://www.genome.jp/entry/K09258" id="03CE639C" shape="rect" target="_blank" title="K09258 (BCL3)"/>
+    <area class="original" coords="1124,627,1170,644" data-coords="1124,627,1170,644" href="https://www.genome.jp/entry/K02580" id="03D0E107" shape="rect" target="_blank" title="K02580 (NFKB1)"/>
+    <area class="original" coords="1243,585,1289,602" data-coords="1243,585,1289,602" href="https://www.genome.jp/entry/K05443" id="0ACDD89C" shape="rect" target="_blank" title="K05443 (IL10)"/>
+    <area class="original" coords="1243,632,1289,649" data-coords="1243,632,1289,649" href="https://www.genome.jp/entry/K05405" id="0B4C6D25" shape="rect" target="_blank" title="K05405 (IL6)"/>
+    <area class="original" coords="1243,652,1289,669" data-coords="1243,652,1289,669" href="https://www.genome.jp/entry/K05406+K05425" id="0B4F6725" shape="rect" target="_blank" title="K05406 (IL12A), K05425 (IL12B)"/>
+    <area class="original" coords="253,382,299,399" data-coords="253,382,299,399" href="https://www.genome.jp/entry/K05855" id="02BA3518" shape="rect" target="_blank" title="K05855 (SYK)"/>
+    <area class="original" coords="253,399,299,416" data-coords="253,399,299,416" href="https://www.genome.jp/entry/K07293" id="B2B23295" shape="rect" target="_blank" title="K07293 (PTPN11)"/>
+    <area class="original" coords="957,451,1003,468" data-coords="957,451,1003,468" href="https://www.genome.jp/entry/K02580" id="9997DC3E" shape="rect" target="_blank" title="K02580 (NFKB1)"/>
+    <area class="original" coords="957,434,1003,451" data-coords="957,434,1003,451" href="https://www.genome.jp/entry/K04735" id="9995DCB5" shape="rect" target="_blank" title="K04735 (RELA)"/>
+    <area class="original" coords="1292,434,1338,451" data-coords="1292,434,1338,451" href="https://www.genome.jp/entry/K05426" id="0D4693AE" shape="rect" target="_blank" title="K05426 (IL23A)"/>
+    <area class="original" coords="1243,434,1289,451" data-coords="1243,434,1289,451" href="https://www.genome.jp/entry/K05405" id="0853661F" shape="rect" target="_blank" title="K05405 (IL6)"/>
+    <area class="original" coords="1243,454,1289,471" data-coords="1243,454,1289,471" href="https://www.genome.jp/entry/K04519" id="0856601F" shape="rect" target="_blank" title="K04519 (IL1B)"/>
+    <area class="original" coords="886,442,932,459" data-coords="886,442,932,459" href="https://www.genome.jp/entry/K04734" id="9DA73A7C" shape="rect" target="_blank" title="K04734 (NFKBIA)"/>
+    <area class="original" coords="1124,452,1170,469" data-coords="1124,452,1170,469" href="https://www.genome.jp/entry/K02580" id="00DA5A96" shape="rect" target="_blank" title="K02580 (NFKB1)"/>
+    <area class="original" coords="1124,435,1170,452" data-coords="1124,435,1170,452" href="https://www.genome.jp/entry/K04735" id="00D85B0D" shape="rect" target="_blank" title="K04735 (RELA)"/>
+    <area class="original" coords="253,757,299,774" data-coords="253,757,299,774" href="https://www.genome.jp/entry/K05855" id="83BA22A1" shape="rect" target="_blank" title="K05855 (SYK)"/>
+    <area class="original" coords="361,757,407,774" data-coords="361,757,407,774" href="https://www.genome.jp/entry/K12794" id="938F8C0D" shape="rect" target="_blank" title="K12794 (CARD9)"/>
+    <area class="original" coords="407,757,453,774" data-coords="407,757,453,774" href="https://www.genome.jp/entry/K07368" id="81AADA76" shape="rect" target="_blank" title="K07368 (BCL10)"/>
+    <area class="original" coords="453,757,499,774" data-coords="453,757,499,774" href="https://www.genome.jp/entry/K07369" id="8DBF04A1" shape="rect" target="_blank" title="K07369 (MALT1)"/>
+    <area class="original" coords="957,765,1003,782" data-coords="957,765,1003,782" href="https://www.genome.jp/entry/K02580" id="9E115532" shape="rect" target="_blank" title="K02580 (NFKB1)"/>
+    <area class="original" coords="957,748,1003,765" data-coords="957,748,1003,765" href="https://www.genome.jp/entry/K04735" id="9E0E5FA9" shape="rect" target="_blank" title="K04735 (RELA)"/>
+    <area class="original" coords="886,756,932,773" data-coords="886,756,932,773" href="https://www.genome.jp/entry/K04734" id="04AAABFE" shape="rect" target="_blank" title="K04734 (NFKBIA)"/>
+    <area class="original" coords="1292,747,1338,764" data-coords="1292,747,1338,764" href="https://www.genome.jp/entry/K05426" id="11BF1525" shape="rect" target="_blank" title="K05426 (IL23A)"/>
+    <area class="original" coords="1243,747,1289,764" data-coords="1243,747,1289,764" href="https://www.genome.jp/entry/K05405" id="0CCBE796" shape="rect" target="_blank" title="K05405 (IL6)"/>
+    <area class="original" coords="1243,767,1289,784" data-coords="1243,767,1289,784" href="https://www.genome.jp/entry/K05406+K05425" id="0CCEE196" shape="rect" target="_blank" title="K05406 (IL12A), K05425 (IL12B)"/>
+    <area class="original" coords="1292,767,1338,784" data-coords="1292,767,1338,784" href="https://www.genome.jp/entry/K04519" id="11C20F25" shape="rect" target="_blank" title="K04519 (IL1B)"/>
+    <area class="original" coords="1124,765,1170,782" data-coords="1124,765,1170,782" href="https://www.genome.jp/entry/K02580" id="0553D20D" shape="rect" target="_blank" title="K02580 (NFKB1)"/>
+    <area class="original" coords="1124,748,1170,765" data-coords="1124,748,1170,765" href="https://www.genome.jp/entry/K04735" id="0550DC84" shape="rect" target="_blank" title="K04735 (RELA)"/>
+    <area class="original" coords="258,126,304,143" data-coords="258,126,304,143" href="https://www.genome.jp/entry/K02833+K07827+K07828+K07831+K07829+K07830" id="DA871934" shape="rect" target="_blank" title="K02833 (HRAS), K07827 (KRAS), K07828 (NRAS), K07831 (MRAS), K07829 (RRAS), K07830 (RRAS2)"/>
+    <area class="original" coords="444,320,490,337" data-coords="444,320,490,337" href="https://www.genome.jp/entry/K06068" id="57B8E2B9" shape="rect" target="_blank" title="K06068 (PRKCD)"/>
+    <area class="original" coords="887,320,933,337" data-coords="887,320,933,337" href="https://www.genome.jp/entry/K04734" id="E7A4BF82" shape="rect" target="_blank" title="K04734 (NFKBIA)"/>
+    <area class="original" coords="350,256,396,273" data-coords="350,256,396,273" href="https://www.genome.jp/entry/K05859" id="F3BA1297" shape="rect" target="_blank" title="K05859 (PLCG2)"/>
+    <area class="original" coords="444,256,490,273" data-coords="444,256,490,273" href="https://www.genome.jp/entry/K04371" id="ECBC6330" shape="rect" target="_blank" title="K04371 (ERK)"/>
+    <area class="original" coords="956,197,1002,214" data-coords="956,197,1002,214" href="https://www.genome.jp/entry/K04446+K17332+K17333+K17334" id="961DC7BB" shape="rect" target="_blank" title="K04446 (NFATC1), K17332 (NFATC2), K17333 (NFATC3), K17334 (NFATC4)"/>
+    <area class="original" coords="1292,330,1338,347" data-coords="1292,330,1338,347" href="https://www.genome.jp/entry/K05426" id="0BC897BA" shape="rect" target="_blank" title="K05426 (IL23A)"/>
+    <area class="original" coords="1243,187,1289,204" data-coords="1243,187,1289,204" href="https://www.genome.jp/entry/K05429" id="04D9DB96" shape="rect" target="_blank" title="K05429 (IL2)"/>
+    <area class="original" coords="782,197,828,214" data-coords="782,197,828,214" href="https://www.genome.jp/entry/K04348+K06268" id="1F9A6DE8" shape="rect" target="_blank" title="K04348 (PPP3C), K06268 (PPP3R)"/>
+    <area class="original" coords="444,212,490,229" data-coords="444,212,490,229" href="https://www.genome.jp/entry/K04958+K04959+K04960" id="88B7673C" shape="rect" target="_blank" title="K04958 (ITPR1), K04959 (ITPR2), K04960 (ITPR3)"/>
+    <area class="original" coords="444,167,490,184" data-coords="444,167,490,184" href="https://www.genome.jp/entry/K04466" id="04BCE7B2" shape="rect" target="_blank" title="K04466 (MAP3K14)"/>
+    <area class="original" coords="1124,330,1170,347" data-coords="1124,330,1170,347" href="https://www.genome.jp/entry/K02580" id="FF5A5D97" shape="rect" target="_blank" title="K02580 (NFKB1)"/>
+    <area class="original" coords="1124,313,1170,330" data-coords="1124,313,1170,330" href="https://www.genome.jp/entry/K04735" id="FF585E0E" shape="rect" target="_blank" title="K04735 (RELA)"/>
+    <area class="original" coords="1124,197,1170,214" data-coords="1124,197,1170,214" href="https://www.genome.jp/entry/K04446+K17332+K17333+K17334" id="FD604C02" shape="rect" target="_blank" title="K04446 (NFATC1), K17332 (NFATC2), K17333 (NFATC3), K17334 (NFATC4)"/>
+    <area class="original" coords="725,505,771,522" data-coords="725,505,771,522" href="https://www.genome.jp/entry/K02580" id="62B629E2" shape="rect" target="_blank" title="K02580 (NFKB1)"/>
+    <area class="original" coords="725,488,771,505" data-coords="725,488,771,505" href="https://www.genome.jp/entry/K04735" id="ADB3B3CA" shape="rect" target="_blank" title="K04735 (RELA)"/>
+    <area class="original" coords="1292,454,1338,471" data-coords="1292,454,1338,471" href="https://www.genome.jp/entry/K03156" id="0D498DAE" shape="rect" target="_blank" title="K03156 (TNF)"/>
+    <area class="original" coords="1243,506,1289,523" data-coords="1243,506,1289,523" href="https://www.genome.jp/entry/K05443" id="09CBF219" shape="rect" target="_blank" title="K05443 (IL10)"/>
+    <area class="original" coords="725,598,771,615" data-coords="725,598,771,615" href="https://www.genome.jp/entry/K02580" id="AEB53147" shape="rect" target="_blank" title="K02580 (NFKB1)"/>
+    <area class="original" coords="253,316,299,333" data-coords="253,316,299,333" href="https://www.genome.jp/entry/K22517" id="66B42BAD" shape="rect" target="_blank" title="K22517 (CBLB)"/>
+    <area class="original" coords="783,434,829,451" data-coords="783,434,829,451" href="https://www.genome.jp/entry/K07210" id="539FE3FA" shape="rect" target="_blank" title="K07210 (IKBKG)"/>
+    <area class="original" coords="783,451,829,468" data-coords="783,451,829,468" href="https://www.genome.jp/entry/K04467+K07209" id="08A0EBF4" shape="rect" target="_blank" title="K04467 (IKBKA), K07209 (IKBKB)"/>
+    <area class="original" coords="156,751,202,768" data-coords="156,751,202,768" href="https://www.genome.jp/entry/K10059" id="648992A6" shape="rect" target="_blank" title="K10059 (CLEC4E)"/>
+    <area class="original" coords="156,768,202,785" data-coords="156,768,202,785" href="https://www.genome.jp/entry/K10058" id="138B9028" shape="rect" target="_blank" title="K10058 (CLEC4D)"/>
+    <area class="original" coords="156,785,202,802" data-coords="156,785,202,802" href="https://www.genome.jp/entry/K07983" id="C9838E1D" shape="rect" target="_blank" title="K07983 (FCER1G)"/>
+    <area class="original" coords="253,820,299,837" data-coords="253,820,299,837" href="https://www.genome.jp/entry/K05855" id="D5B6A125" shape="rect" target="_blank" title="K05855 (SYK)"/>
+    <area class="original" coords="156,820,202,837" data-coords="156,820,202,837" href="https://www.genome.jp/entry/K10070" id="4C870D2F" shape="rect" target="_blank" title="K10070 (CLEC1B)"/>
+    <area class="original" coords="361,820,407,837" data-coords="361,820,407,837" href="https://www.genome.jp/entry/K05859" id="E58C0A91" shape="rect" target="_blank" title="K05859 (PLCG2)"/>
+    <area class="original" coords="957,806,1003,823" data-coords="957,806,1003,823" href="https://www.genome.jp/entry/K04446+K17332+K17333+K17334" id="9F8568AF" shape="rect" target="_blank" title="K04446 (NFATC1), K17332 (NFATC2), K17333 (NFATC3), K17334 (NFATC4)"/>
+    <area class="original" coords="530,821,576,838" data-coords="530,821,576,838" href="https://www.genome.jp/entry/K04958+K04959+K04960" id="86B3E13E" shape="rect" target="_blank" title="K04958 (ITPR1), K04959 (ITPR2), K04960 (ITPR3)"/>
+    <area class="original" coords="1124,805,1170,822" data-coords="1124,805,1170,822" href="https://www.genome.jp/entry/K04446+K17332+K17333+K17334" id="06C7E40D" shape="rect" target="_blank" title="K04446 (NFATC1), K17332 (NFATC2), K17333 (NFATC3), K17334 (NFATC4)"/>
+    <area class="original" coords="1243,805,1289,822" data-coords="1243,805,1289,822" href="https://www.genome.jp/entry/K05492" id="0E42F09C" shape="rect" target="_blank" title="K05492 (IL17D)"/>
+    <area class="original" coords="423,381,469,398" data-coords="423,381,469,398" href="https://www.genome.jp/entry/K12794" id="F3B00EC0" shape="rect" target="_blank" title="K12794 (CARD9)"/>
+    <area class="original" coords="469,381,515,398" data-coords="469,381,515,398" href="https://www.genome.jp/entry/K07368" id="E6970493" shape="rect" target="_blank" title="K07368 (BCL10)"/>
+    <area class="original" coords="515,381,561,398" data-coords="515,381,561,398" href="https://www.genome.jp/entry/K07369" id="F2B25554" shape="rect" target="_blank" title="K07369 (MALT1)"/>
+    <area class="original" coords="543,320,589,337" data-coords="543,320,589,337" href="https://www.genome.jp/entry/K12794" id="DFB680B4" shape="rect" target="_blank" title="K12794 (CARD9)"/>
+    <area class="original" coords="589,320,635,337" data-coords="589,320,635,337" href="https://www.genome.jp/entry/K07368" id="D29D7687" shape="rect" target="_blank" title="K07368 (BCL10)"/>
+    <area class="original" coords="635,320,681,337" data-coords="635,320,681,337" href="https://www.genome.jp/entry/K07369" id="DEB8C748" shape="rect" target="_blank" title="K07369 (MALT1)"/>
+    <area class="original" coords="444,126,490,143" data-coords="444,126,490,143" href="https://www.genome.jp/entry/K04366" id="EBB8E4B9" shape="rect" target="_blank" title="K04366 (RAF1)"/>
+    <area class="original" coords="1292,310,1338,327" data-coords="1292,310,1338,327" href="https://www.genome.jp/entry/K05406+K05425" id="0BC59DBA" shape="rect" target="_blank" title="K05406 (IL12A), K05425 (IL12B)"/>
+    <area class="original" coords="253,678,299,695" data-coords="253,678,299,695" href="https://www.genome.jp/entry/K05855" id="9BBBA79B" shape="rect" target="_blank" title="K05855 (SYK)"/>
+    <area class="original" coords="361,678,407,695" data-coords="361,678,407,695" href="https://www.genome.jp/entry/K12794" id="AB911107" shape="rect" target="_blank" title="K12794 (CARD9)"/>
+    <area class="original" coords="407,678,453,695" data-coords="407,678,453,695" href="https://www.genome.jp/entry/K07368" id="99AC5F70" shape="rect" target="_blank" title="K07368 (BCL10)"/>
+    <area class="original" coords="453,678,499,695" data-coords="453,678,499,695" href="https://www.genome.jp/entry/K07369" id="A5C0899B" shape="rect" target="_blank" title="K07369 (MALT1)"/>
+    <area class="original" coords="639,678,685,695" data-coords="639,678,685,695" href="https://www.genome.jp/entry/K00922+K02649" id="9DC052C8" shape="rect" target="_blank" title="K00922 (PIK3CA_B_D), K02649 (PIK3R1_2_3)"/>
+    <area class="original" coords="783,678,829,695" data-coords="783,678,829,695" href="https://www.genome.jp/entry/K04456" id="B9A4E3EE" shape="rect" target="_blank" title="K04456 (AKT)"/>
+    <area class="original" coords="957,678,1003,695" data-coords="957,678,1003,695" href="https://www.genome.jp/entry/K06643" id="9C95D6A9" shape="rect" target="_blank" title="K06643 (MDM2)"/>
+    <area class="original" coords="1124,678,1170,695" data-coords="1124,678,1170,695" href="https://www.genome.jp/entry/K06643" id="03D85384" shape="rect" target="_blank" title="K06643 (MDM2)"/>
+    <area class="original" coords="1124,693,1170,710" data-coords="1124,693,1170,710" href="https://www.genome.jp/entry/K09444" id="04D14613" shape="rect" target="_blank" title="K09444 (IRF1)"/>
+    <area class="original" coords="1243,686,1289,703" data-coords="1243,686,1289,703" href="https://www.genome.jp/entry/K05406+K05425" id="0C4ADA19" shape="rect" target="_blank" title="K05406 (IL12A), K05425 (IL12B)"/>
+    <area class="original" coords="639,748,685,765" data-coords="639,748,685,765" href="https://www.genome.jp/entry/K07210" id="9EBDCE51" shape="rect" target="_blank" title="K07210 (IKBKG)"/>
+    <area class="original" coords="639,765,685,782" data-coords="639,765,685,782" href="https://www.genome.jp/entry/K04467+K07209" id="53BFCC4B" shape="rect" target="_blank" title="K04467 (IKBKA), K07209 (IKBKB)"/>
+    <area class="original" coords="653,168,699,185" data-coords="653,168,699,185" href="https://www.genome.jp/entry/K04467" id="AAC1FA1E" shape="rect" target="_blank" title="K04467 (IKBKA)"/>
+    <area class="original" coords="782,168,828,185" data-coords="782,168,828,185" href="https://www.genome.jp/entry/K04469" id="37A16D71" shape="rect" target="_blank" title="K04469 (NFKB2)"/>
+    <area class="original" coords="782,151,828,168" data-coords="782,151,828,168" href="https://www.genome.jp/entry/K09253" id="889F6FEF" shape="rect" target="_blank" title="K09253 (RELB)"/>
+    <area class="original" coords="1124,132,1170,149" data-coords="1124,132,1170,149" href="https://www.genome.jp/entry/K04735" id="FC606091" shape="rect" target="_blank" title="K04735 (RELA)"/>
+    <area class="original" coords="1124,149,1170,166" data-coords="1124,149,1170,166" href="https://www.genome.jp/entry/K09253" id="FC62DDFC" shape="rect" target="_blank" title="K09253 (RELB)"/>
+    <area class="original" coords="957,126,1003,143" data-coords="957,126,1003,143" href="https://www.genome.jp/entry/K04735" id="951D62AF" shape="rect" target="_blank" title="K04735 (RELA)"/>
+    <area class="original" coords="1292,141,1338,158" data-coords="1292,141,1338,158" href="https://www.genome.jp/entry/K04519" id="08D01637" shape="rect" target="_blank" title="K04519 (IL1B)"/>
+    <area class="original" coords="1243,310,1289,327" data-coords="1243,310,1289,327" href="https://www.genome.jp/entry/K05405" id="06D2702B" shape="rect" target="_blank" title="K05405 (IL6)"/>
+    <area class="original" coords="957,168,1003,185" data-coords="957,168,1003,185" href="https://www.genome.jp/entry/K04469" id="952359A9" shape="rect" target="_blank" title="K04469 (NFKB2)"/>
+    <area class="original" coords="957,151,1003,168" data-coords="957,151,1003,168" href="https://www.genome.jp/entry/K09253" id="9520DC3E" shape="rect" target="_blank" title="K09253 (RELB)"/>
+    <area class="original" coords="653,197,699,214" data-coords="653,197,699,214" href="https://www.genome.jp/entry/K02183" id="92BAFA95" shape="rect" target="_blank" title="K02183 (CALM)"/>
+    <area class="original" coords="828,806,874,823" data-coords="828,806,874,823" href="https://www.genome.jp/entry/K04348+K06268" id="FABA21E7" shape="rect" target="_blank" title="K04348 (PPP3C), K06268 (PPP3R)"/>
+    <area class="original" coords="718,806,764,823" data-coords="718,806,764,823" href="https://www.genome.jp/entry/K02183" id="F5B2AE76" shape="rect" target="_blank" title="K02183 (CALM)"/>
+    <area class="original" coords="1243,330,1289,347" data-coords="1243,330,1289,347" href="https://www.genome.jp/entry/K05443" id="06D56A2B" shape="rect" target="_blank" title="K05443 (IL10)"/>
+    <area class="original" coords="1243,207,1289,224" data-coords="1243,207,1289,224" href="https://www.genome.jp/entry/K05443" id="0554F396" shape="rect" target="_blank" title="K05443 (IL10)"/>
+    <area class="original" coords="1292,290,1338,307" data-coords="1292,290,1338,307" href="https://www.genome.jp/entry/K03156" id="0B4A85BA" shape="rect" target="_blank" title="K03156 (TNF)"/>
+    <area class="original" coords="1292,207,1338,224" data-coords="1292,207,1338,224" href="https://www.genome.jp/entry/K11987" id="0A482125" shape="rect" target="_blank" title="K11987 (PTGS2)"/>
+    <area class="original" coords="1292,605,1338,622" data-coords="1292,605,1338,622" href="https://www.genome.jp/entry/K21095" id="103C1E2B" shape="rect" target="_blank" title="K21095 (CCL22)"/>
+    <area class="original" coords="1243,605,1289,622" data-coords="1243,605,1289,622" href="https://www.genome.jp/entry/K21083" id="0B48F09C" shape="rect" target="_blank" title="K21083 (CCL17)"/>
+    <area class="original" coords="1292,187,1338,204" data-coords="1292,187,1338,204" href="https://www.genome.jp/entry/K12496+K12497" id="09CD0925" shape="rect" target="_blank" title="K12496 (EGR2), K12497 (EGR3)"/>
+    <area class="original" coords="783,357,829,374" data-coords="783,357,829,374" href="https://www.genome.jp/entry/K04441" id="9DA16AF4" shape="rect" target="_blank" title="K04441 (P38)"/>
+    <area class="original" coords="783,381,829,398" data-coords="783,381,829,398" href="https://www.genome.jp/entry/K04440" id="07A3706B" shape="rect" target="_blank" title="K04440 (JNK)"/>
+    <area class="original" coords="783,405,829,422" data-coords="783,405,829,422" href="https://www.genome.jp/entry/K04371" id="6C9CE383" shape="rect" target="_blank" title="K04371 (ERK)"/>
+    <area class="original" coords="1243,381,1289,398" data-coords="1243,381,1289,398" href="https://www.genome.jp/entry/K05406+K05425" id="06DCDCA8" shape="rect" target="_blank" title="K05406 (IL12A), K05425 (IL12B)"/>
+    <area class="original" coords="1124,381,1170,398" data-coords="1124,381,1170,398" href="https://www.genome.jp/entry/K04448" id="FF61D014" shape="rect" target="_blank" title="K04448 (JUN)"/>
+    <area class="original" coords="957,381,1003,398" data-coords="957,381,1003,398" href="https://www.genome.jp/entry/K04448" id="981F533E" shape="rect" target="_blank" title="K04448 (JUN)"/>
+    <area class="original" coords="40,45,393,70" data-coords="40,45,393,70" data-entry="map04625" href="https://www.genome.jp/entry/map04625" id="37B7CED3" shape="rect" target="_blank" title="map04625: C-type lectin receptor signaling pathway"/>
+    <area class="original" coords="1366,369,1496,394" data-coords="1366,369,1496,394" data-entry="map04659" href="https://www.genome.jp/pathway/map04659" id="1356BCE3" shape="rect" target="_blank" title="map04659: Th17 cell differentiation"/>
+    <area class="original" coords="1360,688,1510,713" data-coords="1360,688,1510,713" data-entry="map04658" href="https://www.genome.jp/pathway/map04658" id="1D9E88C0" shape="rect" target="_blank" title="map04658: Th1 and Th2 cell differentiation"/>
+    <area class="original" coords="31,394,140,426" data-coords="31,394,140,426" data-entry="map00571" href="https://www.genome.jp/pathway/map00571" id="3BC219FF" shape="rect" target="_blank" title="map00571: Lipoarabinomannan (LAM) biosynthesis"/>
+   </map>
+   <map data-scale="1" id="module_mapdata" name="module_mapdata">
+   </map>
+  </div>
+  <!-- pathway image end -->
+  <!-- control panel start -->
+  <div id="controlPanel">
+   <div class="controller">
+    <div class="feature option">
+     <h5>
+      Option
+     </h5>
+     <div>
+      <div class="row scale">
+       <span class="title">
+        Scale:
+       </span>
+       <span class="content">
+        <input max="1" min="0.1" step="0.1" type="range" value="1"/>
+        <span class="label">
+         100%
+        </span>
+       </span>
+      </div>
+      <div class="row image-resolution hidden">
+       <span class="title">
+        Image resolution:
+       </span>
+       <span class="content">
+        <label>
+         <input type="checkbox" value="high"/>
+         High
+        </label>
+       </span>
+      </div>
+     </div>
+    </div>
+    <div class="feature search">
+     <h5>
+      Search
+     </h5>
+     <div>
+      <div class="row query">
+       <form>
+        <input autocomplete="off" name="query" style="width:130px;" type="text" value=""/>
+        <input type="submit" value="Go"/>
+        <span class="ui-icon button ui-icon-close clear-query hidden">
+        </span>
+       </form>
+      </div>
+      <div class="row result">
+      </div>
+     </div>
+    </div>
+    <div class="feature search-pathway">
+     <h5>
+      ID search
+      <span class="ui-icon ui-icon-plus">
+      </span>
+     </h5>
+     <div>
+      <form>
+       <div class="row" style="display:grid; grid-template-columns:135px 1fr; column-gap:5px;">
+        <div>
+         <textarea class="query" rows="2" style="width:130px; resize:none;"></textarea>
+        </div>
+        <div>
+         <input class="submit" type="submit" value="Go"/>
+         <span class="ui-icon button ui-icon-close clear-query hidden">
+         </span>
+        </div>
+       </div>
+      </form>
+      <div class="row personal hidden">
+       <ul class="mappers">
+       </ul>
+      </div>
+     </div>
+    </div>
+    <div class="feature color-pathway">
+     <h5>
+      Color
+      <span class="ui-icon ui-icon-plus">
+      </span>
+     </h5>
+     <div>
+      <div class="row personal hidden">
+       <ul class="mappers">
+       </ul>
+      </div>
+     </div>
+    </div>
+   </div>
+   <button class="close">
+    <img src="/Fig/left_triangle_12x12.png"/>
+   </button>
+   <button class="open">
+    <img src="/Fig/right_triangle_12x12.png"/>
+   </button>
+  </div>
+  <!-- control panel end -->
+  <form action="/kegg-bin/download" id="downloadForm" method="post">
+   <input name="name" type="hidden" value="map04625.png"/>
+   <input name="content" type="hidden"/>
+   <input name="dpi" type="hidden"/>
+   <input name="decode" type="hidden" value="base64"/>
+  </form>
+  <div id="waiting-circle">
+   <img src="/Fig/waiting-circle-small.gif"/>
+  </div>
+  <!-- pathway image url start -->
+  <form class="imageset" data-name="">
+   <input data-situation="1x" data-src="/kegg/pathway/map/map04625.png" name="image_normal" type="hidden" value="/kegg/pathway/map/map04625.png 1x"/>
+   <input data-situation="2x" data-src="/kegg/pathway/map/map04625@2x.png" name="image_normal" type="hidden" value="/kegg/pathway/map/map04625@2x.png 2x"/>
+  </form>
+  <!-- pathway image url end -->
+  <div id="download-menu" style="display:none;">
+   <!--<div><a id="downloadImageLink" href="#downloadImage">Image (png)</a></div>-->
+   <div>
+    <a class="downloadImageNx" data-scale="1" href="#downloadImage1x" target="_blank">
+     Image (png) file 1x
+    </a>
+   </div>
+   <div>
+    <a class="downloadImageNx" data-scale="2" href="#downloadImage2x" target="_blank">
+     Image (png) file 2x
+    </a>
+   </div>
+  </div>
+ </body>
+</html>

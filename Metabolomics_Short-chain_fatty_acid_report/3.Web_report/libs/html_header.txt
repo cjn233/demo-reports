@@ -1,0 +1,48 @@
+---
+title: "%s"
+output:
+  html_document:
+    df_print: paged
+    highlight: tango
+    includes:
+      in_header: libs/header.html
+    lib_dir: libs
+    number_sections: yes
+    self_contained: true
+    theme: cerulean
+    toc: yes
+    toc_depth: 3
+    toc_float: yes
+    css: libs/styles.css
+  word_document:
+    toc: yes
+    toc_depth: '3'
+---
+
+
+```{r echo=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+suppressWarnings(library(DT))
+suppressWarnings(library(htmltools))
+
+```
+
+<style type="text/css">
+.title{
+    font-size:30px;
+    text-align:center;
+    line-height:1.5}
+</style>
+
+<script>
+function myFunction(id) {
+    var x = document.getElementById(id);
+    console.log(id)
+    console.log(x)
+    if (x.style.display=="none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+</script>

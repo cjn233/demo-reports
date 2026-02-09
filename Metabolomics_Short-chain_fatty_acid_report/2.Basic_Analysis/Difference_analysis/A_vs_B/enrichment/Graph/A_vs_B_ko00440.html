@@ -1,0 +1,243 @@
+<html>
+<!---
+ENTRY       A_vs_B_ko00440.png
+DEFINITION  Pathway A_vs_B_ko00440.png
+--->
+<head>
+<title>
+KEGG PATHWAY: Pathway A_vs_B_ko00440.png
+</title>
+<style type="text/css">
+<!--
+div.poplay {
+  position: absolute;
+  padding: 2px;
+  background-color: #ffff99;
+  border-top: solid 1px #c0c0c0;
+  border-left: solid 1px #c0c0c0;
+  border-bottom: solid 1px #808080;
+  border-right: solid 1px #808080;
+  visibility: hidden;
+}
+
+span.popup
+{
+  font-weight: bold;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+form {
+  margin: 0px;
+}
+
+div.image {
+  position: absolute;
+  padding: 0px;
+  top: 0px;
+  padding: 0px;
+  border: solid 1px #000000;
+}
+
+img {
+  border: none;
+}
+
+
+-->
+</style>
+<link rel="stylesheet" href="/css/kegg.css" type="text/css" />
+<script language="JavaScript" src="/js/dhtml.js"></script>
+
+<script language="JavaScript">
+<!---
+var image_height;
+100 100 1013function(){
+	100 100 1013window).bind('load',function(){
+  image_height = 100 100 1013"div.image").height()-10;
+	100 100 1013"div.control").height(image_height-5);
+	100 100 1013"#resizable").height(image_height);
+	});
+});
+
+
+function resize_map(scale){
+  var form = document.forms["form2"];
+  form.scale.value = scale;
+  form.submit();
+}
+
+function select_menu(){
+  var form = document.forms["selmenu"];
+  if(form.org_name.value == 'set_cookie' || form.org_name.value == 'reset_cookie'){
+    window.open('/kegg/misc/kegg2_select.html','sel_org','toolbar=no,location=no,directories=no,width=500,height=320,resizable=yes');
+  }else{
+    form.action='/kegg-bin/show_pathway';
+    form.submit();
+  }
+}
+
+var timer = 0;
+var p_entry, p_title, p_bgcolor;
+function popupTimer(entry, title, bgcolor)
+{
+  p_entry = entry;
+  p_title = title;
+  p_bgcolor = bgcolor;
+
+  if(timer == 0){
+    var func = "showThumbnail()";
+    timer = setTimeout(func, 1200);
+  }
+}
+
+
+function hideMapTn(){
+  var layer = new Component("poplay");
+  layer.visible(false);
+
+  if(timer != 0){
+    clearTimeout(timer);
+    timer = 0;
+  }
+}
+
+function switchDescription(){
+  var form = document.forms[0];
+  var status = form.show_description.value;
+
+  if(status == "hide"){
+    document.getElementById("description").style.display = "";
+    document.getElementById("descLink").innerHTML = "Hide description";
+    form.show_description.value='show';
+
+    if(document.forms[1]){
+    	document.forms[1].show_description.value='show';
+    }
+  }
+  else
+  {
+    document.getElementById("description").style.display = 'none';
+    document.getElementById("descLink").innerHTML = "Show description";
+    form.show_description.value='hide';
+
+    if(document.forms[1]){
+      document.forms[1].show_description.value='hide';
+    }
+  }
+}
+
+function btn(bobj,img) { bobj.src = "/Fig/bget/button_" + img + ".gif"; }
+//--->
+</script>
+<body>
+<img src=A_vs_B_ko00440.png usemap="#mapdata" border="0" />
+<map name="mapdata">
+			<area shape=circ	coords=303,125,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00074"	title="C00074 (Phosphoenolpyruvate)" onmouseover="popupTimer(C00074 (Phosphoenolpyruvate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=303,214,4	href="http://www.kegg.jp/dbget-bin/www_bget?C02798"	title="C02798 (3-Phosphonopyruvate)" onmouseover="popupTimer(C02798 (3-Phosphonopyruvate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=203,214,4	href="http://www.kegg.jp/dbget-bin/www_bget?C05672"	title="C05672 (2-Amino-3-phosphonopropanoate)" onmouseover="popupTimer(C05672 (2-Amino-3-phosphonopropanoate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=585,214,4	href="http://www.kegg.jp/dbget-bin/www_bget?C17942"	title="C17942 (FR 900098)" onmouseover="popupTimer(C17942 (FR 900098), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=303,322,4	href="http://www.kegg.jp/dbget-bin/www_bget?C03167"	title="C03167 (Phosphonoacetaldehyde)" onmouseover="popupTimer(C03167 (Phosphonoacetaldehyde), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=432,322,4	href="http://www.kegg.jp/dbget-bin/www_bget?C03557"	title="C03557 (2-Aminoethylphosphonate)" onmouseover="popupTimer(C03557 (2-Aminoethylphosphonate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=206,322,4	href="http://www.kegg.jp/dbget-bin/www_bget?C05682"	title="C05682 (Phosphonoacetate)" onmouseover="popupTimer(C05682 (Phosphonoacetate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=70,322,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00033"	title="C00033 (Acetate)" onmouseover="popupTimer(C00033 (Acetate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=398,254,4	href="http://www.kegg.jp/dbget-bin/www_bget?C17940+C17944+C17960+C17961"	title="C17940 (Rhizocticin B), C17944 (Rhizocticin A), C17960 (Rhizocticin C), C17961 (Rhizocticin D)" onmouseover="popupTimer(C17940 (Rhizocticin B), C17944 (Rhizocticin A), C17960 (Rhizocticin C), C17961 (Rhizocticin D), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=303,483,4	href="http://www.kegg.jp/dbget-bin/www_bget?C06455"	title="C06455 (Hydroxymethylphosphonate)" onmouseover="popupTimer(C06455 (Hydroxymethylphosphonate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=303,548,4	href="http://www.kegg.jp/dbget-bin/www_bget?C17943"	title="C17943 (Formylphosphonate)" onmouseover="popupTimer(C17943 (Formylphosphonate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=430,483,4	href="http://www.kegg.jp/dbget-bin/www_bget?C05679"	title="C05679 (N-Monomethyl-2-aminoethylphosphonate)" onmouseover="popupTimer(C05679 (N-Monomethyl-2-aminoethylphosphonate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=545,385,4	href="http://www.kegg.jp/dbget-bin/www_bget?C05683"	title="C05683 (Ciliatocholate)" onmouseover="popupTimer(C05683 (Ciliatocholate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=542,322,4	href="http://www.kegg.jp/dbget-bin/www_bget?C05678"	title="C05678 ((2-Amino-1-hydroxyethyl)phosphonate)" onmouseover="popupTimer(C05678 ((2-Amino-1-hydroxyethyl)phosphonate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=542,450,4	href="http://www.kegg.jp/dbget-bin/www_bget?C05673"	title="C05673 (CMP-2-aminoethylphosphonate)" onmouseover="popupTimer(C05673 (CMP-2-aminoethylphosphonate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=642,357,4	href="http://www.kegg.jp/dbget-bin/www_bget?C05677"	title="C05677 (Lipophosphonoglycan)" onmouseover="popupTimer(C05677 (Lipophosphonoglycan), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=642,415,4	href="http://www.kegg.jp/dbget-bin/www_bget?C05681"	title="C05681 (Ceramide 2-aminoethylphosphonate)" onmouseover="popupTimer(C05681 (Ceramide 2-aminoethylphosphonate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=430,523,4	href="http://www.kegg.jp/dbget-bin/www_bget?C05680"	title="C05680 (N-Dimethyl-2-aminoethylphosphonate)" onmouseover="popupTimer(C05680 (N-Dimethyl-2-aminoethylphosphonate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=430,563,4	href="http://www.kegg.jp/dbget-bin/www_bget?C06459"	title="C06459 (N-Trimethyl-2-aminoethylphosphonate)" onmouseover="popupTimer(C06459 (N-Trimethyl-2-aminoethylphosphonate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=642,563,4	href="http://www.kegg.jp/dbget-bin/www_bget?C05676"	title="C05676 (Diacylglyceryl-N-trimethyl-2-aminoethylphosphonate)" onmouseover="popupTimer(C05676 (Diacylglyceryl-N-trimethyl-2-aminoethylphosphonate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=303,613,4	href="http://www.kegg.jp/dbget-bin/www_bget?C06456"	title="C06456 (Phosphonoformate)" onmouseover="popupTimer(C06456 (Phosphonoformate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=303,678,4	href="http://www.kegg.jp/dbget-bin/www_bget?C17945"	title="C17945 (Phosphonoformyl-CMP)" onmouseover="popupTimer(C17945 (Phosphonoformyl-CMP), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=303,736,4	href="http://www.kegg.jp/dbget-bin/www_bget?C06367"	title="C06367 (1-Carboxyvinyl carboxyphosphonate)" onmouseover="popupTimer(C06367 (1-Carboxyvinyl carboxyphosphonate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=388,736,4	href="http://www.kegg.jp/dbget-bin/www_bget?C06368"	title="C06368 (3-(Hydrohydroxyphosphoryl)pyruvate)" onmouseover="popupTimer(C06368 (3-(Hydrohydroxyphosphoryl)pyruvate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=473,736,4	href="http://www.kegg.jp/dbget-bin/www_bget?C17947"	title="C17947 (2-Phosphinomethylmalate)" onmouseover="popupTimer(C17947 (2-Phosphinomethylmalate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=638,736,4	href="http://www.kegg.jp/dbget-bin/www_bget?C17948"	title="C17948 (Deamino-alpha-keto-demethylphosphinothricin)" onmouseover="popupTimer(C17948 (Deamino-alpha-keto-demethylphosphinothricin), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=803,736,4	href="http://www.kegg.jp/dbget-bin/www_bget?C17949"	title="C17949 (N-Acetyldemethylphosphinothricin)" onmouseover="popupTimer(C17949 (N-Acetyldemethylphosphinothricin), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=924,736,4	href="http://www.kegg.jp/dbget-bin/www_bget?C17950"	title="C17950 (N-Acetyldemethylphosphinothricin tripeptide)" onmouseover="popupTimer(C17950 (N-Acetyldemethylphosphinothricin tripeptide), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=803,830,4	href="http://www.kegg.jp/dbget-bin/www_bget?C17952"	title="C17952 (N-Acetylphosphinothricin)" onmouseover="popupTimer(C17952 (N-Acetylphosphinothricin), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=924,830,4	href="http://www.kegg.jp/dbget-bin/www_bget?C17951"	title="C17951 (N-Acetylbialaphos)" onmouseover="popupTimer(C17951 (N-Acetylbialaphos), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=803,895,4	href="http://www.kegg.jp/dbget-bin/www_bget?C04650"	title="C04650 (L-Phosphinothricin)" onmouseover="popupTimer(C04650 (L-Phosphinothricin), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=924,895,4	href="http://www.kegg.jp/dbget-bin/www_bget?C06457"	title="C06457 (Bialaphos)" onmouseover="popupTimer(C06457 (Bialaphos), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=718,736,4	href="http://www.kegg.jp/dbget-bin/www_bget?C17962"	title="C17962 (Demethylphosphinothricin)" onmouseover="popupTimer(C17962 (Demethylphosphinothricin), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=491,214,4	href="http://www.kegg.jp/dbget-bin/www_bget?C17941"	title="C17941 (2-Oxo-4-phosphonobutanoate)" onmouseover="popupTimer(C17941 (2-Oxo-4-phosphonobutanoate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=542,563,4	href="http://www.kegg.jp/dbget-bin/www_bget?C05674"	title="C05674 (CMP-N-trimethyl-2-aminoethylphosphonate)" onmouseover="popupTimer(C05674 (CMP-N-trimethyl-2-aminoethylphosphonate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=642,450,4	href="http://www.kegg.jp/dbget-bin/www_bget?C05675"	title="C05675 (Diacylglyceryl-2-aminoethylphosphonate)" onmouseover="popupTimer(C05675 (Diacylglyceryl-2-aminoethylphosphonate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=93,263,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00084"	title="C00084 (Acetaldehyde)" onmouseover="popupTimer(C00084 (Acetaldehyde), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=303,388,4	href="http://www.kegg.jp/dbget-bin/www_bget?C06451"	title="C06451 (2-Hydroxyethylphosphonate)" onmouseover="popupTimer(C06451 (2-Hydroxyethylphosphonate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=202,483,4	href="http://www.kegg.jp/dbget-bin/www_bget?C20396"	title="C20396 (Methylphosphonate)" onmouseover="popupTimer(C20396 (Methylphosphonate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=202,548,4	href="http://www.kegg.jp/dbget-bin/www_bget?C20422"	title="C20422 (alpha-D-Ribose 1-methylphosphonate 5-triphosphate)" onmouseover="popupTimer(C20422 (alpha-D-Ribose 1-methylphosphonate 5-triphosphate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=202,613,4	href="http://www.kegg.jp/dbget-bin/www_bget?C20423"	title="C20423 (alpha-D-Ribose 1-methylphosphonate 5-phosphate)" onmouseover="popupTimer(C20423 (alpha-D-Ribose 1-methylphosphonate 5-phosphate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=202,678,4	href="http://www.kegg.jp/dbget-bin/www_bget?C20440"	title="C20440 (alpha-D-Ribose 1,2-cyclic phosphate 5-phosphate)" onmouseover="popupTimer(C20440 (alpha-D-Ribose 1,2-cyclic phosphate 5-phosphate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=116,182,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00022"	title="C00022 (Pyruvate)" onmouseover="popupTimer(C00022 (Pyruvate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=202,789,4	href="http://www.kegg.jp/dbget-bin/www_bget?C01151"	title="C01151 (D-Ribose 1,5-bisphosphate)" onmouseover="popupTimer(C01151 (D-Ribose 1,5-bisphosphate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=138,729,4	href="http://www.kegg.jp/dbget-bin/www_bget?C20986"	title="C20986 (D-Ribose 2,5-bisphosphate)" onmouseover="popupTimer(C20986 (D-Ribose 2,5-bisphosphate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=138,789,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00117"	title="C00117 (D-Ribose 5-phosphate)" onmouseover="popupTimer(C00117 (D-Ribose 5-phosphate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=558,736,4	href="http://www.kegg.jp/dbget-bin/www_bget?C21372"	title="C21372 (3-Phosphinomethylmalate)" onmouseover="popupTimer(C21372 (3-Phosphinomethylmalate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=642,322,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00037"	title="C00037 (Glycine)" onmouseover="popupTimer(C00037 (Glycine), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=542,263,4	href="http://www.kegg.jp/dbget-bin/www_bget?C21403"	title="C21403 (2-Acetamidoethylphosphonate)" onmouseover="popupTimer(C21403 (2-Acetamidoethylphosphonate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=642,263,4	href="http://www.kegg.jp/dbget-bin/www_bget?C21404"	title="C21404 (N-Ethylacetamide)" onmouseover="popupTimer(C21404 (N-Ethylacetamide), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=250,659,4	href="http://www.kegg.jp/dbget-bin/www_bget?C01438"	title="C01438 (Methane)" onmouseover="popupTimer(C01438 (Methane), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=398,214,4	href="http://www.kegg.jp/dbget-bin/www_bget?C21613"	title="C21613 ((R)-2-(Phosphonomethyl)malate)" onmouseover="popupTimer(C21613 ((R)-2-(Phosphonomethyl)malate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=394,483,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00058"	title="C00058 (Formate)" onmouseover="popupTimer(C00058 (Formate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=rect	coords=280,156,326,173	href="http://www.kegg.jp/dbget-bin/www_bget?K01841+K23999+5.4.2.9+R00661"	title="K01841 (pepM), K23999 (fom1), 5.4.2.9, R00661" />
+			<area shape=rect	coords=280,231,326,248	href="http://www.kegg.jp/dbget-bin/www_bget?K09459+4.1.1.82+R04053"	title="K09459 (E4.1.1.82), 4.1.1.82, R04053" />
+			<area shape=rect	coords=143,314,189,331	href="http://www.kegg.jp/dbget-bin/www_bget?K19670+3.11.1.2+R00318"	title="K19670 (phnA), 3.11.1.2, R00318" />
+			<area shape=rect	coords=143,254,189,271	href="http://www.kegg.jp/dbget-bin/www_bget?K05306+3.11.1.1+R00747"	title="K05306 (phnX), 3.11.1.1, R00747" />
+			<area shape=rect	coords=782,775,828,792	href="http://www.kegg.jp/dbget-bin/www_bget?K12914+2.1.1.326+R08873"	title="K12914 (phpK), 2.1.1.326, R08873" />
+			<area shape=rect	coords=781,851,827,868	href="http://www.kegg.jp/dbget-bin/www_bget?K12915+R08874"	title="K12915 (dea), R08874" />
+			<area shape=rect	coords=281,502,327,519	href="http://www.kegg.jp/dbget-bin/www_bget?K12906+R08865"	title="K12906 (phpE), R08865" />
+			<area shape=rect	coords=281,565,327,582	href="http://www.kegg.jp/dbget-bin/www_bget?K12907+R08866"	title="K12907 (phpJ), R08866" />
+			<area shape=rect	coords=281,628,327,645	href="http://www.kegg.jp/dbget-bin/www_bget?K12908+2.7.7.93+R08867"	title="K12908 (phpF), 2.7.7.93, R08867" />
+			<area shape=rect	coords=462,555,508,572	href="http://www.kegg.jp/dbget-bin/www_bget?K00968+2.7.7.15+R02590"	title="K00968 (PCYT1), 2.7.7.15, R02590" />
+			<area shape=rect	coords=565,442,611,459	href="http://www.kegg.jp/dbget-bin/www_bget?K00993+K13644+2.7.8.1+R04920"	title="K00993 (EPT1), K13644 (CEPT1), 2.7.8.1, R04920" />
+			<area shape=rect	coords=565,555,611,572	href="http://www.kegg.jp/dbget-bin/www_bget?K00994+K13644+2.7.8.2+R04922"	title="K00994 (CHPT1), K13644 (CEPT1), 2.7.8.2, R04922" />
+			<area shape=rect	coords=255,346,301,363	href="http://www.kegg.jp/dbget-bin/www_bget?K12901+R08861"	title="K12901 (fomC), R08861" />
+			<area shape=rect	coords=318,728,364,745	href="http://www.kegg.jp/dbget-bin/www_bget?K12909+2.7.8.23+R05165"	title="K12909 (phpI), 2.7.8.23, R05165" />
+			<area shape=rect	coords=403,728,449,745	href="http://www.kegg.jp/dbget-bin/www_bget?K12910+2.3.3.18+R08870"	title="K12910 (pmmS), 2.3.3.18, R08870" />
+			<area shape=rect	coords=733,728,779,745	href="http://www.kegg.jp/dbget-bin/www_bget?K03823+2.3.1.183+R08871"	title="K03823 (pat), 2.3.1.183, R08871" />
+			<area shape=rect	coords=836,728,882,745	href="http://www.kegg.jp/dbget-bin/www_bget?K12912+R08872"	title="K12912 (phsB), R08872" />
+			<area shape=rect	coords=836,745,882,762	href="http://www.kegg.jp/dbget-bin/www_bget?K12913+R08872"	title="K12913 (phsC), R08872" />
+			<area shape=rect	coords=836,711,882,728	href="http://www.kegg.jp/dbget-bin/www_bget?K12911+R08872"	title="K12911 (phsA), R08872" />
+			<area shape=rect	coords=902,775,948,792	href="http://www.kegg.jp/dbget-bin/www_bget?K12914+R08875"	title="K12914 (phpK), R08875" />
+			<area shape=rect	coords=901,851,947,868	href="http://www.kegg.jp/dbget-bin/www_bget?K12915+R08876"	title="K12915 (dea), R08876" />
+			<area shape=rect	coords=305,346,351,363	href="http://www.kegg.jp/dbget-bin/www_bget?K12904+1.1.1.309+R09478"	title="K12904 (phpC), 1.1.1.309, R09478" />
+			<area shape=rect	coords=229,206,275,223	href="http://www.kegg.jp/dbget-bin/www_bget?R04051"	title="2.6.1.-, R04051" />
+			<area shape=rect	coords=462,314,508,331	href="http://www.kegg.jp/dbget-bin/www_bget?K21195+1.14.11.46+R10724"	title="K21195 (phnY), 1.14.11.46, R10724" />
+			<area shape=rect	coords=565,407,611,424	href="http://www.kegg.jp/dbget-bin/www_bget?R04921"	title="2.7.8.-, R04921" />
+			<area shape=rect	coords=345,314,391,331	href="http://www.kegg.jp/dbget-bin/www_bget?K03430+2.6.1.37+R04152"	title="K03430 (phnW), 2.6.1.37, R04152" />
+			<area shape=rect	coords=281,424,327,441	href="http://www.kegg.jp/dbget-bin/www_bget?K12905+1.13.11.72+R08864"	title="K12905 (phpD), 1.13.11.72, R08864" />
+			<area shape=rect	coords=462,431,508,448	href="http://www.kegg.jp/dbget-bin/www_bget?K00967+2.7.7.14+R04247"	title="K00967 (PCYT2), 2.7.7.14, R04247" />
+			<area shape=rect	coords=179,424,225,441	href="http://www.kegg.jp/dbget-bin/www_bget?K18049+1.13.11.73+R10191"	title="K18049 (mpnS), 1.13.11.73, R10191" />
+			<area shape=rect	coords=179,502,225,519	href="http://www.kegg.jp/dbget-bin/www_bget?K06164+K05780+K06165+K06166+2.7.8.37+R10185"	title="K06164 (phnI), K05780 (phnL), K06165 (phnH), K06166 (phnG), 2.7.8.37, R10185" />
+			<area shape=rect	coords=179,567,225,584	href="http://www.kegg.jp/dbget-bin/www_bget?K06162+3.6.1.63+R10186"	title="K06162 (phnM), 3.6.1.63, R10186" />
+			<area shape=rect	coords=179,630,225,647	href="http://www.kegg.jp/dbget-bin/www_bget?K06163+4.7.1.1+R10204"	title="K06163 (phnJ), 4.7.1.1, R10204" />
+			<area shape=rect	coords=143,174,189,191	href="http://www.kegg.jp/dbget-bin/www_bget?K19669+3.11.1.3+R08200"	title="K19669 (pphA), 3.11.1.3, R08200" />
+			<area shape=rect	coords=179,720,225,737	href="http://www.kegg.jp/dbget-bin/www_bget?K06167+3.1.4.55+R10205"	title="K06167 (phnP), 3.1.4.55, R10205" />
+			<area shape=rect	coords=115,689,161,706	href="http://www.kegg.jp/dbget-bin/www_bget?K20859+3.1.4.57+R10972"	title="K20859 (phnPP), 3.1.4.57, R10972" />
+			<area shape=rect	coords=114,746,160,763	href="http://www.kegg.jp/dbget-bin/www_bget?K20859+3.1.4.57+R10973"	title="K20859 (phnPP), 3.1.4.57, R10973" />
+			<area shape=rect	coords=488,728,534,745	href="http://www.kegg.jp/dbget-bin/www_bget?K20930+4.2.1.166+R11408"	title="K20930 (pmi), 4.2.1.166, R11408" />
+			<area shape=rect	coords=728,851,774,868	href="http://www.kegg.jp/dbget-bin/www_bget?K03823+2.3.1.183+R08938"	title="K03823 (pat), 2.3.1.183, R08938" />
+			<area shape=rect	coords=565,314,611,331	href="http://www.kegg.jp/dbget-bin/www_bget?K21196+K05915+1.13.11.78+R10722"	title="K21196 (phnZ), K05915 (phnZ1), 1.13.11.78, R10722" />
+			<area shape=rect	coords=462,255,508,272	href="http://www.kegg.jp/dbget-bin/www_bget?K09994+2.3.1.280+R11479"	title="K09994 (phnO), 2.3.1.280, R11479" />
+			<area shape=rect	coords=323,206,369,223	href="http://www.kegg.jp/dbget-bin/www_bget?K21934+2.3.3.19+R11708"	title="K21934 (frbC), 2.3.3.19, R11708" />
+			<area shape=rect	coords=240,314,286,331	href="http://www.kegg.jp/dbget-bin/www_bget?K00206+R04251"	title="K00206 (phnY), R04251" />
+			<area shape=rect	coords=228,475,274,492	href="http://www.kegg.jp/dbget-bin/www_bget?K23996+1.14.11.71+R12452"	title="K23996 (phnY), 1.14.11.71, R12452" />
+			<area shape=rect	coords=319,474,365,491	href="http://www.kegg.jp/dbget-bin/www_bget?K05915+1.13.11.89+R12451"	title="K05915 (phnZ1), 1.13.11.89, R12451" />
+			<area shape=rect	coords=462,452,508,469	href="http://www.kegg.jp/dbget-bin/www_bget?K25574+2.7.7.107+R04247"	title="K25574 (pntC), 2.7.7.107, R04247" />
+			<area shape=rect	coords=40,45,389,70	href="http://www.kegg.jp/dbget-bin/www_bget?map00440"	title="map00440: Phosphonate and phosphinate metabolism" />
+			<area shape=rect	coords=48,111,140,136	href="http://www.kegg.jp/kegg-bin/show_pathway?map00010"	title="map00010: Glycolysis / Gluconeogenesis" />
+			<area shape=rect	coords=111,836,220,870	href="http://www.kegg.jp/kegg-bin/show_pathway?map00030"	title="map00030: Pentose phosphate pathway" />
+			<area shape=rect	coords=758,305,882,339	href="http://www.kegg.jp/kegg-bin/show_pathway?map00260"	title="map00260: Glycine, serine and threonine metabolism" />
+</map>
+<div id="poplay" class="poplay" />
+
+</form>
+</body>
+</html>

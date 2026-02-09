@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html>
+ <!--
+ENTRY       map04723
+DEFINITION  Retrograde endocannabinoid signaling
+--->
+ <head>
+  <meta charset="utf-8"/>
+  <title>
+   KEGG PATHWAY: Retrograde endocannabinoid signaling - Reference pathway
+  </title>
+  <link href="/css/jquery-ui.css" rel="stylesheet"/>
+  <style type="text/css">
+   <!--
+
+html {
+	margin: 0px;
+	padding: 0px;
+	height: 100%;
+}
+
+body {
+	margin: 0px;
+	padding: 8px;
+	height: calc(100% - 16px);
+}
+
+h1.page-title {
+	font-size: 14px;
+	margin: 0px;
+	white-space: nowrap;
+}
+h1.page-title * {
+	vertical-align: middle;
+}
+
+input, select {
+	margin: 0px;
+}
+
+.hidden {
+	display: none !important;
+}
+
+/** navigation start **/
+.nav {
+	padding: 3px 0px 5px 0px;
+	position: relative;
+	min-width: 600px;
+	max-width: 800px;
+	background: #fff;
+}
+
+.nav form {
+	margin: 5px 0px 0px 0px;
+}
+
+.nav .help {
+	display: inline-block;
+	position: relative;
+	left: 20px;
+/*
+	position: absolute;
+	bottom: 5px;
+	right: 0px;
+*/
+}
+/** navigation end **/
+
+#biosynthesis {
+	margin-left: 75px;
+	margin-top: -12px;
+	margin-bottom: 10px;
+	max-width: 800px;
+}
+
+#description {
+	padding: 10px;
+	max-width: 800px;
+}
+
+#waiting-circle {
+	position: fixed;
+	top: 10px;
+	right: 10px;
+	display: none;
+}
+
+#controlPanel {
+	top: 0px;
+	left: 0px;
+	width: 220px;
+	background: #ffffff;
+	padding: 0px 0px 0px 0px;
+	white-space: nowrap;
+	overflow: auto;
+	position: fixed;
+	border: solid 1px #999999;
+	display: none;
+}
+
+#controlPanel.closed {
+	border: none;
+	padding: 0px 0px 0px 0px;
+	background: transparent;
+
+	/* jQuery-UI resizale.disabled() の実行で
+	 *      色が薄くなるのを打ち消す */
+	opacity: 1.0;
+}
+
+/** div.row start **/
+
+div.row {
+	margin-top: 2px;
+	margin-bottom: 2px;
+	/* 以下のwidth,overflowの定義で.rowのブロック内で横スクロールする。 */
+	/*
+	width: 98%;
+	overflow: auto;
+	*/
+}
+
+div.row * {
+	vertical-align: middle;
+}
+
+div.row.disabled * {
+	color: gray;
+}
+
+/* 横に並べる場合(title可変幅) start */
+
+.row.scale input {
+	width: 110px;
+}
+
+.row.scale .label {
+	font-size: 0.9em;
+}
+
+/* 横に並べる場合(title可変幅) end */
+
+
+/* Search欄の検索結果 start */
+
+div.row.result > div {
+	margin: 5px 1px 2px 1px;
+}
+
+/* Search欄の検索結果 end */
+
+/**  div.row end **/
+
+#controlPanel h5 {
+  margin: 0px;
+	padding: 5px 0px 5px 10px;
+	vertical-align: middle;
+	border-top: solid 1px #cccccc;
+	border-bottom: solid 1px #cccccc;
+	background: #eeeeee;
+	/* ui-iconの位置調整のために必要 */
+	position: relative;
+}
+
+#controlPanel h5::before {
+	content: url(/Fig/get_htext/open.png);
+	margin: 0px 5px 0px 0px;
+}
+
+#controlPanel h5.closed::before {
+	content: url(/Fig/get_htext/close.png);
+	margin: 0px 5px 0px 0px;
+}
+
+#controlPanel h5:first-child {
+	border-top: none;
+}
+
+#controlPanel h5:hover {
+	cursor: pointer;
+}
+
+#controlPanel h5  + div {
+	padding: 5px 0px 5px 10px;
+}
+
+#controlPanel h5 .ui-icon {
+	display: inline-block;
+	position: absolute;
+	right: 5px;
+	top: 50%;
+	margin-top: -8px;
+	cursor: pointer;
+}
+
+button {
+	/* Safariでボタンの周りに入る余白を削除 */
+	margin: 0px;
+	padding: 0px;
+	/* ボタンを押した時に表示されるボーダーを非表示にする */
+	outline: none;
+}
+
+button.close, button.open {
+	border: none;
+	padding: 0px;
+	position: absolute;
+	right: 5px;
+	top: 7px;
+}
+
+button.close {
+	/* コントロールパネルに合わせて初期は非表示 */
+	display: none;
+}
+
+button:hover {
+	cursor: pointer;
+}
+
+button img {
+	/* 画像の下に入る余白を無くす */
+	display: block;
+}
+
+/** tree style start **/
+ul.tree, ul.tree ul {
+	padding: 0px;
+	margin: 0px;
+	list-style-type: none;
+}
+
+ul.tree ul {
+	padding-left: 12px;
+}
+
+ul.tree .class-A > span {
+	font-weight: bold;
+}
+
+ul.tree li {
+	margin: 3px 0px 3px 0px;
+}
+
+.module-tree .module.disabled {
+	display: none;
+}
+
+.module-tree .classification.disabled {
+	display: none;
+}
+
+/** tree style > User data start **/
+ul.mappers {
+	padding: 0px;
+	margin: 0px;
+	list-style-type: none;
+}
+
+ul.mappers li {
+	position: relative;
+	margin: 5px 0px 2px 0px;
+}
+
+ul.mappers li .ui-icon {
+	display: inline-block;
+	position: absolute;
+	top: 50%;
+	margin-top: -8px;
+}
+ul.mappers li .ui-icon:hover {
+	cursor: pointer;
+}
+ul.mappers li .ui-icon-trash {
+	right: 5px;
+}
+ul.mappers li .ui-icon-document {
+	right: 26px;
+}
+/** tree style > User data end **/
+
+/** tree style end **/
+
+.ui-icon.button {
+	display: inline-block;
+	cursor: pointer;
+}
+
+ul.simple {
+	margin: 0px;
+	padding: 0px;
+}
+ul.simple li {
+	list-style-type: none;
+}
+ul.simple li:not(:first-child) {
+	margin-top: 5px;
+}
+
+#download-menu {
+	padding: 10px !important;
+}
+#download-menu div:not(:first-child) {
+	margin-top: 5px;
+}
+
+//-->
+   body {font-size:12px; font-family:verdana,arial,helvetica,sans-serif; background-color:#ffffff}
+.text {font-size:12px; font-family:verdana,arial,helvetica,sans-serif}
+b {font-size:12px; font-weight:bold; font-family:verdana,arial,helvetica,sans-serif}
+th {font-size:12px; font-weight:bold; font-family:verdana,arial,helvetica,sans-serif}
+td {font-size:12px; font-family:verdana,arial,helvetica,sans-serif}
+input {font-size:12px; font-family:verdana,arial,helvetica,sans-serif}
+select {font-size:12px; font-family:verdana,arial,helvetica,sans-serif}
+a {text-decoration:none}
+a:link {color:#003399}
+a:visited {color:#003399}
+a:hover {color:#33cc99}
+font.title3 {color: #005050; font-size:14px; font-weight:bold; font-family:verdana,arial,helvetica,sans-serif}
+hr.frame0 {border: 1px solid #f5e05f; color: #f5e05f}
+  </style>
+  <script src="/js/jquery-3.1.0.min.js">
+  </script>
+  <script src="/js/jquery-ui.js">
+  </script>
+  <script src="/js/jquery.balloon.min.js">
+  </script>
+  <script src="/js/lz-string.min.js">
+  </script>
+  <script src="/kegg-bin/get_data.cgi?data=0021&amp;id=show_pathway.merged.js&amp;v2.11">
+  </script>
+  <script type="text/javascript">
+   <!--
+
+// common variable
+const env = {
+	       mapno: '04723',
+	         org: 'map',
+	       entry: 'map04723',
+	       scale: 1,
+	 colorModule: '',
+	personalConf: '',
+}
+
+// HELP button
+function btn(bobj,img) { bobj.src = "/Fig/bget/button_" + img + ".gif"; }
+
+//-->
+  </script>
+  <link href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB3klEQVR4AXSTA8wdQRSFv9q2bdu2bbth7QZF9ILatm3btvvbtnWS7D5/ye744szcbKdzzMnAhtVji/C7TUtE7VdvKfn8BmK+d3tckR1gY+XnOKLDMjS3T4g+ag3zdm3A8fD6k1GIFqNjSJg0kUk7AvXR9MwNev856mTIKQVx4Xx2jvfcgUCr2dQCBSAxMjdnVhRn561SSovsOCAPOqwD+hJTcvPtR3G1EAt5iyaT1CYvRupOBuruuYcwDk9/PIP3e3Pz719BKIhgVJcQDHLaaiCx5EGetPnowfK8u1uIfoUg9FEuvlHc5S2YNJ+ZbM5GeRTgwNpCLOl52pxXJLNHVdCHcNKgRo1YiAfyw8cLBRETh/rToE44TYfFmrm7jEDhG0jpXTWHU2VjRwyKlIlj5lRPdp/xszegMPQ1Cm1G3lzJ2HLCqxsSD7lJB0X34kthDKSf3TvQQ5Enbf72qzhKKW/OZDPOqKACXLYUci/imUelUP6iQd1wu4gSk3ObuojKteQXcqp4VDCh7fvxO8bC/csPOD54B7Z8e1cc3YArcqpgHPM+saUbewotpVZ4AkVeNOfPhcrktclbzCWE9TGTyYkD46o8QEb0BuZ79yEYE7uy3njrObSHTAAAAP//AwCnC723w5oqxAAAAABJRU5ErkJggg==" rel="icon" type="image/png"/>
+ </head>
+ <body>
+  <!-- header logo start -->
+  <h1 class="page-title">
+   <a href="https://www.genome.jp/kegg/pathway.html" target="_blank">
+    <img alt="KEGG" border="0" src="data: image/gif;base64,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"/>
+   </a>
+   Retrograde endocannabinoid signaling - Reference pathway
+  </h1>
+  <!-- header logo end -->
+  <!-- page navigation start -->
+  <div class="nav">
+   [
+   <a href="https://www.genome.jp/brite/query=04723&amp;htext=br08901.keg&amp;option=-a&amp;node_proc=br08901_org&amp;proc_enabled=map&amp;panel=collapse" id="navPathwayMenu" target="_blank">
+    Pathway menu
+   </a>
+   |
+   <a href="https://www.genome.jp/brite/htext=br08611&amp;zoomout=E&amp;brel=off&amp;hier=10&amp;pruning=join_brite&amp;func=org2pathway-s-lp2~_3+04723" id="navOrganismMenu" target="_blank">
+    Organism menu
+   </a>
+   |
+   <a href="https://www.genome.jp/entry/pathway+map04723" id="navPathwayEntry" target="_blank">
+    Pathway entry
+   </a>
+   |
+   <a href="#description" id="descLink" target="_blank">
+    Show description
+   </a>
+   |
+   <a href="#" id="downloadMenu" target="_blank">
+    Download
+   </a>
+   |
+   <a href="https://www.genome.jp/kegg/document/help_pathway.html" target="_blank">
+    Help
+   </a>
+   ]
+   <div class="hidden" id="description">
+    Endogenous cannabinoids (endocannabinoids) serve as retrograde messengers at synapses in various regions of the brain. The family of endocannabinoids includes at least five derivatives of arachidonic acid; the two best characterized are arachydonoyl ethanolamide (anandamide, AEA) and 2-arachydonoil glycerol (2AG). They are released from postsynaptic neurons upon postsynaptic depolarization and/or receptor activation. The released endocannabinoids then activate the CB1 receptors (CB1R) at presynaptic terminals and suppress the release of inhibitory transmitter GABA (depolarization-induced suppression of inhibition, DSI) or excitatory transmitter glutamate (depolarization-induced suppression of excitation, DSE) by inhibiting Ca2+ channels. Besides the well-known expression of the CB1R in the plasma membrane, this receptor is also present in mitochondrial membranes, where it reduces the mitochondrial respiration and contributes to DSI. Whereas DSI and DSE result in short-term synaptic plasticity, endocannabinoids also mediate long-term synaptic changes (eCB-LTD). Persistent activation of CB1 receptors over a period of minutes triggers eCB-LTD by a RIM1alpha-dependent mechanism.
+   </div>
+   <!-- organism list start -->
+   <!-- organism list end -->
+  </div>
+  <!-- page navigation end -->
+  <!-- pathway image start -->
+  <div class="image-block" style="position:static;">
+   <img border="0" data-srcset="/kegg/pathway/map/map04723.png 1x, /kegg/pathway/map/map04723@2x.png 2x" id="pathwayimage" src="ko04723.png" srcset="ko04723.png 1x" usemap="#mapdata" width="1075"/>
+   <map data-scale="1" id="mapdata" name="mapdata">
+    <area class="original" coords="893,282,4" data-coords="893,282,4" data-entry="C01245" href="https://www.genome.jp/entry/C01245" id="E0707438" shape="circle" target="_blank" title="C01245 (D-myo-Inositol 1,4,5-trisphosphate)"/>
+    <area class="original" coords="875,438,4" data-coords="875,438,4" data-entry="C00165" href="https://www.genome.jp/entry/C00165" id="F0707DED" shape="circle" target="_blank" title="C00165 (Diacylglycerol)"/>
+    <area class="original" coords="984,254,4" data-coords="984,254,4" data-entry="C00076" href="https://www.genome.jp/entry/C00076" id="E7708D10" shape="circle" target="_blank" title="C00076 (Calcium cation)"/>
+    <area class="original" coords="573,340,4" data-coords="573,340,4" data-entry="C00076" href="https://www.genome.jp/entry/C00076" id="DE702DF2" shape="circle" target="_blank" title="C00076 (Calcium cation)"/>
+    <area class="original" coords="600,171,4" data-coords="600,171,4" data-entry="C00076" href="https://www.genome.jp/entry/C00076" id="D0703C52" shape="circle" target="_blank" title="C00076 (Calcium cation)"/>
+    <area class="original" coords="829,813,4" data-coords="829,813,4" data-entry="C00076" href="https://www.genome.jp/entry/C00076" id="FF709166" shape="circle" target="_blank" title="C00076 (Calcium cation)"/>
+    <area class="original" coords="449,623,4" data-coords="449,623,4" data-entry="C13856" href="https://www.genome.jp/entry/C13856" id="FF70239D" shape="circle" target="_blank" title="C13856 (2-Arachidonoylglycerol)"/>
+    <area class="original" coords="677,624,4" data-coords="677,624,4" data-entry="C13856" href="https://www.genome.jp/entry/C13856" id="F67055E8" shape="circle" target="_blank" title="C13856 (2-Arachidonoylglycerol)"/>
+    <area class="original" coords="738,438,4" data-coords="738,438,4" data-entry="C13856" href="https://www.genome.jp/entry/C13856" id="FF706489" shape="circle" target="_blank" title="C13856 (2-Arachidonoylglycerol)"/>
+    <area class="original" coords="522,254,4" data-coords="522,254,4" data-entry="C00025" href="https://www.genome.jp/entry/C00025" id="DD70287A" shape="circle" target="_blank" title="C00025 (L-Glutamate)"/>
+    <area class="original" coords="756,995,4" data-coords="756,995,4" data-entry="C00334" href="https://www.genome.jp/entry/C00334" id="F2707DD9" shape="circle" target="_blank" title="C00334 (4-Aminobutanoate)"/>
+    <area class="original" coords="848,946,4" data-coords="848,946,4" data-entry="C00689" href="https://www.genome.jp/entry/C00689" id="FD7096A7" shape="circle" target="_blank" title="C00689 (alpha,alpha'-Trehalose 6-phosphate)"/>
+    <area class="original" coords="378,311,4" data-coords="378,311,4" data-entry="C00025" href="https://www.genome.jp/entry/C00025" id="F86FFBE3" shape="circle" target="_blank" title="C00025 (L-Glutamate)"/>
+    <area class="original" coords="631,908,4" data-coords="631,908,4" data-entry="C00334" href="https://www.genome.jp/entry/C00334" id="DC70647A" shape="circle" target="_blank" title="C00334 (4-Aminobutanoate)"/>
+    <area class="original" coords="603,236,4" data-coords="603,236,4" data-entry="C01330" href="https://www.genome.jp/entry/C01330" id="E470413E" shape="circle" target="_blank" title="C01330 (Sodium cation)"/>
+    <area class="original" coords="918,485,4" data-coords="918,485,4" data-entry="C00427" href="https://www.genome.jp/entry/C00427" id="FC709670" shape="circle" target="_blank" title="C00427 (Prostaglandin H2)"/>
+    <area class="original" coords="348,498,4" data-coords="348,498,4" data-entry="C00219" href="https://www.genome.jp/entry/C00219" id="FF7000C0" shape="circle" target="_blank" title="C00219 (Arachidonate)"/>
+    <area class="original" coords="383,497,4" data-coords="383,497,4" data-entry="C00116" href="https://www.genome.jp/entry/C00116" id="E5700124" shape="circle" target="_blank" title="C00116 (Glycerol)"/>
+    <area class="original" coords="713,510,4" data-coords="713,510,4" data-entry="C00219" href="https://www.genome.jp/entry/C00219" id="DE70694D" shape="circle" target="_blank" title="C00219 (Arachidonate)"/>
+    <area class="original" coords="753,510,4" data-coords="753,510,4" data-entry="C00116" href="https://www.genome.jp/entry/C00116" id="DE7069B1" shape="circle" target="_blank" title="C00116 (Glycerol)"/>
+    <area class="original" coords="604,534,4" data-coords="604,534,4" data-entry="C11695" href="https://www.genome.jp/entry/C11695" id="E770503E" shape="circle" target="_blank" title="C11695 (Anandamide)"/>
+    <area class="original" coords="778,546,4" data-coords="778,546,4" data-entry="C00219" href="https://www.genome.jp/entry/C00219" id="FD7069F2" shape="circle" target="_blank" title="C00219 (Arachidonate)"/>
+    <area class="original" coords="780,517,4" data-coords="780,517,4" data-entry="C00189" href="https://www.genome.jp/entry/C00189" id="D67069FC" shape="circle" target="_blank" title="C00189 (Ethanolamine)"/>
+    <area class="original" coords="754,367,4" data-coords="754,367,4" data-entry="C19912" href="https://www.genome.jp/entry/C19912" id="EA705FCA" shape="circle" target="_blank" title="C19912 (N-Arachidonoyl-phosphatidylethanolamine)"/>
+    <area class="original" coords="677,366,4" data-coords="677,366,4" data-entry="C11695" href="https://www.genome.jp/entry/C11695" id="F87046FC" shape="circle" target="_blank" title="C11695 (Anandamide)"/>
+    <area class="original" coords="494,646,4" data-coords="494,646,4" data-entry="C11695" href="https://www.genome.jp/entry/C11695" id="E9702424" shape="circle" target="_blank" title="C11695 (Anandamide)"/>
+    <area class="original" coords="828,361,4" data-coords="828,361,4" data-entry="C00157" href="https://www.genome.jp/entry/C00157" id="F870787F" shape="circle" target="_blank" title="C00157 (Phosphatidylcholine)"/>
+    <area class="original" coords="828,374,4" data-coords="828,374,4" data-entry="C00350" href="https://www.genome.jp/entry/C00350" id="FB707884" shape="circle" target="_blank" title="C00350 (Phosphatidylethanolamine)"/>
+    <area class="original" coords="634,646,4" data-coords="634,646,4" data-entry="C11695" href="https://www.genome.jp/entry/C11695" id="E970558E" shape="circle" target="_blank" title="C11695 (Anandamide)"/>
+    <area class="original" coords="490,472,4" data-coords="490,472,4" data-entry="C00238" href="https://www.genome.jp/entry/C00238" id="D1701A33" shape="circle" target="_blank" title="C00238 (Potassium cation)"/>
+    <area class="original" coords="751,770,4" data-coords="751,770,4" data-entry="C00238" href="https://www.genome.jp/entry/C00238" id="D47073CF" shape="circle" target="_blank" title="C00238 (Potassium cation)"/>
+    <area class="original" coords="335,462,4" data-coords="335,462,4" data-entry="C00575" href="https://www.genome.jp/entry/C00575" id="EA700098" shape="circle" target="_blank" title="C00575 (3',5'-Cyclic AMP)"/>
+    <area class="original" coords="581,816,4" data-coords="581,816,4" data-entry="C00575" href="https://www.genome.jp/entry/C00575" id="DA7046FC" shape="circle" target="_blank" title="C00575 (3',5'-Cyclic AMP)"/>
+    <area class="original" coords="206,254,4" data-coords="206,254,4" data-entry="C00025" href="https://www.genome.jp/entry/C00025" id="F16FDD48" shape="circle" target="_blank" title="C00025 (L-Glutamate)"/>
+    <area class="original" coords="447,990,4" data-coords="447,990,4" data-entry="C00334" href="https://www.genome.jp/entry/C00334" id="F27032C0" shape="circle" target="_blank" title="C00334 (4-Aminobutanoate)"/>
+    <area class="original" coords="716,399,4" data-coords="716,399,4" data-entry="C19913" href="https://www.genome.jp/entry/C19913" id="F6705F75" shape="circle" target="_blank" title="C19913 (Phospho-anandamide)"/>
+    <area class="original" coords="419,816,4" data-coords="419,816,4" data-entry="C11695" href="https://www.genome.jp/entry/C11695" id="02702D52" shape="circle" target="_blank" title="C11695 (Anandamide)"/>
+    <area class="original" coords="389,814,4" data-coords="389,814,4" data-entry="C13856" href="https://www.genome.jp/entry/C13856" id="00701501" shape="circle" target="_blank" title="C13856 (2-Arachidonoylglycerol)"/>
+    <area class="original" coords="301,913,4" data-coords="301,913,4" data-entry="C00575" href="https://www.genome.jp/entry/C00575" id="D7701934" shape="circle" target="_blank" title="C00575 (3',5'-Cyclic AMP)"/>
+    <area class="original" coords="0,0,0" data-coords="0,0,0" data-entry="C11695" href="https://www.genome.jp/entry/C11695" id="6DC7A106" shape="circle" target="_blank" title="C11695 (Anandamide)"/>
+    <area class="original" coords="0,0,0" data-coords="0,0,0" data-entry="C13856" href="https://www.genome.jp/entry/C13856" id="6DC7A106" shape="circle" target="_blank" title="C13856 (2-Arachidonoylglycerol)"/>
+    <area class="original" coords="0,0,0" data-coords="0,0,0" data-entry="C00575" href="https://www.genome.jp/entry/C00575" id="6DC7A106" shape="circle" target="_blank" title="C00575 (3',5'-Cyclic AMP)"/>
+    <area class="original" coords="404,357,4" data-coords="404,357,4" data-entry="C11695" href="https://www.genome.jp/entry/C11695" id="EA701448" shape="circle" target="_blank" title="C11695 (Anandamide)"/>
+    <area class="original" coords="385,374,4" data-coords="385,374,4" data-entry="C13856" href="https://www.genome.jp/entry/C13856" id="EC6FFC1A" shape="circle" target="_blank" title="C13856 (2-Arachidonoylglycerol)"/>
+    <area class="original" coords="223,246,269,263" data-coords="223,246,269,263" href="https://www.genome.jp/entry/K12302" id="65A7A8D1" shape="rect" target="_blank" title="K12302 (SLC17A6_7_8)"/>
+    <area class="original" coords="701,303,747,320" data-coords="701,303,747,320" href="https://www.genome.jp/entry/K04634" id="3AA646F6" shape="rect" target="_blank" title="K04634 (GNAQ)"/>
+    <area class="original" coords="806,303,852,320" data-coords="806,303,852,320" href="https://www.genome.jp/entry/K05858" id="B0AD9F00" shape="rect" target="_blank" title="K05858 (PLCB)"/>
+    <area class="original" coords="918,248,964,265" data-coords="918,248,964,265" href="https://www.genome.jp/entry/K04958+K04959+K04960" id="2BB8A66F" shape="rect" target="_blank" title="K04958 (ITPR1), K04959 (ITPR2), K04960 (ITPR3)"/>
+    <area class="original" coords="920,429,966,446" data-coords="920,429,966,446" href="https://www.genome.jp/entry/K02677+K19662+K19663" id="5EB7ACD2" shape="rect" target="_blank" title="K02677 (PRKCA), K19662 (PRKCB), K19663 (PRKCG)"/>
+    <area class="original" coords="506,332,552,349" data-coords="506,332,552,349" href="https://www.genome.jp/entry/K04344+K04849" id="88A85677" shape="rect" target="_blank" title="K04344 (CACNA1A), K04849 (CACNA1B)"/>
+    <area class="original" coords="618,163,664,180" data-coords="618,163,664,180" href="https://www.genome.jp/entry/K04850+K04851+K04853+K04857" id="9EB2D264" shape="rect" target="_blank" title="K04850 (CACNA1C), K04851 (CACNA1D), K04853 (CACNA1F), K04857 (CACNA1S)"/>
+    <area class="original" coords="842,464,888,481" data-coords="842,464,888,481" href="https://www.genome.jp/entry/K11987" id="D6C347A8" shape="rect" target="_blank" title="K11987 (PTGS2)"/>
+    <area class="original" coords="877,938,923,955" data-coords="877,938,923,955" href="https://www.genome.jp/entry/K05175+K05181+K05186+K05184+K05185+K05192+K05189+K05190" id="B5A4A993" shape="rect" target="_blank" title="K05175 (GABRA), K05181 (GABRB), K05186 (GABRG), K05184 (GABRD), K05185 (GABRE), K05192 (GABRQ), K05189 (GABRP), K05190 (GABRR)"/>
+    <area class="original" coords="444,578,490,595" data-coords="444,578,490,595" href="https://www.genome.jp/entry/K04277" id="21BFDD2F" shape="rect" target="_blank" title="K04277 (CNR1)"/>
+    <area class="original" coords="627,669,673,686" data-coords="627,669,673,686" href="https://www.genome.jp/entry/K04277" id="BCBA46D5" shape="rect" target="_blank" title="K04277 (CNR1)"/>
+    <area class="original" coords="765,806,811,823" data-coords="765,806,811,823" href="https://www.genome.jp/entry/K04344+K04849" id="8399ABA6" shape="rect" target="_blank" title="K04344 (CACNA1A), K04849 (CACNA1B)"/>
+    <area class="original" coords="445,524,491,541" data-coords="445,524,491,541" href="https://www.genome.jp/entry/K04630+K04534+K04536+K04537+K07825+K04538+K04539+K07826+K04540+K04541+K04542+K04543+K04544+K04545+K04546+K04347+K04547+K04548+K04549" id="3ABADBBE" shape="rect" target="_blank" title="K04630 (GNAI), K04534 (GNAO), K04536 (GNB1), K04537 (GNB2), K07825 (GNB3), K04538 (GNB4), K04539 (GNB5), K07826 (GNG2), K04540 (GNG3), K04541 (GNG4), K04542 (GNG5), K04543 (GNG7), K04544 (GNG8), K04545 (GNG10), K04546 (GNG11), K04347 (GNG12), K04547 (GNG13), K04548 (GNGT1), K04549 (GNGT2)"/>
+    <area class="original" coords="627,718,673,735" data-coords="627,718,673,735" href="https://www.genome.jp/entry/K04630+K04534+K04536+K04537+K07825+K04538+K04539+K07826+K04540+K04541+K04542+K04543+K04544+K04545+K04546+K04347+K04547+K04548+K04549" id="A4B5C064" shape="rect" target="_blank" title="K04630 (GNAI), K04534 (GNAO), K04536 (GNB1), K04537 (GNB2), K07825 (GNB3), K04538 (GNB4), K04539 (GNB5), K07826 (GNG2), K04540 (GNG3), K04541 (GNG4), K04542 (GNG5), K04543 (GNG7), K04544 (GNG8), K04545 (GNG10), K04546 (GNG11), K04347 (GNG12), K04547 (GNG13), K04548 (GNGT1), K04549 (GNGT2)"/>
+    <area class="original" coords="618,303,664,320" data-coords="618,303,664,320" href="https://www.genome.jp/entry/K04603+K04604" id="A0ADC976" shape="rect" target="_blank" title="K04603 (GRM1), K04604 (GRM5)"/>
+    <area class="original" coords="781,442,827,459" data-coords="781,442,827,459" href="https://www.genome.jp/entry/K13806" id="279FE272" shape="rect" target="_blank" title="K13806 (DAGL)"/>
+    <area class="original" coords="370,525,416,542" data-coords="370,525,416,542" href="https://www.genome.jp/entry/K01054" id="E2908C02" shape="rect" target="_blank" title="K01054 (MGLL)"/>
+    <area class="original" coords="682,459,728,476" data-coords="682,459,728,476" href="https://www.genome.jp/entry/K13700" id="4E9F73F4" shape="rect" target="_blank" title="K13700 (ABHD6)"/>
+    <area class="original" coords="471,982,517,999" data-coords="471,982,517,999" href="https://www.genome.jp/entry/K15015" id="1D99FFF5" shape="rect" target="_blank" title="K15015 (SLC32A)"/>
+    <area class="original" coords="618,229,664,246" data-coords="618,229,664,246" href="https://www.genome.jp/entry/K05197+K05198+K05199+K05200" id="35AF5375" shape="rect" target="_blank" title="K05197 (GRIA1), K05198 (GRIA2), K05199 (GRIA3), K05200 (GRIA4)"/>
+    <area class="original" coords="505,464,551,481" data-coords="505,464,551,481" href="https://www.genome.jp/entry/K04997+K05000+K05002+K04999" id="3EACC7EE" shape="rect" target="_blank" title="K04997 (KCNJ3), K05000 (KCNJ6), K05002 (KCNJ9), K04999 (KCNJ5)"/>
+    <area class="original" coords="367,453,413,470" data-coords="367,453,413,470" href="https://www.genome.jp/entry/K08041+K08042+K08043+K08044+K08045+K08046+K08047+K08048+K08049" id="1A92FD1C" shape="rect" target="_blank" title="K08041 (ADCY1), K08042 (ADCY2), K08043 (ADCY3), K08044 (ADCY4), K08045 (ADCY5), K08046 (ADCY6), K08047 (ADCY7), K08048 (ADCY8), K08049 (ADCY9)"/>
+    <area class="original" coords="257,454,303,471" data-coords="257,454,303,471" href="https://www.genome.jp/entry/K04345" id="2E8B8AAB" shape="rect" target="_blank" title="K04345 (PKA)"/>
+    <area class="original" coords="765,760,811,777" data-coords="765,760,811,777" href="https://www.genome.jp/entry/K04997+K05000+K05002+K04999" id="EC9E358F" shape="rect" target="_blank" title="K04997 (KCNJ3), K05000 (KCNJ6), K05002 (KCNJ9), K04999 (KCNJ5)"/>
+    <area class="original" coords="693,541,739,558" data-coords="693,541,739,558" href="https://www.genome.jp/entry/K15528" id="04A2F9E8" shape="rect" target="_blank" title="K15528 (FAAH)"/>
+    <area class="original" coords="698,343,744,360" data-coords="698,343,744,360" href="https://www.genome.jp/entry/K13985" id="A5A7DEF2" shape="rect" target="_blank" title="K13985 (NAPEPLD)"/>
+    <area class="original" coords="502,807,548,824" data-coords="502,807,548,824" href="https://www.genome.jp/entry/K08041+K08042+K08043+K08044+K08045+K08046+K08047+K08048+K08049" id="16A3DEFB" shape="rect" target="_blank" title="K08041 (ADCY1), K08042 (ADCY2), K08043 (ADCY3), K08044 (ADCY4), K08045 (ADCY5), K08046 (ADCY6), K08047 (ADCY7), K08048 (ADCY8), K08049 (ADCY9)"/>
+    <area class="original" coords="614,807,660,824" data-coords="614,807,660,824" href="https://www.genome.jp/entry/K04345" id="15B02A71" shape="rect" target="_blank" title="K04345 (PKA)"/>
+    <area class="original" coords="602,770,648,787" data-coords="602,770,648,787" href="https://www.genome.jp/entry/K04371+K04440+K04441" id="6BABD961" shape="rect" target="_blank" title="K04371 (ERK), K04440 (JNK), K04441 (P38)"/>
+    <area class="original" coords="728,943,774,960" data-coords="728,943,774,960" href="https://www.genome.jp/entry/K15291" id="ABBC2CDB" shape="rect" target="_blank" title="K15291 (RIMS1)"/>
+    <area class="original" coords="430,420,476,437" data-coords="430,420,476,437" href="https://www.genome.jp/entry/K04371+K04440+K04441" id="64AF7B3E" shape="rect" target="_blank" title="K04371 (ERK), K04440 (JNK), K04441 (P38)"/>
+    <area class="original" coords="365,942,411,959" data-coords="365,942,411,959" href="https://www.genome.jp/entry/K03878+K03879+K03880+K03881+K03882+K03883+K03884+K03942+K03943+K03944+K03945+K03946+K03947+K03948+K03949+K03950+K03951+K03952+K03953+K03954+K03955+K03956+K11352+K11353+K03957+K03958+K03959+K03960+K03961+K03962+K03963+K03964+K03965+K03966+K11351+K03934+K03935+K03936+K03937+K03938+K03939+K03940+K03941+K03967+K03968" id="0C936C9A" shape="rect" target="_blank" title="K03878 (ND1), K03879 (ND2), K03880 (ND3), K03881 (ND4), K03882 (ND4L), K03883 (ND5), K03884 (ND6), K03942 (NDUFV1), K03943 (NDUFV2), K03944 (NDUFV3), K03945 (NDUFA1), K03946 (NDUFA2), K03947 (NDUFA3), K03948 (NDUFA4), K03949 (NDUFA5), K03950 (NDUFA6), K03951 (NDUFA7), K03952 (NDUFA8), K03953 (NDUFA9), K03954 (NDUFA10), K03955 (NDUFAB1), K03956 (NDUFA11), K11352 (NDUFA12), K11353 (NDUFA13), K03957 (NDUFB1), K03958 (NDUFB2), K03959 (NDUFB3), K03960 (NDUFB4), K03961 (NDUFB5), K03962 (NDUFB6), K03963 (NDUFB7), K03964 (NDUFB8), K03965 (NDUFB9), K03966 (NDUFB10), K11351 (NDUFB11), K03934 (NDUFS1), K03935 (NDUFS2), K03936 (NDUFS3), K03937 (NDUFS4), K03938 (NDUFS5), K03939 (NDUFS6), K03940 (NDUFS7), K03941 (NDUFS8), K03967 (NDUFC1), K03968 (NDUFC2)"/>
+    <area class="original" coords="365,859,411,876" data-coords="365,859,411,876" href="https://www.genome.jp/entry/K04630+K04534+K04536+K04537+K07825+K04538+K04539+K07826+K04540+K04541+K04542+K04543+K04544+K04545+K04546+K04347+K04547+K04548+K04549" id="BA94ED17" shape="rect" target="_blank" title="K04630 (GNAI), K04534 (GNAO), K04536 (GNB1), K04537 (GNB2), K07825 (GNB3), K04538 (GNB4), K04539 (GNB5), K07826 (GNG2), K04540 (GNG3), K04541 (GNG4), K04542 (GNG5), K04543 (GNG7), K04544 (GNG8), K04545 (GNG10), K04546 (GNG11), K04347 (GNG12), K04547 (GNG13), K04548 (GNGT1), K04549 (GNGT2)"/>
+    <area class="original" coords="379,842,425,859" data-coords="379,842,425,859" href="https://www.genome.jp/entry/K04277" id="FF980610" shape="rect" target="_blank" title="K04277 (CNR1)"/>
+    <area class="original" coords="325,885,371,902" data-coords="325,885,371,902" href="https://www.genome.jp/entry/K08041+K08042+K08043+K08044+K08045+K08046+K08047+K08048+K08049" id="52ABE0CA" shape="rect" target="_blank" title="K08041 (ADCY1), K08042 (ADCY2), K08043 (ADCY3), K08044 (ADCY4), K08045 (ADCY5), K08046 (ADCY6), K08047 (ADCY7), K08048 (ADCY8), K08049 (ADCY9)"/>
+    <area class="original" coords="300,930,346,947" data-coords="300,930,346,947" href="https://www.genome.jp/entry/K04345" id="64A17468" shape="rect" target="_blank" title="K04345 (PKA)"/>
+    <area class="original" coords="0,0,1,1" data-coords="0,0,1,1" href="https://www.genome.jp/entry/K04630+K04534+K04536+K04537+K07825+K04538+K04539+K07826+K04540+K04541+K04542+K04543+K04544+K04545+K04546+K04347+K04547+K04548+K04549" id="2168170D" shape="rect" target="_blank" title="K04630 (GNAI), K04534 (GNAO), K04536 (GNB1), K04537 (GNB2), K07825 (GNB3), K04538 (GNB4), K04539 (GNB5), K07826 (GNG2), K04540 (GNG3), K04541 (GNG4), K04542 (GNG5), K04543 (GNG7), K04544 (GNG8), K04545 (GNG10), K04546 (GNG11), K04347 (GNG12), K04547 (GNG13), K04548 (GNGT1), K04549 (GNGT2)"/>
+    <area class="original" coords="0,0,1,1" data-coords="0,0,1,1" href="https://www.genome.jp/entry/K04277" id="2168170D" shape="rect" target="_blank" title="K04277 (CNR1)"/>
+    <area class="original" coords="0,0,1,1" data-coords="0,0,1,1" href="https://www.genome.jp/entry/K08041+K08042+K08043+K08044+K08045+K08046+K08047+K08048+K08049" id="2168170D" shape="rect" target="_blank" title="K08041 (ADCY1), K08042 (ADCY2), K08043 (ADCY3), K08044 (ADCY4), K08045 (ADCY5), K08046 (ADCY6), K08047 (ADCY7), K08048 (ADCY8), K08049 (ADCY9)"/>
+    <area class="original" coords="0,0,1,1" data-coords="0,0,1,1" href="https://www.genome.jp/entry/K04345" id="2168170D" shape="rect" target="_blank" title="K04345 (PKA)"/>
+    <area class="original" coords="322,346,368,363" data-coords="322,346,368,363" href="https://www.genome.jp/entry/K04277" id="EEAA91CC" shape="rect" target="_blank" title="K04277 (CNR1)"/>
+    <area class="original" coords="40,45,398,70" data-coords="40,45,398,70" data-entry="map04723" href="https://www.genome.jp/entry/map04723" id="37B7CEEC" shape="rect" target="_blank" title="map04723: Retrograde endocannabinoid signaling"/>
+    <area class="original" coords="324,235,430,269" data-coords="324,235,430,269" data-entry="map04721" href="https://www.genome.jp/pathway/map04721" id="D39AF254" shape="rect" target="_blank" title="map04721: Synaptic vesicle cycle"/>
+    <area class="original" coords="938,185,1044,219" data-coords="938,185,1044,219" data-entry="map04020" href="https://www.genome.jp/pathway/map04020" id="962C7BA3" shape="rect" target="_blank" title="map04020: Calcium signaling pathway"/>
+    <area class="original" coords="593,962,699,996" data-coords="593,962,699,996" data-entry="map04721" href="https://www.genome.jp/pathway/map04721" id="1CC47BE2" shape="rect" target="_blank" title="map04721: Synaptic vesicle cycle"/>
+    <area class="original" coords="86,393,192,427" data-coords="86,393,192,427" data-entry="map04724" href="https://www.genome.jp/pathway/map04724" id="93DB313E" shape="rect" target="_blank" title="map04724: Glutamatergic synapse"/>
+    <area class="original" coords="104,964,210,998" data-coords="104,964,210,998" data-entry="map04727" href="https://www.genome.jp/pathway/map04727" id="B79276E9" shape="rect" target="_blank" title="map04727: GABAergic synapse"/>
+    <area class="original" coords="310,976,416,1010" data-coords="310,976,416,1010" data-entry="map00190" href="https://www.genome.jp/pathway/map00190" id="8E72D8FC" shape="rect" target="_blank" title="map00190: Oxidative phosphorylation"/>
+   </map>
+   <map data-scale="1" id="module_mapdata" name="module_mapdata">
+   </map>
+  </div>
+  <!-- pathway image end -->
+  <!-- control panel start -->
+  <div id="controlPanel">
+   <div class="controller">
+    <div class="feature option">
+     <h5>
+      Option
+     </h5>
+     <div>
+      <div class="row scale">
+       <span class="title">
+        Scale:
+       </span>
+       <span class="content">
+        <input max="1" min="0.1" step="0.1" type="range" value="1"/>
+        <span class="label">
+         100%
+        </span>
+       </span>
+      </div>
+      <div class="row image-resolution hidden">
+       <span class="title">
+        Image resolution:
+       </span>
+       <span class="content">
+        <label>
+         <input type="checkbox" value="high"/>
+         High
+        </label>
+       </span>
+      </div>
+     </div>
+    </div>
+    <div class="feature search">
+     <h5>
+      Search
+     </h5>
+     <div>
+      <div class="row query">
+       <form>
+        <input autocomplete="off" name="query" style="width:130px;" type="text" value=""/>
+        <input type="submit" value="Go"/>
+        <span class="ui-icon button ui-icon-close clear-query hidden">
+        </span>
+       </form>
+      </div>
+      <div class="row result">
+      </div>
+     </div>
+    </div>
+    <div class="feature search-pathway">
+     <h5>
+      ID search
+      <span class="ui-icon ui-icon-plus">
+      </span>
+     </h5>
+     <div>
+      <form>
+       <div class="row" style="display:grid; grid-template-columns:135px 1fr; column-gap:5px;">
+        <div>
+         <textarea class="query" rows="2" style="width:130px; resize:none;"></textarea>
+        </div>
+        <div>
+         <input class="submit" type="submit" value="Go"/>
+         <span class="ui-icon button ui-icon-close clear-query hidden">
+         </span>
+        </div>
+       </div>
+      </form>
+      <div class="row personal hidden">
+       <ul class="mappers">
+       </ul>
+      </div>
+     </div>
+    </div>
+    <div class="feature color-pathway">
+     <h5>
+      Color
+      <span class="ui-icon ui-icon-plus">
+      </span>
+     </h5>
+     <div>
+      <div class="row personal hidden">
+       <ul class="mappers">
+       </ul>
+      </div>
+     </div>
+    </div>
+   </div>
+   <button class="close">
+    <img src="/Fig/left_triangle_12x12.png"/>
+   </button>
+   <button class="open">
+    <img src="/Fig/right_triangle_12x12.png"/>
+   </button>
+  </div>
+  <!-- control panel end -->
+  <form action="/kegg-bin/download" id="downloadForm" method="post">
+   <input name="name" type="hidden" value="map04723.png"/>
+   <input name="content" type="hidden"/>
+   <input name="dpi" type="hidden"/>
+   <input name="decode" type="hidden" value="base64"/>
+  </form>
+  <div id="waiting-circle">
+   <img src="/Fig/waiting-circle-small.gif"/>
+  </div>
+  <!-- pathway image url start -->
+  <form class="imageset" data-name="">
+   <input data-situation="1x" data-src="/kegg/pathway/map/map04723.png" name="image_normal" type="hidden" value="/kegg/pathway/map/map04723.png 1x"/>
+   <input data-situation="2x" data-src="/kegg/pathway/map/map04723@2x.png" name="image_normal" type="hidden" value="/kegg/pathway/map/map04723@2x.png 2x"/>
+  </form>
+  <!-- pathway image url end -->
+  <div id="download-menu" style="display:none;">
+   <!--<div><a id="downloadImageLink" href="#downloadImage">Image (png)</a></div>-->
+   <div>
+    <a class="downloadImageNx" data-scale="1" href="#downloadImage1x" target="_blank">
+     Image (png) file 1x
+    </a>
+   </div>
+   <div>
+    <a class="downloadImageNx" data-scale="2" href="#downloadImage2x" target="_blank">
+     Image (png) file 2x
+    </a>
+   </div>
+  </div>
+ </body>
+</html>

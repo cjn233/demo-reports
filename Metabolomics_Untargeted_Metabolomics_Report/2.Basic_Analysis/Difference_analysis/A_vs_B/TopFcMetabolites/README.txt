@@ -1,0 +1,8 @@
+TopFcMetabolites-------------------------------Corresponding group difference multiples ranked top N compound content difference graph
+├── *_vs_*_TopFcDistribution_Compounds.*-------Differential change up-regulated and down-regulated top 10 substance content differential dynamic distribution diagram of the corresponding group, showing the English name of the compound (pdf file or png file)
+├── *_vs_*_TopFcDistribution_Index.*-----------Differential change up-regulated and down-regulated top 10 substance content differential dynamic distribution diagram of the corresponding group, showing the metabolite ID of (pdf file or png file)
+├── *_vs_*_TopFcBarChart_Compounds.*-----------The bar graph of the top 10 substances with up-regulation and down-regulation in differential metabolites of the corresponding groups, showing the English name of the compound (pdf file or png file)
+├── *_vs_*_TopFcBarChart_Index.*---------------The bar graph of the top 10 substances with up-regulation and down-regulation in differential metabolites of the corresponding groups, showing the metabolite ID of (pdf file or png file)
+├── *_vs_*_TopFcRadarChart_Compounds.*---------Radar chart of the top 10 substances in the differential metabolites of the corresponding group, showing the English name of the compound (pdf file or png file)
+├── *_vs_*_TopFcRadarChart_Index.*-------------Radar chart of the top 10 substances in the differential metabolites of the corresponding group, showing the metabolite ID of (pdf file or png file)
+└── README.txt---------------------------------Document content introductionDocument content introduction
