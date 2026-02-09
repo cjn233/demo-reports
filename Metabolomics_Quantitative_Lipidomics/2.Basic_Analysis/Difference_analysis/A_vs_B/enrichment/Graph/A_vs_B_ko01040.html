@@ -1,0 +1,287 @@
+<html>
+<!---
+ENTRY       A_vs_B_ko01040.png
+DEFINITION  Pathway A_vs_B_ko01040.png
+--->
+<head>
+<title>
+KEGG PATHWAY: Pathway A_vs_B_ko01040.png
+</title>
+<style type="text/css">
+<!--
+div.poplay {
+  position: absolute;
+  padding: 2px;
+  background-color: #ffff99;
+  border-top: solid 1px #c0c0c0;
+  border-left: solid 1px #c0c0c0;
+  border-bottom: solid 1px #808080;
+  border-right: solid 1px #808080;
+  visibility: hidden;
+}
+
+span.popup
+{
+  font-weight: bold;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+form {
+  margin: 0px;
+}
+
+div.image {
+  position: absolute;
+  padding: 0px;
+  top: 0px;
+  padding: 0px;
+  border: solid 1px #000000;
+}
+
+img {
+  border: none;
+}
+
+
+-->
+</style>
+<link rel="stylesheet" href="/css/kegg.css" type="text/css" />
+<script language="JavaScript" src="/js/dhtml.js"></script>
+
+<script language="JavaScript">
+<!---
+var image_height;
+100 100function(){
+	100 100window).bind('load',function(){
+  image_height = 100 100"div.image").height()-10;
+	100 100"div.control").height(image_height-5);
+	100 100"#resizable").height(image_height);
+	});
+});
+
+
+function resize_map(scale){
+  var form = document.forms["form2"];
+  form.scale.value = scale;
+  form.submit();
+}
+
+function select_menu(){
+  var form = document.forms["selmenu"];
+  if(form.org_name.value == 'set_cookie' || form.org_name.value == 'reset_cookie'){
+    window.open('/kegg/misc/kegg2_select.html','sel_org','toolbar=no,location=no,directories=no,width=500,height=320,resizable=yes');
+  }else{
+    form.action='/kegg-bin/show_pathway';
+    form.submit();
+  }
+}
+
+var timer = 0;
+var p_entry, p_title, p_bgcolor;
+function popupTimer(entry, title, bgcolor)
+{
+  p_entry = entry;
+  p_title = title;
+  p_bgcolor = bgcolor;
+
+  if(timer == 0){
+    var func = "showThumbnail()";
+    timer = setTimeout(func, 1200);
+  }
+}
+
+
+function hideMapTn(){
+  var layer = new Component("poplay");
+  layer.visible(false);
+
+  if(timer != 0){
+    clearTimeout(timer);
+    timer = 0;
+  }
+}
+
+function switchDescription(){
+  var form = document.forms[0];
+  var status = form.show_description.value;
+
+  if(status == "hide"){
+    document.getElementById("description").style.display = "";
+    document.getElementById("descLink").innerHTML = "Hide description";
+    form.show_description.value='show';
+
+    if(document.forms[1]){
+    	document.forms[1].show_description.value='show';
+    }
+  }
+  else
+  {
+    document.getElementById("description").style.display = 'none';
+    document.getElementById("descLink").innerHTML = "Show description";
+    form.show_description.value='hide';
+
+    if(document.forms[1]){
+      document.forms[1].show_description.value='hide';
+    }
+  }
+}
+
+function btn(bobj,img) { bobj.src = "/Fig/bget/button_" + img + ".gif"; }
+//--->
+</script>
+<body>
+<img src=A_vs_B_ko01040.png usemap="#mapdata" border="0" />
+<map name="mapdata">
+			<area shape=circ	coords=1198,552,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16533"	title="C16533 ((13Z,16Z)-Docosadienoic acid)" onmouseover="popupTimer(C16533 ((13Z,16Z)-Docosadienoic acid), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1108,552,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16645"	title="C16645 ((13Z,16Z)-Docosadienoyl-CoA)" onmouseover="popupTimer(C16645 ((13Z,16Z)-Docosadienoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=607,986,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16645"	title="C16645 ((13Z,16Z)-Docosadienoyl-CoA)" onmouseover="popupTimer(C16645 ((13Z,16Z)-Docosadienoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1198,666,4	href="http://www.kegg.jp/dbget-bin/www_bget?C03242"	title="C03242 (Dihomo-gamma-linolenate)" onmouseover="popupTimer(C03242 (Dihomo-gamma-linolenate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1199,438,4	href="http://www.kegg.jp/dbget-bin/www_bget?C01595"	title="C01595 (Linoleate)" onmouseover="popupTimer(C01595 (Linoleate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1198,894,4	href="http://www.kegg.jp/dbget-bin/www_bget?C01530"	title="C01530 (Octadecanoic acid)" onmouseover="popupTimer(C01530 (Octadecanoic acid), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1198,1123,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00712"	title="C00712 ((9Z)-Octadecenoic acid)" onmouseover="popupTimer(C00712 ((9Z)-Octadecenoic acid), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1198,837,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00249"	title="C00249 (Hexadecanoic acid)" onmouseover="popupTimer(C00249 (Hexadecanoic acid), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1198,723,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00219"	title="C00219 (Arachidonate)" onmouseover="popupTimer(C00219 (Arachidonate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1198,1066,4	href="http://www.kegg.jp/dbget-bin/www_bget?C08320"	title="C08320 (Tetracosanoic acid)" onmouseover="popupTimer(C08320 (Tetracosanoic acid), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1198,1304,4	href="http://www.kegg.jp/dbget-bin/www_bget?C08323"	title="C08323 ((15Z)-Tetracosenoic acid)" onmouseover="popupTimer(C08323 ((15Z)-Tetracosenoic acid), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1198,1246,4	href="http://www.kegg.jp/dbget-bin/www_bget?C08316"	title="C08316 (Erucic acid)" onmouseover="popupTimer(C08316 (Erucic acid), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1198,1009,4	href="http://www.kegg.jp/dbget-bin/www_bget?C08281"	title="C08281 (Docosanoic acid)" onmouseover="popupTimer(C08281 (Docosanoic acid), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1198,952,4	href="http://www.kegg.jp/dbget-bin/www_bget?C06425"	title="C06425 (Icosanoic acid)" onmouseover="popupTimer(C06425 (Icosanoic acid), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1198,609,4	href="http://www.kegg.jp/dbget-bin/www_bget?C06426"	title="C06426 ((6Z,9Z,12Z)-Octadecatrienoic acid)" onmouseover="popupTimer(C06426 ((6Z,9Z,12Z)-Octadecatrienoic acid), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1198,381,4	href="http://www.kegg.jp/dbget-bin/www_bget?C06429"	title="C06429 ((4Z,7Z,10Z,13Z,16Z,19Z)-Docosahexaenoic acid)" onmouseover="popupTimer(C06429 ((4Z,7Z,10Z,13Z,16Z,19Z)-Docosahexaenoic acid), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1198,1190,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16526"	title="C16526 (Icosenoic acid)" onmouseover="popupTimer(C16526 (Icosenoic acid), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1198,780,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16527"	title="C16527 (Adrenic acid)" onmouseover="popupTimer(C16527 (Adrenic acid), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1198,495,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16525"	title="C16525 (Icosadienoic acid)" onmouseover="popupTimer(C16525 (Icosadienoic acid), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1198,324,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16513"	title="C16513 ((7Z,10Z,13Z,16Z,19Z)-Docosapentaenoic acid)" onmouseover="popupTimer(C16513 ((7Z,10Z,13Z,16Z,19Z)-Docosapentaenoic acid), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1198,267,4	href="http://www.kegg.jp/dbget-bin/www_bget?C06428"	title="C06428 ((5Z,8Z,11Z,14Z,17Z)-Icosapentaenoic acid)" onmouseover="popupTimer(C06428 ((5Z,8Z,11Z,14Z,17Z)-Icosapentaenoic acid), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1198,210,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16522"	title="C16522 (Icosatrienoic acid)" onmouseover="popupTimer(C16522 (Icosatrienoic acid), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1198,152,4	href="http://www.kegg.jp/dbget-bin/www_bget?C06427"	title="C06427 ((9Z,12Z,15Z)-Octadecatrienoic acid)" onmouseover="popupTimer(C06427 ((9Z,12Z,15Z)-Octadecatrienoic acid), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1108,438,4	href="http://www.kegg.jp/dbget-bin/www_bget?C02050"	title="C02050 (Linoleoyl-CoA)" onmouseover="popupTimer(C02050 (Linoleoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1074,1304,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16532"	title="C16532 (Tetracosenoyl-CoA)" onmouseover="popupTimer(C16532 (Tetracosenoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=534,1064,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16532"	title="C16532 (Tetracosenoyl-CoA)" onmouseover="popupTimer(C16532 (Tetracosenoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1074,1246,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16531"	title="C16531 (Docosenoyl-CoA)" onmouseover="popupTimer(C16531 (Docosenoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=534,986,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16531"	title="C16531 (Docosenoyl-CoA)" onmouseover="popupTimer(C16531 (Docosenoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1074,1190,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16530"	title="C16530 (Icosenoyl-CoA)" onmouseover="popupTimer(C16530 (Icosenoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=534,908,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16530"	title="C16530 (Icosenoyl-CoA)" onmouseover="popupTimer(C16530 (Icosenoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1074,1123,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00510"	title="C00510 (Oleoyl-CoA)" onmouseover="popupTimer(C00510 (Oleoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1074,1066,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16529"	title="C16529 (Tetracosanoyl-CoA)" onmouseover="popupTimer(C16529 (Tetracosanoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=462,1064,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16529"	title="C16529 (Tetracosanoyl-CoA)" onmouseover="popupTimer(C16529 (Tetracosanoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=462,503,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16529"	title="C16529 (Tetracosanoyl-CoA)" onmouseover="popupTimer(C16529 (Tetracosanoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1074,1009,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16528"	title="C16528 (Docosanoyl-CoA)" onmouseover="popupTimer(C16528 (Docosanoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=462,986,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16528"	title="C16528 (Docosanoyl-CoA)" onmouseover="popupTimer(C16528 (Docosanoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=462,425,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16528"	title="C16528 (Docosanoyl-CoA)" onmouseover="popupTimer(C16528 (Docosanoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1074,952,4	href="http://www.kegg.jp/dbget-bin/www_bget?C02041"	title="C02041 (Eicosanoyl-CoA)" onmouseover="popupTimer(C02041 (Eicosanoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=462,908,4	href="http://www.kegg.jp/dbget-bin/www_bget?C02041"	title="C02041 (Eicosanoyl-CoA)" onmouseover="popupTimer(C02041 (Eicosanoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=462,347,4	href="http://www.kegg.jp/dbget-bin/www_bget?C02041"	title="C02041 (Eicosanoyl-CoA)" onmouseover="popupTimer(C02041 (Eicosanoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1074,894,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00412"	title="C00412 (Stearoyl-CoA)" onmouseover="popupTimer(C00412 (Stearoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1074,837,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00154"	title="C00154 (Palmitoyl-CoA)" onmouseover="popupTimer(C00154 (Palmitoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1108,780,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16170"	title="C16170 ((7Z,10Z,13Z,16Z)-Docosatetraenoyl-CoA)" onmouseover="popupTimer(C16170 ((7Z,10Z,13Z,16Z)-Docosatetraenoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1108,723,4	href="http://www.kegg.jp/dbget-bin/www_bget?C02249"	title="C02249 (Arachidonyl-CoA)" onmouseover="popupTimer(C02249 (Arachidonyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1108,666,4	href="http://www.kegg.jp/dbget-bin/www_bget?C03595"	title="C03595 (8,11,14-Eicosatrienoyl-CoA)" onmouseover="popupTimer(C03595 (8,11,14-Eicosatrienoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1108,609,4	href="http://www.kegg.jp/dbget-bin/www_bget?C03035"	title="C03035 (gamma-Linolenoyl-CoA)" onmouseover="popupTimer(C03035 (gamma-Linolenoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1108,495,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16180"	title="C16180 ((11Z,14Z)-Icosadienoyl-CoA)" onmouseover="popupTimer(C16180 ((11Z,14Z)-Icosadienoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1108,381,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16169"	title="C16169 ((4Z,7Z,10Z,13Z,16Z,19Z)-Docosahexaenoyl-CoA)" onmouseover="popupTimer(C16169 ((4Z,7Z,10Z,13Z,16Z,19Z)-Docosahexaenoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1108,267,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16165"	title="C16165 ((5Z,8Z,11Z,14Z,17Z)-Icosapentaenoyl-CoA)" onmouseover="popupTimer(C16165 ((5Z,8Z,11Z,14Z,17Z)-Icosapentaenoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1108,210,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16179"	title="C16179 ((11Z,14Z,17Z)-Icosatrienoyl-CoA)" onmouseover="popupTimer(C16179 ((11Z,14Z,17Z)-Icosatrienoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1108,152,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16162"	title="C16162 ((9Z,12Z,15Z)-Octadecatrienoyl-CoA)" onmouseover="popupTimer(C16162 ((9Z,12Z,15Z)-Octadecatrienoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=822,1064,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16172"	title="C16172 ((6Z,9Z,12Z,15Z,18Z)-Tetracosapentaenoyl-CoA)" onmouseover="popupTimer(C16172 ((6Z,9Z,12Z,15Z,18Z)-Tetracosapentaenoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=750,1064,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16171"	title="C16171 ((9Z,12Z,15Z,18Z)-Tetracosatetraenoyl-CoA)" onmouseover="popupTimer(C16171 ((9Z,12Z,15Z,18Z)-Tetracosatetraenoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=822,986,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16173"	title="C16173 ((4Z,7Z,10Z,13Z,16Z)-Docosapentaenoyl-CoA)" onmouseover="popupTimer(C16173 ((4Z,7Z,10Z,13Z,16Z)-Docosapentaenoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=750,986,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16170"	title="C16170 ((7Z,10Z,13Z,16Z)-Docosatetraenoyl-CoA)" onmouseover="popupTimer(C16170 ((7Z,10Z,13Z,16Z)-Docosatetraenoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=750,908,4	href="http://www.kegg.jp/dbget-bin/www_bget?C02249"	title="C02249 (Arachidonyl-CoA)" onmouseover="popupTimer(C02249 (Arachidonyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=678,908,4	href="http://www.kegg.jp/dbget-bin/www_bget?C03595"	title="C03595 (8,11,14-Eicosatrienoyl-CoA)" onmouseover="popupTimer(C03595 (8,11,14-Eicosatrienoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=606,908,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16180"	title="C16180 ((11Z,14Z)-Icosadienoyl-CoA)" onmouseover="popupTimer(C16180 ((11Z,14Z)-Icosadienoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=678,830,4	href="http://www.kegg.jp/dbget-bin/www_bget?C03035"	title="C03035 (gamma-Linolenoyl-CoA)" onmouseover="popupTimer(C03035 (gamma-Linolenoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=894,503,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16168"	title="C16168 ((6Z,9Z,12Z,15Z,18Z,21Z)-Tetracosahexaenoyl-CoA)" onmouseover="popupTimer(C16168 ((6Z,9Z,12Z,15Z,18Z,21Z)-Tetracosahexaenoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=822,503,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16167"	title="C16167 ((9Z,12Z,15Z,18Z,21Z)-Tetracosapentaenoyl-CoA)" onmouseover="popupTimer(C16167 ((9Z,12Z,15Z,18Z,21Z)-Tetracosapentaenoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=894,425,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16169"	title="C16169 ((4Z,7Z,10Z,13Z,16Z,19Z)-Docosahexaenoyl-CoA)" onmouseover="popupTimer(C16169 ((4Z,7Z,10Z,13Z,16Z,19Z)-Docosahexaenoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=822,347,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16165"	title="C16165 ((5Z,8Z,11Z,14Z,17Z)-Icosapentaenoyl-CoA)" onmouseover="popupTimer(C16165 ((5Z,8Z,11Z,14Z,17Z)-Icosapentaenoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=750,347,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16164"	title="C16164 ((8Z,11Z,14Z,17Z)-Icosatetraenoyl-CoA)" onmouseover="popupTimer(C16164 ((8Z,11Z,14Z,17Z)-Icosatetraenoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=678,347,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16179"	title="C16179 ((11Z,14Z,17Z)-Icosatrienoyl-CoA)" onmouseover="popupTimer(C16179 ((11Z,14Z,17Z)-Icosatrienoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=534,830,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00510+C01203"	title="C00510 (Oleoyl-CoA), C01203 (Oleoyl-[acyl-carrier protein])" onmouseover="popupTimer(C00510 (Oleoyl-CoA), C01203 (Oleoyl-[acyl-carrier protein]), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=462,830,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00412+C04088"	title="C00412 (Stearoyl-CoA), C04088 (Octadecanoyl-[acyl-carrier protein])" onmouseover="popupTimer(C00412 (Stearoyl-CoA), C04088 (Octadecanoyl-[acyl-carrier protein]), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=462,752,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00154+C05764"	title="C00154 (Palmitoyl-CoA), C05764 (Hexadecanoyl-[acp])" onmouseover="popupTimer(C00154 (Palmitoyl-CoA), C05764 (Hexadecanoyl-[acp]), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=750,269,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16163"	title="C16163 ((6Z,9Z,12Z,15Z)-Octadecatetraenoyl-CoA)" onmouseover="popupTimer(C16163 ((6Z,9Z,12Z,15Z)-Octadecatetraenoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=606,830,4	href="http://www.kegg.jp/dbget-bin/www_bget?C02050+C16160"	title="C02050 (Linoleoyl-CoA), C16160 (Linoleoyl-[acyl-carrier protein])" onmouseover="popupTimer(C02050 (Linoleoyl-CoA), C16160 (Linoleoyl-[acyl-carrier protein]), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=678,269,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16162+C16161"	title="C16162 ((9Z,12Z,15Z)-Octadecatrienoyl-CoA), C16161 (alpha-Linolenoyl-ACP)" onmouseover="popupTimer(C16162 ((9Z,12Z,15Z)-Octadecatrienoyl-CoA), C16161 (alpha-Linolenoyl-ACP), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=606,269,4	href="http://www.kegg.jp/dbget-bin/www_bget?C02050+C16160"	title="C02050 (Linoleoyl-CoA), C16160 (Linoleoyl-[acyl-carrier protein])" onmouseover="popupTimer(C02050 (Linoleoyl-CoA), C16160 (Linoleoyl-[acyl-carrier protein]), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=534,269,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00510+C01203"	title="C00510 (Oleoyl-CoA), C01203 (Oleoyl-[acyl-carrier protein])" onmouseover="popupTimer(C00510 (Oleoyl-CoA), C01203 (Oleoyl-[acyl-carrier protein]), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=462,269,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00412+C04088"	title="C00412 (Stearoyl-CoA), C04088 (Octadecanoyl-[acyl-carrier protein])" onmouseover="popupTimer(C00412 (Stearoyl-CoA), C04088 (Octadecanoyl-[acyl-carrier protein]), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=462,194,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00154+C05764"	title="C00154 (Palmitoyl-CoA), C05764 (Hexadecanoyl-[acp])" onmouseover="popupTimer(C00154 (Palmitoyl-CoA), C05764 (Hexadecanoyl-[acp]), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=534,347,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16530"	title="C16530 (Icosenoyl-CoA)" onmouseover="popupTimer(C16530 (Icosenoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=534,425,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16531"	title="C16531 (Docosenoyl-CoA)" onmouseover="popupTimer(C16531 (Docosenoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=534,503,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16532"	title="C16532 (Tetracosenoyl-CoA)" onmouseover="popupTimer(C16532 (Tetracosenoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1108,324,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16166"	title="C16166 ((7Z,10Z,13Z,16Z,19Z)-Docosapentaenoyl-CoA)" onmouseover="popupTimer(C16166 ((7Z,10Z,13Z,16Z,19Z)-Docosapentaenoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=822,425,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16166"	title="C16166 ((7Z,10Z,13Z,16Z,19Z)-Docosapentaenoyl-CoA)" onmouseover="popupTimer(C16166 ((7Z,10Z,13Z,16Z,19Z)-Docosapentaenoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=462,581,4	href="http://www.kegg.jp/dbget-bin/www_bget?C21932"	title="C21932 (Cerotoyl-CoA)" onmouseover="popupTimer(C21932 (Cerotoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=462,1143,4	href="http://www.kegg.jp/dbget-bin/www_bget?C21932"	title="C21932 (Cerotoyl-CoA)" onmouseover="popupTimer(C21932 (Cerotoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=750,1143,4	href="http://www.kegg.jp/dbget-bin/www_bget?C21961"	title="C21961 ((11Z,14Z,17Z,20Z)-Hexacosatetraenoyl-CoA)" onmouseover="popupTimer(C21961 ((11Z,14Z,17Z,20Z)-Hexacosatetraenoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=822,1143,4	href="http://www.kegg.jp/dbget-bin/www_bget?C21965"	title="C21965 ((8Z,11Z,14Z,17Z,20Z)-Hexacosapentaenoyl-CoA)" onmouseover="popupTimer(C21965 ((8Z,11Z,14Z,17Z,20Z)-Hexacosapentaenoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=894,581,4	href="http://www.kegg.jp/dbget-bin/www_bget?C21953"	title="C21953 ((8Z,11Z,14Z,17Z,20Z,23Z)-Hexacosahexaenoyl-CoA)" onmouseover="popupTimer(C21953 ((8Z,11Z,14Z,17Z,20Z,23Z)-Hexacosahexaenoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=462,659,4	href="http://www.kegg.jp/dbget-bin/www_bget?C21934"	title="C21934 (Montanoyl-CoA)" onmouseover="popupTimer(C21934 (Montanoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=462,1222,4	href="http://www.kegg.jp/dbget-bin/www_bget?C21934"	title="C21934 (Montanoyl-CoA)" onmouseover="popupTimer(C21934 (Montanoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=750,1222,4	href="http://www.kegg.jp/dbget-bin/www_bget?C21963"	title="C21963 ((13Z,16Z,19Z,22Z)-Octacosatetraenoyl-CoA)" onmouseover="popupTimer(C21963 ((13Z,16Z,19Z,22Z)-Octacosatetraenoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=822,1222,4	href="http://www.kegg.jp/dbget-bin/www_bget?C21967"	title="C21967 ((10Z,13Z,16Z,19Z,22Z)-Octacosapentaenoyl-CoA)" onmouseover="popupTimer(C21967 ((10Z,13Z,16Z,19Z,22Z)-Octacosapentaenoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=894,659,4	href="http://www.kegg.jp/dbget-bin/www_bget?C21959"	title="C21959 ((10Z,13Z,16Z,19Z,22Z,25Z)-Octacosahexaenoyl-CoA)" onmouseover="popupTimer(C21959 ((10Z,13Z,16Z,19Z,22Z,25Z)-Octacosahexaenoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=107,830,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00412"	title="C00412 (Stearoyl-CoA)" onmouseover="popupTimer(C00412 (Stearoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=107,752,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00154"	title="C00154 (Palmitoyl-CoA)" onmouseover="popupTimer(C00154 (Palmitoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=107,194,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00154+C05764"	title="C00154 (Palmitoyl-CoA), C05764 (Hexadecanoyl-[acp])" onmouseover="popupTimer(C00154 (Palmitoyl-CoA), C05764 (Hexadecanoyl-[acp]), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=179,194,4	href="http://www.kegg.jp/dbget-bin/www_bget?C21943"	title="C21943 (Sapienoyl-CoA)" onmouseover="popupTimer(C21943 (Sapienoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=179,753,4	href="http://www.kegg.jp/dbget-bin/www_bget?C21072"	title="C21072 (Palmitoleoyl-CoA)" onmouseover="popupTimer(C21072 (Palmitoleoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=179,830,4	href="http://www.kegg.jp/dbget-bin/www_bget?C21945"	title="C21945 (cis-Vaccenoyl-CoA)" onmouseover="popupTimer(C21945 (cis-Vaccenoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=107,503,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16529"	title="C16529 (Tetracosanoyl-CoA)" onmouseover="popupTimer(C16529 (Tetracosanoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=107,425,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16528"	title="C16528 (Docosanoyl-CoA)" onmouseover="popupTimer(C16528 (Docosanoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=107,347,4	href="http://www.kegg.jp/dbget-bin/www_bget?C02041"	title="C02041 (Eicosanoyl-CoA)" onmouseover="popupTimer(C02041 (Eicosanoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=179,269,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00510+C01203"	title="C00510 (Oleoyl-CoA), C01203 (Oleoyl-[acyl-carrier protein])" onmouseover="popupTimer(C00510 (Oleoyl-CoA), C01203 (Oleoyl-[acyl-carrier protein]), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=107,269,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00412+C04088"	title="C00412 (Stearoyl-CoA), C04088 (Octadecanoyl-[acyl-carrier protein])" onmouseover="popupTimer(C00412 (Stearoyl-CoA), C04088 (Octadecanoyl-[acyl-carrier protein]), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=179,347,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16530"	title="C16530 (Icosenoyl-CoA)" onmouseover="popupTimer(C16530 (Icosenoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=179,425,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16531"	title="C16531 (Docosenoyl-CoA)" onmouseover="popupTimer(C16531 (Docosenoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=179,503,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16532"	title="C16532 (Tetracosenoyl-CoA)" onmouseover="popupTimer(C16532 (Tetracosenoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=107,581,4	href="http://www.kegg.jp/dbget-bin/www_bget?C21932"	title="C21932 (Cerotoyl-CoA)" onmouseover="popupTimer(C21932 (Cerotoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=107,659,4	href="http://www.kegg.jp/dbget-bin/www_bget?C21934"	title="C21934 (Montanoyl-CoA)" onmouseover="popupTimer(C21934 (Montanoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=251,269,4	href="http://www.kegg.jp/dbget-bin/www_bget?C21935"	title="C21935 ((6Z,9Z)-Octadecadienoyl-CoA)" onmouseover="popupTimer(C21935 ((6Z,9Z)-Octadecadienoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=251,347,4	href="http://www.kegg.jp/dbget-bin/www_bget?C21937"	title="C21937 ((8Z,11Z)-Icosadienoyl-CoA)" onmouseover="popupTimer(C21937 ((8Z,11Z)-Icosadienoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=323,347,4	href="http://www.kegg.jp/dbget-bin/www_bget?C21939"	title="C21939 ((5Z,8Z,11Z)-Icosatrienoyl-CoA)" onmouseover="popupTimer(C21939 ((5Z,8Z,11Z)-Icosatrienoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=323,426,4	href="http://www.kegg.jp/dbget-bin/www_bget?C21941"	title="C21941 ((7Z,10Z,13Z)-Docosatrienoyl-CoA)" onmouseover="popupTimer(C21941 ((7Z,10Z,13Z)-Docosatrienoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=107,908,4	href="http://www.kegg.jp/dbget-bin/www_bget?C02041"	title="C02041 (Eicosanoyl-CoA)" onmouseover="popupTimer(C02041 (Eicosanoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=179,908,4	href="http://www.kegg.jp/dbget-bin/www_bget?C21947"	title="C21947 (Paullinoyl-CoA)" onmouseover="popupTimer(C21947 (Paullinoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=108,1064,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16529"	title="C16529 (Tetracosanoyl-CoA)" onmouseover="popupTimer(C16529 (Tetracosanoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=108,986,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16528"	title="C16528 (Docosanoyl-CoA)" onmouseover="popupTimer(C16528 (Docosanoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=108,1143,4	href="http://www.kegg.jp/dbget-bin/www_bget?C21932"	title="C21932 (Cerotoyl-CoA)" onmouseover="popupTimer(C21932 (Cerotoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=107,1222,4	href="http://www.kegg.jp/dbget-bin/www_bget?C21934"	title="C21934 (Montanoyl-CoA)" onmouseover="popupTimer(C21934 (Montanoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=822,581,4	href="http://www.kegg.jp/dbget-bin/www_bget?C21949"	title="C21949 ((11Z,14Z,17Z,20Z,23Z)-Hexacosapentaenoyl-CoA)" onmouseover="popupTimer(C21949 ((11Z,14Z,17Z,20Z,23Z)-Hexacosapentaenoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=822,659,4	href="http://www.kegg.jp/dbget-bin/www_bget?C21951"	title="C21951 ((13Z,16Z,19Z,22Z,25Z)-Octacosapentaenoyl-CoA)" onmouseover="popupTimer(C21951 ((13Z,16Z,19Z,22Z,25Z)-Octacosapentaenoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=249,753,4	href="http://www.kegg.jp/dbget-bin/www_bget?C21981"	title="C21981 ((6Z,9Z)-Hexadecadienoyl-CoA)" onmouseover="popupTimer(C21981 ((6Z,9Z)-Hexadecadienoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=179,581,4	href="http://www.kegg.jp/dbget-bin/www_bget?C17279"	title="C17279 (Ximenoyl-CoA)" onmouseover="popupTimer(C17279 (Ximenoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=534,581,4	href="http://www.kegg.jp/dbget-bin/www_bget?C17279"	title="C17279 (Ximenoyl-CoA)" onmouseover="popupTimer(C17279 (Ximenoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=534,1143,4	href="http://www.kegg.jp/dbget-bin/www_bget?C17279"	title="C17279 (Ximenoyl-CoA)" onmouseover="popupTimer(C17279 (Ximenoyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=rect	coords=1127,543,1173,560	href="http://www.kegg.jp/dbget-bin/www_bget?R08273"	title="3.1.2.-, R08273" />
+			<area shape=rect	coords=1133,839,1179,856	href="http://www.kegg.jp/dbget-bin/www_bget?K10806+R01274"	title="K10806 (yciA), R01274" />
+			<area shape=rect	coords=1085,839,1131,856	href="http://www.kegg.jp/dbget-bin/www_bget?K10805+R01274"	title="K10805 (tesB), R01274" />
+			<area shape=rect	coords=1110,1296,1156,1313	href="http://www.kegg.jp/dbget-bin/www_bget?R08188"	title="3.1.2.-, R08188" />
+			<area shape=rect	coords=1110,1239,1156,1256	href="http://www.kegg.jp/dbget-bin/www_bget?R08187"	title="3.1.2.-, R08187" />
+			<area shape=rect	coords=1110,1182,1156,1199	href="http://www.kegg.jp/dbget-bin/www_bget?R08186"	title="3.1.2.-, R08186" />
+			<area shape=rect	coords=1110,1058,1156,1075	href="http://www.kegg.jp/dbget-bin/www_bget?R08185"	title="3.1.2.-, R08185" />
+			<area shape=rect	coords=1110,1001,1156,1018	href="http://www.kegg.jp/dbget-bin/www_bget?R08184"	title="3.1.2.-, R08184" />
+			<area shape=rect	coords=1127,771,1173,788	href="http://www.kegg.jp/dbget-bin/www_bget?R08191"	title="3.1.2.-, R08191" />
+			<area shape=rect	coords=1127,486,1173,503	href="http://www.kegg.jp/dbget-bin/www_bget?R08190"	title="3.1.2.-, R08190" />
+			<area shape=rect	coords=1127,315,1173,332	href="http://www.kegg.jp/dbget-bin/www_bget?R08189"	title="3.1.2.-, R08189" />
+			<area shape=rect	coords=1127,201,1173,218	href="http://www.kegg.jp/dbget-bin/www_bget?R08192"	title="3.1.2.-, R08192" />
+			<area shape=rect	coords=1110,818,1156,835	href="http://www.kegg.jp/dbget-bin/www_bget?K01068+K17360+K00659+K10804+3.1.2.2+R01274"	title="K01068 (ACOT1_2_4), K17360 (ACOT7), K00659 (BAAT), K10804 (tesA), 3.1.2.2, R01274" />
+			<area shape=rect	coords=1110,886,1156,903	href="http://www.kegg.jp/dbget-bin/www_bget?K01068+K17360+K00659+3.1.2.2+R08174"	title="K01068 (ACOT1_2_4), K17360 (ACOT7), K00659 (BAAT), 3.1.2.2, R08174" />
+			<area shape=rect	coords=1110,944,1156,961	href="http://www.kegg.jp/dbget-bin/www_bget?K01068+K00659+3.1.2.2+R08175"	title="K01068 (ACOT1_2_4), K00659 (BAAT), 3.1.2.2, R08175" />
+			<area shape=rect	coords=1110,1115,1156,1132	href="http://www.kegg.jp/dbget-bin/www_bget?K01068+K17360+3.1.2.2+R08176"	title="K01068 (ACOT1_2_4), K17360 (ACOT7), 3.1.2.2, R08176" />
+			<area shape=rect	coords=1127,429,1173,446	href="http://www.kegg.jp/dbget-bin/www_bget?K01068+K17360+3.1.2.2+R08177"	title="K01068 (ACOT1_2_4), K17360 (ACOT7), 3.1.2.2, R08177" />
+			<area shape=rect	coords=1127,714,1173,731	href="http://www.kegg.jp/dbget-bin/www_bget?K01068+3.1.2.2+R08183"	title="K01068 (ACOT1_2_4), 3.1.2.2, R08183" />
+			<area shape=rect	coords=1127,657,1173,674	href="http://www.kegg.jp/dbget-bin/www_bget?K01068+3.1.2.2+R08182"	title="K01068 (ACOT1_2_4), 3.1.2.2, R08182" />
+			<area shape=rect	coords=1127,600,1173,617	href="http://www.kegg.jp/dbget-bin/www_bget?K01068+K17360+3.1.2.2+R08181"	title="K01068 (ACOT1_2_4), K17360 (ACOT7), 3.1.2.2, R08181" />
+			<area shape=rect	coords=1127,372,1173,389	href="http://www.kegg.jp/dbget-bin/www_bget?K01068+3.1.2.2+R08180"	title="K01068 (ACOT1_2_4), 3.1.2.2, R08180" />
+			<area shape=rect	coords=1127,258,1173,275	href="http://www.kegg.jp/dbget-bin/www_bget?K01068+3.1.2.2+R08179"	title="K01068 (ACOT1_2_4), 3.1.2.2, R08179" />
+			<area shape=rect	coords=1127,144,1173,161	href="http://www.kegg.jp/dbget-bin/www_bget?K01068+K17360+3.1.2.2+R08178"	title="K01068 (ACOT1_2_4), K17360 (ACOT7), 3.1.2.2, R08178" />
+			<area shape=rect	coords=40,45,388,70	href="http://www.kegg.jp/dbget-bin/www_bget?map01040"	title="map01040: Biosynthesis of unsaturated fatty acids" />
+</map>
+<div id="poplay" class="poplay" />
+
+</form>
+</body>
+</html>

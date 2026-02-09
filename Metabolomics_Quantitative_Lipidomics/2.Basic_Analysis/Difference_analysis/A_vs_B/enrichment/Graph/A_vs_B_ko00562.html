@@ -1,0 +1,256 @@
+<html>
+<!---
+ENTRY       A_vs_B_ko00562.png
+DEFINITION  Pathway A_vs_B_ko00562.png
+--->
+<head>
+<title>
+KEGG PATHWAY: Pathway A_vs_B_ko00562.png
+</title>
+<style type="text/css">
+<!--
+div.poplay {
+  position: absolute;
+  padding: 2px;
+  background-color: #ffff99;
+  border-top: solid 1px #c0c0c0;
+  border-left: solid 1px #c0c0c0;
+  border-bottom: solid 1px #808080;
+  border-right: solid 1px #808080;
+  visibility: hidden;
+}
+
+span.popup
+{
+  font-weight: bold;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+form {
+  margin: 0px;
+}
+
+div.image {
+  position: absolute;
+  padding: 0px;
+  top: 0px;
+  padding: 0px;
+  border: solid 1px #000000;
+}
+
+img {
+  border: none;
+}
+
+
+-->
+</style>
+<link rel="stylesheet" href="/css/kegg.css" type="text/css" />
+<script language="JavaScript" src="/js/dhtml.js"></script>
+
+<script language="JavaScript">
+<!---
+var image_height;
+100 100function(){
+	100 100window).bind('load',function(){
+  image_height = 100 100"div.image").height()-10;
+	100 100"div.control").height(image_height-5);
+	100 100"#resizable").height(image_height);
+	});
+});
+
+
+function resize_map(scale){
+  var form = document.forms["form2"];
+  form.scale.value = scale;
+  form.submit();
+}
+
+function select_menu(){
+  var form = document.forms["selmenu"];
+  if(form.org_name.value == 'set_cookie' || form.org_name.value == 'reset_cookie'){
+    window.open('/kegg/misc/kegg2_select.html','sel_org','toolbar=no,location=no,directories=no,width=500,height=320,resizable=yes');
+  }else{
+    form.action='/kegg-bin/show_pathway';
+    form.submit();
+  }
+}
+
+var timer = 0;
+var p_entry, p_title, p_bgcolor;
+function popupTimer(entry, title, bgcolor)
+{
+  p_entry = entry;
+  p_title = title;
+  p_bgcolor = bgcolor;
+
+  if(timer == 0){
+    var func = "showThumbnail()";
+    timer = setTimeout(func, 1200);
+  }
+}
+
+
+function hideMapTn(){
+  var layer = new Component("poplay");
+  layer.visible(false);
+
+  if(timer != 0){
+    clearTimeout(timer);
+    timer = 0;
+  }
+}
+
+function switchDescription(){
+  var form = document.forms[0];
+  var status = form.show_description.value;
+
+  if(status == "hide"){
+    document.getElementById("description").style.display = "";
+    document.getElementById("descLink").innerHTML = "Hide description";
+    form.show_description.value='show';
+
+    if(document.forms[1]){
+    	document.forms[1].show_description.value='show';
+    }
+  }
+  else
+  {
+    document.getElementById("description").style.display = 'none';
+    document.getElementById("descLink").innerHTML = "Show description";
+    form.show_description.value='hide';
+
+    if(document.forms[1]){
+      document.forms[1].show_description.value='hide';
+    }
+  }
+}
+
+function btn(bobj,img) { bobj.src = "/Fig/bget/button_" + img + ".gif"; }
+//--->
+</script>
+<body>
+<img src=A_vs_B_ko00562.png usemap="#mapdata" border="0" />
+<map name="mapdata">
+			<area shape=circ	coords=558,68,4	href="http://www.kegg.jp/dbget-bin/www_bget?C11557"	title="C11557 (1-Phosphatidyl-1D-myo-inositol 5-phosphate)" onmouseover="popupTimer(C11557 (1-Phosphatidyl-1D-myo-inositol 5-phosphate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=53,414,4	href="http://www.kegg.jp/dbget-bin/www_bget?C11555"	title="C11555 (1D-myo-Inositol 1,4,5,6-tetrakisphosphate)" onmouseover="popupTimer(C11555 (1D-myo-Inositol 1,4,5,6-tetrakisphosphate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=115,340,4	href="http://www.kegg.jp/dbget-bin/www_bget?C01272"	title="C01272 (1D-myo-Inositol 1,3,4,5-tetrakisphosphate)" onmouseover="popupTimer(C01272 (1D-myo-Inositol 1,3,4,5-tetrakisphosphate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=167,550,4	href="http://www.kegg.jp/dbget-bin/www_bget?C01204"	title="C01204 (Phytic acid)" onmouseover="popupTimer(C01204 (Phytic acid), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=229,257,4	href="http://www.kegg.jp/dbget-bin/www_bget?C01245"	title="C01245 (D-myo-Inositol 1,4,5-trisphosphate)" onmouseover="popupTimer(C01245 (D-myo-Inositol 1,4,5-trisphosphate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=229,340,4	href="http://www.kegg.jp/dbget-bin/www_bget?C01243"	title="C01243 (1D-myo-Inositol 1,3,4-trisphosphate)" onmouseover="popupTimer(C01243 (1D-myo-Inositol 1,3,4-trisphosphate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=229,472,4	href="http://www.kegg.jp/dbget-bin/www_bget?C01284"	title="C01284 (1D-myo-Inositol 1,3,4,5,6-pentakisphosphate)" onmouseover="popupTimer(C01284 (1D-myo-Inositol 1,3,4,5,6-pentakisphosphate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=229,550,4	href="http://www.kegg.jp/dbget-bin/www_bget?C04520"	title="C04520 (1D-myo-Inositol 3,4,5,6-tetrakisphosphate)" onmouseover="popupTimer(C04520 (1D-myo-Inositol 3,4,5,6-tetrakisphosphate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=167,615,4	href="http://www.kegg.jp/dbget-bin/www_bget?C04563"	title="C04563 (D-myo-Inositol 1,2,4,5,6-pentakisphosphate)" onmouseover="popupTimer(C04563 (D-myo-Inositol 1,2,4,5,6-pentakisphosphate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=229,414,4	href="http://www.kegg.jp/dbget-bin/www_bget?C04477"	title="C04477 (1D-myo-Inositol 1,3,4,6-tetrakisphosphate)" onmouseover="popupTimer(C04477 (1D-myo-Inositol 1,3,4,6-tetrakisphosphate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=109,615,4	href="http://www.kegg.jp/dbget-bin/www_bget?C04579"	title="C04579 (Inositol 1,2,3,5,6-pentakisphosphate)" onmouseover="popupTimer(C04579 (Inositol 1,2,3,5,6-pentakisphosphate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=343,340,4	href="http://www.kegg.jp/dbget-bin/www_bget?C04063"	title="C04063 (D-myo-Inositol 3,4-bisphosphate)" onmouseover="popupTimer(C04063 (D-myo-Inositol 3,4-bisphosphate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=716,404,4	href="http://www.kegg.jp/dbget-bin/www_bget?C04062"	title="C04062 (D-myo-Inositol 1,3-bisphosphate)" onmouseover="popupTimer(C04062 (D-myo-Inositol 1,3-bisphosphate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=343,257,4	href="http://www.kegg.jp/dbget-bin/www_bget?C01220"	title="C01220 (1D-myo-Inositol 1,4-bisphosphate)" onmouseover="popupTimer(C01220 (1D-myo-Inositol 1,4-bisphosphate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=343,307,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00092"	title="C00092 (D-Glucose 6-phosphate)" onmouseover="popupTimer(C00092 (D-Glucose 6-phosphate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=443,340,4	href="http://www.kegg.jp/dbget-bin/www_bget?C04006"	title="C04006 (1D-myo-Inositol 3-phosphate)" onmouseover="popupTimer(C04006 (1D-myo-Inositol 3-phosphate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=443,257,4	href="http://www.kegg.jp/dbget-bin/www_bget?C03546"	title="C03546 (myo-Inositol 4-phosphate)" onmouseover="popupTimer(C03546 (myo-Inositol 4-phosphate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=458,528,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00191"	title="C00191 (D-Glucuronate)" onmouseover="popupTimer(C00191 (D-Glucuronate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=716,340,4	href="http://www.kegg.jp/dbget-bin/www_bget?C01177"	title="C01177 (Inositol 1-phosphate)" onmouseover="popupTimer(C01177 (Inositol 1-phosphate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=558,169,4	href="http://www.kegg.jp/dbget-bin/www_bget?C04637"	title="C04637 (1-Phosphatidyl-D-myo-inositol 4,5-bisphosphate)" onmouseover="popupTimer(C04637 (1-Phosphatidyl-D-myo-inositol 4,5-bisphosphate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=558,245,4	href="http://www.kegg.jp/dbget-bin/www_bget?C01277"	title="C01277 (1-Phosphatidyl-1D-myo-inositol 4-phosphate)" onmouseover="popupTimer(C01277 (1-Phosphatidyl-1D-myo-inositol 4-phosphate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=679,115,4	href="http://www.kegg.jp/dbget-bin/www_bget?C05981"	title="C05981 (Phosphatidylinositol-3,4,5-trisphosphate)" onmouseover="popupTimer(C05981 (Phosphatidylinositol-3,4,5-trisphosphate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=845,341,4	href="http://www.kegg.jp/dbget-bin/www_bget?C01194"	title="C01194 (1-Phosphatidyl-D-myo-inositol)" onmouseover="popupTimer(C01194 (1-Phosphatidyl-D-myo-inositol), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=342,201,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00641"	title="C00641 (1,2-Diacyl-sn-glycerol)" onmouseover="popupTimer(C00641 (1,2-Diacyl-sn-glycerol), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=657,420,4	href="http://www.kegg.jp/dbget-bin/www_bget?C03659"	title="C03659 (D-Bornesitol)" onmouseover="popupTimer(C03659 (D-Bornesitol), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=657,380,4	href="http://www.kegg.jp/dbget-bin/www_bget?C03660"	title="C03660 (L-Bornesitol)" onmouseover="popupTimer(C03660 (L-Bornesitol), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=779,487,4	href="http://www.kegg.jp/dbget-bin/www_bget?C04287"	title="C04287 (3D-3,5/4-Trihydroxycyclohexane-1,2-dione)" onmouseover="popupTimer(C04287 (3D-3,5/4-Trihydroxycyclohexane-1,2-dione), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=871,487,4	href="http://www.kegg.jp/dbget-bin/www_bget?C16737"	title="C16737 (5-Deoxy-D-glucuronate)" onmouseover="popupTimer(C16737 (5-Deoxy-D-glucuronate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=967,487,4	href="http://www.kegg.jp/dbget-bin/www_bget?C06892"	title="C06892 (2-Deoxy-5-keto-D-gluconic acid)" onmouseover="popupTimer(C06892 (2-Deoxy-5-keto-D-gluconic acid), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1061,487,4	href="http://www.kegg.jp/dbget-bin/www_bget?C06893"	title="C06893 (2-Deoxy-5-keto-D-gluconic acid 6-phosphate)" onmouseover="popupTimer(C06893 (2-Deoxy-5-keto-D-gluconic acid 6-phosphate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1000,563,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00222"	title="C00222 (3-Oxopropanoate)" onmouseover="popupTimer(C00222 (3-Oxopropanoate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=904,563,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00024"	title="C00024 (Acetyl-CoA)" onmouseover="popupTimer(C00024 (Acetyl-CoA), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1000,610,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00111"	title="C00111 (Glycerone phosphate)" onmouseover="popupTimer(C00111 (Glycerone phosphate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=904,610,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00118"	title="C00118 (D-Glyceraldehyde 3-phosphate)" onmouseover="popupTimer(C00118 (D-Glyceraldehyde 3-phosphate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=845,68,4	href="http://www.kegg.jp/dbget-bin/www_bget?C11556"	title="C11556 (1-Phosphatidyl-1D-myo-inositol 3,5-bisphosphate)" onmouseover="popupTimer(C11556 (1-Phosphatidyl-1D-myo-inositol 3,5-bisphosphate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=679,175,4	href="http://www.kegg.jp/dbget-bin/www_bget?C11554"	title="C11554 (1-Phosphatidyl-1D-myo-inositol 3,4-bisphosphate)" onmouseover="popupTimer(C11554 (1-Phosphatidyl-1D-myo-inositol 3,4-bisphosphate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=666,626,4	href="http://www.kegg.jp/dbget-bin/www_bget?C20251"	title="C20251 (1-Keto-D-chiro-inositol)" onmouseover="popupTimer(C20251 (1-Keto-D-chiro-inositol), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=558,340,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00137"	title="C00137 (myo-Inositol)" onmouseover="popupTimer(C00137 (myo-Inositol), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=558,626,4	href="http://www.kegg.jp/dbget-bin/www_bget?C19891"	title="C19891 (1D-chiro-Inositol)" onmouseover="popupTimer(C19891 (1D-chiro-Inositol), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=558,558,4	href="http://www.kegg.jp/dbget-bin/www_bget?C06153"	title="C06153 (scyllo-Inositol)" onmouseover="popupTimer(C06153 (scyllo-Inositol), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=443,414,4	href="http://www.kegg.jp/dbget-bin/www_bget?C19794"	title="C19794 (CDP-1L-myo-inositol)" onmouseover="popupTimer(C19794 (CDP-1L-myo-inositol), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=443,476,4	href="http://www.kegg.jp/dbget-bin/www_bget?C19799"	title="C19799 (Bis(1L-myo-inositol)-3,1'-phosphate 1-phosphate)" onmouseover="popupTimer(C19799 (Bis(1L-myo-inositol)-3,1'-phosphate 1-phosphate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=666,487,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00691"	title="C00691 (2,4,6/3,5-Pentahydroxycyclohexanone)" onmouseover="popupTimer(C00691 (2,4,6/3,5-Pentahydroxycyclohexanone), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=779,453,4	href="http://www.kegg.jp/dbget-bin/www_bget?C21643"	title="C21643 (3-Dehydro-scyllo-inosose)" onmouseover="popupTimer(C21643 (3-Dehydro-scyllo-inosose), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=967,453,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00558"	title="C00558 (D-Tagaturonate)" onmouseover="popupTimer(C00558 (D-Tagaturonate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=871,453,4	href="http://www.kegg.jp/dbget-bin/www_bget?C21644"	title="C21644 (5-Dehydro-L-gluconate)" onmouseover="popupTimer(C21644 (5-Dehydro-L-gluconate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=845,175,4	href="http://www.kegg.jp/dbget-bin/www_bget?C04549"	title="C04549 (1-Phosphatidyl-1D-myo-inositol 3-phosphate)" onmouseover="popupTimer(C04549 (1-Phosphatidyl-1D-myo-inositol 3-phosphate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=rect	coords=535,94,581,111	href="http://www.kegg.jp/dbget-bin/www_bget?K00920+2.7.1.149+R05803"	title="K00920 (PIP4K2), 2.7.1.149, R05803" />
+			<area shape=rect	coords=485,200,531,217	href="http://www.kegg.jp/dbget-bin/www_bget?K01099+K20278+K20279+3.1.3.36+R04404"	title="K01099 (INPP5B_F), K20278 (INPP5E), K20279 (SYNJ), 3.1.3.36, R04404" />
+			<area shape=rect	coords=30,364,76,381	href="http://www.kegg.jp/dbget-bin/www_bget?K00915+2.7.1.151+R05800"	title="K00915 (IPMK), 2.7.1.151, R05800" />
+			<area shape=rect	coords=113,461,159,478	href="http://www.kegg.jp/dbget-bin/www_bget?K00915+2.7.1.151+R05801"	title="K00915 (IPMK), 2.7.1.151, R05801" />
+			<area shape=rect	coords=594,106,640,123	href="http://www.kegg.jp/dbget-bin/www_bget?K01110+3.1.3.67+R04513"	title="K01110 (PTEN), 3.1.3.67, R04513" />
+			<area shape=rect	coords=151,282,197,299	href="http://www.kegg.jp/dbget-bin/www_bget?K03103+3.1.3.62+R03434"	title="K03103 (MINPP1), 3.1.3.62, R03434" />
+			<area shape=rect	coords=151,332,197,349	href="http://www.kegg.jp/dbget-bin/www_bget?K01106+K24222+K24221+3.1.3.56+R03430"	title="K01106 (INPP5A), K24222 (INPP5J_K), K24221 (IP5P1_2), 3.1.3.56, R03430" />
+			<area shape=rect	coords=151,249,197,266	href="http://www.kegg.jp/dbget-bin/www_bget?K00911+2.7.1.127+R03433"	title="K00911 (ITPK), 2.7.1.127, R03433" />
+			<area shape=rect	coords=151,364,197,381	href="http://www.kegg.jp/dbget-bin/www_bget?K00913+K01765+2.7.1.159+R03428"	title="K00913 (ITPK1), K01765 (ITPK4), 2.7.1.159, R03428" />
+			<area shape=rect	coords=145,569,191,586	href="http://www.kegg.jp/dbget-bin/www_bget?K01083+3.1.3.8+R03371"	title="K01083 (E3.1.3.8), 3.1.3.8, R03371" />
+			<area shape=rect	coords=85,569,131,586	href="http://www.kegg.jp/dbget-bin/www_bget?K01093+3.1.3.26+R03372"	title="K01093 (appA), 3.1.3.26, R03372" />
+			<area shape=rect	coords=206,375,252,392	href="http://www.kegg.jp/dbget-bin/www_bget?K00913+K01765+2.7.1.159+R03429"	title="K00913 (ITPK1), K01765 (ITPK4), 2.7.1.159, R03429" />
+			<area shape=rect	coords=206,431,252,448	href="http://www.kegg.jp/dbget-bin/www_bget?K00915+2.7.1.140+R03478"	title="K00915 (IPMK), 2.7.1.140, R03478" />
+			<area shape=rect	coords=206,500,252,517	href="http://www.kegg.jp/dbget-bin/www_bget?K00913+2.7.1.134+R03479"	title="K00913 (ITPK1), 2.7.1.134, R03479" />
+			<area shape=rect	coords=261,249,307,266	href="http://www.kegg.jp/dbget-bin/www_bget?K01106+K24222+K24221+3.1.3.56+R03394"	title="K01106 (INPP5A), K24222 (INPP5J_K), K24221 (IP5P1_2), 3.1.3.56, R03394" />
+			<area shape=rect	coords=261,332,307,349	href="http://www.kegg.jp/dbget-bin/www_bget?K01107+K15422+3.1.3.57+R03427"	title="K01107 (INPP1), K15422 (SAL), 3.1.3.57, R03427" />
+			<area shape=rect	coords=366,249,412,266	href="http://www.kegg.jp/dbget-bin/www_bget?K01107+K15422+3.1.3.57+R03393"	title="K01107 (INPP1), K15422 (SAL), 3.1.3.57, R03393" />
+			<area shape=rect	coords=366,332,412,349	href="http://www.kegg.jp/dbget-bin/www_bget?K01109+3.1.3.66+R04372"	title="K01109 (INPP4), 3.1.3.66, R04372" />
+			<area shape=rect	coords=693,367,739,384	href="http://www.kegg.jp/dbget-bin/www_bget?K01108+3.1.3.64+R03330"	title="K01108 (MTM1), 3.1.3.64, R03330" />
+			<area shape=rect	coords=366,299,412,316	href="http://www.kegg.jp/dbget-bin/www_bget?K01858+5.5.1.4+R07324"	title="K01858 (INO1), 5.5.1.4, R07324" />
+			<area shape=rect	coords=475,249,521,266	href="http://www.kegg.jp/dbget-bin/www_bget?K01092+K10047+K18649+3.1.3.25+R01186"	title="K01092 (E3.1.3.25), K10047 (VTC4), K18649 (IMPL2), 3.1.3.25, R01186" />
+			<area shape=rect	coords=475,332,521,349	href="http://www.kegg.jp/dbget-bin/www_bget?K01092+K10047+K18649+3.1.3.25+R01187"	title="K01092 (E3.1.3.25), K10047 (VTC4), K18649 (IMPL2), 3.1.3.25, R01187" />
+			<area shape=rect	coords=487,520,533,537	href="http://www.kegg.jp/dbget-bin/www_bget?K00469+1.13.99.1+R01184"	title="K00469 (MIOX), 1.13.99.1, R01184" />
+			<area shape=rect	coords=475,362,521,379	href="http://www.kegg.jp/dbget-bin/www_bget?K19517+2.7.1.64+R07279"	title="K19517 (MIK), 2.7.1.64, R07279" />
+			<area shape=rect	coords=688,239,734,256	href="http://www.kegg.jp/dbget-bin/www_bget?K00888+K19801+K13711+2.7.1.67+R03361"	title="K00888 (PI4KA), K19801 (PI4KB), K13711 (PI4K2), 2.7.1.67, R03361" />
+			<area shape=rect	coords=758,321,804,338	href="http://www.kegg.jp/dbget-bin/www_bget?K01114+K16619+3.1.4.3+R03332"	title="K01114 (plc), K16619 (plc), 3.1.4.3, R03332" />
+			<area shape=rect	coords=535,200,581,217	href="http://www.kegg.jp/dbget-bin/www_bget?K00889+K13712+2.7.1.68+R03469"	title="K00889 (PIP5K), K13712 (PIP5KL1), 2.7.1.68, R03469" />
+			<area shape=rect	coords=822,227,868,244	href="http://www.kegg.jp/dbget-bin/www_bget?K00914+2.7.1.137+R03362"	title="K00914 (PIK3C3), 2.7.1.137, R03362" />
+			<area shape=rect	coords=872,227,918,244	href="http://www.kegg.jp/dbget-bin/www_bget?K01108+K18081+K18082+K18083+K18086+K21302+3.1.3.64+R03363"	title="K01108 (MTM1), K18081 (MTMR1_2), K18082 (MTMR3_4), K18083 (MTMR6_7_8), K18086 (MTMR14), K21302 (sapM), 3.1.3.64, R03363" />
+			<area shape=rect	coords=619,332,665,349	href="http://www.kegg.jp/dbget-bin/www_bget?K01092+K10047+K18649+3.1.3.25+R01185"	title="K01092 (E3.1.3.25), K10047 (VTC4), K18649 (IMPL2), 3.1.3.25, R01185" />
+			<area shape=rect	coords=374,161,420,178	href="http://www.kegg.jp/dbget-bin/www_bget?K01116+K05857+K05858+K05859+K05860+K05861+K19006+3.1.4.11+R03435"	title="K01116 (PLCG1), K05857 (PLCD), K05858 (PLCB), K05859 (PLCG2), K05860 (PLCE), K05861 (PLCZ), K19006 (PLCH), 3.1.4.11, R03435" />
+			<area shape=rect	coords=758,342,804,359	href="http://www.kegg.jp/dbget-bin/www_bget?K01771+4.6.1.13+R03332"	title="K01771 (plc), 4.6.1.13, R03332" />
+			<area shape=rect	coords=584,372,630,389	href="http://www.kegg.jp/dbget-bin/www_bget?2.1.1.39+R01189"	title="2.1.1.39, R01189" />
+			<area shape=rect	coords=584,412,630,429	href="http://www.kegg.jp/dbget-bin/www_bget?2.1.1.40+R01188"	title="2.1.1.40, R01188" />
+			<area shape=rect	coords=145,501,191,518	href="http://www.kegg.jp/dbget-bin/www_bget?K10572+K19786+2.7.1.158+R05202"	title="K10572 (IPPK), K19786 (IPK1), 2.7.1.158, R05202" />
+			<area shape=rect	coords=594,161,640,178	href="http://www.kegg.jp/dbget-bin/www_bget?K00922+K21289+2.7.1.153+R04545"	title="K00922 (PIK3CA_B_D), K21289 (PIK3CG), 2.7.1.153, R04545" />
+			<area shape=rect	coords=587,479,633,496	href="http://www.kegg.jp/dbget-bin/www_bget?K00010+1.1.1.18+R01183"	title="K00010 (iolG), 1.1.1.18, R01183" />
+			<area shape=rect	coords=700,479,746,496	href="http://www.kegg.jp/dbget-bin/www_bget?K03335+4.2.1.44+R02782"	title="K03335 (iolE), 4.2.1.44, R02782" />
+			<area shape=rect	coords=797,479,843,496	href="http://www.kegg.jp/dbget-bin/www_bget?K03336+3.7.1.22+R08603"	title="K03336 (iolD), 3.7.1.22, R08603" />
+			<area shape=rect	coords=893,479,939,496	href="http://www.kegg.jp/dbget-bin/www_bget?K03337+5.3.1.30+R08503"	title="K03337 (iolB), 5.3.1.30, R08503" />
+			<area shape=rect	coords=984,479,1030,496	href="http://www.kegg.jp/dbget-bin/www_bget?K03338+2.7.1.92+R05661"	title="K03338 (iolC), 2.7.1.92, R05661" />
+			<area shape=rect	coords=1038,513,1084,530	href="http://www.kegg.jp/dbget-bin/www_bget?K03339+4.1.2.29+R05378"	title="K03339 (iolJ), 4.1.2.29, R05378" />
+			<area shape=rect	coords=936,555,982,572	href="http://www.kegg.jp/dbget-bin/www_bget?K00140+1.2.1.18+R00705+R00706"	title="K00140 (mmsA), 1.2.1.18, R00705, R00706" />
+			<area shape=rect	coords=936,602,982,619	href="http://www.kegg.jp/dbget-bin/www_bget?K01803+5.3.1.1+R01015"	title="K01803 (TPI), 5.3.1.1, R01015" />
+			<area shape=rect	coords=821,113,867,130	href="http://www.kegg.jp/dbget-bin/www_bget?K00921+2.7.1.150+R05802"	title="K00921 (PIKFYVE), 2.7.1.150, R05802" />
+			<area shape=rect	coords=688,292,734,309	href="http://www.kegg.jp/dbget-bin/www_bget?K00999+2.7.8.11+R01802"	title="K00999 (CDIPT), 2.7.8.11, R01802" />
+			<area shape=rect	coords=742,167,788,184	href="http://www.kegg.jp/dbget-bin/www_bget?K01109+3.1.3.66+R07299"	title="K01109 (INPP4), 3.1.3.66, R07299" />
+			<area shape=rect	coords=594,227,640,244	href="http://www.kegg.jp/dbget-bin/www_bget?K00923+2.7.1.154+R05795"	title="K00923 (PIK3C2), 2.7.1.154, R05795" />
+			<area shape=rect	coords=656,134,702,151	href="http://www.kegg.jp/dbget-bin/www_bget?K03084+K15909+3.1.3.86+R09827"	title="K03084 (SHIP1), K15909 (SHIP2), 3.1.3.86, R09827" />
+			<area shape=rect	coords=643,571,689,588	href="http://www.kegg.jp/dbget-bin/www_bget?K06606+5.3.99.11+R09952"	title="K06606 (iolI), 5.3.99.11, R09952" />
+			<area shape=rect	coords=587,618,633,635	href="http://www.kegg.jp/dbget-bin/www_bget?K00010+1.1.1.369+R09951"	title="K00010 (iolG), 1.1.1.369, R09951" />
+			<area shape=rect	coords=587,539,633,556	href="http://www.kegg.jp/dbget-bin/www_bget?K16043+1.1.1.370+R09953"	title="K16043 (iolX), 1.1.1.370, R09953" />
+			<area shape=rect	coords=587,560,633,577	href="http://www.kegg.jp/dbget-bin/www_bget?K16044+1.1.1.371+R09954"	title="K16044 (iolW), 1.1.1.371, R09954" />
+			<area shape=rect	coords=420,375,466,392	href="http://www.kegg.jp/dbget-bin/www_bget?K23992+K07281+2.7.7.74+R09669"	title="K23992 (K23992), K07281 (ipct), 2.7.7.74, R09669" />
+			<area shape=rect	coords=420,437,466,454	href="http://www.kegg.jp/dbget-bin/www_bget?K23992+K07291+2.7.8.34+R09670"	title="K23992 (K23992), K07291 (dipps), 2.7.8.34, R09670" />
+			<area shape=rect	coords=688,60,734,77	href="http://www.kegg.jp/dbget-bin/www_bget?K01108+K18081+K18082+K18083+K18086+3.1.3.95+R10928"	title="K01108 (MTM1), K18081 (MTMR1_2), K18082 (MTMR3_4), K18083 (MTMR6_7_8), K18086 (MTMR14), 3.1.3.95, R10928" />
+			<area shape=rect	coords=688,266,734,283	href="http://www.kegg.jp/dbget-bin/www_bget?K21797+K21798+R11680"	title="K21797 (SAC1), K21798 (SAC2), R11680" />
+			<area shape=rect	coords=700,445,746,462	href="http://www.kegg.jp/dbget-bin/www_bget?K22231+R11770"	title="K22231 (iolM), R11770" />
+			<area shape=rect	coords=797,445,843,462	href="http://www.kegg.jp/dbget-bin/www_bget?K22232+R11771"	title="K22232 (iolN), R11771" />
+			<area shape=rect	coords=892,444,938,461	href="http://www.kegg.jp/dbget-bin/www_bget?K22233+R11772"	title="K22233 (iolO), R11772" />
+			<area shape=rect	coords=587,516,633,533	href="http://www.kegg.jp/dbget-bin/www_bget?K22230+R09954"	title="K22230 (iolU), R09954" />
+			<area shape=rect	coords=872,113,918,130	href="http://www.kegg.jp/dbget-bin/www_bget?K22913+R12124"	title="K22913 (FIG4), R12124" />
+			<area shape=rect	coords=40,45,312,70	href="http://www.kegg.jp/dbget-bin/www_bget?map00562"	title="map00562: Inositol phosphate metabolism" />
+			<area shape=rect	coords=391,597,527,631	href="http://www.kegg.jp/kegg-bin/show_pathway?map00040"	title="map00040: Pentose and glucuronate interconversions" />
+			<area shape=rect	coords=908,328,1029,362	href="http://www.kegg.jp/kegg-bin/show_pathway?map00564"	title="map00564: Glycerophospholipid metabolism" />
+			<area shape=rect	coords=762,594,859,628	href="http://www.kegg.jp/kegg-bin/show_pathway?map00010"	title="map00010: Glycolysis / Gluconeogenesis" />
+			<area shape=rect	coords=791,551,859,576	href="http://www.kegg.jp/kegg-bin/show_pathway?map00020"	title="map00020: Citrate cycle (TCA cycle)" />
+			<area shape=rect	coords=1002,435,1137,469	href="http://www.kegg.jp/kegg-bin/show_pathway?map00040"	title="map00040: Pentose and glucuronate interconversions" />
+</map>
+<div id="poplay" class="poplay" />
+
+</form>
+</body>
+</html>

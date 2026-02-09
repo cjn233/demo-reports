@@ -1,0 +1,269 @@
+<html>
+<!---
+ENTRY       A_vs_B_ko04979.png
+DEFINITION  Pathway A_vs_B_ko04979.png
+--->
+<head>
+<title>
+KEGG PATHWAY: Pathway A_vs_B_ko04979.png
+</title>
+<style type="text/css">
+<!--
+div.poplay {
+  position: absolute;
+  padding: 2px;
+  background-color: #ffff99;
+  border-top: solid 1px #c0c0c0;
+  border-left: solid 1px #c0c0c0;
+  border-bottom: solid 1px #808080;
+  border-right: solid 1px #808080;
+  visibility: hidden;
+}
+
+span.popup
+{
+  font-weight: bold;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+form {
+  margin: 0px;
+}
+
+div.image {
+  position: absolute;
+  padding: 0px;
+  top: 0px;
+  padding: 0px;
+  border: solid 1px #000000;
+}
+
+img {
+  border: none;
+}
+
+
+-->
+</style>
+<link rel="stylesheet" href="/css/kegg.css" type="text/css" />
+<script language="JavaScript" src="/js/dhtml.js"></script>
+
+<script language="JavaScript">
+<!---
+var image_height;
+100 100function(){
+	100 100window).bind('load',function(){
+  image_height = 100 100"div.image").height()-10;
+	100 100"div.control").height(image_height-5);
+	100 100"#resizable").height(image_height);
+	});
+});
+
+
+function resize_map(scale){
+  var form = document.forms["form2"];
+  form.scale.value = scale;
+  form.submit();
+}
+
+function select_menu(){
+  var form = document.forms["selmenu"];
+  if(form.org_name.value == 'set_cookie' || form.org_name.value == 'reset_cookie'){
+    window.open('/kegg/misc/kegg2_select.html','sel_org','toolbar=no,location=no,directories=no,width=500,height=320,resizable=yes');
+  }else{
+    form.action='/kegg-bin/show_pathway';
+    form.submit();
+  }
+}
+
+var timer = 0;
+var p_entry, p_title, p_bgcolor;
+function popupTimer(entry, title, bgcolor)
+{
+  p_entry = entry;
+  p_title = title;
+  p_bgcolor = bgcolor;
+
+  if(timer == 0){
+    var func = "showThumbnail()";
+    timer = setTimeout(func, 1200);
+  }
+}
+
+
+function hideMapTn(){
+  var layer = new Component("poplay");
+  layer.visible(false);
+
+  if(timer != 0){
+    clearTimeout(timer);
+    timer = 0;
+  }
+}
+
+function switchDescription(){
+  var form = document.forms[0];
+  var status = form.show_description.value;
+
+  if(status == "hide"){
+    document.getElementById("description").style.display = "";
+    document.getElementById("descLink").innerHTML = "Hide description";
+    form.show_description.value='show';
+
+    if(document.forms[1]){
+    	document.forms[1].show_description.value='show';
+    }
+  }
+  else
+  {
+    document.getElementById("description").style.display = 'none';
+    document.getElementById("descLink").innerHTML = "Show description";
+    form.show_description.value='hide';
+
+    if(document.forms[1]){
+      document.forms[1].show_description.value='hide';
+    }
+  }
+}
+
+function btn(bobj,img) { bobj.src = "/Fig/bget/button_" + img + ".gif"; }
+//--->
+</script>
+<body>
+<img src=A_vs_B_ko04979.png usemap="#mapdata" border="0" />
+<map name="mapdata">
+			<area shape=circ	coords=1062,637,4	href="http://www.kegg.jp/dbget-bin/www_bget?C15610"	title="C15610 (Cholest-5-ene-3beta,26-diol)" onmouseover="popupTimer(C15610 (Cholest-5-ene-3beta,26-diol), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=998,1115,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00422"	title="C00422 (Triacylglycerol)" onmouseover="popupTimer(C00422 (Triacylglycerol), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=788,1097,4	href="http://www.kegg.jp/dbget-bin/www_bget?C02530"	title="C02530 (Cholesterol ester)" onmouseover="popupTimer(C02530 (Cholesterol ester), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=788,1112,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00422"	title="C00422 (Triacylglycerol)" onmouseover="popupTimer(C00422 (Triacylglycerol), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=854,1117,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00422"	title="C00422 (Triacylglycerol)" onmouseover="popupTimer(C00422 (Triacylglycerol), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=731,1096,4	href="http://www.kegg.jp/dbget-bin/www_bget?C02530"	title="C02530 (Cholesterol ester)" onmouseover="popupTimer(C02530 (Cholesterol ester), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=914,1095,4	href="http://www.kegg.jp/dbget-bin/www_bget?C02530"	title="C02530 (Cholesterol ester)" onmouseover="popupTimer(C02530 (Cholesterol ester), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=914,1110,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00422"	title="C00422 (Triacylglycerol)" onmouseover="popupTimer(C00422 (Triacylglycerol), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=632,1135,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00865"	title="C00865 (Phospholipid)" onmouseover="popupTimer(C00865 (Phospholipid), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=601,1135,4	href="http://www.kegg.jp/dbget-bin/www_bget?C02530"	title="C02530 (Cholesterol ester)" onmouseover="popupTimer(C02530 (Cholesterol ester), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=670,1077,4	href="http://www.kegg.jp/dbget-bin/www_bget?C02530"	title="C02530 (Cholesterol ester)" onmouseover="popupTimer(C02530 (Cholesterol ester), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=171,266,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00422"	title="C00422 (Triacylglycerol)" onmouseover="popupTimer(C00422 (Triacylglycerol), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=172,416,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00162"	title="C00162 (Fatty acid)" onmouseover="popupTimer(C00162 (Fatty acid), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=400,213,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00865"	title="C00865 (Phospholipid)" onmouseover="popupTimer(C00865 (Phospholipid), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=377,134,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00187"	title="C00187 (Cholesterol)" onmouseover="popupTimer(C00187 (Cholesterol), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=434,277,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00187"	title="C00187 (Cholesterol)" onmouseover="popupTimer(C00187 (Cholesterol), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=434,290,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00865"	title="C00865 (Phospholipid)" onmouseover="popupTimer(C00865 (Phospholipid), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=532,284,4	href="http://www.kegg.jp/dbget-bin/www_bget?C02530"	title="C02530 (Cholesterol ester)" onmouseover="popupTimer(C02530 (Cholesterol ester), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=638,261,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00865"	title="C00865 (Phospholipid)" onmouseover="popupTimer(C00865 (Phospholipid), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=638,346,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00422"	title="C00422 (Triacylglycerol)" onmouseover="popupTimer(C00422 (Triacylglycerol), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=770,261,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00162"	title="C00162 (Fatty acid)" onmouseover="popupTimer(C00162 (Fatty acid), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=770,298,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00865"	title="C00865 (Phospholipid)" onmouseover="popupTimer(C00865 (Phospholipid), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=770,346,4	href="http://www.kegg.jp/dbget-bin/www_bget?C02530"	title="C02530 (Cholesterol ester)" onmouseover="popupTimer(C02530 (Cholesterol ester), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=883,292,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00422"	title="C00422 (Triacylglycerol)" onmouseover="popupTimer(C00422 (Triacylglycerol), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=999,292,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00162"	title="C00162 (Fatty acid)" onmouseover="popupTimer(C00162 (Fatty acid), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1110,292,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00422"	title="C00422 (Triacylglycerol)" onmouseover="popupTimer(C00422 (Triacylglycerol), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1225,292,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00162"	title="C00162 (Fatty acid)" onmouseover="popupTimer(C00162 (Fatty acid), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1053,130,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00865"	title="C00865 (Phospholipid)" onmouseover="popupTimer(C00865 (Phospholipid), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1260,151,4	href="http://www.kegg.jp/dbget-bin/www_bget?C02530"	title="C02530 (Cholesterol ester)" onmouseover="popupTimer(C02530 (Cholesterol ester), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1153,151,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00187"	title="C00187 (Cholesterol)" onmouseover="popupTimer(C00187 (Cholesterol), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=581,491,4	href="http://www.kegg.jp/dbget-bin/www_bget?C02530"	title="C02530 (Cholesterol ester)" onmouseover="popupTimer(C02530 (Cholesterol ester), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=545,554,4	href="http://www.kegg.jp/dbget-bin/www_bget?C02530"	title="C02530 (Cholesterol ester)" onmouseover="popupTimer(C02530 (Cholesterol ester), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=377,494,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00187"	title="C00187 (Cholesterol)" onmouseover="popupTimer(C00187 (Cholesterol), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=545,635,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00187"	title="C00187 (Cholesterol)" onmouseover="popupTimer(C00187 (Cholesterol), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=926,637,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00187"	title="C00187 (Cholesterol)" onmouseover="popupTimer(C00187 (Cholesterol), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=678,739,4	href="http://www.kegg.jp/dbget-bin/www_bget?C02530"	title="C02530 (Cholesterol ester)" onmouseover="popupTimer(C02530 (Cholesterol ester), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=755,739,4	href="http://www.kegg.jp/dbget-bin/www_bget?C02530"	title="C02530 (Cholesterol ester)" onmouseover="popupTimer(C02530 (Cholesterol ester), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=678,822,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00187"	title="C00187 (Cholesterol)" onmouseover="popupTimer(C00187 (Cholesterol), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=771,762,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00422"	title="C00422 (Triacylglycerol)" onmouseover="popupTimer(C00422 (Triacylglycerol), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=1062,822,4	href="http://www.kegg.jp/dbget-bin/www_bget?C05122+C01921+C05465+C05466"	title="C05122 (Taurocholate), C01921 (Glycocholate), C05465 (Taurochenodeoxycholate), C05466 (Glycochenodeoxycholate)" onmouseover="popupTimer(C05122 (Taurocholate), C01921 (Glycocholate), C05465 (Taurochenodeoxycholate), C05466 (Glycochenodeoxycholate), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=circ	coords=357,399,4	href="http://www.kegg.jp/dbget-bin/www_bget?C00865"	title="C00865 (Phospholipid)" onmouseover="popupTimer(C00865 (Phospholipid), &quot;#ffffff&quot;)" onmouseout="hideMapTn()" />
+			<area shape=rect	coords=958,1047,1004,1064	href="http://www.kegg.jp/dbget-bin/www_bget?K08757"	title="K08757 (APOA1)" />
+			<area shape=rect	coords=1008,1047,1054,1064	href="http://www.kegg.jp/dbget-bin/www_bget?K14462"	title="K14462 (APOB)" />
+			<area shape=rect	coords=1008,1067,1054,1084	href="http://www.kegg.jp/dbget-bin/www_bget?K22286+K22287+K08759"	title="K22286 (APOC1), K22287 (APOC2), K08759 (APOC3)" />
+			<area shape=rect	coords=1008,1087,1054,1104	href="http://www.kegg.jp/dbget-bin/www_bget?K04524"	title="K04524 (APOE)" />
+			<area shape=rect	coords=713,1047,759,1064	href="http://www.kegg.jp/dbget-bin/www_bget?K09644"	title="K09644 (LPA)" />
+			<area shape=rect	coords=958,1067,1004,1084	href="http://www.kegg.jp/dbget-bin/www_bget?K08758"	title="K08758 (APOA2)" />
+			<area shape=rect	coords=958,1087,1004,1104	href="http://www.kegg.jp/dbget-bin/www_bget?K08760"	title="K08760 (APOA4)" />
+			<area shape=rect	coords=896,1067,942,1084	href="http://www.kegg.jp/dbget-bin/www_bget?K04524"	title="K04524 (APOE)" />
+			<area shape=rect	coords=896,1047,942,1064	href="http://www.kegg.jp/dbget-bin/www_bget?K14462"	title="K14462 (APOB)" />
+			<area shape=rect	coords=834,1047,880,1064	href="http://www.kegg.jp/dbget-bin/www_bget?K14462"	title="K14462 (APOB)" />
+			<area shape=rect	coords=834,1067,880,1084	href="http://www.kegg.jp/dbget-bin/www_bget?K22286+K22287+K08759"	title="K22286 (APOC1), K22287 (APOC2), K08759 (APOC3)" />
+			<area shape=rect	coords=834,1087,880,1104	href="http://www.kegg.jp/dbget-bin/www_bget?K04524"	title="K04524 (APOE)" />
+			<area shape=rect	coords=773,1047,819,1064	href="http://www.kegg.jp/dbget-bin/www_bget?K14462"	title="K14462 (APOB)" />
+			<area shape=rect	coords=713,1067,759,1084	href="http://www.kegg.jp/dbget-bin/www_bget?K14462"	title="K14462 (APOB)" />
+			<area shape=rect	coords=655,1047,701,1064	href="http://www.kegg.jp/dbget-bin/www_bget?K14462"	title="K14462 (APOB)" />
+			<area shape=rect	coords=597,1047,643,1064	href="http://www.kegg.jp/dbget-bin/www_bget?K08757"	title="K08757 (APOA1)" />
+			<area shape=rect	coords=597,1067,643,1084	href="http://www.kegg.jp/dbget-bin/www_bget?K08758"	title="K08758 (APOA2)" />
+			<area shape=rect	coords=597,1087,643,1104	href="http://www.kegg.jp/dbget-bin/www_bget?K22286+K22287+K08759"	title="K22286 (APOC1), K22287 (APOC2), K08759 (APOC3)" />
+			<area shape=rect	coords=597,1107,643,1124	href="http://www.kegg.jp/dbget-bin/www_bget?K04524"	title="K04524 (APOE)" />
+			<area shape=rect	coords=773,1067,819,1084	href="http://www.kegg.jp/dbget-bin/www_bget?K04524"	title="K04524 (APOE)" />
+			<area shape=rect	coords=99,344,145,361	href="http://www.kegg.jp/dbget-bin/www_bget?K22288+K08767"	title="K22288 (ANGPTL3), K08767 (ANGPTL4)" />
+			<area shape=rect	coords=99,383,145,400	href="http://www.kegg.jp/dbget-bin/www_bget?K22289"	title="K22289 (ANGPTL8)" />
+			<area shape=rect	coords=47,310,93,327	href="http://www.kegg.jp/dbget-bin/www_bget?K17305"	title="K17305 (APOH)" />
+			<area shape=rect	coords=47,290,93,307	href="http://www.kegg.jp/dbget-bin/www_bget?K22287"	title="K22287 (APOC2)" />
+			<area shape=rect	coords=120,300,166,317	href="http://www.kegg.jp/dbget-bin/www_bget?K01059"	title="K01059 (LPL)" />
+			<area shape=rect	coords=354,168,400,185	href="http://www.kegg.jp/dbget-bin/www_bget?K05641"	title="K05641 (ABCA1)" />
+			<area shape=rect	coords=354,425,400,442	href="http://www.kegg.jp/dbget-bin/www_bget?K05641"	title="K05641 (ABCA1)" />
+			<area shape=rect	coords=1088,143,1134,160	href="http://www.kegg.jp/dbget-bin/www_bget?K05641"	title="K05641 (ABCA1)" />
+			<area shape=rect	coords=311,205,357,222	href="http://www.kegg.jp/dbget-bin/www_bget?K08757"	title="K08757 (APOA1)" />
+			<area shape=rect	coords=1030,174,1076,191	href="http://www.kegg.jp/dbget-bin/www_bget?K08757"	title="K08757 (APOA1)" />
+			<area shape=rect	coords=394,392,440,409	href="http://www.kegg.jp/dbget-bin/www_bget?K08757"	title="K08757 (APOA1)" />
+			<area shape=rect	coords=1186,126,1232,143	href="http://www.kegg.jp/dbget-bin/www_bget?K14349"	title="K14349 (NCEH1)" />
+			<area shape=rect	coords=1186,158,1232,175	href="http://www.kegg.jp/dbget-bin/www_bget?K00637"	title="K00637 (SOAT)" />
+			<area shape=rect	coords=1237,203,1283,220	href="http://www.kegg.jp/dbget-bin/www_bget?K12473"	title="K12473 (LDLR)" />
+			<area shape=rect	coords=1142,203,1188,220	href="http://www.kegg.jp/dbget-bin/www_bget?K06259"	title="K06259 (CD36)" />
+			<area shape=rect	coords=460,224,506,241	href="http://www.kegg.jp/dbget-bin/www_bget?K22286"	title="K22286 (APOC1)" />
+			<area shape=rect	coords=460,262,506,279	href="http://www.kegg.jp/dbget-bin/www_bget?K00650"	title="K00650 (LCAT)" />
+			<area shape=rect	coords=460,204,506,221	href="http://www.kegg.jp/dbget-bin/www_bget?K08757"	title="K08757 (APOA1)" />
+			<area shape=rect	coords=680,290,726,307	href="http://www.kegg.jp/dbget-bin/www_bget?K08761"	title="K08761 (PLTP)" />
+			<area shape=rect	coords=680,336,726,353	href="http://www.kegg.jp/dbget-bin/www_bget?K16835"	title="K16835 (CETP)" />
+			<area shape=rect	coords=680,376,726,393	href="http://www.kegg.jp/dbget-bin/www_bget?K22286"	title="K22286 (APOC1)" />
+			<area shape=rect	coords=680,241,726,258	href="http://www.kegg.jp/dbget-bin/www_bget?K22284"	title="K22284 (LIPG)" />
+			<area shape=rect	coords=919,272,965,289	href="http://www.kegg.jp/dbget-bin/www_bget?K01059"	title="K01059 (LPL)" />
+			<area shape=rect	coords=1139,272,1185,289	href="http://www.kegg.jp/dbget-bin/www_bget?K22283"	title="K22283 (LIPC)" />
+			<area shape=rect	coords=558,425,604,442	href="http://www.kegg.jp/dbget-bin/www_bget?K13885"	title="K13885 (SCARB1)" />
+			<area shape=rect	coords=834,425,880,442	href="http://www.kegg.jp/dbget-bin/www_bget?K12388"	title="K12388 (SORT1)" />
+			<area shape=rect	coords=1156,439,1202,456	href="http://www.kegg.jp/dbget-bin/www_bget?K13050"	title="K13050 (PCSK9)" />
+			<area shape=rect	coords=1129,456,1175,473	href="http://www.kegg.jp/dbget-bin/www_bget?K12473"	title="K12473 (LDLR)" />
+			<area shape=rect	coords=960,541,1006,558	href="http://www.kegg.jp/dbget-bin/www_bget?K13050"	title="K13050 (PCSK9)" />
+			<area shape=rect	coords=933,558,979,575	href="http://www.kegg.jp/dbget-bin/www_bget?K12473"	title="K12473 (LDLR)" />
+			<area shape=rect	coords=713,548,759,565	href="http://www.kegg.jp/dbget-bin/www_bget?K13050"	title="K13050 (PCSK9)" />
+			<area shape=rect	coords=686,565,732,582	href="http://www.kegg.jp/dbget-bin/www_bget?K12473"	title="K12473 (LDLR)" />
+			<area shape=rect	coords=868,506,914,523	href="http://www.kegg.jp/dbget-bin/www_bget?K12388"	title="K12388 (SORT1)" />
+			<area shape=rect	coords=1240,425,1286,442	href="http://www.kegg.jp/dbget-bin/www_bget?K12473"	title="K12473 (LDLR)" />
+			<area shape=rect	coords=1297,425,1343,442	href="http://www.kegg.jp/dbget-bin/www_bget?K12474"	title="K12474 (LDLRAP1)" />
+			<area shape=rect	coords=1349,488,1395,505	href="http://www.kegg.jp/dbget-bin/www_bget?K10637"	title="K10637 (MYLIP)" />
+			<area shape=rect	coords=1336,327,1382,344	href="http://www.kegg.jp/dbget-bin/www_bget?K09644"	title="K09644 (LPA)" />
+			<area shape=rect	coords=549,580,595,597	href="http://www.kegg.jp/dbget-bin/www_bget?K01052"	title="K01052 (LIPA)" />
+			<area shape=rect	coords=496,687,542,704	href="http://www.kegg.jp/dbget-bin/www_bget?K22291"	title="K22291 (STARD3)" />
+			<area shape=rect	coords=546,687,592,704	href="http://www.kegg.jp/dbget-bin/www_bget?K12385"	title="K12385 (NPC1)" />
+			<area shape=rect	coords=496,704,542,721	href="http://www.kegg.jp/dbget-bin/www_bget?K06096+K10707"	title="K06096 (VAPA), K10707 (VAPB)" />
+			<area shape=rect	coords=546,704,592,721	href="http://www.kegg.jp/dbget-bin/www_bget?K20464"	title="K20464 (OSBPL5)" />
+			<area shape=rect	coords=591,659,637,676	href="http://www.kegg.jp/dbget-bin/www_bget?K13443"	title="K13443 (NPC2)" />
+			<area shape=rect	coords=940,651,986,668	href="http://www.kegg.jp/dbget-bin/www_bget?K16931"	title="K16931 (STAR)" />
+			<area shape=rect	coords=894,663,940,680	href="http://www.kegg.jp/dbget-bin/www_bget?K05862+K15040+K15041"	title="K05862 (VDAC1), K15040 (VDAC2), K15041 (VDAC3)" />
+			<area shape=rect	coords=775,629,821,646	href="http://www.kegg.jp/dbget-bin/www_bget?K22291"	title="K22291 (STARD3)" />
+			<area shape=rect	coords=821,629,867,646	href="http://www.kegg.jp/dbget-bin/www_bget?K05862+K15040+K15041"	title="K05862 (VDAC1), K15040 (VDAC2), K15041 (VDAC3)" />
+			<area shape=rect	coords=856,646,902,663	href="http://www.kegg.jp/dbget-bin/www_bget?K05770"	title="K05770 (TSPO)" />
+			<area shape=rect	coords=629,773,675,790	href="http://www.kegg.jp/dbget-bin/www_bget?K00637"	title="K00637 (SOAT)" />
+			<area shape=rect	coords=846,705,892,722	href="http://www.kegg.jp/dbget-bin/www_bget?K12388"	title="K12388 (SORT1)" />
+			<area shape=rect	coords=846,722,892,739	href="http://www.kegg.jp/dbget-bin/www_bget?K14462"	title="K14462 (APOB)" />
+			<area shape=rect	coords=1099,419,1145,436	href="http://www.kegg.jp/dbget-bin/www_bget?K14462"	title="K14462 (APOB)" />
+			<area shape=rect	coords=963,617,1009,634	href="http://www.kegg.jp/dbget-bin/www_bget?K00488"	title="K00488 (CYP27A1)" />
+			<area shape=rect	coords=896,802,942,819	href="http://www.kegg.jp/dbget-bin/www_bget?K00489"	title="K00489 (CYP7A1)" />
+			<area shape=rect	coords=1277,845,1323,862	href="http://www.kegg.jp/dbget-bin/www_bget?K05683+K05684"	title="K05683 (ABCG5), K05684 (ABCG8)" />
+			<area shape=rect	coords=1277,815,1323,832	href="http://www.kegg.jp/dbget-bin/www_bget?K05664"	title="K05664 (ABCB11)" />
+			<area shape=rect	coords=1074,456,1120,473	href="http://www.kegg.jp/dbget-bin/www_bget?K12388"	title="K12388 (SORT1)" />
+			<area shape=rect	coords=252,546,298,563	href="http://www.kegg.jp/dbget-bin/www_bget?K04550+K06233"	title="K04550 (LRP1), K06233 (LRP2)" />
+			<area shape=rect	coords=250,583,296,600	href="http://www.kegg.jp/dbget-bin/www_bget?K22290"	title="K22290 (LRPAP1)" />
+			<area shape=rect	coords=206,546,252,563	href="http://www.kegg.jp/dbget-bin/www_bget?K04524"	title="K04524 (APOE)" />
+			<area shape=rect	coords=800,722,846,739	href="http://www.kegg.jp/dbget-bin/www_bget?K25914"	title="K25914 (CIDEB)" />
+			<area shape=rect	coords=263,121,353,151	href="http://www.kegg.jp/kegg-bin/show_pathway?map04975"	title="map04975: Fat digestion and absorption" />
+			<area shape=rect	coords=1151,799,1231,817	href="http://www.kegg.jp/kegg-bin/show_pathway?map04976"	title="map04976: Bile secretion" />
+			<area shape=rect	coords=621,856,733,874	href="http://www.kegg.jp/kegg-bin/show_pathway?map00100"	title="map00100: Steroid biosynthesis" />
+			<area shape=rect	coords=504,848,613,877	href="http://www.kegg.jp/kegg-bin/show_pathway?map00900"	title="map00900: Terpenoid backbone biosynthesis" />
+			<area shape=rect	coords=960,779,1056,807	href="http://www.kegg.jp/kegg-bin/show_pathway?map00120"	title="map00120: Primary bile acid biosynthesis" />
+			<area shape=rect	coords=40,45,257,70	href="http://www.kegg.jp/dbget-bin/www_bget?map04979"	title="map04979: Cholesterol metabolism" />
+</map>
+<div id="poplay" class="poplay" />
+
+</form>
+</body>
+</html>

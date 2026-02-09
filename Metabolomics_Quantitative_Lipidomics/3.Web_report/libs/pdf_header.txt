@@ -1,0 +1,58 @@
+---
+fontsize: 12pt
+classoption: twoside
+subparagraph: yes
+output: 
+  pdf_document:
+    includes:
+      in_header: libs/header.tex
+    latex_engine: xelatex
+    toc: false
+    number_sections: true
+    keep_tex: false
+---
+
+```{r knitr_init, echo=FALSE, cache=FALSE, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, fig.pos='H')
+suppressMessages(library(openxlsx))
+suppressMessages(library(stargazer))
+suppressMessages(library(knitr))
+suppressMessages(library(kableExtra))
+suppressMessages(library(tidyverse))
+library(readr)
+library(purrr)
+library(tibble)
+options(knitr.table.format="latex")
+```
+
+\begin{titlepage}
+\begin{center}
+
+%% Company logo
+\includegraphics[width=0.5\textwidth]{libs/img/logo_company.png}\\[2.5cm]
+
+%% Main title
+~\\
+~\\
+~\\
+{\heiti \zihao{1} %s}\\[0.5cm]
+
+
+\vfill
+
+
+
+
+
+\end{center}
+\end{titlepage}
+
+\tableofcontents
+
+\newpage
+
+\raggedbottom
+
+\begin{center}
+\heiti{\LARGE %s}
+\end{center}
