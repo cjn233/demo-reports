@@ -1,0 +1,2135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" >
+<html>
+<head>
+<TITLE>Novogene Human DNA Methylation Assay (930K) Demo Report </TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="css/jquery-ui.css" />
+<link rel="stylesheet" href="css/bootstrap-4.3.1.min.css" />
+<link rel="stylesheet" href="css/jquery.tocify.css" />
+<link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="css/base.css"/>
+<link rel="stylesheet" href="css/gallery.css"/>
+<script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
+<script src="js/jquery-ui.min.js" type="text/javascript"></script>
+<script src="js/jquery.tocify.min.js" type="text/javascript"></script>
+<script src="js/bootstrap-4.3.1.min.js" type="text/javascript"></script>
+<script src="js/scrollTop.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$(function () {
+		var options = {
+			selectors: "h2,h3,h4,h5",
+			theme: "bootstrap",
+			scrollTo: "60"
+		};
+		var toc = $("#toc").tocify(options).data("toc-tocify");
+	});
+</script>
+<script type="text/javascript">
+function trans(img_div_id) {
+img_div = $("#" + img_div_id)
+img = $("#" + img_div_id + " img").first();
+if (img_div.hasClass("fullscreen-div")) {
+img_div.removeClass("fullscreen-div");
+img.removeClass("fullscreen-img");
+}
+else {
+img_div.addClass("fullscreen-div");
+img.addClass("fullscreen-img");
+}
+}
+function filter_display() {
+return $(this).css("display") != "none";
+}
+function show_default() {
+var list_group_id = "#" + $(this).attr("id");
+if ($(list_group_id + " a.active").css("display") == "none") {
+var list_tab = $(list_group_id + " a.active");
+var pan_id = list_tab.attr("href");
+$(pan_id).removeClass("active show");
+list_tab.removeClass("active");
+}
+if ($(list_group_id + " a.active").filter(filter_display).length == 0) {
+$(list_group_id + " a").filter(filter_display).first().tab("show");
+}
+}
+$.fn.show_default = show_default
+function next(botton_id) {
+var present_tab = $("#" + botton_id.replace("_button_next", "_list-tab") + " .active").first();
+while (present_tab.next().length == 1) {
+if (present_tab.next().css("display") != "none") {
+present_tab.next().tab("show");
+break;
+}
+else {
+present_tab = present_tab.next();
+}
+}
+}
+function prev(botton_id) {
+var present_tab = $("#" + botton_id.replace("_button_prev", "_list-tab") + " .active").first();
+while (present_tab.prev().length == 1) {
+if (present_tab.prev().css("display") != "none") {
+present_tab.prev().tab("show");
+break;
+}
+else {
+present_tab = present_tab.prev();
+}
+}
+}
+$(document).ready(function () {
+$(".form-control").on("keyup", function () {
+var value = $(this).val().toLowerCase();
+var input_box_id = "#" + $(this).attr("id");
+var list_group_id = input_box_id.replace("_InputList", "_list-tab");
+$(list_group_id + " a").filter(function () {
+$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+});
+$(list_group_id).show_default();
+});
+$(".list-group").each(show_default);
+});
+</script>
+</head>
+<body>
+<div id="toc" class="tocify">
+</div>
+    <div style="position:fixed; top:0; left:0; width:100%; z-index:1000;">
+        <table width="100%" height="50px" border="0" cellpadding="5" cellspacing="0"
+            style="background:#F3F3F3; border-bottom:1px solid #eee;border-top: none;background-image:-moz-linear-gradient(top,#EEEEEE,#FFFFFF); background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0,#EEEEEE), color-stop(1,#FFFFFF));filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#EEEEEE', endColorstr='#FFFFFF', GradientType='0')">
+            <tr height="86%">
+                <td width='1%'></td>
+                <td><img src="images/logo1-GN.png"></td>
+                <td>
+                    <div style="margin:5px;border-left:1px solid #DCDCDC;height:30px"></div>
+                </td>
+                <td width="70%"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<!-------------------------------------------main content--------------------------------------------->
+<div id="main">
+<br><h1>Novogene Human DNA Methylation Assay (930K) Demo Report</h1></br>
+<table class="gy">
+<tr>
+
+</tr>
+
+<tr><td>Project Number</td><td style="text-align:left">{{stage}}</td></tr>
+
+<tr><td>Project Name</td><td style="text-align:left">{{Project_Name}}</td></tr>
+
+<tr><td>Project Number</td><td style="text-align:left">{{stage}}</td></tr>
+
+<tr><td>Report date</td><td style="text-align:left">{{timedate}}</td></tr>
+
+</table>
+
+<br /><br />
+<div id="page">
+<p class="head"><a href="#home" title = "返回首页"></a>
+<a name="Introduction"></a>
+<hr />
+</p><br />
+
+<h2 id="id_order_pipeline"><a name="样本信息">1. Sample Information </a></h2>
+    <p class="name_table" style="text-align: center; font-weight: bold;">Table 1-1 information of samples</p>
+    <p class="center">
+        <div id="tb">
+            <table class="gy">
+                <tr>
+                    <th>Sample_name</th>
+                    <th>Group</th>
+                    <th>Sample_type</th>
+                    <th>Loci_detection_rate</th>
+
+                </tr>
+                {% for each in table_info %}
+                <tr>
+                    <td>{{each.0}}</td>
+                    <td>{{each.1}}</td>
+                    <td>{{each.2}}</td>
+                    <td>{{each.3}}</td>
+
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        </p>
+
+</div>
+
+<!----------------------------------------芯片简介----------------------------------------->
+<div id="page">
+    <hr/>
+    </p><br/>
+    <h2 id="id_order_chip"><a id="Introduction of Illumina Methylation Array">2. Introduction of Illumina Methylation Array</a></h2>
+
+    <p class="paragraph">
+         The Illumina methylation array, Infinium™ MethylationEPIC v2.0 BeadChip (abbreviated as the 930K Methylation Array), provides researchers with a high-performance and cost-effective methylation profiling solution. Compared to its predecessor, the MethylationEPIC v1.0 (850K), it has removed underperforming probes and added approximately 186,000 new probes, including new content based on expert feedback and epigenetic evaluations of human cancer/cell samples. Not only has it expanded coverage of CpG islands and improved exon coverage, but it has also enabled more accurate copy number variation (CNV) detection. Meanwhile, the annotated genome version has been updated from HG19 to HG38 and GenCode database version v41, better facilitating epigenomic research.
+    </p>
+    
+    <p class="paragraph">Its detection principle is as follows：</p>
+<p class="center">
+    <img class="normal4" style="width: 50%; display: block; margin: 0 auto;"
+         src="images/006tNc79ly1g60ailfcl0j30eo0ge0u0.jpg"/>
+</p>
+    <p class="name_fig" style="font-weight: bold; text-align: center;">Figure 2-1. Detection principle of 930K beadchip</p>
+</div>
+<br/>
+<br/>
+
+
+
+
+<!-------------------------------------------- 数据质控 --------------------------------------->
+<hr/>
+</p><br/>
+<h2><a id="Data Analysis and Result Statistics">3. Data Analysis and Result Statistics</a></h2>
+    <!----------------------------------------Bioinformatics Analysis Workflow----------------------------------------->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                {% if section_pipeline %}<h3 id="id_order_qc"><a id="Bioinformatics Analysis Workflow">{{section_pipeline}} Bioinformatics Analysis Workflow</a></h3>{% endif %}
+   {% if flag_qc and not flag_dmp and not flag_dmr and not flag_go and not flag_kegg %} <p class="center">
+        <img class="normal4" style="width: 75%; display: block; margin: 0 auto;" src="images/935K_QC.png"/>
+    </p>
+   {% else %}
+    <p class="center">
+       <img class="normal4" style="width: 75%; display: block; margin: 0 auto;" src="images/935K.png"/>
+     </p>
+    {% endif %}
+    {% if fig_pipeline %}<p class="name_fig" style="font-weight: bold; text-align: center;">Figure {{fig_pipeline}} Bioinformatics Analysis Workflow</p>{% endif %}
+
+
+{% if flag_qc %}
+{% if section_qc %}<h3 id="id_order_qc"><a id="Data Quality Control">{{section_qc}}　Data Quality Control</a></h3>{% endif %}
+
+<p class="paragraph">
+The methylation level of a site is generally calculated using raw signal intensity values, with the beta value (β) commonly employed as an indicator to measure the methylation level of a specific site. This value ranges between (0,1); theoretically, the closer it is to 1, the higher the methylation level of the site, and the closer it is to 0, the lower the methylation level. It is generally recognized that a beta value greater than 0.6 indicates hypermethylation, a beta value less than 0.2 indicates hypomethylation, and a beta value between 0.2 and 0.6 represents a heterogeneously methylated state.
+</p>
+    <p>The calculation formula for the beta value is as follows: $$ \beta = \frac{M}{M + U} $$</p>
+<p class="paragraph">Where M represents the signal intensity of methylated probes, and U represents the signal Intensity of unmethylated probes. </p>
+<p class="paragraph">To calculate the beta value, the raw IDAT files from the chip were imported into the R package sesame (version 1.17.11) <sup>[1]</sup>, and quality control (QC) was performed on the chip data. The specific data QC steps are as follows：</p>
+   <!-- 去掉自动编号，使用自定义（1）（2）格式 -->
+<ol style="list-style: none; padding-left: 2em;">
+  <li>（1）Detected p-value filtering: Remove all sites with a detected p-value greater than 0.05；</li>
+  <li>（2）Filtering of non-specific probes；</li>
+  <li>（3）Correction for staining bias；</li>
+  <li>（4）Correction for background signal.</li>
+</ol>
+  <!-----------------------------------------如果不做差异，beta值密度分析不展示----------------------------------------->
+{% if flag_dmp %}
+<a name="Beta Value Density Analysis"></a>
+{% if subsection_qc_density %}<h4>{{subsection_qc_density}}　Beta Value Density Analysis</h4>{% endif %}
+<p class="paragraph">
+The density curve plots of sample beta values visually present the methylation status between samples and between groups, enabling an intuitive understanding of the overall sample conditions and preliminary analysis of whether the sample characteristics align with the expected experimental design.
+</p>
+
+<p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_density_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_density_nav-tabContent">
+      {% for item in figure_beta %}
+      {% if "densityPlot" in item.1 %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_density_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_density_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_density_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_density_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_density_list-tab" role="tablist">
+      {% for item in figure_beta %}
+      {% if "densityPlot" in item.1 %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_density_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_density_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} </a>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+
+{% if fig_qc_density %}<p class="name_fig" style="font-weight: bold; text-align: center;">Figure {{fig_qc_density}} Density Distribution Curve of Methylation Beta Values</p>{% endif %}
+<p class="premark">Note: The X-axis represents the beta value, and the Y-axis represents the density value. For normal samples, the density distribution curve should be smooth in the middle with two peaks at both ends, indicating that the vast majority of methylation sites are in either a hypermethylated or hypomethylated state. The number in parentheses in the figure title denotes the number of probes remaining after filtering for subsequent analysis.</p>
+<p class="premark">Result file path: See the .png/.pdf files under 1.QC/1_Raw_Data_and_Pre_Process/*Norm_densityPlot.png/pdf in the Result directory.</p>
+
+{% endif %}
+
+<hr/>
+</p><br/>
+<a name="Beta Value Data Box plot Distribution"></a>
+{% if subsection_qc_boxplot %}<h4>{{subsection_qc_boxplot}}　Beta Value Data Box plot Distribution</h4>{% endif %}
+<p class="paragraph">After quality control (QC), the methylation levels of each sample are shown in the following figure:</p>
+
+<p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_boxplot_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_boxplot_nav-tabContent">
+      {% for item in figure_boxplot %}
+      {% if "Norm_BoxPlot" in item.1 %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_boxplot_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_boxplot_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_boxplot_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_boxplot_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_boxplot_list-tab" role="tablist">
+      {% for item in figure_boxplot %}
+      {% if "Norm_BoxPlot" in item.1 %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_boxplot_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_boxplot_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }}</a>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+
+{% if fig_qc_boxplot %}<p class="name_fig" style="font-weight: bold; text-align: center;">Figure {{fig_qc_boxplot}} Box Plot of Beta Values for Methylation Levels</p>{% endif %}
+<p class="premark">Note: The X-axis represents sample names, and the Y-axis represents sample beta values. A box plot (Box-whisker Plot) uses five statistical measures—the minimum value, first quartile (Q1), median (Q2), third quartile (Q3), and maximum value—to display information such as the overall dispersion of methylation levels for each sample. Judgments regarding intra-group reproducibility and the magnitude of inter-group differences can be made based on the degree of distribution overlap.</p>
+<p class="premark">Result file path: See the .png/.pdf files under 1.QC/1_Raw_Data_and_Pre_Process/*Beta_Norm_BoxPlot.png/pdf in the Result directory. The plotting data (Figure 3-3) is based on normbetas.csv within 1_Raw_Data_And_Pre_Process/*/ in the same directory. To avoid incomplete display when opening in Excel due to a large number of sites, it is recommended that users view the files using Notepad++ software.
+</p>
+<hr/>
+</p><br/>
+<a name="Beta Value Data Stacked Plot Distribution"></a>
+{% if subsection_qc_normbeta %}<h4>{{subsection_qc_normbeta}}　Beta Value Data Stacked Plot Distribution</h4>{% endif %}
+<p class="paragraph">All samples are categorized into three beta value groups: unmethylated (beta ≤ 0.2), intermediately methylated (0.2 < beta < 0.6), and methylated (beta ≥ 0.6). The distributions are as follows:</p>
+
+<p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_normbeta_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_normbeta_nav-tabContent">
+      {% for item in figure_normbeta %}
+      {% if "normbetas" in item.1 %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_normbeta_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_normbeta_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_normbeta_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_normbeta_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_normbeta_list-tab" role="tablist">
+      {% for item in figure_normbeta %}
+      {% if "normbetas" in item.1 %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_normbeta_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_normbeta_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} </a>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+
+{% if fig_qc_normbeta %}<p class="name_fig" style="font-weight: bold; text-align: center;">Figure {{fig_qc_normbeta}} Stacked Plot of Methylation Beta Value Statistics</p>{% endif %}
+<p class="premark">Note: The X-axis represents sample names, and the Y-axis represents the number of sites. Different colors in the bars correspond to different methylation level intervals (see the legend for details). Methylation distributions among biological replicates are generally similar.
+</p>
+<p class="premark">Result file path: See the .png/.pdf files under 1.QC/1_Raw_Data_and_Pre_Process/*normbetas_stat.png/pdf in the Result directory. The plotting data is based on the statistical file 1_Raw_Data_And_Pre_Process/*/normbetas_stat.csv in the same directory.
+</p>
+
+<div id="page">
+    <hr/>
+    </p><br/>
+    <a name="Integrative Genomics Viewer"></a>
+    {% if subsection_qc_igv %}<h4>{{subsection_qc_igv}}　Integrative Genomics Viewer</h4>{% endif %}
+<p class="paragraph">Methylation levels at sites can be visually browsed using the Integrative Genomics Viewer (IGV). IGV has the following features:</p>
+   <ol style="list-style: none; padding-left: 2em;">
+  <li>（1）Displays methylation status at specific genomic loci for single or multiple samples across different scales, including methylation levels and site distributions on various chromosomes, as well as annotated exons, introns, splice junctions, and intergenic regions；</li>
+  <li>（2）Shows methylation site density and levels in different regions across various scales;</li>
+  <li>（3）Displays gene annotation information;</li>
+  <li>（4）Supports downloading various annotation information from remote servers and loading annotation information locally.</li>
+    </ol>
+    <p class="paragraph">As shown below:</p>
+
+    <p class="center">
+        <img class="normal4" style="width: 75%; display: block; margin: 0 auto;" src="images/igv1.png"/>
+    </p>
+    {% if fig_qc_igv %}<p class="name_fig" style="font-weight: bold; text-align: center;">Figure {{fig_qc_igv}} IGV Browser Interface (Demo)</p>{% endif %}
+    <p class="paragraph">Note: The above is a sample image. Actual results can be viewed by inputting the 1.QC/1_Raw_Data_And_Pre_Process/*Allsample.igv file from the Result directory into the IGV software.</p>
+</div>
+
+<hr/>
+</p><br/>
+<a name="Correlation Heatmap"></a>
+{% if subsection_qc_corr %}<h4>{{subsection_qc_corr}}　Correlation Heatmap</h4>{% endif %}
+<p class="paragraph">
+The sample correlation heatmap is used to visualize the correlations between samples, generated by calculating the correlation coefficients between each pair of samples.
+</p>
+
+<p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_corr_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_corr_nav-tabContent">
+      {% for item in figure_corr %}
+      {% if "Correlation" in item.1 %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_corr_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_corr_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_corr_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_corr_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_corr_list-tab" role="tablist">
+      {% for item in figure_corr %}
+      {% if "Correlation" in item.1 %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_corr_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_corr_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} Sample Correlation Heatmap</a>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+
+{% if fig_qc_corr %}<p class="name_fig" style="font-weight: bold; text-align: center;">Figure {{fig_qc_corr}} Sample Correlation Heatmap</p>{% endif %}
+<p class="premark">Note: Both the X-axis and Y-axis represent sample names. Each point corresponds to the correlation between two samples. Colors range from blue (low correlation) to red (high correlation), indicating the strength of the correlation between the two samples. Higher sample correlation implies greater similarity in their overall methylation profiles. </p>
+<p class="premark">Result file path: See the .png/.pdf files under 1.QC/1_Raw_Data_and_Pre_Process/*Correlation.png/pdf in the Result directory. The correlation data are provided in the Correlation.txt file in the same directory.
+</p>
+
+
+{% endif %}
+
+{% if flag_dmp %}
+    <!----------------------------------------如果不做差异这一部分pca 和散点图 是不展示的----------------------------------------->
+<hr/>
+</p><br/>
+<a name="Scatter Plot"></a>
+<h4>{{subsection_qc_scatter}}　Scatter Plot</h4>
+<p class="paragraph">A correlation scatter plot of methylation beta values allows intuitive visualization of the overall trend of methylation distribution in two groups of samples.
+</p>
+
+<p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_scatter_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_scatter_nav-tabContent">
+      {% for item in figure_scatter %}
+      {% if "Scatter_plot" in item.1 %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_scatter_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_scatter_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_scatter_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_scatter_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_scatter_list-tab" role="tablist">
+      {% for item in figure_scatter %}
+      {% if "Scatter_plot" in item.1 %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_scatter_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_scatter_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} </a>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+
+<p class="name_fig" style="font-weight: bold; text-align: center;">Figure {{fig_qc_scatter}} Correlation Scatter Plot of Methylation Beta Values</p>
+<p class="premark">Note: Points in the figure represent detected methylation sites. The X and Y axes represent the average methylation levels of corresponding sites in different groups. R denotes the inter-group correlation coefficient; the larger the absolute value of R, the more similar the methylation profiles of sites between the two groups. The p-value indicates significance, with p<0.05 generally considered statistically significant.</p>
+<p class="premark"> Result file path: See the .png/.pdf files under 1.QC/1_Raw_Data_And_Pre_Process/Scatter_plot.png/pdf in the Result directory.</p>
+
+<hr/>
+</p><br/>
+<a name="PCA Analysis"></a>
+    {% if subsection_qc_pca %}<h4>{{subsection_qc_pca}}　PCA Analysis</h4>{% endif %}
+<p class="paragraph">
+Principal Component Analysis (PCA) is a statistical method used to identify key sources of variation in multivariate data. It transforms a set of potentially correlated variables into a set of linearly uncorrelated variables (called principal components) through orthogonal transformation, thereby revealing the underlying structure of the data and simplifying complex problems. PCA aims to reduce the number of variables while minimizing information loss, with the resulting composite variables being uncorrelated. The results of PCA for the current samples are as follows:
+</p>
+
+<p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_pca_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_pca_nav-tabContent">
+      {% for item in figure_pca %}
+      {% if "PCA_nolabel" in item.1 %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_pca_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_pca_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_pca_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_pca_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_pca_list-tab" role="tablist">
+      {% for item in figure_pca %}
+      {% if "PCA_nolabel" in item.1 %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_pca_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_pca_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }}</a>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+
+{% if fig_qc_pca %}<p class="name_fig" style="font-weight: bold; text-align: center;">Figure {{fig_qc_pca}} PAC plot of methylation level</p>{% endif %}
+<p class="premark">Note: The X-axis and Y-axis in the figure represent Principal Component 1 (PC1) and Principal Component 2 (PC2), respectively, which are orthogonal and independent of each other. Points of different colors represent different groups. The spatial distance between points reflects the similarity of methylation profiles between samples; closer distances indicate more similar methylation states. A confidence level of 0.95 was selected for this project report.
+</p>
+<p class="premark">Result file path: See the .png/.pdf files under 1.QC/1_Raw_Data_and_Pre_Process/*_Beta_Norm_PCA_nolabel.png/pdf in the Result directory. Since samples within the same group are displayed in the same color, it may be difficult to distinguish specific outlier samples solely from the unlabeled plot. For detailed sample names, refer to the Sample_Beta_Norm_PCA.png/.pdf file in the same directory, which includes sample labels.
+</p>
+
+<!----------------------------------------差异甲基化位点（DMP）----------------------------------------->
+<hr/>
+</p><br/>
+{% if section_dmp %}<h3 id="id_order_dmp"><a id="Differentially Methylated Positions (DMPs)">{{section_dmp}}　Differentially Methylated Positions (DMPs)</a></h3>{% endif %}
+    <a name="DMP Analysis Workflow"></a>
+    {% if subsection_dmp_process %}<h4>{{subsection_dmp_process}}　DMP Analysis Workflow</h4>{% endif %}
+    <p class="paragraph">
+Differentially Methylated Positions (DMPs) are a critical component of methylation studies and are essential for identifying potential biomarkers. To identify DMPs, samples are first grouped into two categories (e.g., control vs. case). The sesame software (SEnsible Step-wise Analysis of DNA MEthylation BeadChips) is then used to perform a mixed linear model analysis on the two groups, yielding detected DMPs. These DMPs undergo false discovery rate (FDR) correction to obtain adjusted P-values (adj.P.Val). When filtering DMPs based on significance, the typical criteria prioritize sites with adj.P.Val < 0.05 and |Δβ| ≥ 0.2. However, these thresholds may be adjusted based on project-specific requirements. For this study, DMPs were filtered using adj.P.Val < 0.05 and |Δβ| ≥ 0.2.
+
+    </p>
+    <hr/>
+    <a name="DMP Data Presentation Table"></a>
+     {% if subsection_dmp_table %}<h4>{{subsection_dmp_table}}　DMP Data Presentation Table</h4>{% endif %}
+    {% if table_dmp %}<p class="name_table" style="text-align: center; font-weight: bold;">Table 3-1 DMP Data Presentation Table</p>{% endif %}
+    <p class="center">
+        <div id="tb">
+            <table class="gy">
+                <tr>
+                    <th>Probe_ID</th>
+                    <th>logFC</th>
+                    <th>P_Value</th>
+                    <th>adj_P_Val</th>
+                    <th>control_AVG</th>
+                    <th>case_AVG</th>
+                    <th>deltaBeta</th>
+                    <th>CHR</th>
+                    <th>MAPINFO</th>
+                    <th>Strand</th>
+                    <th>Type</th>
+                    <th>gene</th>
+                    <th>feature</th>
+                    <th>cgi</th>
+                    <th>feat.cgi</th>
+                    <th>feat.UCSC_Islands_Name</th>
+                </tr>
+                {% for each in table_dmp %}
+                <tr>
+                    <td>{{each.0}}</td>
+                    <td>{{each.1}}</td>
+                    <td>{{each.2}}</td>
+                    <td>{{each.3}}</td>
+                    <td>{{each.4}}</td>
+                    <td>{{each.5}}</td>
+                    <td>{{each.6}}</td>
+                    <td>{{each.7}}</td>
+                    <td>{{each.8}}</td>
+                    <td>{{each.9}}</td>
+                    <td>{{each.10}}</td>
+                    <td>{{each.11}}</td>
+                    <td>{{each.12}}</td>
+                    <td>{{each.13}}</td>
+                    <td>{{each.14}}</td>
+                    <td>{{each.15}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        </p>
+        <p class="paragraph">Note:</p>
+            <ol style="list-style: none; padding-left: 2em;">
+              <li>(1) Probe_ID：Name of the probe.</li>
+              <li>(2) logFC： Log2 fold change (FC).</li>
+              <li>(3) P_Value：Raw P-value.</li>
+              <li>(4) adj_P_Val：Adjusted P-value (after FDR correction).</li>
+              <li>(5) control_AVG：Average beta value in the control group.</li>
+              <li>(6) case_AVG：Average beta value in the case group.</li>
+              <li>(7) deltaBeta：Difference in beta values between the case and control groups (case_AVG - control_AVG).</li>
+              <li>(8) CHR：Chromosome number in the reference genome (GRCh38).</li>
+              <li>(9) MAPINFO： Genomic position on the chromosome.</li>
+              <li>(10) Strand：Probe sequence direction (F for forward, R for reverse).</li>
+              <li>(11) Type：Probe type (Type I or Type II).</li>
+              <li>(12) gene：Associated gene name.</li>
+              <li>(13) feature： Feature type (e.g., exon, intron).</li>
+              <li>(14) cgi：CpG island，CpG island (CpG island annotation).</li>
+              <li>(15) feat.cgi：CpG island feature type (e.g., shore, shelf).</li>
+              <li>(16) feat.UCSC_Islands_Name：Name of the CpG island (CGI) in the UCSC database.</li>
+            </ol>
+<p class="paragraph">
+    I. Filtered DMP results: The file DMP_Significant_*absdeltaBeta.csv under 2.DMP/*vs*/ in the Result directory (thresholds are reflected in the filename).
+    II. Unfiltered DMP results: The allcpg.csv file in the same directory.
+</p>
+<hr/>
+<a name="Volcano Plot"></a>
+{% if subsection_dmp_volcano %}<h4>{{subsection_dmp_volcano}}　Volcano Plot</h4>{% endif %}
+<p class="paragraph">
+Volcano plots enable rapid visualization of the proportions of hypermethylated and hypomethylated sites. A volcano plot for all differentially methylated positions (DMPs) across a single comparison group is shown below:
+</p>
+
+<p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_volcano_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_volcano_nav-tabContent">
+      {% for item in figure_volcano %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_volcano_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_volcano_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_volcano_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_volcano_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_volcano_list-tab" role="tablist">
+      {% for item in figure_volcano %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_volcano_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_volcano_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }}</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+
+{% if fig_dmp_volcano %}<p class="name_fig" style="font-weight: bold; text-align: center;">Figure {{fig_dmp_volcano}} Volcano Plot</p>{% endif %}
+<p class="premark">Note: Each point in the volcano plot represents a methylation site. The X-axis denotes Δβ (the difference in beta values between groups), and the Y-axis represents -log(adj.P.Val) (negative log-transformed adjusted P-value). The two critical lines on the X-axis are set at ±0.2. Points in the top-left and top-right quadrants indicate sites with differential methylation between samples. In the analysis, 5 CpG sites with |Δβ| > 0.2 and 5 CpG sites with adj.P.Val < 0.05 are highlighted. A larger absolute value of Δβ on the X-axis indicates greater differences in methylation levels between the two groups; a larger Y-axis value indicates more significant differences, suggesting more reliable identified DMPs.</p>
+<p class="premark">Result file path: See the .png/.pdf files under 2.DMP/*vs*/DMP_Vocalno_plot_label.png/pdf in the Result directory.</p>
+<hr/>
+<a name="Scatter Plot"></a>
+{% if subsection_dmp_scatter %}<h4>{{subsection_dmp_scatter}}　Scatter Plot</h4>{% endif %}
+<p class="paragraph">
+The scatter plot of the comparison group is shown in the figure below:
+</p>
+
+<p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_comScatter_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_comScatter_nav-tabContent">
+      {% for item in figure_comScatter %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_comScatter_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_comScatter_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_comScatter_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_comScatter_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_comScatter_list-tab" role="tablist">
+      {% for item in figure_comScatter %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_comScatter_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_comScatter_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} </a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+
+{% if fig_dmp_scatter %}<p class="name_fig" style="font-weight: bold; text-align: center;">Figure {{fig_dmp_scatter}} Scatter Plot</p>{% endif %}
+<p class="premark">Note: The X-axis and Y-axis represent the average beta values of the two groups, respectively. Red points in the plot indicate sites with Δβ differences, while green points represent sites without differences.</p>
+<p class="premark">Result file path: See the .png/.pdf files under 2.DMP/*vs*/DMP_Scatter_plot.png/pdf in the Result directory.</p>
+
+
+<hr/>
+<a name="Heatmap"></a>
+{% if subsection_dmp_heatmap %}<h4>{{subsection_dmp_heatmap}}　Heatmap</h4>{% endif %}
+<p class="paragraph">
+A total of 5,000 DMPs were randomly selected for plotting; if fewer than 5,000 DMPs were identified, all available DMPs were plotted.
+</p>
+
+<p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_heatmap_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_heatmap_nav-tabContent">
+      {% for item in figure_heatmap %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_heatmap_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_heatmap_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_heatmap_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_heatmap_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_heatmap_list-tab" role="tablist">
+      {% for item in figure_heatmap %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_heatmap_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_heatmap_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }}</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+
+{% if fig_dmp_heatmap %}<p class="name_fig" style="font-weight: bold; text-align: center;">Figure {{fig_dmp_heatmap}} Heatmap</p>{% endif %}
+    <p class="premark">Note: The X-axis represents different samples, and the Y-axis represents DMPs. Different colors correspond to methylation levels at specific sites. Clustering results by columns typically group biological replicates within the same treatment group into a single cluster. Colors approaching dark red or dark blue indicate higher or lower methylation levels of meaningful sites in different samples, respectively.
+</p>
+<p class="premark">Result file path: See the .png/.pdf files under 2.DMP/*vs*/DMP_heatmap.png/pdf in the Result directory.</p>
+
+
+<!-- -----------------------------------------DMP个数统计------------------------------------------ -->
+<hr/>
+<a name="DMP Count Statistics"></a>
+<h4>{{subsection_dmp_number}}　DMP Count Statistics</h4>
+<p class="paragraph">
+This section presents statistics on the number of sites and genes with increased, decreased, or total methylation.
+</p>
+
+<p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_DMPNumber_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_DMPNumber_nav-tabContent">
+      {% for item in figure_DMPNumber %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_DMPNumber_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_DMPNumber_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_DMPNumber_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_DMPNumber_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_DMPNumber_list-tab" role="tablist">
+      {% for item in figure_DMPNumber %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_DMPNumber_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_DMPNumber_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} CpGs</a>
+      {% endfor %}
+
+    </div>
+  </div>
+</div>
+</p>
+
+<p class="name_fig" style="font-weight: bold; text-align: center;">Figure {{fig_dmp_number}}  Statistics of Sites with Increased or Decreased Methylation</p>
+<p class="premark">Note: This plot shows the counts of sites. "Hyper" refers to the number of sites with increased methylation (Δβ > 0.2), and "Hypo" refers to the number of sites with decreased methylation (Δβ < -0.2).
+</p>
+    <p class="premark">Result file path: See the .png/.pdf files under 2.DMP/*vs*/DMP_Number.png/pdfin the Result directory.</p>
+<p class="paragraph">
+This section presents statistics on the number of sites and genes with increased, decreased, or total methylation.
+</p>
+
+<p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_DMPNumber_gene_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_DMPNumber_gene_nav-tabContent">
+      {% for item in figure_DMPNumber_gene %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_DMPNumber_gene_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_DMPNumber_gene_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_DMPNumber_gene_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_DMPNumber_gene_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_DMPNumber_gene_list-tab" role="tablist">
+      {% for item in figure_DMPNumber_gene %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_DMPNumber_gene_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_DMPNumber_gene_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} Gene</a>
+      {% endfor %}
+
+    </div>
+  </div>
+</div>
+</p>
+
+<p class="name_fig" style="font-weight: bold; text-align: center;">Figure {{fig_dmp_number_gene}}  Gene Count Statistics</p>
+<p class="premark">Note: The above figure illustrates the gene count information. "Hyper" represents the statistical count of genes containing sites with increased methylation (Δβ > 0.2), while "Hypo" represents the statistical count of genes containing sites with decreased methylation (Δβ < -0.2).</p>
+    <p class="premark">Result file path: Refer to the .png/.pdf file at: 2.DMP/*vs*/DMP_Gene_Number.png/pdf.</p>
+
+
+
+ <!-- -----------------------------------------不同区域DMP个数统计------------------------------------------ -->
+<hr/>
+<a name=" DMP Count Statistics by Region"></a>
+<h4>{{subsection_dmp_region}} DMP Count Statistics by Region</h4>
+    <p class="paragraph">
+Statistically count the number of hypomethylated sites (0 < beta ≤ 0.2), heterogeneously methylated sites (0.2 < beta < 0.6), and hypermethylated sites (0.6 ≤ beta ≤ 1) across different regions; as well as the number of sites with increased methylation (hyper, Δβ > 0.2) and decreased methylation (hypo, Δβ < -0.2) within these regions.
+</p>
+    <p class="name_table" style="text-align: center; font-weight: bold;">Table 3-2 Statistics of Sites with Increased or Decreased Methylation by Region</p>
+    <p class="center">
+        <div id="tb">
+            <table class="gy">
+                <tr>
+                    <th>feature</th>
+                    <th>Total_num</th>
+                    <th>Hyper</th>
+                    <th>Hypo</th>
+
+                </tr>
+                {% for each in table_dmp_region %}
+                <tr>
+                    <td>{{each.0}}</td>
+                    <td>{{each.1}}</td>
+                    <td>{{each.2}}</td>
+                    <td>{{each.3}}</td>
+
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        </p>
+<ol style="list-style: none; padding-left: 2em;">
+<li> (1) Feature: Feature type (e.g., exon, intron).</li>
+<li> (2) Total_num: Total number of sites in the region.</li>
+<li> (3) Hyper: Number of sites with increased methylation in the region.</li>
+<li> (4) Hypo: Number of sites with decreased methylation in the region.</li>
+</ol>
+    <p class="premark">Result file path: See the DMP_region_Statistics.csv file under 2.DMP/*vs*/DMP_region_Statistics.csv in the Result directory.</p>
+
+
+<p class="name_table" style="font-weight: bold; text-align: center;">Table 3-3 Statistics of Site Counts by Methylation Status in Different Genomic Regions for the control Group</p>
+
+    <p class="center">
+        <div id="tb">
+            <table class="gy">
+                <tr>
+                    <th>feature</th>
+                    <th>control_num</th>
+                    <th>Heterogeneously_Methylated</th>
+                    <th>Hypermethylated</th>
+                    <th>Hypomethylated</th>
+
+                </tr>
+                {% for each in table_dmp_group1 %}
+                <tr>
+                    <td>{{each.0}}</td>
+                    <td>{{each.1}}</td>
+                    <td>{{each.2}}</td>
+                    <td>{{each.3}}</td>
+                    <td>{{each.4}}</td>
+
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        </p>
+<ol style="list-style: none; padding-left: 2em;">
+<li>（1）feature: Type of genomic feature</li>
+<li>（2）control_num: Number of DMPs (Differentially Methylated Positions) in the control group within this region</li>
+<li>（3）Heterogeneously_Methylated: Number of partially methylated DMPs in this region</li>
+<li>（4）Hypermethylated: Number of hypermethylated DMPs in this region</li>
+<li>（5）Hypomethylated: Number of hypomethylated DMPs in this region</li>
+</ol>
+    <p class="premark">Result file path: Refer to the CSV file at: 2.DMP/*vs*/DMP_*_Statistics.csv.</p>
+
+<p class="name_table" style="text-align: center; font-weight: bold;">Table 3-4 Statistics of Site Counts by Methylation Status in Different Genomic Regions for the case Group</p>
+
+    <p class="center">
+        <div id="tb">
+            <table class="gy">
+                <tr>
+                    <th>feature</th>
+                    <th>case_num</th>
+                    <th>Heterogeneously_Methylated</th>
+                    <th>Hypermethylated</th>
+                    <th>Hypomethylated</th>
+
+                </tr>
+                {% for each in table_dmp_group2 %}
+                <tr>
+                    <td>{{each.0}}</td>
+                    <td>{{each.1}}</td>
+                    <td>{{each.2}}</td>
+                    <td>{{each.3}}</td>
+                    <td>{{each.4}}</td>
+
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        </p>
+<ol style="list-style: none; padding-left: 2em;">
+<li>（1）feature: Type of genomic feature</li>
+<li>（2）case_num: Number of DMPs (Differentially Methylated Positions) in the case group within this region</li>
+<li>（3）Heterogeneously_Methylated: Number of partially methylated DMPs in this region</li>
+<li>（4）Hypermethylated: Number of hypermethylated DMPs in this region</li>
+<li>（5）Hypomethylated: Number of hypomethylated DMPs in this region</li>
+</ol>
+    <p class="premark">Result file path: Refer to the CSV file at: 2.DMP/*vs*/DMP_*_Statistics.csv.</p>
+<!-- -----------------------------------------DMP的TSS区域分析------------------------------------------ -->
+<hr/>
+<a name="TSS Region Analysis of DMPs"></a>
+<h4>{{subsection_dmp_tss}}　TSS Region Analysis of DMPs</h4>
+<p class="paragraph">
+This analysis focuses on the methylation levels (beta values) of DMPs within the 5 kb upstream to 5 kb downstream regions of Transcription Start Sites (TSS) across different groups.
+</p>
+
+<p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_DMP_TSS_5000_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_DMP_TSS_5000_nav-tabContent">
+      {% for item in figure_DMP_TSS_5000 %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_DMP_TSS_5000_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_DMP_TSS_5000_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_DMP_TSS_5000_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_DMP_TSS_5000_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_DMP_TSS_5000_list-tab" role="tablist">
+      {% for item in figure_DMP_TSS_5000 %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_DMP_TSS_5000_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_DMP_TSS_5000_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }}</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+
+<p class="name_fig" style="font-weight: bold; text-align: center;">Figure {{fig_dmp_tss}} Methylation Distribution of DMPs in TSS Upstream/Downstream Regions Across Groups</p>
+<p class="premark">Note: This plot shows the methylation levels of DMPs in the 5 kb TSS upstream/downstream regions for different groups. The solid lines (red/blue) represent fitted curves of mean beta values within each group, with gray shading indicating the 95% confidence interval around the mean.</p>
+    <p class="premark">Result file path: See the result file under 2.DMP/*vs*/DMP_TSS_5000.png/pdf in the Result directory.</p>
+
+
+<!-- -----------------------------------------DMP在染色体上的分布------------------------------------------ -->
+<hr/>
+<a name="Chromosomal Distribution of DMPs"></a>
+<h4>{{subsection_dmp_chr}}　Chromosomal Distribution of DMPs</h4>
+<p class="paragraph">
+The chromosomal distribution of DMPs visually illustrates the regions of differential methylation across each chromosome, as shown below:
+</p>
+
+<p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_DMP_plot_chr_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_DMP_plot_chr_nav-tabContent">
+      {% for item in figure_DMP_plot_chr %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_DMP_plot_chr_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_DMP_plot_chr_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_DMP_plot_chr_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_DMP_plot_chr_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_DMP_plot_chr_list-tab" role="tablist">
+      {% for item in figure_DMP_plot_chr %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_DMP_plot_chr_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_DMP_plot_chr_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }}</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+
+<p class="name_fig" style="font-weight: bold; text-align: center;">Figure {{fig_dmp_chr}} Chromosomal Distribution of DMPs</p>
+<p class="premark">Note: The X-axis represents chromosomal positions, and the Y-axis represents chromosome numbers. Different colors on the chromosomes indicate regions with differential methylation: red for hypomethylation and green for hypermethylation.</p>
+    <p class="premark">Result file path: See the .png/.pdf files under 2.DMP/*vs*/DMP_plot_chr.png/pdf in the Result directory.</p>
+
+<!-- -----------------------------------------circos图------------------------------------------ -->
+<hr/>
+<a name="Circos Plot"></a>
+<h4>{{subsection_dmp_circos}}　Circos Plot</h4>
+<p class="paragraph">
+The circos plot provides an intuitive overview of the genome-wide distribution of DMPs and the trends in methylation levels across different treatment groups.
+</p>
+
+<p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_DMP_circlize_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_DMP_circlize_nav-tabContent">
+      {% for item in figure_DMP_circlize %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_DMP_circlize_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_DMP_circlize_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_DMP_circlize_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_DMP_circlize_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_DMP_circlize_list-tab" role="tablist">
+      {% for item in figure_DMP_circlize %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_DMP_circlize_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_DMP_circlize_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }}</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+
+<p class="name_fig" style="font-weight: bold; text-align: center;">Figure {{fig_dmp_circos}} Circos Plot</p>
+<p class="premark">Note: The circos plot is structured with layers from the outermost ring to the innermost ring as follows: chromosomes, beta values of DMPs in the control group (blue), beta values of DMPs in the case group (orange), and delta-Beta values (the difference between the case and control groups, where positive values are shown in red and negative values in green).</p>
+    <p class="premark">Result file path: See the circlize.png file under 2.DMP/*vs*/DMP_circlize.png in the Result directory.</p>
+
+{% endif %}
+
+{% if flag_dmr %}
+<!----------------------------------------差异甲基化区域（DMR）----------------------------------------->
+<hr/>
+</p><br/>
+<h3 id="id_order_dmr"><a name="Differentially Methylated Regions (DMRs)">3.4　Differentially Methylated Regions (DMRs)</a></h3>
+
+<a name="DMR Analysis Workflow"></a>
+<h4>3.4.1　DMR Analysis Workflow</h4>
+<p class="paragraph">
+In the genome, differentially methylated sites often cluster together, forming a differentially methylated region (DMR). These regions range in size from hundreds of base pairs (bp) to megabases (Mb) and are believed to play a crucial role in genomic imprinting regulation.
+To identify DMRs, we used the sesame software. DMRs were filtered based on a p-value < 0.05, retaining candidate regions with lengths between 200 and 10,000 bp, and requiring a minimum of 7 probes within each region.
+</p>
+
+<!-- -----------------------------------------DMR数据展示表------------------------------------------ -->
+ <hr/>
+ <a name=" DMR Data Presentation Table"></a>
+     <h4>3.4.2 DMR Data Presentation Table</h4>
+    <p class="name_table" style="text-align: center; font-weight: bold;">Table 3-5 DMR Data Presentation Table</p>
+    <p class="center">
+        <div id="tb">
+            <table class="gy">
+                <tr>
+                    <th>Seg_ID</th>
+                    <th>Seg_Chrm</th>
+                    <th>Seg_Start</th>
+                    <th>Seg_End</th>
+                    <th>Seg_Est</th>
+                    <th>Seg_Pval</th>
+                    <th>Seg_Pval_adj</th>
+                    <th>control_AVG</th>
+                    <th>case_AVG</th>
+                    <th>Probe_ID</th>
+                    <th>gene</th>
+                    <th>dmr_size</th>
+                    <th>cpgnum_in_dmr</th>
+                </tr>
+                {% for each in table_dmr %}
+                <tr>
+                    <td>{{each.0}}</td>
+                    <td>{{each.1}}</td>
+                    <td>{{each.2}}</td>
+                    <td>{{each.3}}</td>
+                    <td>{{each.4}}</td>
+                    <td>{{each.5}}</td>
+                    <td>{{each.6}}</td>
+                    <td>{{each.7}}</td>
+                    <td>{{each.8}}</td>
+                    <td>{{each.9}}</td>
+                    <td>{{each.10}}</td>
+                    <td>{{each.11}}</td>
+                    <td>{{each.12}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        </p>
+        <p class="paragraph">Note:</p>
+
+    <ol style="list-style: none; padding-left: 2em;">
+              <li>(1) Seg_ID： Name of the DMR. </li>
+              <li>(2) Seg_Chrm：Chromosome number in the reference genome (GRCh38). </li>
+              <li>(3) Seg_Start：Start position of the DMR.</li>
+              <li>(4) Seg_End：End position of the DMR.</li>
+              <li>(5) Seg_Est：Difference in average beta values between comparison groups within the DMR region.</li>
+              <li>(6) Seg_Pval：P-value of the DMR region.</li>
+              <li>(7) Seg_Pval_adj：Adjusted P-value of the DMR region.</li>
+              <li>(8) control_AVG：Average beta value in the control group within the DMR region.</li>
+              <li>(9) case_AVG： Average beta value in the case group within the DMR region.</li>
+              <li>(10) Probe_ID：CpG sites within the DMR region.</li>
+              <li>(11) gene：Genes overlapped with the DMR region.</li>
+              <li>(12) dmr_size：: Length of the DMR region.</li>
+              <li>(13) cpgnum_in_dmr：Number of CpG probes within the DMR region.</li>
+</ol>
+    <p class="paragraph">
+Result file path: See the DMR_control.vs.case.csv file under 3.DMR/*vs*/DMR_control.vs.case.csv in the Result directory.
+
+</p>
+<!-- -----------------------------------------DMR长度分布------------------------------------------ -->
+<hr/>
+<a name="Length Distribution of DMRs"></a>
+<h4>3.4.3　Length Distribution of DMRs</h4>
+<p class="paragraph">
+The length distribution of differentially methylated regions (DMRs) identified through differential analysis is shown in the following figure:
+</p>
+
+<p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_dmr_length_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_dmr_length_nav-tabContent">
+      {% for item in figure_dmr %}
+      {% if "Length" in item.1 %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_dmr_length_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_dmr_length_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_dmr_length_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_dmr_length_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_dmr_length_list-tab" role="tablist">
+      {% for item in figure_dmr %}
+      {% if "Length" in item.1 %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_dmr_length_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_dmr_length_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }}  Density Distribution Plot of DMR Lengths</a>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+
+<p class="name_fig" style="font-weight: bold; text-align: center;">Figure 3-17  Density Distribution Plot of DMR Lengths</p>
+<p class="premark">Note: The X-axis represents DMR length units, and the Y-axis represents the probability density of DMRs at the corresponding length units. That is, a higher Y-value indicates a greater number of DMRs falling within that length range.</p>
+    <p class="paragraph">Result file path: See the .png/.pdf files under 3.DMR/*vs*/DMR_Length.png/pdf in the Result directory.</p>
+
+{% endif %}
+
+{% if flag_go %}
+<!----------------------------------------GO功能富集分析----------------------------------------->
+<hr/>
+</p><br/>
+<h3 id="id_order_go"><a name="GO Functional Enrichment Analysis">3.5 GO Functional Enrichment Analysis</a></h3>
+
+<a name="Brief Introduction to Geno Ontology (GO)"></a>
+<h4>3.5.1　Brief Introduction to Geno Ontology (GO)</h4>
+<p class="paragraph">
+Gene Ontology (GO) is an internationally standardized classification system for gene functions. It aims to establish a linguistic vocabulary standard that defines and describes gene and protein functions, applicable across species and updatable as research advances <sup>[2]</sup>. GO is divided into three parts: Molecular Function (MF), Biological Process (BP), and Cellular Component (CC). Genes or proteins can be mapped to corresponding GO terms through ID matching or sequence annotation. These GO terms link to specific functional categories (e.g., "DNA binding") or cellular localizations (e.g., "nucleus"). Enrichment analysis for MF, BP, and CC can be performed using DMP and DMR data.
+</p>
+<p class="paragraph">
+       The method for GO functional enrichment analysis is as follows: Firstly, the entire set of genes serves as the background list. The list of differentially methylated genes (or regions) is treated as the candidate list, filtered from the background. The hypergeometric distribution test is used to calculate the P-value, which indicates whether a specific GO functional set is significantly enriched in the candidate list. The P-value is then corrected using the Benjamini & Hochberg multiple testing correction to obtain the false discovery rate (FDR).
+    </p>
+    <p class="paragraph">
+           The formula for calculating the P-value via the hypergeometric distribution test is as follows:
+        </p>
+            <p> $$ P = 1 - \sum_{i=0}^{m-1} \frac{\dbinom{M}{i} \dbinom{N-M}{n-i}}{\dbinom{N}{n}} $$ </p>
+
+     <p class="paragraph">Where:</p>
+            <ol style="list-style: none; padding-left: 2em;">
+<li>(1) N: Total number of genes with GO annotations.</li>
+<li>(2) M: Number of genes annotated to a specific GO term.</li>
+<li>(3) m: Number of differentially methylated genes (or regions) annotated to the specific GO term.</li>
+<li>(4) n: Total number of differentially methylated genes (or regions) in the candidate list.</li>
+</ol>
+     <!-- -----------------------------------------DMP的GO功能富集分析------------------------------------------ -->
+<hr/>
+<a name="GO Functional Enrichment Analysis of DMPs"></a>
+<h4>3.5.2　GO Functional Enrichment Analysis of DMPs</h4>
+<p class="paragraph">
+The bar chart of significantly enriched GO terms is shown below. Significantly enriched GO terms were filtered based on a P-value ≤ 0.05 calculated from the hypergeometric test, with up to 10 GO terms displayed per GO category.
+</p>
+
+<p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_go_dmp_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_go_dmp_nav-tabContent">
+      {% for item in figure_go %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_go_dmp_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_go_dmp_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_go_dmp_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_go_dmp_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_go_dmp_list-tab" role="tablist">
+      {% for item in figure_go %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_go_dmp_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_go_dmp_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }}</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+
+<p class="name_fig" style="font-weight: bold; text-align: center;">Figure 3-18 Bar Chart of Significantly Enriched GO Terms for DMPs</p>
+<p class="premark">Note: The X-axis represents GO term descriptions, and the Y-axis represents -log(P-value) values. Data from the top 10 terms of MF, CC, and BP categories were used for plotting.</p>
+    <p class="paragraph">Result file path: See the GO_enrichment_topGO.png/.pdf files under 4.GO/Differential_Methylation_Probes/*vs*/GO_enrichment_topGO.png/pdf in the Result directory. The plotting data are provided in the GO_enrichment_topGO.csv file.</p>
+
+
+    <!-- ----------------------------------------- dmp part 不同GO分类显著富集的上下级关系图 ------------------------------------------ -->
+    <p class="paragraph">
+            The hierarchical relationship diagram (GO tree) of significantly enriched GO terms across different categories is shown below:
+        </p>
+ <p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_dmp_bp_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_dmp_bp_nav-tabContent">
+      {% for item in figure_dmp_bp %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_dmp_bp_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_dmp_bp_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_dmp_bp_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_dmp_bp_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_dmp_bp_list-tab" role="tablist">
+      {% for item in figure_dmp_bp %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_dmp_bp_dmp_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_dmp_bp_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} Biological Process</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+<p class="name_fig" style="font-weight: bold; text-align: center;">Figure 3-19 Biological Process GO tree</p>
+<p class="premark">Note: The color intensity in the figure reflects the enrichment level of differentially methylated genes in the GO term, with darker colors indicating more significant enrichment (red being the most significant, followed by yellow). Boxes represent the top 10 most enriched GO terms. </p>
+    <p class="paragraph">Result file path: See the GO_tree_topGO_BP.png/.pdf files under 4.GO/Differential_Methylation_Probes/*vs*/GO_tree_topGO_BP.png/pdf in the Result directory. The data are provided in the GO_enrichment_BP.csv file.</p>
+
+
+ <p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_dmp_cc_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_dmp_cc_nav-tabContent">
+      {% for item in figure_dmp_cc %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_dmp_cc_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_dmp_cc_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_dmp_cc_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_dmp_cc_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_dmp_cc_list-tab" role="tablist">
+      {% for item in figure_dmp_cc %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_dmp_cc_dmp_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_dmp_cc_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} Cellular Component</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+<p class="name_fig" style="font-weight: bold; text-align: center;">Figure 3-20 Cellular Component GO tree</p>
+<p class="premark">Note: The color intensity in the figure reflects the enrichment level of differentially methylated genes in the GO term, with darker colors indicating more significant enrichment (red being the most significant, followed by yellow). Boxes represent the top 10 most enriched GO terms.
+</p>
+    <p class="paragraph">Result file path: See the GO_tree_topGO_CC.png/.pdf files under 4.GO/Differential_Methylation_Probes/*vs*/GO_tree_topGO_CC.png/pdf in the Result directory. The data are provided in the GO_enrichment_CC.csv file.</p>
+
+ <p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_dmp_mf_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_dmp_mf_nav-tabContent">
+      {% for item in figure_dmp_mf %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_dmp_mf_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_dmp_mf_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_dmp_mf_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_dmp_mf_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_dmp_mf_list-tab" role="tablist">
+      {% for item in figure_dmp_mf %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_dmp_mf_dmp_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_dmp_mf_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} Molecular Function</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+<p class="name_fig" style="font-weight: bold; text-align: center;">Figure 3-21 Molecular Function GO tree</p>
+<p class="premark">Note: The color intensity in the figure reflects the enrichment level of differentially methylated genes in the GO term, with darker colors indicating more significant enrichment (red being the most significant, followed by yellow). Boxes represent the top 10 most enriched GO terms.
+</p>
+    <p class="paragraph">Result file path: See the GO_tree_topGO_MF.png/.pdf files under 4.GO/Differential_Methylation_Probes/*vs*/GO_tree_topGO_MF.png/pdf in the Result directory. The data are provided in the GO_enrichment_MF.csv file.</p>
+
+     <!-- -----------------------------------------DMR的GO功能富集分析------------------------------------------ -->
+<hr/>
+<a name="GO Functional Enrichment Analysis of DMR"></a>
+   {% if subsection_go_dmr %}<h4>{{subsection_go_dmr}}　GO Functional Enrichment Analysis of DMR</h4>{% endif %}
+<p class="paragraph">
+The bar chart of significantly enriched GO terms is shown below. Significantly enriched GO terms were filtered based on a P-value ≤ 0.05 calculated from the hypergeometric test, with up to 10 GO terms displayed per GO category.
+
+</p>
+
+<p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_go_dmr_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_go_dmr_nav-tabContent">
+      {% for item in figure_go_dmr %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_go_dmr_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_go_dmr_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_go_dmr_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_go_dmr_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_go_dmr_list-tab" role="tablist">
+      {% for item in figure_go_dmr %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_go_dmr_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_go_dmr_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} </a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+
+<p class="name_fig" style="font-weight: bold; text-align: center;">Figure 3-22 Bar Chart of Significantly Enriched GO Terms for DMR</p>
+<p class="premark">Note: The X-axis represents GO term descriptions, and the Y-axis represents -log(P-value) values. Data from the top 10 terms of MF, CC, and BP categories were used for plotting.</p>
+    <p class="paragraph">Result file path: See the GO_enrichment_topGO.png/.pdf files under 4.GO/Differential_Methylation_Regions/*vs*/GO_enrichment_topGO.png/pdf in the Result directory. The plotting data are provided in the GO_enrichment_topGO.csv file.</p>
+<!-- ----------------------------------------- dmr part 不同GO分类显著富集的上下级关系图 ------------------------------------------ -->
+    <p class="paragraph">
+            The hierarchical relationship diagram (GO tree) of significantly enriched GO terms across different categories is shown below:
+        </p>
+ <p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_dmr_bp_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_dmr_bp_nav-tabContent">
+      {% for item in figure_dmr_bp %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_dmr_bp_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_dmr_bp_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_dmr_bp_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_dmr_bp_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_dmr_bp_list-tab" role="tablist">
+      {% for item in figure_dmr_bp %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_dmr_bp_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_dmr_bp_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} Biological Process</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+<p class="name_fig" style="font-weight: bold; text-align: center;">Figure 3-23 Biological Process GO tree</p>
+<p class="premark">Note: The color intensity in the figure reflects the enrichment level of differentially methylated genes in the GO term, with darker colors indicating more significant enrichment (red being the most significant, followed by yellow). Boxes represent the top 10 most enriched GO terms.</p>
+    <p class="paragraph">Result file path: See the GO_tree_topGO_BP.png/.pdf files under 4.GO/Differential_Methylation_Regions/*vs*/GO_tree_topGO_BP.png/pdf in the Result directory. The data are provided in the GO_enrichment_BP.csv file.</p>
+ <p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_dmr_cc_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_dmr_cc_nav-tabContent">
+      {% for item in figure_dmr_cc %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_dmr_cc_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_dmr_cc_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_dmr_cc_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_dmr_cc_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_dmr_cc_list-tab" role="tablist">
+      {% for item in figure_dmr_cc %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_dmr_cc_dmp_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_dmr_cc_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} Cellular Component</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+<p class="name_fig" style="font-weight: bold; text-align: center;">Figure 3-24 Cellular Component GO tree</p>
+<p class="premark">Figure 3-21​ Biological Process GO Tree
+Note: The color intensity in the figure reflects the enrichment level of differentially methylated genes in the GO term, with darker colors indicating more significant enrichment (red being the most significant, followed by yellow). Boxes represent the top 10 most enriched GO terms.</p>
+    <p class="paragraph">Result file path: See the GO_tree_topGO_CC.png/.pdf files under 4.GO/Differential_Methylation_Regions/*vs*/GO_tree_topGO_CC.png/pdf in the Result directory. The data are provided in the GO_enrichment_CC.csv file.
+</p>
+
+ <p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_dmr_mf_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_dmr_mf_nav-tabContent">
+      {% for item in figure_dmr_mf %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_dmr_mf_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_dmr_mf_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_dmr_mf_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_dmr_mf_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_dmr_mf_list-tab" role="tablist">
+      {% for item in figure_dmr_mf %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_dmr_mf_dmp_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_dmr_mf_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} Molecular Function</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+<p class="name_fig" style="font-weight: bold; text-align: center;">Figure 3-25 Molecular Function GO tree</p>
+<p class="premark">Note: The color intensity in the figure reflects the enrichment level of differentially methylated genes in the GO term, with darker colors indicating more significant enrichment (red being the most significant, followed by yellow). Boxes represent the top 10 most enriched GO terms.
+</p>
+    <p class="paragraph">Result file path: See the GO_tree_topGO_MF.png/.pdf files under 4.GO/Differential_Methylation_Regions/*vs*/GO_tree_topGO_MF.png/pdf in the Result directory. The data are provided in the GO_enrichment_MF.csv file.
+</p>
+{% endif %}
+
+{% if flag_kegg %}
+<!----------------------------------------KEGG分析----------------------------------------->
+<hr/>
+</p><br/>
+<h3 id="id_order_kegg"><a name="KEGG Analysis of Differentially Methylated Sites/Regions">3.6 KEGG Analysis of Differentially Methylated Sites/Regions</a></h3>
+
+<a name="Brief Introduction to KEGG"></a>
+<h4>3.6.1 Brief Introduction to KEGG</h4>
+<p class="paragraph">
+  KEGG (Kyoto Encyclopedia of Genes and Genomes) is a practical database resource that enables the understanding of higher-level functions and biological systems (e.g., cells, organisms, and ecosystems) from a molecular perspective. It integrates large-scale molecular datasets generated by genome sequencing and other high-throughput experimental technologies, linking the obtained gene catalogs to higher-level systemic functions at the cellular, species, and ecosystem levels <sup>[3]</sup>.
+Using DMP and DMR data, visualizations such as KEGG Barplots, Dotplots, and Pathway diagrams can be generated. KEGG enrichment analysis of genes associated with differentially methylated sites and regions was performed using the R package clusterProfiler. Enrichment analysis was conducted for each pathway in KEGG via the hypergeometric test to identify significantly enriched pathways among the differentially methylated genes.
+<sup>[3]</sup>
+</p>
+<p class="paragraph">
+   Using DMP and DMR data, visualizations such as KEGG Barplots, Dotplots, and Pathway diagrams can be generated. KEGG enrichment analysis of genes associated with differentially methylated sites and regions was performed using the R package clusterProfiler. Enrichment analysis was conducted for each pathway in KEGG via the hypergeometric test to identify significantly enriched pathways among the differentially methylated genes.
+</p>
+<!-- ------------------------------------------DMP的barplot分析------------------------------------------------ -->
+<hr/>
+<a name=" KEGG Analysis of DMPs"></a>
+<h4>3.6.2　 KEGG Analysis of DMPs</h4>
+
+<p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_kegg_dmp_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_kegg_dmp_nav-tabContent">
+      {% for item in figure_kegg %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_kegg_dmp_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_kegg_dmp_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_kegg_dmp_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_kegg_dmp_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_kegg_dmp_list-tab" role="tablist">
+      {% for item in figure_kegg %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_kegg_dmp_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_kegg_dmp_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} KEGG Barplot</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+
+{% if fig_kegg_dmp_bar %}<p class="name_fig" style="font-weight: bold; text-align: center;">Figure {{fig_kegg_dmp_bar}} KEGG Barplot</p>{% endif %}
+<p class="premark">Note: The top 20 significantly enriched pathways for DMPs are displayed. The X-axis represents the number of enriched genes, the Y-axis represents pathway names, and the color intensity of the bars (darker red indicating more significant enrichment) reflects the enrichment level.
+</p>
+    <p class="paragraph">Result file path: See the KEGG_Barplot.png/.pdf files under 5.KEGG/Differential_Methylation_Probes/*vs*/KEGG_Barplot.png/pdf in the Result directory.</p>
+
+
+ <!----------------------------------------DMP KEGG dot plot------------------------------------------------ -->
+ <p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_dot_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_dot_nav-tabContent">
+      {% for item in figure_dot %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_dot_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_dot_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_dot_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_dot_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_dot_list-tab" role="tablist">
+      {% for item in figure_dot %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_dot_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_dot_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} KEGG Dotplot</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+
+{% if fig_kegg_dmp_dot %}<p class="name_fig" style="font-weight: bold; text-align: center;">Figure {{fig_kegg_dmp_dot}} KEGG Dotplot</p>{% endif %}
+<p class="premark">Note: The x-axis represents the Gene Ratio (number of differential genes in the pathway term / total number of annotated genes in the pathway term). A higher value indicates a greater degree of enrichment. The y-axis displays the names of the pathway terms with the highest enrichment levels. The dot size corresponds to the number of differential genes in the term—larger dots indicate a greater number of enriched genes. The color intensity (redder hue) represents higher enrichment significance.
+</p>
+<p class="paragraph">Result file path: Refer to the .png/.pdf file at: 5.KEGG/Differential_Methylation_Probes/*vs*/KEGG_Dotplot.png/pdf.</p>
+
+
+    <!-- ----------------------------------------DMP KEGG pathway plot------------------------------------------------ -->
+  <p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_pathway_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_pathway_nav-tabContent">
+      {% for item in figure_pathway %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_pathway_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_pathway_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_pathway_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_pathway_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_pathway_list-tab" role="tablist">
+      {% for item in figure_pathway %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_pathway_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_pathway_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} KEGG Pathway</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+
+{% if fig_kegg_dmp_pathway %}<p class="name_fig" style="font-weight: bold; text-align: center;">Figure {{fig_kegg_dmp_pathway}} KEGG Pathway</p>{% endif %}
+<p class="premark">Note: This figure displays one of the KEGG Pathway maps downloaded using the hyperlinks provided in the "Link" column of the file. </p>
+
+<!----------------------------------------DMR KEGG barplot------------------------------------------------ -->
+<hr/>
+<a name="KEGG Analysis of DMR"></a>
+{% if subsection_kegg_dmr %}<h4>{{subsection_kegg_dmr}} KEGG Analysis of DMR</h4>{% endif %}
+
+<p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_kegg_dmr_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_kegg_dmr_nav-tabContent">
+      {% for item in figure_kegg_dmr %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_kegg_dmr_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_kegg_dmr_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_kegg_dmr_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_kegg_dmr_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_kegg_dmr_list-tab" role="tablist">
+      {% for item in figure_kegg_dmr %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_kegg_dmr_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_kegg_dmr_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} KEGG Barplot</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+
+{% if fig_kegg_dmr_bar %}<p class="name_fig" style="font-weight: bold; text-align: center;">Figure {{fig_kegg_dmr_bar}} KEGG Barplot</p>{% endif %}
+<p class="premark">Note: The top 20 significantly enriched pathways for DMR are displayed. The X-axis represents the number of enriched genes, the Y-axis represents pathway names, and the color intensity of the bars (darker red indicating more significant enrichment) reflects the enrichment level.
+</p>
+ <p class="premark">Result file path: See the KEGG_Barplot.png/.pdf files under 5.KEGG/Differential_Methylation_Probes/*vs*/KEGG_Barplot.png/pdf in the Result directory.</p>
+
+
+ <!----------------------------------------DMR KEGG dot plot------------------------------------------------ -->
+ <p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_dot_dmr_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_dot_dmr_nav-tabContent">
+      {% for item in figure_dot_dmr %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_dot_dmr_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_dot_dmr_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_dot_dmr_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_dot_dmr_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_dot_dmr_list-tab" role="tablist">
+      {% for item in figure_dot_dmr %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_dot_dmr_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_dot_dmr_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} KEGG Dotplot</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+
+{% if fig_kegg_dmr_dot %}<p class="name_fig" style="font-weight: bold; text-align: center;">Figure {{fig_kegg_dmr_dot}} KEGG Dotplot</p>{% endif %}
+<p class="premark">Note: The x-axis represents the Gene Ratio (number of differential genes in the pathway term / total number of annotated genes in the pathway term). A higher value indicates a greater degree of enrichment. The y-axis displays the names of the pathway terms with the highest enrichment levels. The dot size corresponds to the number of differential genes in the term—larger dots indicate a greater number of enriched genes. The color intensity (redder hue) represents higher enrichment significance.
+</p>
+    <p class="premark">Result file path: See the KEGG_Dotplot.png/.pdf files under 5.KEGG/Differential_Methylation_Regions/*vs*/KEGG_Dotplot</p>
+<!-- ----------------------------------------DMP KEGG pathway plot------------------------------------------------ -->
+  <p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_pathway_dmr_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_pathway_dmr_nav-tabContent">
+      {% for item in figure_pathway_dmr %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_pathway_dmr_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_pathway_dmr_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_pathway_dmr_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_pathway_dmr_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_pathway_dmr_list-tab" role="tablist">
+      {% for item in figure_pathway_dmr %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_pathway_dmr_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_pathway_dmr_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} KEGG Pathway</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+
+{% if fig_kegg_dmr_pathway %}<p class="name_fig" style="font-weight: bold; text-align: center;">Figure {{fig_kegg_dmr_pathway}} KEGG Pathway</p>{% endif %}
+<p class="premark">Note: This figure displays one of the KEGG Pathway maps downloaded using the hyperlinks provided in the "Link" column of the file </p>
+    <p class="premark">5.KEGG/Differential_Methylation_Regions/*enrichment.csv. If additional KEGG Pathway maps are required, please download them directly using the hyperlinks in the "Link" column.</p>
+
+{% endif %}
+
+<!----------------------------------------附录----------------------------------------->
+<hr/>
+</p><br/>
+<h2>4、Appendix</h2>
+
+<a name="Software List"><h3 id="Software List">4.1　Table 4-1 Software List</h3></a>
+
+<table class="gy" align="center">
+    <tr>
+        <th>Software name</th>
+        <th>Version</th>
+        <th>Analysis content</th>
+    </tr>
+    <tr>
+        <td>sesame</td>
+        <td>V17.1.11</td>
+        <td>Beadchip analysis</td>
+    </tr>
+    <tr>
+        <td>clusterProfiler</td>
+        <td>V3.12.0</td>
+        <td>Enrichment analysis of gene function</td>
+    </tr>
+</table>
+
+<a name="Methods"><h3 id="Methods">4.2　Methods</h3></a>
+<p class="paragraph"> The methods involved in the study can be found in this link “Methods”.<a href="file/人甲基化芯片Methods-英文版.pdf" title="Click" target="_blank">英文版 methods</a>和<a href="file/人甲基化芯片Methods-中文版.pdf" title="点击打开" target="_blank">中文版 methods</a>。</p>
+
+<a name="FAQ"><h3 id="FAQ">4.3　FAQ</h3></a>
+<p class="paragraph">FAQ：<a href="file/人甲基化芯片FAQ.pdf" title="Click" target="_blank">FAQ</a></p>
+
+<a name="References"><h3 id="References">4.4　References</h3></a>
+<p class="paragraph">[1] Wanding Z, Triche T J, Laird P W,et al.SeSAMe: reducing artifactual detection of DNA methylation by Infinium BeadChips in genomic deletions[J].Nuclc Acids Research, 2018(20):20.</p>
+<p class="paragraph">[2] Young M D, Wakeeld M J, Smyth G K,et al.goseq: Gene Ontology testing for RNA-seq datasets[J]. 2012.</p>
+<p class="paragraph">[3] Kanehisa M, Araki M, Goto S, et al. KEGG for linking genomes to life and the environment.[J]. Nucleic Acids Research, 2007: 480-484.</p>
+
+</div>
+<!-- MathJax 脚本（加在后面） -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</body>
+</html>

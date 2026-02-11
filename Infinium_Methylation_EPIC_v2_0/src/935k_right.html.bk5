@@ -1,0 +1,2070 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" >
+<html>
+<head>
+<TITLE>诺禾致源人甲基化芯片结题报告 </TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="css/jquery-ui.css" />
+<link rel="stylesheet" href="css/bootstrap-4.3.1.min.css" />
+<link rel="stylesheet" href="css/jquery.tocify.css" />
+<link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="css/base.css"/>
+<link rel="stylesheet" href="css/gallery.css"/>
+<script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
+<script src="js/jquery-ui.min.js" type="text/javascript"></script>
+<script src="js/jquery.tocify.min.js" type="text/javascript"></script>
+<script src="js/bootstrap-4.3.1.min.js" type="text/javascript"></script>
+<script src="js/scrollTop.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$(function () {
+		var options = {
+			selectors: "h2,h3,h4,h5",
+			theme: "bootstrap",
+			scrollTo: "60"
+		};
+		var toc = $("#toc").tocify(options).data("toc-tocify");
+	});
+</script>
+<script type="text/javascript">
+function trans(img_div_id) {
+img_div = $("#" + img_div_id)
+img = $("#" + img_div_id + " img").first();
+if (img_div.hasClass("fullscreen-div")) {
+img_div.removeClass("fullscreen-div");
+img.removeClass("fullscreen-img");
+}
+else {
+img_div.addClass("fullscreen-div");
+img.addClass("fullscreen-img");
+}
+}
+function filter_display() {
+return $(this).css("display") != "none";
+}
+function show_default() {
+var list_group_id = "#" + $(this).attr("id");
+if ($(list_group_id + " a.active").css("display") == "none") {
+var list_tab = $(list_group_id + " a.active");
+var pan_id = list_tab.attr("href");
+$(pan_id).removeClass("active show");
+list_tab.removeClass("active");
+}
+if ($(list_group_id + " a.active").filter(filter_display).length == 0) {
+$(list_group_id + " a").filter(filter_display).first().tab("show");
+}
+}
+$.fn.show_default = show_default
+function next(botton_id) {
+var present_tab = $("#" + botton_id.replace("_button_next", "_list-tab") + " .active").first();
+while (present_tab.next().length == 1) {
+if (present_tab.next().css("display") != "none") {
+present_tab.next().tab("show");
+break;
+}
+else {
+present_tab = present_tab.next();
+}
+}
+}
+function prev(botton_id) {
+var present_tab = $("#" + botton_id.replace("_button_prev", "_list-tab") + " .active").first();
+while (present_tab.prev().length == 1) {
+if (present_tab.prev().css("display") != "none") {
+present_tab.prev().tab("show");
+break;
+}
+else {
+present_tab = present_tab.prev();
+}
+}
+}
+$(document).ready(function () {
+$(".form-control").on("keyup", function () {
+var value = $(this).val().toLowerCase();
+var input_box_id = "#" + $(this).attr("id");
+var list_group_id = input_box_id.replace("_InputList", "_list-tab");
+$(list_group_id + " a").filter(function () {
+$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+});
+$(list_group_id).show_default();
+});
+$(".list-group").each(show_default);
+});
+</script>
+</head>
+<body>
+<div id="toc" class="tocify">
+</div>
+    <div style="position:fixed; top:0; left:0; width:100%; z-index:1000;">
+        <table width="100%" height="50px" border="0" cellpadding="5" cellspacing="0"
+            style="background:#F3F3F3; border-bottom:1px solid #eee;border-top: none;background-image:-moz-linear-gradient(top,#EEEEEE,#FFFFFF); background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0,#EEEEEE), color-stop(1,#FFFFFF));filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#EEEEEE', endColorstr='#FFFFFF', GradientType='0')">
+            <tr height="86%">
+                <td width='1%'></td>
+                <td><img src="images/logo1-GN.png"></td>
+                <td>
+                    <div style="margin:5px;border-left:1px solid #DCDCDC;height:30px"></div>
+                </td>
+                <td width="70%"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<!-------------------------------------------main content--------------------------------------------->
+<div id="main">
+<br><h1>诺禾致源人甲基化芯片结题报告</h1></br>
+<table class="gy">
+<tr>
+
+</tr>
+
+<tr><td>项目编号</td><td style="text-align:left">{{stage}}</td></tr>
+
+<tr><td>项目名称</td><td style="text-align:left">{{Project_Name}}</td></tr>
+
+<tr><td>分期编号</td><td style="text-align:left">{{stage}}</td></tr>
+
+<tr><td>报告时间</td><td style="text-align:left">{{timedate}}</td></tr>
+
+<tr><td>客户服务电话</td><td style="text-align:left">400-658-1585</td></tr>
+
+<tr><td>客户服务邮箱</td><td style="text-align:left">op-rna@novogene.com</td></tr>
+
+</table>
+
+<br /><br />
+<div id="page">
+<p class="head"><a href="#home" title = "返回首页"></a>
+<a name="Introduction"></a>
+<hr />
+</p><br />
+
+<h2 id="id_order_pipeline"><a name="样本信息">1、样本信息 </a></h2>
+    <p class="name_table" style="text-align: center; font-weight: bold;">表 1-1 样本信息表</p>
+    <p class="center">
+        <div id="tb">
+            <table class="gy">
+                <tr>
+                    <th>Sample_name</th>
+                    <th>Group</th>
+                    <th>Sample_type</th>
+                    <th>Loci_detection_rate</th>
+
+                </tr>
+                {% for each in table_info %}
+                <tr>
+                    <td>{{each.0}}</td>
+                    <td>{{each.1}}</td>
+                    <td>{{each.2}}</td>
+                    <td>{{each.3}}</td>
+
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        </p>
+
+</div>
+
+<!----------------------------------------芯片简介----------------------------------------->
+<div id="page">
+    <hr/>
+    </p><br/>
+    <h2 id="id_order_chip"><a id="芯片简介">2、芯片简介</a></h2>
+
+    <p class="paragraph">
+        Illumina的甲基化芯片InfiniumTM MethylationEPIC v2.0 BeadChip（简称935K甲基化芯片）为广大科研用户提供了性能优越且经济可靠的甲基化解决方案。较其前代产品MethylationEPIC v1.0（850K）去除了性能不佳的探针，新增了约18.6万个新探针，包括根据专家反馈和对人类癌症/细胞样本的表观遗传学评估的新内容。不仅扩大了CpG岛覆盖范围，提高了外显子覆盖率，实现更准确的拷贝数变异（CNV）检测。同时注释基因组版本从HG19更新到HG38和v41版GenCode数据库，更好地助力表观遗传组研究。
+    </p>
+    
+    <p class="paragraph">其检测原理如下：</p>
+<p class="center">
+    <img class="normal4" style="width: 50%; display: block; margin: 0 auto;"
+         src="images/006tNc79ly1g60ailfcl0j30eo0ge0u0.jpg"/>
+</p>
+    <p class="name_fig" style="font-weight: bold; text-align: center;">图 2-1 实验原理图</p>
+</div>
+<br/>
+<br/>
+
+
+
+
+<!-------------------------------------------- 数据质控 --------------------------------------->
+<hr/>
+</p><br/>
+<h2><a id="结果展示及说明">3、数据分析和结果统计</a></h2>
+    <!----------------------------------------生物信息分析流程----------------------------------------->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                {% if section_pipeline %}<h3 id="id_order_qc"><a id="生物信息分析流程">{{section_pipeline}} 生物信息分析流程</a></h3>{% endif %}
+    <p class="center">
+        <img class="normal4" style="width: 75%; display: block; margin: 0 auto;" src="images/935K.png"/>
+    </p>
+    {% if fig_pipeline %}<p class="name_fig" style="font-weight: bold; text-align: center;">图 {{fig_pipeline}} 生物信息分析流程图</p>{% endif %}
+
+
+{% if flag_qc %}
+{% if section_qc %}<h3 id="id_order_qc"><a id="数据质控">{{section_qc}}　数据质控</a></h3>{% endif %}
+
+<p class="paragraph">
+通过原始信号值计算位点甲基化程度，一般采用beta值（β）作为衡量某位点甲基化程度的指标。该值区间（0,1），理论上越接近于1表明该位点甲基化程度越高，越接近0该位点甲基化程度越低。一般认为，beta值大于0.6是高甲基化（Hypermethylated），beta值小于0.2是低甲基化（Hypomethylated），beta值处于0.2~0.6范围是部分甲基化状态（Heterogeneously Methylated）。
+</p>
+    <p>beta值的计算公式如下: $$ \beta = \frac{M}{M + U} $$</p>
+<p class="paragraph">其中，M代表甲基化的探针信号，U代表未甲基化的探针信号。</p>
+<p class="paragraph">将芯片原始数据idat文件导入R包sesame（V1.17.11）<sup>[1]</sup>中进行beta值的计算，并对芯片数据进行质控，具体数据质控步骤如下：</p>
+   <!-- 去掉自动编号，使用自定义（1）（2）格式 -->
+<ol style="list-style: none; padding-left: 2em;">
+  <li>（1）detected p-value过滤：将 detected p值大于0.05的位点全部去掉；</li>
+  <li>（2）非特异性探针过滤；</li>
+  <li>（3）染色偏倚校正；</li>
+  <li>（4）背景信号的校正。</li>
+</ol>
+  <!-----------------------------------------如果不做差异，beta值密度分析不展示----------------------------------------->
+{% if flag_dmp %}
+<a name="beta值密度分析"></a>
+{% if subsection_qc_density %}<h4>{{subsection_qc_density}}　beta值密度分析</h4>{% endif %}
+<p class="paragraph">
+通过样本beta值密度曲线图展示样本间、组间的甲基化情况，能够对项目样本的整体情况有个直观了解，初步分析样本情况是否预期的实验设计。
+</p>
+
+<p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_density_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_density_nav-tabContent">
+      {% for item in figure_beta %}
+      {% if "densityPlot" in item.1 %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_density_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_density_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_density_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_density_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_density_list-tab" role="tablist">
+      {% for item in figure_beta %}
+      {% if "densityPlot" in item.1 %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_density_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_density_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} 甲基化beta值密度分布曲线图</a>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+
+{% if fig_qc_density %}<p class="name_fig" style="font-weight: bold; text-align: center;">图 {{fig_qc_density}} 甲基化beta值密度分布曲线图</p>{% endif %}
+<p class="premark">图注：横坐标为beta，纵坐标为密度值。正常样本的密度分布曲线应为中间平滑，两端呈现两个峰值，即绝大部分的甲基化位点处于高甲基化和低甲基化的状态。图标题中括号内的数字表示过滤后剩下用于后续分析的探针数。</p>
+<p class="premark">结果文件路径：见Result目录下1_Raw_Data_and_Pre_Process/.VS./Norm_densityPlot.png/pdf文件。</p>
+{% endif %}
+
+<hr/>
+</p><br/>
+<a name="beta值箱线图数据分布"></a>
+{% if subsection_qc_boxplot %}<h4>{{subsection_qc_boxplot}}　beta值箱线图数据分布</h4>{% endif %}
+<p class="paragraph">完成质控后获得各样本甲基化水平如下图所示：</p>
+
+<p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_boxplot_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_boxplot_nav-tabContent">
+      {% for item in figure_boxplot %}
+      {% if "Norm_BoxPlot" in item.1 %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_boxplot_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_boxplot_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_boxplot_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_boxplot_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_boxplot_list-tab" role="tablist">
+      {% for item in figure_boxplot %}
+      {% if "Norm_BoxPlot" in item.1 %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_boxplot_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_boxplot_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} 甲基化水平beta值箱线图</a>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+
+{% if fig_qc_boxplot %}<p class="name_fig" style="font-weight: bold; text-align: center;">图 {{fig_qc_boxplot}} 甲基化水平beta值箱线图</p>{% endif %}
+<p class="premark">图注：横坐标为样本名称，纵坐标为样本beta值，箱线图（Box-whisker Plot）利用最小值、 下四分位数、中位数、上四分位数和最大值五个统计量，对各样本整体甲基化分散程度等信息进行展示，可以根据分布接近程度判断组内重复性和组间差异大小。</p>
+<p class="premark">结果文件路径：见Result目录下1_Raw_Data_and_Pre_Process/.VS./Sample_Beta_Norm_BoxPlot.png/pdf文件，作图数据基于同目录下的1_Raw_Data_and_Pre_Process/*/normbetas.csv。为避免excel打开时因位点较多而显示不全的情况，建议老师使用Notepad++软件进行查看。</p>
+
+<hr/>
+</p><br/>
+<a name="beta值堆叠图数据分布"></a>
+{% if subsection_qc_normbeta %}<h4>{{subsection_qc_normbeta}}　beta值堆叠图数据分布</h4>{% endif %}
+<p class="paragraph">所有样本分为三类beta值：未甲基化（beta≤0.2）、中间甲基化（0.2< beta <0.6）、甲基化（beta≥0.6）分布如下：</p>
+
+<p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_normbeta_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_normbeta_nav-tabContent">
+      {% for item in figure_normbeta %}
+      {% if "normbetas" in item.1 %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_normbeta_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_normbeta_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_normbeta_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_normbeta_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_normbeta_list-tab" role="tablist">
+      {% for item in figure_normbeta %}
+      {% if "normbetas" in item.1 %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_normbeta_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_normbeta_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} 甲基化beta值统计结果堆叠图</a>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+
+{% if fig_qc_normbeta %}<p class="name_fig" style="font-weight: bold; text-align: center;">图 {{fig_qc_normbeta}} 甲基化beta值统计结果堆叠图</p>{% endif %}
+<p class="premark">图注：横坐标为样本名称，纵坐标为位点数量，图柱中的不同颜色代表不同甲基化水平区间（对应关系见图例）。生物学重复之间的甲基化分布通常较为接近。</p>
+<p class="premark">结果文件路径：见Result目录下1_Raw_Data_and_Pre_Process/.VS./normbetas_stat.png/pdf文件，作图数据基于同目录下统计文件：1_Raw_Data_and_Pre_Process/*/normbetas_stat.csv。</p>
+
+<div id="page">
+    <hr/>
+    </p><br/>
+    <a name="IGV可视化浏览"></a>
+    {% if subsection_qc_igv %}<h4>{{subsection_qc_igv}}　可视化浏览</h4>{% endif %}
+   <ol style="list-style: none; padding-left: 2em;">
+  <li>（1）在不同尺度下显示单个或多个样本在基因组上特定位置的甲基化情况，包括在各个染色体和在注释的外显子、内含子、剪接接合区、基因间区的甲基化水平、位点分布等；</li>
+  <li>（2）在不同尺度下显示不同区域的甲基化位点密度、水平；</li>
+  <li>（3）显示基因的注释信息；</li>
+  <li>（4） 既可以从远程服务器端下载各种注释信息，又可以从本地加载注释信息。</li>
+    </ol>
+    <p class="paragraph">如图所示：</p>
+
+    <p class="center">
+        <img class="normal4" style="width: 75%; display: block; margin: 0 auto;" src="images/igv1.png"/>
+    </p>
+    {% if fig_qc_igv %}<p class="name_fig" style="font-weight: bold; text-align: center;">图 {{fig_qc_igv}} IGV浏览器界面（demo）</p>{% endif %}
+    <p class="paragraph">图注：上图为示例图片，实际结果可将Result目录下1_Raw_Data_and_Pre_Process/.VS./Allsample.igv文件输入到IGV软件中查看。</p>
+</div>
+
+<hr/>
+</p><br/>
+<a name="甲基化水平相关性热图"></a>
+{% if subsection_qc_corr %}<h4>{{subsection_qc_corr}}　甲基化水平相关性热图</h4>{% endif %}
+<p class="paragraph">
+样本相关性热图用于展示样本之间的相关性，通过计算两两样本之间的相关系数进行作图。
+</p>
+
+<p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_corr_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_corr_nav-tabContent">
+      {% for item in figure_corr %}
+      {% if "Correlation" in item.1 %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_corr_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_corr_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_corr_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_corr_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_corr_list-tab" role="tablist">
+      {% for item in figure_corr %}
+      {% if "Correlation" in item.1 %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_corr_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_corr_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} 样本相关性热图</a>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+
+{% if fig_qc_corr %}<p class="name_fig" style="font-weight: bold; text-align: center;">图 {{fig_qc_corr}} 样本相关性热图</p>{% endif %}
+<p class="premark">图注：图中横纵坐标均为样本，每一个点代表对应的这两个样本之间的相关性。颜色由蓝到红，表示两个样本间的相关性由低到高。样本相关性越高，那么整体甲基化状态越相似。</p>
+<p class="premark">结果文件路径：见Result目录下1_Raw_Data_and_Pre_Process/.VS./Correlation.png/pdf文件，相关性数据见同目录下Correlation.txt文件。
+</p>
+
+
+{% endif %}
+
+{% if flag_dmp %}
+    <!----------------------------------------如果不做差异这一部分pca 和散点图 是不展示的----------------------------------------->
+<hr/>
+</p><br/>
+<a name="beta值相关性散点图"></a>
+<h4>{{subsection_qc_scatter}}　beta值相关性散点图</h4>
+<p class="paragraph">通过对甲基化水平beta值绘制相关性散点图，可以直观了解两组样本总体甲基化分布集中趋势。</p>
+
+<p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_scatter_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_scatter_nav-tabContent">
+      {% for item in figure_scatter %}
+      {% if "Scatter_plot" in item.1 %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_scatter_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_scatter_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_scatter_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_scatter_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_scatter_list-tab" role="tablist">
+      {% for item in figure_scatter %}
+      {% if "Scatter_plot" in item.1 %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_scatter_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_scatter_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} 甲基化beta值相关性散点图</a>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+
+<p class="name_fig" style="font-weight: bold; text-align: center;">图 {{fig_qc_scatter}} 甲基化beta值相关性散点图</p>
+<p class="premark">图注：图中的点代表检测到的甲基化位点，横纵坐标为对应位点在不同分组内的平均甲基化水平；R代表组间相关性数值，R绝对值越大，表明两组样本间的位点甲基化特征越相似；p值代表显著性，一般认为p<0.05为显著相关。</p>
+<p class="premark"> 结果文件路径：见Result目录下1_Raw_Data_and_Pre_Process/.VS./Scatter_plot.png/pdf文件。</p>
+
+<hr/>
+</p><br/>
+<a name="甲基化水平PCA图"></a>
+    {% if subsection_qc_pca %}<h4>{{subsection_qc_pca}}　甲基化水平PCA图</h4>{% endif %}
+<p class="paragraph">
+主成分分析（Principal Component Analysis， PCA）是一种掌握事物主要矛盾的统计分析方法，它可以从多元事物中解析出主要影响因素，通过正交变换将一组可能存在相关性的变量转换为一组线性不相关的变量，转换后的这组变量叫主成分，从而揭示事物的本质，简化复杂的问题。
+</p>
+
+<p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_pca_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_pca_nav-tabContent">
+      {% for item in figure_pca %}
+      {% if "PCA_nolabel" in item.1 %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_pca_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_pca_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_pca_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_pca_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_pca_list-tab" role="tablist">
+      {% for item in figure_pca %}
+      {% if "PCA_nolabel" in item.1 %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_pca_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_pca_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} 甲基化水平PCA图</a>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+
+{% if fig_qc_pca %}<p class="name_fig" style="font-weight: bold; text-align: center;">图 {{fig_qc_pca}} 甲基化水平PCA图</p>{% endif %}
+<p class="premark">图注：图中横坐标和纵坐标分别代表主成分PC1和主成分PC2，两者相互垂直互不影响。不同的颜色的点代表不同的分组，通过空间距离展示样本间相互关系的远近。</p>
+<p class="premark">结果文件路径：见Result目录下1_Raw_Data_and_Pre_Process/.VS./Sample_Beta_Norm_PCA_nolabel.png/pdf文件，由于分组内的样本以相同颜色展示，若存在离群样本的情况，只看图片难以区分是组内哪一个样本离群，可通过查看同目录下Sample_Beta_Norm_PCA.png/pdf文件即可，该图标注了样本名。</p>
+
+
+<!----------------------------------------差异甲基化位点（DMP）----------------------------------------->
+<hr/>
+</p><br/>
+{% if section_dmp %}<h3 id="id_order_dmp"><a id="差异甲基化位点（DMP）">{{section_dmp}}　差异甲基化位点（DMP）</a></h3>{% endif %}
+    <a name="DMP分析流程"></a>
+    {% if subsection_dmp_process %}<h4>{{subsection_dmp_process}}　DMP分析流程</h4>{% endif %}
+    <p class="paragraph">
+差异甲基化位点（Differentially Methylated CpG Positions ，DMP）是甲基化研究的主要环节，对于寻找后续biomarker有重要意义；在进行DMP鉴定时，首先对两组样本进行分组，然后利用sesame（SEnsible Step-wise Analysis of DNA MEthylation BeadChips）软件混合线性模型对两组样本进行分析，获得检测的差异甲基化位点，再进行FDR校正，得到 adj.P.Val 值。 在利用差异显著性p值进行筛选时，通常情况下会优先筛选 adj.P.Val<0.05 和 |delta bete| ≧ 0.2 的位点作为差异甲基化位点，实际应用中会根据项目具体情况进行调整，本项目采用 P.Value<0.05，|delta_beta|≧0.1 进行差异位点的筛选。
+    </p>
+    <hr/>
+    <a name="DMP结果表"></a>
+     {% if subsection_dmp_table %}<h4>{{subsection_dmp_table}}　DMP数据展示表</h4>{% endif %}
+    {% if table_dmp %}<p class="name_table" style="text-align: center; font-weight: bold;">表 3-1 DMP数据展示表</p>{% endif %}
+    <p class="center">
+        <div id="tb">
+            <table class="gy">
+                <tr>
+                    <th>Probe_ID</th>
+                    <th>logFC</th>
+                    <th>P_Value</th>
+                    <th>adj_P_Val</th>
+                    <th>control_AVG</th>
+                    <th>case_AVG</th>
+                    <th>deltaBeta</th>
+                    <th>CHR</th>
+                    <th>MAPINFO</th>
+                    <th>Strand</th>
+                    <th>Type</th>
+                    <th>gene</th>
+                    <th>feature</th>
+                    <th>cgi</th>
+                    <th>feat.cgi</th>
+                    <th>feat.UCSC_Islands_Name</th>
+                </tr>
+                {% for each in table_dmp %}
+                <tr>
+                    <td>{{each.0}}</td>
+                    <td>{{each.1}}</td>
+                    <td>{{each.2}}</td>
+                    <td>{{each.3}}</td>
+                    <td>{{each.4}}</td>
+                    <td>{{each.5}}</td>
+                    <td>{{each.6}}</td>
+                    <td>{{each.7}}</td>
+                    <td>{{each.8}}</td>
+                    <td>{{each.9}}</td>
+                    <td>{{each.10}}</td>
+                    <td>{{each.11}}</td>
+                    <td>{{each.12}}</td>
+                    <td>{{each.13}}</td>
+                    <td>{{each.14}}</td>
+                    <td>{{each.15}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        </p>
+        <p class="paragraph">数据质量情况详细内容如下：</p>
+            <ol style="list-style: none; padding-left: 2em;">
+              <li>(1) Probe_ID：探针名称。</li>
+              <li>(2) logFC：FC（fold change）的对数值。</li>
+              <li>(3) P_Value：p值。</li>
+              <li>(4) adj_P_Val：矫正后的p值。</li>
+              <li>(5) control_AVG：组1平均beta值。</li>
+              <li>(6) case_AVG：组2平均beta值。</li>
+              <li>(7) deltaBeta：Beta值的组间差值。</li>
+              <li>(8) CHR：参考基因组GRCh38中对应的染色体号。</li>
+              <li>(9) MAPINFO：染色体位置信息。</li>
+              <li>(10) Strand：设计探针为正向序列F或反向序列R。</li>
+              <li>(11) Type：该位点探针类型，I型或者为II型。</li>
+              <li>(12) gene：基因名称。</li>
+              <li>(13) feature：特征类型。</li>
+              <li>(14) cgi：CpG island，甲基化岛。</li>
+              <li>(15) feat.cgi：甲基化岛区域特征类型。</li>
+              <li>(16) feat.UCSC_Islands_Name：UCSC库中甲基化岛（CGI）名。</li>
+            </ol>
+<p class="paragraph">
+结果文件路径：见Result目录下2_Differential_Methylation_Analysis/.VS./DMP_Significant_BH_0.05_P.Value_0.1absdeltaBeta.csv文件（项目使用的阈值体现在文件名上），同目录下allcpg.csv文件是未筛选结果。
+</p>
+<hr/>
+<a name="火山图"></a>
+{% if subsection_dmp_volcano %}<h4>{{subsection_dmp_volcano}}　火山图</h4>{% endif %}
+<p class="paragraph">
+火山图可以快速观察高、低甲基化位点的比例，单个比较组所有差异甲基化位点火山图如下图所示：
+</p>
+
+<p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_volcano_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_volcano_nav-tabContent">
+      {% for item in figure_volcano %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_volcano_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_volcano_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_volcano_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_volcano_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_volcano_list-tab" role="tablist">
+      {% for item in figure_volcano %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_volcano_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_volcano_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} 火山图</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+
+{% if fig_dmp_volcano %}<p class="name_fig" style="font-weight: bold; text-align: center;">图 {{fig_dmp_volcano}} 火山图</p>{% endif %}
+<p class="premark">图注：差异甲基化位点火山图中的每个点表示一个甲基化位点，横坐标为 Δβ，纵坐标为 -log(P.Value)，横坐标的两条临界线为 ±0.1，左上和右上的点为有样本差异的位点。分析中列出了 |Δβ|>0.1 的5个CpG位点和 P.Value<0.05 的5个CpG位点。横坐标绝对值越大，说明甲基化水平在两组样品间的差异越大；纵坐标值越大，表明差异越显著，筛选得到的差异位点越可靠。</p>
+<p class="premark">结果文件路径：见Result目录下2_Differential_Methylation_Analysis/.VS./DMP_Vocalno_plot_label.png/pdf文件。</p>
+<hr/>
+<a name="散点图"></a>
+{% if subsection_dmp_scatter %}<h4>{{subsection_dmp_scatter}}　散点图</h4>{% endif %}
+<p class="paragraph">
+比较组散点图如下图所示：
+</p>
+
+<p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_comScatter_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_comScatter_nav-tabContent">
+      {% for item in figure_comScatter %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_comScatter_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_comScatter_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_comScatter_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_comScatter_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_comScatter_list-tab" role="tablist">
+      {% for item in figure_comScatter %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_comScatter_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_comScatter_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} 火山图</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+
+{% if fig_dmp_scatter %}<p class="name_fig" style="font-weight: bold; text-align: center;">图 {{fig_dmp_scatter}} 散点图</p>{% endif %}
+<p class="premark">图注：横坐标和纵坐标分别为分组的平均 beta 值。图中红色点代表 delta beta 有差异的位点，绿色代表没有差异的位点。</p>
+<p class="premark">结果文件路径：见Result目录下2_Differential_Methylation_Analysis/.VS./DMP_Scatter_plot.png/pdf文件。</p>
+<hr/>
+<a name="热图"></a>
+{% if subsection_dmp_heatmap %}<h4>{{subsection_dmp_heatmap}}　热图</h4>{% endif %}
+<p class="paragraph">
+随机抽取5000个DMP（差异甲基化位点），不足5000个的选取全部的DMP做图。
+</p>
+
+<p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_heatmap_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_heatmap_nav-tabContent">
+      {% for item in figure_heatmap %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_heatmap_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_heatmap_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_heatmap_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_heatmap_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_heatmap_list-tab" role="tablist">
+      {% for item in figure_heatmap %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_heatmap_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_heatmap_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} 热图</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+
+{% if fig_dmp_heatmap %}<p class="name_fig" style="font-weight: bold; text-align: center;">图 {{fig_dmp_heatmap}} 热图</p>{% endif %}
+<p class="premark">结果文件路径：见Result目录下2_Differential_Methylation_Analysis/.VS./DMP_heatmap.png/pdf文件。</p>
+
+<!-- -----------------------------------------DMP个数统计------------------------------------------ -->
+<hr/>
+<a name="DMP个数统计"></a>
+<h4>{{subsection_dmp_number}}　DMP个数统计</h4>
+<p class="paragraph">
+统计分析获得甲基化升高、降低的位点以及基因个数。
+</p>
+
+<p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_DMPNumber_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_DMPNumber_nav-tabContent">
+      {% for item in figure_DMPNumber %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_DMPNumber_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_DMPNumber_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_DMPNumber_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_DMPNumber_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_DMPNumber_list-tab" role="tablist">
+      {% for item in figure_DMPNumber %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_DMPNumber_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_DMPNumber_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} CpGs</a>
+      {% endfor %}
+
+    </div>
+  </div>
+</div>
+</p>
+
+<p class="name_fig" style="font-weight: bold; text-align: center;">图 {{fig_dmp_number}} 高、低甲基化对应位点统计</p>
+<p class="premark">图注：上图表示位点个数信息。Hyper表示甲基化升高（Δβ>0.1）的位点个数，Hypo表示甲基化降低（Δβ<-0.1）的位点个数。</p>
+    <p class="premark">结果文件路径：见Result目录下2_Differential_Methylation_Analysis/.VS./DMP_Number.png/pdf文件。</p>
+<p class="paragraph">
+统计分析获得甲基化升高、降低的位点以及基因个数。
+</p>
+
+<p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_DMPNumber_gene_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_DMPNumber_gene_nav-tabContent">
+      {% for item in figure_DMPNumber_gene %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_DMPNumber_gene_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_DMPNumber_gene_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_DMPNumber_gene_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_DMPNumber_gene_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_DMPNumber_gene_list-tab" role="tablist">
+      {% for item in figure_DMPNumber_gene %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_DMPNumber_gene_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_DMPNumber_gene_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} Gene</a>
+      {% endfor %}
+
+    </div>
+  </div>
+</div>
+</p>
+
+<p class="name_fig" style="font-weight: bold; text-align: center;">图 {{fig_dmp_number_gene}} 高、低甲基化对应位点统计</p>
+<p class="premark">图注：上图表示基因个数信息。其中Hyper表示基因中包含甲基化升高（Δβ>0.1）位点的基因个数统计，Hypo表示基因中包含甲基化降低（Δβ<-0.1）位点的基因个数统计。</p>
+    <p class="premark">结果文件路径：见Result目录下2_Differential_Methylation_Analysis/.VS./DMP_Gene_Number.png/pdf文件。</p>
+
+
+ <!-- -----------------------------------------不同区域DMP个数统计------------------------------------------ -->
+<hr/>
+<a name="不同区域DMP个数统计"></a>
+<h4>{{subsection_dmp_region}}　不同区域DMP个数统计</h4>
+    <p class="paragraph">
+分别统计不同区域低甲基化（Hypomethylated，0< beta ≦0.2）、部分甲基化（Heterogeneously Methylated，0.2< beta <0.6）、高甲基化（Hypermethylated ，0.6 ≦ beta ≦1）位点个数；以及不同区域甲基化升高（hyper, Δβ>0.1）、降低（hypo, Δβ<-0.1）的位点个数；
+</p>
+    <p class="name_table" style="text-align: center; font-weight: bold;">表 3-2 不同区域甲基化升高、降低的位点个数统计</p>
+    <p class="center">
+        <div id="tb">
+            <table class="gy">
+                <tr>
+                    <th>feature</th>
+                    <th>Total_num</th>
+                    <th>Hyper</th>
+                    <th>Hypo</th>
+
+                </tr>
+                {% for each in table_dmp_region %}
+                <tr>
+                    <td>{{each.0}}</td>
+                    <td>{{each.1}}</td>
+                    <td>{{each.2}}</td>
+                    <td>{{each.3}}</td>
+
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        </p>
+<p class="premark">注：Feature为特征类型；Total_num：该区域总的位点个数；hyper：该区域甲基化升高的位点个数；hypo：该区域甲基化降低的位点个数。</p>
+    <p class="premark">结果文件路径：见Result目录下2_Differential_Methylation_Analysis/.VS./DMP_region_Statistics.csv文件。</p>
+<p class="name_table" style="font-weight: bold; text-align: center;">表 3-3 control组不同区域不同甲基化状态位点个数统计</p>
+
+    <p class="center">
+        <div id="tb">
+            <table class="gy">
+                <tr>
+                    <th>feature</th>
+                    <th>control_num</th>
+                    <th>Heterogeneously_Methylated</th>
+                    <th>Hypermethylated</th>
+                    <th>Hypomethylated</th>
+
+                </tr>
+                {% for each in table_dmp_group1 %}
+                <tr>
+                    <td>{{each.0}}</td>
+                    <td>{{each.1}}</td>
+                    <td>{{each.2}}</td>
+                    <td>{{each.3}}</td>
+                    <td>{{each.4}}</td>
+
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        </p>
+<p class="premark">注：feature为特征类型 ；control_num：该区域control组中DMP个数；Heterogeneously_Methylated：该区域中部分甲基化DMP个数；Hypermethylated：该区域高甲基化DMP个数；Hypomethylated：该区域中低甲基化DMP个数。</p>
+    <p class="premark">结果文件路径：见Result目录下2_Differential_Methylation_Analysis/.VS./DMP_*_Statistics.csv文件。</p>
+<p class="name_table" style="text-align: center; font-weight: bold;">表 3-4 case组不同区域不同甲基化状态位点个数统计</p>
+
+    <p class="center">
+        <div id="tb">
+            <table class="gy">
+                <tr>
+                    <th>feature</th>
+                    <th>case_num</th>
+                    <th>Heterogeneously_Methylated</th>
+                    <th>Hypermethylated</th>
+                    <th>Hypomethylated</th>
+
+                </tr>
+                {% for each in table_dmp_group2 %}
+                <tr>
+                    <td>{{each.0}}</td>
+                    <td>{{each.1}}</td>
+                    <td>{{each.2}}</td>
+                    <td>{{each.3}}</td>
+                    <td>{{each.4}}</td>
+
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        </p>
+<p class="premark">注：feature为特征类型 ；case_num：该区域case组中DMP个数；Heterogeneously_Methylated：该区域中部分甲基化DMP个数；Hypermethylated：该区域高甲基化DMP个数；Hypomethylated：该区域中低甲基化DMP个数。</p>
+    <p class="premark">结果文件路径：见Result目录下2_Differential_Methylation_Analysis/.VS./DMP_HHB_CO_Statistics.csv文件。</p>
+<!-- -----------------------------------------DMP的TSS区域分析------------------------------------------ -->
+<hr/>
+<a name="DMP的TSS区域分析"></a>
+<h4>{{subsection_dmp_tss}}　DMP的TSS区域分析</h4>
+<p class="paragraph">
+不同分组差异甲基化位点在 Transcription Start Site（TSS）上游 5kb 到下游 5kb 之间的甲基化程度（beta value）。
+</p>
+
+<p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_DMP_TSS_5000_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_DMP_TSS_5000_nav-tabContent">
+      {% for item in figure_DMP_TSS_5000 %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_DMP_TSS_5000_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_DMP_TSS_5000_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_DMP_TSS_5000_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_DMP_TSS_5000_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_DMP_TSS_5000_list-tab" role="tablist">
+      {% for item in figure_DMP_TSS_5000 %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_DMP_TSS_5000_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_DMP_TSS_5000_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} 不同组样本DMP的TSS上下游甲基化分布</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+
+<p class="name_fig" style="font-weight: bold; text-align: center;">图 {{fig_dmp_tss}} 不同组样本DMP的TSS上下游甲基化分布</p>
+<p class="premark">图注：该图分别展示不同组样本中差异甲基化位点在TSS上下游5kb区域的甲基化程度，实线（红色、蓝色线）表示组内的β均值拟合的一条曲线，实线上下的灰色表示95%的置信区间。</p>
+    <p class="premark">结果文件路径：见Result目录下2_Differential_Methylation_Analysis/.VS./DMP_TSS_5000.png/pdf文件。</p>
+<!-- -----------------------------------------DMP在染色体上的分布------------------------------------------ -->
+<hr/>
+<a name="DMP在染色体上的分布"></a>
+<h4>{{subsection_dmp_chr}}　DMP在染色体上的分布</h4>
+<p class="paragraph">
+通过DMP在染色体上位置分布可以直观的看出每条染色体的不同区域发生差异甲基化情况， 结果如下图所示：
+</p>
+
+<p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_DMP_plot_chr_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_DMP_plot_chr_nav-tabContent">
+      {% for item in figure_DMP_plot_chr %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_DMP_plot_chr_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_DMP_plot_chr_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_DMP_plot_chr_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_DMP_plot_chr_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_DMP_plot_chr_list-tab" role="tablist">
+      {% for item in figure_DMP_plot_chr %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_DMP_plot_chr_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_DMP_plot_chr_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} DMP在染色体上的分布图</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+
+<p class="name_fig" style="font-weight: bold; text-align: center;">图 {{fig_dmp_chr}} DMP在染色体上的分布图</p>
+<p class="premark">图注：横坐标为染色体位置，纵坐标为染色体编号，染色体上的不同颜色表示该处存在差异甲基化，红色为低甲基化，绿色为高甲基化。</p>
+    <p class="premark">结果文件路径：见Result目录下2_Differential_Methylation_Analysis/.VS./DMP_plot_chr.png/pdf文件。</p>
+
+<!-- -----------------------------------------circos图------------------------------------------ -->
+<hr/>
+<a name="circos图"></a>
+<h4>{{subsection_dmp_circos}}　circos图</h4>
+<p class="paragraph">
+通过circos图，能够直观了解到DMP在基因组上的分布，以及不同处理组的甲基化水平趋势。结果如下图所示：
+</p>
+
+<p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_DMP_circlize_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_DMP_circlize_nav-tabContent">
+      {% for item in figure_DMP_circlize %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_DMP_circlize_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_DMP_circlize_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_DMP_circlize_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_DMP_circlize_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_DMP_circlize_list-tab" role="tablist">
+      {% for item in figure_DMP_circlize %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_DMP_circlize_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_DMP_circlize_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} circos图</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+
+<p class="name_fig" style="font-weight: bold; text-align: center;">图 {{fig_dmp_circos}} circos图</p>
+<p class="premark">图注：circos图从外圈到内圈分别是染色体、control组DMP甲基化beta值（蓝色）、case组DMP甲基化beta值（橙色）、deltaBeta值（control组和case组差值，正值用红色表示，负值用绿色表示）。</p>
+    <p class="premark">结果文件路径：见Result目录下2_Differential_Methylation_Analysis/.VS./circlize.png文件。</p>
+{% endif %}
+
+{% if flag_dmr %}
+<!----------------------------------------差异甲基化区域（DMR）----------------------------------------->
+<hr/>
+</p><br/>
+<h3 id="id_order_dmr"><a name="差异甲基化区域">3.4　差异甲基化区域（DMR）</a></h3>
+
+<a name="DMR分析流程"></a>
+<h4>3.4.1　DMR分析流程</h4>
+<p class="paragraph">
+在基因组中差异甲基化位点经常会成簇出现，形成一段差异性甲基化区域（Differentially Methylated Region, DMR），区段的范围小至数百bp，大到Mb级别，DMR被认为在基因印记调节中起重要作用。采用sesame软件来进行差异甲基化区域（DMR）的识别，我们对DMR进行了过滤，基于p<0.05，保留长度为200-10000bp的候选区域，同时要求区域内探针数量至少为7个。
+</p>
+
+<!-- -----------------------------------------DMR数据展示表------------------------------------------ -->
+ <hr/>
+ <a name="DMR数据展示表"></a>
+     <h4>3.4.2　DMR数据展示表</h4>
+    <p class="name_table" style="text-align: center; font-weight: bold;">表 3-5 DMR数据展示表</p>
+    <p class="center">
+        <div id="tb">
+            <table class="gy">
+                <tr>
+                    <th>Seg_ID</th>
+                    <th>Seg_Chrm</th>
+                    <th>Seg_Start</th>
+                    <th>Seg_End</th>
+                    <th>Seg_Est</th>
+                    <th>Seg_Pval</th>
+                    <th>Seg_Pval_adj</th>
+                    <th>control_AVG</th>
+                    <th>case_AVG</th>
+                    <th>Probe_ID</th>
+                    <th>gene</th>
+                    <th>dmr_size</th>
+                    <th>cpgnum_in_dmr</th>
+                </tr>
+                {% for each in table_dmr %}
+                <tr>
+                    <td>{{each.0}}</td>
+                    <td>{{each.1}}</td>
+                    <td>{{each.2}}</td>
+                    <td>{{each.3}}</td>
+                    <td>{{each.4}}</td>
+                    <td>{{each.5}}</td>
+                    <td>{{each.6}}</td>
+                    <td>{{each.7}}</td>
+                    <td>{{each.8}}</td>
+                    <td>{{each.9}}</td>
+                    <td>{{each.10}}</td>
+                    <td>{{each.11}}</td>
+                    <td>{{each.12}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        </p>
+        <p class="paragraph">数据质量情况详细内容如下：</p>
+
+    <ol style="list-style: none; padding-left: 2em;">
+              <li>(1) Seg_ID：DMR名称。</li>
+              <li>(2) Seg_Chrm：参考基因组GRCh38中对应的染色体号。</li>
+              <li>(3) Seg_Start：DMR起始位置。</li>
+              <li>(4) Seg_End：DMR终止位置。</li>
+              <li>(5) Seg_Est：DMR区域内比较组的平均beta值的差值。</li>
+              <li>(6) Seg_Pval：DMR区域p值。</li>
+              <li>(7) Seg_Pval_adj：DMR区域校正后的p值。</li>
+              <li>(8) control_AVG：control的DMR区域内平均beta值。</li>
+              <li>(9) case_AVG：case组的DMR区域内平均beta值。</li>
+              <li>(10) Probe_ID：DMR区域内的CpG位点。</li>
+              <li>(11) gene：DMR区域内的overlap的基因。</li>
+              <li>(12) dmr_size：DMR区域长度。</li>
+              <li>(13) cpgnum_in_dmr：DMR区域内CpG探针的个数。</li>
+</ol>
+    <p class="paragraph">
+结果文件路径：见Result目录下2_Differential_Methylation_Analysis/.VS./DMR_control.vs.case.csv文件。
+</p>
+<!-- -----------------------------------------DMR长度分布------------------------------------------ -->
+<hr/>
+<a name="DMR长度分布"></a>
+<h4>3.4.3　DMR长度分布</h4>
+<p class="paragraph">
+差异组合鉴定的差异甲基化区域长度分布如下图:
+</p>
+
+<p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_dmr_length_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_dmr_length_nav-tabContent">
+      {% for item in figure_dmr %}
+      {% if "Length" in item.1 %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_dmr_length_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_dmr_length_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_dmr_length_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_dmr_length_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_dmr_length_list-tab" role="tablist">
+      {% for item in figure_dmr %}
+      {% if "Length" in item.1 %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_dmr_length_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_dmr_length_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} DMR长度密度分布图</a>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+
+<p class="name_fig" style="font-weight: bold; text-align: center;">图 3-17 DMR长度密度分布图</p>
+<p class="premark">图注：横坐标表示DMR长度单位，纵坐标表示DMR在对应长度单位时的概率密度，即纵坐标越大，则属于该长度范围内的DMR越多。</p>
+    <p class="paragraph">结果文件路径：见Result目录下2_Differential_Methylation_Analysis/.VS./DMRLength.png/pdf文件。</p>
+
+{% endif %}
+
+{% if flag_go %}
+<!----------------------------------------GO功能富集分析----------------------------------------->
+<hr/>
+</p><br/>
+<h3 id="id_order_go"><a name="GO功能富集分析">3.5　GO功能富集分析</a></h3>
+
+<a name="Gene Ontology简述"></a>
+<h4>3.5.1　Gene Ontology简述</h4>
+<p class="paragraph">
+Gene Ontology（简称 GO）是基因功能国际标准分类体系，它旨在建立一个适用于各种物种的，对基因和蛋白质功能进行限定和描述的，并能随着研究不断深入而更新的语言词汇标准<sup>[2]</sup>。GO分为分子功能（Molecular Function）、生物过程（Biological Process）、和细胞组成（Cellular Component）三个部分。基因或蛋白质可以通过ID对应或者序列注释的方法找到与之对应的GO编号，GO编号可用于对应到Term，即功能类别或者细胞定位。
+</p>
+<p class="paragraph">
+       基于DMP、DMR数据可以获得MF、BP、CC等富集情况。
+    </p>
+    <p class="paragraph">
+           GO功能富集分析的方法：将全部基因作为背景列表，差异基因列表作为从背景列表中筛选出来的候选列表，利用超几何分布检验计算代表GO功能集在差异基因列表中是否显著富集的P值，再对P值经Benjamini & Hochberg多重检验纠正后得到FDR。超几何分布检验计算P值的公式如下：
+        </p>
+            <p>计算公式如下: $$ P = 1 - \sum_{i=0}^{m-1} \frac{\dbinom{M}{i} \dbinom{N-M}{n-i}}{\dbinom{N}{n}} $$ </p>
+    <p class="paragraph">
+            N代表具有GO注释的基因数目， M代表注释为某个GO的基因数目， m代表差异基因中注释为某个GO的基因数目。
+        </p>
+     <!-- -----------------------------------------DMP的GO功能富集分析------------------------------------------ -->
+<hr/>
+<a name="DMP的GO功能富集分析"></a>
+<h4>3.5.2　DMP的GO功能富集分析</h4>
+<p class="paragraph">
+显著富集GO柱状图如下，根据超几何检验计算的P值小于等于0.05筛选显著富集GO，每个GO分类下至多显示10个GO Term。
+</p>
+
+<p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_go_dmp_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_go_dmp_nav-tabContent">
+      {% for item in figure_go %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_go_dmp_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_go_dmp_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_go_dmp_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_go_dmp_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_go_dmp_list-tab" role="tablist">
+      {% for item in figure_go %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_go_dmp_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_go_dmp_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} DMP显著富集GO柱状图</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+
+<p class="name_fig" style="font-weight: bold; text-align: center;">图 3-18 DMP显著富集GO柱状图</p>
+<p class="premark">图注：横坐标是GO term描述，纵坐标是-log(P_value)值，选取了MF、CC、BP的各前10个作为作图数据。</p>
+    <p class="paragraph">结果文件路径：见Result目录下3_GO_KEGG/3_1_Differential_Methylation_Probes/.VS./GO_enrichment_topGO.png/pdf文件，作图数据是GO_enrichment_topGO.csv文件。</p>
+<!-- ----------------------------------------- dmp part 不同GO分类显著富集的上下级关系图 ------------------------------------------ -->
+    <p class="paragraph">
+            不同GO分类显著富集的上下级关系图（GO tree）如下：
+        </p>
+ <p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_dmp_bp_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_dmp_bp_nav-tabContent">
+      {% for item in figure_dmp_bp %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_dmp_bp_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_dmp_bp_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_dmp_bp_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_dmp_bp_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_dmp_bp_list-tab" role="tablist">
+      {% for item in figure_dmp_bp %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_dmp_bp_dmp_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_dmp_bp_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} Biological Process</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+<p class="name_fig" style="font-weight: bold; text-align: center;">图 3-19 Biological Process GO tree</p>
+<p class="premark">图注：图形的颜色反映了差异基因在GO term的富集程度，颜色越深富集越显著，红色最显著，黄色次之。方框代表富集程度前10的GO term。</p>
+    <p class="paragraph">结果文件路径：见Result目录下3_GO_KEGG/3_1_Differential_Methylation_Probes/.VS./GO_tree_topGO_BP.png/pdf文件，数据是GO_enrichment_BP.csv文件。</p>
+
+ <p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_dmp_cc_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_dmp_cc_nav-tabContent">
+      {% for item in figure_dmp_cc %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_dmp_cc_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_dmp_cc_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_dmp_cc_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_dmp_cc_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_dmp_cc_list-tab" role="tablist">
+      {% for item in figure_dmp_cc %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_dmp_cc_dmp_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_dmp_cc_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} Cellular Component</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+<p class="name_fig" style="font-weight: bold; text-align: center;">图 3-20 Cellular Component GO tree</p>
+<p class="premark">图注：图形的颜色反映了差异基因在GO term的富集程度，颜色越深富集越显著，红色最显著，黄色次之。方框代表富集程度前10的GO term。</p>
+    <p class="paragraph">结果文件路径：见Result目录下3_GO_KEGG/3_1_Differential_Methylation_Probes/.VS./GO_tree_topGO_CC.png/pdf文件，数据是GO_enrichment_CC.csv文件。</p>
+
+ <p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_dmp_mf_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_dmp_mf_nav-tabContent">
+      {% for item in figure_dmp_mf %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_dmp_mf_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_dmp_mf_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_dmp_mf_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_dmp_mf_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_dmp_mf_list-tab" role="tablist">
+      {% for item in figure_dmp_mf %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_dmp_mf_dmp_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_dmp_mf_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} Molecular Function</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+<p class="name_fig" style="font-weight: bold; text-align: center;">图 3-21 Molecular Function GO tree</p>
+<p class="premark">图注：图形的颜色反映了差异基因在GO term的富集程度，颜色越深富集越显著，红色最显著，黄色次之。方框代表富集程度前10的GO term。</p>
+    <p class="paragraph">结果文件路径：见Result目录下3_GO_KEGG/3_1_Differential_Methylation_Probes/.VS./GO_tree_topGO_MF.png/pdf文件，数据是GO_enrichment_MF.csv文件。</p>
+
+     <!-- -----------------------------------------DMR的GO功能富集分析------------------------------------------ -->
+<hr/>
+<a name="DMR的GO功能富集分析"></a>
+   {% if subsection_go_dmr %}<h4>{{subsection_go_dmr}}　DMR的GO功能富集分析</h4>{% endif %}
+<p class="paragraph">
+显著富集GO柱状图如下，根据超几何检验计算的P值小于等于0.05筛选显著富集GO，每个GO分类下至多显示10个GO Term。
+</p>
+
+<p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_go_dmr_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_go_dmr_nav-tabContent">
+      {% for item in figure_go_dmr %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_go_dmr_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_go_dmr_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_go_dmr_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_go_dmr_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_go_dmr_list-tab" role="tablist">
+      {% for item in figure_go_dmr %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_go_dmr_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_go_dmr_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} DMR显著富集GO柱状图</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+
+<p class="name_fig" style="font-weight: bold; text-align: center;">图 3-22 DMR显著富集GO柱状图</p>
+<p class="premark">图注：横坐标是GO term描述，纵坐标是-log(P_value)值，选取了MF、CC、BP的各前10个作为作图数据。</p>
+    <p class="paragraph">结果文件路径：见Result目录下3_GO_KEGG/3_2_Differential_Methylation_Regions/.VS./GO_enrichment_topGO.png/pdf文件，作图数据是GO_enrichment_topGO.csv文件。</p>
+
+
+<!-- ----------------------------------------- dmr part 不同GO分类显著富集的上下级关系图 ------------------------------------------ -->
+    <p class="paragraph">
+            不同GO分类显著富集的上下级关系图（GO tree）如下：
+        </p>
+ <p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_dmr_bp_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_dmr_bp_nav-tabContent">
+      {% for item in figure_dmr_bp %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_dmr_bp_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_dmr_bp_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_dmr_bp_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_dmr_bp_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_dmr_bp_list-tab" role="tablist">
+      {% for item in figure_dmr_bp %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_dmr_bp_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_dmr_bp_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} Biological Process</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+<p class="name_fig" style="font-weight: bold; text-align: center;">图 3-23 Biological Process GO tree</p>
+<p class="premark">图注：图形的颜色反映了差异基因在GO term的富集程度，颜色越深富集越显著，红色最显著，黄色次之。方框代表富集程度前10的GO term。</p>
+    <p class="paragraph">结果文件路径：见Result目录下3_GO_KEGG/3_2_Differential_Methylation_Regions/.VS./GO_tree_topGO_BP.png/pdf文件，数据是GO_enrichment_BP.csv文件。</p>
+
+ <p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_dmr_cc_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_dmr_cc_nav-tabContent">
+      {% for item in figure_dmr_cc %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_dmr_cc_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_dmr_cc_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_dmr_cc_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_dmr_cc_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_dmr_cc_list-tab" role="tablist">
+      {% for item in figure_dmr_cc %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_dmr_cc_dmp_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_dmr_cc_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} Cellular Component</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+<p class="name_fig" style="font-weight: bold; text-align: center;">图 3-24 Cellular Component GO tree</p>
+<p class="premark">图注：图形的颜色反映了差异基因在GO term的富集程度，颜色越深富集越显著，红色最显著，黄色次之。方框代表富集程度前10的GO term。</p>
+    <p class="paragraph">结果文件路径：见Result目录下3_GO_KEGG/3_2_Differential_Methylation_Regions/.VS./GO_tree_topGO_CC.png/pdf文件，数据是GO_enrichment_CC.csv文件。</p>
+
+ <p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_dmr_mf_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_dmr_mf_nav-tabContent">
+      {% for item in figure_dmr_mf %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_dmr_mf_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_dmr_mf_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_dmr_mf_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_dmr_mf_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_dmr_mf_list-tab" role="tablist">
+      {% for item in figure_dmr_mf %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_dmr_mf_dmp_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_dmr_mf_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} Molecular Function</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+<p class="name_fig" style="font-weight: bold; text-align: center;">图 3-25 Molecular Function GO tree</p>
+<p class="premark">图注：图形的颜色反映了差异基因在GO term的富集程度，颜色越深富集越显著，红色最显著，黄色次之。方框代表富集程度前10的GO term。</p>
+    <p class="paragraph">结果文件路径：见Result目录下3_GO_KEGG/3_2_Differential_Methylation_Regions/.VS./GO_tree_topGO_MF.png/pdf文件，数据是GO_enrichment_MF.csv文件。</p>
+{% endif %}
+
+{% if flag_kegg %}
+<!----------------------------------------KEGG分析----------------------------------------->
+<hr/>
+</p><br/>
+<h3 id="id_order_kegg"><a name="KEGG分析">3.6　KEGG分析</a></h3>
+
+<a name="KEGG简述"></a>
+<h4>3.6.1　KEGG简述</h4>
+<p class="paragraph">
+   KEGG 是了解高级功能和生物系统（如细胞、生物和生态系统），从分子水平，尤其是大型分子数据集生成的基因组测序和其他高通量实验技术的实用程序数据库资源，把得到的基因目录与更高级别的细胞、物种和生态系统水平的系统功能关联起来<sup>[3]</sup>。
+</p>
+<p class="paragraph">
+   基于DMP、DMR数据可以获得KEGG Barplot、Dotlot、Pathway等图。采用R包clusterProfiler对差异甲基化位点及区域所在基因进行KEGG富集分析。对KEGG中每个Pathway应用超几何检验进行富集分析，找出差异甲基化基因中显著富集的Pathway。
+</p>
+<!-- ------------------------------------------DMP的barplot分析------------------------------------------------ -->
+<hr/>
+<a name="DMP的KEGG分析"></a>
+<h4>3.6.2　DMP的KEGG分析</h4>
+
+<p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_kegg_dmp_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_kegg_dmp_nav-tabContent">
+      {% for item in figure_kegg %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_kegg_dmp_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_kegg_dmp_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_kegg_dmp_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_kegg_dmp_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_kegg_dmp_list-tab" role="tablist">
+      {% for item in figure_kegg %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_kegg_dmp_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_kegg_dmp_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} KEGG Barplot</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+
+{% if fig_kegg_dmp_bar %}<p class="name_fig" style="font-weight: bold; text-align: center;">图 {{fig_kegg_dmp_bar}} KEGG Barplot</p>{% endif %}
+<p class="premark">图注：选择前20个DMP富集显著的通路展示，横坐标表示富集的基因个数，纵坐标表示通路名称，柱子的颜色越趋近于红色表示富集越显著。</p>
+    <p class="paragraph">结果文件路径：见Result目录下3_GO_KEGG/3_1_Differential_Methylation_Probes/.VS./KEGG_Barplot.png/pdf文件。</p>
+
+ <!----------------------------------------DMP KEGG dot plot------------------------------------------------ -->
+ <p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_dot_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_dot_nav-tabContent">
+      {% for item in figure_dot %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_dot_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_dot_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_dot_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_dot_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_dot_list-tab" role="tablist">
+      {% for item in figure_dot %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_dot_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_dot_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} KEGG Dotplot</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+
+{% if fig_kegg_dmp_dot %}<p class="name_fig" style="font-weight: bold; text-align: center;">图 {{fig_kegg_dmp_dot}} KEGG Dotplot</p>{% endif %}
+<p class="premark">图注：横坐标是Gene Ratio（位于该pathway term下的差异基因数/位于该pathway term下的所有注释基因数），数值越大表示富集程度越大；纵坐标代表富集程度较高的pathway term名称；点大小代表该term下差异基因数目，越大代表富集基因数目越多，颜色越红代表富集越显著。</p>
+<p class="paragraph">结果文件路径：见Result目录下3_GO_KEGG/3_1_Differential_Methylation_Probes/.VS./KEGG_Dotplot.png/pdf文件。</p>
+    <!-- ----------------------------------------DMP KEGG pathway plot------------------------------------------------ -->
+  <p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_pathway_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_pathway_nav-tabContent">
+      {% for item in figure_pathway %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_pathway_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_pathway_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_pathway_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_pathway_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_pathway_list-tab" role="tablist">
+      {% for item in figure_pathway %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_pathway_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_pathway_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} KEGG Pathway</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+
+{% if fig_kegg_dmp_pathway %}<p class="name_fig" style="font-weight: bold; text-align: center;">图 {{fig_kegg_dmp_pathway}} KEGG Pathway</p>{% endif %}
+<p class="premark">图注：该图是利用Result目录下3_GO_KEGG/3_1_Differential_Methylation_Probes/.VS./KEGG_enrichment.csv文件中Link列下载的其中的一个KEGG Pathway图，若老师想得到更多KEGG Pathway图，请根据Link列自行下载即可。</p>
+
+<!----------------------------------------DMR KEGG barplot------------------------------------------------ -->
+<hr/>
+<a name="DMR的KEGG分析"></a>
+{% if subsection_kegg_dmr %}<h4>{{subsection_kegg_dmr}}　DMR的KEGG分析</h4>{% endif %}
+
+<p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_kegg_dmr_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_kegg_dmr_nav-tabContent">
+      {% for item in figure_kegg_dmr %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_kegg_dmr_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_kegg_dmr_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_kegg_dmr_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_kegg_dmr_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_kegg_dmr_list-tab" role="tablist">
+      {% for item in figure_kegg_dmr %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_kegg_dmr_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_kegg_dmr_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} KEGG Barplot</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+
+{% if fig_kegg_dmr_bar %}<p class="name_fig" style="font-weight: bold; text-align: center;">图 {{fig_kegg_dmr_bar}} KEGG Barplot</p>{% endif %}
+<p class="premark">图注：选择前20个DMP富集显著的通路展示，横坐标表示富集的基因个数，纵坐标表示通路名称，柱子的颜色越趋近于红色表示富集越显著。</p>
+ <p class="premark">结果文件路径：见Result目录下3_GO_KEGG/3_2_Differential_Methylation_Regions/.VS./KEGG_Barplot.png/pdf文件。</p>
+
+ <!----------------------------------------DMR KEGG dot plot------------------------------------------------ -->
+ <p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_dot_dmr_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_dot_dmr_nav-tabContent">
+      {% for item in figure_dot_dmr %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_dot_dmr_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_dot_dmr_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_dot_dmr_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_dot_dmr_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_dot_dmr_list-tab" role="tablist">
+      {% for item in figure_dot_dmr %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_dot_dmr_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_dot_dmr_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} KEGG Dotplot</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+
+{% if fig_kegg_dmr_dot %}<p class="name_fig" style="font-weight: bold; text-align: center;">图 {{fig_kegg_dmr_dot}} KEGG Dotplot</p>{% endif %}
+<p class="premark">图注：横坐标是Gene Ratio（位于该pathway term下的差异基因数/位于该pathway term下的所有注释基因数），数值越大表示富集程度越大；纵坐标代表富集程度较高的pathway term名称；点大小代表该term下差异基因数目，越大代表富集基因数目越多，颜色越红代表富集越显著。</p>
+<!-- ----------------------------------------DMP KEGG pathway plot------------------------------------------------ -->
+  <p class="center">
+<div class="row gallery-row">
+  <div class="col-1">
+    <div id="gallery_figure_pathway_dmr_button_prev" class="button_prev" onclick="prev(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_prev">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-6">
+    <div class="tab-content" id="gallery_figure_pathway_dmr_nav-tabContent">
+      {% for item in figure_pathway_dmr %}
+      <div class="tab-pane fade{% if forloop.first %} show active{% endif %}" id="gallery_figure_pathway_dmr_pane_{{ item.0 }}" role="tabpanel"
+        aria-labelledby="gallery_figure_pathway_dmr_list_{{ item.0 }}" onclick="trans(this.id)"><img
+          class="img-gallery" src="{{ item.1 }}" /></div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure_pathway_dmr_button_next" class="button_next" onclick="next(this.id)">
+      <svg viewbox="0 0 16000 16000" class="svg_next">
+        <circle class="c" cx="8000" cy="8000" r="6080"></circle>
+        <polygon class="a"
+          points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 ">
+        </polygon>
+      </svg></div>
+  </div>
+  <div class="col-4">
+    <input class="form-control" id="gallery_figure_pathway_dmr_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_figure_pathway_dmr_list-tab" role="tablist">
+      {% for item in figure_pathway_dmr %}
+      <a class="list-group-item list-group-item-action{% if forloop.first %} active{% endif %}" id="gallery_figure_pathway_dmr_list_{{ item.0 }}"
+        data-toggle="list" href="#gallery_figure_pathway_dmr_pane_{{ item.0 }}" role="tab"
+        aria-controls="{{ item.0 }}">{{ item.0 }} KEGG Pathway</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</p>
+
+{% if fig_kegg_dmr_pathway %}<p class="name_fig" style="font-weight: bold; text-align: center;">图 {{fig_kegg_dmr_pathway}} KEGG Pathway</p>{% endif %}
+<p class="premark">图注：该图是利用Result目录下3_GO_KEGG/3_2_Differential_Methylation_Regions/.VS./KEGG_enrichment.csv文件中Link列下载的其中的一个KEGG Pathway图，若老师想得到更多KEGG Pathway图，请根据Link列自行下载即可.</p>
+
+{% endif %}
+
+<!----------------------------------------附录----------------------------------------->
+<hr/>
+</p><br/>
+<h2>4、附录</h2>
+
+<a name="软件列表"><h3 id="软件列表">4.1　软件列表</h3></a>
+
+<table class="gy" align="center">
+    <tr>
+        <th>软件名称</th>
+        <th>软件版本</th>
+        <th>分析内容</th>
+    </tr>
+    <tr>
+        <td>sesame</td>
+        <td>V17.1.11</td>
+        <td>芯片分析</td>
+    </tr>
+    <tr>
+        <td>clusterProfiler</td>
+        <td>V3.12.0</td>
+        <td>基因功能富集分析</td>
+    </tr>
+</table>
+
+<a name="Methods"><h3 id="Methods">4.2　Methods</h3></a>
+<p class="paragraph">研究中涉及的方法见<a href="file/人甲基化芯片Methods-英文版.pdf" title="点击打开" target="_blank">英文版 methods</a>和<a href="file/人甲基化芯片Methods-中文版.pdf" title="点击打开" target="_blank">中文版 methods</a>。</p>
+
+<a name="FAQ"><h3 id="FAQ">4.3　FAQ</h3></a>
+<p class="paragraph">FAQ：<a href="file/人甲基化芯片FAQ.pdf" title="点击打开" target="_blank">FAQ</a></p>
+
+<a name="参考文献"><h3 id="参考文献">4.4　参考文献</h3></a>
+<p class="paragraph">[1] Wanding Z, Triche T J, Laird P W,et al.SeSAMe: reducing artifactual detection of DNA methylation by Infinium BeadChips in genomic deletions[J].Nuclc Acids Research, 2018(20):20.</p>
+<p class="paragraph">[2] Young M D, Wakeeld M J, Smyth G K,et al.goseq: Gene Ontology testing for RNA-seq datasets[J]. 2012.</p>
+<p class="paragraph">[3] Kanehisa M, Araki M, Goto S, et al. KEGG for linking genomes to life and the environment.[J]. Nucleic Acids Research, 2007: 480-484.</p>
+
+</div>
+<!-- MathJax 脚本（加在后面） -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</body>
+</html>
