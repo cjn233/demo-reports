@@ -1,0 +1,1541 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" >
+<html>
+<head>
+<TITLE> Untargeted Metabolomics Analysis Report</TITLE>
+<META NAME="Modified" CONTENT="mengfanrui@novogene.cn"> 
+<META NAME="Version" CONTENT="201506v4.1"> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- <link rel="stylesheet" type="text/css" href="css/text.css"> -->
+
+<link rel="stylesheet" type="text/css" href="src/css/text.css">
+<link rel="stylesheet" href="src/css/style.css" />
+<link rel="stylesheet" type="text/css" href="src/js/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
+<link href="src/css/font-awesome.min.css" type="text/css" rel="stylesheet"/>
+<link href="src/css/bootstrap-switch.css" rel="stylesheet"/>
+<link href="src/css/base_new.css" type="text/css" rel="stylesheet">
+
+<script src="js/easyResponsiveTabs.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+	var jqueryv14 = $.noConflict(false);
+</script>
+<script src="src/js/easyResponsiveTabs.js" type="text/javascript"></script>
+<script src="src/js/jquery-1.7.2.min.js" type="text/javascript"></script>
+<script src="src/js/scrollTop.js" type="text/javascript"></script>
+<script src="src/js/common.js" type="text/javascript"></script>
+<script src="src/js/jquery.albumSlider.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="src/js/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
+<script type="text/javascript" src="src/js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+<script type="text/javascript" src="src/js/operate.js"></script>
+<script src="src/js/layer/layer.min.js"></script>
+<script type='text/javascript' src='src/js/jquery.flexslider.js'></script>
+<script type='text/javascript' src='src/js/jquery.dataTables.js'></script>
+<script src="src/js/material-scrollTop.js"></script>
+<script src="src/js/bootstrap.min.js"></script>
+<script src="src/js/bootstrap-select.min.js"></script>
+<script src="src/js/bootstrap-switch.js"></script>
+<script src="src/js/d3.v3.min.js" charset="utf-8"></script>
+<script src="src/js/dagre-d3.min.js"></script>
+
+
+<style media="print">
+	.noprint {DISPLAY: none;}
+	#main{width:95%;right:30px;}
+	.printmenu{display:block;}
+</style>
+
+<div class="noprint">
+<div style="display: block;" id="goTopBtn">
+<a class="backtotop" title="回顶部"><img src="src/images/goTop.jpg" width="30" height="30" class="back-tip"/></a>
+</div>
+</div>
+<script type="text/javascript">
+	var Tree = new Array;
+	// nodeId | parentNodeId | nodeName | nodeUrl
+
+</script>
+<script type="text/javascript">
+		
+		/*滚*/
+		$(window).scroll(function() {
+			var initoffset_1 = $('#id_order_sequence').offset();
+			var currenttop_1 = $(window).scrollTop()+20;
+			if (currenttop_1 > initoffset_1.top) {
+				if($("#library_1").html()=="<b>+</b>"){
+					$("#library_1").html("<b>-</b>")
+					$("#library_1").parent().next().fadeIn("2500")
+				}
+				$(".lanmu-list a").removeClass("current")
+				$("#library_seq").addClass("current");
+			}
+			
+			var initoffset_2 = $('#id_order_pipeline').offset();
+			var currenttop_2 = $(window).scrollTop()+20;
+			if (currenttop_2 > initoffset_2.top) {
+				if($("#analyses_2").html()=="<b>+</b>"){
+					$("#analyses_2").html("<b>-</b>")
+					$("#analyses_2").parent().next().fadeIn("2500")
+				}
+				//$(".lanmu-content").css("display","block")
+				$(".lanmu-list a").removeClass("current")
+				$("#analyses_pip").addClass("current");
+			}
+			
+			var initoffset_3 = $('#id_order_raw').offset();
+			var currenttop_3 = $(window).scrollTop()+20;
+			if (currenttop_3 > initoffset_3.top) {
+				if($("#result_3").html()=="<b>+</b>"){
+					$("#result_3").html("<b>-</b>")
+					$("#result_3").parent().next().fadeIn("2500")
+				}
+				$(".lanmu-list a").removeClass("current")
+				$("#raw_data").addClass("current");
+			}
+			
+			var initoffset_4 = $('#id_order_qc').offset();
+			var currenttop_4 = $(window).scrollTop()+20;
+			if (currenttop_4 > initoffset_4.top) {
+				$(".lanmu-list a").removeClass("current")
+				$("#QC").addClass("current");
+			}
+						
+			var initoffset_5 = $('#id_order_tophat').offset();
+			var currenttop_5 = $(window).scrollTop()+20;
+			if (currenttop_5 > initoffset_5.top) {
+				$(".lanmu-list a").removeClass("current")
+				$("#tophat").addClass("current");
+			}
+			
+			var initoffset_9 = $('#id_order_htseq').offset();
+			var currenttop_9 = $(window).scrollTop()+20;
+			if (currenttop_9 > initoffset_9.top) {
+				$(".lanmu-list a").removeClass("current")
+				$("#gene_express").addClass("current");
+			}
+						
+			var initoffset_10 = $('#id_order_rnaseqqc').offset();
+			var currenttop_10 = $(window).scrollTop()+20;
+			if (currenttop_10 > initoffset_10.top) {
+				$(".lanmu-list a").removeClass("current")
+				$("#RNA-seq_QC").addClass("current");
+			}
+				
+			var initoffset_11 = $('#id_order_diffexp').offset();
+			var currenttop_11 = $(window).scrollTop()+20;
+			if (currenttop_11 > initoffset_11.top) {
+				$(".lanmu-list a").removeClass("current")
+				$("#diff").addClass("current");
+			}
+					
+            var initoffset_12 = $('#id_order_kegg').offset();
+            var currenttop_12 = $(window).scrollTop()+20;
+            if (currenttop_12 > initoffset_12.top) {
+                
+                $(".lanmu-list a").removeClass("current")
+                $("#diff_KEGG").addClass("current");
+            }
+
+            var initoffset_13 = $('#id_order_go').offset();
+            var currenttop_13 = $(window).scrollTop()+20;
+            if (currenttop_13 > initoffset_13.top) {
+                
+                $(".lanmu-list a").removeClass("current")
+                $("#diff_GO").addClass("current");
+            }
+			var initoffset_14 = $('#id_order_ppi').offset();
+			var currenttop_14 = $(window).scrollTop()+20;
+			if (currenttop_14 > initoffset_14.top) {
+				
+				$(".lanmu-list a").removeClass("current")
+				$("#PPI").addClass("current");
+			}
+			
+			var initoffset_18 = $('#文件目录列表').offset();
+			var currenttop_18 = $(window).scrollTop()+20;
+			if (currenttop_18 > initoffset_18.top) {
+				if($("#notes_4").html()=="<b>+</b>"){
+					$("#notes_4").html("<b>-</b>")
+					$("#notes_4").parent().next().fadeIn("2500")
+				}
+				$(".lanmu-list a").removeClass("current")
+				$("#file_dir").addClass("current");
+			}
+			
+			var initoffset_19 = $('#软件列表').offset();
+			var currenttop_19 = $(window).scrollTop()+20;
+			if (currenttop_19 > initoffset_19.top) {
+				
+				$(".lanmu-list a").removeClass("current")
+				$("#soft_list").addClass("current");
+			}
+						
+			var initoffset_23 = $('#参考文献').offset();
+			var currenttop_23 = $(window).scrollTop()+20;
+			if (currenttop_23 > initoffset_23.top) {
+				if($("#ref_5").html()=="<b>+</b>"){
+					$("#ref_5").html("<b>-</b>")
+					$("#ref_5").parent().next().fadeIn("2500")
+				}
+				$(".lanmu-list a").removeClass("current")
+				$("#reference").addClass("current");
+			}
+			
+		});
+
+</script>
+<script type="text/javascript">
+    $(function(){
+        $(window).scroll(function(){
+			var initoffset_11 = $('#id_order_diffexp').offset();
+			var currenttop_11 = $(window).scrollTop()+100;
+			if (currenttop_11 > initoffset_11.top) {
+				var topScroll=$("#left")[0].scrollHeight;
+				var divheight=$("#left").height();
+				var stop=topScroll-divheight;
+				$("#left").scrollTop(stop);
+			}else{
+				$("#left").scrollTop(0);
+			}
+        })
+    })
+</script>
+
+
+<script type="text/javascript">
+var NV = {};
+var UA = navigator.userAgent.toLowerCase();
+if(UA.indexOf("msie")>0)
+{
+        var NV=UA.match(/msie ([\d.]+)/)[1];
+		if (parseFloat(NV)<9.0)
+		{alert('您正在使用IE:'+NV+',部分内容无法显示。请使用IE9以上版本、将浏览器切换至极速模式、或者使用谷歌、火狐等现代浏览器')}
+else{
+document.writeln('<script src="src/js/cytoscape.min.js"></scr'+'ipt>');
+document.writeln('<script src="src/js/jquery.cytoscape.js-panzoom.js"></scr'+'ipt>');
+document.writeln('<script src="src/js/final.js"></scr'+'ipt>')}
+}
+else{
+document.writeln('<script src="src/js/cytoscape.min.js"></scr'+'ipt>');
+document.writeln('<script src="src/js/jquery.cytoscape.js-panzoom.js"></scr'+'ipt>');
+document.writeln('<script src="src/js/final.js"></scr'+'ipt>')}
+ </script>
+
+<script>
+function Onload(y)
+{
+if (document.getElementById(y).style.display=='none'){
+document.getElementById(y).style.display='block';
+}else{
+document.getElementById(y).style.display='none';
+}
+}
+</script>
+</head>
+
+<body>
+<div class='noprint'>
+<div class="mulu" style="width:14.5%;float:left;position:fixed;left:7px;border-style:outset">
+		<center>
+			<a href="javascript:void(0);" id="zhankai"><b>Open the contents</b></a><a href="javascript:void(0);" id="kaiguan"><b> << </b></a>
+		</center>
+</div>
+<div id="left" style="width:16%;float:left;position:fixed;top:60px;overflow-y:auto;overflow-x:hidden;height:380px;display:block;left:7px">
+<div class="title" ><a href="javascript:void(0)" class="shouqi" id="library_1"><b>+</b></a><a href="javascript:void(0)" class="shouqi_2" onclick="$('html,body').animate({scrollTop:$('#研究概述').offset().top}, 100);return false;">Research Overview</a></div>
+<div class="lanmu-content" style="display:none">
+	<dl class="lanmu-list">
+		<dd><a href="#研究概述" id="library_seq">Research Overview</a></dd>
+	</dl>
+</div>
+<div class="title"><a href="javascript:void(0)" class="shouqi" id="analyses_2"><b>+</b></a><a href="javascript:void(0)" class="shouqi_2" onclick="$('html,body').animate({scrollTop:$('#工作流程').offset().top}, 100);return false;">Workflow</a></div>
+<div class="lanmu-content" style="display:none">
+	<dl class="lanmu-list">
+		<dd><a href='#实验流程'id="analyses_pip">Experiment Workflow</a></dd>
+		<dd><a href='#信息分析流程'id="analyses_pip">Bioinformatics Analysis Workflow</a></dd>
+	</dl>
+</div>
+	
+<div class="title"><a href="javascript:void(0)" class="shouqi" id="result_3"><b>+</b></a><a  href="javascript:void(0)" class="shouqi_2" onclick="$('html,body').animate({scrollTop:$('#信息分析内容').offset().top}, 100);return false;">Bioinformatics Analysis</a></div>
+<div class="lanmu-content" style="display:none">
+	<dl class="lanmu-list">
+        <dd><a href="#样本信息" id="raw_data">Sample information</a></dd>
+        <dd><a href="#代谢物定性定量分析" id="QC">Qualitative and quantitative analysis of metabolites</a></dd>
+        <dd><a href="#数据质控" id="tophat">Data quality control</a></dd>
+        <dd><a href="#代谢物通路及分类注释" id="gene_express">Metabolite pathway and classification annotation</a></dd>
+        <dd><a href="#差异代谢物筛选" id="RNA-seq_QC">Differential metabolites screening</a></dd>
+        <dd><a href="#差异代谢物分析" id="diff">Differential metabolite analysis</a></dd>
+        <dd><a href="#KEGG分析" id="diff_KEGG">KEGG analysis</a></dd>
+        <dd><a href="#GSEA分析" id="diff_GO">GSEA analysis</a></dd>
+        <dd><a href="#差异代谢物ROC曲线分析" id="PPI">ROC curve analysis of differential metabolite</a></dd>
+
+
+	</dl>
+</div>
+<div class="title"><a href="javascript:void(0)" class="shouqi" id="notes_4"><b>+</b></a><a href="javascript:void(0)" class="shouqi_2" onclick="$('html,body').animate({scrollTop:$('#备注').offset().top}, 100);return false;">Appendix</a></div>
+<div class="lanmu-content" style="display:none">
+	<dl class="lanmu-list">
+		<dd><a href='#非靶向代谢实验流程' id="file_dir">Untargeted metabolic experiment process</a></dd>
+                <dd><a href='#相关名词解释' id="soft_list">The report includes explanations of relevant terms</a></dd>
+	</dl>
+</div>
+<div class="title"><a href="javascript:void(0)" class="shouqi" id="ref_5"><b>+</b></a><a href="javascript:void(0)" class="shouqi_2" onclick="$('html,body').animate({scrollTop:$('#参考文献').offset().top}, 100);return false;">Reference</a></div>
+<div class="lanmu-content" style="display:none">
+	<dl class="lanmu-list">
+		<dd><a href='#参考文献' id="reference">Reference</a></dd>
+	</dl>
+</div>
+
+</div>
+</div>
+
+<div id="main" , class = "width:76%"> 
+<div id="page">
+<br><br><br><br>
+
+<h1 id="pipline">High Quality Untargeted Metabolomics Analysis Report</h1>
+
+<br><br><br>
+    <h2 id="pipline">Project Information</h2>
+    <p class="paragraph">Project Number: X101SC250XXXXX-Z01</p>
+    <p class="paragraph">Project Name: demo</p>
+    <p class="paragraph">Report Date: 2025-08-08</p>
+    <p class="paragraph">Report Number: X101SC250XXXXX-Z01-J001</p>
+    <br>
+</div>
+
+<div id="page">
+    <h2 id="pipline">Project Summary</h2>
+    <p class="paragraph">This project applied untargeted metabolomics technology to conduct research. The instrument platforms used were Q Exactive. A total of 1698 positive ion-mode metabolites and 1266 negative ion-mode metabolites were identified from the 28 samples in this project.  Differential metabolites were screened according to the criteria of VIP > 1.0, FC > 1.2 or FC < 0.833 and P-value < 0.05. For example, there were 101 positive ion-mode metabolites with significant differences in the Group1.vs.Group2 comparison group, of which 59 metabolites were up-regulated and 42 metabolites were down-regulated. There were 44 negative ion-mode metabolites with significant differences, of which 21 metabolites were up-regulated and 23 metabolites were down-regulated. Based on the above data, systematic pathway annotation was performed for all identified metabolites, and differential analysis and KEGG analyses were performed for all differential metabolites. The specific workflow and analysis are as follows.</p>
+</div>
+    <div id="page">
+    <p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a> <a name="分析概述"></a><hr/></p>
+
+
+<h2 id="id_order_sequence"><a id="研究概述">Research Overview</a></h2>
+
+<p class="paragraph">Metabolome refers to the collection of all small molecular metabolites (mainly endogenous small molecules with a relative molecular weight less than 1000 Da) in cells, tissues, organs or organisms.</p>
+<p class="paragraph">Metabolomics is a new technology emerging after genomics, transcriptomics and proteomics. It is an important part of systems biology. Metabolomics aims to investigate the changes of metabolic products or the changes with time after the cells and tissues of organisms are stimulated or disturbed. Through screening the differential metabolites of the experimental group and the control group, the biological processes involved by the differential metabolites are studied, and the mechanism of their participation in life activities is revealed.</p>
+<p class="paragraph">Metabolomics is more similar to phenotypes. It is an extension of transcriptomics and proteomics, and can reflect the physiological state of organisms more directly and accurately. Bill Lasley and UC Davis once pointed out that "genomics and proteomics tell you what may happen, while metabolomics tell you what has actually happened".</p>
+<p class="paragraph">Untargeted metabolomics aims at discovery. It is necessary to detect as many metabolites as possible in biological samples and reflect the total metabolite information to the greatest extent. Therefore, untargeted metabolomics must equip with high-resolution mass spectrometer. The higher the resolution, the more metabolites detected by the mass spectrometer. The combination of ultra-high performance liquid chromatography (UHPLC) and high resolution mass spectrometer (HRMS), namely, LC-MS/MS, has been widely applied in untargeted metabolomics research due to its advantages of wide range of detected substances and simple sample pretreatment.</p>
+
+</div>
+<div id="page">
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a> <a name="工作流程"></a><hr/></p>
+   <h2 id="id_order_pipeline">Project Workflow</h2>
+        <h3 id="id_order_sequence"><a name="实验流程">1. Experiment workflow</h3></a>
+        <p class="paragraph">This project is based on the liquid chromatography-mass spectrometry (LC-MS) technology <SUP>[1-2]</SUP>  to conduct untargeted metabolomics research. The experiment workflow mainly includes: sample metabolite extraction, LC-MS/MS detection and data analysis, etc. Due to the characteristics of metabolomics, such as rapid changes in metabolites, a wide variety of metabolites, large differences in concentrations, diverse chemical properties, and huge data information, every step from sample collection, storage, metabolite extraction, and mass spectrometry detection may have an impact on the quality of data. The quality of data will directly affect the results of subsequent information analysis. In order to ensure the accuracy and reliability of the data from the source, Novegene meticulously controls every step of the experiment and realizes the standardized operation of metabolomics, fundamentally ensuring the production of high-quality data. The experimental flow chart is as follows:</p>
+<p class="center"> <img  src="src/images/Experimental_flow_chart.png"  width="70%%" /> </p>
+<p class="premark">Note: QC samples were made by mixing the same volume of experiment samples, and were tested on the machine before, during and after the LC-MS/MS injection of experiment samples.</p>
+<p class="paragraph">The first three QC samples before injection were used to monitor instrument status and equilibrate the LC-MS system. QC samples inserted throughout the sample analysis were used to evaluate system stability and perform data quality control throughout the entire experiment.</p>
+<p class="center"> <img  src="src/images/QC.png"  width="75%%" /> </p>
+
+</div>
+<div id="page">
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a> <a name="信息分析流程"></a><hr/></p>
+	<h3 id="">2. Bioinformatics analysis workflow</h3>
+       <p class="paragraph">First, the raw mass spectrometry data was converted to mzXML format using ProteoWizard <SUP>[3]</SUP> . Then, peak extraction, alignment, and retention time correction were performed with XCMS software <SUP>[4]</SUP>. Subsequently, the total peak area within each sample was normalized, and peaks with a missing rate greater than 50% across sample groups were filtered out. The corrected and filtered results were matched with the Novogene local database to obtain metabolite identification information. Following this, multivariate statistical analysis was conducted on the metabolites, including Principal Component Analysis (PCA) and Partial Least Squares Discriminant Analysis (PLS-DA), to reveal metabolic pattern differences between groups. Hierarchical Clustering Analysis (HCA) and metabolite correlation analysis were performed to uncover relationships between samples and among metabolites. Functional analyses, such as metabolic pathway analysis, were conducted to interpret the biological significance associated with metabolites. The workflow for untargeted metabolomics bioinformatics analysis is as follows:</p>
+<p class="center"> <img  src="src/images/analysis.png"  width="90%" /> </p>
+<p class="premark">Note: This analysis flow chart includes all analysis contents of the product, and the specific analysis content of this project is based on this report.</p>
+<div id="page">
+    <p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a> <a name="信息分析结果"></a>
+    <hr />
+    </p>
+
+<h2><a id="信息分析结果">Bioinformatics Analysis Results</a></h2>   
+<h3 id="id_order_raw" ><a id="样本信息">1. Sample information</a></h3>
+	<p class="name">Table 1.1 Sample information</p>
+    <p class="center"><div id="tb"><table>
+    <tr><th style="background-color:#dedddd"><font color="black">Raw name</font></th><th style="background-color:#dedddd"><font color="black">Samples name</font></th><th style="background-color:#dedddd"><font color="black">Group names</font></th><th style="background-color:#dedddd"><font color="black">ID num</font></th></tr>
+<tr><td>FZTM250051201-1A</td><td>sample1</td><td>Group1</td><td>4</td></tr>
+<tr><td>FZTM250051202-1A</td><td>sample2</td><td>Group1</td><td>15</td></tr>
+<tr><td>FZTM250051203-1A</td><td>sample3</td><td>Group1</td><td>25</td></tr>
+<tr><td>FZTM250051204-1A</td><td>sample4</td><td>Group1</td><td>26</td></tr>
+<tr><td>FZTM250051205-1A</td><td>sample5</td><td>Group1</td><td>27</td></tr>
+<tr><td>FZTM250051206-1A</td><td>sample6</td><td>Group1</td><td>28</td></tr>
+<tr><td>FZTM250051207-1A</td><td>sample7</td><td>Group1</td><td>29</td></tr>
+<tr><td>FZTM250051208-1A</td><td>sample8</td><td>Group2</td><td>30</td></tr>
+<tr><td>FZTM250051209-1A</td><td>sample9</td><td>Group2</td><td>31</td></tr>
+<tr><td>FZTM250051210-1A</td><td>sample10</td><td>Group2</td><td>5</td></tr>
+<tr><td>FZTM250051211-1A</td><td>sample11</td><td>Group2</td><td>6</td></tr>
+<tr><td>FZTM250051212-1A</td><td>sample12</td><td>Group2</td><td>7</td></tr>
+<tr><td>FZTM250051213-1A</td><td>sample13</td><td>Group2</td><td>8</td></tr>
+<tr><td>FZTM250051214-1A</td><td>sample14</td><td>Group2</td><td>9</td></tr>
+<tr><td>FZTM250051215-1A</td><td>sample15</td><td>Group3</td><td>10</td></tr>
+<tr><td>FZTM250051216-1A</td><td>sample16</td><td>Group3</td><td>11</td></tr>
+<tr><td>FZTM250051217-1A</td><td>sample17</td><td>Group3</td><td>12</td></tr>
+<tr><td>FZTM250051218-1A</td><td>sample18</td><td>Group3</td><td>13</td></tr>
+<tr><td>FZTM250051219-1A</td><td>sample19</td><td>Group3</td><td>14</td></tr>
+<tr><td>FZTM250051220-1A</td><td>sample20</td><td>Group3</td><td>16</td></tr>
+<tr><td>FZTM250051221-1A</td><td>sample21</td><td>Group3</td><td>17</td></tr>
+<tr><td>FZTM250051222-1A</td><td>sample22</td><td>Group4</td><td>18</td></tr>
+<tr><td>FZTM250051223-1A</td><td>sample23</td><td>Group4</td><td>19</td></tr>
+<tr><td>FZTM250051224-1A</td><td>sample24</td><td>Group4</td><td>20</td></tr>
+<tr><td>FZTM250051225-1A</td><td>sample25</td><td>Group4</td><td>21</td></tr>
+<tr><td>FZTM250051226-1A</td><td>sample26</td><td>Group4</td><td>22</td></tr>
+<tr><td>FZTM250051227-1A</td><td>sample27</td><td>Group4</td><td>23</td></tr>
+<tr><td>FZTM250051228-1A</td><td>sample28</td><td>Group4</td><td>24</td></tr>
+<tr><td>QC1</td><td>QC1</td><td>QC</td><td>1</td></tr>
+<tr><td>QC2</td><td>QC2</td><td>QC</td><td>2</td></tr>
+<tr><td>QC3</td><td>QC3</td><td>QC</td><td>3</td></tr>
+
+    </table></div></p>
+    <p class="tremark">
+    Note: The report only shows some results, for detailed results please see: Result/1.MetQuant-QC/sam_qc_infor_{pos,neg}.xls.</br>
+    (1) Raw name: Novogene extraction number.</br>
+    (2) ID num: sample name sequence (number corresponding to total sample PCA and PLS-DA).</br>
+    </p>
+</div>
+
+<div id="page">
+	<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a> 
+<a name="代谢物定性定量分析"></a><hr/></p>
+<h3 id="id_order_qc"><a name="代谢物定性定量分析">2. Qualitative and quantitative analysis of metabolites</a></h3>
+<h4 id="">2.1 Data pretreatment and metabolite identification</h4>
+
+<p class="paragraph">Based on high-resolution mass spectrometry (HRMS) detection technology, combined with high-quality secondary spectrum databases for matching and identification of molecular characteristic peaks, achieves high-throughput and high-quality metabolite identification in biological samples, reflecting the information of total metabolites to the maximum extent. </p>
+<p class="paragraph">The raw data from the mass spectrometer is pre-processed using XCMS software. First, peak extraction, peak quantification, and peak alignment were performed. Then, based on the specified ppm and adduct information, the data is compared with a high-quality MS/MS spectral database for metabolite identification. Finally, metabolites with a coefficient of variance (CV) below 30% <SUP>[5]</SUP> in QC samples were retained as the final identification results for subsequent analysis.</p>
+
+<h4 id="">2.2 Quantitative results</h4>
+<p class="paragraph">The XCMS data processing software was used to integrate chromatographic peaks detected in the samples. The peak area of each characteristic peak represents the relative quantification of a metabolite. The quantitative results were normalized using the total peak area, resulting in the final quantitative values for the metabolites. The results are shown in Table 2.1</p>
+<p class="name">Table 2.1 Quantitative results of metabolites</p>
+
+<p class="center"><div id="tb"><table>
+<tr><th style="background-color:#dedddd"><font color="black">Compound_ID</font></th><th style="background-color:#dedddd"><font color="black">Name</font></th><th style="background-color:#dedddd"><font color="black">IonMode</font></th><th style="background-color:#dedddd"><font color="black">Formula</font></th><th style="background-color:#dedddd"><font color="black">MolecularWeight</font></th><th style="background-color:#dedddd"><font color="black">m/z</font></th><th style="background-color:#dedddd"><font color="black">MassError</font></th><th style="background-color:#dedddd"><font color="black">Adduct</font></th><th style="background-color:#dedddd"><font color="black">RT (min)</font></th><th style="background-color:#dedddd"><font color="black">Score</font></th><th style="background-color:#dedddd"><font color="black">Level</font></th><th style="background-color:#dedddd"><font color="black">Column</font></th><th style="background-color:#dedddd"><font color="black">ClassI</font></th><th style="background-color:#dedddd"><font color="black">ClassII</font></th><th style="background-color:#dedddd"><font color="black">ClassIII</font></th><th style="background-color:#dedddd"><font color="black">CAS</font></th><th style="background-color:#dedddd"><font color="black">HMDB_ID</font></th><th style="background-color:#dedddd"><font color="black">KEGG_ID</font></th><th style="background-color:#dedddd"><font color="black">KEGG_MapID</font></th><th style="background-color:#dedddd"><font color="black">Lipidmaps_ID</font></th><th style="background-color:#dedddd"><font color="black">PubChemID</font></th><th style="background-color:#dedddd"><font color="black">SMILES</font></th><th style="background-color:#dedddd"><font color="black">InChIKey</font></th><th style="background-color:#dedddd"><font color="black">pos_QC1</font></th><th style="background-color:#dedddd"><font color="black">pos_QC2</font></th><th style="background-color:#dedddd"><font color="black">pos_QC3</font></th><th style="background-color:#dedddd"><font color="black">pos_sample1</font></th><th style="background-color:#dedddd"><font color="black">pos_sample10</font></th><th style="background-color:#dedddd"><font color="black">pos_sample11</font></th><th style="background-color:#dedddd"><font color="black">pos_sample12</font></th><th style="background-color:#dedddd"><font color="black">pos_sample13</font></th></tr>
+<tr><td>Com_1685_pos</td><td>Huperzine B</td><td>P</td><td>C16H20N2O</td><td>256.15756</td><td>279.14845</td><td>6.06465</td><td>[M+Na]+</td><td>6.843</td><td>0.81</td><td>1</td><td>C18</td><td>Organoheterocyclic compounds</td><td>Phenanthrolines</td><td>-</td><td>"""103548-82-9"""</td><td>HMDB0253233</td><td>C09866</td><td>-</td><td>-</td><td>3631</td><td>CC1=CC2CC3=C(C=CC(=O)N3)C3(C1)NCCCC23</td><td>YYWGABLTRMRUIT-UHFFFAOYSA-N</td><td>2685469.86977343</td><td>2955741.1127931685</td><td>2622603.923847087</td><td>3995899.823265852</td><td>3014917.771472027</td><td>6255617.287812361</td><td>2466883.361630759</td><td>4777687.255296703</td></tr>
+<td>Com_1423_pos</td><td>Bombykol</td><td>P</td><td>C16H30O</td><td>238.22966</td><td>256.26354</td><td>0.29549</td><td>[M+NH4]+</td><td>10.698</td><td>0.78</td><td>1</td><td>C18</td><td>Lipids and lipid-like molecules</td><td>Fatty Acyls</td><td>Fatty alcohols</td><td>"""765-17-3"""</td><td>-</td><td>C16873</td><td>-</td><td>LMFA05000007</td><td>-</td><td>CCCC=CC=CCCCCCCCCCO</td><td>CIVIWCVVOFNUST-SCFJQAPRSA-N</td><td>57254553.2291944</td><td>61649748.54698873</td><td>62820820.58780939</td><td>53288000.06724451</td><td>56905443.49167159</td><td>49554014.88701046</td><td>76365342.06157616</td><td>70921266.06988144</td></tr>
+<td>Com_1567_pos</td><td>Sphingosine (d17:1)</td><td>P</td><td>C17H35NO2</td><td>285.26678</td><td>268.26374</td><td>0.95666</td><td>[M+H-H2O]+</td><td>6.895</td><td>0.61</td><td>1</td><td>C18</td><td>Organic nitrogen compounds</td><td>Organonitrogen compounds</td><td>Amines</td><td>"""6918-48-5"""</td><td>-</td><td>-</td><td>-</td><td>LMSP01040002</td><td>-</td><td>CCCCCCCCCCCCC=CC(C(CO)N)O</td><td>RBEJCQPPFCKTRZ-LHMZYYNSSA-N</td><td>3992455.15197744</td><td>3938746.763903557</td><td>4046691.1247651433</td><td>773747.8330528087</td><td>22971255.893320907</td><td>3711647.202599842</td><td>1057314.001104124</td><td>7081536.508216988</td></tr>
+<td>Com_1725_pos</td><td>Maculosin</td><td>P</td><td>C14H16N2O3</td><td>260.11609</td><td>283.10811</td><td>9.96547</td><td>[M+Na]+</td><td>5.907</td><td>0.56</td><td>1</td><td>C18</td><td>Organic acids and derivatives</td><td>Carboxylic acids and derivatives</td><td>Amino acids, peptides, and analogues</td><td>"""4549-02-4"""</td><td>-</td><td>C10605</td><td>-</td><td>-</td><td>-</td><td>C1CC2C(=O)NC(C(=O)N2C1)CC3=CC=C(C=C3)O</td><td>LSGOTAXPWMCUCK-RYUDHWBXSA-N</td><td>643139.423411874</td><td>638727.6298215026</td><td>1039936.055554834</td><td>820877.002335762</td><td>1232484.894420557</td><td>868290.2088147217</td><td>465446.8361417002</td><td>857525.7285000453</td></tr>
+<td>Com_1686_pos</td><td>Lotaustralin</td><td>P</td><td>C11H19NO6</td><td>261.12124</td><td>279.15247</td><td>9.20113</td><td>[M+NH4]+</td><td>5.616</td><td>0.77</td><td>1</td><td>C18</td><td>Organic oxygen compounds</td><td>Organooxygen compounds</td><td>Carbohydrates and carbohydrate conjugates</td><td>"""1973415-50-7"""</td><td>HMDB0033865</td><td>C08334</td><td>map00460;map01110</td><td>-</td><td>4626626</td><td>CCC(C)(OC1OC(CO)C(O)C(O)C1O)C#N</td><td>WEWBWVMTOYUPHH-UHFFFAOYSA-N</td><td>677482.446351564</td><td>677032.4285341314</td><td>461383.3128044828</td><td>525060.8734796045</td><td>237784.61935861324</td><td>654855.2866836307</td><td>514314.2118541979</td><td>756087.2592667831</td></tr>
+<td>Com_1586_pos</td><td>ascaroside C6</td><td>P</td><td>C12H22O5</td><td>246.14673</td><td>269.13838</td><td>9.10963</td><td>[M+Na]+</td><td>6.642</td><td>0.51</td><td>1</td><td>C18</td><td>Organic oxygen compounds</td><td>Organooxygen compounds</td><td>Carbohydrates and carbohydrate conjugates</td><td>"""946524-24-9"""</td><td>-</td><td>-</td><td>-</td><td>LMFA13040003</td><td>-</td><td>CC1C(CC(C(O1)OC(C)CCC(=O)C)O)O</td><td>KDIFLHQRDPSWHT-IYKVGLELSA-N</td><td>18027988.9901719</td><td>17332692.09670085</td><td>17767907.379775055</td><td>6937494.864299317</td><td>14995980.27928176</td><td>4717277.233072015</td><td>5129968.785588484</td><td>8629290.367582329</td></tr>
+
+</table></div></p>
+
+      	<p class="premark">
+       Note: This report only shows partial results; detailed results can be found in Result/1.MetQuant-QC/meta_intensity_{pos,neg}.xls.</br>
+(1) Compound_ID: Metabolite ID (This ID is a randomly assigned number for convenient reference and further analysis; it has no intrinsic meaning).</br>
+(2) Name: English descriptions of the metabolite.</br>
+(3) IonMode: Acquisition mode, where "P" indicates positive mode and "N" indicates negative mode.</br>
+(4) Formula: Molecular formula of the metabolite.</br>
+(5) Molecular Weight: Molecular weight.</br>
+(6) m/z: Mass-to-charge ratio.</br>
+(7) MassError: Deviation between the observed and theoretical values of the precursor ion for the same compound.</br>
+(8) Adduct: Adduct ion form.</br>
+(9) RT [min]: Retention time.</br>
+(10) Score: Qualitative score.</br>
+(11) Level: Level 1: The metabolite in the sample matches the database in MS1, MS2, and RT. Level 2: The metabolite matches the database in MS1 and MS2. Level 3: The metabolite matches the database in MS1.</br>
+(12) Column: Type of chromatography column.</br>
+(13) ClassI, ClassII, ClassIII: English descriptions for the three-level classification of metabolites.</br>
+(14) CAS: CAS number of the compound.</br>
+(15) HMDB_ID, KEGG_ID, Lipidmaps_ID, PubChemID, and KEGG_MapID: Database identifiers in HMDB, KEGG, Lipidmaps, PubChem, and the pathway identifier in KEGG.</br>
+(16) SMILES, InChIKey: Retrieved from the PubChem database; SMILES represents the compound’s structure in a single line of text, while InChIKey is a 25-character molecular identifier.</br>
+(17) Other columns: Relative quantification information for each sample. </p>
+ 
+</div>
+
+<h4 id="">2.3 Metabolite classification results</h4>
+<p class="paragraph">The chemical classification of metabolites identified in this project was statistically analyzed, and a pie chart was drawn to reflect the classification of metabolites detected and the number contained in each classification. See Figure 2.3 for the pie chart of metabolites Class I classification (see the result file for the high-definition version of the picture):</p>
+ <div align="left">
+    <form id="form1" name="form1" method="post" action="">
+    <label>
+    <select id="game1" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label> 
+
+
+            <option value="src/pictures/Pie_Chart_pos.png" >POS</option>
+        
+            <option value="src/pictures/Pie_Chart_neg.png" >NEG</option>
+        
+             </select>
+        </form>
+    </div>
+    <p align="center"><img src="src/pictures/Pie_Chart_pos.png" id="show1" width="60%"></p>
+<p class="name">Figure 2.3 Metabolite classification pie chart</p>
+<p class="premark">Corresponding result catalog: Result/1.MetQuant-QC/Pie_Chart_{pos,neg}.{png,pdf}.</p>
+
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a> 
+<a name="数据质控"></a><hr/></p>
+<h3 id="id_order_tophat"><a name="数据质控">3. Data quality control</a></h3>
+        <p class="paragraph">The metabolomics is easy to be disturbed by external factors and changes rapidly. Therefore, data quality control (QC) is a necessary step to obtain stable and accurate metabolomics results. Especially when the sample size is large, it takes a certain time for the sample to be tested on the instrument. It is particularly important to check whether the stability of the instrument and the signal response strength are normal in the process of metabolite detection. The quality control system can timely detect abnormalities and solve problems as soon as possible to ensure the quality of the final collected data.</p>
+        <h4 id="">3.1 Correlation analysis of QC samples</h4>
+<p class="paragraph">Pearson correlation coefficient between QC samples is calculated based on the relative quantitative value of metabolites <SUP>[6]</SUP>. The higher the correlation of QC samples (|r| is closer to 1), the better the stability of the whole detection process and the higher the data quality. The correlation analysis results of QC samples are shown in Figure 3.1 (see the result file for the high-definition version of the picture):</p>
+
+        <div align="left">
+	<form id="form1" name="form1" method="post" action="">
+	<label>
+	<select id="game2" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label> 
+
+
+			<option value="src/pictures/cor_pearson_pos.png" >POS</option>
+		
+			<option value="src/pictures/cor_pearson_neg.png" >NEG</option>
+		
+			 </select>
+		</form>
+	</div>
+	<p align="center"><img src="src/pictures/cor_pearson_pos.png" id="show2" width="40%"></p>
+<p class="name">Figure 3.1 Correlation analysis of QC samples</p>
+<p class="premark">Corresponding result catalog: Result/1.MetQuant-QC/Correlation/cor_pearson_{pos,neg}.{png,pdf,xls}.</p>
+
+<h4 id="">3.2 PCA analysis of total samples</h4>
+<p class="paragraph">Principal component analysis (PCA) is a statistical method that converts a group of variables that may have correlation into a group of linear uncorrelated variables through orthogonal transformation. The converted group of variables is called principal component. Metabolomic data can be considered as a multivariate data set. PCA can reduce the dimension of metabolite variables by linear combination according to a certain weight, and then generate new characteristic variables, which are classified by the similarity of the main new variables (principal components), reflecting the overall metabolic difference between each group of samples and the degree of variation between samples within the group. MetaX <SUP>[7]</SUP> software is used for logarithmic conversion and standardization of data.</p>
+<p class="paragraph">The peaks extracted from all experimental samples and QC samples were analyzed by PCA analysis. The smaller the difference of QC samples, the better the stability of the whole method, the higher the data quality, which is reflected in the PCA analysis chart, that is, the distribution of QC samples will gather together. The results are shown in Figure 3.2 (see the result file for the high-definition version of the picture):</p>
+        <div align="left">
+	<form id="form1" name="form1" method="post" action="">
+	<label>
+	<select id="game3" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label> 
+
+
+		<option value="src/pictures/Samples_QC_pos-PCA.png" >POS</option> 
+		<option value="src/pictures/Samples_QC_pos-PCA.3D.png" >POS_3D</option>
+		
+		<option value="src/pictures/Samples_QC_neg-PCA.png" >NEG</option> 
+		<option value="src/pictures/Samples_QC_neg-PCA.3D.png" >NEG_3D</option>
+		
+			 </select>
+		</form>
+	</div>
+	<p align="center"><img src="src/pictures/Samples_QC_pos-PCA.png" id="show3" width="40%"></p>
+<p class="name">Figure 3.2 PCA analysis of total samples</p>
+<p class="premark">Note: The abscissa PC1 and ordinate PC2 represent the scores of the first and second principal components respectively, and the scatter color represents the experimental grouping of samples, with a confidence ellipse of 95% (Biological number of replicates less than 4 fails to demonstrate a 95% confidence ellipse).</p>
+<p class="premark">Corresponding result catalog: The total PCA diagram of QC and all samples is shown in Result/1.MetQuant-QC/Samples_QC_{pos,neg}-PCA[.3D].{png,pdf}; The total PCA of all metabolomics samples is shown in Result/1.MetQuant-QC/Samples_{pos,neg}-PCA[.3D].{png,pdf}.</p>
+
+
+<div id="page">
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a> 
+<a name="代谢物通路及分类注释"></a><hr/></p>
+<h3 id="id_order_qc"><a name="代谢物通路及分类注释">4. Metabolite pathway and classification annotation</a></h3>
+	<p class="paragraph">The identified metabolites are annotated by pathway and classification. The main databases include KEGG, HMDB, LIPIDAPS, etc. These databases are used to annotate the identified metabolites to understand the functional characteristics and classification of different metabolites.</p>
+</div>
+
+<script src="src/js/easyResponsiveTabs.js" type="text/javascript"></script>
+									<script type="text/javascript">
+										$(document).ready(function () {
+											$('#horizontalTab').easyResponsiveTabs({
+												type: 'default', //Types: default, vertical, accordion           
+												width: 'auto', //auto or any width like 600px
+												fit: true   // 100% fit in a container
+											});
+										});
+									</script>	
+	
+	
+
+<div id="horizontalTab" style="display: block; width: 100%; margin: auto;">
+<ul class="resp-tabs-list">
+					  <li class="resp-tab-item resp-tab-active" aria-controls="tab_item-0" role="tab">4.1  KEGG Pathway Annotation</li>
+					  <li class="resp-tab-item" aria-controls="tab_item-1" role="tab">4.2  HMDB classification annotation</li>
+					  <li class="resp-tab-item" aria-controls="tab_item-2" role="tab">4.3  LIPID MAPS classification annotation</li>
+					  
+					  <div class="clearfix"></div>
+				 </ul>
+				<div class="resp-tabs-container">
+					<h2 class="resp-accordion" role="tab" aria-controls="tab_item-1"><span class="resp-arrow"></span></h2>
+					<div class="tab-1 resp-tab-content resp-tab-content-active" aria-labelledby="tab_item-0" style="display:block">
+                                        <p class="paragraph" >In organisms, different metabolites coordinate with each other to exercise their biological functions. Pathway-based analysis helps to further understand their biological functions. The full name of KEGG is Kyoto Encyclopedia of Genes and Genomes, which contains multiple databases, including KEGG PATHWAY database (https://www.genome.jp/kegg/pathway.html). It is a collection of metabolic pathways, which are mainly divided into seven categories: metabolism, genetic information processing, environmental information processing, cellular processes, biological systems, human diseases and drug development. Each category is subdivided into two levels and three levels. Pathway analysis can determine the most important biochemical metabolic pathway and signal transduction pathway involved by metabolites. The KEGG channel annotation results are shown in Figure 4.1:</p>
+					<div align="left">
+	<form id="form1" name="form1" method="post" action="">
+	<label>
+	<select id="game4" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label> 
+
+
+			<option value="src/pictures/meta_pos.KEGG.Anno.png" >POS</option> 
+		
+			<option value="src/pictures/meta_neg.KEGG.Anno.png" >NEG</option> 
+		
+			</select>
+		</form>
+	</div>
+	<p align="center"><img src="src/pictures/meta_pos.KEGG.Anno.png" id="show4" width="40%"></p>
+		
+	<p class="name">Figure 4.1 KEGG pathway annotation</p>
+	<p class="premark">Note: The abscissa represents the number of metabolites, and the ordinate represents the KEGG pathway annotated; The figure shows the number of metabolites corresponding to each secondary classification under Pathway primary classification.</p>
+	<p class="premark">Corresponding result catalog: The path annotation results based on KEGG database are shown in Result/2.MetAnnotation/KEGG/meta_{pos,neg}_kegg_anno_category.xls; The statistical chart of KEGG pathway annotation results is shown in Result/2.MetAnnotation/KEGG/meta_{pos,neg}.KEGG.Anno.{png,pdf}; For the list of metabolite KEGG annotation results see Result/2.MetAnnotation/KEGG/meta_{pos,neg}.KEGG.Anno.xls.</p>
+	</div>
+
+	<h2 class="resp-accordion" role="tab" aria-controls="tab_item-2">
+	<span class="resp-arrow"></span></h2>
+	<div class="tab-1 resp-tab-content" aria-labelledby="tab_item-1">
+	<P class="paragraph" >The full name of HMDB is Human Metabolome Database (https://hmdb.ca/metabolites). A database containing detailed information about small molecular metabolites found in human body and their biological functions, physiological concentrations, disease associations, chemical reactions, metabolic pathways, etc. Through HMDB database annotation, we can quickly obtain the classification information of metabolites. The annotation results of HMDB are shown in Figure 4.2:</p>
+	<div align="left">
+	<form id="form1" name="form1" method="post" action="">
+	<label>
+	<select id="game5" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label> 
+
+
+			<option value="src/pictures/meta_pos.HMDB.Anno.png" >POS</option> 
+		
+			<option value="src/pictures/meta_neg.HMDB.Anno.png" >NEG</option> 
+		
+			</select>
+		</form>
+	</div>
+	<p align="center"><img src="src/pictures/meta_pos.HMDB.Anno.png" id="show5" width="40%"></p>
+
+                    <p class="name">Figure 4.2 HMDB classification annotation</p>
+                                        <p class="premark">Note: The abscissa represents the number of metabolites, and the ordinate represents the HMDB classification noted; The figure shows the number of metabolites corresponding to superClass in HMDB.</p>
+					<p class="premark">Corresponding result catalog: The classification annotation results based on HMDB database are shown in  Result/2.MetAnnotation/HMDB/meta_{pos,neg}_hmdb_anno_category.xls; HMDB classification annotation result statistics chart is shown in Result/2.MetAnnotation/HMDB/meta_{pos,neg}.HMDB.Anno.{png,pdf}; The results of metabolite HMDB annotation are listed in Result/2.MetAnnotation/HMDB/meta_{pos,neg}.HMDB.Anno.xls.</p>
+					</div>
+					
+					<h2 class="resp-accordion" role="tab" aria-controls="tab_item-3">
+					<span class="resp-arrow"></span></h2>
+					<div class="tab-1 resp-tab-content" aria-labelledby="tab_item-1">
+					<p class="paragraph">LIPID MAPS (http://www.lipidmaps.org/) is a database containing bio-related lipid structures and annotations, and is currently the largest public lipid database in the world. LIPID MAPS database annotates eight categories of lipids and their subclasses, which are: 1) Fatty acids (FA); 2) Glycerolipids (GL); 3) Glycerophospholipids (GP); 4) Sphingolipids (SP); 5) Sterol Lipids (ST); 6) Preenol Lipids (PR); 7) Saccharolipids (SL); 8) Polypolyethylene (PK). Each category has its own sub-category. The annotation results of LIPID MAPS database are shown in Figure 4.3:</p>
+					<div align="left">
+	<form id="form1" name="form1" method="post" action="">
+	<label>
+	<select id="game6" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label> 
+
+
+			<option value="src/pictures/meta_pos.Lipidmaps.Anno.png" >POS</option> 
+		
+			<option value="src/pictures/meta_neg.Lipidmaps.Anno.png" >NEG</option> 
+		
+			</select>
+		</form>
+	</div>
+	<p align="center"><img src="src/pictures/meta_pos.Lipidmaps.Anno.png" id="show6" width="40%"></p>
+
+					<p class="name">Figure 4.3 LIPID MAPS classification annotation</p>
+					<p class="premark">Note: The abscissa represents the number of metabolites, and the ordinate represents the annotated LIPID MAPS lipid classification; This figure shows the number of (lipid) metabolites corresponding to Main_Class under the eight major lipid categories in LIPID MAPS.</p>
+					<p class="premark">Corresponding result catalog: The classification annotation results based on Lipidmaps database are shown in  Result/2.MetAnnotation/Lipidmaps/meta_{pos,neg}_lipidmaps_anno_category.xls; The statistical chart of Lipidmaps classification annotation results is shown in  Result/2.MetAnnotation/Lipidmaps/meta_{pos,neg}.Lipidmaps.Anno.{png,pdf}; The list of metabolomics Lipidmaps annotation results is shown in  Result/2.MetAnnotation/Lipidmaps/meta_{pos,neg}.Lipidmaps.Anno.xls.</p>
+					</div>
+					</div>				
+					</div>
+			</div>
+
+	<p></p>
+
+	
+	<script type="text/javascript">
+	<!-- function $(id) {return document.getElementById(id);}     //获取元素 -->
+	function changeImage(){                                  
+		var index1 = document.getElementById("game1").selectedIndex;                                    //获取下拉框中选择项
+		document.getElementById("show1").src = document.getElementById("game1").options[index1].value;  //更改图片
+		var index2 = document.getElementById("game2").selectedIndex;                                    //获取下拉框中选择项
+		document.getElementById("show2").src = document.getElementById("game2").options[index2].value;  //更改图片
+		var index3 = document.getElementById("game3").selectedIndex;                                    //获取下拉框中选择项
+		document.getElementById("show3").src = document.getElementById("game3").options[index3].value;  //更改图片
+		var index4 = document.getElementById("game4").selectedIndex;                                    //获取下拉框中选择项
+		document.getElementById("show4").src = document.getElementById("game4").options[index4].value;  //更改图片
+		var index5 = document.getElementById("game5").selectedIndex;                                    //获取下拉框中选择项
+		document.getElementById("show5").src = document.getElementById("game5").options[index5].value;  //更改图片
+		var index6 = document.getElementById("game6").selectedIndex;                                    //获取下拉框中选择项
+		document.getElementById("show6").src = document.getElementById("game6").options[index6].value;  //更改图片
+		var index7 = document.getElementById("game7").selectedIndex;                                    //获取下拉框中选择项
+		document.getElementById("show7").src = document.getElementById("game7").options[index7].value;  //更改图片
+		var index8 = document.getElementById("game8").selectedIndex;                                    //获取下拉框中选择项
+		document.getElementById("show8").src = document.getElementById("game8").options[index8].value;  //更改图片
+		var index9 = document.getElementById("game9").selectedIndex;                                    //获取下拉框中选择项
+		document.getElementById("show9").src = document.getElementById("game9").options[index9].value;  //更改图片
+		var index10 = document.getElementById("game10").selectedIndex;                                    //获取下拉框中选择项
+		document.getElementById("show10").src = document.getElementById("game10").options[index10].value;  //更改图片
+		var index11 = document.getElementById("game11").selectedIndex;                                    //获取下拉框中选择项
+		document.getElementById("show11").src = document.getElementById("game11").options[index11].value;  //更改图片
+		var index12 = document.getElementById("game12").selectedIndex;                                    //获取下拉框中选择项
+		document.getElementById("show12").src = document.getElementById("game12").options[index12].value;  //更改图片
+		var index13 = document.getElementById("game13").selectedIndex;                                    //获取下拉框中选择项
+		document.getElementById("show13").src = document.getElementById("game13").options[index13].value;  //更改图片
+		var index14 = document.getElementById("game14").selectedIndex;                                    //获取下拉框中选择项
+		document.getElementById("show14").src = document.getElementById("game14").options[index14].value;  //更改图片
+		var index15 = document.getElementById("game15").selectedIndex;                                    //获取下拉框中选择项
+		document.getElementById("show15").src = document.getElementById("game15").options[index15].value;  //更改图片
+		var index16 = document.getElementById("game16").selectedIndex;                                    //获取下拉框中选择项
+		document.getElementById("show16").src = document.getElementById("game16").options[index16].value;  //更改图片
+		var index17 = document.getElementById("game17").selectedIndex;                                    //获取下拉框中选择项
+		document.getElementById("show17").src = document.getElementById("game17").options[index17].value;  //更改图片
+		var index18 = document.getElementById("game18").selectedIndex;                                    //获取下拉框中选择项
+		document.getElementById("show18").src = document.getElementById("game18").options[index18].value;  //更改图片
+		var index19 = document.getElementById("game19").selectedIndex;                                    //获取下拉框中选择项
+		document.getElementById("show19").src = document.getElementById("game19").options[index19].value;  //更改图片
+		var index20 = document.getElementById("game20").selectedIndex;                                    //获取下拉框中选择项
+		document.getElementById("show20").src = document.getElementById("game20").options[index20].value;  //更改图片
+		var index21 = document.getElementById("game21").selectedIndex;                                    //获取下拉框中选择项
+		document.getElementById("show21").src = document.getElementById("game21").options[index21].value;  //更改图片
+		var index22 = document.getElementById("game22").selectedIndex;                                    //获取下拉框中选择项
+		document.getElementById("show22").src = document.getElementById("game22").options[index22].value;  //更改图片
+		var index23 = document.getElementById("game23").selectedIndex;                                    //获取下拉框中选择项
+		document.getElementById("show23").src = document.getElementById("game23").options[index23].value;  //更改图片
+		var index24 = document.getElementById("game24").selectedIndex;                                    //获取下拉框中选择项
+		document.getElementById("show24").src = document.getElementById("game24").options[index24].value;  //更改图片
+		var index25 = document.getElementById("game25").selectedIndex;                                    //获取下拉框中选择项
+		document.getElementById("show25").src = document.getElementById("game25").options[index25].value;  //更改图片
+		var index26 = document.getElementById("game26").selectedIndex;                                    //获取下拉框中选择项
+		document.getElementById("show26").src = document.getElementById("game26").options[index26].value;  //更改图片
+		var index27 = document.getElementById("game27").selectedIndex;                                    //获取下拉框中选择项
+		document.getElementById("show27").src = document.getElementById("game27").options[index27].value;  //更改图片
+		var index28 = document.getElementById("game28").selectedIndex;                                    //获取下拉框中选择项
+		document.getElementById("show28").src = document.getElementById("game28").options[index28].value;  //更改图片
+		var index29 = document.getElementById("game29").selectedIndex;                                    //获取下拉框中选择项
+		document.getElementById("show29").src = document.getElementById("game29").options[index29].value;  //更改图片
+		var index30 = document.getElementById("game30").selectedIndex;                                    //获取下拉框中选择项
+		document.getElementById("show30").src = document.getElementById("game30").options[index30].value;  //更改图片
+		var index31 = document.getElementById("game31").selectedIndex;                                    //获取下拉框中选择项
+		document.getElementById("show31").src = document.getElementById("game31").options[index31].value;  //更改图片
+		var index32 = document.getElementById("game32").selectedIndex;                                    //获取下拉框中选择项
+		document.getElementById("show32").src = document.getElementById("game32").options[index32].value;  //更改图片
+        var index33 = document.getElementById("game33").selectedIndex;                                    //获取下拉框中选择项
+        document.getElementById("show33").src = document.getElementById("game33").options[index33].value;  //更改图片
+        var index34 = document.getElementById("game34").selectedIndex;                                    //获取下拉框中选择项
+        document.getElementById("show34").src = document.getElementById("game34").options[index34].value;  //更改图片
+        var index35 = document.getElementById("game35").selectedIndex;                                    //获取下拉框中选择项
+        document.getElementById("show35").src = document.getElementById("game35").options[index35].value;  //更改图片
+        var index36 = document.getElementById("game36").selectedIndex;                                    //获取下拉框中选择项
+        document.getElementById("show36").src = document.getElementById("game36").options[index36].value;  //更改图片
+        var index37 = document.getElementById("game37").selectedIndex;                                    //获取下拉框中选择项
+        document.getElementById("show37").src = document.getElementById("game37").options[index37].value;  //更改图片
+        var index38 = document.getElementById("game38").selectedIndex;                                    //获取下拉框中选择项
+        document.getElementById("show38").src = document.getElementById("game38").options[index38].value;  //更改图片
+        var index39 = document.getElementById("game39").selectedIndex;                                    //获取下拉框中选择项
+        document.getElementById("show39").src = document.getElementById("game39").options[index39].value;  //更改图片
+        var index40 = document.getElementById("game40").selectedIndex;                                    //获取下拉框中选择项
+        document.getElementById("show40").src = document.getElementById("game40").options[index40].value;  //更改图片
+        var index41 = document.getElementById("game41").selectedIndex;                                    //获取下拉框中选择项
+        document.getElementById("show41").src = document.getElementById("game41").options[index41].value;  //更改图片
+        var index42 = document.getElementById("game42").selectedIndex;                                    //获取下拉框中选择项
+        document.getElementById("show42").src = document.getElementById("game42").options[index42].value;  //更改图片
+
+	}
+</script>
+
+<div id="page">
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a> 
+<a name="差异代谢物筛选"></a><hr/></p>
+	
+<h3 id="id_order_rnaseqqc"><a name="差异代谢物筛选">5. Differential metabolite screening</a></h3>
+<p class="paragraph">Because metabolomics data has the characteristics of high dimensions and high correlation between variables, traditional univariate analysis cannot quickly and accurately mine the potential information in the data. Therefore, multivariate statistical methods such as PCA and PLS-DA should be used in the analysis of metabolomics data. On the basis of preserving the original information to the greatest extent, the collected multidimensional data should be analyzed by dimensionality reduction and regression, and then the differential metabolites should be screened and subsequently analyzed.
+</p>
+	<h4 id="">5.1 Principal component analysis (PCA)</h4>
+	<p class="paragraph">
+PCA was used to observe the overall distribution trend between the two groups of samples. The results are shown in Figure 5.1 (see the result file for the high-definition version of the picture):
+</p>
+
+
+<div align="left">
+	<form id="form1" name="form1" method="post" action="">
+	<label>
+	<select id="game7" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
+	
+				<option value="src/pictures/Group1.vs.Group2_pos_PCA.png" >POS_Group1.vs.Group2</option>
+				<option value="src/pictures/Group1.vs.Group2_pos_PCA.3D.png" >POS_Group1.vs.Group2_3D</option>
+			
+				<option value="src/pictures/Group2.vs.Group3_pos_PCA.png" >POS_Group2.vs.Group3</option>
+				<option value="src/pictures/Group2.vs.Group3_pos_PCA.3D.png" >POS_Group2.vs.Group3_3D</option>
+			
+				<option value="src/pictures/Group3.vs.Group4_pos_PCA.png" >POS_Group3.vs.Group4</option>
+				<option value="src/pictures/Group3.vs.Group4_pos_PCA.3D.png" >POS_Group3.vs.Group4_3D</option>
+			
+				</select>
+		    </form>
+	    </div>
+	    <p align="center"><img src="src/pictures/Group1.vs.Group2_pos_PCA.png" id="show7" width="40%"></p>
+	
+<div align="left">
+	<form id="form1" name="form1" method="post" action="">
+	<label>
+	<select id="game8" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
+	
+				<option value="src/pictures/Group1.vs.Group2_neg_PCA.png" >NEG_Group1.vs.Group2</option>
+				<option value="src/pictures/Group1.vs.Group2_neg_PCA.3D.png" >NEG_Group1.vs.Group2_3D</option>
+			
+				<option value="src/pictures/Group2.vs.Group3_neg_PCA.png" >NEG_Group2.vs.Group3</option>
+				<option value="src/pictures/Group2.vs.Group3_neg_PCA.3D.png" >NEG_Group2.vs.Group3_3D</option>
+			
+				<option value="src/pictures/Group3.vs.Group4_neg_PCA.png" >NEG_Group3.vs.Group4</option>
+				<option value="src/pictures/Group3.vs.Group4_neg_PCA.3D.png" >NEG_Group3.vs.Group4_3D</option>
+			
+				</select>
+		    </form>
+	    </div>
+	    <p align="center"><img src="src/pictures/Group1.vs.Group2_neg_PCA.png" id="show8" width="40%"></p>
+	
+	<p class="name">Figure 5.1 Principal component analysis (PCA)</p>
+        <p class="premark">Note: The abscissa PC1 and ordinate PC2 represent the scores of the first and second principal components, respectively. Scatters of different colors represent samples from different experimental groups. The ellipse is 95% confidence interval (when the number of biological repeats is less than 4, 95% confidence ellipse cannot be displayed).</p>
+<p class="premark">Corresponding result catalog: Result/3.MetDiffScreening/*.vs.*/ *.vs.*_{pos,neg}-PCA[.3D].{png,pdf}.</p>
+</div>
+
+<div id="page">
+<h4 id="">5.2 Partial least squares discrimination analysis (PLS-DA)</h4>
+        <p class="paragraph">PLS-DA is a supervised discriminant analysis statistical method. This method uses partial least squares regression <SUP>[8] </SUP>to establish the relationship model between the relative quantitative value of metabolites and the sample category to realize the prediction of the sample category. The PLS-DA model of each comparison group was established, and the model evaluation parameters (R2, Q2) obtained by 7-cycle cross-validation (seven cycle cross-validation; when the sample biological repetition number n ≤ 3, it is k cycle cross-validation, k=2n), if R2 and Q2 are closer to 1, it indicates that the model is more stable and reliable.</p>
+	<p class="paragraph">In order to judge the quality of the model, the model will also be sorted and verified to check whether the model is "over-fitting". Whether the model is "over fitting" reflects whether the model is constructed accurately. Not "over fitting" indicates that the model can better describe the sample and can be used as the premise for the model biomarker group search. "over fitting" indicates that the model is not suitable for describing the sample, and is not suitable for later analysis based on this data. The specific method <SUP>[9]</SUP> is to randomly mix the grouping marks of each sample before modeling and prediction. Each modeling corresponds to a set of R2 and Q2 values. Their regression lines can be obtained from the Q2 and R2 values after 200 times of mixing and modeling. When R2 data is greater than Q2 data and the intercept between Q2 regression line and Y-axis is less than 0, it can indicate that the model is not "over-fitting". The results are shown in Figure 4.2 (see the result file for the high-definition version of the picture):</p>
+
+
+<div align="left">
+	<form id="form1" name="form1" method="post" action="">
+	<label>
+	<select id="game9" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
+	
+				<option value="src/pictures/Group1.vs.Group2_pos_PLSDA-score.png" >POS_Group1.vs.Group2_score</option>
+				<option value="src/pictures/Group1.vs.Group2_pos_PLSDA-valid.png" >POS_Group1.vs.Group2_valid</option>
+			
+				<option value="src/pictures/Group2.vs.Group3_pos_PLSDA-score.png" >POS_Group2.vs.Group3_score</option>
+				<option value="src/pictures/Group2.vs.Group3_pos_PLSDA-valid.png" >POS_Group2.vs.Group3_valid</option>
+			
+				<option value="src/pictures/Group3.vs.Group4_pos_PLSDA-score.png" >POS_Group3.vs.Group4_score</option>
+				<option value="src/pictures/Group3.vs.Group4_pos_PLSDA-valid.png" >POS_Group3.vs.Group4_valid</option>
+			
+				 </select>
+		    </form>
+	    </div>
+	    <p align="center"><img src="src/pictures/Group1.vs.Group2_pos_PLSDA-score.png" id="show9" width="40%"></p>
+	
+<div align="left">
+	<form id="form1" name="form1" method="post" action="">
+	<label>
+	<select id="game10" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
+	
+				<option value="src/pictures/Group1.vs.Group2_neg_PLSDA-score.png" >NEG_Group1.vs.Group2_score</option>
+				<option value="src/pictures/Group1.vs.Group2_neg_PLSDA-valid.png" >NEG_Group1.vs.Group2_valid</option>
+			
+				<option value="src/pictures/Group2.vs.Group3_neg_PLSDA-score.png" >NEG_Group2.vs.Group3_score</option>
+				<option value="src/pictures/Group2.vs.Group3_neg_PLSDA-valid.png" >NEG_Group2.vs.Group3_valid</option>
+			
+				<option value="src/pictures/Group3.vs.Group4_neg_PLSDA-score.png" >NEG_Group3.vs.Group4_score</option>
+				<option value="src/pictures/Group3.vs.Group4_neg_PLSDA-valid.png" >NEG_Group3.vs.Group4_valid</option>
+			
+				 </select>
+		    </form>
+	    </div>
+	    <p align="center"><img src="src/pictures/Group1.vs.Group2_neg_PLSDA-score.png" id="show10" width="40%"></p>
+	
+    <p class="name">Figure 5.2 PLS-DA score scatterplot and sorting validation chart</p>
+	<p class="premark">Note: scatterplot of scores, abscissa is the score of the sample on the first principal component; The ordinate is the score of the sample on the second principal component; R2Y represents the interpretation rate of the model, Q2Y is used to evaluate the predictive ability of PLS-DA model, and R2Y greater than Q2Y indicates that the model is well established.</p>
+
+	<p class="premark">Note: sorting validation. The abscissa represents the correlation between Y in the random group and Y in the original group, and the ordinate represents the score of R2 and Q2; A point in the figure represents an validation.</p>
+    <p class="premark">Corresponding result catalog: Result/3.MetDiffScreening/*.vs.*/ *.vs.*_{pos,neg}-PLSDA-{score,valid}.{png,pdf}.<p>
+
+</div>
+<div id="page">
+<h4 id="">5.3 Differential metabolites screening results</h4>
+	<p class="paragraph">The screening of differential metabolites mainly refers to three parameters: VIP, FC and P value. VIP refers to the variable importance in the projection of the first principal component of the PLS-DA model <SUP>[10]</SUP>, and the VIP value represents the contribution of the metabolites to the grouping; FC refers to the fold change, which is the ratio of the mean of all biological repeated quantitative values of each metabolite in the comparison group; P-value is calculated by T-test <SUP>[6]</SUP>, indicating the level of difference significance. Set the threshold as VIP > 1.0, FC > 1.2 or FC < 0.833 and P-value < 0.05 <SUP>[11-13]</SUP>, and the screened differential metabolites are shown in Table 5.3:</p>
+<p class="name">Table 5.3 Differential metabolites screening results</p>
+	
+<p class="center"><div id="tb"><table>
+<tr><th style="background-color:#dedddd"><font color="black">Compared Samples</font></th><th style="background-color:#dedddd"><font color="black">Num. of Total Ident.</font></th><th style="background-color:#dedddd"><font color="black">Num. of Total Sig.</font></th><th style="background-color:#dedddd"><font color="black">Num. of Sig.Up</font></th><th style="background-color:#dedddd"><font color="black">Num. of Sig.down</font></th><th style="background-color:#dedddd"><font color="black">Threshold</font></th></tr>
+<tr><td>Group1.vs.Group2_pos</td><td>1698</td><td>101</td><td>59</td><td>42</td><td>p-value < 0.05, VIP > 1.0, FC > 1.2 or < 0.833</td></tr>
+<td>Group2.vs.Group3_pos</td><td>1698</td><td>517</td><td>348</td><td>169</td><td>p-value < 0.05, VIP > 1.0, FC > 1.2 or < 0.833</td></tr>
+<td>Group3.vs.Group4_pos</td><td>1698</td><td>174</td><td>86</td><td>88</td><td>p-value < 0.05, VIP > 1.0, FC > 1.2 or < 0.833</td></tr>
+<td>Group1.vs.Group2_neg</td><td>1266</td><td>44</td><td>21</td><td>23</td><td>p-value < 0.05, VIP > 1.0, FC > 1.2 or < 0.833</td></tr>
+<td>Group2.vs.Group3_neg</td><td>1266</td><td>319</td><td>219</td><td>100</td><td>p-value < 0.05, VIP > 1.0, FC > 1.2 or < 0.833</td></tr>
+<td>Group3.vs.Group4_neg</td><td>1266</td><td>57</td><td>15</td><td>42</td><td>p-value < 0.05, VIP > 1.0, FC > 1.2 or < 0.833</td></tr>
+
+</table></div></p>
+
+<p class="premark">
+Note: Only part of the results are shown in the report, and the detailed results can be seen in Result/3.MetDiffScreening/*.vs.*/ *.vs.*_{pos,neg}_Diff_order.xls.</br>
+	(1) Compared Samples, the former vs the latter.</br>
+        (2) Num. of Total Ident.: Total number of identified metabolites.</br>
+	(3) Num. of Total Sig.: Total number of metabolites with significant difference.</br>
+	(4) Num. of Sig. Up: Number of significantly upregulated metabolites.</br>
+	(5) Num. of Sig. down: Number of significantly downregulated metabolites.</br></p></div>
+
+
+<h4 id="">5.4 Volcano plot of differential metabolites</h4>
+        <p class="paragraph">The volcano plot can visually display the overall distribution of different metabolites. The abscissa represents the fold change of the difference of the metabolites in different groups (log2 (Fold Change)), and the ordinate represents the level of significance of the difference (-log10 (P-value)). Each point in the volcano plot represents a metabolite, the significantly up-regulated metabolite is represented by a red dot, the significantly down-regulated metabolite is represented by a blue dot, and the size of the dot represents the VIP value. The results are shown in Figure 5.4 (see the result file for the high-definition version of the picture):</p>
+
+
+
+	<div align="left">
+	<form id="form1" name="form1" method="post" action="">
+	<label>
+	<select id="game11" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
+	
+				<option value="src/pictures/Group1.vs.Group2_pos.xls.volcano.png" >POS_Group1.vs.Group2</option>
+				
+				<option value="src/pictures/Group2.vs.Group3_pos.xls.volcano.png" >POS_Group2.vs.Group3</option>
+				
+				<option value="src/pictures/Group3.vs.Group4_pos.xls.volcano.png" >POS_Group3.vs.Group4</option>
+				
+				 </select>
+		    </form>
+	    </div>
+	    <p align="center"><img src="src/pictures/Group1.vs.Group2_pos.xls.volcano.png" id="show11" width="40%"></p>
+	
+	<div align="left">
+	<form id="form1" name="form1" method="post" action="">
+	<label>
+	<select id="game12" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
+	
+				<option value="src/pictures/Group1.vs.Group2_neg.xls.volcano.png" >NEG_Group1.vs.Group2</option>
+				
+				<option value="src/pictures/Group2.vs.Group3_neg.xls.volcano.png" >NEG_Group2.vs.Group3</option>
+				
+				<option value="src/pictures/Group3.vs.Group4_neg.xls.volcano.png" >NEG_Group3.vs.Group4</option>
+				
+				 </select>
+		    </form>
+	    </div>
+	    <p align="center"><img src="src/pictures/Group1.vs.Group2_neg.xls.volcano.png" id="show12" width="40%"></p>
+	
+	<p class="name">Figure 5.4 Volcano plot of differential metabolites</p>
+	<p class="premark">Corresponding result catalog: Result/3.MetDiffScreening/*.vs.*/ *.vs.*_{pos,neg}.xls.volcano.{png,pdf}</p>
+
+<h4 id="">5.5 Matchstick plot of differential metabolites</h4>
+        <p class="paragraph">According to the differential metabolites obtained from each group of difference comparison, draw a matchstick plot, which can clearly show the up and down-regulation of the metabolites and the substances with large difference multiples. We make a logarithmic conversion of the Fold Change value of the differential metabolite based on the bottom of 2, and take the metabolite of the top 20 and the bottom 20 to display the chart. The color of the dot represents the up and down-regulation, the blue represents the down, and the red represents the up; The length of the rod represents the size of log2 (Fold Change); The size of the point represents the size of the VIP value, and the result is shown in Figure 5.5 (see the result file for the high-definition version of the picture):</p>
+
+
+	<div align="left">
+	<form id="form1" name="form1" method="post" action="">
+	<label>
+	<select id="game13" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
+	
+				<option value="src/pictures/Group1.vs.Group2_pos_stem.png" >POS_Group1.vs.Group2</option>
+			
+				<option value="src/pictures/Group2.vs.Group3_pos_stem.png" >POS_Group2.vs.Group3</option>
+			
+				<option value="src/pictures/Group3.vs.Group4_pos_stem.png" >POS_Group3.vs.Group4</option>
+			
+				 </select>
+		    </form>
+	    </div>
+	    <p align="center"><img src="src/pictures/Group1.vs.Group2_pos_stem.png" id="show13" width="40%"></p>
+	
+	<div align="left">
+	<form id="form1" name="form1" method="post" action="">
+	<label>
+	<select id="game14" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
+	
+				<option value="src/pictures/Group1.vs.Group2_neg_stem.png" >NEG_Group1.vs.Group2</option>
+			
+				<option value="src/pictures/Group2.vs.Group3_neg_stem.png" >NEG_Group2.vs.Group3</option>
+			
+				<option value="src/pictures/Group3.vs.Group4_neg_stem.png" >NEG_Group3.vs.Group4</option>
+			
+				 </select>
+		    </form>
+	    </div>
+	    <p align="center"><img src="src/pictures/Group1.vs.Group2_neg_stem.png" id="show14" width="40%"></p>
+	
+	<p class="name">Figure 5.5 Matchstick plot of differential metabolites</p>
+	<p class="premark">Corresponding result catalog: Result/3.MetDiffScreening/*.vs.*/ *.vs.*_{pos,neg}_stem.{png,pdf}.</p>
+
+<div id="page">
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<a name="差异代谢物分析"></a><hr/></p>
+    
+<h3 id="id_order_diffexp"><a name="差异代谢物分析">6. Differential metabolite analysis</a></h3>
+    <h4 id="">6.1 Venn diagram of differential metabolites</h4>
+        <p class="paragraph">Through Venn diagram display of differential metabolites of multiple comparison combinations, we can intuitively compare the overlap and unique difference metabolites between different groups. The results are shown in Figure 6.1 (see the result file for the high-definition version of the picture):</p>
+        <div align="left">
+	<form id="form1" name="form1" method="post" action="">
+	<label>
+	<select id="game15" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label> 
+    
+
+		    	<option value="src/pictures/Diff_Venn_pos.png" >POS</option>
+		    
+		    	<option value="src/pictures/Diff_Venn_neg.png" >NEG</option>
+		    
+			 </select>
+		</form>
+	</div>
+	<p align="center"><img src="src/pictures/Diff_Venn_pos.png" id="show15" width="40%"></p>
+<p class="name">Figure 6.1 Venn diagram of differential metabolites</p>
+        <p class="premark">Corresponding result catalog: Result/4.MetDiffAnalysis/Venn_diff/Diff_Venn_{pos,neg}.{png,svg}.</p>
+</div>
+		
+	<div id="page">
+	<h4 id="">6.2 Box plot of differential metabolite</h4>
+		<p class="paragraph">The box plot can display the statistics of the central trend and dispersion, and plays an important role in evaluating the symmetry of the data, identifying the abnormal value of the data and comparing the numerical value of the data. The differential metabolites obtained by the comparison of each group can be drawn by the box plot, and the change and difference of the differential metabolites in different experimental groups can be seen. The results are shown in Figure 6.2 (see results file for pictures of each differential metabolite): </p>
+		<div align="left">
+	<form id="form1" name="form1" method="post" action="">
+	<label>
+	<select id="game16" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label> 
+
+
+		<option value="src/pictures/Com_1685_pos_Box_plot.png" >POS</option>
+		<option value="src/pictures/Com_903_neg_Box_plot.png" >NEG</option>
+        </select>
+        </form>
+    </div>
+    <p align="center"><img src="src/pictures/Com_1685_pos_Box_plot.png" id="show16" width="40%"></p>
+    </div>
+    
+	
+    <div id="page">
+    <p class="name">Figure 6.2 Box plot of differential metabolite</p>
+    <p class="premark">Note: Vertical coordinate is quantitative values of metabolites, horizontal coordinate is different subgroups; the * symbol indicates the significance of differences between groups, where * represents P < 0.05, ** represents P < 0.01, and *** represents P < 0.001. </p>
+     <p class="premark">Corresponding result catalog: Result/4.MetDiffAnalysis/Box_diff/{pos,neg}/*_Box_plot.{png,pdf}. </p>
+    </div>
+
+	<div id="page">
+	<h4 id="">6.3 Violin plot of differential metabolite</h4>
+		<p class="paragraph">The violin plot can show the distribution state of multiple groups of data and the probability density, which is a box line plot inside and a kernel density plot outside, the larger the graph area in the region, the higher the probability of distribution around this value <SUP>[14-15]</SUP>. The differential metabolites obtained from the comparison of each group were plotted on a violin plot, which allows us to see the changes and differences of the differential metabolites in the different experimental groups, and the results are shown in Figure 6.3 (Only partial results are shown, the picture of each differential metabolite is shown in the results file):</p>
+		<div align="left">
+	<form id="form1" name="form1" method="post" action="">
+	<label>
+	<select id="game17" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label> 
+
+
+		<option value="src/pictures/Com_1685_pos_Violin_plot.png" >POS</option>
+		<option value="src/pictures/Com_903_neg_Violin_plot.png" >NEG</option>
+        </select>
+        </form>
+    </div>
+    <p align="center"><img src="src/pictures/Com_1685_pos_Violin_plot.png" id="show17" width="40%"></p>
+    </div>
+    
+	
+    <div id="page">
+    <p class="name">Figure 6.3 Differential metabolite violin plot</p>
+        <p class="premark">Note: Vertical coordinate is quantitative values of metabolites, horizontal coordinate is different subgroups; the * symbol indicates the significance of differences between groups, where * represents P < 0.05, ** represents P < 0.01, and *** represents P < 0.001.</p>
+     <p class="premark">Corresponding results catalog: Result/4.MetDiffAnalysis/Violin_diff/{pos,neg}/*_Violin_plot.{png,pdf}. </p>
+    </div>
+
+<div id="page">
+<h4 id="">6.4 Cluster analysis of differential metabolites</h4>
+       <p class="paragraph">Cluster analysis is used to determine the metabolic pattern of metabolites under different experimental conditions. Metabolites with similar metabolic patterns may have similar functions or participate in the same metabolic process or cell pathway. Therefore, the function of some metabolites can be inferred by grouping metabolites with the same or similar metabolic patterns.</p>
+<div id="page">
+<h5 id="">6.4.1 Cluster analysis of total differential metabolites</h5>
+<p class="paragraph">Carry out hierarchical cluster analysis <SUP>[16]</SUP> on all differential metabolites between the obtained comparison pairs, and normalize and cluster the relative quantitative value of differential metabolites. The results are shown in Figure 6.4.1 (see the result file for the high-definition version of the picture):</p>
+<div align="left">
+	<form id="form1" name="form1" method="post" action="">
+	<label>
+	<select id="game18" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label> 
+    
+
+		    	<option value="src/pictures/Diff_Heatmap_pos.png" >POS</option>
+		    
+		    	<option value="src/pictures/Diff_Heatmap_neg.png" >NEG</option>
+		    
+			 </select>
+		</form>
+	</div>
+	<p align="center"><img src="src/pictures/Diff_Heatmap_pos.png" id="show18" width="40%"></p>
+    
+        <p class="name">Figure 6.4.1 Clustering heatmap of total differential metabolites</p>
+        <p class="premark">Note: The vertical is the clustering of samples, and the horizontal is the clustering of metabolites. The shorter the cluster branch, the higher the similarity. See the result file for the picture with the name of the metabolite and the original mapping data.</p>
+        <p class="premark">Corresponding result catalog: Result/4.MetDiffAnalysis/Heatmap_diff/Diff_Heatmap_{pos,neg}.{cluster,cluster.detail}.{png,pdf}.</p>
+</div>
+    
+<div id="page">
+<h5 id="">6.4.2 Cluster analysis of differential metabolites in groups</h5>
+<p class="paragraph">Hierarchical cluster analysis was carried out on the two groups of different metabolites obtained, and the differences of metabolic patterns between and within the two groups were obtained by the same comparison. The results are shown in Figure 6.4.2 (see the result file for the high-definition version of the picture):</p>
+
+
+	    <div align="left">
+	    <form id="form1" name="form1" method="post" action="">
+	    <label>
+	    <select id="game19" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
+        
+				    <option value="src/pictures/Group1.vs.Group2_pos_heatmap.png" >POS_Group1.vs.Group2</option>
+                
+				    <option value="src/pictures/Group2.vs.Group3_pos_heatmap.png" >POS_Group2.vs.Group3</option>
+                
+				    <option value="src/pictures/Group3.vs.Group4_pos_heatmap.png" >POS_Group3.vs.Group4</option>
+                
+				 </select>
+		    </form>
+		    </div>
+		    <p align="center"><img src="src/pictures/Group1.vs.Group2_pos_heatmap.png" id="show19" width="40%"></p>
+        
+	    <div align="left">
+	    <form id="form1" name="form1" method="post" action="">
+	    <label>
+	    <select id="game20" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
+        
+				    <option value="src/pictures/Group1.vs.Group2_neg_heatmap.png" >NEG_Group1.vs.Group2</option>
+                
+				    <option value="src/pictures/Group2.vs.Group3_neg_heatmap.png" >NEG_Group2.vs.Group3</option>
+                
+				    <option value="src/pictures/Group3.vs.Group4_neg_heatmap.png" >NEG_Group3.vs.Group4</option>
+                
+				 </select>
+		    </form>
+		    </div>
+		    <p align="center"><img src="src/pictures/Group1.vs.Group2_neg_heatmap.png" id="show20" width="40%"></p>
+        
+    <p class="name">Figure 6.4.2 Clustering heatmap of differential metabolites</p>
+	<p class="premark">Note: The vertical is the clustering of samples, and the horizontal is the clustering of metabolites. The shorter the cluster branch, the higher the similarity. </p>
+    <p class="premark">Corresponding result catalog: Result/4.MetDiffAnalysis/*.vs.*/*.vs.*_{pos,neg}_{heatmap,cluster_heatmap,cluster_heatmap_detail}.{png,pdf}. </p>
+    </div>
+	<div id="page">
+	<h4 id="">6.5 K-Means analysis of differential metabolites</h4>
+		<p class="paragraph">K-Means analysis can demonstrate the trend of relative content of metabolites in different subgroups <SUP>[17-19]</SUP>. The relative quantitative values of differential metabolites were corrected by taking log centering and then K-Means cluster analysis was performed. The results are shown in Figure  6.5:</p>
+		<div align="left">
+	<form id="form1" name="form1" method="post" action="">
+	<label>
+	<select id="game21" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label> 
+
+
+		<option value="src/pictures/Diff_kmeans_pos_subcluster.png" >POS</option>
+		
+		<option value="src/pictures/Diff_kmeans_neg_subcluster.png" >NEG</option>
+		
+	    </select>
+    </form>
+</div>
+<p align="center"><img src="src/pictures/Diff_kmeans_pos_subcluster.png" id="show21" width="40%"></p>
+
+    <div id="page">
+    <p class="name">Figure 6.5 K-Means analysis of differential metabolites</p>
+    <p class="premark">Note: Horizontal coordinates indicate the name of the sample group, vertical coordinates are log-centered corrected values of relative metabolite content. Subcluster represents a cluster of metabolites with the same trend. *metabolite (s) represents the number of metabolites in the cluster. Gray lines in each subplot represent the relative corrected values of metabolites in a subcluster under different experimental conditions, and blue lines represent the relative corrected mean values of all metabolites in the subcluster under different experimental conditions. The raw mapping data are shown in the results file.</p>
+    <p class="premark">The corresponding result catalog: Result/4.MetDiffAnalysis/Kmeans_diff/{pos,neg}/Diff_kmeans_{pos,neg}_subcluster/kmeans_subcluster_plots.{png,pdf}. </p>
+    </div>
+
+<div id="page">
+<h4 id="">6.6 Correlation analysis of differential metabolites</h4>
+         <p class="paragraph">There is a synergistic or mutually exclusive relationship between differential metabolites. For example, if the change trend of certain metabolites is the same, it is a positive correlation; Contrary to the change trend of certain metabolites, it is negative correlation. The purpose of differential metabolite correlation analysis is to check the consistency of metabolite and metabolite change trend, and analyze the correlation between all metabolites by calculating Pearson correlation coefficient between all metabolites. </p>
+         <p class="paragraph">When the linear relationship between the two metabolites is enhanced, it tends to 1 when it is positively correlated, and to -1 when it is negatively correlated. At the same time, a significance statistical test was conducted for the correlation analysis of metabolites <SUP>[6]</SUP>, and the threshold was set as P-value < 0.05. The results are shown in Figure 6.6 (see the result file for the high-definition version of the picture):</p>
+
+
+	<div align="left">
+	<form id="form1" name="form1" method="post" action="">
+	<label>
+	<select id="game22" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
+	
+				<option value="src/pictures/Group1.vs.Group2_pos_corr.png" >POS_Group1.vs.Group2</option>
+			
+				<option value="src/pictures/Group2.vs.Group3_pos_corr.png" >POS_Group2.vs.Group3</option>
+			
+				<option value="src/pictures/Group3.vs.Group4_pos_corr.png" >POS_Group3.vs.Group4</option>
+			
+				 </select>
+		    </form>
+	    </div>
+	    <p align="center"><img src="src/pictures/Group1.vs.Group2_pos_corr.png" id="show22" width="40%"></p>
+	
+	<div align="left">
+	<form id="form1" name="form1" method="post" action="">
+	<label>
+	<select id="game23" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
+	
+				<option value="src/pictures/Group1.vs.Group2_neg_corr.png" >NEG_Group1.vs.Group2</option>
+			
+				<option value="src/pictures/Group2.vs.Group3_neg_corr.png" >NEG_Group2.vs.Group3</option>
+			
+				<option value="src/pictures/Group3.vs.Group4_neg_corr.png" >NEG_Group3.vs.Group4</option>
+			
+				 </select>
+		    </form>
+	    </div>
+	    <p align="center"><img src="src/pictures/Group1.vs.Group2_neg_corr.png" id="show23" width="40%"></p>
+	
+<p class="name">Figure 6.6 Correlation diagram of differential metabolites</p>
+<p class="premark">Note: The highest correlation is 1, which is a complete positive correlation (red), and the lowest correlation is -1, which is a complete negative correlation (blue). The part without color indicates P-value > 0.05. The figure shows the correlation of the differential metabolites of top 20 sorted by P-value from small to large.</p>
+	<p class="premark">Corresponding result catalog: Result/4.MetDiffAnalysis/*.vs.*/*.vs.*_{pos,neg}_corr.{png,pdf}.</p>
+</div>
+
+<div id="page">
+<h4 id="">6.7 Chord diagram of differential metabolites</h4>
+        <p class="paragraph">Chord diagram is a visual method to show the correlation between data. Node data is arranged radially along the circumference, and the nodes are connected by chord with width. The chord diagram is drawn based on the correlation coefficient of differential metabolites, which can reflect the correlation and correlation degree between differential metabolites in the sample. In order of P-value from small to large, select the differential metabolites of top 20 for chord diagram display. The color of the point represents differential metabolites, the size of the point represents the size of log<SUB>2</SUB>(Fold Change), the thickness of the line between the metabolites represents the correlation between the two metabolites, the blue line represents negative correlation, and the red line represents positive correlation (only the relationship between the two substances with the absolute value of the correlation coefficient greater than 0.7 is shown). The results are shown in Figure 6.7:</p>
+
+
+	<div align="left">
+	<form id="form1" name="form1" method="post" action="">
+	<label>
+	<select id="game24" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
+	
+				<option value="src/pictures/Group1.vs.Group2_pos_chord.png" >POS_Group1.vs.Group2</option>
+			
+				<option value="src/pictures/Group2.vs.Group3_pos_chord.png" >POS_Group2.vs.Group3</option>
+			
+				<option value="src/pictures/Group3.vs.Group4_pos_chord.png" >POS_Group3.vs.Group4</option>
+			
+				 </select>
+		    </form>
+	    </div>
+	    <p align="center"><img src="src/pictures/Group1.vs.Group2_pos_chord.png" id="show24" width="60%"></p>
+	
+	<div align="left">
+	<form id="form1" name="form1" method="post" action="">
+	<label>
+	<select id="game25" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
+	
+				<option value="src/pictures/Group1.vs.Group2_neg_chord.png" >NEG_Group1.vs.Group2</option>
+			
+				<option value="src/pictures/Group2.vs.Group3_neg_chord.png" >NEG_Group2.vs.Group3</option>
+			
+				<option value="src/pictures/Group3.vs.Group4_neg_chord.png" >NEG_Group3.vs.Group4</option>
+			
+				 </select>
+		    </form>
+	    </div>
+	    <p align="center"><img src="src/pictures/Group1.vs.Group2_neg_chord.png" id="show25" width="60%"></p>
+	
+<p class="name">Figure 6.7 Chord diagram of differential metabolites</p>
+	<p class="premark">Corresponding result catalog: Result/4.MetDiffAnalysis/*.vs.*/*.vs.*_{pos,neg}_chord.{png,pdf}.</p>
+</div>
+
+<div id="page">
+<h4 id="">6.8 Z-score analysis</h4>
+        <p class="paragraph">Z-score (standard score) is a value converted from the relative content of metabolites, which is used to measure the relative content of metabolites on the same level. The calculation of Z-score is based on the mean value and standard deviation of the reference data set (control group). The specific formula is expressed as: z = (x – μ) / σ. Where x is a specific score, μ is the average, σ is the standard deviation. The results are shown in Figure 6.8 (see the result file for the high-definition version of the picture):</p>
+
+
+	<div align="left">
+	<form id="form1" name="form1" method="post" action="">
+	<label>
+	<select id="game26" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
+	
+				<option value="src/pictures/Group1.vs.Group2_pos_zscore.png" >POS_Group1.vs.Group2</option>
+			
+				<option value="src/pictures/Group2.vs.Group3_pos_zscore.png" >POS_Group2.vs.Group3</option>
+			
+				<option value="src/pictures/Group3.vs.Group4_pos_zscore.png" >POS_Group3.vs.Group4</option>
+			
+		 </select>
+		 </form>
+	    </div>
+	    <p align="center"><img src="src/pictures/Group1.vs.Group2_pos_zscore.png" id="show26" width="40%"></p>
+	
+	<div align="left">
+	<form id="form1" name="form1" method="post" action="">
+	<label>
+	<select id="game27" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
+	
+				<option value="src/pictures/Group1.vs.Group2_neg_zscore.png" >NEG_Group1.vs.Group2</option>
+			
+				<option value="src/pictures/Group2.vs.Group3_neg_zscore.png" >NEG_Group2.vs.Group3</option>
+			
+				<option value="src/pictures/Group3.vs.Group4_neg_zscore.png" >NEG_Group3.vs.Group4</option>
+			
+		 </select>
+		 </form>
+	    </div>
+	    <p align="center"><img src="src/pictures/Group1.vs.Group2_neg_zscore.png" id="show27" width="40%"></p>
+	
+<p class="name">Figure 6.8 Z-score diagram</p>
+       <p class="premark">Note: The abscissa indicates Z-score value and the ordinate indicates differential metabolite. Each circle represents a sample, and only the metabolite of top 30 (sorted by P-value from small to large) is shown in the figure. Among them, samples with Z-score exceeding 4 or -4 cannot be displayed.</p>
+    <p class="premark">Corresponding result catalog:Result/4.MetDiffAnalysis/*.vs.*/*.vs.*_{pos,neg}_zscore.{png,pdf}. </p>
+</div>
+
+	<div id="page">
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<a name="KEGG分析"></a><hr/></p>
+
+<h3 id="id_order_kegg"><a name="KEGG分析">7　KEGG analysis</a></h3>
+	<h4 id="">7.1 KEGG classification analysis</h4>
+        <p class="paragraph">KEGG <SUP>[20-23]</SUP>  is a powerful tool for metabolic analysis and metabolic network studies in organisms. The KEGG classification chart was plotted based on the differential metabolites from two different groups. The results are shown in Figure 7.1 (see the result file for the high-definition version of the picture):</p>
+
+	<div align="left">
+	<form id="form1" name="form1" method="post" action="">
+	<label>
+	<select id="game28" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
+	
+				<option value="src/pictures/Group1.vs.Group2_pos_KEGG_classification.png" >POS_Group1.vs.Group2</option>
+			
+				<option value="src/pictures/Group2.vs.Group3_pos_KEGG_classification.png" >POS_Group2.vs.Group3</option>
+			
+				<option value="src/pictures/Group3.vs.Group4_pos_KEGG_classification.png" >POS_Group3.vs.Group4</option>
+			
+		</select>
+		</form>
+	 </div>
+	<p align="center"><img src="src/pictures/Group1.vs.Group2_pos_KEGG_classification.png" id="show28" width="60%"></p>
+	
+	<div align="left">
+	<form id="form1" name="form1" method="post" action="">
+	<label>
+	<select id="game29" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
+	
+				<option value="src/pictures/Group1.vs.Group2_neg_KEGG_classification.png" >NEG_Group1.vs.Group2</option>
+			
+				<option value="src/pictures/Group2.vs.Group3_neg_KEGG_classification.png" >NEG_Group2.vs.Group3</option>
+			
+				<option value="src/pictures/Group3.vs.Group4_neg_KEGG_classification.png" >NEG_Group3.vs.Group4</option>
+			
+		</select>
+		</form>
+	 </div>
+	<p align="center"><img src="src/pictures/Group1.vs.Group2_neg_KEGG_classification.png" id="show29" width="60%"></p>
+	
+<p class="name">Figure 7.1 Differential metabolite KEGG classification chart</p>
+	<p class="premark">Note: The horizontal coordinates in the graph indicate the number of metabolites annotated under a particular KEGG pathway as a percentage of the number of all annotated metabolites, the vertical coordinates are KEGG pathway primary classifications on the right and KEGG pathway secondary classifications on the left.</p>
+    <p class="premark">Corresponding results catalog: Result/5.MetKeggEnrichment/*.vs.*/*.vs.*_{pos,neg}_KEGG_classification.{png,pdf}.</p>
+</div>
+
+	<h4 id="">7.2 KEGG enrichment results</h4>
+        <p class="paragraph">The enrichment results take KEGG pathway as the unit, and based on the principle of hypergeometric distribution test, as shown in the figure below, find out the pathway enriched in differential metabolites compared with all identified metabolites. Pathway enrichment can determine the most important biochemical metabolic pathway and signal transduction pathway that the differential metabolites involved in .</p>
+	<p class="center"> <img  src="src/images/formula.png"  width="30%" /> </p>
+        <p class="center"> <img  src="src/images/KEGG.image.png"  width="40%" /> </p>
+        <p class="paragraph">Where N is the number of metabolites participating in the KEGG metabolic pathway among all metabolites, n is the number of differential metabolites in N, y is the number of metabolites annotated to a KEGG pathway, and x is the number of differential metabolites enriched to a KEGG pathway. If the ratio condition x/n > y/N is met, the pathway is a KEGG enrichment pathway. With the help of hypergeometric test method, the P-value value of pathway enrichment is obtained, where P-value ≤ 0.05 is the threshold, and the KEGG pathway meeting this condition is defined as the KEGG pathway significantly enriched in differential metabolites. The main biological functions of differential metabolites can be determined by enrichment analysis of KEGG pathway. The results of KEGG pathway enrichment of differential metabolites are shown in Table 7.2:</p>
+	<p class="name">Table 7.2 KEGG enrichment results</p>
+<p class="center"><div id="tb"><table>
+        <tr><th style="background-color:#dedddd"><font color="black">MapID</font></th><th style="background-color:#dedddd"><font color="black">MapTitle</font></th><th style="background-color:#dedddd"><font color="black">Pvalue</font></th><th style="background-color:#dedddd"><font color="black">x</font></th><th style="background-color:#dedddd"><font color="black">y</font></th><th style="background-color:#dedddd"><font color="black">n</font></th><th style="background-color:#dedddd"><font color="black">N</font></th><th style="background-color:#dedddd"><font color="black">EnrichDirect</font></th><th style="background-color:#dedddd"><font color="black">MetaIDs</font></th><th style="background-color:#dedddd"><font color="black">kegg_cpd_id</font></th></tr>
+<tr><td>map04927</th><td>Cortisol synthesis and secretion</th><td>0.0510948905109489</th><td>1</th><td>1</th><td>7</th><td>137</th><td>Over</th><td>Cortodoxone</th><td>cpd:C05488</th></tr>
+<td>map04934</th><td>Cushing syndrome</th><td>0.0510948905109489</th><td>1</th><td>1</th><td>7</th><td>137</th><td>Over</th><td>Cortodoxone</th><td>cpd:C05488</th></tr>
+<td>map05225</th><td>Hepatocellular carcinoma</th><td>0.0510948905109489</th><td>1</th><td>1</th><td>7</th><td>137</th><td>Over</th><td>Aflatoxin B1</th><td>cpd:C06800</th></tr>
+
+</table></div></p>
+	<p class="premark">Note: Only part of the results are shown in the report, and for detailed results please see: Result/5.MetKeggEnrichment/ *.vs.*/ *.vs.*_{pos,neg}.kegg_enrichment.xls.</br>
+	(1) MapID: ID of the enriched KEGG pathway.</br>
+	(2) MapTitle: Enriched KEGG pathway name.</br>
+	(3) Pvalue: P-value of enrichment analysis.</br>
+	(4) X: Number of differential metabolites related to this pathway.</br>
+	(5) Y: Number of background (all) metabolites related to the pathway.</br>
+	(6) n: Number of differential metabolites of kegg annotation.</br>
+	(7) N: Number of background (all) metabolites of kegg annotation.</br>
+	(8) EnrichDirect: Enrichment direction, Over represents enrichment, i.e. x/n > y/N.</br>
+	(9) MetaIDs: List of enriched metabolites.</br>
+	(10) kegg_cpd_Id: ID of KEGG database metabolite.
+</p>
+
+</div>
+
+<div id="page">
+	<h4 id="">7.3 KEGG enrichment bubble diagram</h4>
+        <p class="paragraph">According to the above enrichment results, the bubble diagram of the enriched KEGG pathway was drawn (only the results of top 20 are shown). The results are shown in Figure 7.3 (see the result file for the high-definition version of the picture):</p>
+
+
+
+	<div align="left">
+	<form id="form1" name="form1" method="post" action="">
+	<label>
+	<select id="game30" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
+	
+				<option value="src/pictures/Group1.vs.Group2_pos.KEGG_Enrich.scatterplot.png" >POS_Group1.vs.Group2</option>
+			
+				<option value="src/pictures/Group2.vs.Group3_pos.KEGG_Enrich.scatterplot.png" >POS_Group2.vs.Group3</option>
+			
+				<option value="src/pictures/Group3.vs.Group4_pos.KEGG_Enrich.scatterplot.png" >POS_Group3.vs.Group4</option>
+			
+		</select>
+		</form>
+	 </div>
+	<p align="center"><img src="src/pictures/Group1.vs.Group2_pos.KEGG_Enrich.scatterplot.png" id="show30" width="40%"></p>
+	
+	<div align="left">
+	<form id="form1" name="form1" method="post" action="">
+	<label>
+	<select id="game31" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
+	
+				<option value="src/pictures/Group1.vs.Group2_neg.KEGG_Enrich.scatterplot.png" >NEG_Group1.vs.Group2</option>
+			
+				<option value="src/pictures/Group2.vs.Group3_neg.KEGG_Enrich.scatterplot.png" >NEG_Group2.vs.Group3</option>
+			
+				<option value="src/pictures/Group3.vs.Group4_neg.KEGG_Enrich.scatterplot.png" >NEG_Group3.vs.Group4</option>
+			
+		</select>
+		</form>
+	 </div>
+	<p align="center"><img src="src/pictures/Group1.vs.Group2_neg.KEGG_Enrich.scatterplot.png" id="show31" width="40%"></p>
+	
+<p class="name">Figure 7.3 KEGG enrichment bubble diagram</p>
+	<p class="premark">Note: The abscissa is x/y (the number of differential metabolites in the corresponding metabolic pathway/the number of total metabolites identified in the pathway). The higher the value, the higher the concentration of differential metabolites in the pathway. The color of the point represents the p-value value of the hypergeometric test. The smaller the value, the greater the reliability and statistical significance of the test. The size of the point represents the number of differential metabolites in the corresponding pathway. The larger the point, the more differential metabolites in the pathway. (If there is no enrichment result, this figure is not available)</p>
+    <p class="premark">Corresponding result catalog: Result/5.MetKeggEnrichment/*.vs.*/*.vs.*_{pos,neg}.KEGG_Enrich.scatterplot.{png,pdf}.</p>
+</div>
+
+<div id="page">
+<h4 id="">7.4 KEGG enrichment pathway diagram</h4>
+	<p class="paragraph">In the KEGG pathway diagram, the circle represents the metabolite, in which the green solid circle is marked with the annotated metabolite, the red circle is marked with the up-regulated differential metabolite, the blue circle is marked with the down-regulated differential metabolite, and the yellow circle is marked with both up-regulated and down-regulated differential metabolite. The results are shown in Figure 7.4 (see the result file for the high-definition version of the picture). In order to facilitate viewing the items in the KEGG pathway diagram, the KEGG pathway diagram is made into a web version.  Please <a href="src/pathway/KEGG.map.html" target="_blank"><b>click</b></a> on the web version of one group of relatively correct pathway diagrams, and see the results file for the results of the remaining groups.</p>
+	<p class="center"> <img  src="src/pictures/04927.png"  width="60%" /> </p>
+	<p class="name">Figure 7.4 KEGG enrichment pathway diagram</p>
+    <p class="premark">Corresponding result catalog: Result/5.MetKeggEnrichment/*.vs.*/*.vs.*_{pos,neg}_KEGG_map; For the link of the web version result file please see:Result/5.MetKeggEnrichment/*.vs.*/*.vs.*_{pos,neg}_KEGG_map/Met_results_dir.html.</p>
+</div>
+
+	<div id="page">
+    	    <h4 id="">7.5 KEGG control network diagram</h4>
+        	<p class="paragraph">In the field of biochemistry, metabolic pathway refers to a series of biochemical reactions in the process of transforming metabolic substances in cells into new metabolic substances under the action of enzymes. The metabolic network refers to the network that describes the metabolism and physiological processes in cells, which is composed of metabolic reactions and regulatory mechanisms that regulate these reactions. Based on the differential metabolites obtained from the previous analysis, a network-based enrichment analysis is constructed. By default, the KEGG control network diagram uses the Diffusion algorithm for enrichment. The principle behind it is to use the finite difference formula of the heat conduction equation to spread the heat marker from the metabolites to the rest of the node network. This method enables the metabolites of the input network to have thermal markers, which will spread to all the path nodes in the enrichment network. These nodes include the input metabolites, and also include information such as reactions, enzymes, modules and pathways. Finally, the network connected by nodes can be displayed by drawing, which can reflect the intersection between metabolic pathways and target potential enzymes and metabolites under specific research conditions, and show how the disturbance spreads at the level of the pathway and how the pathways interact with each other, thus enhancing the interpretability of the results <SUP>[24-28]</SUP>. The analysis results of regulatory interaction network of different metabolites in each group are shown in Figure 7.5:</p>
+	
+
+		<div align="left">
+		<form id="form1" name="form1" method="post" action="">
+		<label>
+		<select id="game32" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
+		
+					<option value="src/pictures/Group1.vs.Group2_pos.KEGG_net.png" >POS_Group1.vs.Group2</option>
+				
+					<option value="src/pictures/Group2.vs.Group3_pos.KEGG_net.png" >POS_Group2.vs.Group3</option>
+				
+					<option value="src/pictures/Group3.vs.Group4_pos.KEGG_net.png" >POS_Group3.vs.Group4</option>
+				
+					 </select>
+		    	</form>
+	 	</div>
+		<p align="center"><img src="src/pictures/Group1.vs.Group2_pos.KEGG_net.png" id="show32" width="40%"></p>
+		
+		<div align="left">
+		<form id="form1" name="form1" method="post" action="">
+		<label>
+		<select id="game33" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
+		
+					<option value="src/pictures/Group1.vs.Group2_neg.KEGG_net.png" >NEG_Group1.vs.Group2</option>
+				
+					<option value="src/pictures/Group2.vs.Group3_neg.KEGG_net.png" >NEG_Group2.vs.Group3</option>
+				
+					<option value="src/pictures/Group3.vs.Group4_neg.KEGG_net.png" >NEG_Group3.vs.Group4</option>
+				
+					 </select>
+		    	</form>
+	 	</div>
+		<p align="center"><img src="src/pictures/Group1.vs.Group2_neg.KEGG_net.png" id="show33" width="40%"></p>
+		
+	<p class="name">Figure 7.5 KEGG control network diagram</p>
+        <p class="premark">Note: The red dot represents a metabolic pathway, the yellow dot represents the information of a substance related regulatory enzyme, the green dot represents the background material of a metabolic pathway, the purple dot represents the information of a class of substance molecular modules, the blue dot represents a chemical interaction of a substance, and the green square represents the different substances obtained by this comparison.</p>
+    	<p class="premark">Corresponding result catalog: KEGG control network diagrams are available in Result/5.MetKeggEnrichment/*.vs.*/*.vs.*_{pos,neg}.KEGG_net.{png,pdf}</p>
+	</div>
+	
+    <div id="page">
+    <p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a>
+    <a name="GSEA分析"></a><hr/></p>
+
+<h3 id="id_order_rnaseqqc"><a name="GSEA分析">8　GSEA analysis</a></h3>
+<p class="paragraph">Traditional KEGG enrichment methods are based on the hypergeometric test for differentially expressed metabolites, but when the expression of a single metabolite does not change much, the results obtained based on traditional enrichment analysis may be little or even no results. GSEA (Gene Set Enrichment Analysis) <sup>[29-30]</sup> can effectively compensate for the lack of data mining in traditional enrichment analysis, and more comprehensively explain the regulatory role of a functional unit (pathway, GO term, or others). The basic idea is to use a predefined set of metabolites, rank the metabolites according to the degree of differential expression in two types of samples, and then test whether the predefined set of metabolites is enriched at the top or at the end of the ranked list.</p>
+    
+        <p class="paragraph">GSEA analysis was performed on KEGG entries based on the changes in quantitative values of metabolites. The enrichment results of one group of comparison pairs are as follows, and the results of the remaining groups are shown in the result file.</p>
+        <p class="name">Table 8 GSEA analysis results</p>
+<p class="center"><div id="tb"><table>
+        <tr><th style="background-color:#dedddd"><font color="black">KEGG_ID</font></th><th style="background-color:#dedddd"><font color="black">KEGG_Term</font></th><th style="background-color:#dedddd"><font color="black">Pvalue</font></th><th style="background-color:#dedddd"><font color="black">AdjustedPv</font></th><th style="background-color:#dedddd"><font color="black">Size</font></th><th style="background-color:#dedddd"><font color="black">ES</font></th><th style="background-color:#dedddd"><font color="black">NES</font></th></tr>
+<tr><td>MAP01240</th><td>BIOSYNTHESIS OF COFACTORS</th><td>0.22975518</th><td>0.7771669</th><td>16</th><td>0.50563926</th><td>1.2136225</th></tr>
+<td>MAP01230</th><td>BIOSYNTHESIS OF AMINO ACIDS</th><td>0.23764259</th><td>0.41730815</th><td>21</th><td>0.46888283</th><td>1.1981475</th></tr>
+<td>MAP02010</th><td>ABC TRANSPORTERS</th><td>0.58762884</th><td>0.7918336</th><td>21</th><td>0.37001255</th><td>0.9152104</th></tr>
+<td>MAP01100</th><td>METABOLIC PATHWAYS</th><td>0.81620556</th><td>0.7097582</th><td>134</th><td>0.24147408</th><td>0.8431771</th></tr>
+<td>MAP00564</th><td>GLYCEROPHOSPHOLIPID METABOLISM</th><td>0.22336066</th><td>0.6335994</th><td>19</th><td>-0.49170488</th><td>-1.2020056</th></tr>
+
+</table></div></p>
+  <p class="premark">Note: Only partial results are shown in the table. Detailed results can be found in Result/6.MetGSEA/*.vs.*/{pos,neg}/*.vs.*_{pos,neg}_KEGG_gsea_result.xls.</br>
+        (1) KEGG_ID: KEGG MAP number.</br>
+        (2) KEGG_Term: Description of KEGG MAP function.</br>
+        (3) Pvalue: P-value of enrichment analysis.</br>
+        (4) AdjustedPv: Corrected P-value.</br>
+        (5) size: The number of metabolites annotated to this entry.</br>
+        (6) ES: GSEA analysis enrichment score of this entry.</br>
+        (7) NES: The enrichment score of this entry after correction by GSEA analysis</br>
+    </p>
+</div>
+
+
+    <div align="left">
+    <form id="form1" name="form1" method="post" action="">
+    <label>
+    <select id="game34" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
+    
+                    <option value="src/pictures/Gsea/pos/enplot_MAP00564__GLYCEROPHOSPHOLIPID_METABOLISM_15.png" >POS_MAP00564</option>
+            
+                    <option value="src/pictures/Gsea/pos/enplot_MAP01100__METABOLIC_PATHWAYS_12.png" >POS_MAP01100</option>
+            
+                    <option value="src/pictures/Gsea/pos/enplot_MAP01230__BIOSYNTHESIS_OF_AMINO_ACIDS_6.png" >POS_MAP01230</option>
+            
+                    <option value="src/pictures/Gsea/pos/enplot_MAP01240__BIOSYNTHESIS_OF_COFACTORS_3.png" >POS_MAP01240</option>
+            
+                    <option value="src/pictures/Gsea/pos/enplot_MAP02010__ABC_TRANSPORTERS_9.png" >POS_MAP02010</option>
+            
+                    <option value="src/pictures/Gsea/pos/enplot_MAP04148__EFFEROCYTOSIS_21.png" >POS_MAP04148</option>
+            
+                    <option value="src/pictures/Gsea/pos/enplot_MAP05231__CHOLINE_METABOLISM_IN_CANCER_18.png" >POS_MAP05231</option>
+            
+        </select>
+        </form>
+     </div>
+    <p align="center"><img src="src/pictures/Gsea/pos/enplot_MAP00564__GLYCEROPHOSPHOLIPID_METABOLISM_15.png" id="show34" width="40%"></p>
+    
+    <div align="left">
+    <form id="form1" name="form1" method="post" action="">
+    <label>
+    <select id="game35" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
+    
+                    <option value="src/pictures/Gsea/neg/enplot_MAP01100__METABOLIC_PATHWAYS_3.png" >NEG_MAP01100</option>
+            
+        </select>
+        </form>
+     </div>
+    <p align="center"><img src="src/pictures/Gsea/neg/enplot_MAP01100__METABOLIC_PATHWAYS_3.png" id="show35" width="40%"></p>
+    
+        <p class="name">Figure 8.1 GSEA enrichment plot</p>
+        <p class="premark">Note: The GESA enrichment plot consists of three parts, the upper part is the Enrichment score (ES) line graph, which shows the score of ES during the scoring process (running ES), the peaks in the line graph represent the ES value of the functional set of the metabolite, the larger the absolute value of the ES indicates the higher the degree of enrichment, and the positive value of the ES indicates that the functional set of metabolites is enriched in the up-regulated metabolites, negative values of ES indicate that the functional set metabolites are enriched in down-regulated metabolites. Functional sets with peaks at the beginning or end are more noteworthy. The middle part shows the position of the members of the functional set in the list of the expression set, the black vertical lines indicate the members of the functional set, and the colorful bands consist of the members of the expression set in a certain order. The red color represents the up-regulation, and the blue color represents the down-regulation; the lower part shows the log2FC values of the members of the expression set. </p>
+        <p class="premark">Corresponding result catalog: Result/6.MetGSEA/*.vs.*/{pos,neg}/enplot_MAP*.png.</p>
+</div>
+
+<div id="page">
+<p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a>
+<a name="差异代谢物ROC曲线分析"></a><hr/></p>
+<h3 id="id_order_ppi"><a name="差异代谢物ROC曲线分析">9 ROC curve Analysis of differential metabolite</a></h3>
+    <p class="paragraph">ROC curve (Receiver operating characteristic) <SUP>[31]</SUP>, also known as the subject working characteristic curve or sensitivity curve, is a curve drawn according to a series of different dichotomous methods (boundary value or determination threshold), with the true positive rate (sensitivity) as the ordinate and the false positive rate (1-specificity) as the abscissa. The obtained differential metabolites were used to evaluate the potential biomarkers by ROC curve. </p>
+    <p class="paragraph">The area under the ROC curve is called Area Under Curve (AUC). AUC is used to evaluate the sensitivity and specificity of biomarkers to predict the occurrence of events. The sensitivity and specificity of each metabolite is determined by the optimal threshold of the ROC curve. When AUC value = 0.5, this biomarker has no effect on predicting the occurrence of events and has no predictive value. When the AUC value is greater than 0.5, the closer the AUC value is to 1, the higher the prediction accuracy is. Generally speaking, the prediction accuracy is low when the AUC value is between 0.5 and 0.7, there is a certain prediction accuracy when the AUC value is between 0.7 and 0.9, and there is a high prediction accuracy when the AUC value is above 0.9. The results are shown in Figure 9.1 (see the result file for the high-definition version of the picture):</p>
+
+
+	<div align="left">
+	<form id="form1" name="form1" method="post" action="">
+	<label>
+	<select id="game36" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
+	
+				<option value="src/pictures/Group1.vs.Group2_pos_ROC.png" >POS_Group1.vs.Group2</option>
+			
+				<option value="src/pictures/Group2.vs.Group3_pos_ROC.png" >POS_Group2.vs.Group3</option>
+			
+				<option value="src/pictures/Group3.vs.Group4_pos_ROC.png" >POS_Group3.vs.Group4</option>
+			
+				 </select>
+		    </form>
+	    </div>
+	    <p align="center"><img src="src/pictures/Group1.vs.Group2_pos_ROC.png" id="show36" width="40%"></p>
+	
+	<div align="left">
+	<form id="form1" name="form1" method="post" action="">
+	<label>
+	<select id="game37" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
+	
+				<option value="src/pictures/Group1.vs.Group2_neg_ROC.png" >NEG_Group1.vs.Group2</option>
+			
+				<option value="src/pictures/Group2.vs.Group3_neg_ROC.png" >NEG_Group2.vs.Group3</option>
+			
+				<option value="src/pictures/Group3.vs.Group4_neg_ROC.png" >NEG_Group3.vs.Group4</option>
+			
+				 </select>
+		    </form>
+	    </div>
+	    <p align="center"><img src="src/pictures/Group1.vs.Group2_neg_ROC.png" id="show37" width="40%"></p>
+	
+	<p class="name">Figure 9.1 ROC curve analysis of differential metabolite</p>
+	<p class="premark">Corresponding result catalog: Result/4.MetDiffAnalysis/*.vs.*/ROC_{pos,neg}.</p>
+
+</div>
+
+<div id="page">
+    <p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a> <a name="附录"></a>
+    <hr />
+    </p>
+        
+    <h2>Appendix</h2>
+  <p class="paragraph">We recommended to use Excel or EditPlus or other professional text editor to open the result file.</p>
+
+    <a name="非靶向代谢实验流程">
+    <h3 id="note_2">1. Untargeted metabolomics experimental process</h3>
+    </a>
+
+    <p style="text-indent:2em;text-align:justify; text-justify:inter-ideograph;line-height: 1.6;">Untargeted metabolomics experimental process (English): <a href="src/images/Experimental_flow_LC_EN-V1.pdf" title="点击打开" target="_blank">PDF</a></p>
+    <a name="相关名词解释">
+    <h3 id="note_2">2. The report includes explanations of relevant terms</h3>
+    </a>
+    <p style="text-indent:2em;text-align:justify; text-justify:inter-ideograph;line-height: 1.6;">The report includes explanations of relevant terms: <a href="src/images/Explaination.pdf" title="点击打开" target="_blank">PDF</a></p>
+<div id="page">
+  <p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a> <a name="参考文献"></a>
+    <hr />
+      </p>
+        <h2 id="reference_html">Reference</h2>
+[1] Dunn, W.B. et al. Procedures for large-scale metabolic profiling of serum and plasma using gas chromatography and liquid chromatography coupled to mass spectrometry. Nature protocols. 6,1060-1083 (2011).<br />
+[2] Want, E.J.  et al. Global metabolic profiling procedures for urine using UPLC-MS. Nature protocols. 5,1005-1018 (2010).<br />
+[3] Chambers, Matthew C et al. “A cross-platform toolkit for mass spectrometry and proteomics.” Nature biotechnology. 30,918-920 (2012). <br />
+[4] Smith, Colin A et al. “XCMS: processing mass spectrometry data for metabolite profiling using nonlinear peak alignment, matching, and identification.” Analytical chemistry. 78,779-787 (2006). <br />
+[5] Dai, W. et al. Characterization of white tea metabolome: Comparison against green and black tea by a nontargeted metabolomics approach. Food Research International. 96,40-45 (2017).<br />
+[6] Rao, G., Sui, J. & Zhang, J. Metabolomics reveals significant variations in metabolites and correlations regarding the maturation of walnuts (Juglans regia L.). Biology open. (2016).<br />
+[7] Wen, B., Mei, Z., Zeng, C., & Liu, S. metaX: a flexible and comprehensive software for processing metabolomics data. BioMed Central Bioinformatics. 18,183 (2017).<br />
+[8] Boulesteix, A.L. & Strimmer, K. Partial least squares: a versatile tool for the analysis of high-dimensional genomic data. Briefings in bioinformatics. 8,32-44 (2007).<br />
+[9] Wang, J.B. et al. Metabolomic profiling of autoimmune hepatitis: the diagnostic utility of nuclear magnetic resonance spectroscopy. Journal of proteome research. 13,3792-3801 (2014).<br />
+[10] Kieffer, D.A. et al. Resistant starch alters gut microbiome and metabolomics profiles concurrent with amelioration of chronic kidney disease in rats. American Journal of Physiology-Renal Physiology. (2016).<br />
+[11] Heischmann, S. et al. Exploratory Metabolomics Profiling in the Kainic Acid Rat Model Reveals Depletion of 25-Hydroxyvitamin D3 during Epileptogenesis. Scientific Reports. 6 (2016).<br />
+[12] Haspel, J.A. et al. Circadian rhythm reprogramming during lung inflammation. Nature communications. 5 (2014).<br />
+[13] Sreekumar, A. et al. Metabolomic profiles delineate potential role for sarcosine in prostate cancer progression. Nature. 457,910-914 (2009).<br />
+[14] Maqdasy S, Lecoutre S, Renzi G, et al. Impaired phosphocreatine metabolism in white adipocytes promotes inflammation.Nature Metabolism. 4,190-202 (2022). <br />
+[15] Nie M, Yao K, Zhu X, et al. Evolutionary metabolic landscape from preneoplasia to invasive lung adenocarcinoma.Nature communications. 12,6479 (2021). <br />
+[16] Chen, X., Xie, C., Sun, L., Ding, J. & Cai, H.  Longitudinal Metabolomics Profiling of Parkinson’s Disease-Related α- Synuclein A53T Transgenic Mice. PloS one. 10 (2015).<br />
+[17] McLachlan GJ, Bean RW, Ng SK. Clustering.Clustering.Methods in molecular biology. 1526,345-362 (2017). <br />
+[18] Ahlqvist E, Storm P, Käräjämäki A, et al. Novel subgroups of adult-onset diabetes and their association with outcomes: a data-driven cluster analysis of six variables.The lancet. Diabetes & endocrinology. 6,361-369 (2018). <br />
+[19] Haldar P, Pavord ID, Shaw DE, et al. Cluster analysis and clinical asthma phenotypes.American journal of respiratory and critical care medicine. 178,218-224 (2008). <br />
+[20] Kanehisa, M. & Goto, S. KEGG: kyoto encyclopedia of genes and genomes. Nucleic acids research. 28,27-30 (2000).<br />
+[21] Rao, J. et al. Metabolic map of mature maize kernels. Metabolomics. 10,775-787 (2014).<br />
+[22] Lin, H. et al. Seed metabolomic study reveals significant metabolite variations and correlations among different soybean cultivars. Journal of integrative plant biology. 56,826-836 (2014).<br />
+[23] Jia, S. et al. Mineral and metabolic profiles in tea leaves and flowers during flower development. Plant Physiology and Biochemistry. 106,316-326 (2016).<br />
+[24] Picart-Armada S, Fernández-Albert F, Vinaixa M, et al. FELLA: an R package to enrich metabolomics data[J]. BioMed Central Bioinformatics. 19,538 (2018).<br />
+[25] Keram A, Pei N, et al. Untargeted GC/TOFMS unravel metabolic profiles in cerebrospinal fluid of Chinese people living with HIV. Journal of clinical laboratory analysis. 3 (2021).<br />
+[26] Deng Y, Wang J, et al. Metabolomics Mechanism and Lignin Response to Laxogenin C, a Natural Regulator of Plants Growth.  International journal of molecular sciences. 2990 (2022).<br />
+[27] Mielko KA, Jabłoński SJ, et al. Metabolomics Comparison of Drug-Resistant and Drug-Susceptible Pseudomonas aeruginosa Strain (Intra- and Extracellular Analysis).  International journal of molecular sciences. 10820 (2021).<br />
+[28] Zou W, Huang H, et al. Preparation, Antibacterial Potential, and Antibacterial Components of Fermented Compound Chinese Medicine Feed Additives. Frontiers in veterinary science. 808846 (2022).<br />
+[29] Subramanian A, Tamayo P, Mootha V K, et al. Gene set enrichment analysis: a knowledge-based approach for interpreting genome-wide expression profiles[J]. Proceedings of the National Academy of Sciences of the United States of America. 2005.<br />
+[30] Benson Mark D,Eisman Aaron S,Tahir Usman A et al. Protein-metabolite association studies identify novel proteomic determinants of metabolite levels in human plasma.[J] .Cell Metabolism. 35,1646-1660.e3. (2023).<br />
+[31] Zhang, J. et al. Metabolomic analysis reveals a unique urinary pattern in normozoospermic infertile men. Journal of proteome research. 13,3088-3099 (2014).<br />
+
+</div>
+<!----------------------------------------------- End -------------------------------------------->
+</div>
+</body>
+</html>
+

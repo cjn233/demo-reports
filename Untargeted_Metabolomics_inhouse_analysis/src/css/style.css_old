@@ -1,0 +1,151 @@
+html, body, div, ul {
+	margin: 0;
+	padding: 2px;
+}
+body {
+color: #262626;
+}
+.button{padding:5px;}
+#content {
+	width: 400px;
+	margin: 40px auto 0 auto;
+	padding: 0 60px 30px 60px;
+	border: solid 0px #cbcbcb;
+
+	-moz-box-shadow: 0px 0px 10px #cbcbcb;
+	-webkit-box-shadow: 0px 0px 10px #cbcbcb;
+}
+tr:nth-child(odd){
+	background-color:#F0F0F0;
+}
+h1 {
+	margin: 30px 0 15px 0;
+	font-size: 35px;
+	font-weight: bold;
+	font-family: "Times New Roman",Arial;
+}
+
+h1 span {
+	font-size: 50%;
+	letter-spacing: -0.05em;
+}
+
+hr {
+	border: none;
+	height: 1px; line-height: 1px;
+	background: #E5E5E5;
+	margin-bottom: 20px;
+	padding: 0;
+}
+
+p {
+	margin: 0;
+	padding: 7px 0;
+}
+
+a {
+	outline: none;
+}
+
+a img {
+	border: none;
+
+}
+
+a img.last {
+	margin-right: 0;	
+}
+
+
+/*-- start tabs --*/
+.resp-tabs-list,.resp-tabs-list1 {
+	width: 100%;
+	padding: 0;
+	margin:40px 100px;
+
+
+}
+li.resp-tab-item.resp-tab-active{
+  background: #036EB8;
+  color:white;
+
+}
+
+.resp-tab-item:first-child,.resp-tab-item1:first-child{
+	border-left:none;
+}
+.resp-tab-item{
+box-shadow:0px 1px 2px rgba(0,0,0,0.2);
+text-shadow:0px 1px 1px rgba(0,0,0,0.3);
+border-radius:8px;
+border-bottom:2px solid #036EB8;
+border-left:none;
+background:#fff;
+color:#000000;
+font-size: 16px;
+cursor: pointer;
+width: 15%;
+padding: 10px 0px;
+display: inline-block;
+margin: 0 15px 0 0;
+text-align: center;
+list-style: none;
+float: left;
+outline: none;
+-webkit-transition: all 0.3s ease-out;
+-moz-transition: all 0.3s ease-out;
+-ms-transition: all 0.3s ease-out;
+-o-transition: all 0.3s ease-out;
+transition: all 0.3s ease-out;
+text-transform: uppercase;
+}
+
+.resp-tabs-container ,.resp-tabs-container1{
+	padding: 0px;
+	clear: left;
+	margin:0px 100px;
+}
+h2.resp-accordion,h2.resp-accordion1 {
+	cursor: pointer;
+	padding: 5px;
+	display: none;
+}
+.resp-tab-content ,.resp-tab-content1{
+	display: none;
+	width:97%;
+
+}
+.resp-content-active, .resp-accordion-active,.resp-content-active1, .resp-accordion-active1 {
+   display: block;
+}
+
+
+
+.resp-tab-item:first-child,.resp-tab-item1:first-child  {
+border-left: none;
+}
+.resp-tab-active,.resp-tab-active1 {
+background: #ffffff;
+}
+
+li.resp-tab-item1.resp-tab-active span{
+color:#ffffff;
+}
+.yongyin {
+ font-stretch:normal;
+ border-radius:8px;
+ box-shadow:0px 1px 2px rgba(0,0,0,0.2);
+ text-shadow:0px 1px 1px rgba(0,0,0,0.3);
+ color:#fefee9;
+ border:0.2px solid #2485d8;
+ background-repeat:repeat;
+ background-size:auto;
+ background-origin:padding-box;
+ background-clip:padding-box;
+ background-color:#1c70c3;
+ background: linear-gradient(to bottom, #419efa 0%,#1c70c3 100%);
+}
+ 
+.yongyin:hover {
+background: #268DFF;
+}
