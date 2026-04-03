@@ -1,0 +1,18 @@
+Analytical content	Software	Version	Parameter	Remarks
+Data quality	fastp	v0.23.1	-g -q 5 -u 50 -n 10 -l 150 --min_trim_length 10 --overlap_diff_limit 1	Illumina
+Data quality	NanoFilt	v2.7.0	-q 7 --length 500	ONT
+Host trimming	bowtie2	v2.5.4	--end-to-end --sensitive --no-hd --no-sq -I 200 -X 400 --threads 8	Illumina
+Host trimming	BLASR	v5.1	--maxScore -1000 --maxLCPLength 16	ONT
+Assembly	megahit	v1.2.9	--presets meta-large	Illumina
+Assembly	flye	v2.8.1	-	ONT
+Polished	bwa/samtools	v0.7.8/v0.1.18	-	ONT
+Binning	metaWRAP	v1.3.2	--metabat2 --maxbin2 --concoct	-
+Dereplication	dRep	v3.5.0	--S_algorithm fastANI -sa 0.95	-
+Taxonomy	gtdbtk	v2.4.0	-	-
+Quality	CheckM	v1.2.3	-	-
+dbcan	run_dbcan	v5.1.2	CAZyme_annotation --mode protein	-
+Orthologous groups	eggnog-mapper	v2.1.13	-	-
+CARD	rgi	v6.0.3	-	-
+BacMet2	diamond	v2.1.9	blastp	2025
+VFDB	diamond	v2.1.9	blastp	2025
+MGEs	geNomad/MobileElementFinder	v1.7.4/v1.1.2	end-to-end/-	-

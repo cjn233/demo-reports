@@ -1,0 +1,17 @@
+分析内容	软件	版本	参数	备注
+数据质控	fastp	v0.23.1	-g -q 5 -u 50 -n 10 -l 150 --min_trim_length 10 --overlap_diff_limit 1	仅用于2代数据质控
+数据质控	NanoFilt	v2.7.0	-q 7 --length 500	仅用于3代ONT数据质控
+过滤宿主	bowtie2	v2.5.4	--end-to-end --sensitive --no-hd --no-sq -I 200 -X 400 --threads 8	仅用于2代数据去宿主
+过滤宿主	BLASR	v5.1	--maxScore -1000 --maxLCPLength 16	仅用于3代ONT数据去宿主
+组装	megahit	v1.2.9	--presets meta-large	仅用于2代数据组装软件
+组装/抛光	flye/bwa/samtools	v2.8.1/v0.7.8/v0.1.18	-	仅用于ONT3+2binning组装软件
+分箱	metaWRAP	v1.3.2	--metabat2 --maxbin2 --concoct	分箱使用软件
+聚类	dRep	v3.5.0	--S_algorithm fastANI -sa 0.95	-
+bins注释	gtdbtk	v2.4.0	-	-
+bins质量评估	CheckM	v1.2.3	-	-
+dbcan 碳水化合物活性酶注释	run_dbcan	v5.1.2	CAZyme_annotation --mode protein	-
+Orthologous groups 全面功能注释	eggnog-mapper	v2.1.13	-	-
+CARD 抗生素抗性功能注释	rgi	v6.0.3	-	-
+BacMet2 金属抗性功能注释	diamond	v2.1.9	blastp	2025
+VFDB 毒力因子功能注释	diamond	v2.1.9	blastp	2025
+移动遗传元件（MGEs）注释	geNomad/MobileElementFinder	v1.7.4/v1.1.2	end-to-end/-	-
