@@ -5,7 +5,8 @@
 
 ***
 
-&emsp;&emsp;The raw format of Nanopore sequencing data is in fast5 format. The Guppy software is used for basecalling to convert fast5 files into fastq format. The raw data for each sample is then split based on barcodes. The raw data of each sample is analyzed using NanoPlot (https://github.com/wdecoster/NanoPlot ，version：1.29.1)software，and the detailed statistical information is shown in the table below:
+&emsp;&emsp;Raw sequencing data generated from the Nanopore PromethION platform were initially in FAST5 format. Basecalling was performed using Guppy (v6.4.2) to convert FAST5 files into FASTQ format. Demultiplexing was then conducted according to sample-specific barcodes to obtain raw data for each individual sample. The raw data of each sample were subjected to statistical analysis using NanoPlot (https://github.com/wdecoster/NanoPlot, version: 1.29.1). Detailed statistical information is shown in the table below:
+
 
 
 <p class='mark'>Table 2-1 Sequencing Data Statistics</p>
@@ -17,15 +18,17 @@ datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),
 ```
 
 - **Sample ID**：Sample name
-- **Number of Reads**：reads number
-- **Total Bases(bp)**：Data
+- **Number of Reads**：Number of reads
+- **Total Bases(bp)**：Total Bases
 - **Mean Read Length(bp)**：Mean Read Length
-- **N50 Read Length(bp)**：Sort the obtained Polymerase reads from longest to shortest, and gradually add up the lengths of the reads until the length of Polymerase read is not less than 50% of the total length.
+- **N50 Read Length(bp)**：The read length at which 50% of the bases are in reads longer than, or equal to, this value
 - **Mean Read quality**：Mean Read quality.
 
 &emsp;&emsp;Result File Directory：Result/00.Rawdata。
 
-&emsp;&emsp;NanoPlot software was used to perform statistics on the data with quality threshold Q>7，The statistical information is shown in the table below:
+&emsp;&emsp;
+
+NanoPlot software was used to perform statistics on the data with quality threshold，The statistical information is shown in the table below:
 
 ```{r echo=FALSE}
 library(DT)
@@ -36,10 +39,10 @@ datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),
 <p class='mark'>Table 2-2: Statistics of Sequencing Quality Control Data</p>
 
 - **Sample ID**：Sample name
-- **Number of Reads**：reads number
-- **Total Bases(bp)**：Data
+- **Number of Reads**：Number of reads
+- **Total Bases(bp)**：Total Bases
 - **Mean Read Length(bp)**：Mean Read Length
-- **N50 Read Length(bp)**：Sort the obtained Polymerase reads from longest to shortest, and gradually add up the lengths of the reads until the length of Polymerase read is not less than 50% of the total length.
+- **N50 Read Length(bp)**：The read length at which 50% of the bases are in reads longer than, or equal to, this value
 - **Mean Read quality**：Mean Read quality.
 
 &emsp;&emsp;The length distribution of Polymerase Read is shown in the following graph:

@@ -1,0 +1,24 @@
+### SV Statistics and Annotation
+&emsp;&emsp;Structural Variation (SV) refers to large fragment insertions, deletions, inversions, translocations, etc., at the genomic level.
+
+&emsp;&emsp;MUMmer (version 3.22) [34] was used for rapid alignment of two genomes to determine the relative orientation of sequences, adjust the genomes, and align the genomic starting points. Lastz (version 1.02.00) [35][36] software was applied for whole-genome alignment. Software packages such as chainNet were used to connect scattered alignment results into longer ones (e.g., in forms of chain, net). Based on the order and relative orientation of new alignment blocks, those with translocation, inversion, and translocation + inversion (Trans+Inver) relationships were identified. Then, SV regions between alignment blocks were determined according to the distance relationship between adjacent alignment blocks in the two genomes.
+
+&emsp;&emsp;The pairwise map of whole-genome structural variation types is shown as follows:
+
+
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/06.Comparative_Genomics/","*SV_cycle.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.SV_cycle.png"="","file/06.Comparative_Genomics//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>Figure 2-16 Pairwise Map of Whole-Genome Structural Variation Types</p>
+<p class='mark'>Note: The inner circle represents the sample genome, and the outer circle represents the reference genome. Collinear: collinear regions; Translocation: translocation regions; Inversion: inversion regions; Tran+Inver: regions with both translocation and inversion; Insertion: insertion regions with length ≥ 50bp; Deletion: deletion regions with length ≥ 50bp; ComplexInDel: unaligned regions with corresponding positions; Forward_chain: forward strand of the genomic sequence, where gene coordinates increase clockwise; Reverse_chain: reverse strand of the genomic sequence, where gene coordinates increase counterclockwise; Forward_CDS: CDS translated on the forward strand of the genomic sequence; Reverse_CDS: CDS translated on the reverse strand of the genomic sequence; Subjoin_Forward_CDS: supplementary CDS translated on the forward strand of the genomic sequence; Subjoin_Reverse_CDS: supplementary CDS translated on the reverse strand of the genomic sequence, with paired sequences of DeleteGene or InsertGene used as supplementary CDS.</p>
+
+
+
+&emsp;&emsp;Result file directory：Result/06.Comparative_Genomics/SV/
+

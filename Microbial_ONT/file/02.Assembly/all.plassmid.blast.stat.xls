@@ -1,36 +1,6 @@
 sample id	query id	query len(bp)	subject id	subject len(bp)	max score	total score	query cover(%)	E value	identity(%)	descroption
-EC80705	Plas1	47568	NZ_LR130559.1	47288	3.164e+04	91877.10	97.83	0.0	99.96	Escherichia coli strain MS14385 genome assembly, plasmid: 5
-EC80705	Plas1	47568	NZ_CP040921.1	49465	2.785e+04	91072.10	99.47	0.0	99.54	Escherichia coli strain FC853_EC plasmid p853EC2, complete sequence
-EC80705	Plas1	47568	NZ_CP048340.1	47545	3.677e+04	89671.10	97.78	0.0	99.50	Escherichia coli strain 142 plasmid p142_C, complete sequence
-EC80705	Plas1	47568	NZ_CP009861.1	47560	3.624e+04	89013.10	97.29	0.0	99.54	Escherichia coli strain ECONIH1 plasmid pECO-b75, complete sequence
-EC80705	Plas1	47568	NZ_CP024865.1	48511	3.785e+04	88019.10	95.68	0.0	99.48	Escherichia coli strain AR_0015 plasmid unitig_3_pilon, complete sequence
-EC80705	Plas2	85281	NZ_CP039490.1	131067	3.221e+04	189634.90	84.98	0.0	98.87	Salmonella enterica subsp. enterica serovar Bareilly str. CFSAN000752 plasmid pCFSAN000752, complete sequence
-EC80705	Plas2	85281	NZ_CP019252.1	123053	4.686e+04	187272.50	90.84	0.0	99.38	Escherichia coli strain 13KWH46 plasmid p13KWH46-2, complete sequence
-EC80705	Plas2	85281	NZ_CP027395.1	117229	4.591e+04	186762.10	90.48	0.0	98.93	Escherichia coli O104:H4 strain FDAARGOS_349 plasmid unnamed1
-EC80705	Plas2	85281	NZ_CP027135.1	151026	4.602e+04	174559.80	89.99	0.0	98.93	Escherichia coli strain AR_0369 plasmid unnamed3
-EC80705	Plas2	85281	NZ_CP009580.1	129463	4.686e+04	174020.50	90.87	0.0	99.38	Escherichia coli FAP1 plasmid unnamed 2
-EC80705	Plas3	95702	NZ_CP014498.1	209768	3.887e+04	386089.50	97.91	0.0	99.88	Escherichia coli strain ZH193 plasmid pZH193, complete sequence
-EC80705	Plas3	95702	NZ_CP029580.1	178078	2.727e+04	314212.10	98.51	0.0	99.94	Escherichia coli strain DA33137 plasmid pDA33137-178, complete sequence
-EC80705	Plas3	95702	NZ_CP021690.1	163045	3.753e+04	313791.30	98.25	0.0	99.98	Escherichia coli strain AR_0058 plasmid tig00007555j7554, complete sequence
-EC80705	Plas3	95702	NZ_LS992169.1	172923	4.164e+04	299250.60	99.76	0.0	99.90	Escherichia coli isolate Escherichia coli str. TO60 genome assembly, plasmid: 2
-EC80705	Plas3	95702	NZ_CP021937.1	151110	2.109e+04	288347.60	51.67	0.0	99.92	Escherichia coli strain AR_0055 plasmid unitig_3j3rc_linear, complete sequence
-EC100807	Plas1	113739	NZ_CP014498.1	209768	3.383e+04	395763.00	96.56	0.0	99.98	Escherichia coli strain ZH193 plasmid pZH193, complete sequence
-EC100807	Plas1	113739	NZ_CP029580.1	178078	2.724e+04	321196.60	95.69	0.0	99.91	Escherichia coli strain DA33137 plasmid pDA33137-178, complete sequence
-EC100807	Plas1	113739	NZ_LS992169.1	172923	3.385e+04	312121.50	97.88	0.0	99.98	Escherichia coli isolate Escherichia coli str. TO60 genome assembly, plasmid: 2
-EC100807	Plas1	113739	NZ_CP021690.1	163045	3.385e+04	291654.20	90.80	0.0	99.98	Escherichia coli strain AR_0058 plasmid tig00007555j7554, complete sequence
-EC100807	Plas1	113739	NZ_CP021180.1	135720	3.747e+04	267550.20	99.70	0.0	99.80	Escherichia coli strain 81009 plasmid pEC-81009, complete sequence
-EC100807	Plas2	70506	NZ_CP015160.1	212180	1.927e+04	207965.30	92.43	0.0	99.72	Escherichia coli strain Eco889 plasmid pECO-fce, complete sequence
-EC100807	Plas2	70506	NZ_AP018785.1	169561	2.541e+04	191592.30	91.36	0.0	99.23	Escherichia coli SK1144 plasmid pSK1144, nearly complete genome
-EC100807	Plas2	70506	NZ_CP024238.1	274465	1.350e+04	175736.20	77.38	0.0	96.70	Escherichia coli O15:H11 strain 90-9272 plasmid unnamed
-EC100807	Plas2	70506	NZ_LS992194.1	86367	2.807e+04	150459.70	90.11	0.0	99.02	Escherichia coli isolate Escherichia coli str. TO217 genome assembly, plasmid: 3
-EC100807	Plas2	70506	NZ_CP031548.1	221041	1.265e+04	143914.40	73.51	0.0	94.19	Escherichia coli strain cq9 plasmid unnamed2, complete sequence
-EC100810	Plas1	46940	NZ_CP028952.1	451422	7394	72967.80	45.70	0.0	96.91	Klebsiella aerogenes strain AR_0161 plasmid unnamed, complete sequence
-EC100810	Plas1	46940	NZ_CP035203.1	202829	1.585e+04	70815.20	41.75	0.0	97.51	Klebsiella pneumoniae strain LH94 plasmid pLH94-1, complete sequence
-EC100810	Plas1	46940	NZ_CP038140.1	138950	7376	66948.50	39.72	0.0	99.89	Escherichia coli strain G3X16-2 plasmid pG3X16-2-3, complete sequence
-EC100810	Plas1	46940	NZ_CP030859.1	457831	7392	65682.50	42.92	0.0	96.91	Klebsiella pneumoniae subsp. pneumoniae strain JNM8C2 plasmid pKJNM8C2.2
-EC100810	Plas1	46940	NZ_CP032239.1	159756	7406	63693.30	37.23	0.0	100.00	Escherichia coli strain ECCWS199 plasmid pTB222, complete sequence
-EC100810	Plas2	79122	NZ_CP031295.1	245305	1.837e+04	225321.30	72.08	0.0	99.32	Escherichia coli strain EC17GD31 plasmid pGD31-F1928, complete sequence
-EC100810	Plas2	79122	NZ_CP028541.2	177516	1.627e+04	192206.90	73.64	0.0	99.99	Klebsiella pneumoniae strain WCHKP2 plasmid pKPC2_020002, complete sequence
-EC100810	Plas2	79122	NZ_CP025952.1	170821	1.628e+04	188509.60	72.91	0.0	100.00	Klebsiella pneumoniae subsp. pneumoniae strain GD4 plasmid pKPGD4, complete sequence
-EC100810	Plas2	79122	NZ_CP036372.1	172770	1.627e+04	184485.10	73.64	0.0	99.99	Klebsiella pneumoniae strain WCHKP020037 plasmid pKPC2_020037, complete sequence
-EC100810	Plas2	79122	NZ_CP023942.1	187926	1.628e+04	183154.40	73.73	0.0	100.00	Klebsiella pneumoniae strain FDAARGOS_444 plasmid unnamed2
+sample1	Plas1	28452	NZ_CP102146.1	26193	7263	37706.00	94.07	0.0	96.39	Streptococcus suis strain DNS20 plasmid pD20_2, complete sequence
+sample1	Plas1	28452	NZ_CP029399.1	20752	8443	30534.00	59.29	0.0	95.00	Streptococcus suis strain HN105 plasmid unnamed1, complete sequence
+sample1	Plas1	28452	NZ_MT180124.1	26155	7483	29528.20	57.42	0.0	93.39	Streptococcus suis strain SScSH0918B/SScSH0918 plasmid pSH0918, complete sequence
+sample1	Plas1	28452	NC_012923.1	24579	6607	15229.80	27.33	0.0	96.23	Streptococcus suis BM407 plasmid pBM407, complete sequence
+sample1	Plas1	28452	NZ_CP118055.1	12985	 109	581.40	1.30	1e-19	84.89	Streptococcus anginosus strain VSI37 plasmid pSaVSI37_1, complete sequence

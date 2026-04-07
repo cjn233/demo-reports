@@ -1,10 +1,11 @@
 
-##  Genome Visualization Analysis
+## Genome Visualization Analysis
 
-###  Whole Genome Map
+### Whole-Genome Circular Map
 
 ***
-&emsp;&emsp;The assembled genome sequence of the sequenced sample, combined with the predicted results of coding genes, is visualized using the Circos software [38] to display the sample genome. If analysis of non-coding RNA and gene function annotation is performed simultaneously, the relevant analysis results will also be displayed on the map. The whole genome map is shown as follows:
+&emsp;&emsp;For the assembled genome sequence of the sequenced sample, combined with the prediction results of coding genes, the Circos software [38] was used to display the sample genome. If the analysis of non-coding RNA and gene function annotation was also carried out, the relevant analysis results would also be shown on the map. The whole-genome map is as follows:
+
 
 ```{r echo=FALSE}
 library(stringr)
@@ -14,28 +15,16 @@ names(state_plots) <- str_replace_all(state_plots,c("\\.Overview.png"="","file/0
 bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
 ```
 
-<p class='mark'>Figure 2-12 Whole Genome Map</p>
-<p class='mark'>Explanation: The outermost circle represents the genomic sequence position coordinates. From outer to inner, they are the results of gene function annotation (including COG (KOG) annotation results information based on the actual project situation), ncRNA, and genome GC content. The blue region inwards represents regions with GC content lower than the average GC content of the whole genome, while the red region outwards represents the opposite. The higher the peak, the greater the difference from the average GC content. The genome GC skew value: window size (chromosome length / 1000) bp, step size (chromosome length / 1000) bp. The specific algorithm is (G-C)/(G+C). The green region inwards represents regions with a lower G content than C, while the orange region outwards represents the opposite. </p>
+<p class='mark'>Figure 2-13 Whole-genome circular map</p>
+<p class='mark'>Note: The outermost circle represents the genomic sequence position coordinates. From outer to inner, they are the results of gene function annotation (including COG (KOG) annotation results information based on the actual project situation), ncRNA, and genome GC content. The blue region inwards represents regions with GC content lower than the average GC content of the whole genome, while the red region outwards represents the opposite. The higher the peak, the greater the difference from the average GC content. The genome GC skew value: window size (chromosome length / 1000) bp, step size (chromosome length / 1000) bp. The specific algorithm is (G-C)/(G+C). The green region inwards represents regions with a lower G content than C, while the orange region outwards represents the opposite.</p>
 
-&emsp;&emsp;Plasmid Map is shown as follows:
 
-```{r echo=FALSE}
-library(stringr)
-library(bsselectR)
-state_plots <- paste0(list.files("file/05.Genome_Drawing/Plas/","*.Overview.png",full.names=TRUE))
-names(state_plots) <- str_replace_all(state_plots,c("\\.Overview.png"="","file/05.Genome_Drawing/Plas//"=""))
-bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
-```
-
-<p class='mark'>Figure 2-13 Plasmid Circular Map</p>
-<p class='mark'>Explanation: From outer to inner, the image consists of COG functional annotation classified genes (arrows represent the coding genes in the clockwise direction), genomic sequence position coordinates, genome GC content. The GC content is calculated with a window size of 500 bp and a step size of 20 bp. The blue region inwards represents regions with GC content lower than the average GC content of the whole genome, while the red region outwards represents the opposite. The higher the peak, the greater the difference from the average GC content. The genome GC skew value is calculated with a window size of 500 bp and a step size of 20 bp. The specific algorithm is (G-C)/(G+C). The green region inwards represents regions with a lower G content than C, while the orange region outwards represents the opposite.</p>
-
-&emsp;&emsp;Result file directory：Result/05.Genome_Drawing/Genome_Overview。
+&emsp;&emsp;Result file directory: Result/05.Genome_Drawing/Genome_Overview/
 
 <p>
 <br/>
 <img class="logo" align="left" src="src/logo.png"/>
-<h6 style="text-align:right">北京诺禾致源科技股份有限公司</h6>
+<h6 style="text-align:right">Novogene Co., Ltd.</h6>
 <hr/>
 </p>
 

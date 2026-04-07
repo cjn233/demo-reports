@@ -1,0 +1,57 @@
+
+### Gene Family Analysis
+
+&emsp;&emsp;In genome evolution, a gene generates two or more copies through gene duplication, and these genes form a gene family. A gene family is a group of genes with a common ancestor, and different genes within the family often have similar structures and functions.
+
+&emsp;&emsp;The BLAST software [37] (Version 2.2.26) was used to perform pairwise alignment of proteins from multiple target genomes. Unreliable alignment results were filtered out, and then Solar (Version 0.9.6) was used to remove redundancy. Hcluster-sg (Version 0.2.0) was applied to cluster proteins according to alignment similarity, obtaining gene family clustering results.
+
+
+
+<p class='mark'>Table 2-24 Statistical Results of Gene Family Identification</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/06.Comparative_Genomics/gf.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **<font face="Arial">Total genes</font>**：Total number of coding genes in the species
+- **<font face="Arial">Genes in families</font>**：Number of genes included in all gene families
+- **<font face="Arial">Unclustered genes</font>**：Number of species-specific genes (including unclustered specific genes of the species)
+- **<font face="Arial">Families</font>**：Total number of all gene families
+- **<font face="Arial">Unique familys</font>**：Number of species-specific gene families (these families only contain genes of the species)
+
+
+&emsp;&emsp;The number of homologous genes is shown in the following figure:
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/06.Comparative_Genomics/","*barchart.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.barchart.png"="","file/06.Comparative_Genomics//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+<p class='mark'>Figure 2-20 Bar Chart of Homologous Gene Number Statistics</p>
+- **<font face="Arial">Single-copy orthologs</font>**：Number of single-copy homologous genes in the shared gene families of species
+- **<font face="Arial">Multiple-copy orthologs</font>**：Number of multiple-copy homologous genes in the shared gene families of species
+- **<font face="Arial">Unique paralogs</font>**：Genes in species-specific gene families
+- **<font face="Arial">Other orthologs</font>**：All other genes
+- **<font face="Arial">Unclustered genes</font>**：Genes not clustered into any family
+<p class='mark'>Note: Orthologs refer to groups of genes that originate from a common ancestor and perform the same function in different organisms, also known as orthologs. Paralogs are genes of multiple proteins produced by the duplication of the same gene in the same organism, translated as paralogs. Single-copy genes refer to genes with only one copy in a chromosome set of an organism, and most genes in cells are single-copy. Multiple-copy genes: During evolution, the genomic DNA sequences of microorganisms will duplicate; some of these duplicates continue to undergo evolutionary divergence to become new genes different from the original sequences, while others are retained with basically the same structure and function, becoming multiple-copy genes.
+
+
+
+&emsp;&emsp;The Venn/Flower diagram (for more than 6 samples) of the number of homologous gene families is as follows:
+
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/06.Comparative_Genomics/","*venn.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.venn.png"="","file/06.Comparative_Genomics//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+<p class='mark'>Figure 2-21 Venn/Flower Diagram of the Number of Homologous Gene Families in Multiple Species</p>
+<p class='mark'>Note: Each ellipse represents a sample or a category of samples, and the data in each region indicates the number of gene families that appear in and only in the species of that region.</p>
+
+<p class='mark'>Result file directory：Result/06.Comparative_Genomics/Gene_Family/</p>

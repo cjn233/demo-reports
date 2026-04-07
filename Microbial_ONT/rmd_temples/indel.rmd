@@ -13,12 +13,14 @@ datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),
 
 - **<font face="Arial">Reference Name</font>**：参考序列ID
 - **<font face="Arial">Sample ID</font>**：样品ID
-- **<font face="Arial">Start codon ins</font>**：位于起始密码子的插入
-- **<font face="Arial">CDS inside ins</font>**：位于CDS中间的插入
-- **<font face="Arial">Stop codon ins</font>**：位于终止密码子的插入
-- **<font face="Arial">Start codon del</font>**：位于起始密码子的缺失
-- **<font face="Arial">CDS inside del</font>**：位于CDS中间的缺失
-- **<font face="Arial">Stop codon del</font>**：位于终止密码子的缺失
+- **<font face="Arial">Frame-shifted</font>**：ORF移码突变
+- **<font face="Arial">Start codon</font>**：ORF起始密码子被破坏
+- **<font face="Arial">Stop codon</font>**：ORF终止密码子被破坏
+- **<font face="Arial">Premature stop</font>**：提前终止了ORF
+- **<font face="Arial">Effect</font>**：对ORF无重大影响
+- **<font face="Arial">CDS with indel</font>**：存在InDel的CDS个数
+- **<font face="Arial">All CDS</font>**：参考序列的CDS总个数。
+
 
 &emsp;&emsp;对InDel进行注释，注释结果见下表：
 <p class='mark'>表<font face="Arial">2-18 InDel注释结果统计</p>
@@ -31,13 +33,13 @@ datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),
 
 - **<font face="Arial">Reference Name</font>**：参考序列ID
 - **<font face="Arial">Sample ID</font>**：样品ID
-- **<font face="Arial">Frame-shifted</font>**：ORF移码突变
-- **<font face="Arial">Start codon</font>**：ORF起始密码子被破坏
-- **<font face="Arial">Stop codon</font>**：ORF终止密码子被破坏
-- **<font face="Arial">Premature stop</font>**：提前终止了ORF
-- **<font face="Arial">Effect</font>**：对ORF无重大影响
-- **<font face="Arial">CDS with indel</font>**：存在InDel的CDS个数
-- **<font face="Arial">All CDS</font>**：参考序列的CDS总个数。
+- **<font face="Arial">Start codon ins</font>**：位于起始密码子的插入
+- **<font face="Arial">CDS inside ins</font>**：位于CDS中间的插入
+- **<font face="Arial">Stop codon ins</font>**：位于终止密码子的插入
+- **<font face="Arial">Start codon del</font>**：位于起始密码子的缺失
+- **<font face="Arial">CDS inside del</font>**：位于CDS中间的缺失
+- **<font face="Arial">Stop codon del</font>**：位于终止密码子的缺失
+
 
 &emsp;&emsp;结果文件目录：Result/06.Comparative_Genomics/InDel/
 

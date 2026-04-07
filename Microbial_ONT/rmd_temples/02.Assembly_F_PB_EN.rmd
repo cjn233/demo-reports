@@ -1,0 +1,72 @@
+
+## Genomic Overview
+
+### Assembly Analysis
+
+&emsp;&emsp;Genome assembly was performed using HiFiasm (https://github.com/chhylp123/hifiasm,v0.14.2-r315) with PacBio sequencing data. HiFiasm does not require polishing tools such as Pilon or Racon, which simplifies the assembly pipeline and reduces overall running time. Assembly statistics are provided in the table below.
+
+
+<p class='mark'>Table 2-2 Statistics of sample genome assembly results</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/02.Assembly/all.assembly.stat.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+
+- **Sample ID**: Sample name.
+- **Polished Contigs**: The number of assembled contigs
+- **Max Contig Length**: The maximum length of contigs in the assembly
+- **N50 Contig Length**: The length of the contig that, when arranged from largest to smallest, reaches 50% of the total length
+- **Total Lengths**: The total length of all assembled contigs
+- **GC%**: The GC content of the assembled sequences
+
+###  Assembly Evaluation
+
+&emsp;&emsp;The reads were aligned to the assembled genome sequence, and the GC content and read coverage depth of the assembly sequence were calculated to summarize the GC bias and repetitive sequence information of the genome. The analysis results are shown in the following figure:
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/02.Assembly/","*GC_depth.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.GC_depth.png"="","file/02.Assembly//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>Figure 2-1 GC content distribution versus sequencing depth</p>
+
+&emsp;&emsp;BUSCO (Benchmarking Universal Single-Copy Orthologs; http://busco.ezlab.org/) analysis is performed using a single-copy ortholog database, with the metaeuk and hmmer software packages employed to assess genome assembly completeness.
+
+<p class='mark'>Table 2-3 Genome assembly BUSCO evaluation results</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/02.Assembly/BUSCO.stat.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **<font face="Arial">Sample ID</font>**: Sample Name
+- **<font face="Arial">C</font>**: Complete BUSCOs
+- **<font face="Arial">S</font>**: Complete and single-copy BUSCOs
+- **<font face="Arial">D</font>**: Complete Duplicated BUSCOs
+- **<font face="Arial">F</font>**: Fragmented BUSCOs
+- **<font face="Arial">M</font>**: Missing BUSCOs
+- **<font face="Arial">n</font>**: Total BUSCO groups searched
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/02.Assembly/","*.busco_figure.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.busco_figure.png"="","file/04.Genome_Function//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+<p class='mark'>Figure 2-2 BUSCO statistics chart</p>
+
+<p>
+<br/>
+<img class="logo" align="left" src="src/logo.png"/>
+<h6 style="text-align:right">Novogene Co., Ltd.</h6>
+<hr/>
+</p>
+

@@ -1,0 +1,38 @@
+
+### Analysis of Core and Dispensable Genes
+
+&emsp;&emsp;Homologous genes present in all samples are referred to as core genes. Excluding core genes, the remaining genes are called dispensable genes, among which specific genes are those uniquely present in a particular sample. The combination of all dispensable genes and core genes forms the pan gene set. Core genes and dispensable genes are likely to correspond to the commonalities and characteristics of samples, and can serve as a basis for studying functional differences between samples.
+
+&emsp;&emsp;The cd-hit software (Version 4.6.1) was used to cluster the protein sequences of multiple samples to be analyzed, and R (Version 3.2.4) was used for plotting.
+
+&emsp;&emsp;By comparing the gene protein sequences of sample1, ref1, ref2, and ref3 genomes, we constructed core and pan genes among these genomes. The statistical results are shown in the following table:
+
+
+
+<p class='mark'>Table<font face="Arial">2-23 Statistical Results of Core-pan Genes</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/06.Comparative_Genomics/corepan.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **<font face="Arial">Group ID</font>**：Group number
+- **<font face="Arial">Gore_gene_number</font>**：Number of core genes
+- **<font face="Arial">Pan_gene_number</font>**：Number of pan genes
+
+&emsp;&emsp;The relationship between core and specific genes among these genomes is shown in the following Venn/Flower diagram (for more than 6 samples):
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/06.Comparative_Genomics/","*Venn.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.Venn.png"="","file/06.Comparative_Genomics//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+<p class='mark'>Figure 2-19 Venn/Flower Diagram of Core/Pan Gene Cluster Numbers in Genomes</p>
+<p class='mark'>Note: Each ellipse represents a sample, and the data in each region indicates the number of groups that appear in and only in the samples of that region. A group refers to a set of genes with more than 50% similarity and a sequence length difference of less than 0.7.</p>
+
+
+&emsp;&emsp;Result file directory：Result/06.Comparative_Genomics/Core-Pan/
+

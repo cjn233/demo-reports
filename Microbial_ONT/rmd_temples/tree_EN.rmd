@@ -1,0 +1,41 @@
+### Species Evolution Analysis
+
+&emsp;&emsp;A phylogenetic tree (or evolutionary tree) is a diagram that shows the evolutionary relationships among species believed to have a common ancestor. It is used to present the results of phylogenetic research and describe the evolutionary relationships between species. The phylogenetic tree illustrates the evolutionary relationships and topological structure among different species: the terminals of the tree represent individual species, the nodes represent the common ancestors between species, and the branch lengths indicate the relative genetic distance between species. Through the results of the phylogenetic tree, the phylogenetic relationships and relative genetic distances among various species can be intuitively observed.
+
+&emsp;&emsp;Treebest (Version 1.9.2) (Neighbor-Joining, NJ) or PHYML (Maximum Likelihood, ML) (Version v3.0) software was used to construct the evolutionary tree. The evolutionary tree among species is shown in the following figure:
+
+
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/06.Comparative_Genomics/","*rectangular_cladogram_tree.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.rectangular_cladogram_tree.png"="","file/06.Comparative_Genomics//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+<p class='mark'>Figure 2-22 Phylogenetic relationship Diagram Among Species</p>
+<p class='mark'>Note: The numbers on the branches indicate branch confidence, with values closer to 100 representing higher confidence; the branch lengths indicate the magnitude of evolutionary distance, which is calculated as the average number of substitutions per nucleotide.</p>
+
+&emsp;&emsp;The evolutionary tree without considering branch lengths is shown in the following figure：
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/06.Comparative_Genomics/","*.tree.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.tree.png"="","file/06.Comparative_Genomics//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+<p class='mark'>Figure 2-23 Phylogenetic relationship Diagram Among Species (Without Considering Branch Lengths)</p>
+<p class='mark'>Note: The numbers on the branches indicate branch confidence, with values closer to 100 representing higher confidence.</p>
+
+&emsp;&emsp;Result file directory：Result/06.Comparative_Genomics/Phylogenetic_Tree/
+
+
+
+<p>
+<br/>
+<img class="logo" align="left" src="src/logo.png"/>
+<h6 style="text-align:right">北京诺禾致源科技股份有限公司</h6>
+<hr/>
+</p>
+

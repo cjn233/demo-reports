@@ -5,10 +5,10 @@
 
 ***
 
-&emsp;&emsp;Starting from the quality-controlled and validated data of each sample, the Unicycler software(https://github.com/rrwick/Unicycler ,version：0.4.8)[6] was utilized for genome assembly using both second-generation and third-generation sequencing data. This process involved the separation of chromosomal and plasmid sequences, and assembly of the chromosomal sequences into a circular genome (or a linear genome if applicable) resulting in a final 0-gap complete genome sequence. The assembly results are shown in the following table:
+&emsp;&emsp;Starting from the valid data after quality control of each sample, the Unicycler software (https://github.com/rrwick/Unicycler, version: 0.4.8)[6] was used to perform genome assembly with second-generation and third-generation data. Chromosomal and plasmid sequences were screened, and the chromosomal sequence was assembled into a circular genome (or a linear genome sequence if it is a linear genome), i.e., the final 0-gap complete graph sequence. The assembly results are shown in the following table:
 
 
-<p class='mark'>Table 2-3 Statistics of Sample Genome Assembly Results</p>
+<p class='mark'>Table 2-3 Statistics of sample genome assembly results</p>
 
 ```{r echo=FALSE}
 library(DT)
@@ -16,34 +16,36 @@ data <- read.delim('file/02.Assembly/all.assembly.stat.xls',sep='\t',header=T)
 datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
 ```
 
-- **<font face="Arial">Sample ID</font>**：Sample name：
-- **<font face="Arial">Type</font>**：Assembly Result Sequence Types
-- **<font face="Arial">Contig ID</font>**：Assembled Contig ID:
-- **<font face="Arial">Size(bp)</font>**：Size of Assembled Sequence:
-- **<font face="Arial">GC%</font>**：GC Content of Assembled Contig:
+- **<font face="Arial">Sample ID</font>**：Sample name
+- **<font face="Arial">Type</font>**：Type of assembly result
+- **<font face="Arial">Contig ID</font>**：Contig number obtained from the assembly
+- **<font face="Arial">Size(bp)</font>**：Size of the assembled sequence
+- **<font face="Arial">GC%</font>**：GC content of the assembled contig
 - **<font face="Arial">Circular</font>**:Whether the sequence is circularized.
 
 ###Plasmid Sequence Alignment
 ***
-&emsp;&emsp;Align the assembled plasmid sequence with the plasmid database and analyze the results of the alignment. The statistics of the top 5 alignment results based on the total score value are as follows:
-<p class='mark'>Statistical analysis of the top 5 results of plasmid sequence alignment for Sample in Table 2-3.</p>
+&emsp;&emsp;The assembled plasmid sequences were compared with the plasmid database, and the alignment results were analyzed. The statistics of the top 5 alignment results ranked by total score are as follows:
+
+<p class='mark'>Table 2-4 Statistics of TOP 5 alignment results of sample plasmid sequences</p>
+
 ```{r echo=FALSE}
 library(DT)
 data <- read.delim('file/02.Assembly/all.plassmid.blast.stat.xls',sep='\t',header=T)
 datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
 ```
 
-- **<font face="Arial">Sample ID</font>**：Sample name：
-- **<font face="Arial">query_id</font>**：Sample plasmid ID；
-- **<font face="Arial">query_len</font>**：Plasmid length:
-- **<font face="Arial">subject_id</font>**：ID identification of the aligned target sequence;
-- **<font face="Arial">subject_len</font>**：Length of the subject sequence;
-- **<font face="Arial">max_score</font>**：The highest alignment score between the plasmid sequence and the aligned database plasmid sequence;
-- **<font face="Arial">total_score</font>**：Total alignment score:
-- **<font face="Arial">query_cover</font>**：Alignment coverage (percentage of aligned fragments to the plasmid sequence);
-- **<font face="Arial">E_value</font>**：Expected value of the alignment result:
-- **<font face="Arial">identity</font>**：Percentage of sequence alignment consistency;
-- **<font face="Arial">descroption</font>**：Description information of the plasmid aligned to the database.
+- **<font face="Arial">Sample ID</font>**：Sample name
+- **<font face="Arial">query_id</font>**：Sample plasmid ID
+- **<font face="Arial">query_len</font>**：Plasmid length
+- **<font face="Arial">subject_id</font>**：ID identification of the aligned target sequence
+- **<font face="Arial">subject_len</font>**：Length of the subject sequence
+- **<font face="Arial">max_score</font>**：The highest alignment score between the plasmid sequence and the aligned database plasmid sequence
+- **<font face="Arial">total_score</font>**：Total alignment score
+- **<font face="Arial">query_cover</font>**：Alignment coverage (percentage of aligned fragments to the plasmid sequence)
+- **<font face="Arial">E_value</font>**：Expected value of the alignment result
+- **<font face="Arial">identity</font>**：Percentage of sequence alignment consistency
+- **<font face="Arial">descroption</font>**：Description information of the plasmid aligned to the database
 
 &emsp;&emsp;Note: When the query cover value is less than 50%, the credibility of the sample plasmid alignment to the corresponding plasmid in NCBI is low.
 

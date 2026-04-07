@@ -1,0 +1,41 @@
+
+
+###  Whole-Genome Synteny Analysis
+
+***
+
+&emsp;&emsp;Synteny refers to the genetic linkage relationship, a phenomenon where homologous genes are arranged in the same order on the genomes of different species. The degree of synteny between two species can serve as a measure of their evolutionary distance, providing insights into their genetic relationship.
+
+&emsp;&emsp;The MUMmer software (Version 3.23) was used to align the target genome with the reference genome, identifying large-scale syntenic relationships between the genomes. Subsequently, LASTZ (Version 1.03.54) was applied for regional alignment to confirm local positional arrangements, and regions with translocation (Translocation/Trans), inversion (Inversion/Inv), and translocation + inversion (Trans+Inv) were identified.
+
+&emsp;&emsp;The synteny visualization results between the sample genome and the reference genome are shown in the following figures:
+
+
+
+&emsp;&emsp;
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/06.Comparative_Genomics/","*xoy.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.xoy.png"="","file/06.Comparative_Genomics//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>Note: The horizontal axis represents the reference sequence genome, and the vertical axis represents the tested genome (a "*" in the upper right corner of the vertical axis sequence name indicates that the negative strand of the sequence was used for alignment). If a sequence ID is not displayed outside the axis, it means no alignment blocks matched this sequence. The black dashed lines in the figure represent the edges of alignment blocks; red lines indicate forward alignments, and blue lines indicate reverse alignments. The colors of the middle squares represent alignment types: Collinear: collinear alignment; Translocation: translocation alignment; Inversion: inversion alignment; Tran+Inver: alignment with both translocation and inversion.</p>
+
+
+&emsp;&emsp;
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/06.Comparative_Genomics/","*parallel.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.parallel.png"="","file/06.Comparative_Genomics//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+<p class='mark'>Note: The upper axis represents the tested genome, and the lower axis represents the reference sequence genome. In both upper and lower axes, yellow boxes indicate the forward strand of the genome, and blue boxes indicate the reverse strand. The height of the filled color in the boxes represents the alignment similarity, with full filling indicating 100% similarity. The colors of the connecting lines between the upper and lower axes represent alignment types: Collinear: collinear alignment; Translocation: translocation alignment; Inversion: inversion alignment; Tran+Inver: alignment with both translocation and inversion.</p>
+
+
+
+<p class='mark'>Result file directory：Result/06.Comparative_Genomics/Synteny。</p>

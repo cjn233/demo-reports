@@ -1,0 +1,52 @@
+
+```{r echo=FALSE}
+library(knitr)
+data <- read.delim('file/project_info.xls',sep='\t',header=T)
+kable(data, table.attr = "class=\"nowrap\"","html") %>%
+kable_styling(bootstrap_options=c("striped","hover","condensed"))
+```
+
+
+# overview of the workflow
+##Experimental procedure
+
+<img class="normal" src="src/sequencing_theory_ONT_EN.png">
+<p class='mark'>Figure 1-1: Project workflow</p>
+
+### Library Construction, Quality Control and Sequencing
+&emsp;&emsp;Large-fragment DNA was size-selected using the BluePippin automated nucleic acid fragment recovery system. End-repair was performed, followed by PCR-free barcode ligation using the EXP-NBD114.24 kit (Oxford Nanopore Technologies). Fragment size distribution was verified using the AATI automated capillary electrophoresis system. Samples were then pooled at equimolar ratios. Adapter ligation was conducted using the SQK-LSK114 Ligation Sequencing Kit (Oxford Nanopore Technologies) to construct 1D libraries. Sequencing was then performed on the Oxford Nanopore PromethION platform.
+
+
+
+## Bioinformatics Analysis Workflow
+
+
+<img class="normal" src="src/F_fine_EN.png">
+
+<p class='mark'>Figure 1-2 Bioinformatics analysis workflow diagram</p>
+
+The information analysis consists of several steps:
+
+&emsp;&emsp;1. Raw data processing: This step filters out reads with low sequencing quality values, retains high-quality reads, and the filtered data is called Clean Data;
+
+&emsp;&emsp;2. Sample assembly: Perform genome assembly to obtain sequence files that can reflect the sample genome;
+
+&emsp;&emsp;3. Genomic composition analysis: After assembly, analyze the components of the sample genome, including the prediction of gene components such as coding genes, non-coding RNAs, repetitive sequences, prophages, genomic islands, and CRISPR;
+
+&emsp;&emsp;4. Functional annotation: Conduct functional annotation of coding gene sequences in different databases, including commonly used KEGG, COG databases, and databases for pathogenic microorganisms;
+
+&emsp;&emsp;5. Genome comparative analysis: This step compares the differences between the sample and the reference genome at both the genome and gene levels, including collinearity analysis, gene family construction, analysis of core/dispensable genes, and construction of species phylogenetic trees;
+
+&emsp;&emsp;6. Genome visualization analysis: Combine the results of genome  component analysis and functional annotation to display the basic  research results of the genome.
+
+&emsp;&emsp;Note: This analysis flow chart includes all analysis contents of the product. The blue dashed part in the chart is the advanced analysis content, and the specific analysis content of this project shall be subject to this report.
+
+
+
+
+
+<img class="logo" align="left" src="src/logo.png"/>
+<h6 style="text-align:right">北京诺禾致源科技股份有限公司</h6>
+<hr/>
+</p>
+

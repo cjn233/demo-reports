@@ -1,0 +1,37 @@
+---
+title: <center>**Novogene Bacteria Genome Completed Map (PacBio HIFI) Report**</center>
+bibliography: rmd_temples/reference.bib
+csl: rmd_temples/china-national-standard-gb-t-7714-2015-numeric.csl
+output:
+  html_document:
+    css: css/styles.css
+    df_print: paged
+    toc: true
+    toc_float: true
+    number_sections: true
+    theme: cerulean
+    includes:
+      in_header: css/header.html
+---
+
+```{r setup, include=FALSE}
+# set global chunk options
+library(knitr)
+
+# description of echo
+opts_chunk$set(echo=FALSE)
+
+# description of warning
+opts_chunk$set(warning=FALSE)
+
+# description of message
+opts_chunk$set(message=FALSE)
+
+# description of include
+#opts_chunk$set(include=FALSE)
+
+# description of cache
+#opts_chunk$set(cache=TRUE)
+```
+
+

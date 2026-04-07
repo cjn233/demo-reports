@@ -17,10 +17,9 @@ datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),
 ```
 
 - **<font face="Arial">Sample ID</font>**：样品名称
-- **<font face="Arial">Mean Concordance</font>**：<font face="Arial">reads</font>的平均测序质量。
 - **<font face="Arial">Number of Bases (bp)</font>**：数据量
 - **<font face="Arial">Number of Reads</font>**：<font face="Arial">reads</font>的数目
-- **<font face="Arial">Mean Read Length (bp)</font>**：<font face="Arial">reads</font>的平均长度
+- **<font face="Arial">Mean Read Length</font>**：<font face="Arial">reads</font>的平均长度
 - **<font face="Arial">N50 ReadLength(bp)</font>**：将得到的<font face="Arial">Subreads</font>按照长度从长到短排序，依次累加<font face="Arial">reads</font>的长度直至不小于总长<font face="Arial">50%</font>时的<font face="Arial">Subreads</font>的长度。
 
 &emsp;&emsp;<font face="Arial">Subreads</font>的长度分布图如下：
