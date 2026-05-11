@@ -1,0 +1,203 @@
+
+##  比较组合甲基化水平联合作图
+
+&emsp;&emsp;上面我们对单个样本甲基化情况进行作图展示，对于大多数研究比较关注的是样本间甲基化水平差异情况，在此我们进行比较组>合分析；比较组合分析主要从整体甲基化水平、基因功能区域甲基化水平分布、基因上下游2Kbp 层面展示组合间甲基化变化情况。
+###  DMR显著性circos图
+DMR在基因组上分布以及显著性作图分析 ，以circos图的形式反映（ Krzywinski , M. et al. 2009 . Circos ）。
+
+经过统计检验后会有一个统计值areaStat ，以表示DMR区域差异显著情况 。在此以circos图的形式反映特定染色体上DMR的显著性 ，以及DMR在染色体上的分布情况 
+
+&emsp;&emsp;对CG序列环境DMR显著性整体Circos展示，如图所示
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/05.DMR/","*.circos.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.circos.png"="","file/05.DMR//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>图5.1 DMR整体Circos展示</p>
+
+<p class='mark'>说明：从外到内3圈依次表示：处理组甲基化水平，样本组间甲基化水平差异，对照组甲基化水平；内部标尺：颜色分级图（DNA methylation level）表示甲基化水平高低，热图（DNA methylation difference) 表示样本间甲基化水平差异程度。</p>
+
+### 比较组合CG序列在基因功能原件上甲基化水平的分布
+
+&emsp;&emsp;在此我们对比较组合基因功能区域甲基化水平进行作图分析，对每种context中C位点在各种基因组功能区域（如promoter，exon，intron，CGI，CGI shore，repeat等。 其中，promoter区为TSS位点上游2kb的区域）的平均甲基化水平进行统计，展示形式不同于单样本分析。
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/03.methystat/","*.mC_genomic_feature_level.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.mC_genomic_feature_level.png"="","file/03.methystat//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>图5.2 比较组合CG序列在基因功能原件上甲基化水平的分布  </p>
+<p class='mark'>说明：横坐标代表不同基因组元件，纵坐标代表甲基化水平。将每个基因的各个区域分别等分成20个bin，然后对所有区域的对应的bin的C位点水平取平均值。</p>
+
+### DMR分析
+&emsp;&emsp;在多种样本（组织、细胞、个体等）的基因组里甲基化状态有可能不尽相同，涉及到的差异甲基化区域被认为可能参与基因的转录水平调控。鉴定差异甲基化可以综合考察不同组织中表观遗传学的差异。众所周知，DNA甲基化与细胞分化及增殖有关，现已发现在胚胎重编程阶段（R-DMRs）及发育阶段（D-DMRs）中存在的许多DMRs（Reik, 2001; Meissner, 2008; Doi, 2009）。癌症与正常样品相比也展示出整体的甲基化缺失和局部区域如抑癌基因promoter区CpG islands的过度甲基化情况（Irizarry, 2009）。在此我们在比较组合间进行DMR分析。
+
+&emsp;&emsp;在该分析流程中我们使用DSS分析软件进行DMR（differentially methylated regions）鉴定（Hao Feng，Hao Wu, 2014；Hao Wu，2015；Yongseok Park，Hao Wu，2016）。
+
+对于差异甲基化区域分析考虑因素：
+
+(1) 甲基化位点的距离相关性（ spatial correlation）：适当的使用临近的甲基化位点的信息可以提高每个位点甲基化水平的评估，提高DMR的鉴定；使用smoothing的方式能够鉴定相对较长的DMRs ;
+
+(2) 位点测序深度（read depth of the sites）： 位点的测序深度可以提高精确的信息，提高DMR鉴定统计值 ；
+
+(3) 生物学重复异质性（the variance among biological replicates）：忽略生物学重复的差异会导致假阳性， DSS软件基于beta-binomial distribution ，考虑到生物学重复间的异质性；对于无生物学重复样本分析时，DSS使用smoothing后临近的位点作为生物学重复位点进行分析 。
+
+使用DSS(DSS-single)分析DMR结果如下 :
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/05.DMR/all_sample.DMR.result.txt',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+(1) chr ：染色体ID
+(2) start ：DMR起始位点
+(3) end ：DMR终止位点
+(4) DMR_length ：DMR长度
+(5) C_number ：DMR区域位点数目
+(6) group1_meanMethy ：case组平均甲基化水平
+(7) group2_meanMethy ：control组平均甲基化水平
+(8) diff.Methy ：差异甲基化水平
+(9) areaStat ：统计显著值，其绝对值越高表明区域差异越明显
+(10) C_context ：序列环境类型
+
+###  DMR注释结果
+
+对于DMR使用区域注释（如promoter，exon，intron，CGI，CGI shore，repeat，TSS，TES 等）; 并且对有genename的基因区域进行信息添加，结果如下：
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/05.DMR/all.DMR.result.annotation.txt',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+(1) chr ：染色体ID
+(2) start ：DMR起始位点
+(3) end ：DMR终止位点
+(4) DMR_length ：DMR长度
+(5) C_number ：DMR区域位点数目
+(6) group1_meanMethy ：case组平均甲基化水平
+(7) group2_meanMethy ：control组平均甲基化水平
+(8) diff.Methy ：差异甲基化水平
+(9) areaStat ：统计显著值，其绝对值越高表明区域差异越明显
+(10) C_context ：序列环境类型
+(11) regionID ：区域ID(可能是基因ID，repeatID，CGI位置信息)
+(12) region : 区域类型
+(13) Gene name : 若为基因ID相关区域，并且有基因名称和相关描述
+(14) Gene description : 基因相关描述
+
+
+###  DMR长度分布 
+
+有文章表明：DMR长度分布在几百到几千bp，并且服从正态分布模型 （Deqiang Sun ，2015；Yalu Wen ，2016）。对3种序列环境DMR长度分布作图，展示如下：
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/05.DMR/","*.DMRs_length.distribution.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.DMRs_length.distribution.png"="","file/05.DMR//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>图5.3 CpG序列环境DMR长度分布展示</p>
+
+<p class='mark'>横坐标代表DMR长度，纵坐标代表在各个长度的密度值，黑色为分布拟合曲线（ 由于在DMR较多时选择较为显著的DMR其长度分布区间可能会不一致）。</p>
+
+
+##  DMR甲基化水平分布展示作图
+
+对于DMR甲基化水平，DSS软件给出差异甲基化区域的平均甲基化水平，用以绘制甲基化水平分布violin_boxplot 。 结果如下 ：
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/05.DMR/","*.DMR.boxplot.CG.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.DMR.boxplot.CG.png"="","file/05.DMR//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>图5.4 CpG序列环境DMR甲基化水平分布展示</p>
+
+
+<p class='mark'>横坐标代表比较组合组别，纵坐标代表甲基化水平值，以小提琴图的形式展示DMR甲基化水平的分布（内为boxplot，侧翼为该甲基化水平下的数量分布情况）。</p>
+
+##  DMR甲基化水平聚类热图
+
+聚类分析有助于分析不同样本间的相关性和差异趋势。对于DMR甲基化水平，根据DSS软件给出的差异甲基化区域的平均甲基化水平绘制聚类热图，以展示组合间甲基化情况和差异情况，其中横向为不同的比较组合，纵向为DMR甲基化水平以及聚类结果。
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/05.DMR/","*.DMR.heatmap.CG.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.DMR.heatmap.CG.png"="","file/05.DMR//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>图5.5 CG序列环境DMR甲基化水平聚类热图展示</p>
+
+<p class='mark'>横坐标代表比较组合组别，纵坐标代表甲基化水平值聚类效果，由蓝到红表示甲基化水平由低到高。（ 展示为PNG格式由于DMR较多可能图片质量不太好，结果文件中有PDF版本可供使用 ）</p>
+
+##  DMR锚定区域分布
+
+对于DMR锚定区域（ 如promoter，exon，intron，CGI，CGI shore，repeat，TSS，TES 等 ） ，进行区分hyper （ 高甲基化DMR ） , hypo （ 低甲基化DMR ）统计作图展示 。结果如下 ：
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/05.DMR/","*.DMRs_generegion.distribution.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.DMRs_generegion.distribution.png"="","file/05.DMR//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+<p class='mark'>图5.6 CG序列环境DMR锚定区域展示</p>
+
+<p class='mark'>横坐标代表各个区域类别，纵坐标代表hyper/hypo DMR在各个区域的DMR的数目 。</p>
+
+
+经过统计检验后会有一个统计值areaStat ，以表示DMR区域差异显著情况 。在此以circos图的形式反映特定染色体上DMR的显著性 ，以及DMR在染色体上的分布情况 ：
+
+
+<p class='mark'>图5.7 CG序列环境DMR分开Circos展示</p>
+
+circos图，图形展示说明，从外向内：
+（1）Hyper DMR统计值 log5（ |areaStat| ）;向外圆点越高越大表示位置差异越显著，以红色圈表示
+（2）TE，repeat原件占比热图（ 颜色表示见标尺 ）PS：如果提供repeat则有
+（3）gene密度热图（ 颜色表示见标尺 ）
+（4）Hypo DMR统计值log5（ |areaStat| ）;向内圆点越高越大表示位置差异越显著，以蓝色圈表示
+
+## GO富集分析
+
+基于DMR在基因组上的分布，对 gene body 区域 ( 从TSS到TES ) 与DMR（ 分序列环境CG 、CHG 、CHH ）有交叠的基因进行功能富集分析。
+Gene Ontology（简称 GO,http://www.geneontology.org/）是基因功能国际标准分类体系。对DMR区域相关基因做GO富集分析，可以挖掘出所研究的生物学问题相关的生物学过程。GO富集分析方法采用GOseq（Young et al, 2010）, 此方法基于 Wallenius non-central hyper-geometric distribution。其特点是从某个类别中抽取个体的概率与从某个类别之外抽取一个个体的概率是不同的，这种概率的不同是通过对基因长度的偏好性进行估计得到的，从而能更为准确地计算出GO Term 被DMR相关基因富集的概率。下面展示的是DMR相关基因GO富集的结果。( 结果文件中有详细分序列环境，区分DMR锚定基因ALL/Hyper/Hypo，富集分析结果 )
+
+<p class='mark'>表 DMR相关基因GO富集列表</p>
+
+
+DMR相关基因 ( 分序列环境 ) GO富集柱状图，直观的反映出在生物过程(biological process)、细胞组分(cellular component)和分子功能(molecular function)富集的GO term上DMR相关基因的个数分布情况。
+
+该部分展示图形主要有：1、富集的GO相关的基因的分类统计图（横向柱形图）； 2、显著富集的term做分布注释（纵向柱形图）； 3、显著富集的term分布注释与背景基因比较（纵向柱形图）
+
+GO富集结果展示如下：（ 结果文件中有详细分序列环境，区分DMR锚定基因ALL/Hyper/Hypo，富集作图pdf格式结果 ）
+
+
+
+## KEGG谢通路富集分析
+
+在生物体内，不同基因相互协调行使其生物学功能，通过Pathway显著性富集能确定DMR相关基因参与的最主要生化代谢途径和信号转导途径。KEGG（Kyoto Encyclopedia of Genes and Genomes）是有关Pathway的主要公共数据库（Kanehisa,2008）。Pathway显著性富集分析以KEGG Pathway为单位，应用超几何检验，找出与整个基因组背景相比，在DMR相关基因中显著性富集的Pathway。KEGG代谢通路富集的结果如下：( 结果文件中有详细分序列环境，区分DMR锚定基因ALL/Hyper/Hypo，富集分析结果 )
+
+
+表9.1 DMR相关基因KEGG富集列表
+
+
+<p>
+<br/>
+<img class="logo" align="left" src="src/logo.png"/>
+<h6 style="text-align:right">北京诺禾致源科技股份有限公司</h6>
+<hr/>
+</p>

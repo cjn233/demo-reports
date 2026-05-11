@@ -1,0 +1,46 @@
+
+# 结果展示及说明
+
+## 数据概况 
+
+***
+
+&emsp;&emsp;PacBio平台下机后进行数据统计，统计结果如下：
+
+
+<p class='mark'>表<font face="Arial"> 2-1 测序数据统计</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/01.Cleandata/all.Cleandata.stat.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- **<font face="Arial">Sample ID</font>**：样品名称
+- **<font face="Arial">Mean Concordance</font>**：<font face="Arial">reads</font>的平均测序质量。
+- **<font face="Arial">Number of Bases (bp)</font>**：数据量
+- **<font face="Arial">Number of Reads</font>**：<font face="Arial">reads</font>的数目
+- **<font face="Arial">Mean Read Length (bp)</font>**：<font face="Arial">reads</font>的平均长度
+- **<font face="Arial">N50 ReadLength(bp)</font>**：将得到的<font face="Arial">Subreads</font>按照长度从长到短排序，依次累加<font face="Arial">reads</font>的长度直至不小于总长<font face="Arial">50%</font>时的<font face="Arial">Subreads</font>的长度。
+
+&emsp;&emsp;<font face="Arial">Subreads</font>的长度分布图如下：
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/01.Cleandata/","*.post_filter_readlength_histogram.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.post_filter_readlength_histogram.png"="","file/01.Cleandata//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>图 2-1 Read长度分布的reads条数（纵坐标）；Subreads序列长度（横坐标）</p>
+
+&emsp;&emsp;结果文件目录：Result/01.Cleandata/
+
+<p>
+<br/>
+<img class="logo" align="left" src="src/logo.png"/>
+<h6 style="text-align:right">北京诺禾致源科技股份有限公司</h6>
+<hr/>
+</p>
+

@@ -1,0 +1,160 @@
+## 甲基化位点覆盖度分析
+
+&emsp;&emsp;通过上面的比对、位点calling；以及对甲基化数据的基因组覆盖度/深度、C位点覆盖度/深度统计评估后，接着将进行甲基化的C位点分析，筛选鉴定可靠的甲基化位点，对于鉴定出的甲基化位点，计算其甲基化水平，公式为：ML=mC/(mC+umC)。其中ML为甲基化水平，mC和umC分别代表甲基化C和未甲基化C的位点支持的reads个数比对结果。
+
+### 甲基化位点检测
+
+<p class='mark'>表3.1 C位点甲基化水平列表</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/03.methystat/all_sample.methylation_summary.stat.txt',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+<p class='mark'>注：我们对该表格设置了<font face="Arial">Copy/Print/Download</font>以及<font face="Arial">Search</font>功能，点击<font face="Arial">Copy</font>可以复制表格中数据，用户可以任意新建<font face="Arial">excel</font>或文本文档，可以将数据粘贴其中，并保留原有的行和列的格式；点击<font face="Arial">Print</font>则可以打印表格中数据（链接打印机的情况下）；点击<font face="Arial">Download</font>可以以<font face="Arial">CSV、Excel、PDF</font>的三种格式下载表格中数据。在<font face="Arial">Search</font>方框中输入指定信息，则会在下方表格中显示包含该信息的所有内容。以下表格中涉及的<font face="Arial">Copy/Print/Search</font>功能与此处相同。</p>
+
+- Chr_nums：染色体编号
+- POS：该位点在染色体上的位置；
+- Strand:该位点在染色体上的链信息；
+- Methylation_Level：甲基化水平，计算公式为：甲基化的C/(甲基化的C+非甲基化的C)；
+- mC_count：甲基化C的个数；
+- umC_count：非甲基化C的个数
+- Context：C位点类型
+
+<p class='mark'>表3.2 C位点的覆盖度水平</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/03.methystat/all_sample.mC_level_Identification_stat.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+<p class='mark'>注：我们对该表格设置了<font face="Arial">Copy/Print/Download</font>以及<font face="Arial">Search</font>功能，
+点击<font face="Arial">Copy</font>可以复制表格中数据，用户可以任意新建<font face="Arial">excel</font>或文本文档，可以将数据粘
+贴其中，并保留原有的行和列的格式；点击<font face="Arial">Print</font>则可以打印表格中数据（链接打印机的情况下）；点击<font face="Arial">Download</font>可以以<font face="Arial">CSV、Excel、PDF</font>的三种格式下载表格中数据。在<font face="Arial">Search</font>方框中输入指定信息，则会在下方表格中显示包含该信息的所有内容。以下表格中涉及的<font face="Arial">Copy/Print/Search</font>功能与此处相同。</p>
+- Sample：样品名称
+- C_covgMean：甲基化C位点的平均覆盖度
+- CpG：CpG区域甲基化位点总数
+- CpGIsland： CpGIsland区域甲基化位点总数
+- other_CG：除去CpGIsland区域剩余的甲基化位点
+- MeanCpG(%)：CpG区域甲基化位点平均甲基化水平
+- MeanCpGIsland(%)：CpGIsland区域甲基化位点平均甲基化水平
+- mC_percent(%)：CpG区域甲基化位点占全基因组的比例
+- mCpG_percent(%)： CpGIsland区域甲基化位点占全基因组的比例
+
+
+```{r echo=FALSE}
+#library(slickR)
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/03.methystat/","*.line.methylevel_stat.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.line.methylevel_stat.png"="","file/03.methystat//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+<p class='mark'>图3.1 所有样本甲基化位点水平分布图</p>
+<p class='mark'>说明：横坐标为甲基化水平，纵坐标为所占该序列环境甲基化位点的百分比。（ 对于甲基化水平小于5%以0%表示，甲基化水平大于等于95%以100%表示，中间10%一个阶级以中间值表示 ）</p>
+
+
+
+### 单样本甲基化分析
+&emsp;&emsp;单样本甲基化分析：主要是在单个样本层面进行整体水平甲基化水平密度、染色体水平甲基化水平密度、基因功能区域
+甲基化水平分布和基因上下游2K甲基化水平分布，这个几个方面来展现物种甲基化模式，构建物种甲基化谱。分析结果如下：
+
+```{r echo=FALSE}
+#library(slickR)
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/03.methystat/","*violin.methylevel_stat.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.violin.methylevel_stat.png"="","file/03.methystat//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>图3.2 不同样本全基因组范围甲基化位点水平分布</p>
+<p class="mark">说明：横坐标代表不同样本/组别名称，纵坐标代表甲基化水平。以10kb为一个bin，每个violin的宽度代表处于该甲基化水平下的bin的多少。</p>
+
+
+
+```{r echo=FALSE}
+#library(slickR)
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/03.methystat/","*violin.density.methylevel_stat.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.violin.density.methylevel_stat.png"="","file/03.methystat//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+<p class='mark'>图3.3 不同样本全基因组范围甲基化位点密度分布</p>
+<p class="mark">说明：横坐标代表不同样本/组别名称，纵坐标代表甲基化密度，以10kb为一个bin。每个violin的宽度代表处于该甲基化密度下的bin的多少</p>
+
+
+
+```{r echo=FALSE}
+#library(slickR)
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/03.methystat/","*circos_level.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.circos_level.png"="","file/03.methystat//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+<p class='mark'>图3.4 单样本甲基化水平circos图</p>
+<p class="mark">说明：采用circos图方式展示甲基化密度在染色体上的分布情况，由外向内依次表示：CG序列环境甲基化密度，TE原件所占比例密度热图，gene数目密度热图；内部标尺：MC密度热标：由绿转黄到红依次表示甲基化密度由低到高，TE比例热标：由绿转黑到红依次表示repeat序列比例由低到高，gene密度热标：由灰白到黑表示基因数目由低到高。TE密度计算方式：计算TE（repeat原件）比例，为该bin内repeat所占的总长度比（没有repeat则不进行该分析）；gene密度计算：计算各个bin所含基因数目的多少。</p>
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/03.methystat/","*.circos_density.level.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.circos_density.level.png"="","file/03.methystat//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+```
+
+
+<p class='mark'>图3.5 单样本甲基化密度circos图</p>
+<p class="mark">说明：采用circos图方式展示甲基化密度在染色体上的分布情况，由外向内依次表示:甲基化水平线性展示,gene数目密度热图,甲基化密度线性展示; gene密度热标：由灰白到黑表示基因数目由低到高。</p>
+
+### 功能区域甲基化水平分布
+&emsp;&emsp;对每种context中C位点在各种基因组功能区域（如promoter，exon，intron，CGI，CGI shore，repeat等。 其中，promoter区为TSS位点上游2kb的区域；通常哺乳动物的CGI和CGI shore使用cpgIslandExt进行预测，repeat使用RepeatMasker预测本物种或其近源物种。）的平均甲基化水平进行统计，每个样本的基因组功能元件的平均甲基化水平分布:
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/03.methystat/","*.mC_genomic_feature_level.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.mC_genomic_feature_level.png"="","file/03.methystat//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+
+```
+<p class='mark'>图3.6 样本甲基化水平在不同基因组元件上的分布</p>
+<p class="mark">说明：横坐标代表不同区域，纵坐标代表甲基化水平。将每个基因的各个区域分别等分成50个bin，然后对所有区域的对应的bin的C位点水平取平均值，颜色代表CpG区域的序列context。</p>
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/03.methystat/","*.gene_updown_2K_level.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.gene_updown_2K_level.png"="","file/03.methystat//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+
+```
+<p class='mark'>图3.7 样本甲基化水平在genebody上下游2K的分布</p>
+<p class="mark">说明：横坐标代表不同区域，纵坐标代表甲基化水平。将每个基因的各个区域分别等分成50个bin，然后对所有区域的对应的
+bin的C位点水平取平均值，颜色代表CpG区域的序列context。</p>
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/03.methystat/","*.mc_cgi_region_level.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.mc_cgi_region_level.png"="","file/03.methystat//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+
+```
+<p class='mark'>图3.8 样本甲基化水平在CGI和CGI shore的分布</p>
+<p class="mark">说明：横坐标代表不同区域，纵坐标代表甲基化水平。将每个基因的各个区域分别等分成50个bin，然后对所有区域的对应的
+bin的C位点水平取平均值，颜色代表CpG区域的序列context。</p>
+
+&emsp;&emsp;结果文件目录：Result/03.methystat/*
+
+<p>
+<br/>
+<img class="logo" align="left" src="src/logo.png"/>
+<h6 style="text-align:right">北京诺禾致源科技股份有限公司</h6>
+<hr/>
+</p>

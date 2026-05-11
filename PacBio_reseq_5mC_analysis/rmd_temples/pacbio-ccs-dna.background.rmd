@@ -1,0 +1,92 @@
+
+```{r echo=FALSE}
+library(knitr)
+data <- read.delim('file/project_info.xls',sep='\t',header=T)
+kable(data, table.attr = "class=\"nowrap\"","html") %>%
+kable_styling(bootstrap_options=c("striped","hover","condensed"))
+```
+
+# 总体工作流程概述
+## 背景介绍
+
+<img class="normal" src="src/sequencing_theory.png">
+
+### Pacbio 技术简介
+
+&emsp;&emsp;近年来，随着高通量测序技术的发展，三代测序逐渐成为基因组研究的新兴手段。由于二代测序读长短，不能跨过高重复和低复杂度区域，而以PacBio为代表的第三代测序技术有效的解决了这个问题。该平台利用单分子实时测序，又称SMRT（Single Molecule Real-Time）测序，构建超长片段的文库，得到超长的reads。Sequel II 和 IIe systems测序仪是美国太平洋生物技术公司（Pacific Biosciences ： http://www.pacb.com），基于Sequel II 和 IIe systems平台最新推出的第三代测序平台，该系统以其测序通量高、数据成本低、周期短等特点优于RSII平台。
+
+### 平台优势
+
+1. 超长的测序读长。平均读长12-15kb，最长可达70kb，轻松跨过高重复和低复杂区域；
+2. 超高的测序通量。一个SMRT cell上由原来的15万个ZMW孔增加到100万个，极大的提高了测序通量；
+3. 无GC偏好性。在高GC含量区域可以完全跨过，保证序列的均匀覆盖度；
+4. 无PCR扩增偏向性。DNA建库过程中不需要进行PCR扩增，避免了覆盖度不均一和PCR冗余；
+5. 直接检测碱基修饰。根据不同类型的修饰碱基具有不同的DNA聚合酶动力学特征，直接判断碱基的甲基化类型。
+
+### 测序原理
+
+SMRT(Single-Molecule,Real-Time)测序即单分子实时测序（边合成边测序），
+其原理是：
+&emsp;&emsp;当DNA与聚合酶形成的复合物被ZMW（零模波导孔）捕获后，4种不同荧光标记的dNTP通过布朗运动随机进入检测区域并与聚合酶结合，与模板匹配的碱基生成化学键的时间远远长于其他碱基停留的时间。因此统计荧光信号存在时间的长短，可区分匹配的碱基与游离碱基。通过统计4种荧光信号与时间的关系，即可测定DNA模板序列。
+
+<img class="normal" src="src/LRQC.pacbio-ccs.background.png">
+
+## 测序流程
+
+### DNA样品检测
+
+诺禾致源对DNA样品的检测主要包括2种方法：
+
+1. 琼脂糖凝胶电泳分析DNA降解程度以及是否有RNA、蛋白质污染；
+2. Qubit对DNA浓度进行精确定量。
+
+### 文库构建
+
+将基因组DNA经26G Needle片段化，使用BluePippin选择20kb以上的片段，经末端修复和加A尾后，再在片段两端分别连接接头，制备DNA 文库，如图所示。
+
+<img class="normal" src="./src/LRQC.pacbio-ccs-dna.library.png">
+
+### 上机测序
+
+库检合格，根据文库的有效浓度及数据产出需求运用PacBio Sequel IIe 平台进行测序。
+
+### HiFi reads获取
+
+PacBio数据下机后，使用仪器自带的SMRTLINK（v11）进行一致性CCS序列（circular consensus sequencing）的获得，CCS序列的准确性达到99.9%单分子水平。
+
+<img class="normal" src="./src/LRQC.pacbio-ccs-hifireads.png">
+
+### 引言
+
+&emsp;&emsp;DNA甲基化是一种被广泛研究的表观遗传修饰方式，与组蛋白修饰等方式一起，在调控基因表达和染色质构象等方面发挥了重要作用。通常甲基化DNA指5-甲基胞嘧啶（5mC），它是在DNA甲基转移酶（DNMT）的作用下将甲基基团添加到胞嘧啶的5’C位置上形成的结构（Vertino PM, 1996）。哺乳动物细胞中甲基化主要发生在CG双核苷酸的胞嘧啶上（Goldberg AD, 2007），植物细胞中则存在很大比例的non-CG（CHH、CHG，H代表A、C、T）甲基化（Jackson JP, 2002）。
+
+&emsp;&emsp;一般来说，高DNA甲基化水平会抑制基因表达，去甲基化则可以使得基因重新表达。DNA甲基化参与了众多的细胞生命活动，包括细胞分化、组织特异性基因表达、基因组印记、X染色体失活等（Bird A, 2002; Jones PA, 2001; Reik W, 2003）。异常的DNA甲基化会导致发育异常、肿瘤等疾病的发生。因此，DNA甲基化的研究对于深入理解基因表达、个体发育以及疾病的发生、发展机制都具有重要意义。
+
+
+### 生物信息分析流程
+
+<img class="normal" src="src/analysis_method_methy.png">
+
+<p class='mark'>图 1-1 生物信息分析流程图</p>
+
+信息分析分以下几个步骤：
+
+&emsp;&emsp;1 原始下机数据处理 此步骤过滤测序质量值低的reads，保留带有甲基化信号的高质量reads；
+
+&emsp;&emsp;2 参考基因组比对，根据比对质量过滤掉部分低质量比对，并将比对结果输出；
+
+&emsp;&emsp;3 甲基化水平分析 根据比对位置和比对的质量值，统计甲基化位点信息，对于鉴定出的甲基化位点，计算其甲基化水平 ；
+
+&emsp;&emsp;4 甲基化位点motif识别 使用全基因组该序列环境位点信息和鉴定为甲基化的位点序列信息作Logo Plots，研究不同context下甲基化胞嘧啶上下游的序列特征；
+
+&emsp;&emsp;5 差异甲基化修饰区域(Differentially Methylated Region，DMR)鉴定与注释:对不同样 本的甲基化位点进行聚类得到DMR，并进行注释; 
+
+&emsp;&emsp;6 DMR相关基因功能分析:通过注释结果确定DMR相关基因，对其进行功能分类富集分 析和信号通路及网络富集分析。 
+
+&emsp;&emsp;注:此分析流程包括该产品的所有分析内容，本项目具体分析内容以此报告为准。
+
+
+<img class="logo" align="left" src="src/logo.png"/>
+<h6 style="text-align:right">北京诺禾致源科技股份有限公司</h6>
+<hr/>
+</p>

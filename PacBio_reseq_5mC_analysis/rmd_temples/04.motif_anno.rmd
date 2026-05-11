@@ -1,0 +1,28 @@
+
+##  甲基化位点motif识别
+
+ 
+&emsp;&emsp;Motif 表示包含mC位点在内的上下游9bp 的碱基分布特征，可以表征序列保守性，其可能在基因表达调控中发挥作用。motif 分析对DNA-protein binding sites等的发现有重要的意义。对于各个序列环境（CG，CHG，CHH），我们使用全基因组该序列环境位点信息和鉴定为甲基化的位点序列信息（取包括位点在内的9bp的碱基）作Logo Plots  ( Lister R , Pelizzola M , Dowen RH  et al. (2009) )，研究不同context下甲基化胞嘧啶上下游的序列特征。
+
+<img class="normal" src="./src/motif.png">
+<p class='mark'>图4.1 不同序列环境下甲基化C位点相邻碱基的logo图</p>
+
+<p class='mark'>说明： 横坐标表示参考序列上每个位点的测序深度，左纵坐标对应图中Sequencing depth统计，表示不同测序深度的比例统计；右纵坐标对应图中Cumulative sequencing depth统计，表示测序深度比例的累加值分布，从高深度到低深度统计分布情况。</p>
+
+&emsp;&emsp;我们提供BS-Seq检测的C位点甲基化水平的bw格式文件，以反应全基因各个位置的甲基化水平分布 ，部分物种还提供相应的参考基因组和注释文件，并推荐使用IGV（Integrative Genomics Viewer） 浏览器对bw文件进行可视化浏览（浏览示意图如下所示）（ James T. Robinson et al . Nature Biotechnology (2011) ）。
+- (1) 在不同尺度下显示单个或多个样本在基因组上特定位置的甲基化情况，包括在各个染色体和在注释的外显子、内含子、剪接接合区、基因间区的甲基化水平、位点分布等；
+- (2) 在不同尺度下显示不同区域的甲基化位点密度、水平
+- (3) 显示基因的注释信息；
+- (4) 既可以从远程服务器端下载各种注释信息，又可以从本地加载注释信息。
+
+<img class="normal" src="./src/IGV.png">
+<p class='mark'>图4.2  甲基化位点IGV可视化 </p>
+<p class='mark'>IGV可视化示意图:在IGV确定后保存为SVG格式然后使用AI编辑为如下形式,在IGV基础下通过AI编辑后展示结果（ 客户自己调整）</p>
+
+
+<p>
+<br/>
+<img class="logo" align="left" src="src/logo.png"/>
+<h6 style="text-align:right">北京诺禾致源科技股份有限公司</h6>
+<hr/>
+</p>

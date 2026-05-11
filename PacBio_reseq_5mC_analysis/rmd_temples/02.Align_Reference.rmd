@@ -1,0 +1,82 @@
+
+## 参考基因组比对分析
+
+### 比对结果统计
+
+
+&emsp;&emsp;采用SMRT Link 11.x及以上版本直接运行primrose软件，将移除CCS reads包含的4个kinetics标签，生成包含2个碱基修饰相关标签（Mm和Ml）hifi reads序列信息，使用minimap2软件将序列比对到参考基因组上，根据比对位置和比对的质量值，统计比对到参考基因组上的覆盖度和深度。测序覆盖深度是指测序得到的碱基总量（bp）与基因组大小（Genome）的比值，它是评价测序量的指标之一。测序覆盖度可以理解为检测到全基因组的多少区域，反映了一个区域被平均多少个reads检测到。
+
+<p class='mark'>表2.1  各样本与参考基因组比对结果统计</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/02.mapping/all_sample.mapping_summary.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+<p class='mark'>注：我们对该表格设置了<font face="Arial">Copy/Print/Download</font>以及<font face="Arial">Search</font>功能，点击<font face="Arial">Copy</font>可以复制表格中数据，用户可以任意新建<font face="Arial">excel</font>或文本文档，可以将数据粘贴其中，并保留原有的行和列的格式；点击<font face="Arial">Print</font>则可以打印表格中数据（链接打印机的情况下）；点击<font face="Arial">Download</font>可以以<font face="Arial">CSV、Excel、PDF</font>的三种格式下载表格中数据。在<font face="Arial">Search</font>方框中输入指定信息，则会在下方表格中显示包含该信息的所有内容。以下表格中涉及的<font face="Arial">Copy/Print/Search</font>功能与此处相同。</p>
+
+- Samples： 样品名称
+- avg_depth: 基因组所有位点的平均覆盖深度
+- coverage1X: 基因组上大于等于1×测序深度的bases数占基因组总长的比例
+- coverage4X：基因组上大于等于4×测序深度的bases数占基因组总长的比例
+- coverage10X: 基因组上大于等于10×测序深度的bases数占基因组总长的比例
+- coverage20X: 基因组上大于等于20×测序深度的bases数占基因组总长的比例
+- all_reads: CCS序列的reads数
+- mapped_reads: 比对到参考基因组上的reads的数目
+- unmapped_reads: 未比对到参考基因组上的reads的数目
+- mapped_rate: 比对上的reads数占总reads数的比例
+- unmapped_rate: 未比对上的reads数占总reads数的比例
+- mapped_readlength_n50: 比对上的reads长度的N50
+- mapped_Mean_Concordance: 比对上的reads的平均质量值
+
+```{r echo=FALSE}
+#library(slickR)
+library(stringr)
+library(bsselectR)
+state_plots <-  paste0(list.files("file/02.mapping/","*.accumulative.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.accumulative.png"="","file/02.mapping//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+
+```
+<p class='mark'>图2.1 各样本的CCS reads比对至参考基因组的深度分布图</p>
+
+<p class='mark'>说明： 横坐标表示参考序列上每个位点的测序深度，左纵坐标对应图中Sequencing depth统计，表示不同测序深度的比例统计；右纵坐标对应图中Cumulative sequencing depth统计，表示测序深度比例的累加值分布，从高深度到低深度统计分布情况。</p>
+
+
+```{r echo=FALSE}
+#library(slickR)
+library(stringr)
+library(bsselectR)
+state_plots <-  paste0(list.files("file/02.mapping/","*.mapped_concordance_vs_read_length.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.mapped_concordance_vs_read_length.png"="","file/02.mapping//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+
+#ggplotly(p)
+
+```
+<p class='mark'>图2.2 各样本的CCS reads比对至参考基因组的长度和质量分布图 </p>
+
+<p class='mark'>说明：横坐标表示mapping至参考基因组的ccs reads长度分布，左纵坐标对表示mapping上ccs reads的质量分布；右纵坐标对应reads数量统计，表示比对到参考基因组上相应的长度和质量的ccs reads的数量统计。</p>
+
+
+
+```{r echo=FALSE}
+#library(slickR)
+library(stringr)
+library(bsselectR)
+state_plots <-  paste0(list.files("file/02.mapping/","*.chrom_RCP.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.chrom_RCP.png"="","file/02.mapping//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+
+```
+<p class='mark'>图2.3 Reads在各染色体的分布柱状图</p>
+<p class='mark'>图2.3 横轴为各染色体的名称，纵轴：左边是比对到相应染色体reads的平均深度，对应的是柱状图；右边是每条染色体被reads覆盖的比例，对应的是散点图。</p>
+
+&emsp;&emsp;结果文件目录：Result/02.mapping/
+
+<br/>
+<img class="logo" align="left" src="src/logo.png"/>
+<h6 style="text-align:right">北京诺禾致源科技股份有限公司</h6>
+<hr/>
+</p>

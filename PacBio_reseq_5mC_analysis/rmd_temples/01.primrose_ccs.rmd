@@ -1,0 +1,51 @@
+
+# 结果展示及说明
+
+## 数据概况 
+
+&emsp;&emsp;1. 原始的测序reads是包含两端接头的哑铃型结构序列，称为Polymerase reads。原始数据从接头处打断并过滤掉接头序列后得到subreads，subreads按照标准Filtering subreads by minimum length >=50 进行过滤。
+
+&emsp;&emsp;2. 在subreads基础上，采用ccs软件产生高精度的HiFi reads，在这里我们设定的标准是min-passes=3，min-rq=0.99，--hifi-kinetics，即所有consensus reads质量值都在Q20以上，且每条序列都有对应的4个kinetics标签。
+
+&emsp;&emsp;3. 采用SMRTLink 11.x及以上版本直接运行primrose软件，将移除CCS reads包含的4个kinetics标签，生成包含2个碱基修饰相关标签（Mm和Ml）hifi reads序列信息。
+
+&emsp;&emsp;一般来说，该部分数据为下游分析的有效输入数据，统计结果如下：
+
+<p class='mark'>表1.1 HIFI测序数据统计</p>
+
+```{r echo=FALSE}
+library(DT)
+data <- read.delim('file/01.primrose/all_sample.ccs_stat.xls',sep='\t',header=T)
+datatable(data,rownames=FALSE,extensions=c('KeyTable','Buttons','FixedColumns'),options=list(keys=T,scrollX=T,dom = 'Bfrtip',buttons = list('copy', 'print', list(extend = 'collection',buttons = c('csv', 'excel', 'pdf'),text = 'Download')),initComplete = JS("function(settings, json) {","$(this.api().table().header()).css({'background-color':'#4682B4','color': 'white'});","}")),class='nowrap')
+```
+
+- Sample：样品名称
+- CCS_bases：聚类之后得到的一致性序列的碱基数
+- CCS_number：聚类之后得到的一致性序列的reads数
+- Min_length：最短的CCS长度
+- Max_length：最长的CCS长度
+- Mean_length：CCS的平均长度
+- N50：将得到的CCS按照长度从长到短排序，依次累加CCS的长度直至不小于总长50%时的CCS read的长度。
+
+&emsp;&emsp;统计各个样品CCS序列的长度分布图如下：
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("file/01.primrose/","*ccs_distri.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.ccs_distri.png"="","file/01.primrose//"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',live_search=TRUE,show_tick=TRUE,style='btn-info')
+
+```
+
+<p class='mark'>图1.1 CCS reads长度分布的，对应长度reads条数（纵坐标）；CCS序列长度（横坐标）</p>
+
+&emsp;&emsp;结果文件目录：Result/01.primrose/*
+
+<p>
+<br/>
+<img class="logo" align="left" src="src/logo.png"/>
+<h6 style="text-align:right">北京诺禾致源科技股份有限公司</h6>
+<hr/>
+</p>
+
