@@ -1,0 +1,631 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<TITLE>Transcriptome and Metabolome Correlation Analysis Report</TITLE>
+<META NAME="Author" CONTENT="zhangyu">
+<META NAME="Author" CONTENT="qiufujun">
+<META NAME="Version" CONTENT="20150320v2.1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+<link rel="stylesheet" type="text/css" href="src/css/text.css">
+<link rel="stylesheet" type="text/css" href="src/js/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
+<link rel="stylesheet" href="src/css/style.css" />
+<script src="src/js/jquery-1.4.2.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+	var jqueryv14 = $.noConflict(true);
+</script>
+<script src="src/js/jquery-1.7.2.min.js" type="text/javascript"></script>
+<script src="src/js/scrollTop.js" type="text/javascript"></script>
+<script src="src/js/common.js" type="text/javascript"></script>
+<script src="src/js/jquery.albumSlider.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="src/js/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
+<script type="text/javascript" src="src/js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+<script type="text/javascript" src="src/js/operate.js"></script>
+<script src="src/js/layer/layer.min.js"></script>
+<script>
+layer.use('extend/layer.ext.js'); //载入layer拓展模块
+</script>
+<style media="print">
+.noprint {
+	display: none;
+}
+
+</style>
+<script type="text/javascript">
+</script>
+<script type="text/javascript">
+</script>
+<script type="text/javascript">
+    $(function(){
+        $(window).scroll(function(){
+			var initoffset_snp = $('#'+12).offset();
+			var currenttop_snp = $(window).scrollTop()+100;
+			if (currenttop_snp > initoffset_snp.top) {
+				var topScroll=$("#left")[0].scrollHeight;
+				var divheight=$("#left").height();
+				var stop=topScroll-divheight;
+				$("#left").scrollTop(stop);
+			}else{
+				$("#left").scrollTop(0);
+			}
+        })
+    })
+</script>
+
+</head>
+<body>
+<div class="noprint">
+  <div style="display: block;" id="goTopBtn"><a class="backtotop" title="Back to Top"><img src="src/images/goTop.jpg" width="30" height="30" class="back-tip"/></a></div>
+</div>
+<div id="menu" class="noprint">
+	<div class="mulu">
+    <center>
+    <a href="javascript:void(0);" id="zhankai"><b></b></a><a href="javascript:void(0);" id="kaiguan" ><b>[Menu]</b></a>
+    </center>
+	</div>
+<div id="left" style="display:block">
+<div class="title"><a href="#Research Overview" class="shouqi" id="analyses_2">&nbsp;
+      <span>
+      Research Overview</span>&nbsp;<img src="src/images/arrow_right.png" style="display:none; margin-top:5px" class="arrow"/></a></div>
+<span></span>
+<div class="title"><a href="javascript:void(0)" class="shouqi" id="result_3">&nbsp;
+      <span>
+      Correlation Analysis</span>&nbsp;<img src="src/images/arrow_up.png" style="display:none" class="arrow"/></a></div>
+<div class="lanmu-content" style="display:block">
+	<dl class="lanmu-list">
+		<dd class="menusecondtitle"><a href="#Transcriptome and Metabolome Project Overview" id="nav_order_clean"><b>1.Transcriptome and Metabolome Project Overview</b></a></dd>
+		<dd><a href="#Comparison pair information" id="nav_order_tophat">&nbsp;&nbsp;1.1 Comparison pair information</a></dd>
+		<dd><a href="#Sample information" id="nav_order_tophat">&nbsp;&nbsp;1.2 Sample information</a></dd>
+		<dd><a href="#Transcriptomic-Metabolomic regulatory analysis" id="nav_order_tophat">&nbsp;&nbsp;1.3 Transcriptomic-Metabolomic regulatory analysis</a></dd>
+		<dd><a href="#Nine-Quadrant correlation analysis" id="nav_order_tophat">&nbsp;&nbsp;1.4 Nine-Quadrant correlation analysis</a></dd>
+		<dd class="menusecondtitle"><a href="#Correlation analysis of differential gene and metabolite expression" id="nav_order_clean"><b>2.Correlation analysis of differential gene and metabolite expression</b></a></dd>
+		<dd><a href="#Correlation heatmap analysis" id="nav_order_tophat">&nbsp;&nbsp;2.1 Correlation heatmap analysis</a></dd>
+		<dd><a href="#Correlation network analysis" id="nav_order_tophat">&nbsp;&nbsp;2.2 Correlation network analysis</a></dd>
+		<dd class="menusecondtitle"><a href="#O2PLS data integration analysis" id="nav_order_clean"><b>3.O2PLS data integration analysis</b></a></dd>
+		<dd class="menusecondtitle"><a href="#Differential genes and metabolites pathway enrichment analysis" id="nav_order_clean"><b>4.Differential genes and metabolites pathway enrichment analysis</b></a></dd>
+		<dd><a href="#KEGG enrichment analysis" id="nav_order_tophat">&nbsp;&nbsp;4.1 KEGG enrichment analysis</a></dd>
+		<dd><a href="#iPath pathway visualization analysis" id="nav_order_tophat">&nbsp;&nbsp;4.2 iPath pathway visualization analysis</a></dd>
+		<dd><a href="#KEGG pathview visualization analysis" id="nav_order_tophat">&nbsp;&nbsp;4.3 KEGG pathview visualization analysis</a></dd>
+</div>
+
+
+
+
+<div class="title"><a href="#Reference" class="shouqi" id="ref_id">&nbsp;<span> Reference</span>&nbsp;<img src="src/images/arrow_right.png" style="display:none; margin-top:5px" class="arrow"/></a>
+</div>
+    <span></span> </div>
+</div>
+
+<div id="main">
+<div id="page">
+<br><br><br><br>
+<h1 id="pipline">Transcriptome and Metabolome Correlation Analysis Report</h2>
+<br><br><br>
+    <h2 id="pipline">Project Information</h2>
+    <p class="paragraph">Project Number：demo_MetTran</p>
+    <p class="paragraph">Project Name：demo_MetTran</p>
+    <p class="paragraph">Report Date：2025-06-24</p>
+    <p class="paragraph">Report Number：demo_MetTran_20250424</p>
+    <br>
+</div>
+<div id="page">
+<p class="head"><a href="#home" title = "Back to Home"><img class="logo" align="left" src="src/images/logo.png" /></a> <a name="Research Overview"> </a><hr/></p>
+    <h2 id="pipline">Research Overview</h2>
+    <p class="paragraph">The rapid development of multi-omics technologies has facilitated a transition from detailed reductionist studies to systematic, integrated investigations, enabling different omics datasets to complement and validate each other for comprehensive functional genomic interpretation. Genomics reveals the relationship between gene structure and function through whole-genome sequencing and functional annotation; transcriptomics studies gene transcription profiles and regulatory mechanisms at the whole-cell level; proteomics investigates the composition and dynamic changes of proteins as direct functional executors in organisms; while metabolomics examines the temporal changes of metabolites in biological systems under external stimuli or perturbations, representing the discipline closest to phenotypic manifestations. This integrated multi-omics approach provides a powerful framework for understanding biological systems from molecular to functional levels.<SUP>[1]</SUP>The integration of multi-omics data enables a comprehensive understanding of biological systems, and as research at individual omics layers progressively matures, the transition from compartmentalized investigations to holistic system-level analysis emerges as an inevitable trajectory in scientific advancement.</p>
+    <p class="paragraph">Transcriptomics investigates gene expression patterns at the RNA level, serving as a crucial approach for studying cellular functions.<SUP>[2]</SUP>Metabolomics, as an extension of it, is to reveal the mechanisms underlying biological processes by analyzing systematic changes in small-molecule metabolites. Metabolomics provides more phenotypically significant data support for transcriptomics. Our aim in integrating them is:</p>
+	<p class="paragraph">(1) Cellular activities are coordinately regulated by genes, proteins, and small-molecule metabolites, where functional changes in macromolecules ultimately manifest at the metabolic level. Subtle alterations in gene expression become amplified in metabolic profiles, thereby enhancing detection sensitivity;</p>
+	<p class="paragraph">(2) Non-functional genetic variations are not reflected in metabolic profiles, effectively filtering out noise during information flow from upstream to downstream pathwaysNon-functional genetic variations are not reflected in metabolic profiles, effectively filtering out noise during information flow from upstream to downstream pathways;</p>
+	<p class="paragraph">(3) The number of metabolite species is substantially smaller than that of genes.</p>
+    <p class="paragraph">Comparative analysis between transcriptomic and metabolomic data can uncover post-transcriptional regulatory states of gene expression. Consequently, the relationship between transcriptomics and metabolomics will likely become an indispensable component of future systems biology research. Figure 1 illustrates the workflow for integrative analysis of these two omics.</p>
+    <p class="center"> <img  src="src/images/pipelines.png"  width="60%" /> </p>
+	<p class="name">Figure 1. Transcriptomics and metabolomics correlation analysis workflow</p>
+</div>
+<div id="page">
+<p class="head"><a href="#home" title = "Back to Home"><img class="logo" align="left" src="src/images/logo.png" /></a> <a name="Correlation Analysis"> </a><hr/></p>
+
+<h2>Correlation Analysis</h2>
+<a name="Transcriptome and Metabolome Project Overview"></a >
+	<h3 id="">1.Transcriptome and Metabolome Project Overview</h3>
+	<a name="Comparison pair information"></a >
+	<h4 id="">1.1 Comparison pair information</h4>
+<p class="name">Table1.1 Comparison pair situations</p>
+<p class="center"><div id="tb"><table>
+<tr><th>Metabolomics (M)</th><th>Transcriptomics (T)</th></tr>
+
+<tr><td>demo_CK.vs.Test</td><td>CkSvstestS</td><tr>
+
+</table></p>
+
+</div>
+<a name="Sample information"></a >
+<h4 id="">1.2 Sample information</h4>
+<p class="name">Table1.2 Sample information</p>
+<p class="center"><div id="tb"><table>
+<tr><th>Metabolome sample</th><th>Metabolome sample in groups</th><th>Transcriptome sample</th><th>Transcriptome sample in groups</th></tr>
+
+<tr><td>CK1</td><td>demo_CK</td><td>CkS1</td><td>CkS</td><tr>
+
+<tr><td>CK2</td><td>demo_CK</td><td>CkS2</td><td>CkS</td><tr>
+
+<tr><td>CK3</td><td>demo_CK</td><td>CkS3</td><td>CkS</td><tr>
+
+<tr><td>Test1</td><td>Test</td><td>testS1</td><td>testS</td><tr>
+
+<tr><td>Test2</td><td>Test</td><td>testS2</td><td>testS</td><tr>
+
+<tr><td>Test3</td><td>Test</td><td>testS3</td><td>testS</td><tr>
+
+</table></p>
+
+</div>
+<a name="Transcriptomic-Metabolomic regulatory analysis"></a >
+<h4 id="">1.3 Transcriptomic-Metabolomic regulatory analysis</h4>
+<p class="paragraph">Transcriptomics and metabolomics measure the expression levels of genes and metabolites in biological specimens (whole organisms, tissues, or cells) under specific conditions. The differential analysis results for each comparison group are presented in the table1.3 below.</p>
+<p class="name">Table1.3 Results of differential gene analysis</p>
+<table border="1" class="dataframe table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Compared Samples</th>
+      <th>Type</th>
+      <th>GeneNum</th>
+      <th>MetNum_neg</th>
+      <th>MetNum_pos</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>demo_CK.vs.Test(CkSvstestS)</td>
+      <td>Up</td>
+      <td>1551</td>
+      <td>19</td>
+      <td>16</td>
+    </tr>
+    <tr>
+      <td>demo_CK.vs.Test(CkSvstestS)</td>
+      <td>Down</td>
+      <td>1277</td>
+      <td>9</td>
+      <td>14</td>
+    </tr>
+  </tbody>
+</table>			
+<p class="center"> <img  src="src/pictures/bar.png"  width="50%" /> </p>								
+								
+	<p class="premark">The detailed results of table:
+	(1) Compared Samples：the former vs the latter;
+	(2) Type：Identified and significant type;
+	(3) GeneNum: Total number of genes with significant difference;
+	(4) MetNum: Total number of metabolites with significant difference.</p>
+  <p class="premark">Corresponding result catalog：statistical table: Result/1.sum/table.xls，statistical bar chart: Result/1.sum/bar.{pdf,png}</p>
+	
+
+<a name="Nine-Quadrant correlation analysis"></a >
+<h4 id="">1.4 Nine-Quadrant correlation analysis</h4>
+<p class="paragraph">Quadrant analysis is a widely used method in correlation studies that enables deeper understanding and insights from complex datasets. The nine-quadrant approach allows identification of key factors with the greatest influence on specific biological phenomena, reveals potential relationships between different variables, and provides visual representation through partitioning data into nine distinct quadrants. In multi-omics integration studies, this method effectively analyzes correlations between two omics data types. The metabolite-gene nine-quadrant plot specifically facilitates screening of significantly altered metabolite-gene pairs, where the abscissa represents transcriptomic fold changes (log2-transformed) and the ordinate displays metabolomic fold changes (log2-transformed). The results are shown in Figure 5.4 (see the result file for the high-definition version of the picture).</p>
+
+
+<p class="center">
+  <div class="albumSlider">
+    <div class="fullview"><img src="src/pictures/demo_CK.vs.Test_pos_CkSvstestS_nine_alldata.png" alt="Nine-Quadrant diagram"/></div>
+    <div class="slider">
+    <div class="button movebackward" title="Scroll Up"></div>
+    <div class="imglistwrap">
+    <ul class="imglist">
+        
+        <li><a id="example1" href="src/pictures/demo_CK.vs.Test_pos_CkSvstestS_nine_alldata.png" ><img src="src/pictures/demo_CK.vs.Test_pos_CkSvstestS_nine_alldata.png" alt="Nine-Quadrant diagram"/></a></li>
+        
+        </ul>
+    </div>
+<div class="button moveforward" title="Scroll Down"></div>
+</div>
+</div>
+</p>
+<p class="center">
+    <div class="albumSlider">
+      <div class="fullview"><img src="src/pictures/demo_CK.vs.Test_neg_CkSvstestS_nine_alldata.png" alt="Nine-Quadrant diagram"/></div>
+      <div class="slider">
+      <div class="button movebackward" title="Scroll Up"></div>
+      <div class="imglistwrap">
+      <ul class="imglist">
+          
+          <li><a id="example1" href="src/pictures/demo_CK.vs.Test_neg_CkSvstestS_nine_alldata.png" ><img src="src/pictures/demo_CK.vs.Test_neg_CkSvstestS_nine_alldata.png" alt="Nine-Quadrant diagram"/></a></li>
+          
+                          </ul>
+      </div>
+  <div class="button moveforward" title="Scroll Down"></div>
+  </div>
+</div>
+</p>
+  <p class="name">Figure1.4 Nine-Quadrant correlation analysis (The upper box is the positive ion mode, the lower box is the negative ion mode)</p>
+
+
+<p class="premark">Note：the abscissa represents transcriptomic fold changes (log2-transformed) and the ordinate displays metabolomic fold changes (log2-transformed).</p>
+<p class="premark">Corresponding result catalog：Nine-Quadrant diagram/Result-*/1.sum/*/*_ninedata.xls.*</p>
+
+
+</div>
+<div id="page">
+
+<p class="head"><a href="#home" title = "Back to Home"><img class="logo" align="left" src="src/images/logo.png" /></a> <a name="Correlation analysis of differential gene and metabolite expression"> </a><hr/></p>
+
+<a name="Correlation analysis of differential gene and metabolite expression"></a >
+<h3 id="">2.Correlation analysis of differential gene and metabolite expression</h3>
+<a name="Correlation heatmap analysis"></a >
+<h4 id="">2.1 Correlation heatmap analysis</h4>
+<p class="paragraph">To evaluate the correlation between significantly differential genes identified through transcriptomics analysis and differential metabolites derived from metabolomics analysis by calculating Pearson correlation coefficient between genes and metabolites. Gene-metabolite pairs with correlation coefficients |r| less than 0 were defined as exhibiting negative correlation, while those with |r| greater than 0 demonstrated positive correlation.</p>
+
+
+<p class="center">
+  <div class="albumSlider">
+    <div class="fullview"><img src="src/pictures/demo_CK.vs.Test_pos_CkSvstestS_corrplot_heatmap.png" alt="correlation analysis heatmap"/></div>
+    <div class="slider">
+    <div class="button movebackward" title="Scroll Up"></div>
+    <div class="imglistwrap">
+    <ul class="imglist">
+        
+        <li><a id="example1" href="src/pictures/demo_CK.vs.Test_pos_CkSvstestS_corrplot_heatmap.png" ><img src="src/pictures/demo_CK.vs.Test_pos_CkSvstestS_corrplot_heatmap.png" alt="correlation analysis heatmap"/></a></li>
+        
+        </ul>
+    </div>
+<div class="button moveforward" title="Scroll Down"></div>
+</div>
+</div>
+</p>
+<p class="center">
+    <div class="albumSlider">
+      <div class="fullview"><img src="src/pictures/demo_CK.vs.Test_neg_CkSvstestS_corrplot_heatmap.png" alt="correlation analysis heatmap"/></div>
+      <div class="slider">
+      <div class="button movebackward" title="Scroll Up"></div>
+      <div class="imglistwrap">
+      <ul class="imglist">
+          
+          <li><a id="example1" href="src/pictures/demo_CK.vs.Test_neg_CkSvstestS_corrplot_heatmap.png" ><img src="src/pictures/demo_CK.vs.Test_neg_CkSvstestS_corrplot_heatmap.png" alt="correlation analysis heatmap"/></a></li>
+          
+                          </ul>
+      </div>
+  <div class="button moveforward" title="Scroll Down"></div>
+  </div>
+</div>
+</p>
+  <p class="name">Figure2.1 Differential metabolites and genes expression correlation analysis heatmap (The upper box is the positive ion mode, the lower box is the negative ion mode)</p>
+  <p class="premark"></p>
+
+
+<p class="premark">Note: The vertical axis represents differential metabolites , while the horizontal axis displays differential genes . The blue represents negative correlation, and the red represents positive correlation. The presented correlation table features the top 500 most statistically significant differential metabolites and genes (ranked by ascending p-value), demonstrating pairwise interactions between these prioritized molecular features.</p>
+<p class="premark">Corresponding result catalog：Correlation table: Result/2.corr/*.vs.*/*.vs.*_corr.xls，Correlation heatmap:Result/2.corr/*.vs.*/*.vs.*_corrplot_heatmap.{pdf,png}</p>
+
+
+
+
+<a name="Correlation network analysis"></a >
+<h4 id="">2.2 Correlation network analysis</h4>
+
+<p class="paragraph">The relationship between metabolites and genes can be visualized through network diagrams, and the selected top10 differential genes and top5 differential metabolites were selected for the network display. The metabolites were marked by yellow and the genes were marked by blue, the line between the metabolites and genes represents the correlation between the two metabolites. The results are shown below:</p>
+
+
+<p class="center">
+        <div class="albumSlider">
+          <div class="fullview"><img src="src/pictures/demo_CK.vs.Test_pos_CkSvstestS_meta_tran_corr_net.png" alt="KEGG图"/></div>
+          <div class="slider">
+          <div class="button movebackward" title="Scroll Up"></div>
+          <div class="imglistwrap">
+          <ul class="imglist">
+          
+          <li><a id="example1" href="src/pictures/demo_CK.vs.Test_pos_CkSvstestS_meta_tran_corr_net.png" ><img src="src/pictures/demo_CK.vs.Test_pos_CkSvstestS_meta_tran_corr_net.png" alt="KEGG图"/></a></li>
+          
+          </div>
+      <div class="button moveforward" title="Scroll Down"></div>
+      </div>
+  </div>
+</p>
+<p class="center">
+  <div class="albumSlider">
+    <div class="fullview"><img src="src/pictures/demo_CK.vs.Test_neg_CkSvstestS_meta_tran_corr_net.png" alt="KEGG图"/></div>
+    <div class="slider">
+    <div class="button movebackward" title="Scroll Up"></div>
+    <div class="imglistwrap">
+    <ul class="imglist">
+    
+    <li><a id="example1" href="src/pictures/demo_CK.vs.Test_neg_CkSvstestS_meta_tran_corr_net.png" ><img src="src/pictures/demo_CK.vs.Test_neg_CkSvstestS_meta_tran_corr_net.png" alt="KEGG图"/></a></li>
+    
+    </div>
+<div class="button moveforward" title="Scroll Down"></div>
+</div>
+</div>
+</p>
+<p class="name">Figure2.2 Correlation network diagram (The upper box is the positive ion mode, the lower box is the negative ion mode)</p>
+<p class="premark">Note：In the graphical representation, rectangular nodes denote molecular entities, with color coding distinguishing metabolite and gene features: yellow rectangles represent metabolites while blue rectangles indicate genes. Edge coloration encodes correlation directionality, with red lines designating positive associations (r > 0) and blue lines signifying negative relationships (r < 0). Edge color intensity scales proportionally with the absolute correlation coefficient magnitude (|r|), where deeper hues reflect stronger correlations.</p>
+<p class="premark">Corresponding result catalog: network diagram:Result/2.corr/*.vs.*/*.vs.*_meta_tran_corr_net.{pdf,png}</p>
+
+</div>
+<div id="page">
+
+<p class="head"><a href="#home" title = "Back to Home"><img class="logo" align="left" src="src/images/logo.png" /></a> <a name="Differential genes and metabolites pathway enrichment analysis"> </a><hr/></p>
+
+<a name="O2PLS data integration analysis"></a >
+<h3 id="">3.O2PLS data integration analysis</h3>
+<p class="paragraph">The O2PLS (Two-Way Orthogonal Partial Least Squares) approach enables bidirectional modeling and predictive analysis between two omics datasets, facilitating the identification of intrinsic relationships and quantification of inter-omics associations. The two-omics data inputted to O2PLS must be potentially associated, and the results of the analysis show the differential genes and differential metabolites related to the association between the two-omics and the genes and metabolites that rank in the top 10 of the contributing genes and metabolites are annotated. Some of the results are shown below (see the result file for the high-definition version of the picture):</p>
+
+
+<p class="center">
+  <div class="albumSlider">
+    <div class="fullview"><img src="src/pictures/demo_CK.vs.Test_pos_CkSvstestS_met_tran_O2PLS.png" alt="O2PLS数据整合分析图"/></div>
+    <div class="slider">
+    <div class="button movebackward" title="Scroll Up"></div>
+    <div class="imglistwrap">
+    <ul class="imglist">
+        
+        <li><a id="example1" href="src/pictures/demo_CK.vs.Test_pos_CkSvstestS_met_tran_O2PLS.png" ><img src="src/pictures/demo_CK.vs.Test_pos_CkSvstestS_met_tran_O2PLS.png" alt="O2PLS数据整合分析图"/></a></li>
+        
+        </ul>
+    </div>
+<div class="button moveforward" title="Scroll Down"></div>
+</div>
+</div>
+</p>
+<p class="center">
+    <div class="albumSlider">
+      <div class="fullview"><img src="src/pictures/demo_CK.vs.Test_neg_CkSvstestS_met_tran_O2PLS.png" alt="O2PLS数据整合分析图"/></div>
+      <div class="slider">
+      <div class="button movebackward" title="Scroll Up"></div>
+      <div class="imglistwrap">
+      <ul class="imglist">
+          
+          <li><a id="example1" href="src/pictures/demo_CK.vs.Test_neg_CkSvstestS_met_tran_O2PLS.png" ><img src="src/pictures/demo_CK.vs.Test_neg_CkSvstestS_met_tran_O2PLS.png" alt="O2PLS数据整合分析图"/></a></li>
+          
+                          </ul>
+      </div>
+  <div class="button moveforward" title="Scroll Down"></div>
+  </div>
+</div>
+</p>
+  <p class="name">Figure3. O2PLS data integration analysis (The upper box is the positive ion mode, the lower box is the negative ion mode)</p>
+  <p class="premark"></p>
+
+
+<p class="premark">Note: The yellow triangles in the figure represent genes and the green dots represent metabolites. The horizontal and vertical coordinates of the graph indicate the scores of metabolome and transcriptome association. The distance from the origin of each point in the graph represents the weight of the gene or metabolite in the association analysis. The further away from the origin, the more the changes of the gene/metabolite affects the other grouping; the closer the distance between the two points, the more relevant the correlation between them is.</p>
+<p class="premark">Corresponding result catalog：O2PLS analysis diagram/Result-*/3.O2PLS/*/*_met_tran_O2PLS.png</p>
+
+</div>
+<div id="page">
+
+<p class="head"><a href="#home" title = "Back to Home"><img class="logo" align="left" src="src/images/logo.png" /></a> <a name="差异基因与差异代谢物通路富集>分析"> </a><hr/></p>
+
+
+<h3 id="">4.Differential genes and metabolites pathway enrichment analysis</h3>
+<a name="KEGG enrichment analysis"></a >
+<h4 id="">4.1 KEGG enrichment analysis</h4>
+<p class="paragraph">All the obtained differential genes and metabolites were mapped to the KEGG pathway database to obtain their common pathway information, and identify the major biochemical pathways and signaling pathways in which the differential metabolites and genes are involved together. Some of the results are shown below（see the result file for the high-definition version of the picture).</p>
+<p class="name">Table4.1　Differential genes and metabolites KEGG pathway analysis</p>
+<div class="huadong"><table border="1" class="dataframe table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Description</th>
+      <th>Pvalue</th>
+      <th>Ratio</th>
+      <th>Count</th>
+      <th>Type</th>
+      <th>ID</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Serotonergic synapse</td>
+      <td>0.011846</td>
+      <td>0.500000</td>
+      <td>2</td>
+      <td>Meta</td>
+      <td>Prostaglandin G2; Thromboxane B2</td>
+    </tr>
+    <tr>
+      <td>Serotonergic synapse</td>
+      <td>0.852561</td>
+      <td>0.132075</td>
+      <td>14</td>
+      <td>Tran</td>
+      <td>ENSMUSG00000024190/ENSMUSG00000032766/ENSMUSG00000068086/ENSMUSG00000020182/ENSMUSG00000003053/ENSMUSG00000025004/ENSMUSG00000025002/ENSMUSG00000000441/ENSMUSG00000034656/ENSMUSG00000032487/ENSMUSG00000033676/ENSMUSG00000060613/ENSMUSG00000025003/ENSMUSG00000032839</td>
+    </tr>
+    <tr>
+      <td>Platelet activation</td>
+      <td>0.049587</td>
+      <td>1.000000</td>
+      <td>1</td>
+      <td>Meta</td>
+      <td>Prostaglandin G2</td>
+    </tr>
+    <tr>
+      <td>Platelet activation</td>
+      <td>0.837398</td>
+      <td>0.135593</td>
+      <td>16</td>
+      <td>Tran</td>
+      <td>ENSMUSG00000062825/ENSMUSG00000020689/ENSMUSG00000026043/ENSMUSG00000033831/ENSMUSG00000028001/ENSMUSG00000033860/ENSMUSG00000029580/ENSMUSG00000004864/ENSMUSG00000015533/ENSMUSG00000020431/ENSMUSG00000047953/ENSMUSG00000020901/ENSMUSG00000024965/ENSMUSG00000053137/ENSMUSG00000022610/ENSMUSG00000027765</td>
+    </tr>
+    <tr>
+      <td>ABC transporters</td>
+      <td>0.063365</td>
+      <td>0.222222</td>
+      <td>2</td>
+      <td>Meta</td>
+      <td>L-lysine; N-acetyl-D-glucosamine</td>
+    </tr>
+  </tbody>
+</table></div>
+	<p class="tremark">Note:</br>
+1) Description：Pathway name of the differential metabolite/gene in the KEGG pathway database</br>
+2) Pvalue：P-value of pathway enrichment [transcription or metabolism]</br>
+3) Ratio：The number of differential metabolites/genes in the corresponding metabolic/genetic pathway/the number of total metabolites/genes identified in the pathway</br>
+4) Count：Number of enriched metabolites/genes in the pathway</br>
+5) Type：Data type, derived from metabolome or transcriptome</br>
+6) ID：ID of metabolites or genes enriched in the pathway</br>
+
+<p class="center">
+          <div class="albumSlider">
+            <div class="fullview"><img src="src/pictures/demo_CK.vs.Test_pos_CkSvstestS_bar.png" alt="KEGG柱状图"/></div>
+            <div class="slider">
+            <div class="button movebackward" title="Scroll Up"></div>
+            <div class="imglistwrap">
+            <ul class="imglist">
+            
+            <li><a id="example1" href="src/pictures/demo_CK.vs.Test_pos_CkSvstestS_bar.png" ><img src="src/pictures/demo_CK.vs.Test_pos_CkSvstestS_bar.png" alt="KEGG柱状图"/></a></li>
+            
+            </div>
+        <div class="button moveforward" title="Scroll Down"></div>
+        </div>
+    </div>
+  </p>
+  <p class="center">
+    <div class="albumSlider">
+      <div class="fullview"><img src="src/pictures/demo_CK.vs.Test_neg_CkSvstestS_bar.png" alt="KEGG柱状图"/></div>
+      <div class="slider">
+      <div class="button movebackward" title="Scroll Up"></div>
+      <div class="imglistwrap">
+      <ul class="imglist">
+          
+          <li><a id="example1" href="src/pictures/demo_CK.vs.Test_neg_CkSvstestS_bar.png" ><img src="src/pictures/demo_CK.vs.Test_neg_CkSvstestS_bar.png" alt="KEGG柱状图"/></a></li>
+          
+                          </ul>
+      </div>
+  <div class="button moveforward" title="Scroll Down"></div>
+  </div>
+</div>
+</p>
+        <p class="name">Figure 4.1 Statistical map of the distribution of differential genes and metabolites KEGG pathways (the upper box is the positive ion mode and the lower box is the negative ion mode)</p>
+
+
+<p class="center">
+          <div class="albumSlider">
+            <div class="fullview"><img src="src/pictures/demo_CK.vs.Test_pos_CkSvstestS_kegg_enrichment_share.scatterplot.dv.png" alt="KEGG图"/></div>
+            <div class="slider">
+            <div class="button movebackward" title="Scroll Up"></div>
+            <div class="imglistwrap">
+            <ul class="imglist">
+            
+            <li><a id="example1" href="src/pictures/demo_CK.vs.Test_pos_CkSvstestS_kegg_enrichment_share.scatterplot.dv.png" ><img src="src/pictures/demo_CK.vs.Test_pos_CkSvstestS_kegg_enrichment_share.scatterplot.dv.png" alt="KEGG图"/></a></li>
+            
+            </div>
+        <div class="button moveforward" title="Scroll Down"></div>
+        </div>
+    </div>
+  </p>
+<p class="center">
+          <div class="albumSlider">
+            <div class="fullview"><img src="src/pictures/demo_CK.vs.Test_neg_CkSvstestS_kegg_enrichment_share.scatterplot.dv.png" alt="KEGG图"/></div>
+            <div class="slider">
+            <div class="button movebackward" title="Scroll Up"></div>
+            <div class="imglistwrap">
+            <ul class="imglist">
+            
+            <li><a id="example1" href="src/pictures/demo_CK.vs.Test_neg_CkSvstestS_kegg_enrichment_share.scatterplot.dv.png" ><img src="src/pictures/demo_CK.vs.Test_neg_CkSvstestS_kegg_enrichment_share.scatterplot.dv.png" alt="KEGG图"/></a></li>
+            
+            </div>
+        <div class="button moveforward" title="Scroll Down"></div>
+        </div>
+    </div>
+  </p>
+  	<p class="name">Figure 4.2 Differential gene and differential metabolite KEGG enrichment bubble diagram (the upper box is the positive ion mode and the lower box is the negative ion mode)</p>
+
+<p class="premark">Note: The horizontal coordinate is the ratio (Ratio) of the differential metabolites or differential genes enriched in the pathway to the number of metabolites or genes annotated in the pathway, and the vertical coordinate is the metabolome-transcriptome co-enrichment to the KEGG pathway. count: the number of metabolites or genes enriched in the pathway. The color indicates the P-value, the redder the color the smaller the P-value, the more significant the pathway enrichment is.</p>
+<p class="premark">Corresponding result catalog：Kegg bubble diagram: Result/3.kegg/3.1.share_pathway/*.vs.*/*.vs.*_kegg_enrichment_share.scatterplot.dv.{pdf,png}</p>
+
+<a name="iPath pathway visualization analysis"></a >
+<h4 id="">4.2 iPath pathway visualization analysis</h4>
+
+<p class="paragraph">iPath (Interactive Pathways Explorer) [https://pathways.embl.de/] is a visual pathway diagram online analysis tool. It summarizes various metabolic pathways in biological systems, with nodes indicating various biochemical molecules and lines indicating biochemical reactions. Enrichment pathways shared by differential metabolites and genes are mapped simultaneously to the iPath website. As in Figure 4.3.</p>
+
+<p class="center">
+          <div class="albumSlider">
+            <div class="fullview"><img src="src/pictures/demo_CK.vs.Test_pos_CkSvstestS.png" alt="KEGG图"/></div>
+            <div class="slider">
+            <div class="button movebackward" title="Scroll Up"></div>
+            <div class="imglistwrap">
+            <ul class="imglist">
+            
+            <li><a id="example1" href="src/pictures/demo_CK.vs.Test_pos_CkSvstestS.png" ><img src="src/pictures/demo_CK.vs.Test_pos_CkSvstestS.png" alt="KEGG图"/></a></li>
+            
+            </div>
+        <div class="button moveforward" title="Scroll Down"></div>
+        </div>
+    </div>
+  </p>
+<p class="center">
+          <div class="albumSlider">
+            <div class="fullview"><img src="src/pictures/demo_CK.vs.Test_neg_CkSvstestS.png" alt="KEGG图"/></div>
+            <div class="slider">
+            <div class="button movebackward" title="Scroll Up"></div>
+            <div class="imglistwrap">
+            <ul class="imglist">
+            
+            <li><a id="example1" href="src/pictures/demo_CK.vs.Test_neg_CkSvstestS.png" ><img src="src/pictures/demo_CK.vs.Test_neg_CkSvstestS.png" alt="KEGG图"/></a></li>
+            
+            </div>
+        <div class="button moveforward" title="Scroll Down"></div>
+        </div>
+    </div>
+  </p>
+  	<p class="name">Figure 4.3 iPath pathway diagram for the shared enrichment pathway (the upper box is the positive ion mode and the lower box is the negative ion mode)</p>
+
+<p class="premark">Note: Blue lines in pathways indicate common enrichment pathways.</p>
+<p class="premark">Corresponding result catalog：iPath of kegg Result/3.kegg/3.2.ipath/*.vs.*/*.vs.*.{pdf,png}</p>
+
+
+<a name="KEGG pathview visualization analysis"></a >
+<h4 id="">4.3 KEGG pathview visualization analysis</h3>
+<p class="paragraph">Based on the above enrichment results, pathway diagrams were displayed for metabolic pathways co-enriched by metabolomics and transcriptomics. In the KEGG pathway diagram, circles represent metabolites, blue circles are down-regulated differential metabolites, and yellow circles are up-regulated differential metabolites; boxes represent genes or proteins, in which green boxes represent genes with differentially down-regulated expression and red boxes represent genes with differentially up-regulated expression. The results are shown below:</p>
+
+
+<p class="center">
+          <div class="albumSlider">
+            <div class="fullview"><img src="src/pictures/demo_CK.vs.Test_pathview_pos_CkSvstestS.png" alt="KEGG图"/></div>
+            <div class="slider">
+            <div class="button movebackward" title="Scroll Up"></div>
+            <div class="imglistwrap">
+            <ul class="imglist">
+            
+            <li><a id="example1" href="src/pictures/demo_CK.vs.Test_pathview_pos_CkSvstestS.png" ><img src="src/pictures/demo_CK.vs.Test_pathview_pos_CkSvstestS.png" alt="KEGG图"/></a></li>
+            
+            </div>
+        <div class="button moveforward" title="Scroll Down"></div>
+        </div>
+    </div>
+  </p>
+<p class="center">
+          <div class="albumSlider">
+            <div class="fullview"><img src="src/pictures/demo_CK.vs.Test_pathview_neg_CkSvstestS.png" alt="KEGG图"/></div>
+            <div class="slider">
+            <div class="button movebackward" title="Scroll Up"></div>
+            <div class="imglistwrap">
+            <ul class="imglist">
+            
+            <li><a id="example1" href="src/pictures/demo_CK.vs.Test_pathview_neg_CkSvstestS.png" ><img src="src/pictures/demo_CK.vs.Test_pathview_neg_CkSvstestS.png" alt="KEGG图"/></a></li>
+            
+            </div>
+        <div class="button moveforward" title="Scroll Down"></div>
+        </div>
+    </div>
+  </p>
+  	<p class="name">Figure 4.4 pathview pathway enrichment diagram (the upper box is the positive ion mode and the lower box is the negative ion mode)</p>
+
+<p class="premark">Note: KEGG-enriched pathway diagrams for metabolites and genes are labeled with log2(FC) for metabolites and genes, with the first legend green to red representing FC for genes, and the second legend blue to yellow representing FC for metabolites.</p>
+<p class="premark">Corresponding result catalog：Pathview of kegg: Result/3.kegg/3.3.pathview/*.vs.*/ko*.*.vs.*.{pdf,png}</p>
+
+
+</div>
+<div id="page">
+
+
+<p class="head"><a href="#home" title = "Back to Home"><img class="logo" align="left" src="src/images/logo.png" /></a> <a name="Reference"> </a><hr/></p>
+  <h2 id="reference_html">Reference</h2>
+  [1] Dunn, W.B. et al. Procedures for large-scale metabolic profiling of serum and plasma using gas chromatography and liquid chromatography coupled to mass spectrometry. Nature protocols. 6,1060-1083 (2011).<br />
+  [2] Griffiths, W. J. & Wang, Y. Mass spectrometry: fromproteomics to metabolomics and lipidomics. Chemical Society Reviews. 38, 1882–1896 (2009).<br />
+  [3] Karnovsky, A. et al. Metscape 2 bioinformatics tool for the analysis and visualizationof metabolomics and gene expression data. Bioinformatics.28,373-380 (2012).<br />
+  [4] Bouhaddani, SE. et al. Evaluation of O2PLS in Omics data integration. BMC Bioinformatics. 17 Suppl 2,11 (2016).<br />
+  [5] Ivica Letunic, A. et al. iPath: interactive exploration of biochemical pathways and networks. Trends in biochemical sciences.33(3), 101-3 (2008).<br />
+<br />
+</div>
+<div id="page">
+<!----------------------------------------------- End -------------------------------------------->
+</div>
+</body>
+</html>

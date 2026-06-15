@@ -1,0 +1,429 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><TITLE> Metabolome and Microbiome Correlation Analysis Report</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+<link rel="stylesheet" type="text/css" href="src/css/text.css">
+<link rel="stylesheet" type="text/css" href="src/js/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
+<link rel="stylesheet" href="src/css/style.css" />
+<script src="src/js/jquery-1.4.2.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+	var jqueryv14 = $.noConflict(true);
+</script>
+<script src="src/js/jquery-1.7.2.min.js" type="text/javascript"></script>
+<script src="src/js/scrollTop.js" type="text/javascript"></script>
+<script src="src/js/common.js" type="text/javascript"></script>
+<script src="src/js/jquery.albumSlider.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="src/js/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
+<script type="text/javascript" src="src/js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+<script type="text/javascript" src="src/js/operate.js"></script>
+<script src="src/js/layer/layer.min.js"></script>
+<script>
+layer.use('extend/layer.ext.js'); //载入layer拓展模块
+</script>
+<style media="print">
+.noprint {
+	display: none;
+}
+#main{width:95%;right:30px;}
+</style>
+<script type="text/javascript">
+$(function(){
+	$('#val').live('click', function(){showlayer('640px', '500px','dynamic/.scatter.html');});
+	$('#lncrnago').live('click', function(){showlayer('660px', '490px','dynamic/lncRNA..go.html');});
+	$('#lncrnakegg').live('click', function(){showlayer('760px', '560px','dynamic/lncRNA..kegg.html');});
+	$('#mrnago').live('click', function(){showlayer('660px', '490px','dynamic/mRNA..go.html');});
+	$('#mrnakegg').live('click', function(){showlayer('760px', '560px','dynamic/mRNA..kegg.html');});
+	$('#length').live('click', function(){showlayer('640px', '450px','dynamic/lengthbar.html');});
+	$('#exon').live('click', function(){showlayer('640px', '450px','dynamic/exonbar.html');});
+	$('#orf').live('click', function(){showlayer('640px', '450px','dynamic/orfbar.html');});
+});
+</script>
+
+</head>
+
+<body>
+<div class="noprint">
+  <div style="display: block;" id="goTopBtn"><a class="backtotop" title="Back to Top"><img src="src/images/goTop.jpg" width="30" height="30" class="back-tip"/></a></div>
+</div>
+<div id="menu" class="noprint">
+	<div class="mulu">
+    <center>
+    <a href="javascript:void(0);" id="zhankai"><b></b></a><a href="javascript:void(0);" id="kaiguan" ><b>[Menu]</b></a>
+    </center>
+	</div>
+<div id="left" style="display:none">
+<div class="title"><a href="#Research Overview" class="shouqi" id="analyses_2">&nbsp;
+      <span>
+      Research Overview</span>&nbsp;<img src="src/images/arrow_right.png" style="display:none; margin-top:5px" class="arrow"/></a></div>
+<span></span>
+<div class="title"><a href="javascript:void(0)" class="shouqi" id="result_3">&nbsp;
+      <span>
+      Project Status</span>&nbsp;<img src="src/images/arrow_up.png" style="display:none" class="arrow"/></a></div>
+<div class="lanmu-content" style="display:block">
+	<dl class="lanmu-list">
+		<dd class="menusecondtitle"><a href="#Sample grouping information" id="nav_order_clean"><b>1.Sample grouping information</b></a></dd>
+	</dl>
+</div>
+	
+<div class="title"><a href="javascript:void(0)" class="shouqi" id="result_3">&nbsp;
+      <span>
+      Correlation Analysis</span>&nbsp;<img src="src/images/arrow_up.png" style="display:none" class="arrow"/></a></div>
+<div class="lanmu-content" style="display:block">
+    <dl class="lanmu-list">
+		<dd class="menusecondtitle"><a href="#Correlation heatmap analysis" id="nav_order_tophat"><b>1.Correlation heatmap analysis</b></a></dd>
+		<dd class="menusecondtitle"><a href="#Correlation scatterplot analysis" id="nav_order_tophat"><b>2.Correlation scatterplot analysis</b></a></dd>
+		<dd class="menusecondtitle"><a href="#Correlation chord diagram analysis" id="nav_order_tophat"><b>3.Correlation chord diagram analysis</b></a></dd>
+		<dd class="menusecondtitle"><a href="#Correlation network diagram analysis" id="nav_order_tophat"><b>4.Correlation network diagram analysis</b></a></dd>
+		<dd class="menusecondtitle"><a href="#Correlation Sankey diagram analysis" id="nav_order_tophat"><b>5.Correlation Sankey diagram analysis</b></a></dd>
+		<dd class="menusecondtitle"><a href="#Canonical correlation analysis" id="nav_order_tophat"><b>6.Canonical correlation analysis</b></a></dd>
+		<dd class="menusecondtitle"><a href="#O2PLS data integration analysis" id="nav_order_tophat"><b>7.O2PLS data integration analysis</b></a></dd>
+      </dl>
+</div>
+
+
+
+
+<div class="title"><a href="#Reference" class="shouqi" id="ref_id">&nbsp;<span> Reference</span>&nbsp;<img src="src/images/arrow_right.png" style="display:none; margin-top:5px" class="arrow"/></a>
+</div>
+    <span></span> </div>
+</div>
+
+<div id="main" , class = "width:76%"> 
+<div id="page">
+<br><br><br><br>
+<h1 id="pipline"> Metabolome and Microbiome Correlation Analysis Report</h2>
+
+<br><br><br>
+    <h2 id="pipline">Project Information</h2>
+    <p class="paragraph">Project Number: MetMicro_demo</p>
+    <p class="paragraph">Project Name: MetMicro_demo_20250416</p>
+    <p class="paragraph">Report Date: 2025-06-26</p>
+    <p class="paragraph">Report Number: MetMicro_demo_20250416</p>
+    <br>
+</div>
+<div id="page">
+<p class="head"><a href="#home" title = "Back to Home"><img class="logo" align="left" src="src/images/logo.png" /></a> <a name="Research Overview"> </a><hr/></p>
+    <h2 id="pipline">Research Overview</h2>
+   
+<p class="paragraph">With the rapid development of multi-omics technologies, it has become possible to shift from detailed reductionist studies to systematic, holistic research. Data from different omics disciplines complement and validate each other, collectively elucidating gene functions. Genomics reveals the relationship between gene structure and function through whole-genome sequencing and functional annotation. Transcriptomics investigates gene transcription profiles and regulatory mechanisms at a global level within cells. Proteomics studies the composition and dynamic changes of proteins in organisms, as proteins are the direct executors of biological functions. Metabolomics focuses on the changes in metabolites or their temporal patterns in organisms under external stimuli or perturbations, making it the discipline closest to phenotypes<SUP>[1]</SUP>. The integration of multi-omics data enables a comprehensive understanding of biological systems. As research at individual levels matures, the transition from parts to the whole becomes an inevitable trend.</p>
+<p class="paragraph">The host harbors a vast and complex microbial community, and alterations in the microbiome structure are closely associated with the onset and progression of diseases. The metagenome represents the collective genetic material of all microorganisms in a given environment and serves as a discipline for studying microbial community composition, functional genes, and metabolic products. Metagenomic sequencing technologies enable the analysis of microbial communities, revealing their interactions with the host and further uncovering the relationships among microbial population structure, evolutionary dynamics, functional activity, and environmental factors.Another approach to studying microbial communities is 16S rDNA amplicon sequencing, which typically targets one or several hypervariable regions by using universal primers designed from conserved regions for PCR amplification, followed by sequencing and taxonomic identification of the variable regions. 16S rDNA amplicon sequencing has become a key tool for analyzing the composition and structure of microbial communities in environmental samples.Metabolomics measures metabolic changes in the host ecosystem at a specific time point. Therefore, to investigate how shifts in the host-associated microbial community may influence phenotypic outcomes, it is essential to integrate metabolomic and microbial data through correlation analysis. Figure 1 illustrates the workflow for such multi-omics integration.</p>
+<p class="center"> <img  src="src/images/pipline.png"  width="50%%" /> </p>
+<p class="name">Figure 1. Workflow for metabolome and microbiome correlation analysis</p>
+</div>
+<div id="page">
+<p class="head"><a href="#home" title = "Back to Home"><img class="logo" align="left" src="src/images/logo.png" /></a> <a name="Project Status"> </a><hr/></p>
+      <a name="Sample grouping information"></a >
+   <h2 id="pipline">Project Status</h2>
+       <h3 id="">1. Sample grouping information</h3>
+   <p class="name">Table1.1 Sample grouping information</p>
+   <p class="center"><div id="tb"><table>
+   <tr><th>Meta Sample</th><th>Meta Group</th><th>Bact Sample</th><th>Bact Group</th><tr>
+<tr><td>AA_1</td><td>demo_AA</td><td>Aa1</td><td>demo_Aa<tr><td>AA_2</td><td>demo_AA</td><td>Aa2</td><td>demo_Aa<tr><td>AA_3</td><td>demo_AA</td><td>Aa3</td><td>demo_Aa<tr><td>BB_1</td><td>BB</td><td>Bb1</td><td>Bb<tr><td>BB_2</td><td>BB</td><td>Bb2</td><td>Bb<tr><td>BB_3</td><td>BB</td><td>Bb3</td><td>Bb
+   </table></div></p>
+   <p class="tremark">Note: The information in each column is as follows:</br>
+(1) Meta Sample: sample name</br>
+(2) Meta Group: metabolome grouping name</br>
+(3) Bact Sample: 16S/macrogenome sample name</br>
+(4) Bact Group: 16S/macrogenome grouping name</br>
+ 
+       <h3 id="">2. Comparison pair information</h3>
+   <p class="name">Table1.2 Comparison pair information</p>
+   <p class="center"><div id="tb"><table>
+   <tr><th>Meta Group</th><th>Bact Group</th><tr>
+<tr><td>demo_AA.vs.BB</td><td>demo_Aa-vs-Bb
+   </table></div></p>
+   <p class="tremark">Note: The information in each column is as follows:</br>
+(1) Meta Group: metabolome comparison pair name</br>
+(2) Bact Group: 16S/macrogenome comparison pair name</br>
+
+</div>
+<div id="page">
+<p class="head"><a href="#home" title = "Back to Home"><img class="logo" align="left" src="src/images/logo.png" /></a> <a name="Correlation Analysis"> </a><hr/></p>
+
+        
+    <h2 id="pipline">Correlation Analysis</h2>
+        <a name="Correlation heatmap analysis"></a >
+        <h3 id="">1. Correlation heatmap analysis</h3>
+<p class="paragraph">Perform Spearman correlation analysis between significantly differential bacterial genera (at the genus level) obtained from 16S rDNA or metagenomic sequencing and significantly differential metabolites identified through metabolomics analysis, then visualize the results as a heatmap to assess the association between microbial diversity and metabolites in environmental samples. The Spearman correlation coefficient ranges from -1 to 1，a coefficient < 0 indicates a negative correlation; a coefficient > 0 indicates a positive correlation.; a coefficient = 0 indicates no correlation (zero correlation). The results are presented below<SUP>[2]</SUP>(see the result file for the high-definition version of the picture).</p>
+           <p class="center">
+           <div class="albumSlider">
+      <div class="fullview"><img src="src/pictures/demo_AA.vs.BB_neg_demo_Aa-vs-Bb_corrplot_heatmap.png" alt="heatmap"/></div>
+         <div class="slider">
+        <div class="button movebackward" title="Scroll Up"></div>
+        <div class="imglistwrap">
+          <ul class="imglist">
+
+            <li><a id="example2" href="src/pictures/demo_AA.vs.BB_neg_demo_Aa-vs-Bb_corrplot_heatmap.png" ><img src="src/pictures/demo_AA.vs.BB_neg_demo_Aa-vs-Bb_corrplot_heatmap.png" alt="heatmap"/></a></li>
+</ul>
+            </div>
+        <div class="button moveforward" title="Scroll Down"></div>
+        </div>
+    </div>
+  </p>
+       <p class="center">
+           <div class="albumSlider">
+      <div class="fullview"><img src="src/pictures/demo_AA.vs.BB_pos_demo_Aa-vs-Bb_corrplot_heatmap.png" alt="heatmap"/></div>
+         <div class="slider">
+        <div class="button movebackward" title="Scroll Up"></div>
+        <div class="imglistwrap">
+          <ul class="imglist">
+
+            <li><a id="example2" href="src/pictures/demo_AA.vs.BB_pos_demo_Aa-vs-Bb_corrplot_heatmap.png" ><img src="src/pictures/demo_AA.vs.BB_pos_demo_Aa-vs-Bb_corrplot_heatmap.png" alt="heatmap"/></a></li>
+</ul>
+            </div>
+        <div class="button moveforward" title="Scroll Down"></div>
+        </div>
+    </div>
+  </p>
+
+        <p class="name">Figure 1.1 Correlation heatmap (the upper box is the negative ion mode,the lower box is the positive ion mode.) </p>
+</div>
+        <p class="premark">Note: In the figure, the horizontal axis represents differential bacterial genera, while the vertical axis represents differential metabolites. The color legend on the right indicates correlation coefficients, with red representing positive correlations and blue representing negative correlations. Asterisks (*) mark statistically significant correlations (P-value < 0.05).</br>
+        <p class="premark">Corresponding result catalog: Result/01_corr/.vs./.vs._corr.xls Heatmaps are available at Result/01_corr/.vs./.vs._corrplot_heatmap.{pdf,png}</br>
+<p class="head"><a href="#home" title = "Back to Home"><img class="logo" align="left" src="src/images/logo.png" /></a> <a name="Project Status"> </a><hr/></p>
+        <a name="Correlation scatterplot analysis"></a >
+        <h3 id="">2. Correlation scatterplot analysis</h3>
+<p class="paragraph">Based on the Spearman correlation coefficient (r) and P-value between differential bacterial genera and differential metabolites, the top 50 results with the highest absolute |r| values were selected for scatter plot analysis,aiming to identify specific correlations between metabolites and microbial communities. The results are shown below (see the result file for the high-definition version of the picture):</p>
+           <p class="center">
+           <div class="albumSlider">
+      <div class="fullview"><img src="src/pictures/Com_8_neg_g__Teredinibacter_demo_AA.vs.BB_demo_Aa-vs-Bb.corrplot.png" alt="Scatter plot"/></div>
+         <div class="slider">
+        <div class="button movebackward" title="Scroll Up"></div>
+        <div class="imglistwrap">
+          <ul class="imglist">
+
+            <li><a id="example2" href="src/pictures/Com_8_neg_g__Teredinibacter_demo_AA.vs.BB_demo_Aa-vs-Bb.corrplot.png" ><img src="src/pictures/Com_8_neg_g__Teredinibacter_demo_AA.vs.BB_demo_Aa-vs-Bb.corrplot.png" alt="Scatter plot"/></a></li>
+</ul>
+            </div>
+        <div class="button moveforward" title="Scroll Down"></div>
+        </div>
+    </div>
+  </p>
+       <p class="center">
+           <div class="albumSlider">
+      <div class="fullview"><img src="src/pictures/Com_5_pos_g__Endobacter_demo_AA.vs.BB_demo_Aa-vs-Bb.corrplot.png" alt="Scatter plot"/></div>
+         <div class="slider">
+        <div class="button movebackward" title="Scroll Up"></div>
+        <div class="imglistwrap">
+          <ul class="imglist">
+
+            <li><a id="example2" href="src/pictures/Com_5_pos_g__Endobacter_demo_AA.vs.BB_demo_Aa-vs-Bb.corrplot.png" ><img src="src/pictures/Com_5_pos_g__Endobacter_demo_AA.vs.BB_demo_Aa-vs-Bb.corrplot.png" alt="Scatter plot"/></a></li>
+</ul>
+            </div>
+        <div class="button moveforward" title="Scroll Down"></div>
+        </div>
+    </div>
+  </p>
+
+        <p class="name">Figure2.1 Correlation scatterplot analysis (the upper box is the negative ion mode,the lower box is the positive ion mode.) </p>
+        <p class="premark">Note: The x-axis represents the relative abundance values of differential genera, while the y-axis shows the quantitative values (peak areas) of differential metabolites.</br>
+        <p class="premark">Corresponding result catalog：Correlation tables: Result/02_Scatter_plot/.vs./Com__.vs.*_Correlation.xls，Scatter plots: Result/02_Scatterplot/.vs./Com__.vs.*_corrplot.{pdf,png}</br>
+<p class="head"><a href="#home" title = "Back to Home"><img class="logo" align="left" src="src/images/logo.png" /></a> <a name="Project Status"> </a><hr/></p>
+	<a name="Correlation chord diagram analysis"></a >
+        <h3 id="">3. Correlation chord diagram analysis</h3>
+<p class="paragraph">A chord diagram is a visualization method for displaying correlations between data, where nodes are arranged radially along the circumference and connected by width-varying chords. Based on the correlation coefficients between differential genera and differential metabolites, the chord diagram reflects the correlations and association strengths among microbial taxa and metabolites in the samples. The results are shown below (see the result file for the high-definition version of the picture):</p>
+           <p class="center">
+           <div class="albumSlider">
+      <div class="fullview"><img src="src/pictures/demo_AA.vs.BB_neg_demo_Aa-vs-Bb.Chord.png" alt="Chord"/></div>
+         <div class="slider">
+        <div class="button movebackward" title="Scroll Up"></div>
+        <div class="imglistwrap">
+          <ul class="imglist">
+
+            <li><a id="example2" href="src/pictures/demo_AA.vs.BB_neg_demo_Aa-vs-Bb.Chord.png" ><img src="src/pictures/demo_AA.vs.BB_neg_demo_Aa-vs-Bb.Chord.png" alt="Chord"/></a></li>
+</ul>
+            </div>
+        <div class="button moveforward" title="Scroll Down"></div>
+        </div>
+    </div>
+  </p>
+       <p class="center">
+           <div class="albumSlider">
+      <div class="fullview"><img src="src/pictures/demo_AA.vs.BB_pos_demo_Aa-vs-Bb.Chord.png" alt="Chord"/></div>
+         <div class="slider">
+        <div class="button movebackward" title="Scroll Up"></div>
+        <div class="imglistwrap">
+          <ul class="imglist">
+
+            <li><a id="example2" href="src/pictures/demo_AA.vs.BB_pos_demo_Aa-vs-Bb.Chord.png" ><img src="src/pictures/demo_AA.vs.BB_pos_demo_Aa-vs-Bb.Chord.png" alt="Chord"/></a></li>
+</ul>
+            </div>
+        <div class="button moveforward" title="Scroll Down"></div>
+        </div>
+    </div>
+  </p>
+
+        <p class="name">Figure3.1 Correlation chord diagram (the upper box is the negative ion mode,the lower box is the positive ion mode.)</p>
+        <p class="premark">Note: Nodes represent differential genera and metabolites; chord width indicates correlation strength; chord border color denotes correlation direction (red for positive, blue for negative).</br>
+        <p class="premark">Corresponding result catalog：Correlation tables: Result/03_chord_sankey/*.vs.*/*.vs.*_Chord_Sankey.xls，chord diagram: Result/03_chord_sankey/*.vs.*/*.vs.*.Chord.{pdf,png}</br>
+<p class="head"><a href="#home" title = "Back to Home"><img class="logo" align="left" src="src/images/logo.png" /></a> <a name="Project Status"> </a><hr/></p>
+	<a name="Correlation network diagram analysis"></a >
+        <h3 id="">4. Correlation network diagram analysis</h3>
+<p class="paragraph">A network diagram was constructed based on correlation coefficients between differential bacterial genera and differential metabolites to evaluate key node microorganisms/metabolites within the network, thereby revealing potential correlations between critical microbial taxa and crucial metabolites. The results are presented below (see the result file for the high-definition version of the picture):</p>
+           <p class="center">
+           <div class="albumSlider">
+      <div class="fullview"><img src="src/pictures/demo_AA.vs.BB_neg_demo_Aa-vs-Bb_corr_net.png" alt="network"/></div>
+         <div class="slider">
+        <div class="button movebackward" title="Scroll Up"></div>
+        <div class="imglistwrap">
+          <ul class="imglist">
+
+            <li><a id="example2" href="src/pictures/demo_AA.vs.BB_neg_demo_Aa-vs-Bb_corr_net.png" ><img src="src/pictures/demo_AA.vs.BB_neg_demo_Aa-vs-Bb_corr_net.png" alt="network"/></a></li>
+</ul>
+            </div>
+        <div class="button moveforward" title="Scroll Down"></div>
+        </div>
+    </div>
+  </p>
+       <p class="center">
+           <div class="albumSlider">
+      <div class="fullview"><img src="src/pictures/demo_AA.vs.BB_pos_demo_Aa-vs-Bb_corr_net.png" alt="network"/></div>
+         <div class="slider">
+        <div class="button movebackward" title="Scroll Up"></div>
+        <div class="imglistwrap">
+          <ul class="imglist">
+
+            <li><a id="example2" href="src/pictures/demo_AA.vs.BB_pos_demo_Aa-vs-Bb_corr_net.png" ><img src="src/pictures/demo_AA.vs.BB_pos_demo_Aa-vs-Bb_corr_net.png" alt="network"/></a></li>
+</ul>
+            </div>
+        <div class="button moveforward" title="Scroll Down"></div>
+        </div>
+    </div>
+  </p>
+
+        <p class="name">Figure4.1 Correlation network diagram analysis (the upper box is the negative ion mode,the lower box is the positive ion mode.)</p>
+        <p class="premark">Note: In the diagram, rectangular boxes represent metabolites and bacterial genera - yellow boxes denote metabolites while blue boxes indicate bacterial genera. The connecting lines' colors signify correlation directions: red for positive correlations and blue for negative correlations.</br>
+        <p class="premark">Corresponding result catalog：Network diagram: Result/01_corr/*.vs.*/*.vs.*_corr_net.{pdf,png}</br>
+<p class="head"><a href="#home" title = "Back to Home"><img class="logo" align="left" src="src/images/logo.png" /></a> <a name="Project Status"> </a><hr/></p>	
+	<a name="Correlation Sankey diagram analysis"></a >
+        <h3 id="">5. Correlation Sankey diagram analysis</h3>
+<p class="paragraph">A sankey diagram was generated based on correlation coefficients between differential genera and metabolites to visualize relationships between key metabolites and key microbial taxa, illustrating the flow and variation of their correlations. The results are presented below (see the result file for the high-definition version of the picture):</p>
+           <p class="center">
+           <div class="albumSlider">
+      <div class="fullview"><img src="src/pictures/demo_AA.vs.BB_neg_demo_Aa-vs-Bb.Sankey.png" alt="Sankey"/></div>
+         <div class="slider">
+        <div class="button movebackward" title="Scroll Up"></div>
+        <div class="imglistwrap">
+          <ul class="imglist">
+
+            <li><a id="example2" href="src/pictures/demo_AA.vs.BB_neg_demo_Aa-vs-Bb.Sankey.png" ><img src="src/pictures/demo_AA.vs.BB_neg_demo_Aa-vs-Bb.Sankey.png" alt="Sankey"/></a></li>
+</ul>
+            </div>
+        <div class="button moveforward" title="Scroll Down"></div>
+        </div>
+    </div>
+  </p>
+       <p class="center">
+           <div class="albumSlider">
+      <div class="fullview"><img src="src/pictures/demo_AA.vs.BB_pos_demo_Aa-vs-Bb.Sankey.png" alt="Sankey"/></div>
+         <div class="slider">
+        <div class="button movebackward" title="Scroll Up"></div>
+        <div class="imglistwrap">
+          <ul class="imglist">
+
+            <li><a id="example2" href="src/pictures/demo_AA.vs.BB_pos_demo_Aa-vs-Bb.Sankey.png" ><img src="src/pictures/demo_AA.vs.BB_pos_demo_Aa-vs-Bb.Sankey.png" alt="Sankey"/></a></li>
+</ul>
+            </div>
+        <div class="button moveforward" title="Scroll Down"></div>
+        </div>
+    </div>
+  </p>
+
+        <p class="name">Figure5.1 Correlation sankey diagram (the upper box is the negative ion mode,the lower box is the positive ion mode.)</p>
+        <p class="premark">Note: The left side represents differential metabolites, while the right side shows differential bacterial genera. Connecting lines indicate correlations, with red denoting positive correlations and blue indicating negative correlations.</br>
+        <p class="premark">Corresponding result catalog: Corrrelation table: Result/03_chord_sankey/*.vs.*/*.vs.*_Chord_Sankey.xls，sankey diagram: Result/03_chord_sankey/*.vs.*/*.vs.*.Sankey.{pdf,png}</br>
+<p class="head"><a href="#home" title = "Back to Home"><img class="logo" align="left" src="src/images/logo.png" /></a> <a name="Project Status"> </a><hr/></p>
+        <a name="Canonical correlation analysis"></a >
+        <h3 id="">6. Canonical correlation analysis</h3>
+<p class="paragraph">Canonical Correlation Analysis (CCA) is an ordination method that integrates correspondence analysis with multivariate regression. As a multivariate extension of the general linear model, CCA operates under the assumption that all analyzed variables are interrelated. The method derives estimates by applying weights to measured variables and computes variance components of influencing factors, enabling investigation of relationships between metabolites and microbial communities. The results are presented below (see the result file for the high-definition version of the picture).</p>
+           <p class="center">
+           <div class="albumSlider">
+      <div class="fullview"><img src="src/pictures/demo_AA.vs.BB_demo_Aa-vs-Bb_neg_meta_micro_cross-pca.png" alt="CCA"/></div>
+         <div class="slider">
+        <div class="button movebackward" title="Scroll Up"></div>
+        <div class="imglistwrap">
+          <ul class="imglist">
+
+            <li><a id="example2" href="src/pictures/demo_AA.vs.BB_demo_Aa-vs-Bb_neg_meta_micro_cross-pca.png" ><img src="src/pictures/demo_AA.vs.BB_demo_Aa-vs-Bb_neg_meta_micro_cross-pca.png" alt="CCA"/></a></li>
+</ul>
+            </div>
+        <div class="button moveforward" title="Scroll Down"></div>
+        </div>
+    </div>
+  </p>
+       <p class="center">
+           <div class="albumSlider">
+      <div class="fullview"><img src="src/pictures/demo_AA.vs.BB_demo_Aa-vs-Bb_pos_meta_micro_cross-pca.png" alt="CCA"/></div>
+         <div class="slider">
+        <div class="button movebackward" title="Scroll Up"></div>
+        <div class="imglistwrap">
+          <ul class="imglist">
+
+            <li><a id="example2" href="src/pictures/demo_AA.vs.BB_demo_Aa-vs-Bb_pos_meta_micro_cross-pca.png" ><img src="src/pictures/demo_AA.vs.BB_demo_Aa-vs-Bb_pos_meta_micro_cross-pca.png" alt="CCA"/></a></li>
+</ul>
+            </div>
+        <div class="button moveforward" title="Scroll Down"></div>
+        </div>
+    </div>
+  </p>
+
+        <p class="name">Figure6.1 Canonical correlation analysis (the upper box is the negative ion mode,the lower box is the positive ion mode.) </p>
+        <p class="premark">Note: Differential metabolites and microbial taxa at various taxonomic levels were first filtered to retain only results with |r| ≥ 0.6 and correlation significance p-value < 0.05. The selected metabolites and microorganisms were then subjected to canonical correlation analysis. The crosshair divides the plot into four regions. Within each region, greater distance from the origin indicates stronger associations，proximity within a quadrant reflects higher correlation between metabolites and microbial taxa.The correlation coefficient of the inner small circle is 0.5, and the correlation coefficient of the outer large circle is 1. The chord formed by the two dots centered on the dot has a positive correlation if the angle is less than 90, a negative correlation if it is greater than 90, and no correlation if the angle is 0，so the metabolite is not correlated with the genus. Metabolites are represented by green dots and genera by yellow triangles.</br>
+        <p class="premark">Corresponding result catalog：Canonical correlation analysis: Result/05_CCA/*.vs.*/*.vs.*_meta_micro_cross-pca.{pdf,png}</br>
+<p class="head"><a href="#home" title = "Back to Home"><img class="logo" align="left" src="src/images/logo.png" /></a> <a name="Project Status"> </a><hr/></p>
+        <a name="O2PLS data integration analysis"></a >
+        <h3 id="">7. O2PLS data integration analysis</h3>
+<p class="paragraph">The two-way orthogonal partial least squares (O2PLS) method performs bidirectional modeling and prediction between two omics datasets to uncover their intrinsic relationships. This appriach identifies both the degree of association and the key metabolites and microbial taxa driving these connections,requiring that the input datasets exhibit underlying relationships. The analysis results display the differential microbial taxa and metabolites associated with the inter-omics relationships, with the top 10 contributing taxa and metabolites labeled by their contribution weights. The results are presented below (see the result file for the high-definition version of the picture):</p>
+           <p class="center">
+           <div class="albumSlider">
+      <div class="fullview"><img src="src/pictures/demo_AA.vs.BB_neg_demo_Aa-vs-Bb_met_otu_O2PLS.png" alt="O2PLS"/></div>
+         <div class="slider">
+        <div class="button movebackward" title="Scroll Up"></div>
+        <div class="imglistwrap">
+          <ul class="imglist">
+
+            <li><a id="example2" href="src/pictures/demo_AA.vs.BB_neg_demo_Aa-vs-Bb_met_otu_O2PLS.png" ><img src="src/pictures/demo_AA.vs.BB_neg_demo_Aa-vs-Bb_met_otu_O2PLS.png" alt="O2PLS"/></a></li>
+</ul>
+            </div>
+        <div class="button moveforward" title="Scroll Down"></div>
+        </div>
+    </div>
+  </p>
+       <p class="center">
+           <div class="albumSlider">
+      <div class="fullview"><img src="src/pictures/demo_AA.vs.BB_pos_demo_Aa-vs-Bb_met_otu_O2PLS.png" alt="O2PLS"/></div>
+         <div class="slider">
+        <div class="button movebackward" title="Scroll Up"></div>
+        <div class="imglistwrap">
+          <ul class="imglist">
+
+            <li><a id="example2" href="src/pictures/demo_AA.vs.BB_pos_demo_Aa-vs-Bb_met_otu_O2PLS.png" ><img src="src/pictures/demo_AA.vs.BB_pos_demo_Aa-vs-Bb_met_otu_O2PLS.png" alt="O2PLS"/></a></li>
+</ul>
+            </div>
+        <div class="button moveforward" title="Scroll Down"></div>
+        </div>
+    </div>
+  </p>
+
+        <p class="name">Figure7.1 O2PLS data integration analysis diagram (the upper box is the negative ion mode,the lower box is the positive ion mode.)</p>
+        <p class="premark">Note: In the figure, green circles represent metabolites while yellow triangles denote microbial taxa. The x- and y-axes display joint scores integrating both metabolomic and microbial datasets. Each point's distance from the origin reflects its weight in the association analysis - greater distances indicate stronger influence of that microbial taxon/metabolite on the other omics dataset. Proximity between points demonstrates their correlation strength, with closer points indicating stronger relationships.</br>
+        <p class="premark">Corresponding result catalog：O2PLS analysis diagram: Result/04_O2PLS/*.vs.*/*.vs.*_met_O2PLS.{pdf,png}</br>
+
+
+
+
+<div id="page">
+  <p class="head"><a href="#home" title = "Back to Home"><img class="logo" align="left" src="src/images/logo.png" /></a> <a name="Reference"> </a>
+    <hr />
+      </p>
+        <a name="Reference"></a >
+        <h2 id="reference_html">Reference</h2>
+[1] Dunn, W.B. et al. Procedures for large-scale metabolic profiling of serum and plasma using gas chromatography and liquid chromatography coupled to mass spectrometry. Nature protocols. 6,1060-1083 (2011).<br />
+[2] Want, E.J. et al. Global metabolic profiling procedures for urine using UPLC–MS. Nature protocols. 5,1005-1018 (2010).<br />
+[3] Nie, Zhiqiang et al. “Unraveling the correlation between microbiota succession and metabolite changes in traditional Shanxi aged vinegar.” Scientific reports vol. 7(1), 9240 (2017) <br />
+[4] Bouhaddani, SE. et al. Evaluation of O2PLS in Omics data integration. BMC Bioinformatics. 17 Suppl 2,11 (2016).<br />
+[5] González, I.et al. Highlighting relationships between heterogeneous biological data through graphical displays based on regularized canonical correlation analysis. Journal of Biological Systems, 17(02), 173-199 (2009).<br />
+
+</div>
+
