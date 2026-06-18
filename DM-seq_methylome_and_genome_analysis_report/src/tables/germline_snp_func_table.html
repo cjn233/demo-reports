@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>data tables</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="../css/datatables.css" />
+    <link rel="stylesheet" type="text/css" href="../css/buttons.dataTables.min.css" />
+</head>
+<body>
+        <table id="nopaging_table" class="display" style="width: 100%; height: 50px; text-align: center; margin: auto;font-size: 14px; font-family: Arial;">
+        <thead>
+            <tr style='background-color: #036EB8;color: #FFFFFF'><th>Category</th><th>T2_3MM_13C</th><th>TAPS_2_10_R2</th></tr>
+        </thead>
+        <tbody>
+			<tr style='background-color: #e3eff8'><td>Exonic Stop gain</td><td>488</td><td>64</td></tr>
+			<tr style='background-color: #f1f5fb'><td>Exonic</td><td>126051</td><td>2434</td></tr>
+			<tr style='background-color: #e3eff8'><td>Exonic Stop loss</td><td>114</td><td>7</td></tr>
+			<tr style='background-color: #f1f5fb'><td>Exonic Synonymous</td><td>78859</td><td>819</td></tr>
+			<tr style='background-color: #e3eff8'><td>Exonic Non-synonymous</td><td>45180</td><td>1531</td></tr>
+			<tr style='background-color: #f1f5fb'><td>Exonic unknowns</td><td>1410</td><td>13</td></tr>
+			<tr style='background-color: #e3eff8'><td>Intronic</td><td>6456684</td><td>101074</td></tr>
+			<tr style='background-color: #f1f5fb'><td>Splicing</td><td>428</td><td>47</td></tr>
+			<tr style='background-color: #e3eff8'><td>Upstream</td><td>219178</td><td>5173</td></tr>
+			<tr style='background-color: #f1f5fb'><td>Downstream</td><td>245582</td><td>5052</td></tr>
+			<tr style='background-color: #e3eff8'><td>upstream/downstream</td><td>11516</td><td>233</td></tr>
+			<tr style='background-color: #f1f5fb'><td>Intergenic</td><td>9146390</td><td>225256</td></tr>
+			<tr style='background-color: #e3eff8'><td>3'UTR</td><td>180476</td><td>2417</td></tr>
+			<tr style='background-color: #f1f5fb'><td>5'UTR</td><td>34691</td><td>596</td></tr>
+			<tr style='background-color: #e3eff8'><td>5'UTR/3'UTR</td><td>256</td><td>1</td></tr>
+			<tr style='background-color: #f1f5fb'><td>Others</td><td>1617686</td><td>33136</td></tr>
+			<tr style='background-color: #e3eff8'><td>Total</td><td>18065905</td><td>377143</td></tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <script type="text/javascript" src="../js/datatables.js"></script>
+    <script type="text/javascript" src="../js/vfs_fonts.js"></script>
+    <script type="text/javascript" src="../js/buttons.colVis.min.js"></script>
+    <script type="text/javascript" src="../js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var table = $('#nopaging_table').DataTable( {
+                scrollX: true,
+                paging: false,
+                scrollY: 420,
+                sorting: true,
+                'order': [],
+                searching: false,
+                fixedHeader: {
+                    header: false,
+                    //footer: true
+                },
+                fixedColumns: {'leftColumns':1},
+                colReorder: true,
+                dom: 'Bfrtip',
+                buttons: [
+                    'colvis','excel'
+                ],
+                language:{
+                    'info': '',
+                    'sZeroRecords' : '没有找到数据',
+                    "oPaginate" : {
+                        "sFirst" : "第一页",
+                        "sPrevious" : "上一页",
+                        "sNext" : "下一页",
+                        "sLast" : "最后一页"
+                    }
+                }
+            } );
+        } );
+    </script>
+</body>
+</html>

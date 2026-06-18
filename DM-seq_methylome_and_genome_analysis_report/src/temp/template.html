@@ -1,0 +1,2336 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<html>
+<head>
+{% if MICflag %}
+  <title> 微生物WGS变异检测项目分析报告 </title>
+{% else %}
+  <title> 动植物WGS变异检测项目分析报告 </title>
+{% endif %}
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <link type="text/css" rel="stylesheet" href="css/jquery.tocify.css" />
+  <link rel="stylesheet" href="css/bootstrap-4.3.1.min.css" />
+  <link rel="stylesheet" href="css/gallery.css"/>
+  <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
+<script src="js/jquery-ui.min.js" type="text/javascript"></script>
+ 
+
+
+ 
+  <script src="js/jquery.tocify.min.js" type="text/javascript"></script>
+  <script src="js/bootstrap-4.3.1.min.js" type="text/javascript"></script>
+  <link rel="stylesheet" type="text/css" href="css/base.css">
+  <link rel="stylesheet" type="text/css" href="js/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="css/buttons.css">
+
+  <link rel="stylesheet" href="css/memu_style.css" media="screen" type="text/css" />
+ <script src="js/scrolltop.js" type="text/javascript"></script>
+<!--  <script src="js/common.js" type="text/javascript"></script>-->
+ <script src="js/jquery.albumSlider.min.js" type="text/javascript"></script>
+  <link href="css/cloth.css" rel="stylesheet" type="text/css" media="screen" />
+<!--  <script type="text/javascript" src="js/tablecloth.js"></script>-->
+<!--  <script type="text/javascript" src="js/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>-->
+<!--  <script type="text/javascript" src="js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>-->
+<!--  <script src="js/esl.js" type="text/javascript"></script>-->
+  
+<!--  <script src="js/echarts.min.js" type="text/javascript"></script>-->
+
+
+  
+
+  <!-- <script src="adv_src/slick/jquery-2.2.0.min.js" type="text/javascript"></script> -->
+
+<script type="text/javascript">
+
+        $(function () {
+
+                var options = {
+
+                        selectors: "h2,h3,h4,h5",
+
+                        theme: "bootstrap",
+
+                        scrollTo: "60"
+
+                };
+
+                var toc = $("#toc").tocify(options).data("toc-tocify");
+
+        });
+
+</script>
+
+<script type="text/javascript">
+
+  function trans(img_div_id) {
+  
+  img_div = $("#" + img_div_id)
+  
+  img = $("#" + img_div_id + " img").first();
+  
+  if (img_div.hasClass("fullscreen-div")) {
+  
+  img_div.removeClass("fullscreen-div");
+  
+  img.removeClass("fullscreen-img");
+  
+  }
+  
+  else {
+  
+  img_div.addClass("fullscreen-div");
+  
+  img.addClass("fullscreen-img");
+  
+  }
+  
+  }
+  
+  
+  
+  function filter_display() {
+  
+  return $(this).css("display") != "none";
+  
+  }
+  
+  
+  
+  function show_default() {
+  
+  var list_group_id = "#" + $(this).attr("id");
+  if ($(list_group_id + " a.active").css("display") == "none") {
+  
+  var list_tab = $(list_group_id + " a.active");
+  
+  var pan_id = list_tab.attr("href");
+  
+  $(pan_id).removeClass("active show");
+  
+  list_tab.removeClass("active");
+  
+  }
+  
+  if ($(list_group_id + " a.active").filter(filter_display).length == 0) {
+  
+  $(list_group_id + " a").filter(filter_display).first().tab("show");
+  
+  }
+  
+  }
+  
+  $.fn.show_default = show_default
+  
+  
+  
+  function next(botton_id) {
+  
+  var present_tab = $("#" + botton_id.replace("_button_next", "_list-tab") + " .active").first();
+  
+  while (present_tab.next().length == 1) {
+  
+  if (present_tab.next().css("display") != "none") {
+  
+  present_tab.next().tab("show");
+  
+  
+  break;
+  
+  }
+  
+  else {
+  
+  present_tab = present_tab.next();
+  
+  }
+  
+  }
+  
+  
+  
+  }
+  
+  function prev(botton_id) {
+  
+  var present_tab = $("#" + botton_id.replace("_button_prev", "_list-tab") + " .active").first();
+  
+  while (present_tab.prev().length == 1) {
+  
+  if (present_tab.prev().css("display") != "none") {
+  
+  present_tab.prev().tab("show");
+  
+  break;
+  
+  }
+  
+  else {
+  
+  present_tab = present_tab.prev();
+  
+  }
+  
+  }
+  
+  
+  
+  
+  
+  }
+  
+  
+  
+  $(document).ready(function () {
+  
+  $(".form-control").on("keyup", function () {
+  
+  var value = $(this).val().toLowerCase();
+  
+  var input_box_id = "#" + $(this).attr("id");
+  
+  var list_group_id = input_box_id.replace("_InputList", "_list-tab");
+  
+  $(list_group_id + " a").filter(function () {
+  
+  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+  
+  });
+  
+  $(list_group_id).show_default();
+  
+  });
+  $(".list-group").each(show_default);
+  
+  });
+  
+  
+  </script>
+
+<script type="text/javascript">
+  /* show or hide element*/
+  function hiddenShow(btnObj){
+    ctObj = btnObj.nextElementSibling;
+    if (ctObj.style.display == 'inline'){
+      ctObj.style.display = 'none';
+      btnObj.innerHTML = "显示注释";
+    }else{
+      ctObj.style.display = 'inline';
+      btnObj.innerHTML = "隐藏注释";
+    };
+    return 0;
+  }
+</script>
+
+<script type="text/javascript">
+  /* show or hide element*/
+  function hiddenQA(btnObj){
+    ctObj = btnObj.nextElementSibling;
+    if (ctObj.style.display == 'inline'){
+      ctObj.style.display = 'none';
+      btnObj.innerHTML = "显示QA";
+    }else{
+      ctObj.style.display = 'inline';
+      btnObj.innerHTML = "隐藏QA";
+    };
+    return 0;
+  }
+</script>
+
+<script type="text/javascript">
+  /* show or hide element*/
+  function hiddenviedo(btnObj){
+    ctObj = btnObj.nextElementSibling;
+    if (ctObj.style.display == 'inline'){
+      ctObj.style.display = 'none';
+      btnObj.innerHTML = "显示视频链接";
+    }else{
+      ctObj.style.display = 'inline';
+      btnObj.innerHTML = "隐藏视频链接";
+    };
+    return 0;
+  }
+</script>
+
+</head>
+<body>
+<!-- --------------------------------- 目录test ------------------------------ -->
+<div id="toc" class="tocify"></div>
+
+
+<div id="main">
+
+<!--------------------------标题---------------------------------->
+<div name='home' id="home"></div>
+<div id="page">
+{% if BSA_index %}
+    {% if MICflag %}
+        <br><h1> 微生物BSA性状定位项目分析报告 </h1></br>
+    {% else %}
+        <br><h1> 动植物BSA性状定位项目分析报告 </h1></br>
+    {% endif %}
+{% else %}
+    {% if MICflag %}
+        <br><h1>微生物WGS变异检测项目分析报告</h1></br>
+    {% else %}
+        <br><h1>动植物WGS变异检测项目分析报告</h1></br>
+    {% endif %}
+{% endif %}
+<p class="head"><a href="#home" title = "返回首页"></a>
+<a name="标题"></a>
+<table class="gy">
+<tr>
+
+</tr>
+
+<tr ><td >合同编号</td><td style="text-align:left" >{{projectID}}</td></tr>
+
+<tr ><td >合同名称</td><td style="text-align:left" >{{projectName}}</td></tr>
+
+<tr ><td >分期编号</td><td style="text-align:left" >{{batchID}}</td></tr>
+
+<tr ><td >参考基因组及版本</td><td style="text-align:left" >{{ref_version}}</td></tr>
+
+<tr ><td >报告时间</td><td style="text-align:left" >{{time}}</td></tr>
+
+<tr ><td >售后服务电话</td><td style="text-align:left" >400-658-1585</td></tr>
+{% if MICflag %}
+<tr ><td >售后服务邮箱</td><td style="text-align:left" >service-micropi@novogene.com</td></tr>
+{% else %}
+<tr ><td >售后服务邮箱</td><td style="text-align:left" >service-reseq@novogene.com</td></tr>
+{% endif %}
+<tr ><td >温馨提示</td><td style="text-align:left" >Report仅供展示部分结果，全部分析内容详见Result文件夹；<br/>
+在您拿到Result前Report中的Result超链接无效，确认结算后，释放结果文件Result中Report的结果目录超链接有效。</td></tr>
+
+</table>
+<p class="paragraph"></p>
+<p class="center"></p>
+<ul></ul>
+
+
+
+<!-- --------------------------------------项目简介--------------------------------------- -->
+<p id="page">
+<p class="head"><a href="#home" title = "返回首页"></a>
+<a name="1 项目简介"></a>
+<hr />
+</p><br />
+<h2>1 项目简介</h2>
+<p class="paragraph">基因组重测序是指对已知基因组序列的物种进行不同个体的基因组测序，并在此基础上对个体或群体进行差异性分析，获得大量的遗传变异信息，主要包括单核苷酸多态性(single nucleotide ploymorphism, SNP)、小片段插入/缺失(insertion and deletion, InDel)、拷贝数变异(copy number variation, CNV)、 结构变异(structural variation, SV)等，进而获得个体或群体在基因组水平上的遗传特征。</p>
+<p class="paragraph">从DNA样品到最终数据获得，样品检测、建库、测序每一个环节都会对数据质量和数量产生影响，而数据质量又会直接影响后续信息分析的结果。为了从源头上保证测序数据的准确性、可靠性，诺禾致源对样品检测、建库、测序每一个生产步骤都严格把控，从根本上确保了高质量数据的产出。</p>
+<p class="paragraph">项目整体流程图如下：</p>
+<p class="center">
+<a id="example2" href="images/experimentWorkflow.png" style="height: 120px;"><img src="images/experimentWorkflow.png" style="height: 120px;" alt="example2"/></a>
+</p>
+<p class="name_fig">图1 项目流程图</p>
+<br />
+
+<!-- --------------------------------------建库测序流程--------------------------------------- -->
+<p id="page">
+<p class="head"><a href="#home" title = "返回首页"></a>
+<a name="2 建库测序流程"></a>
+<hr />
+</p><br />
+<h2>2 建库测序流程</h2>
+<a name="2.1 样品检测"></a>
+<h3>2.1 样品检测</h3>
+<p class="paragraph">详见样本检测报告。</p>
+<a name="2.2 文库构建及上机测序"></a>
+<h3>2.2 文库构建及上机测序</h3>
+<p class="paragraph">DNA样品检测合格后，使用Covaris超声波破碎仪对其进行随机打断，再经末端修复、加A尾、加测序接头、片段筛选、PCR扩增、和纯化步骤完成整个文库制备工作。得到最终的DNA文库。文库构建流程图如下：</p>
+<p class="center">
+<img class="small7" src="images/wgs_experiment_pipeline.png" style="height: 400px" />
+</p>
+<p class="name_fig">图2 建库流程图</p>
+<p class="paragraph">诺禾致源对文库的检测主要包括2种方法：</p>
+<p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;（1）&nbsp;AATI检测文库DNA片段的完整性及插入片段大小。</p>
+<p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;（2）&nbsp;QPCR检测文库有效浓度。</p>
+<br />
+
+<p class="paragraph">库检合格后，把不同文库按照有效浓度及目标下机数据量的需求pooling后进行双末端测序。</p>
+
+{% if qc_only %}
+    <p class="paragraph">研究中涉及的方法见<a href="method/ZH_materials_methods_QC.v1.pdf" title="点击打开" target="_blank">中文版methods</a>和<a href="./method/EN_materials_methods_QC.v1.pdf" title="点击打开" target="_blank">英文版methods</a></p>   
+{% endif %}
+{% if mapping_only %}
+    <p class="paragraph">研究中涉及的方法见<a href="method/ZH_materials_methods_Map.v1.pdf" title="点击打开" target="_blank">中文版methods</a>和<a href="./method/EN_materials_methods_Map.v1.pdf" title="点击打开" target="_blank">英文版methods</a></p>
+{% endif %}
+
+</div>
+<!-- --------------------------------------信息分析流程--------------------------------------- -->
+<div id="page">
+  <p class="head"><a href="#home" title = "返回首页"></a>
+  <a name="3 信息分析流程"></a>
+  <hr />
+  </p><br />
+  <h2>3 信息分析流程</h2>
+
+
+<p class="paragraph">信息分析的主要步骤如下：<br />
+<p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;（1） 对下机得到的Raw data进行质控得到Clean data；<br />
+<p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;（2） 将Clean data比对到参考基因组上；</p>
+{% if show_cnv and show_sv %}
+<p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;（3） 根据比对结果，进行SNP、InDel、SV和CNV的检测及注释。</p>
+{% elif show_sv and not show_cnv %}
+<p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;（3） 根据比对结果，进行SNP、InDel、SV的检测及注释。</p>
+{% elif not show_sv and show_cnv %}
+<p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;（3） 根据比对结果，进行SNP、InDel、CNV的检测及注释。</p>
+{% else %}
+<p class="paragraph">&nbsp;&nbsp;&nbsp;&nbsp;（3） 根据比对结果，进行SNP和InDel的检测及注释。</p>
+{% endif %}
+
+</p>
+<!--流程图-->
+<p class="center">
+{% if MICflag %}
+	{% if cog_kog_flag %}
+		{% if F_flag %}
+			<img class="small2" src="images/KOG.png" style=height: 400px />
+		{% else %}
+			<img class="small2" src="images/COG.png" style=height: 400px />
+		{% endif %}
+	{% else %}
+		<img class="small2" src="images/bioinfoWorkflow.png" style=height: 400px />
+	{% endif %}
+{% else %}
+<img class="small2" src="images/bioinfoWorkflow.png" style=height: 400px />
+{% endif %}
+</p>
+<p class="name_fig">图3 信息分析流程图</p>
+<!--防止报告结构混乱 -->
+</div>
+
+<!-- --------------------------------------结果展示及说明--------------------------------------- -->
+<div id="page">
+<p class="head"><a href="#home" title = "返回首页"></a>
+<a name="4 分析结果"></a>
+<hr />
+</p><br />
+
+
+<h2>4 分析结果</h2>
+
+<a name="4.1 原始序列数据"></a>
+<h3>4.1 原始序列数据</h3>
+<p class="paragraph">高通量测序（如illumina等测序平台）测序得到的原始图像数据文件经碱基识别（Base Calling）分析转化为原始测序序列（Sequenced Reads），我们称之为Raw Data或Raw Reads，结果以FASTQ（简称为fq）文件格式存储(Cock et al., 2010)，其中包含测序序列（reads）的序列信息以及其对应的测序质量信息。</p>
+<p class="paragraph">FASTQ格式文件中每个read由四行描述，如下：</p>
+<p class="seq">
+	@K00124:82:H2MH5BBXX:1:1101:31389:1158 2:N:0:0<br/>
+TAGCCACATAGAAACCAACAGCCATATAACTGGTAGCTTTAAGCGGCTCACCTTTAGCATCAACAGGCCACAACCAACCAGAACGTGAAAAAGCGTCCTGCGTGTAGCGAACTGCGATGGGCATACAGATCGGAAGAGCGTCGTGTAGGG<br/>
++<br/>
+
+AAFFFKKKKKKKKFKKKFFKKAAFKKKKKFKKKKFKKA,FKKKKKKKKKAKKFKKKKKKKAKKKKKKFFKKKKF&lt;FFKKKKKKKKKKKKKFKKFKKF7FFFFFKFKKKFKKKKKKKKF&lt;FFKKKKFKKKKKFKFKFKKFK&lt;&lt;F,A7,AFK</p>
+<p class="paragraph">其中第一行以“@”开头，随后为illumina 测序标识符（Sequence Identifiers）和描述文字（选择性部分）；第二行是碱基序列；第三行以“+”开头，随后为illumina 测序标识符（选择性部分）；第四行是对应序列的测序质量。</p>
+<p class="paragraph">illumina 测序标识符详细信息如下：</p>
+<div>
+<p class="center">
+<table class="gy">
+<tr ><th >Illumina测序标识符</th><th >详细信息</th></tr>
+<tr ><td >EAS139</td><td >Unique instrument name</td></tr>
+<tr ><td >136</td><td >Run ID</td></tr>
+<tr ><td >FC706VJ</td><td >Flowcell ID</td></tr>
+<tr ><td >2</td><td >Flowcell lane</td></tr>
+<tr ><td >2104</td><td >Tile number within the flowcell lane</td></tr>
+<tr ><td >15343</td><td >'x'-coordinate of the cluster within the tile</td></tr>
+<tr ><td >197393</td><td >'y'-coordinate of the cluster within the tile</td></tr>
+<tr ><td >1</td><td  >Member of a pair, 1 or 2 (paired-end or mate-pair reads only)</td></tr>
+<tr ><td >Y</td><td >Y if the read fails filter (read is bad), N otherwise</td></tr>
+<tr ><td >18</td><td >0 when none of the control bits are on, otherwise it is an even number</td></tr>
+<tr ><td >ATCACG</td><td >Index sequence</td></tr>
+</table>
+</p>
+</div>
+<p class="paragraph">第四行中每个字符对应的ASCII值减去33，即为对应第二行碱基的测序质量值。如果测序错误率用e表示，Illumina 测序平台的碱基质量值用Q<sub>phred</sub>表示，则有下列关系：</p>
+<p class="center">公式一：　Q<sub>phred</sub>　=　-10log<sub>10</sub>(e)</p>
+<p class="paragraph">Illumina Casava 1.8版本测序错误率与测序质量值简明对应关系如下：</p>
+<div id="tb">
+<p class="center">
+<table class="gy">
+<tr ><th >测序错误率</th><th >测序质量值</th><th >对应字符</th></tr>
+<tr ><td >5%</td><td >13</td><td >.</td></tr>
+<tr ><td >1%</td><td >20</td><td >5</td></tr>
+<tr ><td >0.1%</td><td >30</td><td >?</td></tr>
+<tr ><td >0.01%</td><td >40</td><td >I</td></tr>
+</table>
+</p>
+<p class="paragraph">结果目录：<a href="../../result/01.OriginalData" title="点击打开" target="_blank">01.OriginalData</a></p>
+</div>
+
+<!----------------------------------------- 测序数据质量评估 -------------------------------------->
+<div style="page-break-before: always;">
+<p class="head"><a href="#home" title = "返回首页"></a>
+<a name="4.2 测序数据质量评估"></a>
+<hr />
+</p><br />
+<h3>4.2 测序数据质量评估</h3>
+<a name="4.2.1 测序质量分布检查"></a>
+<h4>4.2.1 测序质量分布检查</h4>
+</p></div>
+<p class="paragraph">如果测序错误率用e表示，Illunima的碱基质量值用Q<sub>phred</sub>表示，则有：Q<sub>phred</sub>=-10log<sub>10</sub>(e)。Illunima Casava 1.8版本碱基识别与Phred分值之间的简明对应关系见下表：</p>
+
+
+<table class="gy">
+<tr ><th >Phred分值</th><th >不正确的碱基识别</th><th >碱基正确识别率</th><th >Q-sorce</th></tr>
+<tr ><td >10</td><td >1/10</td><td >90%</td><td >Q10</td></tr>
+<tr ><td >20</td><td >1/100</td><td >99%</td><td >Q20</td></tr>
+<tr ><td >30</td><td >1/1000</td><td >99.9%</td><td >Q30</td></tr>
+<tr ><td >40</td><td >1/10000</td><td >99.99%</td><td >Q40</td></tr>
+</table>
+<p class="paragraph">测序错误率与碱基质量有关，受测序仪本身、测序试剂、样品等多个因素共同影响。对于高通量测序技术，测序错误率分布具有以下特点：</p>
+<p class="paragraph">测序片段前端几个cycles和末端的错误率会偏高。这是由于测序起始仪器不稳定及测序中化学试剂的消耗导致的。此外，测序错误率会随着测序的进行而升高，这是由于测序过程中随着DNA模板被激发光照射的次数增加，导致DNA模版损伤增加，因而导致错误率的升高，此为illumina高通量测序平台都具有的特征。</p>
+
+<iframe style="text-align: center; width: 100%; height:450px; margin: auto;" src="htmls/raw_base_qlt.html"  frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+
+<p class="name_fig">图4.1 测序质量分布图</p>
+<p class="premark">横坐标为reads的碱基位置，纵坐标为单碱基质量值。<br />
+前{{readsLen}}bp 为双端测序序列的第一端测序Reads的质量值分布情况，后{{readsLen}}bp为另一端测序Reads的质量值分布情况。</p>
+
+<!----------------------------------------- 测序错误率分布检查 -------------------------------------->
+<div style="page-break-before: always;">
+<p class="head"><a href="#home" title = "返回首页"></a>
+<a name="4.2.2 测序错误率分布检查"></a>
+<hr />
+</p><br />
+<h4>4.2.2 测序错误率分布检查</h4>
+</p></div>
+<p class="paragraph">测序错误率与碱基质量有关，根据测序技术的特点，测序片段前端几个cycles和末端的错误率会偏高。具体见图 4.2：</p>
+
+ <iframe style="text-align: center;width: 100%; height: 450px; margin: 0 2%;" src="htmls/raw_error_rate.html"  frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+
+<p class="name_fig">图4.2 测序错误率分布图</p>
+<p class="premark">横坐标为reads的碱基位置，纵坐标为单碱基错误率。<br />
+前{{readsLen}}bp 为双端测序序列的第一端测序Reads的错误率分布情况，后{{readsLen}}bp为另一端测序Reads的错误率分布情况。</p>
+
+
+<div style="page-break-before: always;">
+<p class="head"><a href="#home" title = "返回首页"></a>
+<a name="4.2.3 测序数据过滤"></a>
+<hr />
+</p><br />
+<h4>4.2.3 测序数据过滤</h4>
+</p></div>
+<p class="paragraph">测序得到的原始测序序列（Sequenced Reads）或者 raw reads，里面含有带接头的、低质量的reads。为了保证信息分析质量，必须对raw reads过滤，得到clean reads，后续分析都基于 clean reads。数据处理的步骤如下：</p>
+<p class="paragraph">(1) 去除带接头(adapter)的paired-end reads；</p>
+<p class="paragraph">(2) 当单端测序read中含有的N的含量超过该条read长度比例的10%时，需要去除此对paired-end reads；</p>
+<p class="paragraph">(3) 当单端测序read中含有的低质量（Q &lt= 5）碱基数超过该条read长度比例的 50% 时，需要去除此对paired-end reads。</p>
+<p class="paragraph">关于测序adapter：</p>
+<p class="paragraph"> P5 adapter：</p>
+<p class="paragraph"> P5→P7’(5’→3’)</p>
+<p class="paragraph">AATGATACGGCGACCACCGAGATCTACAC[i5]ACACTCTTTCCCTACACGACGCTCTTCCGATCT</p>
+<p class="paragraph">P7 adapter：</p>
+<p class="paragraph">P5→P7’(5’→3’)</p>
+<p class="paragraph">GATCGGAAGAGCACACGTCTGAACTCCAGTCAC[i7]ATCTCGTATGCCGTCTTCTGCTTG</p>
+ <iframe style="text-align: center; width: 100%; height: 480px; margin: auto;" src="htmls/raw_data_pie.html"  frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+
+<p class="name_fig">图4.3 原始数据过滤结果</p>
+
+
+
+<button onclick="hiddenShow(this)">显示注释</button>
+<div class="comment">
+<ul>
+(1) Adapter related：因有接头而过滤掉的Reads对数及其占总Raw reads对数的比例</br>
+(2) Containing N：因单端测序Read中N含量超过该条Read碱基数10%而过滤掉的Reads对数及其占总Raw reads对数的比例</br>
+(3) Low quality：因单端测序Read中低质量（低于5）碱基比例超过Read长度的50%而过滤掉的Reads对数及其占总Raw reads对数的比例</br>
+(4) Clean reads：最终得到的Clean reads对数及其占总Raw reads对数的比例</br>
+(5) *：过滤去除的Reads是成对的</br>
+</ul>
+</div>
+
+<div style="page-break-before: always;">
+<p class="head"><a href="#home" title = "返回首页"></a>
+<a name="4.2.4 测序数据质量情况汇总"></a>
+<hr />
+</p><br />
+<h4>4.2.4 测序数据质量情况汇总</h4>
+</p></div>
+{% if flag_sample_one %}
+<p class="paragraph">本次测序该样本共产生 Raw data {{total_row}}G，过滤后的 Clean data 为{{total_clean}}G，数据量足够。
+Q20为{{q20_low}}%、Q30为{{q30_low}}%），测序质量合格。GC含量{{gc_low}}%，分布正常。</p>
+<p class="paragraph">综上，该样本建库测序成功。</p>
+{% else %}
+<p class="paragraph">本次测序共产生 Raw data {{total_raw}}G，过滤后的 Clean data {{total_clean}}G，
+各样本的 Raw data 在{{raw_low}} M~{{raw_high}} M之间，
+测序质量高（Q20 &gt= {{q20_low}}%、Q30 &gt= {{q30_low}}%），GC含量在{{gc_low}}%~{{gc_high}}%之间。</p>
+<p class="paragraph">综上，所有样本的数据量足够，测序质量合格，GC分布正常，建库测序成功。</p>
+{% endif %}
+
+<p class="paragraph">测序数据质量情况汇总详见表4.1。</p>
+<p class="name_fig">表4.1 测序数据质量情况汇总</p>
+<p class="center">
+<div id="tb">
+<table class="gy">
+{% if merge %}
+	<tr ><th >Sample<sup>1</sup></th><th >Raw Data(G)<sup>2</sup></th><th >Clean Data(G)<sup>3</sup></th><th >Effective Rate(%)<sup>4</sup></th><th >Error Rate(%)<sup>5</sup></th><th >Q20(%)<sup>6</sup></th><th >Q30(%)<sup>7</sup></th><th >GC Content(%)<sup>8</sup></th></tr>
+	{% for each in table_qc %}
+		{% for x in each %}
+		<tr ><td >{{x.0}}</td><td >{{x.1|safe}}</td><td >{{x.2|safe}}</td><td >{{x.3|safe}}</td><td >{{x.4}}</td><td >{{x.5|safe}}</td><td >{{x.6|safe}}</td><td >{{x.7}}</td></td>
+		</tr>
+		{% endfor %}
+	{% endfor %}
+{% else %}
+<tr ><th >Sample<sup>1</sup></th><th >Lane<sup>2</sup></th><th >Raw Data(G)<sup>2</sup></th><th >Clean Data(G)<sup>3</sup></th><th >Effective Rate(%)<sup>4</sup></th><th >Error Rate(%)<sup>5</sup></th><th >Q20(%)<sup>6</sup></th><th >Q30(%)<sup>7</sup></th><th >GC Content(%)<sup>8</sup></th></th></tr>
+{% for each in table_qc %}
+    {% for x in each %}
+		{% if forloop.first %}
+			<tr >
+			<td >{{x.0}}</td><td >{{x.1|safe}}</td><td  rowspan={{each|length}}>{{x.2|safe}}</td><td  rowspan={{each|length}}>{{x.3|safe}}</td><td >{{x.4}}</td><td >{{x.5|safe}}</td><td >{{x.6|safe}}</td><td >{{x.7}}</td><td >{{x.8}}</td>
+			</tr>
+		{% else %}
+			<tr>
+			<td >{{x.0}}</td><td >{{x.1|safe}}</td><td >{{x.2|safe}}</td><td >{{x.3|safe}}</td><td >{{x.4}}</td><td >{{x.5|safe}}</td><td >{{x.6|safe}}</td>
+			</tr>
+		{% endif %}
+	{% endfor %}
+{% endfor %}
+{% endif %}
+</table>
+</div>
+</p>
+<button onclick="hiddenShow(this)">显示注释</button>
+<div class="comment">
+<ul>
+(1) Sample: 样本名。</br>
+(2) Raw Data(G)：原始数据产量，测序序列的个数乘以测序序列的长度，以G为单位。</br>
+(3) Clean Data(G)：过滤之后的有效数据量，过滤后测序序列的个数乘以测序序列的长度，以G为单位。</br>
+(4) Effective Rate(%)：过滤后获得clean data 与raw data的比值。</br>
+(5) Error Rate(%)：碱基错误率。</br>
+(6) Q20：Phred 数值大于20的碱基占总体碱基的百分比。</br>
+(7) Q30：Phred 数值大于30的碱基占总体碱基的百分比。</br>
+(8) GC Content(%)：碱基G和C的数量总和占总的碱基数量的百分比。</br>
+</ul>
+</div>
+
+
+<p class="paragraph">结果目录：<a href="../../result/02.QualityControl" title="点击打开" target="_blank">02.QualityControl</a></p>
+
+
+<br />
+
+  <button onclick="hiddenQA(this)">显示Q&A</button>
+  <div class="comment">
+  <table style="font-size:12px;font-family: 'Times New Roman' '黑体-简'">
+    <tr style="background-color:#036EB8"><td align="left" style="background-color:#036EB8;color:#FFFFFF">Q1：测序错误率会随着测序序列长度的增加而升高，错误率在多少是可以接受的范围？</td></tr>
+    <tr style="background-color:#f1f5fb"><td align="left" style="background-color:#f1f5fb;color:#3E3A39">A1：诺禾的测序会进行严格的数据质量把控。一般情况下，单个碱基位置的测序错误率应该低于1%，最高在6%左右可以接受。</td></tr>
+    <tr style="background-color:#036EB8"><td align="left" style="background-color:#036EB8;color:#FFFFFF">相关名词解释:</td></tr>
+    <tr style="background-color:#f1f5fb"><td align="left" style="background-color:#f1f5fb;color:#3E3A39">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>adapter</b>：接头，用于上机测序。建库时引入的接头序列与测序芯片（flow cell）上固定的接头相互识别。</td></tr>
+    <tr style="background-color:#f1f5fb"><td align="left" style="background-color:#f1f5fb;color:#3E3A39">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>index</b>：测序的标签，用于测定混合样本，通过每个样本添加的不同标签进行数据区分，鉴别测序样品。</td></tr>
+    <tr style="background-color:#f1f5fb"><td align="left" style="background-color:#f1f5fb;color:#3E3A39">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Q20,Q30</b>：Phred 数值大于20、30的碱基占总体碱基的百分比，其中Phred=-10log<sub>10</sub>e。</td></tr>
+    <tr style="background-color:#f1f5fb"><td align="left" style="background-color:#f1f5fb;color:#3E3A39">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>raw data/raw reads</b>：测序下机的原始数据。</td></tr>
+    <tr style="background-color:#f1f5fb"><td align="left" style="background-color:#f1f5fb;color:#3E3A39">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>clean data/clean reads</b>：对原始数据进行过滤后，剔除了低质量数据的剩余数据。后续分析均基于clean data。</td></tr>
+  </table>
+
+</div>
+
+<div style="page-break-before: always;">
+<p class="head">
+<a href="#home" title = "返回首页"></a>
+<a name="{{map_index}} 比对统计"></a>
+<hr />
+</p><br />
+<h3>{{map_index}} 比对统计</h3>
+<p class="paragraph">有效测序数据通过BWA（Li et al., 2009a）软件（参数：mem -t 4 -k 32 -M）比对到参考基因组，比对结果经SAMTOOLS（Li et al., 2009b）去除重复（参数：rmdup）。</p>
+<br />
+  <a name="{{map_index}}.1 参考基因组基本情况统计"></a>
+<h4>{{map_index}}.1 参考基因组基本情况统计</h4>
+</p></div>
+{% if flag_ftp_genome %}
+<p class="paragraph">参考基因组下载地址：{{ftp_genome}}</p>
+{% elif flag_http_genome %}
+<p class="paragraph">参考基因组下载地址：<a href="{{http_genome}}">{{http_genome}}</a></p>
+{% endif %}
+<p class="name_fig">表4.2 参考基因组基本情况统计</p>
+<p class="center">
+<div id="tb">
+<table class="gy">
+<tr ><th >Seq number<sup>1</sup></th><th >Total length<sup>2</sup></th><th >GC content(%)<sup>3</sup></th><th >Gap rate(%)<sup>4</sup></th><th >N50 length<sup>5</sup></th><th >N90 length<sup>6</sup></th></tr>
+{% for each in table_ref %}
+<tr ><td >{{each.0}}</td><td >{{each.1}}</td><td >{{each.2}}</td><td >{{each.3}}</td><td >{{each.4}}</td><td >{{each.5}}</td>
+  </tr>
+{% endfor %}
+</table>
+</div>
+</p>
+  <button onclick="hiddenShow(this)">显示注释</button>
+  <div class="comment">
+  
+    <ul>
+(1) Seq number：基因组组装的序列总数。</br>
+(2) Total length：基因组组装结果总长度。</br>
+(3) GC content：碱基G和C的含量。</br>
+(4) Gap rate：组装结果中N所占的比例。</br>
+(5) N50 length：scaffold N50长度，N50是体现基因组组装程度的重要指标，表示此组装出的基因组中，有50%的序列其长度大于等于该值。</br>
+(6) N90 length：scaffold N90长度，N90是体现基因组组装程度的指标，表示此组装出的基因组中，序列由长到短排序累加，有90%的序列其长度大于等于该值。</br>
+</ul></div>
+<br />
+
+<!-- --------------------------------------Reads与参考基因组比对情况统计----------------------------------------->
+<div >
+<p class="head">
+<a href="#home" title = "返回首页"></a>
+<a name="{{map_index}}.2 Reads与参考基因组比对情况统计"></a>
+<hr />
+</p><br />
+<h4>{{map_index}}.2 Reads与参考基因组比对情况统计</h4>
+</p></div>
+<p class="paragraph">样本比对率反映了样本测序数据与参考基因组的相似性，覆盖深度和覆盖度能够直接反应测序数据的均一性及与参考序列的同源性。</p>
+
+{% if flag_sample_one %}
+<p class="paragraph">参考基因组大小为{{genome_length}}bp，该样本比对率{{map_rate_low}}%，
+对参考基因组（排除N区）的平均覆盖深度{{ave_depth_low}}X，
+1X覆盖度（至少有一个碱基的覆盖）{{cov_1x_low}}%。比对结果正常，可用于后续的变异检测及相关分析。</p>
+{% else %}
+<p class="paragraph">参考基因组大小为{{genome_length}}bp，所有样本的比对率在{{map_rate_low}}%~{{map_rate_high}}%之间，
+对参考基因组（排除N区）的平均覆盖深度在{{ave_depth_low}}X~{{ave_depth_high}}X之间，
+1X覆盖度（至少有一个碱基的覆盖）在{{cov_1x_low}}%以上。比对结果正常，可用于后续的变异检测及相关分析。</p>
+{% endif %}
+
+<p class="name_fig">表4.3 测序深度及覆盖度统计</p>
+<p class="center">
+<div id="tb">
+<table class="gy">
+<tr ><th >Sample<sup>1</sup></th><th >Mapped reads<sup>2</sup></th><th >Total reads<sup>3</sup></th><th >Mapping rate(%)<sup>4</sup></th><th >Average depth(X)<sup>5</sup></th><th >Coverage at least 1X(%)<sup>6</sup></th><th >Coverage at least 4X(%)<sup>7</sup></th></tr>
+{% for each in table_map %}
+<tr ><td >{{each.0}}</td><td >{{each.1}}</td><td >{{each.2}}</td><td >{{each.3|safe}}</td><td >{{each.4}}</td><td >{{each.5}}</td><td >{{each.6}}</td>
+  </tr>
+{% endfor %}
+</table>
+</div>
+</p>
+  <button onclick="hiddenShow(this)">显示注释</button>
+  <div class="comment">
+  
+    <ul>
+(1) Sample: 样本名。</br>
+(2) Mapped reads：比对到reference上的reads条数（包括单端比对和双端比对）。</br>
+(3) Total reads：有效测序数据的reads总条数。</br>
+(4) Mapping rate：比对率，比对到参考基因组上的reads数目除以有效测序数据的reads数目。</br>
+(5) Average depth：平均测序深度，比对到参考基因组的碱基总数除以覆盖的基因组大小。</br>
+(6) Coverage at least 1X：参考基因组中至少有1个碱基覆盖的位点占基因组的百分比。</br>
+(7) Coverage at least 4X：参考基因组至少有4个碱基覆盖的位点占基因组的百分比。</br>
+</ul></div>
+
+<p class="center">
+  <div class="row gallery-row">
+  <div class="col-1">
+  <div id="gallery_figure1_mapbychrdepth_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+  </div>
+  <div class="col-6">
+  <div class="tab-content" id="gallery_figure1_mapbychrdepth_nav-tabContent">
+  {% for each in figure_mapbychrdepth %}
+  <div class="tab-pane fade" id="gallery_figure1_mapbychrdepth_pane_{{each.0|safe}}" role="tabpanel" aria-labelledby="gallery_figure1_mapbychrdepth_list_{{each.0|safe}}" onclick="trans(this.id)"><img class="img-gallery" src="{{each.1|safe}}" /></div>
+  {% endfor %}
+  </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure1_mapbychrdepth_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+  </div>
+  <div class="col-4">
+  <input class="form-control" id="gallery_figure1_mapbychrdepth_InputList" type="text" placeholder="Search..">
+  <div class="list-group" id="gallery_figure1_mapbychrdepth_list-tab" role="tablist">
+  {% for each in figure_mapbychrdepth %}
+  <a class="list-group-item list-group-item-action" id="gallery_figure1_mapbychrdepth_list_{{each.0|safe}}" data-toggle="list" href="#gallery_figure1_mapbychrdepth_pane_{{each.0|safe}}" role="tab" aria-controls="{{each.0|safe}}">{{each.0|safe}}</a>
+  {% endfor %}
+  </div>
+  </div>
+  </div>
+  </p>
+
+
+<p class="name_fig">图4.4 每条染色体的平均测序深度分布图</p>
+<p class="premark">横坐标是染色体名称，纵坐标是平均测序深度。</p>
+
+<p class="paragraph">结果目录：<a href="../../result/03.Mapping" title="点击打开" target="_blank">03.Mapping</a></p>
+
+{% if not MICflag  %}
+<div>
+  <p class="paragraph">分析点解读视频：<a href="https://magic.novogene.com/customer/main#/video-info-new/a0b6ce06c17c71eebfcc6633b79f0102?rId=42">https://magic.novogene.com/customer/main#/video-info-new/a0b6ce06c17c71eebfcc6633b79f0102?rId=42</a></p>
+  </div>
+{% endif %}
+<p class="center">
+    <a name="{{map_index}}.3 Reads比对结果可视化"></a>
+    <h4>{{map_index}}.3 Reads比对结果可视化</h4>
+    
+    <p class="paragraph">我们提供WGS-seq Reads在基因组上比对结果的bam格式文件，部分物种还提供相应的参考基因组和注释文件，并推荐使用IGV (Integrative Genomics Viewer) 浏览器对bam文件进行可视化浏览。</p>
+      <p class="paragraph">IGV浏览器具有以下特点：</p>
+        <p class="paragraph">(1)能在不同尺度下显示单个或多个读段在基因组上的位置，包括读段在各个染色体上的分布情况和在注释的外显子、内含子、剪接接合区、基因间区的分布情况等；</p>
+          <p class="paragraph">(2)能在不同尺度下显示不同区域的读段丰度，以反映不同区域的reads支持数；</p>
+          <p class="paragraph">(3)能显示其他注释信息；</p>
+          <p class="paragraph">(4)既可以从远程服务器端下载各种注释信息，又可以从本地加载注释信息。</p>
+            <p class="paragraph">IGV浏览器使用方法可参考我们提供的使用说明文档(<a href="IGVQuickStart.pdf" title="点击打开" target="_blank">IGVQuickStart.pdf</a>)。</p>
+    <p class="center">
+    <a id="example2" href="images/igv.png"><img class="small" src="images/igv.png" alt="example2"/></a>
+    </p>
+    <p class="name_fig">图4.5　IGV浏览器界面</p>
+  </br>
+
+  
+  <button onclick="hiddenQA(this)">显示Q&A</button>
+  <div class="comment">
+  <table style="font-size:12px;font-family: 'Times New Roman' '黑体-简'">
+  <tr style="background-color:#036EB8"><td align="left" style="background-color:#036EB8;color:#FFFFFF">Q1：比对都需要什么文件？</td></tr>
+  <tr style="background-color:#f1f5fb"><td align="left" style="background-color:#f1f5fb;color:#3E3A39">A1：全基因组测序数据只需要相应的参考基因组文件（fa格式），外显子组测序还需要相应的捕获区域文件（bed格式）。</td></tr>
+  <tr style="background-color:#036EB8"><td align="left" style="background-color:#036EB8;color:#FFFFFF">Q2：造成mapping rate较低的原因可能有哪些？</td></tr>
+  <tr style="background-color:#f1f5fb"><td align="left" style="background-color:#f1f5fb;color:#3E3A39">A2：当mapping rate较低时主要可能有3个原因：（1）由于reference组装不好，或者所测物种与reference的亲缘关系较远；（2）由于样品的特殊前处理或者相对于参考基因组此样品本身的变异太大，导致mapping rate相对较低；（3）样本存在外源污染。</td></tr>
+  <tr style="background-color:#036EB8"><td align="left" style="background-color:#036EB8;color:#FFFFFF">Q3：mapping时用的是read全长，还是头尾有处理？</td></tr>
+  {% if illumina %}
+  <tr style="background-color:#f1f5fb"><td align="left" style="background-color:#f1f5fb;color:#3E3A39">A3：实验方面，我们使用illumina标准的DNA-seq试剂盒，其index是处于Adapter中间，在测序中由Index read完成，由此测序得到的Read 1和Read 2的各{{readsLen}}个碱基全都是样本的序列，所以mapping时使用{{readsLen}}bp，头尾不处理。信息分析方面，我们会将过滤得到的clean reads的全长进行mapping。</td></tr>
+  {% else %}
+  <tr style="background-color:#f1f5fb"><td align="left" style="background-color:#f1f5fb;color:#3E3A39">A3：测序得到的Read 1和Read 2的各{{readsLen}}个碱基全都是样本的序列，所以mapping时使用{{readsLen}}bp，信息分析方面，我们会将过滤得到的clean reads的全长进行mapping，不进行头尾处理。</td></tr>
+  {% endif %}
+  </table>
+</div>
+<!----------------------------------------SNP检测及注释----------------------------------------->
+<div  style="page-break-before: always;">
+<p class="head">
+<a href="#home" title = "返回首页"></a>
+<a name="{{snp_index}} SNP检测及注释"></a>
+<hr />
+</p><br />
+<h3>{{snp_index}} SNP检测及注释</h3>
+</p></div>
+	{% if gatk_joint %}
+<p class="paragraph">SNP(单核苷酸多态性) 主要是指在基因组水平上由单个核苷酸的变异所引起的DNA序列多态性，包括单个碱基的转换、颠换等。</p>
+<p class="paragraph">我们采用GATK（HaplotypeCaller --pair-hmm-gap-continuation-penalty 10 -ERC GVCF --genotyping-mode DISCOVERY -stand-call-conf 30）进行个体SNP的检测，然后基于gvcf文件进行群体分析。</p>
+	{% else %}
+<p class="paragraph">SNP(单核苷酸多态性) 主要是指在基因组水平上由单个核苷酸的变异所引起的DNA序列多态性，包括单个碱基的转换、颠换等。</p>
+<p class="paragraph">我们采用GATK（HaplotypeCaller --pair-hmm-gap-continuation-penalty 10 --genotyping-mode DISCOVERY -stand-call-conf 30）进行个体SNP的检测。为了降低SNP检测的错误率，选用如下标准进行过滤：</p>
+<p class="paragraph">QD < 2.0 || FS > 60.0 || MQ < 30.0 || HaplotypeScore > 13.0 || MappingQualityRankSum < -12.5 || ReadPosRankSum < -8.0。
+</p>
+	{% endif %}
+<a name="{snp_index}.1 SNP检测及注释结果统计"></a>
+
+<h4>{{snp_index}}.1 SNP检测及注释结果统计</h4>
+<p class="name_fig">表4.4 SNP检测及注释结果统计</p>
+
+<iframe style="text-align: center; width: 95%; height: 530px;margin: auto;" src="tables/germline_snp_func_table.html"  frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+
+  <iframe style="text-align: center; width: 850px; height:400px; margin: 0 0 0 10%;" src="htmls/germline_pie_snp.html"  frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+<p class="name_fig">图4.6　基因组不同区域上SNP数目（左）和编码区上不同类型的SNP数目（右）分布</p>
+  <button onclick="hiddenShow(this)">显示注释</button>
+  <div class="comment">
+<ul>
+(1) Sample：样本名。{% if gatk_joint %}(Number of SNPs:每种区域类别SNP的数目){% endif %}<br />
+(2) Upstream：基因上游1 Kb区域。<br />
+(3) Exonic：变异位于外显子区域；Non-synonymous：非同义变异；Stop gain：使基因获得终止密码子的变异；Stop loss：使基因失去终止密码子的变异；synonymous：同义变异。<br />
+(4) Intronic：变异位于内含子区域。<br />
+(5) Splicing：变异位于剪接位点（内含子中靠近外显子/内含子边界的2bp）。<br />
+(6) Downstream：基因下游1 Kb区域。<br />
+(7) Upstream/Downstream: 基因上游1 Kb区域，同时也在另一基因的下游1 Kb区域。<br />
+(8) Intergenic：变异位于基因间区。<br />
+(9) 3'UTR：3‘端非翻译区。<br />
+(10)5'UTR：5‘端非翻译区。<br />
+(11)5'UTR/3'UTR：在一个基因的5'UTR，同时在另一个基因的3'UTR。<br />
+(12) Others：变异位于其它区域。<br />
+(13) Total：SNP位点总数。<br />
+(14) *注：Upstream、Intronic、Splicing、Downstream、Upstream/Downstream、Intergenic、Others的统计数据来源于全基因组注释文件（*snp.avinput.variant_function.gz）；Exonic ：Stop gain、Stop loss、Synonymous、Non-synonymous 的统计数据来源于外显子注释文件（*snp.avinput.exonic_variant_function.gz）；ts、tv、Total的统计数据来源于变异检测文件（*filter.snp.vcf.gz），Total是所有变异位点的总数。SNP同一位置上多等位位点可能会注释到不同的注释类型，导致注释类型数字加和不等于Total变异总数。<br />
+</ul>
+</div>
+
+
+<p class="name_fig">表4.5 SNP注释结果示例</p>
+<p class="center">
+<div id="tb">
+<table class="gy">
+<tr ><th >ANNO_REGION<sup>1</sup></th><th >ANNOTATION<sup>2</sup></th><th >CHROM<sup>3</sup></th><th >POS1<sup>4</sup></th><th >POS2<sup>5</sup></th><th >REF<sup>6</sup></th><th >ALT<sup>7</sup></th><th >AF1<sup>8</sup></th><th >QUAL<sup>9</sup></th><th >DP<sup>10</th><th cl
+ass="tb2">Information of VCF<sup>11</sup></th>
+  </tr>
+{% for each in snpannoexample %}
+        <tr >
+        <td >{{each.0}}</td><td >{{each.1}}</td><td >{{each.2}}</td><td >{{each.3}}</td><td >{{each.4}}</td><td >{{each.5}}</td><td >{{each.6}}</td><td >{{each.7}}<td >{{each.8}}</td><td >{{each.9}}</td><td >{{each.10}}</td>
+        </tr>
+{% endfor %}
+  </tr>
+</table>
+</div>
+</p>
+<button onclick="hiddenShow(this)">显示注释</button>
+  <div class="comment">
+  
+    <ul>
+
+（1）ANNO_REGION：变异注释到的基因元件。</br>
+（2）ANNOTATION：变异所在或者最近的相应基因名称。</br>
+（3）CHROM：变异所在染色体ID。</br>
+（4）POS1：变异的位置。</br>
+（5）POS2：变异的位置。</br>
+（6）REF：参考基因组碱基类型。</br>
+（7）ALT：样本中的变异的碱基类型。</br>
+（8）AF1：reads配对上的第一等位基因的及其位置的等位基因频率（AF）的双重最大似然估计。</br>
+（9）QUAL：变异检测质量。</br>
+（10）DP：测序深度。</br>
+（11）Information of VCF：第10列之后是注释位点在*.filted.SNP.vcf.gz中信息。</br>
+</ul>
+</div>
+
+<!----------------------------------------SNP检测质量分布----------------------------------------->
+<a name="{{snp_index}}.2 SNP检测质量分布"></a>
+<hr/>
+</p><br/>
+<h4>{{snp_index}}.2 SNP检测质量分布</h4>
+<p class="paragraph">为了确保样本SNP的可信性，对样本检测的SNP的reads支持数、SNP质量以及相邻SNP的距离统计累积分布。</p>
+<p class="center">
+  <div class="albumSlider">
+    <div class="fullview"><img src="./images/SNP_distance_cumulative_distribution.png"/></div>
+    <div class="slider">
+    <div class="button movebackward" title="向上滚动"></div>
+    <div class="imglistwrap"><ul class="imglist">
+    
+            <li><a id="example2" href="./images/SNP_readsNum_cumulative_distribution.png" ><img src="./images/SNP_readsNum_cumulative_distribution.png"/></a></li>
+    
+            <li><a id="example2" href="./images/SNP_quality_cumulative_distribution.png" ><img src="./images/SNP_quality_cumulative_distribution.png"/></a></li>
+                
+        <li><a id="example2" href="./images/SNP_distance_cumulative_distribution.png" ><img src="./images/SNP_distance_cumulative_distribution.png"/></a></li>
+            
+    </ul></div>
+    <div class="button moveforward" title="向下滚动"></div>
+    </div>
+    </div>
+    </p>
+    <p class="name_fig">图4.7 SNP质量累积分布</p>
+    <p class="premark">此图显示的是样本的 SNP 质量分布情况，图片依次为SNP reads 支持数目，SNP质量累积以及相邻 SNP 之间的距离分布图。</p>
+
+<!----------------------------------------SNP突变频谱----------------------------------------->
+<div>
+<p class="head">
+<a href="#home" title = "返回首页"></a>
+<a name="{{snp_index}}.3 SNP突变频谱"></a>
+<hr />
+</p><br />
+<h4>{{snp_index}}.3 SNP突变频谱</h4>
+<p class="paragraph">全基因组SNP突变可以分成6类。以T:A>C:G为例，此种类型SNP突变包括T>C和A>G。由于测序数据既可比对到参考基因组的正链，也可比对到参考基因组的负链，当T>C类型突变出现在参考基因组正链上，A>G类型突变即在参考基因组负链的相同位置，所以将T>C和A>G划分成一类。如有需要可以使用./results/4.SNP_VarDetect/SNP.frequency.xls统计结果文件excel作图。根据各类型SNP突变的数量对样本和突变类型，我们可以分析所研究的突变类型的偏好和各样本在突变水平上的相似程度。</p>
+<table border="0" align="center" cellpadding="0" cellspacing="0" >
+  <tr>
+
+    <td style="background-color:#FFFFFF"><a id="example2" href="images/SNP_frequency.png"><img class="normal1" src="images/SNP_frequency.png" alt="example2"/></td>
+    <td style="background-color:#FFFFFF"><a id="example2" href="images/SNP.frequency.xls.barplot.png"><img class="normal1" src="images/SNP.frequency.xls.barplot.png" alt="example2"/></td>
+  </tr>
+</table>
+<p class="name_fig">图4.8 SNP突变频谱图</p>
+<p class="premark">左图横坐标表示SNP的数目，纵坐标表示SNP突变类型。右图横坐标表示样本名称，纵坐标表示各突变类型在样本中的比例，不同颜色代表不同SNP突变类型。</p>
+
+<p class="paragraph">结果目录：<a href="../../result/04.SNP_VarDetect" title="点击打开" target="_blank">04.SNP_VarDetect</a></p>
+
+</div>
+{% if flag_snp_venn %}
+<!----------------------------------------样本间SNP比较----------------------------------------->
+<div >
+<p class="head">
+<a href="#home" title = "返回首页"><img class="logo" align="left" src="images/logo.png" /></a>
+<a name="样本间SNP比较">北京诺禾致源科技股份有限公司</a>
+<hr />
+</p><br />
+<h4>{{snp_index}}.5 样本间SNP比较</h4>
+<p class="paragraph">为了方便样本间的比较，我们将SNP位点各个样本的基因型放在一张表格中，并把注释信息加进去，详见结果文件：Genotyping.anno.xls</p>
+<p class="paragraph">对样本检测出来的SNP进行比较，结果如图。</p>
+<p class="center">
+<a id="example2" href="images/SNP_venn.png"><img class="normal1" src="images/SNP_venn.png" alt="example2"/></a>
+</p>
+<p class="name_fig">图{{snp_index}}.5  SNP维恩图</p>
+<p class="premark">显示样本之间共有和差异的SNP位点数目的统计。</p>
+</div>
+{% endif %}
+<a name="SNP检测及注释 Q&A"></a>
+<div class="QA">
+  {% if flag_snp_venn %}
+  <div><h4>{{snp_index}}.6  SNP检测及注释 Q&A </h4></div>
+  {% else %}
+
+  {% endif %}
+
+<button onclick="hiddenQA(this)">显示Q&A</button>
+<div class="comment">
+<table style="font-size:12px;font-family: 'Times New Roman' '黑体-简'">
+<tr style="background-color:#036EB8"><td align="left" style="background-color:#036EB8;color:#FFFFFF">Q1：SNP的质量值MQ和quality分别指的是什么？</td></tr>
+<tr style="background-color:#f1f5fb"><td align="left" style="background-color:#f1f5fb;color:#3E3A39">A1：MQ指的是SNP所在reads的比对质量值；quality指的是SNP的质量值，表示在该位点存在variant的可能性；该值越高，则variant的可能性越大；计算方法为，Phred值 = -10*log(1-p)， p为variant存在的概率; 通过计算公式可以得出值是20的位点为variant的概率达到99%。</td></tr>
+<tr style="background-color:#036EB8"><td align="left" style="background-color:#036EB8;color:#FFFFFF">Q2：什么是转换和颠换？</td></tr>
+<tr style="background-color:#f1f5fb"><td align="left" style="background-color:#f1f5fb;color:#3E3A39">A2：转换（transitions）是指嘌呤与嘌呤（A和G）之间，或嘧啶与嘧啶（C和T）之间的替换，颠换（transversions）是指嘌呤与嘧啶之间的替换（如，A突变成C等）。</td></tr>
+<tr style="background-color:#036EB8"><td align="left" style="background-color:#036EB8;color:#FFFFFF">Q3：什么是杂合SNP?</td></tr>
+<tr style="background-color:#f1f5fb"><td align="left" style="background-color:#f1f5fb;color:#3E3A39">A3：二倍体两个等位基因在这个位点表现不同的碱基型，体现在数据里，是reads在这个位点表现与ref相同和与ref不同的两种碱基型。</td></tr>
+
+  <tr style="background-color:#036EB8"><td align="left" style="background-color:#036EB8;color:#FFFFFF">Q4：SNP验证的方法有哪些？</td></tr>
+  <tr style="background-color:#f1f5fb"><td align="left" style="background-color:#f1f5fb;color:#3E3A39">A4：PCR后，sanger测序验证，很准确，SNP的金标准。</td></tr>
+  <tr style="background-color:#036EB8"><td align="left" style="background-color:#036EB8;color:#FFFFFF">Q5：通过PCR的方法验证不出，是不是说明检测有误？</td></tr>
+  <tr style="background-color:#f1f5fb"><td align="left" style="background-color:#f1f5fb;color:#3E3A39">A5：首先，二代测序不能保证SNP是100%准确的，在深度足够的情况下，只能保证绝大部分是准确的，某个位点验证有误，首先保证PCR的结果跟二代测序的结果是正确匹配的，然后可以将这个位点的覆盖reads用savant或igv浏览器来看，肉眼查看二代测序的结果做验证。</td></tr>
+  </table>
+</div>
+</div>
+
+<!----------------------------------------InDel检测及注释----------------------------------------->
+<div  style="page-break-before: always;">
+<p class="head">
+<a href="#home" title = "返回首页"></a>
+<a name="{{indel_index}} InDel检测及注释"></a>
+<hr />
+</p><br />
+<h3>{{indel_index}} InDel检测及注释</h3>
+</p></div>
+<p class="paragraph">InDel全称Insertion and Deletion，指小片段的插入和缺失。编码区或剪接位点处发生的插入缺失都可能会改变蛋白的翻译。移码变异，其插入或缺失的碱基串的长度为3的非整数倍，因此可能导致整个读框的改变；移码变异与非移码变异相比较，前者对基因功能的影响更大，同时在群体中受到更大的筛选压力。</p>
+<a name="{{indel_index}}.1 InDel检测及注释结果统计"></a>
+
+<h4>{{indel_index}}.1 InDel检测及注释结果统计</h4>
+	{% if gatk_joint %}
+
+<p class="paragraph">我们采用GATK（HaplotypeCaller --pair-hmm-gap-continuation-penalty 10 -ERC GVCF --genotyping-mode DISCOVERY -stand-call-conf 30）进行个体InDel的检测。</p>
+	{% else %}
+<p class="paragraph">我们利用GATK（HaplotypeCaller --pair-hmm-gap-continuation-penalty 10 --genotyping-mode DISCOVERY -stand-call-conf 30），过滤参数：QD < 2.0 || FS > 200.0 || ReadPosRankSum < -20.0。</p>
+	{% endif %}
+<p class="paragraph">InDel结果统计如下：</p>
+<p class="name_fig">表4.6 InDel检测及注释结果统计</p>
+
+
+
+   <iframe style="text-align: center; width: 95%; height: 530px;margin: auto;" src="tables/germline_indel_func_table.html"  frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+
+
+
+</p>
+
+ <iframe style="text-align: center; width: 850px; height:400px; margin: 0 0 0 10%;" src="htmls/germline_pie_indel.html"  frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+<p class="name_fig">图4.9　基因组不同区域上InDel数目（左）和编码区上不同类型的InDel数目（右）分布</p>
+
+  <button onclick="hiddenShow(this)">显示注释</button>
+  <div class="comment">
+  
+<ul>
+(1) Sample：样本名。{% if gatk_joint %}(Number of InDels:每种区域类别InDel的数目){% endif %}<br />
+(2) Upstream：基因上游1 Kb区域。<br />
+(3) Exonic：变异位于外显子区域；Stop gain：使基因获得终止密码子的变异；Stop loss：使基因失去终止密码子的变异；Frameshift deletion/insertion：插入或缺失导致蛋白质编码框改变；Non-Frameshift deletion/insertion插入或缺失3或3的整数倍的碱基，不改变蛋白质的编码框。<br />
+(4) Intronic：变异位于内含子区域。<br />
+(5) Splicing：变异位于剪接位点（内含子中靠近外显子/内含子边界的2bp）。<br />
+(6) Downstream：基因下游1 Kb区域。<br />
+(7) Upstream/Downstream: 基因上游1 Kb区域，同时也在另一基因的下游1 Kb区域。<br />
+(8) Intergenic：变异位于基因间区。<br />
+(9) 3'UTR：3‘端非翻译区。<br />
+(10)5'UTR：5‘端非翻译区。<br />
+(11)5'UTR/3'UTR：在一个基因的5'UTR，同时在另一个基因的3'UTR。<br />
+(12) Others：变异位于其它区域。<br />
+(13) Total：InDel总数。<br />
+(14) *注：Upstream、Intronic、Splicing、Downstream、Upstream/Downstream、Intergenic、Others的统计数据来源于全基因组注释文件（*indel.avinput.variant_function.gz）；Exonic ：Stop gain、Stop loss、Frameshift deletion/insertion、Non-Frameshift deletion/insertion的统计数据来源于外显子注释文件（*indel.avinput.exonic_variant_function.gz）；Total的统计数据来源于变异检测文件（*filter.indel.vcf.gz），是所有变异位点的总数；InDel同一位置上多等位位点可能会注释到不同的结构区间，注释类型的数字加和不等于Total变异总数。
+</ul>
+</div>
+
+<a name="{{indel_index}}.2 InDel注释结果展示"></a>
+<hr />
+</p><br />
+
+<h4>{{indel_index}}.2 InDel注释结果展示</h4>
+<p class="paragraph">利用ANNOVAR（Wang et al., 2010）软件对检测出的InDel进行注释。</p>
+<p class="name_fig">表4.7 InDel注释结果示例</p>
+<p class="center">
+<div id="tb">
+<table class="gy">
+<tr ><th >ANNO_REGION<sup>1</sup></th><th >ANNOTATION<sup>2</sup></th><th >CHROM<sup>3</sup></th><th >POS1<sup>4</sup></th><th >POS2<sup>5</sup></th><th >REF<sup>6</sup></th><th >ALT<sup>7</sup></th><th >AF1<sup>8</sup></th><th >QUAL<sup>9</sup></th><th >DP<sup>10</sup></th><th >Information of VCF<sup>11</sup></th>
+  </tr>
+{% for each in indelannoexample %}
+        <tr >
+        <td >{{each.0}}</td><td >{{each.1}}</td><td >{{each.2}}</td><td >{{each.3}}</td><td >{{each.4}}</td><td >{{each.5}}</td><td >{{each.6}}</td><td >{{each.7}}<td >{{each.8}}</td><td >{{each.9}}</td><td >{{each.10}}</td>
+        </tr>
+{% endfor %}
+  </tr>
+  </tr>
+</table>
+</div>
+</p>
+
+  <button onclick="hiddenShow(this)">显示注释</button>
+  <div class="comment">
+  
+    <ul>
+（1）ANNO_REGION：变异注释到的基因元件。</br>
+（2）ANNOTATION：变异所在或者最近的相应基因名称。</br>
+（3）CHROM：变异所在染色体ID。</br>
+（4）POS1：变异的起始位置。</br>
+（5）POS2：变异的终止位置（对于InDel，pos1与pos2位置可能相同，可能不同）。</br>
+（6）REF：参考基因组碱基序列。</br>
+（7）ALT：样本中的变异的碱基序列。</br>
+（8）AF1：reads配对上的第一等位基因的及其位置的等位基因频率（AF）的双重最大似然估计。</br>
+（9）QUAL：变异检测质量。</br>
+（10）DP：测序深度。</br>
+（11）Information of VCF: 第10列之后是注释位点在*.filted.indel.vcf.gz中信息。</br>
+
+</ul></div>
+</p>
+
+
+<!----------------------------------------编码区和全基因组InDel长度分布----------------------------------------->
+
+<a name="{{indel_index}}.3 编码区和全基因组InDel长度分布"></a>
+<hr />
+</p><br />
+<h4>{{indel_index}}.3 编码区和全基因组InDel长度分布</h4>
+<p class="paragraph">展示图片时默认只画四个样本。如有需要可以使用./results/5.InDel_VarDetect/Indel.GENOMEpercentage.xls和Indel.CDSpercentage.xls统计结果文件excel作图。</p>
+<table border="0" align="center" cellpadding="0" cellspacing="0" >
+  <tr>
+
+    <td style="background-color:#FFFFFF"><a id="example2" href="images/InDel_CDSpercentage.png"><img class="normal1" src="images/InDel_CDSpercentage.png" alt="example2"/></td>
+    <td style="background-color:#FFFFFF"><a id="example2" href="images/InDel_GENOMEpercentage.png"><img class="normal1" src="images/InDel_GENOMEpercentage.png" alt="example2"/></td>
+  </tr>
+</table>
+
+<p class="name_fig">图4.10 InDel长度分布</p>
+<p class="premark">纵坐标为InDel长度，横坐标为该长度的InDel个数占总数的比例；左图为编码区InDel，右图为全基因组InDel。</p>
+<p class="paragraph">结果目录：<a href="../../result/05.InDel_VarDetect" title="点击打开" target="_blank">05.InDel_VarDetect</a></p>
+{% if flag_indel_venn %}
+<!----------------------------------------样本间InDel比较----------------------------------------->
+<div id="page">
+<p class="head">
+<a href="#home" title = "返回首页"><img class="logo" align="left" src="images/logo.png" /></a>
+<a name="样本间InDel比较">北京诺禾致源科技股份有限公司</a>
+<hr />
+</p><br />
+  <a name="样本间InDel比较"></a>
+<h4>{{indel_index}}.4 样本间InDel比较</h4>
+<p class="paragraph">对样本检测出来的InDel进行比较，结果如图。</p>
+<p class="center">
+<a id="example2" href="images/InDel_venn.png"><img class="normal1" src="images/InDel_venn.png" alt="example2"/></a>
+</p>
+<p class="name_fig">图{{indel_index}}.4  InDel维恩图</p>
+<p class="premark">显示样本之间共有和差异的InDel位点数目的统计。</p>
+{% endif %}
+<a name="InDel检测及注释 Q&A"></a>
+<div class="QA">
+  {% if flag_indel_venn %}
+  <div><h4>{{indel_index}}.5  InDel检测及注释 Q&A </h4></div>
+  {% else %}
+
+  {% endif %}
+<button onclick="hiddenQA(this)">显示Q&A</button>
+<div class="comment">
+<table style="font-size:12px;font-family: 'Times New Roman' '黑体-简'">
+  <tr style="background-color:#036EB8"><td align="left" style="background-color:#036EB8;color:#FFFFFF">Q1：什么是InDel的杂合率？</td></tr>
+  <tr style="background-color:#f1f5fb"><td align="left" style="background-color:#f1f5fb;color:#3E3A39">A1：杂合InDel占InDel总数的比例，杂合InDel是指二倍体两个等位基因中只有一个发生了InDel突变。</td></tr>
+  <tr style="background-color:#036EB8"><td align="left" style="background-color:#036EB8;color:#FFFFFF">Q2：InDel和SNP的区别？</td></tr>
+  <tr style="background-color:#f1f5fb"><td align="left" style="background-color:#f1f5fb;color:#3E3A39">A2：SNP是单个碱基的改变（某个位点的碱基变成其他碱基型，如A突变到T），InDel则是指一个或多个碱基的插入和缺失（如某个位点A突变到AT，插入了一个T）。</td></tr>
+  </table>
+</div>
+
+{% if cog_kog_flag or go_flag or kegg_flag %}
+<div  style="page-break-before: always;">
+<p class="head">
+<a href="#home" title = "返回首页"></a>
+<a name="{{funanno_index}} 功能基因注释"></a>
+<hr />
+</p><br />
+<h3>{{funanno_index}} 功能基因注释</h3>
+
+{% if cog_kog_flag %}
+<hr />
+<!--cog plot for mic -->
+
+{% if F_flag %}
+<h4>{{cogkog_index}} KOG</h4>
+{% else %}
+<h4>{{cogkog_index}} COG</h4>
+{% endif %}
+
+<p class="paragraph">目前使用的通用功能数据库是{% if F_flag %}KOG{% else %}COG{% endif %}数据库。功能注释基本步骤如下：</p>
+<p class="paragraph">1） 将预测基因与功能数据库进行 BLAST 比对（blastp，evalue ≤ 1e-5）；</p>
+<p class="paragraph">2） BLAST 结果过滤：对于每一条序列的 BLAST 结果，选取 score 最高的比对结果（默
+认identity>=40%，coverage>=40%）进行注释。</p>
+{% if F_flag %}
+{% endif %}
+<p class="paragraph">COG，全称是Cluster of Orthologous Groups of proteins(Galperin MY et al.,2015)，由NCBI创建并维护的蛋白数据库，根据细菌、藻类和真核生物完整基因组的编码蛋白系统进化关系分类构建而成。通过比对可以将某个蛋白序列注释到某一个COG中，每一簇COG由直系同源序列构成，从而可以推测该序列的功能。COG数据库按照功能一共可以分为二十五类，详见<a href=http://www.ncbi.nlm.nih.gov/COG/>http://www.ncbi.nlm.nih.gov/COG/</a>。</p>
+{% if F_flag %}
+<p class="paragraph">KOG数据库，属于COG数据库的一个针对真核生物的直系同源数据库。KOG链接同COG链接。</p>
+{% endif %}
+<p class="paragraph">其统计结果如下图4.11和图4.12：</p>
+
+
+<p class="center">
+  <div class="row gallery-row">
+  <div class="col-1">
+  <div id="gallery_cog_kog_plot_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+  </div>
+  <div class="col-6">
+  <div class="tab-content" id="gallery_cog_kog_plot_nav-tabContent">
+  {% for each in snpcogkoglist %}
+  <div class="tab-pane fade" id="gallery_cog_kog_plot_pane_{{each.0|safe}}" role="tabpanel" aria-labelledby="gallery_cog_kog_plot_list_{{each.0|safe}}" onclick="trans(this.id)"><img class="img-gallery" src="./images/{{each.1|safe}}" /></div>
+  {% endfor %}
+  </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_cog_kog_plot_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+  </div>
+  <div class="col-4">
+  <input class="form-control" id="gallery_cog_kog_plot_InputList" type="text" placeholder="Search..">
+  <div class="list-group" id="gallery_cog_kog_plot_list-tab" role="tablist">
+  {% for each in snpcogkoglist %}
+  <a class="list-group-item list-group-item-action" id="gallery_cog_kog_plot_list_{{each.0|safe}}" data-toggle="list" href="#gallery_cog_kog_plot_pane_{{each.0|safe}}" role="tab" aria-controls="{{each.0|safe}}">{{each.0|safe}}</a>
+  {% endfor %}
+  </div>
+  </div>
+  </div>
+<p class="name_fig">{% if F_flag %}图4.11 各样品变异SNP位点相关基因功能注释KOG功能分类图{% else %}图4.11 各样品变异SNP位点相关基因功能注释COG功能分类图{% endif %}</p>
+<p class="premark">此图横坐标表示{% if F_flag %}KOG{% else %}COG{% endif %}功能类型，纵坐标表示注释上的基因个数。</p>
+<p class="premark">当样本数据在数据库中注释不到相关内容，展示的图为空。</p>
+<p class="paragraph">结果目录：<a href="../../result/04.SNP_VarDetect" title="点击打开" target="_blank">04.SNP_VarDetect</a></p>
+  </p>
+
+<p class="center">
+  <div class="row gallery-row">
+  <div class="col-1">
+  <div id="gallery_cog_kog_indel_plot_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+  </div>
+  <div class="col-6">
+  <div class="tab-content" id="gallery_cog_kog_indel_plot_nav-tabContent">
+  {% for each in indelcogkoglist %}
+  <div class="tab-pane fade" id="gallery_cog_kog_indel_plot_pane_{{each.0|safe}}" role="tabpanel" aria-labelledby="gallery_cog_kog_indel_plot_list_{{each.0|safe}}" onclick="trans(this.id)"><img class="img-gallery" src="./images/{{each.1|safe}}" /></div>
+  {% endfor %}
+  </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_cog_kog_indel_plot_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+  </div>
+  <div class="col-4">
+  <input class="form-control" id="gallery_cog_kog_indel_plot_InputList" type="text" placeholder="Search..">
+  <div class="list-group" id="gallery_cog_kog_indel_plot_list-tab" role="tablist">
+  {% for each in indelcogkoglist %}
+  <a class="list-group-item list-group-item-action" id="gallery_cog_kog_indel_plot_list_{{each.0|safe}}" data-toggle="list" href="#gallery_cog_kog_indel_plot_pane_{{each.0|safe}}" role="tab" aria-controls="{{each.0|safe}}">{{each.0|safe}}</a>
+  {% endfor %}
+  </div>
+  </div>
+  </div>
+<p class="name_fig">{% if F_flag %}图4.12 各样品变异indel位点相关基因功能注释KOG功能分类图{% else %}图4.12 各样品变异indel位点相关基因功能注释COG功能分类图{% endif %}</p>
+<p class="premark">此图横坐标表示{% if F_flag %}KOG{% else %}COG{% endif %}功能类型，纵坐标表示注释上的基因个数。</p>
+<p class="premark">当样本数据在数据库中注释不到相关内容，展示的图为空。</p>
+<p class="paragraph">结果目录：<a href="../../result/05.InDel_VarDetect" title="点击打开" target="_blank">05.InDel_VarDetect</a></p>
+  </p>
+{% endif %}
+
+{% if go_flag %}
+<hr />
+<h4>{{go_index}} GO</h4>
+  <p class="paragraph">GO (Gene Ontology): Gene Ontology（简称 GO）是一个国际标准化的基因功能分类体系,提供了一套动态更新的标准词汇表（controlled vocabulary）来全面描述生物体中基因和基因产物的属性。GO 总共有三个 ontology，分别描述基因的分子功能（molecular function）、所处的细胞位置（cellular component）、参与的生物过程（biological process）。GO 功能分析针对选择区域的候选基因（以下简称“候选基因”）。该分析可以提供与参考基因比较后，在候选基因中显著富集的 GO 功能条目，并筛选出候选靶基因与哪些生物学功能显著相关。该分析首先把所有候选基因向 Gene Ontology 数据库（http://www.geneontology.org/）的各个 Term映射，计算映射到每个 term 的靶基因数目，然后应用超几何检验，找出与整个参考基因背景相比，在候选靶基因中显著富集的 GO 条目，其计算公式为：</p>
+  <p class="center"><img src="images/GO_method.png"  width="18%" height="5%"></p>
+  <p class="paragraph">其中，N 为所有基因中具有 GO 注释的基因数目； n 为 N 中被预测为候选基因的数目； M 为所有基因中注释为某特定 GO term 的基因数目； m 为注释为某特定 GO term 的候选基因数目。 计算得到的 p-value 通过 Bonferroni 校正之后，以 p-value ≤ 0.05 为阈值， 满足此条件的 GO term 定义为在候选靶基因中显著富集的 GO term。 通过 GO 功能显著性富集分析能确定候选靶基因行使的主要生物学功能。关于GO数据库的更多细节详见http://www.geneontology.org/ 。</p>
+  <p class="paragraph">GO富集结果如下图4.13和4.14所示。</p>
+  <p class="center">
+    <div class="row gallery-row">
+    <div class="col-1">
+    <div id="gallery_go_plot_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+    </div>
+    <div class="col-6">
+    <div class="tab-content" id="gallery_go_plot_nav-tabContent">
+    {% for each in snpgolist %}
+    <div class="tab-pane fade" id="gallery_go_plot_pane_{{each.0|safe}}" role="tabpanel" aria-labelledby="gallery_go_plot_list_{{each.0|safe}}" onclick="trans(this.id)"><img class="img-gallery" src="./images/{{each.1|safe}}" /></div>
+    {% endfor %}
+    </div>
+    </div>
+    <div class="col-1">
+    <div id="gallery_go_plot_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+    </div>
+    <div class="col-4">
+    <input class="form-control" id="gallery_go_plot_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_go_plot_list-tab" role="tablist">
+    {% for each in snpgolist %}
+    <a class="list-group-item list-group-item-action" id="gallery_go_plot_list_{{each.0|safe}}" data-toggle="list" href="#gallery_go_plot_pane_{{each.0|safe}}" role="tab" aria-controls="{{each.0|safe}}">{{each.0|safe}}</a>
+    {% endfor %}
+    </div>
+    </div>
+    </div>
+  <p class="name_fig">图 4.13 各样品变异SNP位点相关基因GO功能注释</p>
+  <p class="premark">此图横坐标表示GO功能类型，纵坐标表示注释上的基因个数。</p>
+  <p class="premark">当样本数据在数据库中注释不到相关内容，展示的图为空。</p>
+  <p class="paragraph">结果目录：<a href="../../result/04.SNP_VarDetect" title="点击打开" target="_blank">04.SNP_VarDetect</a></p>
+  </p>
+
+  <p class="center">
+    <div class="row gallery-row">
+    <div class="col-1">
+    <div id="gallery_goindel_plot_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+    </div>
+    <div class="col-6">
+    <div class="tab-content" id="gallery_goindel_plot_nav-tabContent">
+    {% for each in indelgolist %}
+    <div class="tab-pane fade" id="gallery_goindel_plot_pane_{{each.0|safe}}" role="tabpanel" aria-labelledby="gallery_goindel_plot_list_{{each.0|safe}}" onclick="trans(this.id)"><img class="img-gallery" src="./images/{{each.1|safe}}" /></div>
+    {% endfor %}
+    </div>
+    </div>
+    <div class="col-1">
+    <div id="gallery_goindel_plot_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+    </div>
+    <div class="col-4">
+    <input class="form-control" id="gallery_goindel_plot_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_goindel_plot_list-tab" role="tablist">
+    {% for each in indelgolist %}
+    <a class="list-group-item list-group-item-action" id="gallery_goindel_plot_list_{{each.0|safe}}" data-toggle="list" href="#gallery_goindel_plot_pane_{{each.0|safe}}" role="tab" aria-controls="{{each.0|safe}}">{{each.0|safe}}</a>
+    {% endfor %}
+    </div>
+    </div>
+    </div>
+  <p class="name_fig">图 4.14 各样品变异indel位点相关基因GO功能注释</p>
+  <p class="premark">此图横坐标表示GO功能类型，纵坐标表示注释上的基因个数。</p>
+  <p class="premark">当样本数据在数据库中注释不到相关内容，展示的图为空。</p>
+  <p class="paragraph">结果目录：<a href="../../result/05.InDel_VarDetect" title="点击打开" target="_blank">05.InDel_VarDetect</a></p>
+  </p>
+
+{% endif %}
+
+{% if kegg_flag %}
+<hr />
+<h4>{{kegg_index}} KEGG</h4>
+  <p class="paragraph">KEGG (Kyoto Encyclopedia of Genes and Genome): KEGG 是有关通路的主要公共数据库，通路显著性富集分析以 KEGG 中的通路为单位，应用超几何检验，找出与整个参考基因相比较在候选基因中显著性富集的通路。该分析的计算公式同 GO 分析，在这里 N 为所有基因中具有通路注释的基因数目；n 为 N 中的候选基因的数目；M 为所有基因中注释为某特定通路的基因数目；m 为注释为该特定通路的候选基因数目。p-value ≤ 0.05 的通路被认为在候选基因中显著富集。通过通路显著性富集分析能确定候选基因参与的最主要生化代谢途径和信号转导途径。关于KEGG数据库的更多细节详见 http://www.genome.jp/kegg/ 。</p>
+  <p class="paragraph">KEGG富集结果如下图4.15和4.16所示。</p>
+  <p class="center">
+    <div class="row gallery-row">
+    <div class="col-1">
+    <div id="gallery_kegg_plot_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+    </div>
+    <div class="col-6">
+    <div class="tab-content" id="gallery_kegg_plot_nav-tabContent">
+    {% for each in snpkegglist %}
+    <div class="tab-pane fade" id="gallery_kegg_plot_pane_{{each.0|safe}}" role="tabpanel" aria-labelledby="gallery_kegg_plot_list_{{each.0|safe}}" onclick="trans(this.id)"><img class="img-gallery" src="./images/{{each.1|safe}}" /></div>
+    {% endfor %}
+    </div>
+    </div>
+    <div class="col-1">
+    <div id="gallery_kegg_plot_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+    </div>
+    <div class="col-4">
+    <input class="form-control" id="gallery_kegg_plot_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_kegg_plot_list-tab" role="tablist">
+    {% for each in snpkegglist %}
+    <a class="list-group-item list-group-item-action" id="gallery_kegg_plot_list_{{each.0|safe}}" data-toggle="list" href="#gallery_kegg_plot_pane_{{each.0|safe}}" role="tab" aria-controls="{{each.0|safe}}">{{each.0|safe}}</a>
+    {% endfor %}
+    </div>
+    </div>
+    </div>
+  <p class="name_fig">图 4.15 各样品变异SNP位点相关基因KEGG功能注释</p>
+  <p class="premark">此图横坐标表示KEGG功能类型，纵坐标表示注释上的基因个数。</p>
+  <p class="premark">当样本数据在数据库中注释不到相关内容，展示的图为空。</p>
+  <p class="paragraph">结果目录：<a href="../../result/04.SNP_VarDetect" title="点击打开" target="_blank">04.SNP_VarDetect</a></p>
+  </p>
+
+  <p class="center">
+    <div class="row gallery-row">
+    <div class="col-1">
+    <div id="gallery_keggindel_plot_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+    </div>
+    <div class="col-6">
+    <div class="tab-content" id="gallery_keggindel_plot_nav-tabContent">
+    {% for each in indelkegglist %}
+    <div class="tab-pane fade" id="gallery_keggindel_plot_pane_{{each.0|safe}}" role="tabpanel" aria-labelledby="gallery_keggindel_plot_list_{{each.0|safe}}" onclick="trans(this.id)"><img class="img-gallery" src="./images/{{each.1|safe}}" /></div>
+    {% endfor %}
+    </div>
+    </div>
+    <div class="col-1">
+    <div id="gallery_keggindel_plot_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+    </div>
+    <div class="col-4">
+    <input class="form-control" id="gallery_keggindel_plot_InputList" type="text" placeholder="Search..">
+    <div class="list-group" id="gallery_keggindel_plot_list-tab" role="tablist">
+    {% for each in indelkegglist %}
+    <a class="list-group-item list-group-item-action" id="gallery_keggindel_plot_list_{{each.0|safe}}" data-toggle="list" href="#gallery_keggindel_plot_pane_{{each.0|safe}}" role="tab" aria-controls="{{each.0|safe}}">{{each.0|safe}}</a>
+    {% endfor %}
+    </div>
+    </div>
+    </div>
+  <p class="name_fig">图 4.16 各样品变异indel位点相关基因KEGG功能注释</p>
+  <p class="premark">此图横坐标表示KEGG功能类型，纵坐标表示注释上的基因个数。</p>
+  <p class="premark">当样本数据在数据库中注释不到相关内容，展示的图为空。</p>
+  <p class="paragraph">结果目录：<a href="../../result/05.InDel_VarDetect" title="点击打开" target="_blank">05.InDel_VarDetect</a></p>
+  </p>
+
+{% endif %}
+
+</div>
+{% endif %}
+<!----------------------------------------SV检测及注释----------------------------------------->
+<div id="page">
+<p class="head">
+<a href="#home" title = "返回首页"></a>
+<a name="{{sv_index}} SV检测及注释"></a>
+<hr />
+</p><br />
+<h3>{{sv_index}} SV检测及注释</h3>
+</p></div>
+<p class="paragraph">SV（结构变异）指基因组水平上大片段的插入、缺失、倒置、易位等序列。可利用BreakDancer（Chen et al., 2009）软件，基于pair-end reads比对到参考基因组上面的关系及实际insert size大小检测样品与参考基因组间的插入（insertion，INS）、缺失（deletion，DEL）、倒置（inversion，INV）、染色体内部迁移（intra-chromosomal translocation，ITX）、染色体间的迁移（inter-chromosomal translocation，CTX）。过滤去掉PE reads支持数小于2的SV结果，并且对其中的DEL、INS、INV通过ANNOVAR（Wang et al., 2010）进行变异注释。</p>
+<a name="{{sv_index}}.1 SV注释结果展示"></a>
+<h4>{{sv_index}}.1 SV注释结果展示</h4>
+<p class="name_fig">表4.8 SV检测结果示例</p>
+<p class="center">
+<div id="tb">
+<table class="gy">
+<tr ><th >ANNO_REGION<sup>1</sup></th><th >ANNOTATION<sup>2</sup></th><th >CHROM<sup>3</sup></th><th >POS1<sup>4</sup></th><th >POS2<sup>5</sup></th><th >TYPE of SV<sup>6</sup></th><th >SIZE of SV<sup>7</sup></th>
+  </tr>
+
+{% for each in svannoexample %}
+        <tr >
+        <td >{{each.0}}</td><td >{{each.1}}</td><td >{{each.2}}</td><td >{{each.3}}</td><td >{{each.4}}</td><td >{{each.5}}</td><td >{{each.6}}</td>
+        </tr>
+{% endfor %}
+</table>
+</div>
+</p>
+  <button onclick="hiddenShow(this)">显示注释</button>
+  <div class="comment">
+  
+    <ul>
+（1）ANNO_REGION：变异注释到的基因元件。</br>
+（2）ANNOTATION：变异所在或者最近的相应基因名称。</br>
+（3）CHROM：变异所在染色体ID。</br>
+（4）POS1：变异的起始位置。</br>
+（5）POS2：变异的终止位置。</br>
+（6）TYPE of SV：SV类型。</br>
+（7）SIZE of SV：SV大小。</br>
+</ul></div>
+</div>
+
+<a name="{{sv_index}}.2 SV检测及注释结果统计"></a>
+<hr />
+</p><br />
+
+  <h4>{{sv_index}}.2 SV检测及注释结果统计</h4>
+<p class="name_fig">表4.9 SV检测及注释结果统计</p>
+<p class="center">
+<div id="tb">
+<table class="gy">
+<tr ><th >Sample<sup>1</sup></th><th >Upstream<sup>2</sup></th><th >Exonic<sup>3</sup></th><th >Downstream<sup>4</sup></th><th >Intronic<sup>5</sup></th><th >Upstream/Downstream<sup>6</sup></th><th >Intergenic<sup>7</sup></th><th >Splicing<sup>8</sup></th><th >Others<sup>9</sup></th><th >INS<sup>10</sup></th><th >DEL<sup>11</sup></th><th >INV<sup>12</sup></th><th >ITX<sup>13</sup></th><th >CTX<sup>14</sup></th><th >Total<sup>15</sup></th></tr>
+{% for each in table_sv %}
+<tr ><td >{{each.0}}</td><td >{{each.1}}</td><td >{{each.2}}</td><td >{{each.3}}</td><td >{{each.4}}</td><td >{{each.5}}</td><td >{{each.6}}</td><td >{{each.7}}</td><td >{{each.8}}</td><td >{{each.9}}</td><td >{{each.10}}</td><td >{{each.11}}</td><td >{{each.12}}</td><td >{{each.13}}</td><td >{{each.14}}</td>
+  </tr>
+{% endfor %}
+</table>
+</div>
+</p>
+  <button onclick="hiddenShow(this)">显示注释</button>
+  <div class="comment">
+  
+    <ul>
+(1) Sample：样本名。</br>
+(2) Upstream：基因上游1 Kb区域。</br>
+(3) Exonic：变异位于外显子区域。</br>
+(4) Intronic：变异位于内含子区域。</br>
+(5) Downstream：基因下游1 Kb区域。</br>
+(6) Upstream/Downstream：基因上游1 Kb区域，同时也在另一基因的下游1 Kb区域。</br>
+(7) Intergenic：变异位于基因间区。</br>
+(8) Splicing：变异位于剪接位点（内含子中靠近外显子/内含子边界的2bp）。</br>
+(9) Others：变异位于其它区域。</br>
+(10) INS：片段插入。</br>
+(11) DEL：片段丢失。</br>
+(12) INV：片段倒位。<br />
+(13) ITX：染色体内部重排。</br>
+(14) CTX：染色体间重排。</br>
+(15) Total：SV总数(以上是两个维度的统计结果，一部分为注释区域统计、一部分为变异类型统计，total不是两个维度的加和是SV变异的总数量)。</br>
+*注：Upstream、Exonic、Downstream、Intronic、Upstream/Downstream、Intergenic、Splicing、Others的统计数据来源于全基因组注释文件（*sv.avinput.variant_function.gz）；INS、DEL、INV、ITX、CTX、Total的统计数据来源于变异检测文件（*.filted.ctx.gz）；SV注释的内容只有INS DEL INV三种类型，故注释结果类型的总数小于变异总数。
+</ul></div>
+
+<p class="center">
+  <div class="row gallery-row">
+  <div class="col-1">
+  <div id="gallery_figure1_svtable_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+  </div>
+  <div class="col-6">
+  <div class="tab-content" id="gallery_figure1_svtable_nav-tabContent">
+  {% for each in figure_svdis %}
+  <div class="tab-pane fade" id="gallery_figure1_svtable_pane_{{each.0|safe}}" role="tabpanel" aria-labelledby="gallery_figure1_svtable_list_{{each.0|safe}}" onclick="trans(this.id)"><img class="img-gallery" src="{{each.1|safe}}" /></div>
+  {% endfor %}
+  </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure1_svtable_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+  </div>
+  <div class="col-4">
+  <input class="form-control" id="gallery_figure1_svtable_InputList" type="text" placeholder="Search..">
+  <div class="list-group" id="gallery_figure1_svtable_list-tab" role="tablist">
+  {% for each in figure_svdis %}
+  <a class="list-group-item list-group-item-action" id="gallery_figure1_svtable_list_{{each.0|safe}}" data-toggle="list" href="#gallery_figure1_svtable_pane_{{each.0|safe}}" role="tab" aria-controls="{{each.0|safe}}">{{each.0|safe}}</a>
+  {% endfor %}
+  </div>
+  </div>
+  </div>
+  </p>
+
+<p class="name_fig">
+		{% if cog_kog_flag and go_flag and kegg_flag %}
+			图4.17
+		{% elif cog_kog_flag and go_flag %}
+			图4.15
+		{% elif cog_kog_flag and kegg_flag %}
+			图4.15
+		{% elif go_flag and kegg_flag %}
+			图4.15
+		{% elif go_flag or kegg_flag %}
+			图4.13
+		{% elif cog_kog_flag  %}
+			图4.13
+		{% else %}
+			图4.11
+		{% endif %} SV注释位置分布图
+</p>
+<p class="premark">展示SV注释位置的分布。</p>
+
+<p class="center">
+<a id="example2" href="images/SV_ann_Variation_type_statistics_distribution.png"><img class="normal1" src="images/SV_ann_Variation_type_statistics_distribution.png" alt="examle2"/></a>
+</p>
+<p class="name_fig">
+
+                {% if cog_kog_flag and go_flag and kegg_flag %}
+                        图4.18
+                {% elif cog_kog_flag and go_flag %}
+                        图4.16
+                {% elif cog_kog_flag and kegg_flag %}
+                        图4.16
+                {% elif go_flag and kegg_flag %}
+                        图4.16
+                {% elif go_flag or kegg_flag %}
+                        图4.14
+                {% elif cog_kog_flag  %}
+                        图4.14
+                {% else %}
+                        图4.12
+                {% endif %} SV注释变异类型比例统计图
+</p>
+<p class="premark">展示SV注释变异类型比例统计。</p>
+
+
+<!-- --------------------------------------SV长度分布--------------------------------------- -->
+<a name="{{sv_index}}.3 SV长度分析"></a>
+<hr />
+</p><br />
+<h4>{{sv_index}}.3 SV长度分析</h4>
+<p class="center">
+<a id="example2" href="images/SV_length_distribution.png"><img class="normal1" src="images/SV_length_distribution.png" alt="example2"/></a>
+</p>
+<p class="name_fig">
+
+                {% if cog_kog_flag and go_flag and kegg_flag %}
+                        图4.19
+                {% elif cog_kog_flag and go_flag %}
+                        图4.17
+                {% elif cog_kog_flag and kegg_flag %}
+                        图4.17
+                {% elif go_flag and kegg_flag %}
+                        图4.17
+                {% elif go_flag or kegg_flag %}
+                        图4.15
+                {% elif cog_kog_flag  %}
+                        图4.15
+                {% else %}
+                        图4.13
+                {% endif %} SV长度分布图
+</p>
+
+<p class="premark">纵坐标表示SV的长度，横坐标表示对应长度的SV的个数所占的比例，检测出来的SV长度分布受建库长度影响较大。</p>
+<p class="paragraph">结果目录：<a href="../../result/06.SV_VarDetect" title="点击打开" target="_blank">06.SV_VarDetect</a></p>
+
+  <a name="SV检测及注释 Q&A"></a>
+
+ <button onclick="hiddenQA(this)">显示Q&A</button>
+         <div class="comment">
+         <table style="font-size:12px;font-family: 'Times New Roman' '黑体-简'">
+  <tr style="background-color:#036EB8"><td align="left" style="background-color:#036EB8;color:#FFFFFF">Q1：SV的检测原理是怎样的？</td></tr>
+  <tr style="background-color:#f1f5fb"><td align="left" style="background-color:#f1f5fb;color:#3E3A39">A1：SV检测有4种基本原理：（1）根据PE关系检测SV，这种原理认为PE比对中异常的insert size是insertion或deletion导致的，不正确的方向可能是inversion导致的；（2）根据Split read检测，即一条reads的上半部分和下半部分不是连续比对，而是比对到不同的位置，认为这是SV导致的；（3）根据局部深度检测SV，这是CNV的检测原理，所以只能检测insertion和deletion；（4）denovo 组装的方法，根据组装出来的序列与参考序列的差异检测SV。现有的SV检测软件一般使用了其中的一种原理，breakdancer软件使用PE关系来检测SV。</td></tr>
+  <tr style="background-color:#036EB8"><td align="left" style="background-color:#036EB8;color:#FFFFFF">Q2：能否提供检测到的插入或者缺失的片段信息？如果不能，可通过什么办法来验证SV？</td></tr>
+  <tr style="background-color:#f1f5fb"><td align="left" style="background-color:#f1f5fb;color:#3E3A39">A2：不能，即使是基于denovo组装原理的软件，要给出准确的插入或缺失片段信息也具有挑战性。可以设计引物做PCR后跑胶看序列长度，或进一步做一代测序进行验证。</td></tr>
+  <tr style="background-color:#036EB8"><td align="left" style="background-color:#036EB8;color:#FFFFFF">Q3：能够输出突变位点前后一定长度的序列，以设计引物，并进行验证？</td></tr>
+  <tr style="background-color:#f1f5fb"><td align="left" style="background-color:#f1f5fb;color:#3E3A39">A3：可以给出。</td></tr>
+  </table>
+</div>
+<!----------------------------------------CNV检测及注释----------------------------------------->
+<div id="page">
+<p class="head">
+<a href="#home" title = "返回首页"></a>
+<a name="{{cnv_index}} CNV检测及注释结果统计"></a>
+<hr />
+</p><br />
+<h3>{{cnv_index}} CNV检测及注释结果统计</h3>
+</p></div>
+<p class="paragraph">CNV（拷贝数变异）指基因组片段的拷贝数增加或者减少。可通过CNVnator（Abyzov et al., 2011）(参数：-call 100)进行检测，即通过基因组上不同的reads 覆盖深度，判断潜在的deletion和duplication，并通过ANNOVAR（Wang et al., 2010）进行变异注释。</p>
+
+<a name="{{cnv_index}}.1 CNV检测结果展示"></a>
+<h4>{{cnv_index}}.1 CNV注释结果展示</h4>
+<p class="name_fig">表4.10 CNV检测结果示例</p>
+<p class="center">
+<div id="tb">
+<table class="gy">
+<tr ><th >ANNO_REGION<sup>1</sup></th><th >ANNOTATION<sup>2</sup></th><th >CHROM<sup>3</sup></th><th >POS1<sup>4</sup></th><th >POS2<sup>5</sup></th><th >TYPE of CNV<sup>8</sup></th><th >SIZE of CNV<sup>9</sup></th><th >NORMALIZED_RD<sup>10</sup></th>
+  </tr>
+
+{% for each in cnvannoexample %}
+        <tr >
+        <td >{{each.0}}</td><td >{{each.1}}</td><td >{{each.2}}</td><td >{{each.3}}</td><td >{{each.4}}</td><td >{{each.5}}</td><td >{{each.6}}</td><td >{{each.7}}</td>
+        </tr>
+{% endfor %}
+
+
+</table>
+</div>
+</p>
+  <button onclick="hiddenShow(this)">显示注释</button>
+  <div class="comment">
+  
+    <ul>
+（1）ANNO_REGION：变异注释到的基因元件。</br>
+（2）ANNOTATION：变异所在或者最近的相应基因名称。</br>
+（3）CHROM：变异所在染色体ID。</br>
+（4）POS1：变异的起始位置。</br>
+（5）POS2：变异的终止位置。</br>
+（6）TYPE of CNV：CNV类型。</br>
+（7）SIZE of CNV：CNV大小。</br>
+（8）NORMALIZED_RD：归一化后的read depth（将原始的读取深度数据进行归一化处理，可以消除测序深度和覆盖率的偏差,从而更准确地检测拷贝数变异） </br>
+</ul></div>
+
+<a name="{{cnv_index}}.2 CNV检测及注释结果统计"></a>
+<hr />
+</p><br />
+<h4>{{cnv_index}}.2 CNV检测及注释结果统计</h4>
+<p class="name_fig">表4.11 CNV检测及注释结果统计</p>
+<p class="center">
+<div id="tb">
+<table class="gy">
+<tr ><th >Sample<sup>1</sup></th><th >Upstream<sup>2</sup></th><th >Exonic<sup>3</sup></th><th >Intronic<sup>4</sup></th><th >Downstream<sup>5</sup></th><th >Upstream/Downstream<sup>6</sup></th><th >Intergenic<sup>7</sup></th><th >Others<sup>8</sup></th><th >Duplication number<sup>9</sup></th><th >Deletion number<sup>10</sup></th><th >Duplication length(bp)<sup>11</sup></th><th >Deletion length(bp)<sup>12</sup></th><th >Total<sup>13</sup></th></tr>
+{% for each in table_cnv %}
+<tr ><td >{{each.0}}</td><td >{{each.1}}</td><td >{{each.2}}</td><td >{{each.3}}</td><td >{{each.4}}</td><td >{{each.5}}</td><td >{{each.6}}</td><td >{{each.7}}</td><td >{{each.8}}</td><td >{{each.9}}</td><td >{{each.10}}</td><td >{{each.11}}</td><td >{{each.12}}</td>
+  </tr>
+{% endfor %}
+</table>
+</div>
+</p>
+  <button onclick="hiddenShow(this)">显示注释</button>
+  <div class="comment">
+  
+    <ul>
+(1) Sample：样本名。</br>
+(2) Upstream：基因上游1 Kb区域。</br>
+(3) Exonic：变异位于外显子区域。</br>
+(4) Intronic：变异位于内含子区域。</br>
+(5) Downstream：基因下游1 Kb区域。</br>
+(6) Upstream/Downstream：基因上游1 Kb区域，同时也在另一基因的下游1 Kb区域。</br>
+(7) Intergenic：变异位于基因间区。</br>
+(8) Others：变异位于其它区域。</br>
+(9) Duplication number：拷贝数增加个数。</br>
+(10) Deletion number：拷贝数减少个数。</br>
+(11) Duplication length(bp)：拷贝数增加长度。</br>
+(12) Deletion length(bp)：拷贝数减少长度。</br>
+(13) Total：CNV总数(以上是两个维度的统计结果，一部分为注释区域统计、一部分为变异类型统计，total不是两个维度的加和是CNV变异的总数量)。</br>
+*注：Upstream、Exonic、Downstream、Intronic、Upstream/Downstream、Intergenic、Others的统计数据来源于全基因组注释文件（*cnv.avinput.variant_function.gz）；Duplication、Deletion、Duplication length (bp)、Deletion length (bp)、Total的统计数据来源于变异检测文件（*.cnv.vcf.gz）。
+</ul></div>
+
+<a name="{{cnv_index}}.3 CNV注释位置分布"></a>
+<hr />
+</p><br />
+<h4>{{cnv_index}}.3 CNV注释位置分布</h4>
+
+<p class="center">
+  <div class="row gallery-row">
+  <div class="col-1">
+  <div id="gallery_figure1_cnvtable_button_prev" class="button_prev" onclick="prev(this.id)"><svg viewbox="0 0 16000 16000" class="svg_prev"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="8789.5,4902.8 8789.5,5846.4 6801.7,8000 8789.5,10253.6 8789.5,11097.2 5930.5,8000 "></polygon></svg></div>
+  </div>
+  <div class="col-6">
+  <div class="tab-content" id="gallery_figure1_cnvtable_nav-tabContent">
+  {% for each in figure_cnvdis %}
+  <div class="tab-pane fade" id="gallery_figure1_cnvtable_pane_{{each.0|safe}}" role="tabpanel" aria-labelledby="gallery_figure1_cnvtable_list_{{each.0|safe}}" onclick="trans(this.id)"><img class="img-gallery" src="{{each.1|safe}}" /></div>
+  {% endfor %}
+  </div>
+  </div>
+  <div class="col-1">
+  <div id="gallery_figure1_cnvtable_button_next" class="button_next" onclick="next(this.id)"><svg viewbox="0 0 16000 16000" class="svg_next"><circle class="c" cx="8000" cy="8000" r="6080"></circle><polygon class="a" points="7210.5,4902.8 7210.5,5846.4 9198.3,8000 7210.5,10253.6 7210.5,11097.2 10069.5,8000 "></polygon></svg></div>
+  </div>
+  <div class="col-4">
+  <input class="form-control" id="gallery_figure1_cnvtable_InputList" type="text" placeholder="Search..">
+  <div class="list-group" id="gallery_figure1_cnvtable_list-tab" role="tablist">
+  {% for each in figure_cnvdis %}
+  <a class="list-group-item list-group-item-action" id="gallery_figure1_cnvtable_list_{{each.0|safe}}" data-toggle="list" href="#gallery_figure1_cnvtable_pane_{{each.0|safe}}" role="tab" aria-controls="{{each.0|safe}}">{{each.0|safe}}</a>
+  {% endfor %}
+  </div>
+  </div>
+  </div>
+  </p>
+  
+
+
+
+<p class="name_fig">
+
+                {% if cog_kog_flag and go_flag and kegg_flag %}
+                        图4.20
+                {% elif cog_kog_flag and go_flag %}
+                        图4.18
+                {% elif cog_kog_flag and kegg_flag %}
+                        图4.18
+                {% elif go_flag and kegg_flag %}
+                        图4.18
+                {% elif go_flag or kegg_flag %}
+                        图4.16
+                {% elif cog_kog_flag  %}
+                        图4.16
+                {% else %}
+                        图4.14
+                {% endif %} CNV注释位置分布图
+</p>
+<p class="premark">展示CNV注释位置的分布。</p>
+
+<p class="center">
+<a id="CNVannVariationtype" href="images/CNV_ann_Variation_type_statistics_distribution.png"><img class="normal1"src="images/CNV_ann_Variation_type_statistics_distribution.png" alt="example2"/></a>
+</p>
+<p class="name_fig">
+
+                {% if cog_kog_flag and go_flag and kegg_flag %}
+                        图4.21
+                {% elif cog_kog_flag and go_flag %}
+                        图4.19
+                {% elif cog_kog_flag and kegg_flag %}
+                        图4.19
+                {% elif go_flag and kegg_flag %}
+                        图4.19
+                {% elif go_flag or kegg_flag %}
+                        图4.17
+                {% elif cog_kog_flag  %}
+                        图4.17
+                {% else %}
+                        图4.15
+                {% endif %}CNV注释变异类型比例统计图
+</p>
+
+<p class="premark">展示CNV注释变异类型比例统计。</p>
+
+<p class="paragraph">结果目录：<a href="../../result/07.CNV_VarDetect" title="点击打开" target="_blank">07.CNV_VarDetect</a></p>
+
+  <a name="CNV检测及注释 Q&A"></a>
+
+<button onclick="hiddenQA(this)">显示Q&A</button>
+         <div class="comment">
+         <table style="font-size:12px;font-family: 'Times New Roman' '黑体-简'">
+  <tr style="background-color:#036EB8"><td align="left" style="background-color:#036EB8;color:#FFFFFF">Q1：CNV的检测原理是怎样的？</td></tr>
+  <tr style="background-color:#f1f5fb"><td align="left" style="background-color:#f1f5fb;color:#3E3A39">A1：简单来说，CNV是根据每个bin的read depth来判断，相对于平均深度是拷贝数增加还是减少，还会涉及GC校正和测序不均一的校正。</td></tr>
+  <tr style="background-color:#036EB8"><td align="left" style="background-color:#036EB8;color:#FFFFFF">Q2：参考基因组的原始拷贝数是多少能不能提供？</td></tr>
+  <tr style="background-color:#f1f5fb"><td align="left" style="background-color:#f1f5fb;color:#3E3A39">A2：单倍体原始拷贝数是1，二倍体的原始拷贝数是2。</td></tr>
+  </table>
+</div>
+<!----------------------------------------变异检测结果可视化----------------------------------------->
+<div style="page-break-before: always;">
+<p class="head">
+<a href="#home" title = "返回首页"></a>
+<a name="{{visual_index}} 变异检测结果可视化"></a>
+<hr />
+</p><br />
+<h3>{{visual_index}} 变异检测结果可视化</h3>
+</p></div>
+<a name="基因组结构变异展示"></a>
+
+{% if flag_sample_one %}
+<p class="paragraph">该样本共检测到SNP位点{{snp_low}}个，InDel {{indel_low}}个，
+{% if show_sv %}SV {{sv_low}}个，{% endif %}{% if show_cnv %}CNV {{cnv_low}}个，{% endif %}变异检测结果正常。</p>
+{% else %}
+<p class="paragraph">检测到的SNP位点数在{{snp_low}}~{{snp_high}}之间，InDel个数在{{indel_low}}~{{indel_high}}之间，
+{% if show_sv %}SV个数在{{sv_low}}~{{sv_high}}之间，{% endif %}{% if show_cnv %}CNV个数在{{cnv_low}}~{{cnv_high}}之间，{% endif %}变异检测结果正常。</p>
+{% endif %}
+<p class="paragraph">为了形象化展示样本中的结构变异，对数据做如下处理：</p>
+<p class="paragraph">(1) 对于SNP和InDel，画出其在染色体上的密度分布；</p>
+{% if show_sv and not show_cnv %}
+ <p class="paragraph">(2) 对于SV，画出它们在染色体上的位置；</p>
+{% endif %}
+{% if show_cnv and not show_sv %}
+ <p class="paragraph">(2) 对于CNV，画出它们在染色体上的位置；</p>
+{% endif %}
+{% if show_sv and show_cnv %}
+ <p class="paragraph">(2) 对于SV及CNV，画出它们在染色体上的位置；</p>
+{% endif %}
+
+
+  <div style="text-align: center;">
+    <img src={{figure_circos.0.0|safe}} style="height: 400px;" id="cir_pic"/>
+  </div>
+  <form style="text-align: center;">
+    <label id='lblSelect'>
+    <select id="selectPointOfInterest" style="margin: 0; padding: 1%" onchange="cir_fun(this.options[this.options.selectedIndex].innerHTML);">
+{% for each in figure_circos %}
+<option>{{each.2}}</option>
+{% endfor %}
+</select>
+    </label>&nbsp;&nbsp;
+    <button type="button" id="pageUp" class="button button-normal button-border button-circle">
+    <i class="icon-circle-arrow-up"></i>
+    </button>
+    <button type="button" id="pageDown" class="button button-normal button-border button-circle">
+    <i class="icon-circle-arrow-down"></i>
+    </button>
+  </form>
+  <script type="text/javascript">
+    function cir_fun(title) {
+      dd = document.getElementById("cir_pic")
+      dd.src = "images/"+title+".png"
+      return 0
+    }
+    $(function() {
+        $("#pageUp").click(function(){
+            let downNode = this.nextElementSibling;
+            let selectNode = this.parentNode.firstElementChild.firstElementChild;
+            if (selectNode.selectedIndex == 0){
+                this.style.visibility = 'hidden';
+            }else{
+                selectNode.selectedIndex = selectNode.selectedIndex - 1;
+                cir_fun(selectNode.options[selectNode.selectedIndex].innerHTML);
+                downNode.style.visibility = 'visible';
+            };
+        });
+        $("#pageDown").click(function(){
+            let upNode = this.previousElementSibling;
+            let selectNode = this.parentNode.firstElementChild.firstElementChild;
+            if ( selectNode.selectedIndex == selectNode.options.length - 1){
+                this.style.visibility = 'hidden';
+            }else{
+                selectNode.selectedIndex = selectNode.selectedIndex + 1;
+                cir_fun(selectNode.options[selectNode.selectedIndex].innerHTML);
+                upNode.style.visibility = 'visible';
+            }
+        });
+        $("#selectPointOfInterest").change(function(){
+            let upNode = this.parentNode.nextElementSibling;
+            let downNode = upNode.nextElementSibling;
+            upNode.style.visibility = 'visible';
+            downNode.style.visibility = 'visible';
+        });
+    });
+  </script>
+
+
+{% if show_cnv %}
+<p class="name_fig">
+
+
+               {% if cog_kog_flag and go_flag and kegg_flag %}
+                        图4.22
+                {% elif cog_kog_flag and go_flag %}
+                        图4.20
+                {% elif cog_kog_flag and kegg_flag %}
+                        图4.20
+                {% elif go_flag and kegg_flag %}
+                        图4.20
+                {% elif go_flag or kegg_flag %}
+                        图4.18
+                {% elif cog_kog_flag  %}
+                        图4.18
+                {% else %}
+                        图4.16
+                {% endif %}基因组结构变异分布
+</p>
+
+
+
+
+{% else %}
+<p class="name_fig">
+
+               {% if cog_kog_flag and go_flag and kegg_flag %}
+                        图4.17
+                {% elif cog_kog_flag and go_flag %}
+                        图4.15
+                {% elif cog_kog_flag and kegg_flag %}
+                        图4.15
+                {% elif go_flag and kegg_flag %}
+                        图4.15
+                {% elif go_flag or kegg_flag %}
+                        图4.13
+                {% elif cog_kog_flag  %}
+                        图4.13
+                {% else %}
+                        图4.11
+                {% endif %} 基因组结构变异分布
+</p>
+
+{% endif %}
+<p class="premark">由外到内依次为：染色体，SNP，InDel{% if show_cnv %}，CNV duplication，CNV deletion{% endif %}{% if show_sv %}，SV insertion，SV deletion，SV invertion，(SV ITX，SV CTX){% endif %}。</p>
+
+<p class="paragraph">{% if show_sv or show_cnv %}(3){% else %}(2){% endif %} 为了更清晰的显示各染色体上SNP和InDel的分布情况，绘制染色体上的SNP、InDel密度分布热图；<br /></p>
+
+
+  <div style="text-align: center;">
+    <img src={{figure_snp_density.0.0|safe}} style="height: 300px;" id="snp_den"/>
+  </div>
+    <form style="text-align: center;">
+    <label id='lblSelect'>
+    <select id="selectPointOfInterest" style="margin: 0; padding: 1%" onchange="sn_fun(this.options[this.options.selectedIndex].innerHTML);">
+{% for each in figure_snp_density %}
+    <option>{{each.2}}</option>
+{% endfor %}
+        </select>
+    </label>&nbsp;&nbsp;
+    <button type="button" id="pageUpsn" class="button button-normal button-border button-circle">
+    <i class="icon-circle-arrow-up"></i>
+    </button>
+    <button type="button" id="pageDownsn" class="button button-normal button-border button-circle">
+    <i class="icon-circle-arrow-down"></i>
+    </button>
+  </form>
+  <script type="text/javascript">
+    function sn_fun(title) {
+      dd = document.getElementById("snp_den")
+      dd.src = "images/"+title+".snpDensity.png"
+      return 0
+    }
+    $(function() {
+        $("#pageUpsn").click(function(){
+            let downNode = this.nextElementSibling;
+            let selectNode = this.parentNode.firstElementChild.firstElementChild;
+            if (selectNode.selectedIndex == 0){
+                this.style.visibility = 'hidden';
+            }else{
+                selectNode.selectedIndex = selectNode.selectedIndex - 1;
+                sn_fun(selectNode.options[selectNode.selectedIndex].innerHTML);
+                downNode.style.visibility = 'visible';
+            };
+        });
+        $("#pageDownsn").click(function(){
+            let upNode = this.previousElementSibling;
+            let selectNode = this.parentNode.firstElementChild.firstElementChild;
+            if ( selectNode.selectedIndex == selectNode.options.length - 1){
+                this.style.visibility = 'hidden';
+            }else{
+                selectNode.selectedIndex = selectNode.selectedIndex + 1;
+                sn_fun(selectNode.options[selectNode.selectedIndex].innerHTML);
+                upNode.style.visibility = 'visible';
+            }
+        });
+        $("#selectPointOfInterest").change(function(){
+            let upNode = this.parentNode.nextElementSibling;
+            let downNode = upNode.nextElementSibling;
+            upNode.style.visibility = 'visible';
+            downNode.style.visibility = 'visible';
+        });
+    });
+  </script>
+{% if show_cnv %}
+<p class="name_fig">
+
+               {% if cog_kog_flag and go_flag and kegg_flag %}
+                        图4.23
+                {% elif cog_kog_flag and go_flag %}
+                        图4.21
+                {% elif cog_kog_flag and kegg_flag %}
+                        图4.21
+                {% elif go_flag and kegg_flag %}
+                        图4.21
+                {% elif go_flag or kegg_flag %}
+                        图4.19
+                {% elif cog_kog_flag  %}
+                        图4.19
+                {% else %}
+                        图4.17
+                {% endif %} 染色体上密度分布热图
+</p>
+
+{% else %}
+<p class="name_fig">
+
+               {% if cog_kog_flag and go_flag and kegg_flag %}
+                        图4.18
+                {% elif cog_kog_flag and go_flag %}
+                        图4.16
+                {% elif cog_kog_flag and kegg_flag %}
+                        图4.16
+                {% elif go_flag and kegg_flag %}
+                        图4.16
+                {% elif go_flag or kegg_flag %}
+                        图4.14
+                {% elif cog_kog_flag  %}
+                        图4.14
+                {% else %}
+                        图4.12
+                {% endif %} 染色体上密度分布热图
+</p>
+
+{% endif %}
+<p class="premark">以100kb为窗口，统计每个窗口上的SNP密度</p>
+
+  <div style="text-align: center;">
+    <img src={{figure_indel_density.0.0|safe}} style="height: 300px;" id="ind_den"/>
+  </div>
+    <form style="text-align: center;">
+    <label id='lblSelect'>
+    <select id="selectPointOfInterest" style="margin: 0; padding: 1%" onchange="ind_fun(this.options[this.options.selectedIndex].innerHTML);">
+  {% for each in figure_indel_density %}
+  <option>{{each.2}}</option> 
+  {% endfor %}
+      </select>
+    </label>&nbsp;&nbsp;
+    <button type="button" id="pageUpin" class="button button-normal button-border button-circle">
+    <i class="icon-circle-arrow-up"></i>
+    </button>
+    <button type="button" id="pageDownin" class="button button-normal button-border button-circle">
+    <i class="icon-circle-arrow-down"></i>
+    </button>
+  </form>
+  <script type="text/javascript">
+    function ind_fun(title) {
+      dd = document.getElementById("ind_den")
+      dd.src = "images/"+title+".indDensity.png"
+      return 0
+    }
+    $(function() {
+        $("#pageUpin").click(function(){
+            let downNode = this.nextElementSibling;
+            let selectNode = this.parentNode.firstElementChild.firstElementChild;
+            if (selectNode.selectedIndex == 0){
+                this.style.visibility = 'hidden';
+            }else{
+                selectNode.selectedIndex = selectNode.selectedIndex - 1;
+                ind_fun(selectNode.options[selectNode.selectedIndex].innerHTML);
+                downNode.style.visibility = 'visible';
+            };
+        });
+        $("#pageDownin").click(function(){
+            let upNode = this.previousElementSibling;
+            let selectNode = this.parentNode.firstElementChild.firstElementChild;
+            if ( selectNode.selectedIndex == selectNode.options.length - 1){
+                this.style.visibility = 'hidden';
+            }else{
+                selectNode.selectedIndex = selectNode.selectedIndex + 1;
+                ind_fun(selectNode.options[selectNode.selectedIndex].innerHTML);
+                upNode.style.visibility = 'visible';
+            }
+        });
+        $("#selectPointOfInterest").change(function(){
+            let upNode = this.parentNode.nextElementSibling;
+            let downNode = upNode.nextElementSibling;
+            upNode.style.visibility = 'visible';
+            downNode.style.visibility = 'visible';
+        });
+    });
+  </script>
+{% if show_cnv %}
+<p class="name_fig">
+
+               {% if cog_kog_flag and go_flag and kegg_flag %}
+                        图4.24
+                {% elif cog_kog_flag and go_flag %}
+                        图4.22
+                {% elif cog_kog_flag and kegg_flag %}
+                        图4.22
+                {% elif go_flag and kegg_flag %}
+                        图4.22
+                {% elif go_flag or kegg_flag %}
+                        图4.20
+                {% elif cog_kog_flag  %}
+                        图4.20
+                {% else %}
+                        图4.18
+                {% endif %}染色体上密度分布热图
+</p>
+
+
+{% else %}
+<p class="name_fig">
+
+               {% if cog_kog_flag and go_flag and kegg_flag %}
+                        图4.19
+                {% elif cog_kog_flag and go_flag %}
+                        图4.17
+                {% elif cog_kog_flag and kegg_flag %}
+                        图4.17
+                {% elif go_flag and kegg_flag %}
+                        图4.17
+                {% elif go_flag or kegg_flag %}
+                        图4.15
+                {% elif cog_kog_flag  %}
+                        图4.15
+                {% else %}
+                        图4.13
+                {% endif %} 染色体上密度分布热图
+</p>
+{% endif %}
+<p class="premark">以100kb为窗口，统计每个窗口上的InDel密度</p>
+<p class="paragraph">结果目录：<a href="../../result/08.VarDetect_Visualization" title="点击打开" target="_blank">0{{circos_index}}.VarDetect_Visualization</a></p>
+</div>
+</p>
+{% if not MICflag  %}
+<div>
+  <p class="paragraph">结果解读视频：<a href="https://magic.novogene.com/customer/main#/video-info-new/00d4fb5bc17c71eebfa75107e0c90102">https://magic.novogene.com/customer/main#/video-info-new/00d4fb5bc17c71eebfa75107e0c90102</a></p>
+  </div>
+</p>
+{% endif  %}
+</p>
+<!----------------------------------------Appendix----------------------------------------->
+<div id="page">
+<p class="head">
+<a href="#home" title = "返回首页"></a>
+<a name="5 附录"></a>
+</p></div>
+<hr />
+</p><br />
+<h2>{% if population %}6{% else %}5{% endif %} 附录</h2>
+
+{% if population %}
+    {% if MICflag %}
+        <a name="6.1 微生物重测序名词解释"></a>
+        <h3>6.1 微生物重测序名词解释</h3>
+        <p class="paragraph">微生物重测序名词解释：<a href="./explanation-MIC.pdf" title="点击打开" target="_blank">PDF</a></p>
+        <h3>6.2 常见问题</h3>
+        <p class="paragraph">群体进化常见问题Q&A：<a href="./method/群体进化常见问题Q&A.pdf" title="点击打开" target="_blank">PDF</a></p>
+        <a name="6.3 软件列表"></a>
+        <h3>6.3 软件列表</h3>
+    {% else %}
+        <a name="6.1 动植物重测序名词解释"></a>
+        <h3>6.1 动植物重测序名词解释</h3>
+        <p class="paragraph">动植物重测序名词解释：<a href="./explanation.pdf" title="点击打开" target="_blank">PDF</a></p>
+        <h3>6.2 常见问题</h3>
+        <p class="paragraph">群体进化常见问题Q&A：<a href="./method/群体进化常见问题Q&A.pdf" title="点击打开" target="_blank">PDF</a></p>
+        <a name="6.3 软件列表"></a>
+        <h3>6.3 软件列表</h3>
+    {% endif %}
+{% else  %}
+    {% if MICflag %}
+        <a name="5.1 微生物重测序名词解释"></a>
+        <h3>5.1 微生物重测序名词解释</h3>
+        <p class="paragraph">微生物重测序名词解释：<a href="./explanation-MIC.pdf" title="点击打开" target="_blank">PDF</a></p>
+        <h3>5.2微生物变异检测报告解读</h3>
+        <p class="paragraph">微生物变异检测报告解读链接：<a href="https://pan.baidu.com/s/16q3k8zIlIJF2Qhhmiq9tRw?pwd=novo">https://pan.baidu.com/s/16q3k8zIlIJF2Qhhmiq9tRw?pwd=novo</a> 提取码：novo</p>
+	<a name="5.3 软件列表"></a>
+	<h3>5.3 软件列表</h3>
+    {% else %}
+    <a name="5.1 动植物重测序名词解释"></a>
+    <h3>5.1 动植物重测序名词解释</h3>
+    <p class="paragraph">动植物重测序名词解释：<a href="./explanation.pdf" title="点击打开" target="_blank">PDF</a></p>
+        {% if var_call and not BSA_flag %}
+            <a name="5.2 常见问题"></a>
+            <h3>5.2 常见问题</h3>
+            <p class="paragraph">动植物变异检测常见问题Q&A：<a href="./method/动植物变异检测常见问题Q&A.pdf" title="点击打开" target="_blank">PDF</a></p>
+            <a name="5.3 软件列表"></a>
+            <h3>5.3 软件列表</h3>
+        {% elif BSA_flag %}
+            <a name="5.2 常见问题"></a>
+            <h3>5.2 常见问题</h3>
+            <p class="paragraph">BSA测序分析常见问题Q&A：<a href="./method/BSA测序分析常见问题Q&A.pdf" title="点击>打开" target="_blank">PDF</a></p>
+            <a name="5.3 软件列表"></a>
+            <h3>5.3 软件列表</h3>
+	{% else %}
+            <a name="5.2 软件列表"></a>
+            <h3>5.2 软件列表</h3>
+        {% endif %}
+    {% endif %}
+{% endif %}
+
+<p class="center">
+<div id="tb">
+<table class="gy">
+
+<tr ><th >分析内容</th><th >软件</th><th >版本</th><th >参数</th><th >备注</th></tr>
+
+<tr ><td >质控</td><td >fastp</td><td >0.20.0</td><td >-g -q 5 -u 50 -n 15 -l 150</td><td >对rawdata进行质控</td>
+</div>
+<tr ><td >比对</td><td >bwa</td><td >0.7.17-r1188</td><td >mem -t 4 -k 32 -M</td><td >测序结果与参考基因组进行比对，得到bam结果</td>
+<tr ><td >SNP/InDeL检测</td><td >GATK</td><td >4.0.5.1</td><td >HaplotypeCaller --pair-hmm-gap-continuation-penalty 10 --genotyping-mode DISCOVERY -stand-call-conf 30</td><td >检测、过滤SNP及InDeL变异</td>
+    <tr ><td >SV检测</td><td >breakdancer</td><td >1.4.4</td><td >-q 20</td><td >检测样本SV</td>
+<tr ><td >CNV检测</td><td >cnvnator</td><td >V0.3</td><td >-call 100</td><td >检测样本CNV</td>
+<tr ><td >变异功能注释</td><td >ANNOVAR</td><td >2015Dec14</td><td >-</td><td >对检测到的变异进行结构和功能注释</td>
+
+</table>
+</p>
+
+{% if var_call or BSA_flag or MICflag or population %}
+<a name="5.4 Methods"></a>
+<h3>{% if population %}6{% else %}5{% endif %}.4 Methods</h3>
+{% else %}
+<a name="5.3 Methods"></a>
+<h3>5.3 Methods</h3>
+{% endif %}
+{% if qc_only %}
+    <p class="paragraph">研究中涉及的方法见<a href="method/ZH_materials_methods_QC.v1.pdf" title="点击打开" target="_blank">中文版methods</a>和<a href="./method/EN_materials_methods_QC.v1.pdf" title="点击打开" target="_blank">英文版methods</a></p>   
+{% endif %}
+{% if mapping_only %}
+    <p class="paragraph">研究中涉及的方法见<a href="method/ZH_materials_methods_Map.v1.pdf" title="点击打开" target="_blank">中文版methods</a>和<a href="./method/EN_materials_methods_Map.v1.pdf" title="点击打开" target="_blank">英文版methods</a></p>
+{% endif %}
+
+{% if not qc_only and not mapping_only %}
+    {% if gatk %}
+        {% if MICflag %}
+             <p class="paragraph">研究中涉及的方法见<a href="method/ZH-mWGS-Method.pdf" title="点击打开" target="_blank">中文版methods</a>和<a href="./method/EN-mWGS-Method.pdf" title="点击打开" target="_blank">英文版methods</a></p>
+        {% else %}
+        	{% if not show_sv and not show_cnv %}
+			{% if gatk_dan %}
+            			<p class="paragraph">研究中涉及的方法见<a href="method/ZH_materials_methods_gatk.SNPINDEL.v1.pdf" title="点击打开" target="_blank">中文版methods</a>和<a href="./method/EN_materials_methods_gatk.SNPINDEL.v1.pdf" title="点击打开" target="_blank">英文版methods</a></p>
+			{% elif gatk_joint %}
+				<p class="paragraph">研究中涉及的方法见<a href="method/ZH_materials_methods_gatk.SNPINDEL.v1.pdf" title="点击打开" target="_blank">中文版methods</a>和<a href="./method/PA.WGS.SNP-InDel.GATK-JointCalling_EN_method.pdf" title="点击打开" target="_blank">英文版methods</a></p>
+			{% endif %}
+        	{% endif %}
+        	{% if show_sv and cnv_cnvnator %}
+ 	           	<p class="paragraph">研究中涉及的方法见<a href="method/ZH_materials_methods_gatk.SNPINDEL.SV.CNV.v1.pdf" title="点击打开" target="_blank">中文版methods</a>和<a href="./method/EN_materials_methods_gatk.SNPINDEL.SV.CNV.v1.pdf" title="点击打开" target="_blank">英文版methods</a></p>
+        	{% endif %}
+        	{% if show_sv and cnv_freec %}
+            		<p class="paragraph">研究中涉及的方法见<a href="method/ZH_materials_methods_gatk.SNPINDEL.SV.CNV_freec.v1.pdf" title="点击打开" target="_blank">中文版methods</a>和<a href="./method/EN_materials_methods_gatk.SNPINDEL.SV.CNV_freec.v1.pdf" title="点击打开" target="_blank">英文版methods</a></p>
+        	{% else %}
+            		{% if show_sv and not cnv_freec and not cnv_cnvnator %}
+                		<p class="paragraph">研究中涉及的方法见<a href="method/ZH_materials_methods_gatk.SNPINDEL.SV.v1.pdf" title="点击打开" target="_blank">中文版methods</a>和<a href="./method/EN_materials_methods_gatk.SNPINDEL.SV.v1.pdf" title="点击打开" target="_blank">英文版methods</a></p>
+            		{% endif %}
+            		{% if cnv_cnvnator and not show_sv and not cnv_freec %}
+                		<p class="paragraph">研究中涉及的方法见<a href="method/ZH_materials_methods_gatk.SNPINDEL.CNV.v1.pdf" title="点击打开" target="_blank">中文版methods</a>和<a href="./method/EN_materials_methods_gatk.SNPINDEL.CNV.v1.pdf" title="点击打开" target="_blank">英文版methods</a></p>
+            		{% endif %}
+            		{% if cnv_freec and not show_sv and not cnv_cnvnator %}
+                		<p class="paragraph">研究中涉及的方法见<a href="method/ZH_materials_methods_gatk.SNPINDEL.CNV_freec.v1.pdf" title="点击打开" target="_blank">中文版methods</a>和<a href="./method/EN_materials_methods_gatk.SNPINDEL.CNV_freec.v1.pdf" title="点击打开" target="_blank">英文版methods</a></p>
+            		{% endif %}
+        	{% endif %}
+	{% endif %}
+    {% else %}
+        {% if samtools %}
+            {% if not show_sv and not show_cnv %}
+		{% if samtools_dan %}
+                	<p class="paragraph">研究中涉及的方法见<a href="method/ZH_materials_methods_samtools.SNPINDEL.v1.pdf" title="点击打开" target="_blank">中文版methods</a>和<a href="./method/EN_materials_methods_samtools.SNPINDEL.v1.pdf" title="点击打开" target="_blank">英文版methods</a></p>
+		{% else %}
+			{% if samtools_joint %}
+				<p class="paragraph">研究中涉及的方法见<a href="method/ZH_materials_methods_samtools.SNPINDEL.v1.pdf" title=">点击打开" target="_blank">中文版methods</a>和<a href="./method/PA.WGS.SNP-InDel.samtools.popSNPInDel_EN_method.pdf" title="点击打开" target="_blank">英文版methods</a></p>
+			{% endif %}
+		{% endif %}
+            {% endif %}
+            {% if show_sv and cnv_cnvnator %}
+                <p class="paragraph">研究中涉及的方法见<a href="method/ZH_materials_methods_samtools.SNPINDEL.SV.CNV.v1.pdf" title="点击打开" target="_blank">中文版methods</a>和<a href="./method/EN_materials_methods_samtools.SNPINDEL.SV.CNV.v1.pdf" title="点击打开" target="_blank">英文版methods</a></p>
+            {% endif %}
+            {% if show_sv and cnv_freec %}
+                <p class="paragraph">研究中涉及的方法见<a href="method/ZH_materials_methods_samtools.SNPINDEL.SV.CNV_freec.v1.pdf" title="点击打开" target="_blank">中文版methods</a>和<a href="./method/EN_materials_methods_samtools.SNPINDEL.SV.CNV_freec.v1.pdf" title="点击打开" target="_blank">英文版methods</a></p>
+            {% else %}
+                {% if show_sv and not cnv_freec and not cnv_cnvnator %}
+                    <p class="paragraph">研究中涉及的方法见<a href="method/ZH_materials_methods_samtools.SNPINDEL.SV.v1.pdf" title="点击打开" target="_blank">中文版methods</a>和<a href="./method/EN_materials_methods_samtools.SNPINDEL.SV.v1.pdf" title="点击打开" target="_blank">英文版methods</a></p>
+                {% endif %}
+                {% if cnv_cnvnator and not show_sv and not cnv_freec %}
+                    <p class="paragraph">研究中涉及的方法见<a href="method/ZH_materials_methods_samtools.SNPINDEL.CNV.v1.pdf" title="点击打开" target="_blank">中文版methods</a>和<a href="./method/EN_materials_methods_samtools.SNPINDEL.CNV.v1.pdf" title="点击打开" target="_blank">英文版methods</a></p>
+                {% endif %}
+                {% if cnv_freec and not show_sv and not cnv_cnvnator %}
+                    <p class="paragraph">研究中涉及的方法见<a href="method/ZH_materials_methods_samtools.SNPINDEL.CNV_freec.v1.pdf" title="点击打开" target="_blank">中文版methods</a>和<a href="./method/EN_materials_methods_samtools.SNPINDEL.CNV_freec.v1.pdf" title="点击打开" target="_blank">英文版methods</a></p>
+                {% endif %}
+            {% endif %}
+        {% endif %}
+    {% endif %}
+{% endif %}
+</div>
+</p>
+
+{% if var_call or BSA_flag or MICflag or population %}
+<a name="5.5 结果文件解压方法及结果文件格式说明"></a>
+<h3>{% if population %}6{% else %}5{% endif %}.5 结果文件解压方法及结果文件格式说明</h3>
+{% else %}
+<a name="5.4 结果文件解压方法及结果文件格式说明"></a>
+<h3>5.4 结果文件解压方法及结果文件格式说明</h3>
+{% endif %}
+<p class="center">
+    <div id="tb">
+    <table class="gy">
+    <tr ><th >压缩格式</th><th >用户类型</th><th >解压方法</th></tr>
+    
+    <tr ><td  rowspan=2>*.tar形式的压缩文件</td><td >Unix/Linux/Mac 用户</td><td >使用 tar xvf *.tar 命令打开</td></tr>
+    
+            <tr><td >Windows 用户</td><td >使用解压缩软件如 WinRAR, 7-Zip 等打开</td></tr>
+    
+    <tr ><td  rowspan=2>*.gz形式的压缩文件</td><td >Unix/Linux/Mac 用户</td><td >使用 gzip –d *.gz 命令打开</td></tr>
+    
+            <tr><td >Windows 用户</td><td >使用解压缩软件如 WinRAR, 7-Zip 等打开</td></tr>
+    
+    <tr ><td  rowspan=2>*.zip形式的压缩文件</td><td >Unix/Linux/Mac 用户</td><td >使用 unzip *.zip 命令打开</td></tr>
+    
+            <tr><td >Windows 用户</td><td >使用解压缩软件如 WinRAR, 7-Zip 等打开</td></tr>
+    
+    </table>
+    <br />
+    <br />
+    
+    
+    
+    
+    <p class="center">
+        <div id="tb">
+        <!-- <table  align="center" border=1 bordercolor = "white" bgcolor="#e6eff8"> -->
+        <table width=95% align="center" id="result_note" cellspacing="0" cellpadding="5" class='tf2'>
+        <!-- <table class="gy"> -->
+        <tr ><th  >文件类型</th><th  >文件描述</th><th  >打开方式</th></tr>
+        
+        
+        <tr><td rowspan="2" >file.readme.pdf</td><td  rowspan="2" >打开结果文件前必读的结果文件解读说明文件，可以帮助您更好的理解结果文件中提供的各种类型的文件。</td><td bordercolor = "white" >Windows/Mac 用户可以使用 Adobe Reader/福昕阅读器/网页浏览器等打开。</td>
+        
+                    </tr>
+        
+                <tr><td  >Unix/Linux 用户使用 evince 命令打开。</td>
+        
+                    </tr>
+        
+        <tr><td  rowspan="2" >file.fa/fasta/fna</td><td  rowspan="2" >序列文件，fasta 格式，一般为基因序列或者基因组序列。</td><td bordercolor = "white" >Unix/Linux/Mac 用户使用 less 或 more 命令查看；</td>
+        
+                    </tr>
+        
+                <tr><td >Windows 使用高级文本编辑器 Editplus/Notepad++ 等查看。</td>
+        
+                    </tr>
+        
+        <tr><td   rowspan="2" > file.fq/fastq</td><td  rowspan="2" >序列文件，fastq 格式，一般为 reads 序列。</td><td  >Unix/Linux/Mac 用户使用 less 或 more 命令查看；</td>
+        
+                    </tr>
+        
+                <tr><td  >Windows 用户使用高级文本编辑器 Editplus/Notepad++ 等查看。</td>
+        
+                    </tr>
+        
+        <tr><td  >file.vcf.gz</td><td >包含变异检测结果的压缩文件。VCF 格式文件是一种灵活的、可扩展的用于释放 SNVs、INDELs、CNV 和 SV 结果的文本格式文件。</td><td  >Unix/Linux/Mac 用户使用less 或者 more 命令打开。Windows 用户使用高级文本编辑器 Editplus/Notepad++ 等查看。</td>
+        
+                </tr>
+        
+        <tr><td rowspan="2" >file.pdf/svg</td><td  rowspan="2" >结果图像文件，矢量图，可以放大和缩小而不失真，方便用户查看和编辑处理，可使用Adobe Illustrator进行图片编辑，用于文章发表等。</td><td >Windows/Mac 用户可以使用 Adobe Reader/福昕阅读器/网页浏览器等打开；</td>
+            
+            </tr>
+        
+            <tr><td >Unix/Linux 用户使用 evince 命令打开。</td>
+            
+            </tr>
+        
+        <tr><td rowspan="2" >file.txt/xls</td><td  rowspan="2" >结果数据表格文件，文件以制表符（Tab）分隔。</td><td >Unix/Linux/Mac 用户使用 less 或 more 命令查看；</td>
+        
+                    </tr>
+        
+                <tr><td  >Windows 用户使用高级文本编辑器 Editplus/Notepad++ 等，也可以用 Microsoft Excel 打开。</td>
+        
+                    </tr>
+        
+        <tr><td >file.bam</td><td >bam 是 sam 格式的压缩文件，包含比对的信息。</td><td >Unix/Linux/Mac 用户可使用 Samtools 软件打开。</td>
+        
+                </tr>
+        
+        <tr><td >file.bai</td><td >bam 的索引文件</td><td >不需要打开，保持和 bam 在同一级目录即可。</td>
+        
+                </tr>
+        
+        <tr><td rowspan="2" >file.gff/gtf</td><td  rowspan="2" >基因结构文件</td><td >Unix/Linux/Mac 用户使用 less 或者 more 命令打开；</td>
+        
+                    </tr>
+        
+                <tr><td >Windows 用户使用高级文本编辑器 Editplus/Notepad++ 等查看。</td>
+        
+                </tr>
+        
+        <tr><td rowspan="2" >file.png</td><td rowspan="2" >结果图像文件，位图，无损压缩。</td><td >Unix/Linux/Mac 用户使用 display 命令打开；</td>
+        
+                    </tr>
+        
+                <tr><td >Windows 用户可以使用图片浏览器打开，如 Photoshop 等。</td>
+        
+                </tr>
+        
+        </table>
+        
+        <br />
+        <br />
+    </div>
+</p>
+
+<div id="page">
+  <p class="head"><a href="#home" title = "返回首页"></a>
+  <a name="6 参考文献"></a>
+  <hr />
+  </p><br />
+  
+  <h2>6 参考文献</h2>
+<p class="ref">
+  <p class="paragraph">Abyzov A, Urban AE, Snyder M, Gerstein M. CNVnator: an approach to discover, genotype, and characterize typical and atypical CNVs from family and population genome sequencing. Genome Res. 2011;21(6):974-984. doi:10.1101/gr.114876.110</p>
+  <p class="paragraph">Chen K, Wallis JW, McLellan MD, et al. BreakDancer: an algorithm for high-resolution mapping of genomic structural variation. Nat Methods. 2009;6(9):677-681. doi:10.1038/nmeth.1363</p>
+  <p class="paragraph">Cock PJ, Fields CJ, Goto N, Heuer ML, Rice PM. The Sanger FASTQ file format for sequences with quality scores, and the Solexa/Illumina FASTQ variants. Nucleic Acids Res. 2010;38(6):1767-1771. doi:10.1093/nar/gkp1137</p>
+  <p class="paragraph">DePristo M A, Banks E, Poplin R, et al. A framework for variation discovery and genotyping using next-generation DNA sequencing data. Nature Genetics. 2011, 43(5):491-498. doi:10.1038/ng.806</p>
+  <p class="paragraph">Krzywinski M, Schein J, Birol I, et al. Circos: an information aesthetic for comparative genomics. Genome Res. 2009;19(9):1639-1645. doi:10.1101/gr.092759.109</p>
+  <p class="paragraph">Li H, Durbin R. Fast and accurate short read alignment with Burrows-Wheeler transform. Bioinformatics. 2009a;25(14):1754-1760. doi:10.1093/bioinformatics/btp324</p>
+  <p class="paragraph">Li H, Handsaker B, Wysoker A, et al. The Sequence Alignment/Map format and SAMtools. Bioinformatics. 2009b;25(16):2078-2079. doi:10.1093/bioinformatics/btp352</p>
+  <p class="paragraph">Wang K, Li M, Hakonarson H. ANNOVAR: functional annotation of genetic variants from high-throughput sequencing data. Nucleic Acids Res. 2010;38(16):e164. doi:10.1093/nar/gkq603</p>
+  <p class="paragraph"><strong>其他参考资料</strong></p>
+  <p class="paragraph">Chen S, Zhou Y, Chen Y, Gu J. fastp: an ultra-fast all-in-one FASTQ preprocessor. Bioinformatics. 2018;34(17):i884-i890. doi:10.1093/bioinformatics/bty560</p>
+
+
+</div>
+</div>
+</body>
+</html>

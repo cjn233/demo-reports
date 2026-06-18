@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>data tables</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="../css/datatables.css" />
+    <link rel="stylesheet" type="text/css" href="../css/buttons.dataTables.min.css" />
+</head>
+<body>
+        <table id="nopaging_table" class="display" style="width: 100%; height: 50px; text-align: center; margin: auto;font-size: 14px; font-family: Arial;">
+        <thead>
+            <tr style='background-color: #036EB8;color: #FFFFFF'><th>Category</th><th>T2_3MM_13C</th><th>TAPS_2_10_R2</th></tr>
+        </thead>
+        <tbody>
+			<tr style='background-color: #e3eff8'><td>Exonic</td><td>1517</td><td>113</td></tr>
+			<tr style='background-color: #f1f5fb'><td>Exonic Stop gain</td><td>19</td><td>2</td></tr>
+			<tr style='background-color: #e3eff8'><td>Exonic Stop loss</td><td>7</td><td>0</td></tr>
+			<tr style='background-color: #f1f5fb'><td>Exonic Frameshift deletion</td><td>374</td><td>71</td></tr>
+			<tr style='background-color: #e3eff8'><td>Exonic Frameshift insertion</td><td>260</td><td>15</td></tr>
+			<tr style='background-color: #f1f5fb'><td>Exonic Non-frameshift deletion</td><td>434</td><td>22</td></tr>
+			<tr style='background-color: #e3eff8'><td>Exonic Non-frameshift insertion</td><td>423</td><td>3</td></tr>
+			<tr style='background-color: #f1f5fb'><td>Upstream</td><td>28958</td><td>3056</td></tr>
+			<tr style='background-color: #e3eff8'><td>Intronic</td><td>851162</td><td>74476</td></tr>
+			<tr style='background-color: #f1f5fb'><td>Splicing</td><td>170</td><td>15</td></tr>
+			<tr style='background-color: #e3eff8'><td>Downstream</td><td>33315</td><td>3366</td></tr>
+			<tr style='background-color: #f1f5fb'><td>Upstream/Downstream</td><td>1886</td><td>214</td></tr>
+			<tr style='background-color: #e3eff8'><td>Intergenic</td><td>1055704</td><td>93776</td></tr>
+			<tr style='background-color: #f1f5fb'><td>3'UTR</td><td>28457</td><td>2283</td></tr>
+			<tr style='background-color: #e3eff8'><td>5'UTR</td><td>4140</td><td>295</td></tr>
+			<tr style='background-color: #f1f5fb'><td>5'UTR/3'UTR</td><td>35</td><td>1</td></tr>
+			<tr style='background-color: #e3eff8'><td>Others</td><td>194514</td><td>17420</td></tr>
+			<tr style='background-color: #f1f5fb'><td>Total</td><td>2221674</td><td>203319</td></tr>
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+    <script type="text/javascript" src="../js/datatables.js"></script>
+    <script type="text/javascript" src="../js/vfs_fonts.js"></script>
+    <script type="text/javascript" src="../js/buttons.colVis.min.js"></script>
+    <script type="text/javascript" src="../js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var table = $('#nopaging_table').DataTable( {
+                scrollX: true,
+                paging: false,
+                scrollY: 420,
+                sorting: true,
+                'order': [],
+                searching: false,
+                fixedHeader: {
+                    header: false,
+                    //footer: true
+                },
+                fixedColumns: {'leftColumns':1},
+                colReorder: true,
+                dom: 'Bfrtip',
+                buttons: [
+                    'colvis','excel'
+                ],
+                language:{
+                    'info': '',
+                    'sZeroRecords' : '没有找到数据',
+                    "oPaginate" : {
+                        "sFirst" : "第一页",
+                        "sPrevious" : "上一页",
+                        "sNext" : "下一页",
+                        "sLast" : "最后一页"
+                    }
+                }
+            } );
+        } );
+    </script>
+</body>
+</html>
