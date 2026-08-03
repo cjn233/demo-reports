@@ -296,16 +296,16 @@ document.getElementById(y).style.display='none';
 
 <br><br><br>
     <h2 id="pipline">Project Information</h2>
-    <p class="paragraph">Project Number: HQ_EN_demo_v3.8</p>
-    <p class="paragraph">Project Name: HQ_EN_demo_v3.8</p>
-    <p class="paragraph">Report Date: 2025-12-22</p>
-    <p class="paragraph">Report Number: HQ_EN_demo_v3.8</p>
+    <p class="paragraph">Project Number: test-standard-demo-EN</p>
+    <p class="paragraph">Project Name: test-standard-demo-EN</p>
+    <p class="paragraph">Report Date: 2026-06-04</p>
+    <p class="paragraph">Report Number: test-standard-demo-EN</p>
     <br>
 </div>
 
 <div id="page">
     <h2 id="pipline">Project Summary</h2>
-    <p class="paragraph">This project applied untargeted metabolomics technology to conduct research. The instrument platforms used were Orbitrap Exploris<SUP>TM </SUP>120. A total of 2381 positive ion-mode metabolites and 1316 negative ion-mode metabolites were identified from the 9 samples in this project.  Differential metabolites were screened according to the criteria of VIP > 1.0, FC > 1.2 or FC < 0.833 and P-value < 0.05. For example, there were 148 positive ion-mode metabolites with significant differences in the Group1.vs.Group2 comparison group, of which 86 metabolites were up-regulated and 62 metabolites were down-regulated. There were 189 negative ion-mode metabolites with significant differences, of which 84 metabolites were up-regulated and 105 metabolites were down-regulated. Based on the above data, systematic pathway annotation was performed for all identified metabolites, and differential analysis and KEGG analyses were performed for all differential metabolites. The specific workflow and analysis are as follows.</p>
+    <p class="paragraph">This project applied untargeted metabolomics technology to conduct research. The instrument platforms used were Orbitrap Exploris<SUP>TM </SUP>120. A total of 3295 positive ion-mode metabolites and 1718 negative ion-mode metabolites were identified from the 30 samples in this project.  Differential metabolites were screened according to the criteria of VIP > 1.0, FC > 1.5 or FC < 0.667 and P-value < 0.05. For example, there were 1295 positive ion-mode metabolites with significant differences in the PB.vs.PA comparison group, of which 786 metabolites were up-regulated and 509 metabolites were down-regulated. There were 661 negative ion-mode metabolites with significant differences, of which 474 metabolites were up-regulated and 187 metabolites were down-regulated. Based on the above data, systematic pathway annotation was performed for all identified metabolites, and differential analysis and KEGG analyses were performed for all differential metabolites. The specific workflow and analysis are as follows.</p>
 </div>
     <div id="page">
     <p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a> <a name="分析概述"></a><hr/></p>
@@ -333,7 +333,7 @@ document.getElementById(y).style.display='none';
 <div id="page">
 <p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a> <a name="信息分析流程"></a><hr/></p>
 	<h3 id="">2. Bioinformatics analysis workflow</h3>
-       <p class="paragraph">First, the raw mass spectrometry data was converted to mzXML format using ProteoWizard <SUP>[3]</SUP> . Then, peak extraction, alignment, and retention time correction were performed with XCMS software <SUP>[4]</SUP>. Subsequently, the total peak area within each sample was normalized, and peaks with a missing rate greater than 50% across sample groups were filtered out. The corrected and filtered results were matched with the Novogene local database to obtain metabolite identification information. Filter out metabolites with a coefficient of variation (CV) greater than 30% and normalize the identification results. Following this, multivariate statistical analysis was conducted on the metabolites, including Principal Component Analysis (PCA) and Partial Least Squares Discriminant Analysis (PLS-DA), to reveal metabolic pattern differences between groups. Hierarchical Clustering Analysis (HCA) and metabolite correlation analysis were performed to uncover relationships between samples and among metabolites. Functional analyses, such as metabolic pathway analysis, were conducted to interpret the biological significance associated with metabolites. The workflow for untargeted metabolomics bioinformatics analysis is as follows:</p>
+       <p class="paragraph">First, the raw mass spectrometry data was converted to mzXML format using ProteoWizard <SUP>[3]</SUP> . Then, peak extraction, alignment, and retention time correction were performed with XCMS software <SUP>[4]</SUP>. Subsequently, the total peak area within each sample was normalized, and peaks with a missing rate greater than 50% across sample groups were filtered out. The corrected and filtered results were matched with the Novogene local database to obtain metabolite identification information. Normalize the identification results and filter out metabolites with a coefficient of variation (CV) greater than 30%. Following this, multivariate statistical analysis was conducted on the metabolites, including Principal Component Analysis (PCA) and Partial Least Squares Discriminant Analysis (PLS-DA), to reveal metabolic pattern differences between groups. Hierarchical Clustering Analysis (HCA) and metabolite correlation analysis were performed to uncover relationships between samples and among metabolites. Functional analyses, such as metabolic pathway analysis, were conducted to interpret the biological significance associated with metabolites. The workflow for untargeted metabolomics bioinformatics analysis is as follows:</p>
 <p class="center"> <img  src="src/images/analysis.png"  width="90%" /> </p>
 <p class="premark">Note: This analysis flow chart includes all analysis contents of the product, and the specific analysis content of this project is based on this report.</p>
 <div id="page">
@@ -346,18 +346,39 @@ document.getElementById(y).style.display='none';
 	<p class="name">Table 1.1 Sample information</p>
     <p class="center"><div id="tb"><table>
     <tr><th style="background-color:#dedddd"><font color="black">Raw name</font></th><th style="background-color:#dedddd"><font color="black">Samples name</font></th><th style="background-color:#dedddd"><font color="black">Group names</font></th><th style="background-color:#dedddd"><font color="black">ID num</font></th></tr>
-<tr><td>FZTM250882446-1A</td><td>sample1</td><td>Group1</td><td>4</td></tr>
-<tr><td>FZTM250882447-1A</td><td>sample2</td><td>Group1</td><td>5</td></tr>
-<tr><td>FZTM250882448-1A</td><td>sample3</td><td>Group1</td><td>6</td></tr>
-<tr><td>FZTM250882449-1A</td><td>sample4</td><td>Group2</td><td>7</td></tr>
-<tr><td>FZTM250882450-1A</td><td>sample5</td><td>Group2</td><td>8</td></tr>
-<tr><td>FZTM250882451-1A</td><td>sample6</td><td>Group2</td><td>9</td></tr>
-<tr><td>FZTM250882452-1A</td><td>sample7</td><td>Group3</td><td>10</td></tr>
-<tr><td>FZTM250882453-1A</td><td>sample8</td><td>Group3</td><td>11</td></tr>
-<tr><td>FZTM250882454-1A</td><td>sample9</td><td>Group3</td><td>12</td></tr>
-<tr><td>QC1</td><td>QC1</td><td>QC</td><td>1</td></tr>
-<tr><td>QC2</td><td>QC2</td><td>QC</td><td>2</td></tr>
-<tr><td>QC3</td><td>QC3</td><td>QC</td><td>3</td></tr>
+<tr><td>FZTMXXXXXXX13-1A</td><td>PA1</td><td>PA</td><td>1</td></tr>
+<tr><td>FZTMXXXXXXX14-1A</td><td>PA2</td><td>PA</td><td>3</td></tr>
+<tr><td>FZTMXXXXXXX15-1A</td><td>PA3</td><td>PA</td><td>4</td></tr>
+<tr><td>FZTMXXXXXXX16-1A</td><td>PA4</td><td>PA</td><td>5</td></tr>
+<tr><td>FZTMXXXXXXX17-1A</td><td>PA5</td><td>PA</td><td>6</td></tr>
+<tr><td>FZTMXXXXXXX18-1A</td><td>PA6</td><td>PA</td><td>7</td></tr>
+<tr><td>FZTMXXXXXXX19-1A</td><td>PA7</td><td>PA</td><td>8</td></tr>
+<tr><td>FZTMXXXXXXX20-1A</td><td>PA8</td><td>PA</td><td>9</td></tr>
+<tr><td>FZTMXXXXXXX21-1A</td><td>PA9</td><td>PA</td><td>10</td></tr>
+<tr><td>FZTMXXXXXXX22-1A</td><td>PA10</td><td>PA</td><td>2</td></tr>
+<tr><td>FZTMXXXXXXX23-1A</td><td>PB1</td><td>PB</td><td>11</td></tr>
+<tr><td>FZTMXXXXXXX24-1A</td><td>PB2</td><td>PB</td><td>13</td></tr>
+<tr><td>FZTMXXXXXXX25-1A</td><td>PB3</td><td>PB</td><td>14</td></tr>
+<tr><td>FZTMXXXXXXX26-1A</td><td>PB4</td><td>PB</td><td>15</td></tr>
+<tr><td>FZTMXXXXXXX27-1A</td><td>PB5</td><td>PB</td><td>16</td></tr>
+<tr><td>FZTMXXXXXXX28-1A</td><td>PB6</td><td>PB</td><td>17</td></tr>
+<tr><td>FZTMXXXXXXX29-1A</td><td>PB7</td><td>PB</td><td>18</td></tr>
+<tr><td>FZTMXXXXXXX30-1A</td><td>PB8</td><td>PB</td><td>19</td></tr>
+<tr><td>FZTMXXXXXXX31-1A</td><td>PB9</td><td>PB</td><td>20</td></tr>
+<tr><td>FZTMXXXXXXX32-1A</td><td>PB10</td><td>PB</td><td>12</td></tr>
+<tr><td>FZTMXXXXXXX33-1A</td><td>PC1</td><td>PC</td><td>21</td></tr>
+<tr><td>FZTMXXXXXXX34-1A</td><td>PC2</td><td>PC</td><td>23</td></tr>
+<tr><td>FZTMXXXXXXX35-1A</td><td>PC3</td><td>PC</td><td>24</td></tr>
+<tr><td>FZTMXXXXXXX36-1A</td><td>PC4</td><td>PC</td><td>25</td></tr>
+<tr><td>FZTMXXXXXXX37-1A</td><td>PC5</td><td>PC</td><td>26</td></tr>
+<tr><td>FZTMXXXXXXX38-1A</td><td>PC6</td><td>PC</td><td>27</td></tr>
+<tr><td>FZTMXXXXXXX39-1A</td><td>PC7</td><td>PC</td><td>28</td></tr>
+<tr><td>FZTMXXXXXXX40-1A</td><td>PC8</td><td>PC</td><td>29</td></tr>
+<tr><td>FZTMXXXXXXX41-1A</td><td>PC9</td><td>PC</td><td>30</td></tr>
+<tr><td>FZTMXXXXXXX42-1A</td><td>PC10</td><td>PC</td><td>22</td></tr>
+<tr><td>QC1</td><td>QC1</td><td>QC</td><td>31</td></tr>
+<tr><td>QC2</td><td>QC2</td><td>QC</td><td>32</td></tr>
+<tr><td>QC3</td><td>QC3</td><td>QC</td><td>33</td></tr>
 
     </table></div></p>
     <p class="tremark">
@@ -381,13 +402,13 @@ document.getElementById(y).style.display='none';
 <p class="name">Table 2.1 Quantitative results of metabolites</p>
 
 <p class="center"><div id="tb"><table>
-<tr><th style="background-color:#dedddd"><font color="black">Compound_ID</font></th><th style="background-color:#dedddd"><font color="black">Name</font></th><th style="background-color:#dedddd"><font color="black">IonMode</font></th><th style="background-color:#dedddd"><font color="black">Formula</font></th><th style="background-color:#dedddd"><font color="black">MolecularWeight</font></th><th style="background-color:#dedddd"><font color="black">m/z</font></th><th style="background-color:#dedddd"><font color="black">MassError</font></th><th style="background-color:#dedddd"><font color="black">Adduct</font></th><th style="background-color:#dedddd"><font color="black">RT (min)</font></th><th style="background-color:#dedddd"><font color="black">Score</font></th><th style="background-color:#dedddd"><font color="black">Level</font></th><th style="background-color:#dedddd"><font color="black">Column</font></th><th style="background-color:#dedddd"><font color="black">ClassI</font></th><th style="background-color:#dedddd"><font color="black">ClassII</font></th><th style="background-color:#dedddd"><font color="black">ClassIII</font></th><th style="background-color:#dedddd"><font color="black">CAS</font></th><th style="background-color:#dedddd"><font color="black">HMDB_ID</font></th><th style="background-color:#dedddd"><font color="black">KEGG_ID</font></th><th style="background-color:#dedddd"><font color="black">KEGG_MapID</font></th><th style="background-color:#dedddd"><font color="black">Lipidmaps_ID</font></th><th style="background-color:#dedddd"><font color="black">PubChemID</font></th><th style="background-color:#dedddd"><font color="black">SMILES</font></th><th style="background-color:#dedddd"><font color="black">InChIKey</font></th><th style="background-color:#dedddd"><font color="black">pos_QC1</font></th><th style="background-color:#dedddd"><font color="black">pos_QC2</font></th><th style="background-color:#dedddd"><font color="black">pos_QC3</font></th><th style="background-color:#dedddd"><font color="black">pos_sample1</font></th><th style="background-color:#dedddd"><font color="black">pos_sample2</font></th><th style="background-color:#dedddd"><font color="black">pos_sample3</font></th><th style="background-color:#dedddd"><font color="black">pos_sample4</font></th><th style="background-color:#dedddd"><font color="black">pos_sample5</font></th></tr>
-<tr><td>Com_2706_pos</td><td>20-Deoxyingenol</td><td>P</td><td>C20H28O4</td><td>332.19876</td><td>355.18553</td><td>6.84865</td><td>[M+Na]+</td><td>6.771</td><td>0.77</td><td>1</td><td>C18</td><td>Lipids and lipid-like molecules</td><td>Prenol lipids</td><td>Diterpenoids</td><td>"""54706-99-9"""</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>CC1CC2C(C2(C)C)C3C=C(C(C4(C1(C3=O)C=C(C4O)C)O)O)C</td><td>FOSYZKSOJUQLTD-UHFFFAOYSA-N</td><td>66381341.4209626</td><td>62808534.66823365</td><td>63396208.05864672</td><td>29394228.049551155</td><td>69093000.00909165</td><td>20971247.166231368</td><td>2012853.841920433</td><td>136642318.34317</td></tr>
-<td>Com_1139_pos</td><td>Dimethylfraxetin</td><td>P</td><td>C12H12O5</td><td>236.06847</td><td>237.07588</td><td>0.47048</td><td>[M+H]+</td><td>5.372</td><td>0.61</td><td>1</td><td>C18</td><td>Phenylpropanoids and polyketides</td><td>Coumarins and derivatives</td><td>-</td><td>"""6035-49-0"""</td><td>-</td><td>-</td><td>-</td><td>-</td><td>3083928</td><td>COC1=C(C(=C2C(=C1)C=CC(=O)O2)OC)OC</td><td>RAYQKHLZHPFYEJ-UHFFFAOYSA-N</td><td>21214786.0699667</td><td>18629322.09887954</td><td>31219820.98736013</td><td>8816757.185042799</td><td>21191691.199955977</td><td>29771651.61983794</td><td>11191230.053170936</td><td>50941548.852598526</td></tr>
-<td>Com_1068_pos</td><td>Evolitrine</td><td>P</td><td>C13H11NO3</td><td>229.07389</td><td>230.079</td><td>9.50967</td><td>[M+H]+</td><td>5.553</td><td>0.52</td><td>1</td><td>C18</td><td>Organoheterocyclic compounds</td><td>Quinolines and derivatives</td><td>Furanoquinolines</td><td>"""523-66-0"""</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>COC1=CC2=C(C=C1)C(=C3C=COC3=N2)OC</td><td>TWGHMXOYRUTQOL-UHFFFAOYSA-N</td><td>4769052.58328828</td><td>4253889.178711567</td><td>4322584.458585205</td><td>4462182.643670938</td><td>6023117.186469696</td><td>2845566.188127538</td><td>4064730.433486613</td><td>2208495.689149333</td></tr>
-<td>Com_2828_pos</td><td>Bufalin</td><td>P</td><td>C24H34O4</td><td>386.24571</td><td>369.24228</td><td>0.34738</td><td>[M+H-H2O]+</td><td>8.16</td><td>0.81</td><td>1</td><td>C18</td><td>Lipids and lipid-like molecules</td><td>Steroids and steroid derivatives</td><td>Steroid lactones</td><td>"""465-21-4"""</td><td>HMDB0249428</td><td>C16922</td><td>-</td><td>LMST01130001</td><td>2464</td><td>CC12CCC3C(CCC4CC(O)CCC34C)C1(O)CCC2C1=COC(=O)C=C1</td><td>QEEBRPGZBVVINN-UHFFFAOYSA-N</td><td>12137779.530648</td><td>15277364.183883224</td><td>14304451.430497045</td><td>14464529.233787544</td><td>14470396.510695243</td><td>10848946.85544362</td><td>2847956.7671887665</td><td>24954727.97205522</td></tr>
-<td>Com_2043_pos</td><td>Fumagillol</td><td>P</td><td>C16H26O4</td><td>282.18311</td><td>305.17239</td><td>0.27369</td><td>[M+Na]+</td><td>6.38</td><td>0.81</td><td>1</td><td>C18</td><td>Organic oxygen compounds</td><td>Organooxygen compounds</td><td>Alcohols and polyols</td><td>"""108102-51-8"""</td><td>HMDB0252515</td><td>-</td><td>-</td><td>-</td><td>219089</td><td>COC1C(O)CCC2(CO2)C1C1(C)OC1CC=C(C)C</td><td>CEVCTNCUIVEQOY-UHFFFAOYSA-N</td><td>202563665.919607</td><td>346376792.7100736</td><td>350744900.1455128</td><td>195370170.25727</td><td>842413666.223059</td><td>129875136.04384808</td><td>51187867.66483745</td><td>580638755.1519891</td></tr>
-<td>Com_961_pos</td><td>Ambroxide</td><td>P</td><td>C16H28O</td><td>236.21401</td><td>219.21077</td><td>0.26629</td><td>[M+H-H2O]+</td><td>8.605</td><td>0.75</td><td>1</td><td>C18</td><td>Organoheterocyclic compounds</td><td>Naphthofurans</td><td>-</td><td>"""6790-58-5"""</td><td>HMDB0036831</td><td>-</td><td>-</td><td>-</td><td>10857465</td><td>CC1(CCCC2(C1CCC3(C2CCO3)C)C)C</td><td>YPZUZOLGGMJZJO-LQKXBSAESA-N</td><td>49284197.5308918</td><td>48768691.3552558</td><td>50651706.335770704</td><td>58815703.96607987</td><td>40321164.67852167</td><td>41366916.886138566</td><td>2845626.805233552</td><td>33875025.91799157</td></tr>
+<tr><th style="background-color:#dedddd"><font color="black">Compound_ID</font></th><th style="background-color:#dedddd"><font color="black">Name</font></th><th style="background-color:#dedddd"><font color="black">IonMode</font></th><th style="background-color:#dedddd"><font color="black">Formula</font></th><th style="background-color:#dedddd"><font color="black">MolecularWeight</font></th><th style="background-color:#dedddd"><font color="black">m/z</font></th><th style="background-color:#dedddd"><font color="black">MassError</font></th><th style="background-color:#dedddd"><font color="black">Adduct</font></th><th style="background-color:#dedddd"><font color="black">RT (min)</font></th><th style="background-color:#dedddd"><font color="black">Score</font></th><th style="background-color:#dedddd"><font color="black">Level</font></th><th style="background-color:#dedddd"><font color="black">Column</font></th><th style="background-color:#dedddd"><font color="black">ClassI</font></th><th style="background-color:#dedddd"><font color="black">ClassII</font></th><th style="background-color:#dedddd"><font color="black">ClassIII</font></th><th style="background-color:#dedddd"><font color="black">CAS</font></th><th style="background-color:#dedddd"><font color="black">HMDB_ID</font></th><th style="background-color:#dedddd"><font color="black">KEGG_ID</font></th><th style="background-color:#dedddd"><font color="black">KEGG_MapID</font></th><th style="background-color:#dedddd"><font color="black">Lipidmaps_ID</font></th><th style="background-color:#dedddd"><font color="black">PubChemID</font></th><th style="background-color:#dedddd"><font color="black">SMILES</font></th><th style="background-color:#dedddd"><font color="black">InChIKey</font></th><th style="background-color:#dedddd"><font color="black">pos_PA1</font></th><th style="background-color:#dedddd"><font color="black">pos_PA10</font></th><th style="background-color:#dedddd"><font color="black">pos_PA2</font></th><th style="background-color:#dedddd"><font color="black">pos_PA3</font></th><th style="background-color:#dedddd"><font color="black">pos_PA4</font></th><th style="background-color:#dedddd"><font color="black">pos_PA5</font></th><th style="background-color:#dedddd"><font color="black">pos_PA6</font></th><th style="background-color:#dedddd"><font color="black">pos_PA7</font></th></tr>
+<tr><td>Com_3126_pos</td><td>Santacruzamate A</td><td>P</td><td>C15H22N2O3</td><td>278.16304</td><td>301.15451</td><td>7.54053</td><td>[M+Na]+</td><td>5.422</td><td>0.62</td><td>1.0</td><td>C18</td><td>Organic acids and derivatives</td><td>Carboxylic acids and derivatives</td><td>Amino acids, peptides, and analogues</td><td>"""1477949-42-0"""</td><td>-</td><td>-</td><td>-</td><td>-</td><td>72946782</td><td>CCOC(=O)NCCCC(=O)NCCC1=CC=CC=C1</td><td>HTOYBIILVCHURC-UHFFFAOYSA-N</td><td>7431292.13937173</td><td>4687113.776177354</td><td>3892602.111558117</td><td>3300205.1117247725</td><td>3734808.363223946</td><td>2770012.1914540767</td><td>2959309.7337274384</td><td>6957343.638423682</td></tr>
+<td>Com_4463_pos</td><td>Bufalin</td><td>P</td><td>C24H34O4</td><td>386.24571</td><td>369.24069</td><td>4.66982</td><td>[M+H-H2O]+</td><td>8.057</td><td>0.80</td><td>1.0</td><td>C18</td><td>Lipids and lipid-like molecules</td><td>Steroids and steroid derivatives</td><td>Steroid lactones</td><td>"""465-21-4"""</td><td>HMDB0249428</td><td>C16922</td><td>-</td><td>LMST01130001</td><td>2464</td><td>CC12CCC3C(CCC4CC(O)CCC34C)C1(O)CCC2C1=COC(=O)C=C1</td><td>QEEBRPGZBVVINN-UHFFFAOYSA-N</td><td>185877645.99798197</td><td>147794951.94913965</td><td>271170199.26000047</td><td>205501833.01952225</td><td>206722538.5070824</td><td>260299996.6802981</td><td>313434344.52039534</td><td>345241722.929599</td></tr>
+<td>Com_1788_pos</td><td>Cyclo(L-Phe-L-Pro)</td><td>P</td><td>C14H16N2O2</td><td>244.12118</td><td>245.12895</td><td>1.92515</td><td>[M+H]+</td><td>5.712</td><td>0.86</td><td>1.0</td><td>C18</td><td>Organic acids and derivatives</td><td>Carboxylic acids and derivatives</td><td>Amino acids, peptides, and analogues</td><td>"""3705-26-8"""</td><td>HMDB0250631</td><td>C11847</td><td>-</td><td>-</td><td>443440</td><td>O=C1NC(CC2=CC=CC=C2)C(=O)N2CCCC12</td><td>QZBUWPVZSXDWSB-UHFFFAOYSA-N</td><td>16290304.017119035</td><td>19696777.557204776</td><td>13823452.442809071</td><td>11260772.637600124</td><td>12722406.808642795</td><td>9038328.15883091</td><td>6640805.981301143</td><td>6257878.9059728095</td></tr>
+<td>Com_3209_pos</td><td>Fumagillol</td><td>P</td><td>C16H26O4</td><td>282.18311</td><td>305.17269</td><td>1.23488</td><td>[M+Na]+</td><td>6.589</td><td>0.56</td><td>1.0</td><td>C18</td><td>Organic oxygen compounds</td><td>Organooxygen compounds</td><td>Alcohols and polyols</td><td>"""108102-51-8"""</td><td>HMDB0252515</td><td>-</td><td>-</td><td>-</td><td>219089</td><td>COC1C(O)CCC2(CO2)C1C1(C)OC1CC=C(C)C</td><td>CEVCTNCUIVEQOY-UHFFFAOYSA-N</td><td>186672295.70320728</td><td>131867929.30912536</td><td>252962087.39879364</td><td>193660930.7844272</td><td>194197567.0897337</td><td>150311402.35376462</td><td>137061657.99745607</td><td>106150682.82804544</td></tr>
+<td>Com_2367_pos</td><td>8-Epixanthatin</td><td>P</td><td>C15H18O3</td><td>246.1256</td><td>269.11531</td><td>1.8965</td><td>[M+Na]+</td><td>6.028</td><td>0.58</td><td>1.0</td><td>C18</td><td>Lipids and lipid-like molecules</td><td>Prenol lipids</td><td>Terpene lactones</td><td>"""30890-35-8"""</td><td>HMDB0036473</td><td>-</td><td>-</td><td>-</td><td>131751996</td><td>CC1CC2OC(=O)C(=C)C2CC=C1\C=C/C(C)=O</td><td>RBRPTFMVULVGIC-PLNGDYQASA-N</td><td>34183819.324286886</td><td>7506078.671282453</td><td>25417069.355930675</td><td>16799137.050775327</td><td>45869207.02607866</td><td>23414383.03544994</td><td>20366102.34682785</td><td>8996479.041522946</td></tr>
+<td>Com_5079_pos</td><td>Smyrindioloside</td><td>P</td><td>C20H24O10</td><td>424.13695</td><td>425.1421</td><td>5.04938</td><td>[M+H]+</td><td>5.413</td><td>0.71</td><td>1.0</td><td>C18</td><td>Phenylpropanoids and polyketides</td><td>Coumarins and derivatives</td><td>Furanocoumarins</td><td>"""87592-77-6"""</td><td>HMDB0039037</td><td>-</td><td>-</td><td>-</td><td>73834427</td><td>CC(C)(OC1OC(CO)C(O)C(O)C1O)C1OC2=C(C=C3C=CC(=O)OC3=C2)C1O</td><td>KLPNFWKZLQAVTH-UHFFFAOYSA-N</td><td>338558.8442798568</td><td>64471.89929692264</td><td>7369377.691381538</td><td>3229247.6911529484</td><td>8402770.317010984</td><td>6578416.326131572</td><td>172689.77749518727</td><td>663665.9015477687</td></tr>
 
 </table></div></p>
 
@@ -403,7 +424,7 @@ document.getElementById(y).style.display='none';
 (8) Adduct: Adduct ion form.</br>
 (9) RT [min]: Retention time.</br>
 (10) Score: Qualitative score.</br>
-(11) Level: Level 1: The metabolite in the sample matches the database in MS1, MS2, and RT. Level 2: The metabolite matches the database in MS1 and MS2. Level 3: The metabolite matches the database in MS1.</br>
+(11) Level: Level 1: The metabolite in the sample matches the database in MS1, MS2, and RT. Level 2: The metabolite matches the database in MS1 and MS2. Level 3.1: The metabolite matches the database in MS1. Level 3.2: The metabolite matches the AI prediction database in MS1 and MS2.</br>
 (12) Column: Type of chromatography column.</br>
 (13) ClassI, ClassII, ClassIII: English descriptions for the three-level classification of metabolites.</br>
 (14) CAS: CAS number of the compound.</br>
@@ -511,7 +532,7 @@ document.getElementById(y).style.display='none';
 				<div class="resp-tabs-container">
 					<h2 class="resp-accordion" role="tab" aria-controls="tab_item-1"><span class="resp-arrow"></span></h2>
 					<div class="tab-1 resp-tab-content resp-tab-content-active" aria-labelledby="tab_item-0" style="display:block">
-                    <p class="paragraph" >In organisms, different metabolites coordinate with each other to exercise their biological functions. Pathway-based analysis helps to further understand their biological functions. The full name of KEGG is Kyoto Encyclopedia of Genes and Genomes, which contains multiple databases, including KEGG PATHWAY database (https://www.genome.jp/kegg/pathway.html). It is a collection of metabolic pathways, which are mainly divided into seven categories: metabolism, genetic information processing, environmental information processing, cellular processes, biological systems, human diseases and drug development. Each category is subdivided into two levels and three levels. Pathway analysis can determine the most important biochemical metabolic pathway and signal transduction pathway involved by metabolites. The KEGG channel annotation results are shown in Figure 4.1:</p>
+                                        <p class="paragraph" >In organisms, different metabolites coordinate with each other to exercise their biological functions. Pathway-based analysis helps to further understand their biological functions. The full name of KEGG is Kyoto Encyclopedia of Genes and Genomes, which contains multiple databases, including KEGG PATHWAY database (https://www.genome.jp/kegg/pathway.html). It is a collection of metabolic pathways, which are mainly divided into seven categories: metabolism, genetic information processing, environmental information processing, cellular processes, biological systems, human diseases and drug development. Each category is subdivided into two levels and three levels. Pathway analysis can determine the most important biochemical metabolic pathway and signal transduction pathway involved by metabolites. The KEGG channel annotation results are shown in Figure 4.1:</p>
 					<div align="left">
 	<form id="form1" name="form1" method="post" action="">
 	<label>
@@ -525,7 +546,7 @@ document.getElementById(y).style.display='none';
 			</select>
 		</form>
 	</div>
-	<p align="center"><img src="src/pictures/meta_pos.KEGG.Anno.png" id="show4" width="40%"></p>
+	<p align="center"><img src="src/pictures/meta_pos.KEGG.Anno.png" id="show4" width="50%"></p>
 		
 	<p class="name">Figure 4.1 KEGG pathway annotation</p>
 	<p class="premark">Note: The abscissa represents the number of metabolites, and the ordinate represents the KEGG pathway annotated; The figure shows the number of metabolites corresponding to each secondary classification under Pathway primary classification.</p>
@@ -549,7 +570,7 @@ document.getElementById(y).style.display='none';
 			</select>
 		</form>
 	</div>
-	<p align="center"><img src="src/pictures/meta_pos.HMDB.Anno.png" id="show5" width="40%"></p>
+	<p align="center"><img src="src/pictures/meta_pos.HMDB.Anno.png" id="show5" width="50%"></p>
 
                     <p class="name">Figure 4.2 HMDB classification annotation</p>
                                         <p class="premark">Note: The abscissa represents the number of metabolites, and the ordinate represents the HMDB classification noted; The figure shows the number of metabolites corresponding to superClass in HMDB.</p>
@@ -573,7 +594,7 @@ document.getElementById(y).style.display='none';
 			</select>
 		</form>
 	</div>
-	<p align="center"><img src="src/pictures/meta_pos.Lipidmaps.Anno.png" id="show6" width="40%"></p>
+	<p align="center"><img src="src/pictures/meta_pos.Lipidmaps.Anno.png" id="show6" width="50%"></p>
 
 					<p class="name">Figure 4.3 LIPID MAPS classification annotation</p>
 					<p class="premark">Note: The abscissa represents the number of metabolites, and the ordinate represents the annotated LIPID MAPS lipid classification; This figure shows the number of (lipid) metabolites corresponding to Main_Class under the eight major lipid categories in LIPID MAPS.</p>
@@ -695,32 +716,38 @@ PCA was used to observe the overall distribution trend between the two groups of
 	<label>
 	<select id="game7" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
 	
-				<option value="src/pictures/Group1.vs.Group2_pos_PCA.png" >POS_Group1.vs.Group2</option>
-				<option value="src/pictures/Group1.vs.Group2_pos_PCA.3D.png" >POS_Group1.vs.Group2_3D</option>
+				<option value="src/pictures/PB.vs.PA_pos_PCA.png" >POS_PB.vs.PA</option>
+				<option value="src/pictures/PB.vs.PA_pos_PCA.3D.png" >POS_PB.vs.PA_3D</option>
 			
-				<option value="src/pictures/Group2.vs.Group3_pos_PCA.png" >POS_Group2.vs.Group3</option>
-				<option value="src/pictures/Group2.vs.Group3_pos_PCA.3D.png" >POS_Group2.vs.Group3_3D</option>
+				<option value="src/pictures/PC.vs.PA_pos_PCA.png" >POS_PC.vs.PA</option>
+				<option value="src/pictures/PC.vs.PA_pos_PCA.3D.png" >POS_PC.vs.PA_3D</option>
+			
+				<option value="src/pictures/PC.vs.PB_pos_PCA.png" >POS_PC.vs.PB</option>
+				<option value="src/pictures/PC.vs.PB_pos_PCA.3D.png" >POS_PC.vs.PB_3D</option>
 			
 				</select>
 		    </form>
 	    </div>
-	    <p align="center"><img src="src/pictures/Group1.vs.Group2_pos_PCA.png" id="show7" width="40%"></p>
+	    <p align="center"><img src="src/pictures/PB.vs.PA_pos_PCA.png" id="show7" width="40%"></p>
 	
 <div align="left">
 	<form id="form1" name="form1" method="post" action="">
 	<label>
 	<select id="game8" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
 	
-				<option value="src/pictures/Group1.vs.Group2_neg_PCA.png" >NEG_Group1.vs.Group2</option>
-				<option value="src/pictures/Group1.vs.Group2_neg_PCA.3D.png" >NEG_Group1.vs.Group2_3D</option>
+				<option value="src/pictures/PB.vs.PA_neg_PCA.png" >NEG_PB.vs.PA</option>
+				<option value="src/pictures/PB.vs.PA_neg_PCA.3D.png" >NEG_PB.vs.PA_3D</option>
 			
-				<option value="src/pictures/Group2.vs.Group3_neg_PCA.png" >NEG_Group2.vs.Group3</option>
-				<option value="src/pictures/Group2.vs.Group3_neg_PCA.3D.png" >NEG_Group2.vs.Group3_3D</option>
+				<option value="src/pictures/PC.vs.PA_neg_PCA.png" >NEG_PC.vs.PA</option>
+				<option value="src/pictures/PC.vs.PA_neg_PCA.3D.png" >NEG_PC.vs.PA_3D</option>
+			
+				<option value="src/pictures/PC.vs.PB_neg_PCA.png" >NEG_PC.vs.PB</option>
+				<option value="src/pictures/PC.vs.PB_neg_PCA.3D.png" >NEG_PC.vs.PB_3D</option>
 			
 				</select>
 		    </form>
 	    </div>
-	    <p align="center"><img src="src/pictures/Group1.vs.Group2_neg_PCA.png" id="show8" width="40%"></p>
+	    <p align="center"><img src="src/pictures/PB.vs.PA_neg_PCA.png" id="show8" width="40%"></p>
 	
 	<p class="name">Figure 5.1 Principal component analysis (PCA)</p>
         <p class="premark">Note: The abscissa PC1 and ordinate PC2 represent the scores of the first and second principal components, respectively. Scatters of different colors represent samples from different experimental groups. The ellipse is 95% confidence interval (when the number of biological repeats is less than 4, 95% confidence ellipse cannot be displayed).</p>
@@ -738,32 +765,38 @@ PCA was used to observe the overall distribution trend between the two groups of
 	<label>
 	<select id="game9" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
 	
-				<option value="src/pictures/Group1.vs.Group2_pos_PLSDA-score.png" >POS_Group1.vs.Group2_score</option>
-				<option value="src/pictures/Group1.vs.Group2_pos_PLSDA-valid.png" >POS_Group1.vs.Group2_valid</option>
+				<option value="src/pictures/PB.vs.PA_pos_PLSDA-score.png" >POS_PB.vs.PA_score</option>
+				<option value="src/pictures/PB.vs.PA_pos_PLSDA-valid.png" >POS_PB.vs.PA_valid</option>
 			
-				<option value="src/pictures/Group2.vs.Group3_pos_PLSDA-score.png" >POS_Group2.vs.Group3_score</option>
-				<option value="src/pictures/Group2.vs.Group3_pos_PLSDA-valid.png" >POS_Group2.vs.Group3_valid</option>
+				<option value="src/pictures/PC.vs.PA_pos_PLSDA-score.png" >POS_PC.vs.PA_score</option>
+				<option value="src/pictures/PC.vs.PA_pos_PLSDA-valid.png" >POS_PC.vs.PA_valid</option>
+			
+				<option value="src/pictures/PC.vs.PB_pos_PLSDA-score.png" >POS_PC.vs.PB_score</option>
+				<option value="src/pictures/PC.vs.PB_pos_PLSDA-valid.png" >POS_PC.vs.PB_valid</option>
 			
 				 </select>
 		    </form>
 	    </div>
-	    <p align="center"><img src="src/pictures/Group1.vs.Group2_pos_PLSDA-score.png" id="show9" width="40%"></p>
+	    <p align="center"><img src="src/pictures/PB.vs.PA_pos_PLSDA-score.png" id="show9" width="40%"></p>
 	
 <div align="left">
 	<form id="form1" name="form1" method="post" action="">
 	<label>
 	<select id="game10" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
 	
-				<option value="src/pictures/Group1.vs.Group2_neg_PLSDA-score.png" >NEG_Group1.vs.Group2_score</option>
-				<option value="src/pictures/Group1.vs.Group2_neg_PLSDA-valid.png" >NEG_Group1.vs.Group2_valid</option>
+				<option value="src/pictures/PB.vs.PA_neg_PLSDA-score.png" >NEG_PB.vs.PA_score</option>
+				<option value="src/pictures/PB.vs.PA_neg_PLSDA-valid.png" >NEG_PB.vs.PA_valid</option>
 			
-				<option value="src/pictures/Group2.vs.Group3_neg_PLSDA-score.png" >NEG_Group2.vs.Group3_score</option>
-				<option value="src/pictures/Group2.vs.Group3_neg_PLSDA-valid.png" >NEG_Group2.vs.Group3_valid</option>
+				<option value="src/pictures/PC.vs.PA_neg_PLSDA-score.png" >NEG_PC.vs.PA_score</option>
+				<option value="src/pictures/PC.vs.PA_neg_PLSDA-valid.png" >NEG_PC.vs.PA_valid</option>
+			
+				<option value="src/pictures/PC.vs.PB_neg_PLSDA-score.png" >NEG_PC.vs.PB_score</option>
+				<option value="src/pictures/PC.vs.PB_neg_PLSDA-valid.png" >NEG_PC.vs.PB_valid</option>
 			
 				 </select>
 		    </form>
 	    </div>
-	    <p align="center"><img src="src/pictures/Group1.vs.Group2_neg_PLSDA-score.png" id="show10" width="40%"></p>
+	    <p align="center"><img src="src/pictures/PB.vs.PA_neg_PLSDA-score.png" id="show10" width="40%"></p>
 	
     <p class="name">Figure 5.2 PLS-DA score scatterplot and sorting validation chart</p>
 	<p class="premark">Note: scatterplot of scores, abscissa is the score of the sample on the first principal component; The ordinate is the score of the sample on the second principal component; R2Y represents the interpretation rate of the model, Q2Y is used to evaluate the predictive ability of PLS-DA model, and R2Y greater than Q2Y indicates that the model is well established.</p>
@@ -774,15 +807,17 @@ PCA was used to observe the overall distribution trend between the two groups of
 </div>
 <div id="page">
 <h4 id="">5.3 Differential metabolites screening results</h4>
-	<p class="paragraph">The screening of differential metabolites mainly refers to three parameters: VIP, FC and P value. VIP refers to the variable importance in the projection of the first principal component of the PLS-DA model <SUP>[10]</SUP>, and the VIP value represents the contribution of the metabolites to the grouping; FC refers to the fold change, which is the ratio of the mean of all biological repeated quantitative values of each metabolite in the comparison group; P-value is calculated by T-test <SUP>[6]</SUP>, indicating the level of difference significance. Set the threshold as VIP > 1.0, FC > 1.2 or FC < 0.833 and P-value < 0.05 <SUP>[11-13]</SUP>, and the screened differential metabolites are shown in Table 5.3:</p>
+	<p class="paragraph">The screening of differential metabolites mainly refers to three parameters: VIP, FC and P value. VIP refers to the variable importance in the projection of the first principal component of the PLS-DA model <SUP>[10]</SUP>, and the VIP value represents the contribution of the metabolites to the grouping; FC refers to the fold change, which is the ratio of the mean of all biological repeated quantitative values of each metabolite in the comparison group; P-value is calculated by T-test <SUP>[6]</SUP>, indicating the level of difference significance. Set the threshold as VIP > 1.0, FC > 1.5 or FC < 0.667 and P-value < 0.05 <SUP>[11-13]</SUP>, and the screened differential metabolites are shown in Table 5.3:</p>
 <p class="name">Table 5.3 Differential metabolites screening results</p>
 	
 <p class="center"><div id="tb"><table>
 <tr><th style="background-color:#dedddd"><font color="black">Compared Samples</font></th><th style="background-color:#dedddd"><font color="black">Num. of Total Ident.</font></th><th style="background-color:#dedddd"><font color="black">Num. of Total Sig.</font></th><th style="background-color:#dedddd"><font color="black">Num. of Sig.Up</font></th><th style="background-color:#dedddd"><font color="black">Num. of Sig.down</font></th><th style="background-color:#dedddd"><font color="black">Threshold</font></th></tr>
-<tr><td>Group1.vs.Group2_pos</td><td>2381</td><td>148</td><td>86</td><td>62</td><td>p-value < 0.05, VIP > 1.0, FC > 1.2 or < 0.833</td></tr>
-<td>Group2.vs.Group3_pos</td><td>2381</td><td>139</td><td>58</td><td>81</td><td>p-value < 0.05, VIP > 1.0, FC > 1.2 or < 0.833</td></tr>
-<td>Group1.vs.Group2_neg</td><td>1316</td><td>189</td><td>84</td><td>105</td><td>p-value < 0.05, VIP > 1.0, FC > 1.2 or < 0.833</td></tr>
-<td>Group2.vs.Group3_neg</td><td>1316</td><td>202</td><td>115</td><td>87</td><td>p-value < 0.05, VIP > 1.0, FC > 1.2 or < 0.833</td></tr>
+<tr><td>PB.vs.PA_pos</td><td>3295</td><td>1295</td><td>786</td><td>509</td><td>p-value < 0.05, VIP > 1.0, FC > 1.5 or < 0.667</td></tr>
+<td>PC.vs.PA_pos</td><td>3295</td><td>1405</td><td>878</td><td>527</td><td>p-value < 0.05, VIP > 1.0, FC > 1.5 or < 0.667</td></tr>
+<td>PC.vs.PB_pos</td><td>3295</td><td>579</td><td>251</td><td>328</td><td>p-value < 0.05, VIP > 1.0, FC > 1.5 or < 0.667</td></tr>
+<td>PB.vs.PA_neg</td><td>1718</td><td>661</td><td>474</td><td>187</td><td>p-value < 0.05, VIP > 1.0, FC > 1.5 or < 0.667</td></tr>
+<td>PC.vs.PA_neg</td><td>1718</td><td>754</td><td>563</td><td>191</td><td>p-value < 0.05, VIP > 1.0, FC > 1.5 or < 0.667</td></tr>
+<td>PC.vs.PB_neg</td><td>1718</td><td>285</td><td>165</td><td>120</td><td>p-value < 0.05, VIP > 1.0, FC > 1.5 or < 0.667</td></tr>
 
 </table></div></p>
 
@@ -805,28 +840,32 @@ Note: Only part of the results are shown in the report, and the detailed results
 	<label>
 	<select id="game11" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
 	
-				<option value="src/pictures/Group1.vs.Group2_pos.xls.volcano.png" >POS_Group1.vs.Group2</option>
+				<option value="src/pictures/PB.vs.PA_pos.xls.volcano.png" >POS_PB.vs.PA</option>
 				
-				<option value="src/pictures/Group2.vs.Group3_pos.xls.volcano.png" >POS_Group2.vs.Group3</option>
+				<option value="src/pictures/PC.vs.PA_pos.xls.volcano.png" >POS_PC.vs.PA</option>
+				
+				<option value="src/pictures/PC.vs.PB_pos.xls.volcano.png" >POS_PC.vs.PB</option>
 				
 				 </select>
 		    </form>
 	    </div>
-	    <p align="center"><img src="src/pictures/Group1.vs.Group2_pos.xls.volcano.png" id="show11" width="40%"></p>
+	    <p align="center"><img src="src/pictures/PB.vs.PA_pos.xls.volcano.png" id="show11" width="40%"></p>
 	
 	<div align="left">
 	<form id="form1" name="form1" method="post" action="">
 	<label>
 	<select id="game12" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
 	
-				<option value="src/pictures/Group1.vs.Group2_neg.xls.volcano.png" >NEG_Group1.vs.Group2</option>
+				<option value="src/pictures/PB.vs.PA_neg.xls.volcano.png" >NEG_PB.vs.PA</option>
 				
-				<option value="src/pictures/Group2.vs.Group3_neg.xls.volcano.png" >NEG_Group2.vs.Group3</option>
+				<option value="src/pictures/PC.vs.PA_neg.xls.volcano.png" >NEG_PC.vs.PA</option>
+				
+				<option value="src/pictures/PC.vs.PB_neg.xls.volcano.png" >NEG_PC.vs.PB</option>
 				
 				 </select>
 		    </form>
 	    </div>
-	    <p align="center"><img src="src/pictures/Group1.vs.Group2_neg.xls.volcano.png" id="show12" width="40%"></p>
+	    <p align="center"><img src="src/pictures/PB.vs.PA_neg.xls.volcano.png" id="show12" width="40%"></p>
 	
 	<p class="name">Figure 5.4 Volcano plot of differential metabolites</p>
 	<p class="premark">Corresponding result catalog: Result/3.MetDiffScreening/*.vs.*/ *.vs.*_{pos,neg}.xls.volcano.{png,pdf}</p>
@@ -840,28 +879,32 @@ Note: Only part of the results are shown in the report, and the detailed results
 	<label>
 	<select id="game13" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
 	
-				<option value="src/pictures/Group1.vs.Group2_pos_stem.png" >POS_Group1.vs.Group2</option>
+				<option value="src/pictures/PB.vs.PA_pos_stem.png" >POS_PB.vs.PA</option>
 			
-				<option value="src/pictures/Group2.vs.Group3_pos_stem.png" >POS_Group2.vs.Group3</option>
+				<option value="src/pictures/PC.vs.PA_pos_stem.png" >POS_PC.vs.PA</option>
+			
+				<option value="src/pictures/PC.vs.PB_pos_stem.png" >POS_PC.vs.PB</option>
 			
 				 </select>
 		    </form>
 	    </div>
-	    <p align="center"><img src="src/pictures/Group1.vs.Group2_pos_stem.png" id="show13" width="40%"></p>
+	    <p align="center"><img src="src/pictures/PB.vs.PA_pos_stem.png" id="show13" width="40%"></p>
 	
 	<div align="left">
 	<form id="form1" name="form1" method="post" action="">
 	<label>
 	<select id="game14" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
 	
-				<option value="src/pictures/Group1.vs.Group2_neg_stem.png" >NEG_Group1.vs.Group2</option>
+				<option value="src/pictures/PB.vs.PA_neg_stem.png" >NEG_PB.vs.PA</option>
 			
-				<option value="src/pictures/Group2.vs.Group3_neg_stem.png" >NEG_Group2.vs.Group3</option>
+				<option value="src/pictures/PC.vs.PA_neg_stem.png" >NEG_PC.vs.PA</option>
+			
+				<option value="src/pictures/PC.vs.PB_neg_stem.png" >NEG_PC.vs.PB</option>
 			
 				 </select>
 		    </form>
 	    </div>
-	    <p align="center"><img src="src/pictures/Group1.vs.Group2_neg_stem.png" id="show14" width="40%"></p>
+	    <p align="center"><img src="src/pictures/PB.vs.PA_neg_stem.png" id="show14" width="40%"></p>
 	
 	<p class="name">Figure 5.5 Matchstick plot of differential metabolites</p>
 	<p class="premark">Corresponding result catalog: Result/3.MetDiffScreening/*.vs.*/ *.vs.*_{pos,neg}_stem.{png,pdf}.</p>
@@ -900,12 +943,12 @@ Note: Only part of the results are shown in the report, and the detailed results
 	<select id="game16" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label> 
 
 
-		<option value="src/pictures/Com_824_pos_Box_plot.png" >POS</option>
-		<option value="src/pictures/Com_814_neg_Box_plot.png" >NEG</option>
+		<option value="src/pictures/Com_4463_pos_Box_plot.png" >POS</option>
+		<option value="src/pictures/Com_448_neg_Box_plot.png" >NEG</option>
         </select>
         </form>
     </div>
-    <p align="center"><img src="src/pictures/Com_824_pos_Box_plot.png" id="show16" width="40%"></p>
+    <p align="center"><img src="src/pictures/Com_4463_pos_Box_plot.png" id="show16" width="40%"></p>
     </div>
     
 	
@@ -924,12 +967,12 @@ Note: Only part of the results are shown in the report, and the detailed results
 	<select id="game17" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label> 
 
 
-		<option value="src/pictures/Com_824_pos_Violin_plot.png" >POS</option>
-		<option value="src/pictures/Com_814_neg_Violin_plot.png" >NEG</option>
+		<option value="src/pictures/Com_4463_pos_Violin_plot.png" >POS</option>
+		<option value="src/pictures/Com_448_neg_Violin_plot.png" >NEG</option>
         </select>
         </form>
     </div>
-    <p align="center"><img src="src/pictures/Com_824_pos_Violin_plot.png" id="show17" width="40%"></p>
+    <p align="center"><img src="src/pictures/Com_4463_pos_Violin_plot.png" id="show17" width="40%"></p>
     </div>
     
 	
@@ -975,28 +1018,32 @@ Note: Only part of the results are shown in the report, and the detailed results
 	    <label>
 	    <select id="game19" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
         
-				    <option value="src/pictures/Group1.vs.Group2_pos_heatmap.png" >POS_Group1.vs.Group2</option>
+				    <option value="src/pictures/PB.vs.PA_pos_heatmap.png" >POS_PB.vs.PA</option>
                 
-				    <option value="src/pictures/Group2.vs.Group3_pos_heatmap.png" >POS_Group2.vs.Group3</option>
+				    <option value="src/pictures/PC.vs.PA_pos_heatmap.png" >POS_PC.vs.PA</option>
+                
+				    <option value="src/pictures/PC.vs.PB_pos_heatmap.png" >POS_PC.vs.PB</option>
                 
 				 </select>
 		    </form>
 		    </div>
-		    <p align="center"><img src="src/pictures/Group1.vs.Group2_pos_heatmap.png" id="show19" width="40%"></p>
+		    <p align="center"><img src="src/pictures/PB.vs.PA_pos_heatmap.png" id="show19" width="40%"></p>
         
 	    <div align="left">
 	    <form id="form1" name="form1" method="post" action="">
 	    <label>
 	    <select id="game20" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
         
-				    <option value="src/pictures/Group1.vs.Group2_neg_heatmap.png" >NEG_Group1.vs.Group2</option>
+				    <option value="src/pictures/PB.vs.PA_neg_heatmap.png" >NEG_PB.vs.PA</option>
                 
-				    <option value="src/pictures/Group2.vs.Group3_neg_heatmap.png" >NEG_Group2.vs.Group3</option>
+				    <option value="src/pictures/PC.vs.PA_neg_heatmap.png" >NEG_PC.vs.PA</option>
+                
+				    <option value="src/pictures/PC.vs.PB_neg_heatmap.png" >NEG_PC.vs.PB</option>
                 
 				 </select>
 		    </form>
 		    </div>
-		    <p align="center"><img src="src/pictures/Group1.vs.Group2_neg_heatmap.png" id="show20" width="40%"></p>
+		    <p align="center"><img src="src/pictures/PB.vs.PA_neg_heatmap.png" id="show20" width="40%"></p>
         
     <p class="name">Figure 6.4.2 Clustering heatmap of differential metabolites</p>
 	<p class="premark">Note: The vertical is the clustering of samples, and the horizontal is the clustering of metabolites. The shorter the cluster branch, the higher the similarity. </p>
@@ -1037,28 +1084,32 @@ Note: Only part of the results are shown in the report, and the detailed results
 	<label>
 	<select id="game22" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
 	
-				<option value="src/pictures/Group1.vs.Group2_pos_corr.png" >POS_Group1.vs.Group2</option>
+				<option value="src/pictures/PB.vs.PA_pos_corr.png" >POS_PB.vs.PA</option>
 			
-				<option value="src/pictures/Group2.vs.Group3_pos_corr.png" >POS_Group2.vs.Group3</option>
+				<option value="src/pictures/PC.vs.PA_pos_corr.png" >POS_PC.vs.PA</option>
+			
+				<option value="src/pictures/PC.vs.PB_pos_corr.png" >POS_PC.vs.PB</option>
 			
 				 </select>
 		    </form>
 	    </div>
-	    <p align="center"><img src="src/pictures/Group1.vs.Group2_pos_corr.png" id="show22" width="40%"></p>
+	    <p align="center"><img src="src/pictures/PB.vs.PA_pos_corr.png" id="show22" width="50%"></p>
 	
 	<div align="left">
 	<form id="form1" name="form1" method="post" action="">
 	<label>
 	<select id="game23" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
 	
-				<option value="src/pictures/Group1.vs.Group2_neg_corr.png" >NEG_Group1.vs.Group2</option>
+				<option value="src/pictures/PB.vs.PA_neg_corr.png" >NEG_PB.vs.PA</option>
 			
-				<option value="src/pictures/Group2.vs.Group3_neg_corr.png" >NEG_Group2.vs.Group3</option>
+				<option value="src/pictures/PC.vs.PA_neg_corr.png" >NEG_PC.vs.PA</option>
+			
+				<option value="src/pictures/PC.vs.PB_neg_corr.png" >NEG_PC.vs.PB</option>
 			
 				 </select>
 		    </form>
 	    </div>
-	    <p align="center"><img src="src/pictures/Group1.vs.Group2_neg_corr.png" id="show23" width="40%"></p>
+	    <p align="center"><img src="src/pictures/PB.vs.PA_neg_corr.png" id="show23" width="50%"></p>
 	
 <p class="name">Figure 6.6 Correlation diagram of differential metabolites</p>
 <p class="premark">Note: The highest correlation is 1, which is a complete positive correlation (red), and the lowest correlation is -1, which is a complete negative correlation (blue). The part without color indicates P-value > 0.05. The figure shows the correlation of the differential metabolites of top 20 sorted by P-value from small to large.</p>
@@ -1075,28 +1126,32 @@ Note: Only part of the results are shown in the report, and the detailed results
 	<label>
 	<select id="game24" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
 	
-				<option value="src/pictures/Group1.vs.Group2_pos_chord.png" >POS_Group1.vs.Group2</option>
+				<option value="src/pictures/PB.vs.PA_pos_chord.png" >POS_PB.vs.PA</option>
 			
-				<option value="src/pictures/Group2.vs.Group3_pos_chord.png" >POS_Group2.vs.Group3</option>
+				<option value="src/pictures/PC.vs.PA_pos_chord.png" >POS_PC.vs.PA</option>
+			
+				<option value="src/pictures/PC.vs.PB_pos_chord.png" >POS_PC.vs.PB</option>
 			
 				 </select>
 		    </form>
 	    </div>
-	    <p align="center"><img src="src/pictures/Group1.vs.Group2_pos_chord.png" id="show24" width="60%"></p>
+	    <p align="center"><img src="src/pictures/PB.vs.PA_pos_chord.png" id="show24" width="60%"></p>
 	
 	<div align="left">
 	<form id="form1" name="form1" method="post" action="">
 	<label>
 	<select id="game25" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
 	
-				<option value="src/pictures/Group1.vs.Group2_neg_chord.png" >NEG_Group1.vs.Group2</option>
+				<option value="src/pictures/PB.vs.PA_neg_chord.png" >NEG_PB.vs.PA</option>
 			
-				<option value="src/pictures/Group2.vs.Group3_neg_chord.png" >NEG_Group2.vs.Group3</option>
+				<option value="src/pictures/PC.vs.PA_neg_chord.png" >NEG_PC.vs.PA</option>
+			
+				<option value="src/pictures/PC.vs.PB_neg_chord.png" >NEG_PC.vs.PB</option>
 			
 				 </select>
 		    </form>
 	    </div>
-	    <p align="center"><img src="src/pictures/Group1.vs.Group2_neg_chord.png" id="show25" width="60%"></p>
+	    <p align="center"><img src="src/pictures/PB.vs.PA_neg_chord.png" id="show25" width="60%"></p>
 	
 <p class="name">Figure 6.7 Chord diagram of differential metabolites</p>
 	<p class="premark">Corresponding result catalog: Result/4.MetDiffAnalysis/*.vs.*/*.vs.*_{pos,neg}_chord.{png,pdf}.</p>
@@ -1112,28 +1167,32 @@ Note: Only part of the results are shown in the report, and the detailed results
 	<label>
 	<select id="game26" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
 	
-				<option value="src/pictures/Group1.vs.Group2_pos_zscore.png" >POS_Group1.vs.Group2</option>
+				<option value="src/pictures/PB.vs.PA_pos_zscore.png" >POS_PB.vs.PA</option>
 			
-				<option value="src/pictures/Group2.vs.Group3_pos_zscore.png" >POS_Group2.vs.Group3</option>
+				<option value="src/pictures/PC.vs.PA_pos_zscore.png" >POS_PC.vs.PA</option>
+			
+				<option value="src/pictures/PC.vs.PB_pos_zscore.png" >POS_PC.vs.PB</option>
 			
 		 </select>
 		 </form>
 	    </div>
-	    <p align="center"><img src="src/pictures/Group1.vs.Group2_pos_zscore.png" id="show26" width="40%"></p>
+	    <p align="center"><img src="src/pictures/PB.vs.PA_pos_zscore.png" id="show26" width="40%"></p>
 	
 	<div align="left">
 	<form id="form1" name="form1" method="post" action="">
 	<label>
 	<select id="game27" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
 	
-				<option value="src/pictures/Group1.vs.Group2_neg_zscore.png" >NEG_Group1.vs.Group2</option>
+				<option value="src/pictures/PB.vs.PA_neg_zscore.png" >NEG_PB.vs.PA</option>
 			
-				<option value="src/pictures/Group2.vs.Group3_neg_zscore.png" >NEG_Group2.vs.Group3</option>
+				<option value="src/pictures/PC.vs.PA_neg_zscore.png" >NEG_PC.vs.PA</option>
+			
+				<option value="src/pictures/PC.vs.PB_neg_zscore.png" >NEG_PC.vs.PB</option>
 			
 		 </select>
 		 </form>
 	    </div>
-	    <p align="center"><img src="src/pictures/Group1.vs.Group2_neg_zscore.png" id="show27" width="40%"></p>
+	    <p align="center"><img src="src/pictures/PB.vs.PA_neg_zscore.png" id="show27" width="40%"></p>
 	
 <p class="name">Figure 6.8 Z-score diagram</p>
        <p class="premark">Note: The abscissa indicates Z-score value and the ordinate indicates differential metabolite. Each circle represents a sample, and only the metabolite of top 30 (sorted by P-value from small to large) is shown in the figure. Among them, samples with Z-score exceeding 4 or -4 cannot be displayed.</p>
@@ -1153,28 +1212,32 @@ Note: Only part of the results are shown in the report, and the detailed results
 	<label>
 	<select id="game28" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
 	
-				<option value="src/pictures/Group1.vs.Group2_pos_KEGG_classification.png" >POS_Group1.vs.Group2</option>
+				<option value="src/pictures/PB.vs.PA_pos_KEGG_classification.png" >POS_PB.vs.PA</option>
 			
-				<option value="src/pictures/Group2.vs.Group3_pos_KEGG_classification.png" >POS_Group2.vs.Group3</option>
+				<option value="src/pictures/PC.vs.PA_pos_KEGG_classification.png" >POS_PC.vs.PA</option>
+			
+				<option value="src/pictures/PC.vs.PB_pos_KEGG_classification.png" >POS_PC.vs.PB</option>
 			
 		</select>
 		</form>
 	 </div>
-	<p align="center"><img src="src/pictures/Group1.vs.Group2_pos_KEGG_classification.png" id="show28" width="60%"></p>
+	<p align="center"><img src="src/pictures/PB.vs.PA_pos_KEGG_classification.png" id="show28" width="60%"></p>
 	
 	<div align="left">
 	<form id="form1" name="form1" method="post" action="">
 	<label>
 	<select id="game29" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
 	
-				<option value="src/pictures/Group1.vs.Group2_neg_KEGG_classification.png" >NEG_Group1.vs.Group2</option>
+				<option value="src/pictures/PB.vs.PA_neg_KEGG_classification.png" >NEG_PB.vs.PA</option>
 			
-				<option value="src/pictures/Group2.vs.Group3_neg_KEGG_classification.png" >NEG_Group2.vs.Group3</option>
+				<option value="src/pictures/PC.vs.PA_neg_KEGG_classification.png" >NEG_PC.vs.PA</option>
+			
+				<option value="src/pictures/PC.vs.PB_neg_KEGG_classification.png" >NEG_PC.vs.PB</option>
 			
 		</select>
 		</form>
 	 </div>
-	<p align="center"><img src="src/pictures/Group1.vs.Group2_neg_KEGG_classification.png" id="show29" width="60%"></p>
+	<p align="center"><img src="src/pictures/PB.vs.PA_neg_KEGG_classification.png" id="show29" width="60%"></p>
 	
 <p class="name">Figure 7.1 Differential metabolite KEGG classification chart</p>
 	<p class="premark">Note: The horizontal coordinates in the graph indicate the number of metabolites annotated under a particular KEGG pathway as a percentage of the number of all annotated metabolites, the vertical coordinates are KEGG pathway primary classifications on the right and KEGG pathway secondary classifications on the left.</p>
@@ -1189,9 +1252,9 @@ Note: Only part of the results are shown in the report, and the detailed results
 	<p class="name">Table 7.2 KEGG enrichment results</p>
 <p class="center"><div id="tb"><table>
         <tr><th style="background-color:#dedddd"><font color="black">MapID</font></th><th style="background-color:#dedddd"><font color="black">MapTitle</font></th><th style="background-color:#dedddd"><font color="black">Pvalue</font></th><th style="background-color:#dedddd"><font color="black">x</font></th><th style="background-color:#dedddd"><font color="black">y</font></th><th style="background-color:#dedddd"><font color="black">n</font></th><th style="background-color:#dedddd"><font color="black">N</font></th><th style="background-color:#dedddd"><font color="black">EnrichDirect</font></th><th style="background-color:#dedddd"><font color="black">MetaIDs</font></th><th style="background-color:#dedddd"><font color="black">kegg_cpd_id</font></th></tr>
-<tr><td>map00944</th><td>Flavone and flavonol biosynthesis</th><td>0.00522466039707419</th><td>3</th><td>3</th><td>26</th><td>145</th><td>Over</th><td>Baimaside; Afzelin; Astragalin</th><td>cpd:C12667,cpd:C16911,cpd:C12249</th></tr>
-<td>map00360</th><td>Phenylalanine metabolism</th><td>0.0311302681992337</th><td>2</th><td>2</th><td>26</th><td>145</th><td>Over</th><td>m-Coumaric acid; 3-(2-Hydroxyphenyl)propanoic acid</th><td>cpd:C12621,cpd:C01198</th></tr>
-<td>map00650</th><td>Butanoate metabolism</th><td>0.0311302681992337</th><td>2</th><td>2</th><td>26</th><td>145</th><td>Over</th><td>alpha-Ketoglutaric acid; Maleic acid</th><td>cpd:C00026,cpd:C01384</th></tr>
+<tr><td>map04148</th><td>Efferocytosis</th><td>0.0203111014287021</th><td>4</th><td>11</th><td>23</th><td>214</th><td>Over</th><td>LysoPC(20:4(5Z,8Z,11Z,14Z)/0:0); LysoPC(22:5(4Z,7Z,10Z,13Z,16Z)/0:0); LysoPC(22:4(7Z,10Z,13Z,16Z)/0:0); LysoPC(22:5(7Z,10Z,13Z,16Z,19Z)/0:0)</th><td>cpd:C04230,cpd:C04230,cpd:C04230,cpd:C04230</th></tr>
+<td>map05231</th><td>Choline metabolism in cancer</th><td>0.0282557782284527</th><td>4</th><td>12</th><td>23</th><td>214</th><td>Over</th><td>LysoPC(20:4(5Z,8Z,11Z,14Z)/0:0); LysoPC(22:5(4Z,7Z,10Z,13Z,16Z)/0:0); LysoPC(22:4(7Z,10Z,13Z,16Z)/0:0); LysoPC(22:5(7Z,10Z,13Z,16Z,19Z)/0:0)</th><td>cpd:C04230,cpd:C04230,cpd:C04230,cpd:C04230</th></tr>
+<td>map00564</th><td>Glycerophospholipid metabolism</th><td>0.0378523185212206</th><td>4</th><td>13</th><td>23</th><td>214</th><td>Over</th><td>LysoPC(20:4(5Z,8Z,11Z,14Z)/0:0); LysoPC(22:5(4Z,7Z,10Z,13Z,16Z)/0:0); LysoPC(22:4(7Z,10Z,13Z,16Z)/0:0); LysoPC(22:5(7Z,10Z,13Z,16Z,19Z)/0:0)</th><td>cpd:C04230,cpd:C04230,cpd:C04230,cpd:C04230</th></tr>
 
 </table></div></p>
 	<p class="premark">Note: Only part of the results are shown in the report, and for detailed results please see: Result/5.MetKeggEnrichment/ *.vs.*/ *.vs.*_{pos,neg}.kegg_enrichment.xls.</br>
@@ -1220,28 +1283,32 @@ Note: Only part of the results are shown in the report, and the detailed results
 	<label>
 	<select id="game30" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
 	
-				<option value="src/pictures/Group1.vs.Group2_pos.KEGG_Enrich.scatterplot.png" >POS_Group1.vs.Group2</option>
+				<option value="src/pictures/PB.vs.PA_pos.KEGG_Enrich.scatterplot.png" >POS_PB.vs.PA</option>
 			
-				<option value="src/pictures/Group2.vs.Group3_pos.KEGG_Enrich.scatterplot.png" >POS_Group2.vs.Group3</option>
+				<option value="src/pictures/PC.vs.PA_pos.KEGG_Enrich.scatterplot.png" >POS_PC.vs.PA</option>
+			
+				<option value="src/pictures/PC.vs.PB_pos.KEGG_Enrich.scatterplot.png" >POS_PC.vs.PB</option>
 			
 		</select>
 		</form>
 	 </div>
-	<p align="center"><img src="src/pictures/Group1.vs.Group2_pos.KEGG_Enrich.scatterplot.png" id="show30" width="40%"></p>
+	<p align="center"><img src="src/pictures/PB.vs.PA_pos.KEGG_Enrich.scatterplot.png" id="show30" width="40%"></p>
 	
 	<div align="left">
 	<form id="form1" name="form1" method="post" action="">
 	<label>
 	<select id="game31" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
 	
-				<option value="src/pictures/Group1.vs.Group2_neg.KEGG_Enrich.scatterplot.png" >NEG_Group1.vs.Group2</option>
+				<option value="src/pictures/PB.vs.PA_neg.KEGG_Enrich.scatterplot.png" >NEG_PB.vs.PA</option>
 			
-				<option value="src/pictures/Group2.vs.Group3_neg.KEGG_Enrich.scatterplot.png" >NEG_Group2.vs.Group3</option>
+				<option value="src/pictures/PC.vs.PA_neg.KEGG_Enrich.scatterplot.png" >NEG_PC.vs.PA</option>
+			
+				<option value="src/pictures/PC.vs.PB_neg.KEGG_Enrich.scatterplot.png" >NEG_PC.vs.PB</option>
 			
 		</select>
 		</form>
 	 </div>
-	<p align="center"><img src="src/pictures/Group1.vs.Group2_neg.KEGG_Enrich.scatterplot.png" id="show31" width="40%"></p>
+	<p align="center"><img src="src/pictures/PB.vs.PA_neg.KEGG_Enrich.scatterplot.png" id="show31" width="40%"></p>
 	
 <p class="name">Figure 7.3 KEGG enrichment bubble diagram</p>
 	<p class="premark">Note: The abscissa is x/y (the number of differential metabolites in the corresponding metabolic pathway/the number of total metabolites identified in the pathway). The higher the value, the higher the concentration of differential metabolites in the pathway. The color of the point represents the p-value value of the hypergeometric test. The smaller the value, the greater the reliability and statistical significance of the test. The size of the point represents the number of differential metabolites in the corresponding pathway. The larger the point, the more differential metabolites in the pathway. (If there is no enrichment result, this figure is not available)</p>
@@ -1251,11 +1318,53 @@ Note: Only part of the results are shown in the report, and the detailed results
 <div id="page">
 <h4 id="">7.4 KEGG enrichment pathway diagram</h4>
 	<p class="paragraph">In the KEGG pathway diagram, the circle represents the metabolite, in which the green solid circle is marked with the annotated metabolite, the red circle is marked with the up-regulated differential metabolite, the blue circle is marked with the down-regulated differential metabolite, and the yellow circle is marked with both up-regulated and down-regulated differential metabolite. The results are shown in Figure 7.4 (see the result file for the high-definition version of the picture). In order to facilitate viewing the items in the KEGG pathway diagram, the KEGG pathway diagram is made into a web version.  Please <a href="src/pathway/KEGG.map.html" target="_blank"><b>click</b></a> on the web version of one group of relatively correct pathway diagrams, and see the results file for the results of the remaining groups.</p>
-	<p class="center"> <img  src="src/pictures/00944.png"  width="60%" /> </p>
+	<p class="center"> <img  src="src/pictures/04148.png"  width="60%" /> </p>
 	<p class="name">Figure 7.4 KEGG enrichment pathway diagram</p>
     <p class="premark">Corresponding result catalog: Result/5.MetKeggEnrichment/*.vs.*/*.vs.*_{pos,neg}_KEGG_map; For the link of the web version result file please see:Result/5.MetKeggEnrichment/*.vs.*/*.vs.*_{pos,neg}_KEGG_map/Met_results_dir.html.</p>
 </div>
 
+	<div id="page">
+    	    <h4 id="">7.5 KEGG control network diagram</h4>
+        	<p class="paragraph">In the field of biochemistry, metabolic pathway refers to a series of biochemical reactions in the process of transforming metabolic substances in cells into new metabolic substances under the action of enzymes. The metabolic network refers to the network that describes the metabolism and physiological processes in cells, which is composed of metabolic reactions and regulatory mechanisms that regulate these reactions. Based on the differential metabolites obtained from the previous analysis, a network-based enrichment analysis is constructed. By default, the KEGG control network diagram uses the Diffusion algorithm for enrichment. The principle behind it is to use the finite difference formula of the heat conduction equation to spread the heat marker from the metabolites to the rest of the node network. This method enables the metabolites of the input network to have thermal markers, which will spread to all the path nodes in the enrichment network. These nodes include the input metabolites, and also include information such as reactions, enzymes, modules and pathways. Finally, the network connected by nodes can be displayed by drawing, which can reflect the intersection between metabolic pathways and target potential enzymes and metabolites under specific research conditions, and show how the disturbance spreads at the level of the pathway and how the pathways interact with each other, thus enhancing the interpretability of the results <SUP>[24-28]</SUP>. The analysis results of regulatory interaction network of different metabolites in each group are shown in Figure 7.5:</p>
+	
+
+		<div align="left">
+		<form id="form1" name="form1" method="post" action="">
+		<label>
+		<select id="game32" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
+		
+					<option value="src/pictures/PB.vs.PA_pos.KEGG_net.png" >POS_PB.vs.PA</option>
+				
+					<option value="src/pictures/PC.vs.PA_pos.KEGG_net.png" >POS_PC.vs.PA</option>
+				
+					<option value="src/pictures/PC.vs.PB_pos.KEGG_net.png" >POS_PC.vs.PB</option>
+				
+					 </select>
+		    	</form>
+	 	</div>
+		<p align="center"><img src="src/pictures/PB.vs.PA_pos.KEGG_net.png" id="show32" width="40%"></p>
+		
+		<div align="left">
+		<form id="form1" name="form1" method="post" action="">
+		<label>
+		<select id="game33" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
+		
+					<option value="src/pictures/PB.vs.PA_neg.KEGG_net.png" >NEG_PB.vs.PA</option>
+				
+					<option value="src/pictures/PC.vs.PA_neg.KEGG_net.png" >NEG_PC.vs.PA</option>
+				
+					<option value="src/pictures/PC.vs.PB_neg.KEGG_net.png" >NEG_PC.vs.PB</option>
+				
+					 </select>
+		    	</form>
+	 	</div>
+		<p align="center"><img src="src/pictures/PB.vs.PA_neg.KEGG_net.png" id="show33" width="40%"></p>
+		
+	<p class="name">Figure 7.5 KEGG control network diagram</p>
+        <p class="premark">Note: The red dot represents a metabolic pathway, the yellow dot represents the information of a substance related regulatory enzyme, the green dot represents the background material of a metabolic pathway, the purple dot represents the information of a class of substance molecular modules, the blue dot represents a chemical interaction of a substance, and the green square represents the different substances obtained by this comparison.</p>
+    	<p class="premark">Corresponding result catalog: KEGG control network diagrams are available in Result/5.MetKeggEnrichment/*.vs.*/*.vs.*_{pos,neg}.KEGG_net.{png,pdf}</p>
+	</div>
+	
     <div id="page">
     <p class="head"><a href="#home" title = "返回首页"><img class="logo" align="left" src="src/images/logo.png" /></a>
     <a name="GSEA分析"></a><hr/></p>
@@ -1267,11 +1376,11 @@ Note: Only part of the results are shown in the report, and the detailed results
         <p class="name">Table 8 GSEA analysis results</p>
 <p class="center"><div id="tb"><table>
         <tr><th style="background-color:#dedddd"><font color="black">KEGG_ID</font></th><th style="background-color:#dedddd"><font color="black">KEGG_Term</font></th><th style="background-color:#dedddd"><font color="black">Pvalue</font></th><th style="background-color:#dedddd"><font color="black">AdjustedPv</font></th><th style="background-color:#dedddd"><font color="black">Size</font></th><th style="background-color:#dedddd"><font color="black">ES</font></th><th style="background-color:#dedddd"><font color="black">NES</font></th></tr>
-<tr><td>MAP00999</th><td>BIOSYNTHESIS OF VARIOUS PLANT SECONDARY METABOLITES</th><td>0.2698706</th><td>1.0</th><td>19</th><td>0.4214658</th><td>1.1611824</th></tr>
-<td>MAP01110</th><td>BIOSYNTHESIS OF SECONDARY METABOLITES</th><td>0.5831904</th><td>1.0</th><td>92</th><td>0.24699396</th><td>0.9379775</th></tr>
-<td>MAP01240</th><td>BIOSYNTHESIS OF COFACTORS</th><td>0.56350625</th><td>1.0</th><td>24</th><td>0.31791937</th><td>0.9301798</th></tr>
-<td>MAP01100</th><td>METABOLIC PATHWAYS</th><td>0.7916667</th><td>1.0</th><td>164</th><td>0.21029069</th><td>0.86379015</th></tr>
-<td>MAP01060</th><td>BIOSYNTHESIS OF PLANT SECONDARY METABOLITES</th><td>0.7945455</th><td>1.0</th><td>26</th><td>0.26138517</th><td>0.7817691</th></tr>
+<tr><td>MAP00140</th><td>STEROID HORMONE BIOSYNTHESIS</th><td>0.0025316456</th><td>0.0035832415</th><td>17</th><td>-0.639989</th><td>-1.9065292</th></tr>
+<td>MAP01240</th><td>BIOSYNTHESIS OF COFACTORS</th><td>0.21932115</th><td>0.314581</th><td>23</th><td>-0.37630415</th><td>-1.17387</th></tr>
+<td>MAP01100</th><td>METABOLIC PATHWAYS</th><td>0.36594203</th><td>0.38822123</th><td>150</th><td>-0.2275625</th><td>-1.0361184</th></tr>
+<td>MAP02010</th><td>ABC TRANSPORTERS</th><td>0.93456376</th><td>1.0</th><td>21</th><td>0.21682094</th><td>0.6212793</th></tr>
+<td>MAP01230</th><td>BIOSYNTHESIS OF AMINO ACIDS</th><td>1.0</th><td>1.0</th><td>22</th><td>0.14148822</th><td>0.40658724</th></tr>
 
 </table></div></p>
   <p class="premark">Note: Only partial results are shown in the table. Detailed results can be found in Result/6.MetGSEA/*.vs.*/{pos,neg}/*.vs.*_{pos,neg}_KEGG_gsea_result.xls.</br>
@@ -1289,46 +1398,36 @@ Note: Only part of the results are shown in the report, and the detailed results
     <div align="left">
     <form id="form1" name="form1" method="post" action="">
     <label>
-    <select id="game32" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
+    <select id="game34" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
     
-                    <option value="src/pictures/Gsea/pos/enplot_MAP00999__BIOSYNTHESIS_OF_VARIOUS_PLANT_SECONDARY_METABOLITES_3.png" >POS_MAP00999</option>
+                    <option value="src/pictures/Gsea/pos/enplot_MAP00140__STEROID_HORMONE_BIOSYNTHESIS_9.png" >POS_MAP00140</option>
             
-                    <option value="src/pictures/Gsea/pos/enplot_MAP01060__BIOSYNTHESIS_OF_PLANT_SECONDARY_METABOLITES_15.png" >POS_MAP01060</option>
+                    <option value="src/pictures/Gsea/pos/enplot_MAP01100__METABOLIC_PATHWAYS_15.png" >POS_MAP01100</option>
             
-                    <option value="src/pictures/Gsea/pos/enplot_MAP01100__METABOLIC_PATHWAYS_12.png" >POS_MAP01100</option>
+                    <option value="src/pictures/Gsea/pos/enplot_MAP01230__BIOSYNTHESIS_OF_AMINO_ACIDS_6.png" >POS_MAP01230</option>
             
-                    <option value="src/pictures/Gsea/pos/enplot_MAP01110__BIOSYNTHESIS_OF_SECONDARY_METABOLITES_6.png" >POS_MAP01110</option>
+                    <option value="src/pictures/Gsea/pos/enplot_MAP01240__BIOSYNTHESIS_OF_COFACTORS_12.png" >POS_MAP01240</option>
             
-                    <option value="src/pictures/Gsea/pos/enplot_MAP01120__MICROBIAL_METABOLISM_IN_DIVERSE_ENVIRONMENTS_24.png" >POS_MAP01120</option>
-            
-                    <option value="src/pictures/Gsea/pos/enplot_MAP01230__BIOSYNTHESIS_OF_AMINO_ACIDS_18.png" >POS_MAP01230</option>
-            
-                    <option value="src/pictures/Gsea/pos/enplot_MAP01240__BIOSYNTHESIS_OF_COFACTORS_9.png" >POS_MAP01240</option>
-            
-                    <option value="src/pictures/Gsea/pos/enplot_MAP02010__ABC_TRANSPORTERS_21.png" >POS_MAP02010</option>
+                    <option value="src/pictures/Gsea/pos/enplot_MAP02010__ABC_TRANSPORTERS_3.png" >POS_MAP02010</option>
             
         </select>
         </form>
      </div>
-    <p align="center"><img src="src/pictures/Gsea/pos/enplot_MAP00999__BIOSYNTHESIS_OF_VARIOUS_PLANT_SECONDARY_METABOLITES_3.png" id="show32" width="40%"></p>
+    <p align="center"><img src="src/pictures/Gsea/pos/enplot_MAP00140__STEROID_HORMONE_BIOSYNTHESIS_9.png" id="show34" width="40%"></p>
     
     <div align="left">
     <form id="form1" name="form1" method="post" action="">
     <label>
-    <select id="game33" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
+    <select id="game35" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
     
-                    <option value="src/pictures/Gsea/neg/enplot_MAP01100__METABOLIC_PATHWAYS_3.png" >NEG_MAP01100</option>
+                    <option value="src/pictures/Gsea/neg/enplot_MAP01100__METABOLIC_PATHWAYS_6.png" >NEG_MAP01100</option>
             
-                    <option value="src/pictures/Gsea/neg/enplot_MAP01110__BIOSYNTHESIS_OF_SECONDARY_METABOLITES_9.png" >NEG_MAP01110</option>
-            
-                    <option value="src/pictures/Gsea/neg/enplot_MAP01120__MICROBIAL_METABOLISM_IN_DIVERSE_ENVIRONMENTS_12.png" >NEG_MAP01120</option>
-            
-                    <option value="src/pictures/Gsea/neg/enplot_MAP01240__BIOSYNTHESIS_OF_COFACTORS_6.png" >NEG_MAP01240</option>
+                    <option value="src/pictures/Gsea/neg/enplot_MAP01240__BIOSYNTHESIS_OF_COFACTORS_3.png" >NEG_MAP01240</option>
             
         </select>
         </form>
      </div>
-    <p align="center"><img src="src/pictures/Gsea/neg/enplot_MAP01100__METABOLIC_PATHWAYS_3.png" id="show33" width="40%"></p>
+    <p align="center"><img src="src/pictures/Gsea/neg/enplot_MAP01100__METABOLIC_PATHWAYS_6.png" id="show35" width="40%"></p>
     
         <p class="name">Figure 8.1 GSEA enrichment plot</p>
         <p class="premark">Note: The GESA enrichment plot consists of three parts, the upper part is the Enrichment score (ES) line graph, which shows the score of ES during the scoring process (running ES), the peaks in the line graph represent the ES value of the functional set of the metabolite, the larger the absolute value of the ES indicates the higher the degree of enrichment, and the positive value of the ES indicates that the functional set of metabolites is enriched in the up-regulated metabolites, negative values of ES indicate that the functional set metabolites are enriched in down-regulated metabolites. Functional sets with peaks at the beginning or end are more noteworthy. The middle part shows the position of the members of the functional set in the list of the expression set, the black vertical lines indicate the members of the functional set, and the colorful bands consist of the members of the expression set in a certain order. The red color represents the up-regulation, and the blue color represents the down-regulation; the lower part shows the log2FC values of the members of the expression set. </p>
@@ -1346,30 +1445,34 @@ Note: Only part of the results are shown in the report, and the detailed results
 	<div align="left">
 	<form id="form1" name="form1" method="post" action="">
 	<label>
-	<select id="game34" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
+	<select id="game36" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
 	
-				<option value="src/pictures/Group1.vs.Group2_pos_ROC.png" >POS_Group1.vs.Group2</option>
+				<option value="src/pictures/PB.vs.PA_pos_ROC.png" >POS_PB.vs.PA</option>
 			
-				<option value="src/pictures/Group2.vs.Group3_pos_ROC.png" >POS_Group2.vs.Group3</option>
+				<option value="src/pictures/PC.vs.PA_pos_ROC.png" >POS_PC.vs.PA</option>
+			
+				<option value="src/pictures/PC.vs.PB_pos_ROC.png" >POS_PC.vs.PB</option>
 			
 				 </select>
 		    </form>
 	    </div>
-	    <p align="center"><img src="src/pictures/Group1.vs.Group2_pos_ROC.png" id="show34" width="40%"></p>
+	    <p align="center"><img src="src/pictures/PB.vs.PA_pos_ROC.png" id="show36" width="40%"></p>
 	
 	<div align="left">
 	<form id="form1" name="form1" method="post" action="">
 	<label>
-	<select id="game35" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
+	<select id="game37" onChange="changeImage()" class="form-control input-lg" style="color:#000000;background-color: #FCFCFC;font-size:16px;"  ></label>
 	
-				<option value="src/pictures/Group1.vs.Group2_neg_ROC.png" >NEG_Group1.vs.Group2</option>
+				<option value="src/pictures/PB.vs.PA_neg_ROC.png" >NEG_PB.vs.PA</option>
 			
-				<option value="src/pictures/Group2.vs.Group3_neg_ROC.png" >NEG_Group2.vs.Group3</option>
+				<option value="src/pictures/PC.vs.PA_neg_ROC.png" >NEG_PC.vs.PA</option>
+			
+				<option value="src/pictures/PC.vs.PB_neg_ROC.png" >NEG_PC.vs.PB</option>
 			
 				 </select>
 		    </form>
 	    </div>
-	    <p align="center"><img src="src/pictures/Group1.vs.Group2_neg_ROC.png" id="show35" width="40%"></p>
+	    <p align="center"><img src="src/pictures/PB.vs.PA_neg_ROC.png" id="show37" width="40%"></p>
 	
 	<p class="name">Figure 9.1 ROC curve analysis of differential metabolite</p>
 	<p class="premark">Corresponding result catalog: Result/4.MetDiffAnalysis/*.vs.*/ROC_{pos,neg}.</p>
