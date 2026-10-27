@@ -1,0 +1,803 @@
+---
+title: <center>10x Single Cell Flex Gene Expression Analysis Report (Novogene)</center>
+output:
+  html_document:
+    css: css/styles.css
+    df_print: paged
+    toc: true
+    toc_float: true
+    number_sections: true
+    theme: cerulean
+    fig_width: 3
+    fig_height: 2
+    fig_caption: true
+    includes:
+      in_header: header.html
+---
+<style type="text/css">
+}
+h1.title {
+  font-size: 38px;
+}
+h1 { /* Header 1 */
+  font-size: 28px;
+}
+h2 { /* Header 2 */
+    font-size: 24px;
+
+}
+h3 { /* Header 3 */
+  font-size: 20px;
+
+}
+
+</style>
+
+
+
+```{r echo=FALSE}
+library(knitr)
+data <- read.delim('QC-Report/pro_id_name_time.txt',sep='\t',header=F)
+header <-c('Contract Information','Contract Content')
+names(data) <- header
+kable(data, "html") %>%
+kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+```
+#**Experimental Workflow**
+***
+
+10x GEM-X Flex Gene Expression leverages specialized fixation chemistry to "lock in" the RNA expression state of prepared single-cell or single-nucleus suspensions. Fixed samples can be stored for up to one week at 4 °C or up to 12 months at -80 °C. After fixation, gene-specific probes are hybridized to the RNA; each probe carries a unique Probe Barcode that enables sample multiplexing of up to 16 samples in one reaction. The pooled material is then processed on the 10x Chromium instrument for GEM generation, library construction, sequencing, and downstream data analysis. To ensure accurate and reliable data from the very start, Novogene enforces rigorous quality checkpoints at every production step, ensuring high-quality results. The overall 10x GEM-X  Flex Gene Expression workflow is illustrated below: 
+
+
+<img class="normal" src="src/images/flex_workflow.png">
+
+<p>
+<br/>
+<img class="logo" align="left" src="src/images/logo.png"/>
+<h6 style="text-align:right">Novogene Co.,Ltd.</h6>
+<hr/>
+</p>
+
+##**Sample Fixation**
+***
+
+After fresh samples are collected, prepare single-cell or single-nucleus suspensions. The exact procedure varies by sample type; if you prepare the suspension yourself, refer to the 10x Genomics protocol [CG000782 Fixation of Cells & Nuclei for GEM-X Flex Gene Expression](https://www.10xgenomics.com/support/flex-gene-expression/documentation/steps/sample-prep/fixation-of-cells-and-nuclei-for-gem-x-flex-gene-expression). Once the suspension is ready, fix and store the cells or nuclei using the 10x Genomics Sample Preparation Kit. Fixed samples can be stored at 4 °C for up to one week, or at -80 °C for up to 12 months. 
+For FFPE samples, additional fixation is not required',follow the 10x Genomics protocol [CG000784 Sample Preparation from FFPE Tissue Sections for GEM-X Flex Gene Expression](https://www.10xgenomics.com/support/flex-gene-expression/documentation/steps/sample-prep/sample-preparation-from-ffpe-tissue-sections-for-gem-x-flex-gene-expression) for processing.
+
+
+##**Probe Hybridization**
+***
+
+Single cell Flex gene expression technology captures target genes with two sequence-specific probes. One probe (RHS) carries a synthetic Partial Capture Sequence 1 that enables capture by the oligonucleotide on the Gel Bead. The other probe (LHS) contains a Partial Read 2S sequence for downstream library construction and sequencing (see the Figure below). To support single-cell transcriptomic studies, 10x Genomics provides species-specific probe sets designed for  human and mouse transcriptomes.
+
+<img class="normal" src="src/images/hybridization.png">
+
+##**Capture & Library Construction**
+***
+
+Following probe incubation, the cell or nucleus suspension is washed, pooled (if multiplexing), and adjusted to the appropriate concentration. The suspension is then loaded onto the GEM-X FX chip according to the target cell count. After confirming normal GEM formation, the GEMs are transferred to PCR tubes for reverse transcription and subsequent library construction. Libraries that pass quality control are subsequently sequenced.
+
+
+##**Sequencing**
+***
+
+Single-cell Flex gene-expression libraries are sequenced on Illumina HiSeq or NovaSeq platforms using a 2 x 150 bp paired-end (PE150) strategy. We recommend a minimum of 10,000 read pairs per cell and can capture up to 20,000 cells per sample. A single library can be multiplexed with up to 16 samples, for a maximum of 32,000 cells per library.
+
+
+<p>
+<br/>
+<img class="logo"  align="left" src="src/images/logo.png"/>
+<h6 style="text-align:right">Novogene Co.,Ltd.</h6>
+<hr/>
+</p>
+
+#**Bioinformatics Pipeline**
+***
+
+After obtaining the raw sequencing reads (Sequenced Reads), the following bioinformatics workflow is applied. The core of single-cell RNA-seq analysis is cell clustering and identification of differentially expressed genes (DEGs) among subpopulations. We use the official 10x software Cell Ranger for cell typing and differential analysis, followed by functional-enrichment analyses of the DEGs to characterize the functional features of each subpopulation. In addition to the Cell Ranger results, basic analyses generated by the third-party tool Seurat are also provided. 
+Novogene's Single-Cell Division is committed to advanced data mining, providing multi-dimentional insights into biology at single-cell resolution. Upon request, we ca offer customized analyses, including cell annotation, cell-cell communication, trajectory inference, and gene-regulatory network reconstruction. (*Please note: custom analyses are not included in the standard report and must be specified as additional requirement.)
+
+
+<img  class="small3"  src="src/images/flex_pipeline.png"  >
+
+
+
+<p>
+<br/>
+<img class="logo"  align="left" src="src/images/logo.png"/>
+<h6 style="text-align:right">Novogene Co.,Ltd.</h6>
+<hr/>
+</p>
+
+#**Quality Control Analysis**
+
+##**Description of Raw Sequencing Data**
+***
+
+Raw image files generated by high-throughput sequencing (e.g., Illumina HiSeq PE150) are converted into sequencing reads (Sequenced Reads) through base calling (using CASAVA), and then stored in FASTQ format. FASTQ is a common text format for storing biological sequences along with their corresponding quality scores. Taking Illumina HiSeq PE150 data as an example, both paired-end reads are 150 bp in length. In the 10x Flex gene expression library, Read 1 (Read1T) contains a 28 bp cell barcode and UMI (unique molecular identifier) at the beginning, which is crucial for identifying which cell a given Read 2 originates from. The bases following the first 28 bp in Read1T are non-informative, whereas all bases in Read 2 (Read2S) are valid and include the ligated probe insert sequence, a constant region, and an 8 bp Probe Barcode used to identify which probe set was used in sample hybridization .
+Each read in a FASTQ file is represented by four descriptive lines, as shown below:
+```
+    @ST-E00310:278:HF3GJALXX:5:1101:6745:1924 1:N:0:ACGCTCGA  
+    TTTGGGCCCTTGGCAATGAATGTTGCCACCACTGTTCTGGGTGCAGAGGGGAAATGG
+    +  
+    AA<-FJFJ7J<JJFFJJFJJJ<FJJJJJJJJFJJJJFJJJJJAFJ7FJJJJ  
+    @ST-E00310:278:HF3GJALXX:5:1101:6908:1924 1:N:0:ACGCTCGA  
+```
+(1) Line 1: the at sign (@) followed by sequence identifiers and optional description info (such as FASTA title line).
+(2) Line 2: base sequences (raw read, A, G, C, and T).
+(3) Line 3: the plus sign (+) optionally followed by the same Illumina sequence identifiers and description information as Line 1.
+(4) Line 4: the quality values for each base, corresponding to the data in Line 2.
+
+<p>
+<br/>
+<img class="logo"  align="left" src="src/images/logo.png"/>
+<h6 style="text-align:right">Novogene Co.,Ltd.</h6>
+<hr/>
+</p>
+
+##**Raw Data Quality Assessment**
+***
+
+High-throughput sequencing generates vast amounts of data, and obtaining high-quality, analyzable reads from this raw output forms the foundation of downstream bioinformatics. Therefore, quality control (QC) of the data immediately after sequencing is an essential first step in any analysis pipeline. FastQC is the most widely used tool for this purpose, providing basic statistics on the quality of raw reads. Raw reads are named according to their source sample, with suffixes "-1, 2, 3, 4 …" to reflect distinct indexes, lanes, or sequencing runs; "R1" and "R2" denote read 1 and read 2 of each paired-end fragment. The quality of these data directly influences the reliability of all subsequent analyses. A summary of quality metrics and yield statistics for the raw reads is provided in the table below: 
+
+
+```{r echo=FALSE}
+library(knitr)
+library(DT)
+data <- read.delim('QC-Report/dataTable.txt',sep='\t',header=T)
+datatable(data,rownames = FALSE,fillContainer=TRUE)
+#kable(data, "html") %>%
+#kable_styling() %>%
+#scroll_box(width = "810px",height = "200px")
+```
+<p class="tremark">
+(1) LibraryID: Library identifier<br />
+(2) Sample name: Sample designation<br /> 
+(3) Raw Reads: Number of read pairs in the raw data<br />
+(4) Raw Bases(G): Total base count in gigabases<br />
+(5) Q20(%): Percentage of bases with Phred score ≥ 20<br />
+(6) Q30(%): Percentage of bases with Phred score ≥ 30<br />
+(7) GC Content(%): Percentage of G and C bases among all four nucleotides in the raw reads
+</p>
+
+
+<p class="paragraph"><b>fastQC QC-Report:</b><a href="QC-Report/QC.html" title="Click to open" target="_blank">QC-Report.html</a></p>
+<p>
+<br/>
+<img class="logo"  align="left" src="src/images/logo.png"/>
+<h6 style="text-align:right">Novogene Co.,Ltd.</h6>
+<hr/>
+</p>##**Data Statistics(Cell Ranger)**
+***
+
+Flex gene-expression data were processed with Cell Ranger 7.0, the official software suite provided by 10x Genomics. Its algorithm closely mirrors the standard gene-expression workflow; when multiple samples are pooled in a single library, Cell Ranger uses the Probe Barcode to demultiplex individual samples. The software aligns FASTQ reads to a probe reference set, performs UMI and cell counting, and ultimately produces a cell-by-gene expression matrix.
+
+**(1) Probe Alignment**
+
+The Flex gene-expression assay employs multiple probe pairs for every human or mouse gene, with each pair designed to be complementary to its target transcript. Cell Ranger maps the hybridized probe pairs against the probe reference set,  thereby assigning reads to the corresponding genes. For genes targeted by more than one probe pair, the UMI counts from all probe pairs specific to that gene are summed and reported as the final UMI count for that gene in the feature-barcode matrix. For a detailed description of the algorithm, please refer to the [10x Genomics official documentation](https://www.10xgenomics.com/support/software/cell-ranger/latest/algorithms-overview/cr-flex-frp-algorithm).
+
+**(2) Cell Calling**
+
+Cell Ranger demultiplexes reads by their cell barcodes, filtering and retaining only those that originate from true cells. It reports the number of recovered cells, the reads per cell, and the number of genes detected per cell. By default, Cell Ranger specifies an *expected* cell count (N), originally set to 3,000. Starting with version 7.0, Cell Ranger instead uses the OrdMag algorithm to estimate the optimal *N* automatically. Barcodes are ranked by descending total UMI count; the 99th percentile of the top N UMI counts is taken as the maximum estimated UMI count (*m*). Barcodes whose UMI counts exceed *m*/10 are classified as cells.
+
+Beginning with Cell Ranger 3.0, an improved cell-calling algorithm was introduced to better recover low-RNA-content cells, especially when they are mixed with high-RNA-content populations. The procedure proceeds in two steps: 1. The method above is used to identify high-RNA barcodes (cells). 2. A cohort of barcodes with very low UMI counts—likely "empty" GEM partitions—is selected to build a background RNA profile model. Simple Good-Turing smoothing is applied to estimate non-zero probabilities for genes that are unobserved in this empty-GEM set. Finally, barcodes not called as cells in step 1 are compared against this background model; those whose RNA profiles deviate significantly from the background are counted as additional low-RNA cells.
+
+Basic downstream analysis with Cell Ranger yields: the estimated number of cells per sample, the number of genes detected, summary sequencing metrics, and alignment statistics to the transcriptome. The per-sample results are tabulated below:
+
+<p></p>
+```{r echo=FALSE}
+#library(knitr)
+library(DT)
+data <- read.delim('src/file/all_metrics_summary2.txt',sep='\t',header=T,row.names=NULL)
+data <- t(data)
+colnames(data)<-data[1,]
+source("/TJPROJ5/SC/pipeline/10X_RNA/pipeline2.1/lib/00.Commbin/mydatatable.r")
+mydatatable(data,width = 800,height =550,fillContainer = TRUE )
+#datatable(data,fillContainer = TRUE)
+#kable(data, "html") %>%
+#kable_styling() %>%
+#scroll_box(width = "810px",height = "150px")
+```
+<p></p>
+<p class="tremark">
+Sample_Name: Sample identifier<br />
+Cells: Estimated number of cells in the sample<br />
+Confidently mapped reads in cells: Proportion of reads that map confidently to the transcriptome within called cells<br />
+Median UMI counts per cell: Median number of UMI counts per cell<br />
+Median genes per cell: Median number of genes detected per cell<br />
+Median reads per cell: Median number of reads assigned to each cell, derived from total sequencing output and cell count<br />
+Number of reads from cells called from this sample: Total reads used for cell calling in this sample<br />
+Reads confidently mapped to probe set: Proportion of reads that map uniquely to the probe set<br />
+Reads mapped to probe set: Proportion of reads that map to the probe set<br />
+Total genes detected: Total number of genes identified<br />
+
+</p>
+
+Cell Ranger web report available via the hyperlink below:
+<p class="paragraph">Sample1_BC001:<a href="src/file/Summary/Sample1_BC001_web_summary.html" title="点击打开" target="_blank">Sample1_BC001_web_summary.html</a></p>
+<p>
+<p class="paragraph">Sample2_BC002:<a href="src/file/Summary/Sample2_BC002_web_summary.html" title="点击打开" target="_blank">Sample2_BC002_web_summary.html</a></p>
+<p>
+<br/>
+<img class="logo"  align="left" src="src/images/logo.png"/>
+<h6 style="text-align:right">Novogene Co.,Ltd.</h6>
+<hr/>
+</p>
+##**Cell filtering**
+***
+
+After obtaining the gene-expression matrix, cells are subjected to an additional round of filtering based on the number of detected genes, mitochondrial UMI fraction, and other relevant metrics (tailored for human or mouse samples). DoubletFinder is then applied to the scRNA-seq data to predict and remove doublets, ensuring the reliability and accuracy of downstream analyses. Per-sample gene-detection counts and cell-level QC metrics are provided below:
+
+```{r echo=FALSE}
+library(knitr)
+library(DT)
+data <- read.delim('src/file/filtered_information.txt',sep='\t',header=T)
+data <- t(data)
+colnames(data)<-data[1,]
+source("/TJPROJ5/SC/pipeline/10X_RNA/pipeline2.1/lib/00.Commbin/mydatatable.r")
+mydatatable(data,width = 800,height =450,fillContainer = TRUE )
+
+#kable(data, "html") %>%
+#kable_styling() %>%
+#scroll_box(width = "810px",height = "150px")
+```
+<p></p>
+<p class="tremark">
+(1) min.cells: Minimum number of cells expressing a gene; genes detected in fewer cells than this cutoff are discarded.<br />
+(2) low.thresholds_nGene: Lower bound for the number of genes detected per cell; cells below this value are filtered out.<br />
+(3) high.thresholds_nGene: Upper bound for the number of genes detected per cell; cells above this value are filtered out.<br />
+(4) high.thresholds_percent.mito: Maximum allowed proportion of mitochondrial-gene UMIs; cells exceeding this threshold are removed.<br />
+(5) high.thresholds_percent.HB: Maximum allowed proportion of hemoglobin-gene UMIs; cells exceeding this threshold are removed.<br />
+(6) gene_number: Total gene count before any filtering. <br />
+(7) cell_number: Total cell count before any filtering. <br />
+(8) nGene_median: Median number of genes detected per cell prior to filtering.<br />
+(9) gene_number_filtered: Total gene count after filtering. <br />
+(10) cell_number_filtered: Total cell count after filtering.<br />
+(11) nGene_median_filtered: Median number of genes detected per cell after filtering.<br />
+
+</p>
+
+<p></p>
+
+The visualization of the above filtering thresholds is shown below:
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("src/file/Cell_filtering","*.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.png"="","file/"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',selected=,live_search=TRUE,show_tick=TRUE)
+```
+
+Please refer to the result files for detailed outcomes: Cell_filtering/SampleName
+
+<p>
+</p>
+
+<p class="tremark">
+(1) cluster_UMAP.{pdf/png}: UMAP visualization generated by Seurat before doublet removal.<br />
+(2) cluster_UMAP_single_doublt.{pdf/png}: UMAP showing doublet detection; points labeled "Doublet" were identified by DoubletFinder.<br />
+(3) nGene_nUMI_mito_HB.{pdf/png}: Seurat-generated violin/plots displaying distributions of nCount_RNA, nFeatures_RNA, percent.mito, and percent.HB.<br /> 
+(4) nGene_nUMI_mito_HB_relation.{pdf/png}: Seurat scatter plots illustrating the relationships among nFeatures_RNA, percent.mito, and percent.HB versus nCount_RNA; Pearson correlation coefficients are annotated on each plot.<br />
+
+Note: All visualizations were produced with Seurat and DoubletFinder for quality-control purposes only; the clusters shown are preliminary and not the final cell-type assignments. nFeatures_RNA = number of detected genes; percent.mito = mitochondrial gene proportion; percent.HB = hemoglobin gene proportion. Generally, the first plot shows that as nCount_RNA increases, the number of detected genes also rises. In the second and third plots, high mitochondrial or hemoglobin gene proportions are mostly confined to cells with low nCount_RNA.
+
+</p>
+
+<p></p>
+
+
+<p>
+<br/>
+<img class="logo"  align="left" src="src/images/logo.png"/>
+<h6 style="text-align:right">Novogene Co.,Ltd.</h6>
+<hr/>
+</p>
+##**t-SNE / UMAP Sub-clustering Analysis**
+***
+
+Starting from the filtered cell-gene expression matrix, Seurat first normalizes the data and then performs dimensionality reduction and clustering to define cell subtypes, as detailed below:
+1) Data normalization and noise reduction  
+Seurat employs its default global-scaling method, *LogNormalize*, to standardize the gene-expression matrix. Within each cell, every gene's count is divided by the cell's total counts to obtain a relative abundance, multiplied by a scale factor (default 10,000), and then natural-log transformed. After normalization, Seurat identifies genes with the highest cell-to-cell variability and retains them for downstream analysis. Prior to dimensionality reduction and clustering, Seurat further mitigates systematic noise—such as technical artifacts, batch effects, or cell-cycle signatures—by fitting and regressing out these sources of variation through a linear-model framework.
+2) Clustering Analysis  
+Clustering is used to identify cell subtypes. In Seurat, PCA is first performed on the normalized data. The most informative principal components-those that explain the greatest variance-are then selected for downstream clustering. A graph-based clustering algorithm is applied: a k-nearest-neighbor (KNN) graph is constructed using Euclidean distances, and the Louvain algorithm (default) optimizes modularity to assign cells to clusters. Finally, dimensionality reduction with t-SNE or UMAP projects the cells into two dimensions, where cells belonging to the same cluster are colored identically to visualize their distribution.
+The t-SNE plots illustrating the sub-clustering results for each individual sample are provided below. When the project metadata include an integrated multi-sample analysis, an additional t-SNE or UMAP plot will be displayed—with cells colored either by cluster assignment or by sample identity—for the combined dataset. In this final report, only the Graph-based clustering results are shown as the representative output.
+
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("src/file/Seurat/dimesion","*.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.png"="","file/"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',selected=,live_search=TRUE,show_tick=TRUE)
+```
+<p>
+<br/>
+<img class="logo"  align="left" src="src/images/logo.png"/>
+<h6 style="text-align:right">Novogene Co.,Ltd.</h6>
+<hr/>
+</p>
+
+
+##**Differential Gene Expression Display**
+***
+
+To identify genes that distinguish one cell subpopulation from others, Seurat performs pairwise comparisons in which each cluster is contrasted against all remaining cells in the same sample. For example, cells assigned to cluster 1 are treated as one group, while all other clusters form the second group. A differential-expression algorithm (Wilcoxon rank-sum test by default) is then applied to obtain a ranked list of genes that are significantly up-regulated in cluster 1. These candidate marker genes serve as the basis for downstream validation and functional annotation.
+The differentially expressed genes for every cluster are presented in multiple formats. In this final report, only the results derived from the Graph-based clustering of the first sample listed in the project metadata are shown as representative examples.
+
+
+###**Differential Gene Expression - Violin Plot Visualization**
+***
+
+The top four up-regulated genes (ranked by logFC) from each cluster were selected to examine their expression across all clusters, and the results are visualized in the violin plots below.
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("src/file/Seurat/Marker","*violin*.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.png"="","file/"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',selected=,live_search=TRUE,show_tick=TRUE)
+```
+<p>
+<br/>
+<img class="logo"  align="left" src="src/images/logo.png"/>
+<h6 style="text-align:right">Novogene Co.,Ltd.</h6>
+<hr/>
+</p>
+
+###**Differential Gene Expression - t-SNE / UMAP Visualization**
+***
+
+t-distributed Stochastic Neighbor Embedding (t-SNE) and Uniform Manifold Approximation and Projection (UMAP) are powerful dimensionality-reduction algorithms that effectively project large-scale datasets into two or three dimensions, allowing similar cells to cluster together. By highlighting the top four up-regulated genes (ranked by logFC) from each cluster, we can visualize the specific expression patterns of these differentially expressed genes across all clusters, as illustrated below.
+
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots0 <- paste0(list.files("src/file/Seurat/Marker","*tsne*.png",full.names=TRUE))
+state_plots1 <- paste0(list.files("src/file/Seurat/Marker","*umap*.png",full.names=TRUE))
+state_plots<-union(state_plots0,state_plots1)
+
+names(state_plots) <- str_replace_all(state_plots,c("\\.png"="","file/"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',selected=,live_search=TRUE,show_tick=TRUE)
+```
+<p>
+<br/>
+<img class="logo"  align="left" src="src/images/logo.png"/>
+<h6 style="text-align:right">Novogene Co.,Ltd.</h6>
+<hr/>
+</p>
+
+###**Differential Gene Expression - Clustered Heatmap**
+***
+
+The top differentially expressed genes identified for each cluster are displayed in an integrated heatmap. Within each cluster, these genes consistently exhibit higher expression (yellow) compared to all other clusters (purple), providing an intuitive overview of cluster-specific transcriptional signatures. The clustered heatmap is shown below.
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("src/file/Seurat/Marker","*Heatmap.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.png"="","file/"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',selected=,live_search=TRUE,show_tick=TRUE)
+```
+<p></p>
+<p class="tremark"> 
+(1) SampleName_Heatmap: Seurat heatmap of highly variable genes (HVGs) across clusters<br />
+(2) SampleName_plotHeatmap: Scater-generated clustered heatmap of the same HVGs; genes that cluster together are likely to share similar expression patterns across cells<br />
+</p> 
+<p></p> 
+
+<p>
+<br/>
+<img class="logo"  align="left" src="src/images/logo.png"/>
+<h6 style="text-align:right">Novogene Co.,Ltd.</h6>
+<hr/>
+</p>
+
+###**Differential Gene Correlation Display**
+***
+
+To more clearly illustrate the expression patterns of the two most differentially expressed genes in each cluster, we generated focused correlation plots. The first three panels display the absolute expression levels of these top-2 genes, while the final legend indicates that all expression values have been normalized to a 0-10 scale. An example is shown below; click the image for a high-resolution view.
+
+<p class ="center"><a href="src/file/Seurat/Marker/co-expression.png" target="_blank"><img src="src/file/Seurat/Marker/co-expression.png"  width="150%" height="50%" /></a></p>
+
+Please refer to the result files for details:Analysis_Seurat/SanpleName/Marker/*co-expression.{pdf,png}
+
+```{r echo=FALSE}
+#library(stringr)
+##library(bsselectR)
+#state_plots <- paste0(list.files("src/file/Seurat/Marker","*co-expression.png",full.names=TRUE))
+#names(state_plots) <- str_replace_all(state_plots,c("\\.png"="","file/"=""))
+#bsselect(state_plots,type="img",height='40%',width='120%',selected=,live_search=TRUE,show_tick=TRUE)
+```
+<p>
+<br/>
+<img class="logo"  align="left" src="src/images/logo.png"/>
+<h6 style="text-align:right">Novogene Co.,Ltd.</h6>
+<hr/>
+</p>
+
+##**Functional Enrichment Analysis**
+***
+Functional enrichment analysis (GO & KEGG) was performed on the top differentially expressed genes (DEGs) from each cluster using clusterProfiler, based on the hypergeometric distribution. The report presents:Table: GO/KEGG enrichment results for the top DEGs from **cluster 1** (Graph-based clustering) of the **first sample** listed in the information sheet. Figures: Bubble plots or bar charts summarizing GO/KEGG enrichments for **all clusters** of the same sample.These results reveal the biological processes, molecular functions, and pathways specifically associated with each cell subtype, facilitating downstream cell-type annotation and mechanistic interpretation .
+
+
+###**GO Functional Enrichment**
+***
+Gene Ontology (GO) is a comprehensive database that describes gene function through three orthogonal ontologies: Molecular Function (MF), Biological Process (BP), and Cellular Component (CC). GO terms with an adjusted p-value (padj) < 0.05 are considered significantly enriched. The enrichment results are listed in the table below; please refer to the result files for full details:
+4.Enrichment/GO:
+
+```{r echo=FALSE}
+library(knitr)
+library(DT)
+data <- read.delim('src/file/Seurat/Enrichment/GOenrich.txt',sep='\t',header=T)
+source("/TJPROJ5/SC/pipeline/10X_RNA/pipeline2.1/lib/00.Commbin/mydatatable.r")
+mydatatable(data,width = 800,height =300,fillContainer = TRUE ,rownames = FALSE)
+#kable(data, "html") %>%
+#kable_styling() %>%
+#scroll_box(width = "810px",height = "200px")
+```
+<p class="tremark">
+(1) Category: GO database<br />
+(2) ID: GO accession number <br />
+(3) Description: Functional description associated with the GO accession <br />
+(4) GeneRatio: Ratio of cluster-specific differentially expressed genes annotated to the GO term versus the total number of cluster-specific differentially expressed genes <br />
+(5) BgRatio: Ratio of background genes annotated to the GO term versus the total number of background genes <br />
+(6) pvalue: Raw p-value from the enrichment test <br />
+(7) padj: Adjusted (corrected) p-value <br />
+(8) geneID: IDs of differentially expressed genes annotated to the GO term <br />
+(9) geneName: Names of differentially expressed genes annotated to the GO term <br />
+(10) Count: Number of genes annotated to the GO term <br />
+</p>
+
+<p>
+<br/>
+<img class="logo"  align="left" src="src/images/logo.png"/>
+<h6 style="text-align:right">Novogene Co.,Ltd.</h6>
+<hr/>
+</p>
+
+The top 30 most significant GO terms (or all terms if fewer than 30) from the enrichment analysis were selected to create a bar chart. The plot is shown below; please refer to the result files for the full-resolution image.
+4.Enrichment/GO:
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("src/file/Seurat/Enrichment","*GO_bar*.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.png"="","file/"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',selected=,live_search=TRUE,show_tick=TRUE)
+```
+
+The top 30 most significant GO terms (or all terms if fewer than 30) from the enrichment analysis were selected to generate a scatter plot. The plot is shown below; please refer to the result files for the full-resolution image:
+4.Enrichment/GO:
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("src/file/Seurat/Enrichment","*GO_dot*.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.png"="","file/"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',selected=,live_search=TRUE,show_tick=TRUE)
+```
+
+<p>
+<br/>
+<img class="logo"  align="left" src="src/images/logo.png"/>
+<h6 style="text-align:right">Novogene Co.,Ltd.</h6>
+<hr/>
+</p>
+
+###**KEGG Pathway Enrichment Analysis**
+***
+KEGG (Kyoto Encyclopedia of Genes and Genomes) is a comprehensive database that integrates genomic, chemical, and systemic functional information. Pathways with an adjusted p-value (padj) < 0.05 are considered significantly enriched. The enrichment results are listed in the table below; please refer to the result files for full details: 4.Enrichment/KEGG:
+
+```{r echo=FALSE}
+library(knitr)
+library(DT)
+data <- read.delim('src/file/Seurat/Enrichment/KEGGenrich.txt',sep='\t',header=T)
+source("/TJPROJ5/SC/pipeline/10X_RNA/pipeline2.1/lib/00.Commbin/mydatatable.r")
+mydatatable(data,width = 800,height =350,fillContainer = TRUE,rownames = FALSE )
+#kable(data, "html") %>%
+#kable_styling() %>%
+#scroll_box(width = "810px",height = "200px")
+```
+<p class="tremark">
+
+(1) KEGGID: KEGG pathway identifier<br />
+(2) Description: Functional description corresponding to the KEGG pathway identifier<br />
+(3) GeneRatio: Ratio of cluster-specific differentially expressed genes annotated to the KEGG pathway versus the total number of cluster-specific differentially expressed genes <br />
+(4) BgRatio: Ratio of background genes annotated to the KEGG pathway versus the total number of background genes <br />
+(5) pvalue: Raw p-value from the enrichment test <br />
+(6) padj: Adjusted (corrected) p-value <br />
+(7) geneID: Gene identifiers annotated to the KEGG pathway<br /> 
+(8) geneName: Names of the differentially expressed genes annotated to the KEGG pathway <br />
+(9) KEGG_ID: KEGG entry identifiers (official KEGG pathway node IDs) for the cluster-specific differentially expressed genes enriched in the pathway<br />
+(10) Entrez_ID: NCBI Entrez Gene IDs corresponding to the cluster-specific differentially expressed genes enriched in the pathway <br />
+(11) Count: Number of genes annotated to the KEGG pathway<br />
+
+</p>
+
+<p>
+<br/>
+<img class="logo"  align="left" src="src/images/logo.png"/>
+<h6 style="text-align:right">Novogene Co.,Ltd.</h6>
+<hr/>
+</p>
+
+The 20 most significant KEGG pathways (or all available if fewer than 20) were selected from the enrichment results and displayed as a bar chart. The plot is shown below; please refer to the result files for the full-resolution image:4.Enrichment/KEGG:
+ 
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("src/file/Seurat/Enrichment","*kegg_bar*.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.png"="","file/"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',selected=,live_search=TRUE,show_tick=TRUE)
+```
+
+The 20 most significant KEGG pathways (or all available if fewer than 20) were selected from the enrichment results and displayed as a scatter plot. The plot is shown below; please refer to the result files for the full-resolution image:4.Enrichment/KEGG:
+
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("src/file/Seurat/Enrichment","*kegg_dot*.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.png"="","file/"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',selected=,live_search=TRUE,show_tick=TRUE)
+```
+
+Significant KEGG pathways were selected from the enrichment results, and the differentially expressed genes were highlighted within each pathway map. The annotated pathway diagrams are shown below; please refer to the result files for the high-resolution images.
+4.Enrichment/KEGG/{sample}/{graphclust/kmeans_*_clusters}/pathway_plot/{Cluster}:
+
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("src/file/Seurat/Enrichment","*pathview*.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.png"="","file/"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',selected=,live_search=TRUE,show_tick=TRUE)
+```
+
+To facilitate visualization of each cluster's differentially up-regulated genes within pathway diagrams, we have annotated these genes directly onto the corresponding KEGG maps. Viewing instructions are as follows:After retrieving all results, open the *Enrichment* folder in the *results* directory and locate the HTML file for the desired comparison. Click any pathway name to open the interactive pathway map. KO nodes that contain differentially up-regulated genes are highlighted in *red*. Hover over any highlighted KO node to display a pop-up box with gene-level details for each cluster; the same red color is used, and the *log2(Fold change)* for each gene is shown in parentheses. These steps work offline. If an internet connection is available, clicking any node will redirect you to the corresponding KO entry on the official KEGG website. Please refer to the result files for the annotated pathway maps.
+4.Enrichment/KEGG/{sample}/{graphclust/kmeans_*_clusters}/{Cluster}/{Cluster}.html.
+
+
+<p>
+<br/>
+<img class="logo"  align="left" src="src/images/logo.png"/>
+<h6 style="text-align:right">Novogene Co.,Ltd.</h6>
+<hr/>
+</p>
+
+###**Reactome Enrichment Analysis**
+***
+The Reactome database compiles human reactions and biological pathways. In the Reactome enrichment analysis, pathways with an adjusted p-value (padj) < 0.05 were considered significantly enriched. The enrichment results are presented in the following table and detailed in the attached results file.
+4.Enrichment/Reactome.
+
+```{r echo=FALSE}
+library(knitr)
+library(DT)
+data <- read.delim('src/file/Seurat/Enrichment/Reactome_enrich.txt',sep='\t',header=T)
+source("/TJPROJ5/SC/pipeline/10X_RNA/pipeline2.1/lib/00.Commbin/mydatatable.r")
+mydatatable(data,width = 800,height =450,fillContainer = TRUE,rownames = FALSE )
+```
+<p class="tremark">
+(1) ReactomeID: The unique identifier assigned by Reactome to a pathway or reaction <br />
+(2) Description: Functional description of the Reactome pathway or reaction corresponding to the ReactomeID  <br />
+(3) GeneRatio: Ratio of cluster-specific differentially up-regulated genes annotated to the ReactomeID to the total number of cluster-specific differentially up-regulated genes  <br />
+(4) BgRatio: Ratio of background genes annotated to the ReactomeID to the total number of background genes  <br />
+(5) pvalue: Raw p-value from the significance test  <br />
+(6) padj: Adjusted (corrected) p-value after multiple-testing correction  <br />
+(7) geneID: Gene identifiers annotated to the ReactomeID  <br />
+(8) geneName: Names of differentially expressed genes annotated to the Reactome pathway  <br />
+(9) keggID: KEGG identifiers of differentially expressed genes annotated to the ReactomeID  <br />
+(10) Count: Number of genes annotated to the ReactomeID<br />
+
+</p>
+
+<p>
+<br/>
+<img class="logo"  align="left" src="src/images/logo.png"/>
+<h6 style="text-align:right">Novogene Co.,Ltd.</h6>
+<hr/>
+</p>
+
+The 20 most significant terms (or all terms if fewer than 20) were selected from the Reactome enrichment analysis to generate a bar chart. The results are shown below and provided in the attached file:
+4.Enrichment/Reactome:
+ 
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("src/file/Seurat/Enrichment","*Reactome_bar*.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.png"="","file/"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',selected=,live_search=TRUE,show_tick=TRUE)
+```
+
+The 20 most significant terms (or all terms if fewer than 20) were selected from the Reactome enrichment analysis to generate a scatter plot. The results are shown below and provided in the attached file:
+4.Enrichment/Reactome:
+
+
+```{r echo=FALSE}
+library(stringr)
+library(bsselectR)
+state_plots <- paste0(list.files("src/file/Seurat/Enrichment","*Reactome_dot*.png",full.names=TRUE))
+names(state_plots) <- str_replace_all(state_plots,c("\\.png"="","file/"=""))
+bsselect(state_plots,type="img",height='40%',width='60%',selected=,live_search=TRUE,show_tick=TRUE)
+```
+
+<p>
+<br/>
+<img class="logo"  align="left" src="src/images/logo.png"/>
+<h6 style="text-align:right">Novogene Co.,Ltd.</h6>
+<hr/>
+</p>
+
+###**Protein-protein interaction (PPI) network analysis**
+***
+
+We primarily utilized the interaction data from the STRING protein-protein interaction database (http://string-db.org ) to construct PPI networks for the differentially up-regulated gene sets of each cluster. For species already included in the database, we directly extracted the interaction relationships for the target gene list (i.e., the list of differentially up-regulated genes in each cluster). For species not covered by the database, we first aligned the sequences of the target gene set to the reference protein sequences in STRING using blastx, then built the interaction network based on the PPI relationships of the best-matched reference species. The results are provided in the attached file:4.Enrichment/PPI.
+We provide a protein-protein interaction (PPI) network file for the differentially up-regulated genes in each cluster. This file can be imported directly into Cytoscape for visualization and editing. Cytoscape can calculate and display various topological properties of the network. For example, the size of each node in the network is proportional to its degree—the more interactions (edges) a node has, the larger it appears—indicating a potentially more central role. Node color reflects its clustering coefficient, with a green-to-red gradient representing low-to-high values; a higher clustering coefficient signifies stronger connectivity among a node's neighbors. Depending on specific research goals, users can further adjust node positioning and colors, overlay expression levels, and make other customizations within the network view.
+
+
+<p>
+<br/>
+<img class="logo"  align="left" src="src/images/logo.png"/>
+<h6 style="text-align:right">Novogene Co.,Ltd.</h6>
+<hr/>
+</p>
+
+##**Differentially expressed gene transcription factor(TF) annotation**
+***
+
+For species whose transcription-factor annotations are already available in the AnimalTFDB/PlantTFDB database, we directly retrieve the TFs by matching gene IDs against the database. For species not covered by these databases, we first annotate the genes using InterProScan against SUPERFAMILY and Pfam to identify DNA-binding domains (DBDs) that correspond to entries in the TF prediction database (DBD), thereby filtering for transcription factors. The results are provided in the attached file:4.Enrichment/TF.
+
+```{r echo=FALSE}
+library(knitr)
+library(DT)
+data <- read.delim('src/file/Seurat/Enrichment/tf.txt',sep='\t',header=T)
+source("/TJPROJ5/SC/pipeline/10X_RNA/pipeline2.1/lib/00.Commbin/mydatatable.r")
+mydatatable(data,width = 800,height =350,fillContainer = TRUE,rownames = FALSE )
+```
+<p class="tremark">
+(1) Gene ID: Transcription factor gene identifier <br /> 
+(2) Gene Name: Gene symbol or name  <br />
+(3) tf_family: Transcription factor family  <br />
+(4) Cluster * Mean UMI Counts: Average UMI counts per cell for the gene within the specified cluster  <br />
+(5) Cluster * Log₂ fold change: Log₂-transformed fold change of the gene's expression in the specified cluster versus all other cells  <br />
+(6) Cluster * Adjusted p-value: Benjamini-Hochberg-corrected p-value quantifying the statistical significance of the differential expression<br />
+
+</p>
+The enrichment analysis results are provided in the attached file:Enrichment/Seurat
+
+
+<p>
+<br/>
+<img class="logo"  align="left" src="src/images/logo.png"/>
+<h6 style="text-align:right">Novogene Co.,Ltd.</h6>
+<hr/>
+</p>#**Data-mining recommendations**
+***
+
+Single-cell RNA sequencing (scRNA-seq) profiles gene expression at the single cell level, overcoming the limitations of bulk tissue sequencing—namely, the inability to capture inter-cellular heterogeneity or the impossibility of working with very limited sample amounts. This technology opens new avenues for dissecting the behavior and mechanisms of individual plant and animal cells, and it provides powerful new tools for understanding genetics, development, and disease. To address the data-mining needs of your project, we offer the following recommendations based on the analytical results:
+
+
+##**Cell classification and definition**
+***
+
+###**Definition of Clustering and Classification**
+
+Clustering (based on a distance matrix) is the process of grouping similar objects together while separating dissimilar ones into distinct classes. Unlike classification, clustering is typically an unsupervised approach, whereas classification learns rules from labeled samples to assign categories. In other words, when classifying we already know the object types and extract relevant features to assign labels, whereas clustering merely groups similar objects without predefined categories.
+
+
+###**Clustering Methods**
+The primary focus is the outcome of cell clustering, i.e., the unsupervised partitioning of cells obtained with clustering algorithms. The Cell Ranger pipeline provided by 10x Genomics offers two complementary strategies—graph-based and K-means clustering—that together satisfy the exploratory and analytical needs of most scRNA-seq datasets. Our downstream analyses are therefore built on these Cell Ranger outputs, and we supply a step-by-step user guide for the interactive 10x browser Loupe Cell Browser so that you can explore the data in an intuitive point-and-click fashion. As single-cell transcriptomics evolves, numerous alternative clustering algorithms and packages have emerged. Should the Cell Ranger results deviate from your biological expectations, our advanced analysis module can re-cluster the data using methods such as those implemented in the [SC3](https://www.nature.com/articles/nmeth.4236) package.
+
+For integrative single-cell analyses spanning multiple samples, we can employ Seurat's CCA (canonical correlation analysis) to extract shared latent structures and perform joint dimensionality reduction. A persistent challenge in such multi-sample analyses is batch effects. Besides Seurat, tools like scran and SCONE can also be leveraged for batch correction. However, any correction procedure risks introducing false positives; thus, the choice of batch-effect mitigation strategy must be made with caution and tailored to each dataset.
+
+
+###**Cell Annotation**
+Current cell-type annotation still retains a degree of subjectivity owing to technological limitations. Three guiding principles should be followed:
+1. The cornerstone of cell definition is differentially expressed marker genes—"marker" and "differentially expressed" being equally important. Marker cell-type genes are those widely accepted in the field as reliable identifiers of a given cell type, while "differentially expressed" denotes genes whose expression is significantly different between the cluster of interest and all other clusters.
+2. Regardless of the clustering algorithm employed, the method that best supports biologically interpretable cell-type annotation should be preferred. We recommend prioritizing the Seurat clustering results for downstream annotation.
+3. Annotate hierarchically: start with broad cell classes (e.g., T cells, B cells) and then resolve finer subtypes. For example, within the T-cell compartment, further distinguish Naive, Memory, and other subsets. Re-clustering a major cell type can also be performed to refine subpopulations.
+Based on the three principles above, we recommend approaching cell-type annotation in two complementary ways: 1. Screen for marker genes within the differential-expression results; 2. Start with known marker genes and back-map them to their corresponding major cell populations. In short, cell-type definition remains one of the most challenging aspects of single-cell RNA-seq data analysis. It requires compiling an authoritative list of marker genes, iteratively integrating differential-expression evidence with these markers, and refining cluster labels until an optimal annotation is achieved. The R package SingleR, for example, can assist in this process by assigning cell types to each cluster based on similarity to reference expression profiles of known cell types.
+
+
+##**Pseudotime analysis**
+***
+
+Pseudotime (trajectory) analysis is well suited for studying developmental trajectories in developmental biology or for tracing state transitions of immune cells within the tumor microenvironment. It should be performed only after cell-type annotation is finalized and requires a predefined starting point, endpoint, or differentiation trajectory.
+Also termed cell-trajectory analysis, pseudotime inference reconstructs the differentiation path of cells during development or the evolutionary trajectory of cell subtypes, and is frequently used in developmental studies. The approach orders individual cells along an artificial time axis based on the expression patterns of key genes, thereby simulating the dynamic changes that occur as cells progress through development. [Monocle](http://cole-trapnell-lab.github.io/monocle-release/) is a widely adopted tool for such analyses: it computes cell-to-cell similarities, derives a minimum spanning tree, identifies the optimal path, and projects all other data points onto this path to generate the final cell-differentiation trajectory.
+
+
+##**Data Visualization**
+***
+
+We provide a step-by-step user guide for 10x Genomics's interactive single-cell browser, Loupe Cell Browser, so that you can freely visualize and explore your data without writing code. Cell Ranger outputs (`.cloupe` files) open directly in Loupe, displaying t-SNE/UMAP embeddings, clusters, and differential expression results. Beyond Loupe, scRNA-seq visualization is dominated by the R ecosystem—packages such as Seurat, Monocle, and ggplot2 remain the workhorses for custom plotting.
+Manifold-learning techniques are designed to reveal the intrinsic structure of complex data. Because scRNA-seq profiles are both high-dimensional and sparse, manifold algorithms are routinely used to project cells into a low-dimensional space while preserving local geometry. The classic choice is t-SNE; more recently, Uniform Manifold Approximation and Projection (UMAP) has gained favor for yielding cleaner, more interpretable cell clusters.
+Once cell types have been annotated, you can overlay receptor-ligand interactions onto the embedding to build network diagrams that illustrate inter-cellular communication within your sample.
+Single-cell transcriptomics is rapidly transforming studies in genetics, development, and disease. We look forward to partnering with you to uncover the secrets of life at single-cell resolution.
+
+
+<p>
+<br/>
+<img class="logo"  align="left" src="src/images/logo.png"/>
+<h6 style="text-align:right">Novogene Co.,Ltd.</h6>
+<hr/>
+</p>
+
+#**Notes**
+***
+
+##**Results Directory Contents**
+To help you navigate the project outputs, we provide a comprehensive [results directory](src/DirectoryTree.html) with bilingual descriptions. All result files can be accessed through this annotated list.
+
+##**List of Analysis Software and Versions**
+
+```{r echo=FALSE}
+library(knitr)
+data <- read.delim('src/images/software_list.xls')
+kable(data,"html",align="c") %>%
+kable_styling(full_width=T) %>%
+column_spec(1,bold=T) %>%
+collapse_rows(columns=1:2)
+```
+
+
+##**Contact Us**
+Customer Service Hotline:400-658-1585 
+Operations Feedback Email:op-scrna@novogene.com
+
+
+##**References**
+
+* 1.Baglama, J. & Reichel, L. Augmented Implicitly Restarted Lanczos Bidiagonalization Methods. SIAM Journal on Scientific Computing 27, 19-42 (2005).
+
+* 2.Blondel, V. D., Guillaume, J.-L., Lambiotte, R. & Lefebvre, E. Fast unfolding of communities in large networks. Journal of Statistical Mechanics: Theory and Experiment 2008, (2008).
+
+* 3.Robinson, M. D. & Smyth, G. K. Small-Hbpc estimation of negative binomial dispersion, with applications to SAGE data. Biostatistics 9, 321-332 (2007). Link to edgeR source.
+
+* 4.Van der Maaten, L.J.P. Accelerating t-SNE using Tree-Based Algorithms. Journal of Machine Learning Research 15, 3221-3245 (2014).
+
+* 5.Yu, D., Huber, W. & Vitek, O. Shrinkage estimation of dispersion in Negative Binomial models for RNA-seq experiments with small Hbpc size. Bioinformatics 29, 1275-1282 (2013).
+
+* 6.Grace X.Y. Zheng1, Jessica M. Terry1 Massively parallel digital transcriptional profiling of single cells (2017).
+
+* 7.Dobin A, Davis C A, Schlesinger F, et al. STAR: ultrafast universal RNA-seq aligner[J]. Bioinformatics, 2013, 29(1): 15-21.
+
+* 8.Robinson M D, McCarthy D J, Smyth G K. edgeR: a Bioconductor package for differential expression analysis of digital gene expression data[J]. Bioinformatics, 2010, 26(1): 139-140.
+
+* 9.Lun AT, McCarthy DJ, Marioni JC. A step-by-step workflow for low-level analysis of single-cell RNA-seq data. Version 1\. F1000Res. 2016 Aug 31;5:2122.
+
+* 10.Risso D, Ngai J, Speed TP, Dudoit S. Normalization of RNA-seq data using factor analysis of control genes or samples. Nat Biotechnol. 2014 Sep;32(9):896-902.
+
+* 11.Xiaojie Qiu, Qi Mao, Ying Tang, Li Wang, Raghav Chawla, Hannah Pliner, Cole Trapnell. Reversed graph embedding resolves complex single-cell trajectories. Nature Methods volume 14, pages 979-982 (2017).
+
+* 12.Manu Setty, Michelle D Tadmor, Shlomit Reich-Zeliger, Omer Angel, Tomer Meir Salame, Pooja Kathail, Kristy Choi, Sean Bendall, Nir Friedman and Dana Pe'er. Wishbone identifies bifurcating developmental trajectories from single-cell data. Nature Biotechnology volume 34, pages 637-645 (2016)
+
+* 13.Gioele La Manno, Ruslan Soldatov, Amit Zeisel, Emelie Braun, Hannah Hochgerner, Viktor Petukhov, Katja Lidschreiber, Maria E. Kastriti, Peter Lönnerberg, Alessandro Furlan, Jean Fan, Lars E. Borm, Zehua Liu, David van Bruggen, Jimin Guo, Xiaoling He, Roger Barker, Erik Sundström, Gonçalo Castelo-Branco, Patrick Cramer, Igor Adameyko, Sten Linnarsson and Peter V. Kharchenko. RNA velocity of single cells. Nature volume 560, pages 494-498 (2018).
+
+* 14.Etienne Becht, Leland McInnes, John Healy, Charles-Antoine Dutertre, Immanuel W H Kwok, Lai Guan Ng, Florent Ginhoux and Evan W Newell. Dimensionality reduction for visualizing single-cell data using UMAP. Nature Biotechnology volume 37, pages 38-44 (2019).
+
+* 15.V ladimir Yu Kiselev, Kristina Kirschner, Michael T Schaub, Tallulah Andrews, Andrew Yiu, Tamir Chandra, Kedar N Natarajan, Wolf Reik, Mauricio Barahona, Anthony R Green & Martin Hemberg. SC3 - consensus clustering of single-cell RNA-Seq data. Nature Methods volume 14, pages 483-486 (2017).
+
+* 16.Daniel A. Skelly, Galen T. Squiers, Micheal A. McLellan, Mohan T. Bolisetty, Paul Robson, Nadia A. Rosenthal, Alexander R. Pinto. Single-cell transcriptional profiling reveals cellular diversity and inter-communicaiton in the mouse heart. Volume 22, Issue 3, pages 600-610 (2018).
+
+* 17.Zhang X , Lan Y , Xu J , et al. CellMarker: a manually curated resource of cell markers in human and mouse[J]. Nucleic Acids Research(2018).
+
+* 18.ManuPK, JinyanDu,Georgia L, et al. Analysis of Single-Cell RNA-Seq Identifies Cell-Cell Communication Associated with Tumor Characteristics. CellReport(2018).
+
+* 19.Geoffrey S,Jian S, Marcin T, et al. Optimal-Transport Analysis of Single-Cell Gene Expression Identifies Developmental Trajectories in Reprogramming. Cell (2019).
+
+* 20.Wolf, F. Alexander, P. Angerer, and F. J. Theis. SCANPY: large-scale single-cell gene expression data analysis. Genome Biology 19.1(2018).
+
+* 21.Christopher S McGinnis',Lyndsay M Murrow',Zev J Gartneret al:DoubletFinder: Doublet Detection  in  Single-Cell  RNASequencing  Data  Using  Artificial  Nearest  Neighbors.Cell Syst.2019.8(4):329-337.e4
+
+* 22.Wolock SL, Lopez R, Klein AM. Scrublet: Computational Identification of Cell Doublets in Single-Cell Transcriptomic Data. Cell Syst. 2019. 8(4):281-291.e9
+
+<p>
+<br/>
+<img class="logo"  align="left" src="src/images/logo.png"/>
+<h6 style="text-align:right">Novogene Co.,Ltd.</h6>
+<hr/>
+</p>
